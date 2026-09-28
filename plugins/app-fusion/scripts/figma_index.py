@@ -6,14 +6,18 @@
                                                                      parse a get_metadata page listing into design.json
     python3 figma_index.py scope <program> <fileKey> --pages ID[,ID...]   mark the pages that hold the new app
     python3 figma_index.py budget <program> [--spend N] [--limit N]      calls spent today and in this run
-    python3 figma_index.py plan <program> [--limit N] [--json]           the next calls needed, cheapest first
+    python3 figma_index.py plan <program> [--limit N] [--refresh] [--json]   the next calls needed, cheapest first
     python3 figma_index.py build <program>                               cache -> design/design.json
+    python3 figma_index.py placeholders <program> <file.json>            record the sample data shown in the designs
 
 Cache layout (docs/DESIGN.md): analysis/<program>/design/cache/<fileKey>/<node>.<tool>.<ext>, with node ids written
 as 12-345. Tools: pages (txt), metadata (xml), variables (txt/json), context (txt), shot (png, stored under
 design/shots/). `build` never calls Figma: it parses what is cached, so it is free to re-run. A frame is a screen
 when it sits on a page or directly in a section and has a phone or tablet shape; its texts are the names of its
-text layers (Figma names a text layer after its content unless someone renamed it). Standard library only.
+text layers (Figma names a text layer after its content unless someone renamed it), or the characters of a cached
+design context when there is one. `placeholders` takes [{"text", "screen"?, "why"}] for texts that are sample data
+(a person's name, an amount) and writes design/placeholders.json, which the design-copy check leaves out; it runs in
+the design step, before anything is built, and the guard asks the person to confirm it. Standard library only.
 """
 
 import argparse
@@ -319,26 +323,27 @@ def build(ws, program):
     return data
 
 
-def plan(ws, program, limit):
+def plan(ws, program, limit, refresh=False):
     data = load_design(ws, program)
     base = design_dir(ws, program)
     steps = []
+    cached = (lambda path: False) if refresh else os.path.isfile
     for f in data["files"]:
         if not f.get("pages"):
             steps.append({"call": "get_metadata", "fileKey": f["fileKey"], "nodeId": None, "save": "pages",
                           "why": "list the pages"})
             continue
         for page in f["pages"]:
-            if page.get("inScope") and not os.path.isfile(os.path.join(base, "cache", f["fileKey"], f"{node_slug(page['id'])}.metadata.xml")):
+            if page.get("inScope") and not cached(os.path.join(base, "cache", f["fileKey"], f"{node_slug(page['id'])}.metadata.xml")):
                 steps.append({"call": "get_metadata", "fileKey": f["fileKey"], "nodeId": page["id"], "save": "metadata",
                               "why": f"frames on page {page['name']}"})
-    shots = [s for s in data.get("screens", []) if s.get("kind") in ("screen", "state") and not s.get("shot")
-             and not os.path.isfile(os.path.join(base, "shots", s["fileKey"], f"{node_slug(s['nodeId'])}.png"))]
+    shots = [s for s in data.get("screens", []) if s.get("kind") in ("screen", "state") and (refresh or not s.get("shot"))
+             and not cached(os.path.join(base, "shots", s["fileKey"], f"{node_slug(s['nodeId'])}.png"))]
     for s in shots:
         steps.append({"call": "get_screenshot", "fileKey": s["fileKey"], "nodeId": s["nodeId"], "save": "shot",
                       "why": f"screenshot of {s['name']}"})
     have_vars = glob.glob(os.path.join(base, "cache", "*", "*.variables.*")) + glob.glob(os.path.join(base, "cache", "*", "*.rest-variables.json"))
-    if not have_vars:
+    if refresh or not have_vars:
         reps = [s for s in data.get("screens", []) if s.get("kind") == "screen"][:2]
         for s in reps:
             steps.append({"call": "get_variable_defs", "fileKey": s["fileKey"], "nodeId": s["nodeId"], "save": "variables",
@@ -375,10 +380,15 @@ def main():
     p = sub.add_parser("plan")
     p.add_argument("program")
     p.add_argument("--limit", type=int, default=0)
+    p.add_argument("--refresh", action="store_true", help="plan calls for nodes already cached too (the person asked to re-fetch)")
     p.add_argument("--json", action="store_true")
     p.add_argument("--workspace")
     p = sub.add_parser("build")
     p.add_argument("program")
+    p.add_argument("--workspace")
+    p = sub.add_parser("placeholders")
+    p.add_argument("program")
+    p.add_argument("file")
     p.add_argument("--workspace")
     args = ap.parse_args()
     ws = workspace(args.workspace)
@@ -417,13 +427,35 @@ def main():
         b = budget(ws, args.program, args.spend, args.limit)
         print(json.dumps(b))
     elif args.cmd == "plan":
-        steps, total = plan(ws, args.program, args.limit)
+        steps, total = plan(ws, args.program, args.limit, args.refresh)
         if args.json:
             print(json.dumps({"total": total, "next": steps}, indent=2))
         else:
             print(f"{total} Figma call(s) still needed" + (f"; next {len(steps)}:" if steps else ""))
             for s in steps:
                 print(f"  {s['call']} {s['fileKey']} {s['nodeId'] or '(no node: page list)'} -> {s['save']}  # {s['why']}")
+    elif args.cmd == "placeholders":
+        items = load_json(args.file)
+        if not isinstance(items, list):
+            die(f"{args.file} must hold a JSON list of {{text, screen?, why}}")
+        known = {s["id"] for s in load_design(ws, args.program).get("screens", [])}
+        out = []
+        for it in items:
+            it = {"text": it} if isinstance(it, str) else it
+            text, screen, why = str(it.get("text") or "").strip(), it.get("screen") or "*", str(it.get("why") or "").strip()
+            if not text or len(text) > 120:
+                die(f"placeholder {text[:40]!r}: a text of 1 to 120 characters")
+            if screen != "*" and screen not in known:
+                die(f"placeholder {text!r}: screen {screen} is not in design.json")
+            if not why:
+                die(f"placeholder {text!r}: say why it is sample data (why)")
+            out.append({"text": text, "screen": screen, "why": why[:200]})
+        path = os.path.join(program_dir(ws, args.program), "design", "placeholders.json")
+        previous = load_json(path) or []
+        merged = {(p["text"], p.get("screen", "*")): p for p in previous if isinstance(p, dict)}
+        merged.update({(p["text"], p["screen"]): p for p in out})
+        write_json(path, list(merged.values()))
+        print(f"{len(out)} placeholder(s) recorded ({len(merged)} in all) -> {os.path.relpath(path, ws)}")
     else:
         build(ws, args.program)
 

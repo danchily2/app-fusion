@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
-"""PreToolUse guard: the legacy apps are never edited.
+"""PreToolUse guard: the legacy apps are never edited, the judge's inputs are written only by the scripts, and a
+person's decisions and sign-offs are recorded only with that person's yes.
 
 Reads the hook input (JSON on stdin). Outside a workspace with analysis/*/program.json it does nothing. Inside one:
   - a file write (Edit, Write, MultiEdit, NotebookEdit) whose path resolves under legacy/<app>, or under the real
     directory a legacy link points to, is denied;
-  - a shell command that writes into such a path (a redirect whose target is there, rm/mv/cp/tee/touch/sed -i/...
+  - a file write to what the proof reads is denied: analysis/<program>/DECISIONS.*, SIGNOFF.json, VERIFICATION.*,
+    capabilities.json, capability_index.json, rules.json, traceability.json, platform.json,
+    design/placeholders.json and everything under evidence/. The scripts that own them write them;
+  - a shell command that records a person's decision or sign-off (decisions.py add|add-json, signoff.py
+    brief|proof|visual) or which design texts are sample data (figma_index.py placeholders) is sent to the person
+    to approve, so a model can never answer for them or exempt its own work;
+  - a shell command that writes into a legacy path (a redirect whose target is there, rm/mv/cp/tee/touch/sed -i/...
     with an argument there, a git or package-manager write run against it) is sent to the person to approve.
 Anything the guard cannot parse is allowed through to the normal permission rules, never silently blocked.
 Set the plugin option guard=false to turn it off. Standard library only.
@@ -24,6 +31,24 @@ GIT_WRITES = {"commit", "checkout", "reset", "clean", "stash", "apply", "am", "m
 PKG_WRITES = re.compile(r"\b(?:npm|yarn|pnpm|bun)\s+(?:install|i|add|remove|ci|update|upgrade)\b|\bpod\s+(?:install|update|deintegrate)\b|"
                         r"\bbundle\s+(?:install|update)\b|\bswift\s+package\s+(?:update|resolve|reset)\b|\bgradlew?\s+\S*clean\b|"
                         r"\bnpx\s+react-native\s+(?:upgrade|link)\b|\bfastlane\b")
+
+
+JUDGED = re.compile(r"^(?:DECISIONS\.(?:json|md)|SIGNOFF\.json|VERIFICATION\.(?:json|md)|capabilities\.json|capability_index\.json|"
+                    r"rules\.json|traceability\.json|platform\.json|design/placeholders\.json|evidence/.+)$")
+RECORDS = re.compile(r"\bdecisions\.py[\"']?\s+(?:add|add-json)\b|\bsignoff\.py[\"']?\s+\S+\s+(?:brief|proof|visual)\b|"
+                     r"\bfigma_index\.py[\"']?\s+placeholders\b")
+
+
+def judged_file(ws, path):
+    """The path of a judge's input relative to analysis/<program>/ when `path` is one, else None."""
+    analysis = os.path.realpath(os.path.join(ws, "analysis"))
+    if not path.startswith(analysis + os.sep):
+        return None
+    parts = os.path.relpath(path, analysis).split(os.sep)
+    if len(parts) < 2 or not os.path.isfile(os.path.join(analysis, parts[0], "program.json")):
+        return None
+    rel = "/".join(parts[1:])
+    return rel if JUDGED.match(rel) else None
 
 
 def decide(decision, reason):
@@ -145,14 +170,25 @@ def main():
         target = args.get("file_path") or args.get("notebook_path") or args.get("path")
         if not target:
             return
-        app = inside(resolve(target, cwd), roots)
+        full = resolve(target, cwd)
+        app = inside(full, roots)
         if app:
             decide("deny", f"App Fusion never edits a legacy app: {target} is inside legacy/{app}. Write analysis output "
                            "under analysis/<program>/ and new code under new-app/<program>/. (To change the legacy app "
                            "on purpose, do it outside this workspace or set the plugin option guard=false.)")
+        judged = judged_file(os.path.realpath(ws), full)
+        if judged:
+            decide("deny", f"App Fusion: {judged} is an input of the proof, written only by its script (decisions.py, "
+                           "signoff.py, evidence.py, canary.py, the parity scripts, render.py, trace.py). Edit the "
+                           "workflow result it is rendered from (map_result.json, rules_result.json, trace_result.json) "
+                           "and render again, or run the script.")
         return
     if tool == "Bash":
-        reason = check_bash(args.get("command") or "", cwd, roots)
+        command = args.get("command") or ""
+        if RECORDS.search(command):
+            decide("ask", "App Fusion: this records a person's decision or sign-off. Approve only if these are that "
+                          "person's own answers, given in this session.")
+        reason = check_bash(command, cwd, roots)
         if reason:
             decide("ask", f"App Fusion guard: {reason}. The legacy apps are read-only for this work; approve only if a "
                           "person really wants this change.")

@@ -24,7 +24,7 @@ env:
 - tapOn: { id: "approve-button" }
 - assertVisible: "Approved"
 - assertNotVisible: { id: "approval-item-${REQUEST_ID}" }
-- takeScreenshot: ../analysis/<program>/evidence/shots/CAP-014/approved
+- takeScreenshot: ${SHOTS}/CAP-014-approved
 ```
 
 ## Rules
@@ -41,14 +41,20 @@ env:
 
 ## Run with a JUnit result
 
+From the workspace root, once per target platform (`ios`, `android`):
+
 ```bash
+RUN=$(python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" dir <program> journey JRN-003 --platform ios)
 maestro test new-app/<program>/.maestro/JRN-003-approve-absence.yaml \
   -e APP_ID=<bundle or application id> -e MANAGER_USER=... -e MANAGER_PASSWORD=... \
-  --format junit --output analysis/<program>/evidence/maestro/JRN-003.xml
-python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" journey <program> --journey JRN-003 \
-  --flow new-app/<program>/.maestro/JRN-003-approve-absence.yaml \
-  --junit analysis/<program>/evidence/maestro/JRN-003.xml --device "iPhone 17 (iOS 26)"
+  -e SHOTS="$PWD/analysis/<program>/evidence/shots" --format junit --output "$RUN/maestro.xml"
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" journey <program> --journey JRN-003 --platform ios \
+  --flow new-app/<program>/.maestro/JRN-003-approve-absence.yaml --junit "$RUN" --device "iPhone 17 (iOS 26)"
 ```
+
+The flow's file name starts with its journey id (`JRN-003-...`), so the JUnit result names it: the proof counts a
+run only for the journey it names. `SHOTS` is an absolute path, so screenshots land in the workspace whatever folder
+Maestro runs from.
 
 Boot the device first (`xcrun simctl boot "iPhone 17"`, or `emulator -avd <name>`) and install the app. Stop the
 simulator or emulator you started when the run ends.

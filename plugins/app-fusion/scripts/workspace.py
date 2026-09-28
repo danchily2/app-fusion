@@ -26,7 +26,7 @@ from fusionlib import detect  # noqa: E402
 from fusionlib.common import (check_name, die, git_info, load_json, program_dir, today, workspace,  # noqa: E402
                               write_json)
 
-GITIGNORE_LINES = ["SECRETS.local.md", "*.local.patch", "**/*.token*", "design/cache/**/*.har"]
+GITIGNORE_LINES = ["SECRETS.local.md", "*.local.patch", "**/*.token*", "**/*.har", "!**/*.sanitized.har"]
 FIGMA_URL = re.compile(r"https?://(?:www\.)?figma\.com/(design|file|proto|board|make)/([0-9A-Za-z]{22,128})(?:/branch/([0-9A-Za-z]{22,128}))?(?:/([^?#]*))?")
 
 
@@ -230,19 +230,21 @@ def cmd_guard(args):
     for f in files:
         for r in _deny_rules(f):
             if r.startswith("Edit(") or r == "Edit":
-                rules.append((os.path.relpath(f, ws) if f.startswith(ws) else f.replace(os.path.expanduser("~"), "~"), r))
-    covered_legacy = any(r in ("Edit", "Edit(legacy/**)", "Edit(./legacy/**)", "Edit(/legacy/**)", "Edit(**/legacy/**)")
-                         for _, r in rules)
+                rules.append((os.path.relpath(f, ws) if f.startswith(ws) else f.replace(os.path.expanduser("~"), "~"), r, f.startswith(ws)))
+    # a leading / is relative to the settings file's own folder: Edit(/legacy/**) protects this workspace only when it
+    # sits in the workspace's settings, not in ~/.claude/settings.json
+    covered_legacy = any(r in ("Edit", "Edit(**/legacy/**)") or (in_ws and r in ("Edit(legacy/**)", "Edit(./legacy/**)", "Edit(/legacy/**)"))
+                         for _, r, in_ws in rules)
     missing_real = []
     for a in prog.get("apps", []):
         link = os.path.join(ws, a.get("path") or f"legacy/{a['name']}")
         if os.path.islink(link):
             real = os.path.realpath(link)
-            if not any(r in ("Edit", f"Edit(/{real}/**)", f"Edit(//{real.lstrip('/')}/**)") for _, r in rules):
+            if not any(r in ("Edit", f"Edit(//{real.lstrip('/')}/**)") for _, r, _ in rules):
                 missing_real.append(real)
     status = "ok" if covered_legacy and not missing_real else "warn"
     print(f"status: {status}")
-    for f, r in rules:
+    for f, r, _ in rules:
         print(f"  deny {r}  ({f})")
     if status != "ok":
         deny = ["Edit(/legacy/**)"] + [f"Edit(//{p.lstrip('/')}/**)" for p in missing_real]

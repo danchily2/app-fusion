@@ -399,5 +399,50 @@ class Journeys(Base):
         self.assertIn("names no JRN-001 test", v["CAP-001"]["checks"]["Journeys"]["detail"])
 
 
+class PlatformContinuity(Base):
+    def test_existing_users_keep_links_schemes_push_and_identity(self):
+        w = self.w
+        w.run("workspace.py", "intent", "p", "--store", "mgr")
+        w.run("render.py", "platform", "p")
+        w.run("platform_parity.py", "p", check=False)
+        rows = {r["check"]: r for r in w.json("analysis", "p", "evidence", "platform-parity.json")["checks"]}
+        self.assertEqual(rows["identity"]["verdict"], "fail", "the store listing kept is mgr's: its bundle id must stay")
+        self.assertEqual(rows["links"]["verdict"], "fail")
+        self.assertEqual(rows["schemes"]["expected"], ["empauth", "mgrapp"])
+        self.assertEqual(rows["extension:share"]["verdict"], "gap", "nobody decided the share extension yet")
+        self.assertEqual(rows["locales"]["expected"], ["da", "en", "nb"])
+        # the new app ships what users rely on, and a person drops what it will not keep
+        helpers.write(self.app, "ios/App/Info.plist", """
+            <?xml version="1.0" encoding="UTF-8"?>
+            <plist version="1.0"><dict>
+              <key>CFBundleIdentifier</key><string>com.x.mgr</string>
+              <key>CFBundleURLTypes</key><array><dict><key>CFBundleURLSchemes</key><array><string>mgrapp</string><string>empauth</string></array></dict></array>
+            </dict></plist>
+        """)
+        helpers.write(self.app, "ios/App/App.entitlements", """
+            <?xml version="1.0" encoding="UTF-8"?>
+            <plist version="1.0"><dict>
+              <key>aps-environment</key><string>production</string>
+              <key>com.apple.developer.associated-domains</key><array><string>applinks:mgr.example.net</string></array>
+            </dict></plist>
+        """)
+        helpers.write(self.app, "ios/App/PrivacyInfo.xcprivacy", "<plist><dict/></plist>\n")
+        helpers.write(self.app, "src/i18n/locales/nb.json", json.dumps({"approvals": {"approve": "Godkjenn"}}))
+        items = {i["name"]: i["id"] for i in w.json("analysis", "p", "platform.json")["items"]}
+        for name in ("App extension: share", "App groups"):
+            w.run("decisions.py", "add", "p", "--about", items[name], "--kind", "platform", "--choice", "drop")
+        w.run("platform_parity.py", "p")
+        parity = w.json("analysis", "p", "evidence", "platform-parity.json")
+        self.assertEqual(parity["verdict"], "pass", parity["checks"])
+        self.assertEqual({r["check"]: r["verdict"] for r in parity["checks"]}["extension:share"], "n/a")
+        w.run("fusion_proof.py", "p", check=False)
+        self.assertEqual(w.json("analysis", "p", "VERIFICATION.json")["continuity"]["verdict"], "pass")
+        # a later edit of a platform file makes the result stale
+        with open(os.path.join(self.app, "ios/App/Info.plist"), "a", encoding="utf-8") as fh:
+            fh.write("<!-- -->")
+        w.run("fusion_proof.py", "p", check=False)
+        self.assertEqual(w.json("analysis", "p", "VERIFICATION.json")["continuity"]["verdict"], "gap")
+
+
 if __name__ == "__main__":
     unittest.main()

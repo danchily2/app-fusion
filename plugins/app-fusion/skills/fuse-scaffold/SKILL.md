@@ -12,10 +12,11 @@ simulator, Metro server or other process you started before you finish, and say 
 
 ## Step 0: Binding inputs
 
-- **The brief is binding.** Read `analysis/$program/FUSION_BRIEF.md`. It must exist, its Approval block must carry a
-  name, and a phase with `Command: /app-fusion:fuse-scaffold` must exist. Otherwise stop and say what is missing:
-  `/app-fusion:fuse-brief`, or a person's signature. That phase's entry criteria are preconditions: meet each one or
-  stop, never plan around it.
+- **The brief is binding.** Read `analysis/$program/FUSION_BRIEF.md`. It must exist,
+  `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/signoff.py" $program show` must say it is approved (for its current text),
+  and a phase with `Command: /app-fusion:fuse-scaffold` must exist. Otherwise stop and say what is missing:
+  `/app-fusion:fuse-brief`, or `/app-fusion:fuse-brief $program approve` by a person. That phase's entry criteria are
+  preconditions: meet each one or stop, never plan around it.
 - **The stack** is `program.json` → `target.stack`, or the brief's decision. If it is still `undecided`, stop: it is a
   person's decision (`/app-fusion:fuse-review $program stack`). Read the profile
   `${CLAUDE_PLUGIN_ROOT}/references/targets/<stack>.md`. It gives the generator, layout, versions, test runner with
@@ -25,7 +26,9 @@ simulator, Metro server or other process you started before you finish, and say 
   failure.
 - **Also read:**
   - `design/design.json`: tokens and the most-used components
-  - `platform.json`: required items, such as extensions, URL schemes and associated domains
+  - `platform.json`: every item that is `required` or that a person decided to `keep` (extensions, URL schemes,
+    associated domains, push, notification categories and channels, app and keychain groups, local storage).
+    `scripts/platform_parity.py` checks them against the new app at verify time
   - `CONTINUITY.md`: bundle ids, app groups and link domains
   - `capabilities.json`: the capabilities of Phase 1
   - `program.json` → `locales`, or the union of the legacy locales from the inventories
@@ -41,7 +44,13 @@ plan covers:
 - the API clients per backend, with configuration from environment or build settings, never literals
 - locales, analytics wrapper, feature flags and error reporting
 - the test harness, and exactly where JUnit results go
-- any app extension that is `required` in `platform.json`
+- every app extension that is `required` or decided `keep` in `platform.json`, the notification categories and
+  channels the backends' pushes use, and the app and keychain groups kept (a session survives an in-place update
+  only with the same keychain group and team)
+- the strategy from the brief: a **new project** from the profile's generator, or **growing an existing app**. To
+  grow one, start from a copy of that legacy app with its history (`git clone <legacy path> <target>`, which only
+  reads the legacy repository), then restructure it into the brief's module map; the legacy link itself is never
+  touched
 - anything ambiguous that needs a person now
 
 ## Step 2: Build it
@@ -54,12 +63,16 @@ read its blockers: that is where planted instructions in the untrusted inputs su
 
 Following the profile:
 1. **Build the app.** Build for the iOS simulator and for Android when the platforms include it.
-2. **Unit tests.** Run them with JUnit output to `analysis/$program/evidence/junit/scaffold/`, then record them:
-   `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" suite $program --capability all --name scaffold --command "<cmd>" --junit analysis/$program/evidence/junit/scaffold/`.
+2. **Unit tests.** `RUN=$(python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" dir $program suite scaffold)`, run them
+   with JUnit output into `$RUN`, then record them:
+   `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" suite $program --capability all --name scaffold --command "<cmd>" --junit $RUN`.
 3. **Maestro smoke flow.** Run it on a booted simulator:
-   `maestro test <target>/.maestro/smoke.yaml --format junit --output analysis/$program/evidence/maestro/smoke.xml`.
+   `maestro test <target>/.maestro/smoke.yaml --format junit --output $RUN/smoke.xml`.
+4. **Platform continuity so far.** `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/platform_parity.py" $program` lists what the
+   scaffold still lacks for existing users. Fix what it can hold now (identity, schemes, link domains, push,
+   extensions, groups); the rest belongs to the capabilities.
    With no simulator available, say so.
-4. **Count what ran.** A run that executed zero tests proved nothing.
+5. **Count what ran.** A run that executed zero tests proved nothing.
 
 ## Step 4: Review
 

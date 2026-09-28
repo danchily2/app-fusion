@@ -21,8 +21,9 @@ python3 "${CLAUDE_PLUGIN_ROOT}/scripts/render.py" platform $program
 These write `apps/<app>/inventory.json`, `strings.json` and `INVENTORY.md`, then `overlap.json` (shared backend
 endpoints, shared UI copy, locales) and `platform.json` with `PLATFORM.md`. **Every count is printed with its rule.**
 Quote the rule with any number you repeat, because two numbers made by different rules are different facts. An app
-whose stack has no extractor (Flutter, a hybrid web shell) exits with code 3: give it to an analyst agent in Step 2
-and say the inventory is model-derived.
+whose stack has no extractor (Flutter, a hybrid web shell) gets a stub inventory, the other apps are still
+inventoried, and the command exits with code 3: give that app to an analyst agent in Step 2 and say its inventory is
+model-derived.
 
 ## Step 2: Read each app (subagents in parallel, one of each per app)
 

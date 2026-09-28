@@ -24,7 +24,7 @@ import urllib.request
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import figma_index as fx  # noqa: E402
-from fusionlib.common import check_name, die, load_json, workspace, write_json  # noqa: E402
+from fusionlib.common import check_name, die, workspace, write_json  # noqa: E402
 
 API = os.environ.get("FIGMA_API_BASE", "https://api.figma.com").rstrip("/")
 FRAME_TYPES = {"FRAME", "COMPONENT", "COMPONENT_SET", "INSTANCE", "GROUP"}

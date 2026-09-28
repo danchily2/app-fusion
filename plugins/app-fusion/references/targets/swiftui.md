@@ -46,14 +46,16 @@ Tests use Swift Testing (`import Testing`). XCTest is fine where it already exis
 Xcode's result bundle keeps display names, but `swift test`'s xUnit file keeps only function and type names.
 
 Choose the route by what you are testing:
+Take a fresh run folder first, from the workspace root, and pass it as an absolute path:
+`RUN=$(python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" dir <program> suite <CAP>); OUT="$PWD/$RUN"`.
 - **Packages** (fast; use it for a capability's module): `swift test --package-path Modules/<Feature> --parallel
-  --xunit-output analysis/<program>/evidence/junit/<CAP>/unit.xml`.
+  --xunit-output "$OUT/unit.xml"`.
   - XCTest results go to `unit.xml`. The `--parallel` flag is required, or no XCTest file is written.
   - Swift Testing results go to `unit-swift-testing.xml`, with no display names.
-  - Record both files.
+  - Record the run folder (`evidence.py suite ... --junit "$RUN"`): it holds both files and nothing from other runs.
 - **The app scheme:** `xcodebuild test -project <App>.xcodeproj -scheme <App> -destination 'platform=iOS
   Simulator,name=iPhone 17' -resultBundlePath <out>.xcresult`, then
-  `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/xcresult_junit.py" <out>.xcresult analysis/<program>/evidence/junit/<CAP>/app.xml`.
+  `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/xcresult_junit.py" <out>.xcresult "$OUT/app.xml"`.
   The converter keeps display names and node identifiers.
 - `xcodebuild` returns 65 when a test fails. That is expected, and the result bundle is still written.
 

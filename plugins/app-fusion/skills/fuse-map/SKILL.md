@@ -67,7 +67,12 @@ python3 "${CLAUDE_PLUGIN_ROOT}/scripts/render.py" platform $program
 ```
 
 This writes `capabilities.json`, `CAPABILITIES.md`, `platform.json` and `PLATFORM.md`. **Ids are stable.** A capability
-that exists keeps its `CAP-NNN` across re-runs, so decisions made about it stay attached.
+that exists keeps its `CAP-NNN` across re-runs, so decisions made about it stay attached: the workflow is told the
+earlier names (`previousIndex`), and `render.py` matches a renamed capability by its evidence (the same screens,
+files and endpoints). When a capability id leaves the map but decisions, rules, design links or porting notes still
+use it, `render.py` prints a warning and lists it under "Retired ids still in use". If a capability of the new map is
+the same one, write `analysis/$program/map_aliases.json` (`{"CAP-007": "<its name in map_result.json>"}`) and render
+again. Otherwise tell the person which decisions and notes now point at nothing.
 
 Check the result before you report it:
 - Every `shared-diverged` capability has at least one concrete divergence line.

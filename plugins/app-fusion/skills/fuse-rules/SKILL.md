@@ -15,9 +15,10 @@ foreground and wait for it.
 
 ## 1: Shards
 
-Run `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/shard.py" $program [--app <app>] [--pattern <glob>]`. Run it again even when
-`shards.json` exists, so `workflow-args.rules.json` carries the current capability ids from `capability_index.json`.
-Rules use **every** shard, including logic (services, reducers, utils), because that is where validation and
+Run `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/shard.py" $program --for rules [--app <app>] [--pattern <glob>]`. Run it
+again even when `shards.json` exists, so `workflow-args.rules.json` carries the current capability ids from
+`capability_index.json`; `--for rules` leaves the map's arguments as they are. Rules use **every** shard, including
+logic (services, reducers, utils) and a React Native app's native code, because that is where validation and
 calculation live.
 
 ## 2: Estimate, ask if large, launch
@@ -66,7 +67,10 @@ This writes:
 
 Report:
 - total rules, by category and priority
-- how many are flagged for a person (P0 below High confidence, with a suspected defect or with a question)
+- how many are flagged for a person, by priority: P0 rules with any doubt block the plan; P1 and P2 rules with a
+  suspected defect or a question are asked when their capability is built. Say plainly when there is no P0 rule
+  at all: the proof pins the P1 rules as well, but only P0 rules get the two-judge panel
+- the rules no capability owns: each P0 one is a question (`attach`)
 - the cross-app conflicts, by capability
 - how many candidates the referees rejected (the quality the verification bought)
 

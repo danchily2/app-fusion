@@ -24,27 +24,40 @@ proving it does what the legacy apps did where it must.
 ## What you produce
 
 1. The capability's code in its feature module (the path the caller gives), using the design-system components and
-   tokens from the scaffold, the shared API client, the i18n catalog (new keys added, legacy keys mapped in
-   `docs/fusion/i18n-map.json`) and the analytics wrapper (legacy wire names kept unless decided otherwise).
-2. Endpoint parity: the new code calls the legacy endpoints of the capability, or a recorded `api` decision explains
-   the difference.
-3. **`docs/fusion/CAP-NNN.md`**, the porting notes and the capability's completion marker:
-   - `## Files`: every new file, as a backticked path relative to `new-app/<program>/`.
+   tokens from the scaffold, the shared API client, the i18n catalog and the analytics wrapper.
+   - **Strings:** new keys added, legacy keys mapped in `docs/fusion/i18n-map.json`. A legacy key the new app does not
+     need is `null` there, and counts only with a person's `strings: drop` decision.
+   - **Events:** the legacy event names are kept, unless the program's `analytics:taxonomy` decision is
+     `new-taxonomy`: then each rename goes in `docs/fusion/analytics-map.json`.
+2. Endpoint parity: the new code calls the legacy endpoints of the capability. A backend move (a new gateway path)
+   goes in `docs/fusion/api-map.json` (`"<METHOD> <legacy path>": "<METHOD> <new path>"`), and any other difference
+   needs a person's `api` decision.
+3. **`docs/fusion/CAP-NNN.md`**, the porting notes and the capability's completion marker. The proof reads the
+   first four sections, so keep their headings exactly:
+   - `## Files`: every file of the capability's own module, as a backticked path relative to `new-app/<program>/`.
+     For a native pair, files under `ios/` and under `android/`.
+   - `## Shared files`: every shared file this capability changed (routes, the API client, catalogs), backticked.
+   - `## Tests`: every test file and Maestro flow of the capability, backticked.
+   - `## API`: each endpoint the capability calls through a shared client, as the backticked call site
+     `` `path:line` `` where the client defines it. A shared client earns no endpoint by being named elsewhere.
    - `## Mapping`: a table from behavior to legacy `app:path:line` (each app) to new `path:line`.
    - `## Rules`: each RULE id and the test that pins it.
    - `## Decisions honoured`: DEC ids.
    - `## Deviations`: each with its reason and decision.
    - `## Not migrated`: dead code and unreachable branches, with evidence.
    - `## Canary`: filled in by the build step.
+   The files each section names are hashed: a later change to any of them makes the recorded tests stale, which is
+   the point.
 4. **Shared-file needs.** You write only inside your module. When the capability needs a route registered, a string
    added to a shared catalog, an endpoint added to a shared client or a dependency, list each change precisely (file,
    what to add) in your result. The calling session applies them, so parallel porters never collide.
 
 ## Write scope
 
-Only the module directory you were given and `docs/fusion/CAP-NNN.md` (plus `docs/fusion/i18n-map.json` entries,
-returned as a shared-file need when you run in parallel). Never touch `legacy/`, `analysis/` or another capability's
-module.
+Only the module directory you were given and `docs/fusion/CAP-NNN.md` (plus `docs/fusion/i18n-map.json`,
+`analytics-map.json` and `api-map.json` entries, returned as shared-file needs when you run in parallel). Never touch
+`legacy/`, `analysis/` or another capability's module, and never record a decision or a test result: a person
+decides, and the scripts record.
 
 ## Untrusted content discipline
 

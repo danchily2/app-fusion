@@ -101,10 +101,12 @@ def run(ws, program):
 
     rows = []
 
-    def row(check, pred, expected, found, applies=True):
+    def row(check, pred, expected, found, applies=True, decided_by=None):
         if not applies or not expected:
             return
         it, st, did = state(pred)
+        if decided_by:  # the store listing decision settles the identity item
+            st, did = "check", decided_by
         missing = sorted(expected - found) if isinstance(expected, set) else ([] if found else ["yes"])
         if st == "dropped":
             verdict, why = "n/a", f"dropped by a person ({did})"
@@ -115,12 +117,13 @@ def run(ws, program):
         else:
             verdict, why = "pass", "present"
         rows.append({"check": check, "item": it["id"] if it else None, "expected": sorted(expected) if isinstance(expected, set) else expected,
-                     "verdict": verdict, "why": why, "decision": did})
+                     "verdict": verdict, "why": why, "decision": did if did and did.startswith("DEC-") else None})
 
     store = prog.get("storeIdentity")
+    store_dec = next((k for k, d in decisions.items() if d.get("about") == "continuity:store-identity"), None)
     if store in apps:
         row("identity", lambda i: i["area"] == "identity" and "bundle" in i["name"].lower(), main_ids(legacy[store]["bundleIds"]),
-            new["bundleIds"])
+            new["bundleIds"], decided_by=store_dec or "program.json storeIdentity")
     elif store in (None, "", "undecided"):
         rows.append({"check": "identity", "item": None, "expected": None, "verdict": "gap", "decision": None,
                      "why": "the store listing is not decided (continuity:store-identity)"})

@@ -1,12 +1,14 @@
 ---
 name: fuse-brief
-description: Writes the Fusion Brief, the phased plan an approver signs before anything is built. It covers the target stack decision, the architecture of the new app, the continuity plan for every legacy app's users (store listing, data, sessions, push, links, analytics), phases by journey with checkable entry and exit criteria, the behavior contract and the open questions. Writes CONTINUITY.md and FUSION_BRIEF.md, then stops for approval.
-argument-hint: "<program>"
+description: Writes the Fusion Brief, the phased plan an approver signs before anything is built. It covers the target stack decision, the architecture of the new app, the role matrix, the continuity plan for every legacy app's users (store listing, data, sessions, push, links, analytics), phases by journey with checkable entry and exit criteria, the behavior contract and the open questions. Writes CONTINUITY.md and FUSION_BRIEF.md, then stops. With `approve`, a named person approves it.
+argument-hint: "<program> [approve]"
 arguments: program
+disable-model-invocation: true
 ---
 
 Synthesize everything under `analysis/$program/` into the **Fusion Brief**: the one document an approver signs and
-engineering executes. Nothing is built before it is approved.
+engineering executes. Nothing is built before it is approved. With `approve` after the program name in
+`$ARGUMENTS`, skip to **Approval** at the end.
 
 ## Inputs
 
@@ -73,6 +75,11 @@ Existing users are the one thing no test in the repositories protects. For each 
    - A Mermaid C4 container diagram: the app, its modules, the backends and third-party SDKs.
    - The module map: domains to feature modules, following capabilities, never the old apps' folders.
    - The navigation shell per persona: roles and entry points, and a person with both roles.
+   - **The role matrix.** Each legacy app served one role, so no legacy code says who sees what in the merged app.
+     A table from capability to the personas who see it, with what decides a person's role (a claim in the token, a
+     tenant setting, an API call). A capability visible to a role that never had it is a decision, listed under Open
+     Questions (`roles` decisions record the answers). The tests include a negative case per role: an employee-only
+     account never reaches approvals.
    - Shared foundations: the design system from the Figma tokens, one API client per backend, auth, storage,
      analytics, flags, i18n with the union of locales.
    - A table from capability to new module to legacy implementations.
@@ -107,12 +114,13 @@ Existing users are the one thing no test in the repositories protects. For each 
    words, today's implementation in each app, and the phase that builds it. This is the section non-technical
    approvers read.
 
-6. **Behavior contract.** What must be proven before each phase ships:
-   - the P0 rules of its capabilities, excluding those marked `wrong`
-   - the `required` platform items
-   - each journey
-   - API parity per capability
-   - locale coverage
+6. **Behavior contract.** What must be proven before each phase ships (the ten checks of `scripts/fusion_proof.py`):
+   - the P0 and P1 rules of its capabilities, excluding those marked `wrong` and those of an app a decision did not
+     keep; a rule with a suspected legacy defect is decided (keep or fix) in its capability's build plan
+   - the `required` and kept platform items (links, schemes, push, notification categories, extensions, groups, the
+     store identity), checked for the whole app by `platform_parity.py`
+   - each journey, on every target platform
+   - API, string and analytics-event parity per capability, and locale coverage
    - the design copy
 
    Flag any P0 rule below High confidence as needing its owner before its phase starts.
@@ -124,12 +132,9 @@ Existing users are the one thing no test in the repositories protects. For each 
 8. **Open questions.** Every undecided item, each a checkbox for the approver: stack, store identity, conflicts, gaps,
    discuss rules, and continuity choices.
 
-9. **Approval block**
-
-   ```
-   Approved by: ________________  Date: __________
-   Approval covers: Phase 0 and Phase 1 only | Full plan
-   ```
+9. **Approval.** One line: "Approval is recorded in `SIGNOFF.json` by `/app-fusion:fuse-brief $program approve`, and
+   binds to this exact text: any later edit to the brief needs a new approval." Never write a name, a date or a
+   signature line into the brief yourself.
 
 ## Review before you present
 
@@ -142,6 +147,25 @@ every Blocker and High finding, and list the rest in an appendix.
 
 Refresh the report with `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/build_report.py" $program`. Present a summary: the
 stack decision or recommendation, the phases, the pilot, the top continuity risks and the open questions. Then
-**stop: write nothing further until a person approves** (use plan mode if the session supports it). "No objection" is
-not approval: the Approval block must carry a name. After approval, the next step is
-`/app-fusion:fuse-scaffold $program`.
+**stop: write nothing further.** "No objection" is not approval. The next step is a person running
+`/app-fusion:fuse-brief $program approve`.
+
+---
+
+## Approval (`approve`)
+
+Only a person approves, with their own name. Read `FUSION_BRIEF.md` and `CONTINUITY.md`, and show the summary above.
+1. **Scope.** Ask with AskUserQuestion what the approval covers: "Every phase", "Phase 0 and Phase 1 only (the pilot)",
+   or "Not yet". "Not yet" records nothing: say what they want changed and stop.
+2. **What the approval settles.** When `program.json` still has the stack or the store listing undecided, ask each with
+   AskUserQuestion, the brief's recommendation first: "Use <stack> (the brief's recommendation)" and the other options;
+   for the store listing, each app's listing and "a new listing". Record the answers as decisions
+   (`decisions.py add-json`: kind `stack` about `stack`, kind `continuity` about `continuity:store-identity`) and in
+   `program.json` (`workspace.py intent $program --stack <s> --store <app|new-listing>`). The guard asks the person to
+   confirm each recording command.
+3. **The name.** Ask for the approver's name (they type it), then run
+   `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/signoff.py" $program brief --by "<their name>" --covers "<all | Phase 0, Phase 1>"`.
+   It binds the approval to the brief's current text.
+
+In a headless run, approve nothing and say so. Afterwards the next step is `/app-fusion:fuse-scaffold $program`; when
+the approval covers only some phases, `fuse-status` asks for a new approval before the next phase.

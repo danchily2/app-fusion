@@ -103,16 +103,18 @@ In at most ten lines, tailored to their answers, list the steps in order, with o
 4. `fuse-design` (skip if there is no design)
 5. `fuse-rules`
 6. `fuse-review`
-7. `fuse-brief`, which is the approval gate
+7. `fuse-brief`, then a person approves it with `fuse-brief <program> approve`: the approval gate, which also settles
+   a stack or store listing left to the plan
 8. `fuse-scaffold`
 9. `fuse-build`, one capability at a time, then batches
 10. `fuse-verify`
 11. `fuse-harden`
 
-For *understand first*, stop after `fuse-brief`. Name where a person decides, so nothing surprises them: the
+For *understand first*, stop after the approved brief. Name where a person decides, so nothing surprises them: the
 preflight answers, which Figma pages are the new app, every conflict between the apps, every feature with no design,
-the plan approval, each build plan, each difference the proof finds, the visual sign-off, and the security patch. If
-they chose a security review first, put `fuse-harden` on the legacy apps right after `fuse-assess`.
+the plan approval, each build plan, each difference the proof finds, the sign-off of the proof and of the visual
+conformance, and the security patch. If they chose a security review first, put
+`fuse-harden <program> legacy:<app>` for each legacy app right after `fuse-assess`.
 
 ## 6: First step
 

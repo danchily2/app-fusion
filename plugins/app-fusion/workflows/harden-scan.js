@@ -129,7 +129,7 @@ ${UNTRUSTED}`,
 
 const verified = await parallel(deduped.map(f => () =>
   judge(f, 'You are trying to REFUTE one reported mobile security finding: input validated upstream, code unreachable, debug-only, test fixture, platform already protects it, version not affected.',
-    `refute:${f.cwe}@${String(f.source).split(':')[0].split('/').pop()}`).then(v => ({ f, v }))))
+    `refute:${f.cwe}@${String(f.source).split(':')[0].split('/').pop()}`).then(v => ({ f, v }), () => ({ f, v: null }))))
 
 const survivors = []
 const refuted = []
@@ -143,7 +143,7 @@ deduped.forEach((f, i) => {
 const critHigh = survivors.filter(f => RANK[f.severity] <= 1)
 const confirmations = await parallel(critHigh.map(f => () =>
   judge(f, 'You are independently CONFIRMING one Critical or High mobile finding that survived refutation. Confirm real=true only if you can state the concrete exploit path yourself, for this app as it ships.',
-    `confirm:${f.cwe}@${String(f.source).split(':')[0].split('/').pop()}`).then(v => ({ f, v }))))
+    `confirm:${f.cwe}@${String(f.source).split(':')[0].split('/').pop()}`).then(v => ({ f, v }), () => ({ f, v: null }))))
 for (const item of confirmations.filter(Boolean)) {
   const { f, v } = item
   if (!v) continue

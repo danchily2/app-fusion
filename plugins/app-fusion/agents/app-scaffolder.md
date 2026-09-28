@@ -10,8 +10,10 @@ caller names (`${CLAUDE_PLUGIN_ROOT}/references/targets/<stack>.md`) for layout,
 
 ## What Phase 0 contains
 
-1. **Project.** Created with the stack's own generator and pinned versions (the profile names them). The build must
-   compile and one smoke test must pass before you finish.
+1. **Project.** Created with the stack's own generator and pinned versions (the profile names them), or, when the
+   brief's strategy grows one legacy app into the new app, a copy of that app with its history
+   (`git clone <legacy path> <target>`, which only reads the legacy repository) restructured into the brief's module
+   map. The build must compile and one smoke test must pass before you finish.
 2. **Design system.** Tokens generated from `analysis/<program>/design/design.json` (`tokens`), plus the base
    components the designs use most (`components`), named after the Figma components. Use no hard-coded color,
    typography or spacing anywhere after this point.

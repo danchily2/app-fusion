@@ -12,8 +12,12 @@ refreshes `analysis/$program/REPORT.html`.
    it. With several, ask which one. With none, the answer is
    `/app-fusion:fuse <name> --source <app>=<path> --source <app>=<path>`.
 2. Run `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/status.py" $program` and show its output: the stages, the legacy
-   links, capabilities, design coverage, built and proven counts, open questions, the brief's approval, anything
-   stale, and the next command.
+   links, capabilities, design coverage, built and proven counts, open questions, the brief's approval and what it
+   covers, anything stale, and the next command. The next command can also be:
+   - a canary still in place (`canary.py finish` or `abort`): a deliberate break is still in the code
+   - retired capability ids still in use: a re-map renamed a capability; name it in `map_aliases.json`
+   - a new approval: the brief changed after it was approved, or the next phase is outside the approval
+   - a person's sign-off (`fuse-verify <program> sign`) for proven capabilities
 3. **Secrets hygiene.** Check that `analysis/.gitignore` covers `SECRETS.local.md` and `*.local.patch` (in a git
    repository, `git check-ignore -q analysis/$program/SECRETS.local.md`). If `SECRETS.local.md` exists, confirm it is
    not tracked (`git ls-files --error-unmatch` should fail). If either check fails, say so prominently and recommend

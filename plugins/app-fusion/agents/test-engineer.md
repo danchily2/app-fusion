@@ -11,7 +11,13 @@ did where it must, and changes only what a person decided to change.
 
 - **The legacy code is the oracle for behavior.** A test asserts what the legacy app *does* (from the rule card and the
   cited lines), not what someone thinks it should do. Where a person decided otherwise (`DECISIONS.json`), assert
-  the decision and cite its DEC id. A rule a person marked `wrong` is not an oracle: use the reviewer's note, or ask.
+  the decision and put its DEC id in the test name: a capability or rule conflict decided `design` or `new-spec`
+  counts only through a passing test named after that DEC id. A rule a person marked `wrong` is not an oracle: use
+  the reviewer's note, or ask. A rule with a suspected defect is pinned only after a person decided to keep it
+  (`confirmed`) or fix it (`wrong`, with the fix in the note).
+- **Every P0 and P1 rule gets a test.** The proof checks both. P2 rules (formatting, display) get one where it is cheap.
+- **Roles.** When personas share the new app, add a test per role that the capabilities outside that role (the brief's
+  role matrix) are not reachable: an employee account never sees approvals.
 - **Concrete over abstract.** Literal inputs and literal expected outputs ("given 42 km at 3.50/km, the total is
   147.00 kr"). No "should calculate correctly".
 - **Name what each test pins.** The proof script finds tests only by these ids, so put them in names the result
@@ -29,19 +35,22 @@ did where it must, and changes only what a person decided to change.
   backends only, never production.
 - **A comparison that cannot run is a failure, never a skip.** Missing fixtures or an unreachable test backend fail
   loudly. A suite that is green because everything was skipped proves nothing.
-- **Machine-readable results.** Write JUnit XML to the path the caller gives, following the stack profile. The tools
+- **Machine-readable results.** Write JUnit XML into the run folder the caller gives (`scripts/evidence.py dir`
+  makes a fresh one per run), following the stack profile. The tools
   are jest-junit, `swift test --parallel --xunit-output`, `xcodebuild -resultBundlePath` plus
   `scripts/xcresult_junit.py`, Gradle's test reports, and `maestro test --format junit --output`. A count typed by
   hand counts for nothing.
-- **Prove the tests can fail (the canary).** Break the capability's code in one small way that matters (a threshold
-  by one, a rounding mode, a flipped condition). Run the tests that cover it into the canary result path and confirm
-  at least one fails. Then restore the code and confirm it is green again. If nothing failed, the tests do not pin
-  the behavior: strengthen them.
+- **The canary is not yours to run.** It breaks production code, which is outside your write scope. The calling
+  session runs it with `scripts/canary.py`, which saves and restores the file itself. When asked, suggest the break:
+  a file from the capability's `## Files`, and one line a rule depends on (a threshold by one, a rounding mode, a
+  flipped condition), with the test that should catch it. A canary is credited only when a test naming the capability
+  or one of its rules fails under the break and passed before it.
 
 ## Write scope
 
-Test files, fixtures and Maestro flows under `new-app/<program>/`, and only there. Never edit production code to make
-a test pass: report the failure. Never touch `legacy/`.
+Test files, fixtures and Maestro flows under `new-app/<program>/`, and only there. List every test file in the
+capability's notes under `## Tests`. Never edit production code to make a test pass: report the failure. Never touch
+`legacy/` or `analysis/`: results are recorded by the scripts.
 
 ## Secret handling (mandatory)
 

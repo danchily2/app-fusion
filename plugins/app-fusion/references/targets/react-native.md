@@ -46,8 +46,14 @@ Configure jest-junit once in `package.json`:
   "classNameTemplate": "{classname}", "titleTemplate": "{title}", "addFileAttribute": "true" }]] }
 ```
 
-Per run, direct it with environment variables:
-`JEST_JUNIT_OUTPUT_DIR=analysis/<program>/evidence/junit/<CAP> JEST_JUNIT_OUTPUT_NAME=unit.xml npx jest src/features/<domain>/<slug> --ci`.
+Per run, from the workspace root, take a fresh run folder and pass it as an absolute path (jest runs inside the new
+app, so a relative path would land there):
+
+```bash
+RUN=$(python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" dir <program> suite <CAP>); OUT="$PWD/$RUN"
+(cd new-app/<program> && JEST_JUNIT_OUTPUT_DIR="$OUT" JEST_JUNIT_OUTPUT_NAME=unit.xml npx jest src/features/<domain>/<slug> --ci)
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" suite <program> --capability <CAP> --name unit --command "npx jest ..." --junit "$RUN"
+```
 
 **Ids in names.** `describe('CAP-012 mileage', ...)` and `it('RULE-017 rounds the allowance to cents', ...)`. jest-junit
 keeps both, so the proof finds them.

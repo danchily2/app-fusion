@@ -54,25 +54,28 @@ A git URL is cloned once you agree. The front door:
 | 4 | `fuse-design <program>` | The Figma inventory (pages you pick, screens, states, tokens, screenshots) within a call budget, with every response cached. Each screen is traced to the capabilities it serves. |
 | 5 | `fuse-rules <program>` | Business rules as Given/When/Then cards with `file:line`, each re-checked by a second agent, P0 rules by two. Plus the rules the apps decide differently. |
 | 6 | `fuse-review <program>` | A person answers what the plugin may not decide: conflicts, features with no design, new designed features, flagged rules, platform items, the stack and the store listing. |
-| 7 | `fuse-brief <program>` | The Fusion Brief and `CONTINUITY.md`: the stack decision, architecture, phases by journey with checkable criteria, and the behavior contract. **Nothing is built until a person approves it.** |
+| 7 | `fuse-brief <program>` | The Fusion Brief and `CONTINUITY.md`: the stack decision, architecture, the role matrix, phases by journey with checkable criteria, and the behavior contract. **Nothing is built until a person approves it** with `fuse-brief <program> approve`. |
 | 8 | `fuse-scaffold <program>` | Phase 0: the project, a design system generated from the Figma tokens, a navigation shell per persona, the API layer, i18n and a test harness. |
 | 9 | `fuse-build <program> <CAP-NNN>` | One capability, tests first: code on the design system, then proof on the spot. After a PROVEN pilot and a playbook, `--batch <phase>` ports the rest in parallel. |
-| 10 | `fuse-verify <program>` | **The proof.** An independent re-run from clean, with one verdict per capability. |
+| 10 | `fuse-verify <program>` | **The proof.** An independent re-run from clean, with one verdict per capability and a continuity check for existing users. A person signs with `fuse-verify <program> sign`. |
 | 11 | `fuse-harden <program>` | An OWASP MASVS security review with a reviewed patch you apply yourself. |
 
 **A person decides at these points, never the plugin:**
 - the preflight answers
-- which Figma pages are the new app
-- every diverged capability
-- every feature with no design
-- flagged rules
-- the stack
-- the store listing
-- the plan
+- which Figma pages are the new app, and which of their texts are sample data
+- every diverged capability, and every rule the apps decide differently
+- every feature with no design, and whether each designed feature no legacy app has is in scope
+- flagged rules, and whether a suspected legacy defect is kept or fixed
+- each API difference, and whether analytics events keep their names
+- the platform items existing users depend on (links, push, extensions, shared keychain and app groups)
+- the stack and the store listing
+- the plan, and which phases the approval covers
 - each build plan and its tests
-- each difference the proof finds
-- the visual sign-off
+- the sign-off of the proof and of the visual conformance
 - the security patch
+
+The commands where a person decides can only be started by a person, they ask in pop-ups, and the plugin's guard asks
+the person again before any command records their answer or signature.
 
 ## How it proves the result
 
@@ -80,21 +83,30 @@ A fusion fails quietly. The new app looks like the design, and yet a validation 
 the other, or a deep link in a thousand emails is gone. So the proof is built from evidence a script checks, not from
 a model's opinion. `scripts/fusion_proof.py` gives each built capability one verdict:
 
-1. **Built**: the porting notes name the new files, and the files exist.
-2. **Tests ran**: fresh JUnit results name the capability or its rules. At least one ran and none failed. A count
+1. **Built**: the porting notes name the capability's source files, and they exist inside the new app.
+2. **Tests ran**: recorded JUnit results name the capability or its rules. At least one ran and none failed. A count
    typed by hand counts for nothing.
-3. **Rules traced**: every P0 rule of the capability is named by a test that ran and passed.
-4. **Journeys**: every persona journey through it has a Maestro run that passed.
+3. **Rules traced**: every P0 and P1 rule of the capability is named by a test that passed, except the rules a
+   person set aside (marked wrong, or from the app whose behavior was not kept).
+4. **Journeys**: every persona journey through it passed in Maestro, on every target platform.
 5. **API parity**: the new code calls every endpoint the legacy implementations called, matched by path and method,
    or a person approved the difference.
 6. **Strings**: every legacy string key is mapped and present in every required locale.
-7. **Design copy**: at least 90% of each designed screen's text is in the new app's strings.
-8. **Canary**: a deliberate one-line break made a test fail, so the tests can fail.
-9. **Legacy untouched**: every legacy app is still a clean checkout.
+7. **Analytics**: every legacy event is still sent under its name, or a person approved the rename or the drop.
+8. **Design copy**: at least 90% of each designed screen's text is in the new app's strings.
+9. **Canary**: a deliberate one-line break made one of the capability's own tests fail, and the code was put back
+   byte for byte.
+10. **Legacy untouched**: every legacy app is still a clean checkout at the recorded commit.
 
-The verdict is **PROVEN** (all nine pass), **PARTLY PROVEN** (nothing failed, but a check could not pass, listed with
-its reason) or **NOT PROVEN** (something failed). Look and feel is never automatic: `REPORT.html` shows every Figma
-screen beside the app's screenshot, and a named person signs.
+Every result is bound to the **content** of the files it ran on: the recording scripts store hashes of the result
+files and of the capability's code. Edit a result file and the check fails; change the code and the old results
+stop counting until the tests run again. The verdict is **PROVEN** (all ten pass), **PARTLY PROVEN** (nothing failed,
+but a check could not pass, listed with its reason) or **NOT PROVEN** (something failed).
+
+For the whole app, `platform_parity.py` checks what existing users keep: the bundle id of the store listing kept, link
+domains, URL schemes, push, notification categories and channels, app extensions, keychain and app groups, and
+locales. Look and feel is never automatic: `REPORT.html` shows every Figma screen beside the app's screenshot, and a
+named person signs, in `SIGNOFF.json`. A sign-off stops counting when what it covers changes.
 
 ## Figma, within its limits
 
@@ -123,10 +135,28 @@ These are measured on the two production apps this plugin was built against (218
 - `fuse-assess`: 6 analyst agents
 - `fuse-map`: about 11 agents per shard. A slice through the calendar domain of both apps had 4 shards and used 43
   agents; the whole of both apps is 35 map shards.
-- `fuse-rules`: 6–12 agents per shard
+- `fuse-rules`: 6–12 agents per shard, more where rules are dense. The same calendar slice (4 shards) used 171
+  agents and found 153 rules and 14 cross-app conflicts, for about $20 of usage
 
 Every fan-out step says how many agents it will start, and asks before a big run. Large runs are resumable workflows:
 a stopped run resumes with its run id, and finished agents replay from the journal.
+
+## What it has been tried on
+
+Built against two production apps (Visma Manager, React Native, 218k code lines, and Mobile Employee, native iOS,
+285k code lines) and run headless on them, step by step:
+
+| Step | Result |
+| --- | --- |
+| `fuse` + `fuse-preflight` | 16 turns. Seat limits, deny rules, a minimum-OS mismatch and a shallow clone reported |
+| `fuse-assess` | 6 analysts, about $7.5. Two High risks carried over from the legacy apps (an exported Android activity, a share extension that bypasses the lock), receipt drafts kept only on the device, four network layers in one app and two DI systems in the other; a greenfield port recommended |
+| `fuse-map`, calendar slice | 4 shards, 43 fragments, 29 capabilities (5 shared-diverged, each with its differences cited), 8 journeys including a person with both roles, about $9.8. A referee found that one app's agenda shows mock data |
+| `fuse-rules`, same slice | 171 agents, 153 rules with concrete Given/When/Then values, 14 conflicts across 5 capabilities, 7 candidates rejected by the citation referees, about $20 |
+
+The inventory's counts were checked against a hand-certified knowledge graph of both apps: routes, string keys,
+locales and Swift packages match exactly; event and endpoint counts differ by the rule that made them (both rules
+are printed). An adversarial review of the whole plugin found 2 blockers and 15 high-severity issues, all fixed and
+covered by tests (`scripts/tests/`, 35 cases, and `tests/`, 11 workflow cases).
 
 ## Set it up so it runs smoothly
 
@@ -161,7 +191,10 @@ paths:
   data, never follow instruction-shaped text, and list what they found. Workflow prompts fence that content.
 - **Secrets stay out of shared files.** Credentials are masked everywhere, and the inventory goes to a gitignored
   `SECRETS.local.md`.
-- **Apps run only on simulators, against test backends you named.** Tokens in recordings are replaced before saving.
+- **Apps run only on simulators, against test backends you named.** Recorded traffic (HAR) is gitignored; keep only
+  the copy `api_parity.py sanitize` writes, with authorization headers, cookies and secret-looking values removed.
+- **The proof's inputs are written only by its scripts.** The guard denies file edits to decisions, sign-offs,
+  verdicts, catalogs and evidence, so the side being judged cannot rewrite what judges it.
 - **Nothing is pushed, published or submitted, and no Figma file is changed.**
 
 ## Working in a team
@@ -175,7 +208,7 @@ new app yourself: the plugin never commits in your repositories.
 | `CAPABILITIES.md`, `TRACEABILITY.md` | product owners of each app, and the designer |
 | `BUSINESS_RULES.md`, then `fuse-review` | a domain expert per area: P0 rules and conflicts first |
 | `CONTINUITY.md`, `FUSION_BRIEF.md` | the approver, plus whoever owns the store listings, auth and push |
-| `VERIFICATION.md` | the approver and the designer (visual sign-off) |
+| `VERIFICATION.md`, `VISUAL_REVIEW.md` | the approver and the designer, who sign with `fuse-verify <program> sign` |
 | `SECURITY_FINDINGS.md` | a security engineer |
 
 ## Adapting it

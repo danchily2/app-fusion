@@ -134,7 +134,7 @@ Claimed: ${fence(JSON.stringify(l))}
 ${catalog}
 ${UNTRUSTED}`,
           { agentType: 'app-fusion:capability-cartographer', label: `check:${String(s.name || l.screen).slice(0, 36)}`, phase: 'Verify', schema: CHECK_SCHEMA },
-        ).then(v => ({ l, v }))
+        ).then(v => ({ l, v }), () => ({ l, v: null }))
       }),
     ).then(checked => ({ result, checked }))
   },

@@ -178,6 +178,20 @@ class Guard(unittest.TestCase):
         self.assertEqual(self.decide("Bash", command="sed -i '' s/a/b/ legacy/mgr/package.json"), "ask")
         self.assertEqual(self.decide("Bash", command="cp /tmp/x legacy/mgr/x"), "ask")
 
+    def test_the_judges_inputs_and_a_persons_records(self):
+        for rel in ("DECISIONS.json", "DECISIONS.md", "SIGNOFF.json", "VERIFICATION.json", "capabilities.json", "rules.json",
+                    "traceability.json", "platform.json", "design/placeholders.json", "evidence/test-runs.json",
+                    "evidence/junit/CAP-001/run-1/unit.xml"):
+            self.assertEqual(self.decide("Write", file_path=f"analysis/p/{rel}"), "deny", rel)
+        for rel in ("map_result.json", "rules_result.json", "design/trace_result.json", "design/new_capabilities.json",
+                    "VISUAL_REVIEW.md", "FUSION_BRIEF.md", "design/cache/K/1-2.metadata.xml"):
+            self.assertEqual(self.decide("Write", file_path=f"analysis/p/{rel}"), "allow", rel)
+        self.assertEqual(self.decide("Bash", command='python3 "/x/scripts/decisions.py" add-json p /tmp/a.json'), "ask")
+        self.assertEqual(self.decide("Bash", command="python3 scripts/decisions.py add p --about CAP-001 --kind gap --choice drop"), "ask")
+        self.assertEqual(self.decide("Bash", command="python3 scripts/signoff.py p brief --by Kari"), "ask")
+        self.assertEqual(self.decide("Bash", command="python3 scripts/decisions.py open p --json"), "allow")
+        self.assertEqual(self.decide("Bash", command="python3 scripts/signoff.py p show"), "allow")
+
     def test_off_switch_and_outside_a_workspace(self):
         payload = json.dumps({"tool_name": "Write", "tool_input": {"file_path": "legacy/mgr/x"}, "cwd": self.w.ws})
         out = subprocess.run([sys.executable, os.path.join(helpers.SCRIPTS, "guard.py")], input=payload, capture_output=True, text=True,

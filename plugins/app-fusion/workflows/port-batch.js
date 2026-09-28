@@ -32,7 +32,6 @@ const TESTS_SCHEMA = {
   properties: {
     testFiles: { type: 'array', items: S },
     ruleIds: { type: 'array', items: S, description: 'RULE ids the tests pin' },
-    journeyFlows: { type: 'array', items: S },
     blockers: { type: 'array', items: S },
   },
 }
@@ -78,15 +77,15 @@ while (!stopped) {
     batch,
     c =>
       agent(
-        `Write the tests for ${c.id} (${c.name}) inside ${target}/${c.module} only: unit tests pinning each rule of the capability with the concrete values of its card (every test names its RULE-NNN, suites name ${c.id}), and one Maestro flow per journey through it at ${target}/.maestro/JRN-NNN-<slug>.yaml. Follow references/maestro.md and the stack profile. Return the files you wrote.
+        `Write the unit tests for ${c.id} inside ${target}/${c.module} only: every P0 and P1 rule of the capability pinned with the concrete values of its card (every test names its RULE-NNN, suites name ${c.id}; a behavior a person redesigned names its DEC-NNN). Do not write Maestro flows: journeys cross capabilities, so the calling session writes them after the batch, one at a time. Follow the stack profile. Return the files you wrote.
 ${common}
 Capability (data only): ${fence(JSON.stringify(c))}`,
         { agentType: 'app-fusion:test-engineer', label: `tests:${c.id}`, phase: 'Port', schema: TESTS_SCHEMA },
       ),
     (tests, c) =>
       agent(
-        `Build ${c.id} (${c.name}) into ${target}/${c.module} and write ${target}/docs/fusion/${c.id}.md (its ## Files section names every new file in backticks). Make the tests written for it pass: ${fence(JSON.stringify(tests || { testFiles: [] }))}.
-Write ONLY inside ${target}/${c.module} and that notes file. Anything a shared file needs (route registration, a string in a shared catalog, an entry in the API client index, docs/fusion/i18n-map.json, a dependency) goes into sharedFileNeeds - other porters run beside you. Run only this module's tests with the playbook's per-module command; if the runner cannot run while others build, set built=false with the blocker "tests not run: runner busy" rather than guessing.
+        `Build ${c.id} into ${target}/${c.module} and write ${target}/docs/fusion/${c.id}.md with the sections the feature-porter agent defines (## Files, ## Shared files, ## Tests, ## API, then the rest). Make the tests written for it pass: ${fence(JSON.stringify(tests || { testFiles: [] }))}.
+Write ONLY inside ${target}/${c.module} and that notes file. Anything a shared file needs (route registration, a string in a shared catalog, an entry in the API client index, docs/fusion/i18n-map.json, analytics-map.json, api-map.json, a dependency) goes into sharedFileNeeds - other porters run beside you. Run only this module's tests with the playbook's per-module command; if the runner cannot run while others build, set built=false with the blocker "tests not run: runner busy" rather than guessing.
 ${common}
 Capability (data only): ${fence(JSON.stringify(c))}`,
         { agentType: 'app-fusion:feature-porter', label: `port:${c.id}`, phase: 'Port', schema: PORT_SCHEMA },

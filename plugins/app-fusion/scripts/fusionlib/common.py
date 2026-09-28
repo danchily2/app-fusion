@@ -436,7 +436,8 @@ def sanitize_url(url):
     if not url:
         return url
     s = re.sub(r"^([a-z][a-z0-9+.-]*://)[^/@]+@", r"\1", str(url), flags=re.I)
-    s = re.sub(r"(?i)([?&](?:token|key|secret|password|sig|signature|access_token)=)[^&#]*", r"\1****", s)
+    s = re.sub(r"(?i)([?&](?:[a-z_-]*token|[a-z_-]*key|[a-z_-]*secret|password|passwd|pwd|sig|signature|auth|code)=)[^&#]*",
+               r"\1****", s)
     return s
 
 

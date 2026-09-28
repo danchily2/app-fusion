@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 """Split the source apps into shards for the capability-map and rule-extraction fan-outs.
 
-    python3 shard.py <program> [--app APP] [--pattern GLOB] [--max-lines N] [--workspace DIR]
+    python3 shard.py <program> [--app APP] [--pattern GLOB] [--max-lines N] [--for map|rules|both] [--workspace DIR]
 
 A shard is one area of one app that an agent can read in full: a React Native screen area (src/screens/<area>),
 a logic folder (services, epics, reducers, utils, hooks), a Swift package (Modules/<X>, EmployeeServices/<X>) or app
-target folder, an Android module or feature package. Areas over --max-lines (default 9000 non-blank lines) are
+target folder, an Android module or feature package, and a React Native app's native ios/ and android/ code. Areas over --max-lines (default 9000 non-blank lines) are
 split by sub-folder; areas under 300 lines are merged into one shard per app. Each shard carries hints from the
 inventory (the routes, endpoints and events whose file is inside it), so an agent starts from facts.
 
 Writes analysis/<program>/shards.json ({"version": 1, "shards": [{id, app, stack, kind, name, files, loc, hints, file}]}),
 one small file per shard (analysis/<program>/shards/<id>.json: its files and hints, which each agent reads), and the
 compact workflow arguments workflow-args.map.json and workflow-args.rules.json (ids and paths only, so a Workflow call
-never carries thousands of file names). Standard library only.
+never carries thousands of file names). --for writes one workflow's arguments and leaves the other's alone, so a
+rules slice never changes what a map run in flight reads. Standard library only.
 """
 
 import argparse
@@ -23,8 +24,8 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from fusionlib.common import (SOURCE_EXT, check_name, die, is_test_path, load_json, load_program, program_dir,  # noqa: E402
-                              read_text, walk, workspace, write_json)
+from fusionlib.common import (SOURCE_EXT, check_name, die, load_json, load_program, program_dir, read_text, walk,  # noqa: E402
+                              workspace, write_json)
 
 LOGIC_DIRS = {"services", "api", "epics", "sagas", "reducers", "slices", "store", "state", "selectors", "hooks", "utils",
               "helpers", "lib", "models", "domain", "configs", "config", "contexts", "providers", "actions", "gql",
@@ -34,11 +35,17 @@ SKIP_TOP = {"ios", "android", "node_modules", "Pods", "fastlane", "scripts", "ci
 UI_DIRS = {"components", "ui", "views", "widgets", "design-system", "designSystem"}
 
 
-def _files(root):
+NATIVE_EXT = {".swift", ".m", ".mm", ".h", ".kt", ".java"}
+
+
+def _files(root, stack=None):
+    """Source files by non-blank line count. A React Native app's ios/ and android/ folders are kept for their native
+    code (modules, notification handling, extensions); generated and vendored folders never count."""
     out = {}
     for rel, full in walk(root, SOURCE_EXT, include_tests=False):
         top = rel.split("/")[0]
-        if top in SKIP_TOP or top.startswith("."):
+        native = stack == "react-native" and top in ("ios", "android") and os.path.splitext(rel)[1] in NATIVE_EXT
+        if (top in SKIP_TOP and not native) or top.startswith("."):
             continue
         text = read_text(full)
         if text is None:
@@ -97,14 +104,18 @@ def build(ws, program, app_filter=None, pattern=None, max_lines=9000):
         if not os.path.isdir(root):
             die(f"{os.path.relpath(root, ws)} does not exist")
         stack = app.get("stack")
-        files = _files(root)
+        files = _files(root, stack)
         if pattern:
             files = {f: n for f, n in files.items() if fnmatch.fnmatch(f, pattern) or fnmatch.fnmatch(f, pattern.rstrip("/") + "/*")}
         area_of = {"react-native": _area_rn, "ios-native": _area_ios, "android-native": _area_android}.get(stack, _area_rn)
         groups = {}
         path_kind = {}
         for rel, loc in files.items():
-            kind, area, prefix = area_of(rel)
+            top = rel.split("/")[0]
+            if stack == "react-native" and top in ("ios", "android"):
+                kind, area, prefix = "native", f"native-{top}", top
+            else:
+                kind, area, prefix = area_of(rel)
             g = groups.setdefault(area, {"prefix": prefix, "files": {}})
             g["files"][rel] = loc
             path_kind[rel] = kind
@@ -117,7 +128,7 @@ def build(ws, program, app_filter=None, pattern=None, max_lines=9000):
             kinds = [path_kind[f] for f in part_files]
             majority = max(set(kinds), key=kinds.count)
             shard["kind"] = "screens" if shard["hints"].get("routes") or shard["hints"].get("screens") else (
-                "ui" if majority == "ui" else ("logic" if majority != "screens" else "screens"))
+                majority if majority in ("ui", "native") else ("logic" if majority != "screens" else "screens"))
             shards.append(shard)
     return shards
 
@@ -223,6 +234,8 @@ def main():
     ap.add_argument("--app")
     ap.add_argument("--pattern")
     ap.add_argument("--max-lines", type=int, default=9000)
+    ap.add_argument("--for", dest="purpose", choices=["map", "rules", "both"], default="both",
+                    help="which workflow's arguments to write (the other's are left as they are)")
     ap.add_argument("--workspace")
     args = ap.parse_args()
     ws = workspace(args.workspace)
@@ -232,40 +245,44 @@ def main():
     shards = build(ws, args.program, args.app, args.pattern, args.max_lines)
     pdir = program_dir(ws, args.program)
     out = os.path.join(pdir, "shards.json")
-    shard_dir = os.path.join(pdir, "shards")
-    if os.path.isdir(shard_dir):
-        for old in os.listdir(shard_dir):
-            if old.endswith(".json"):
-                os.remove(os.path.join(shard_dir, old))
+    # shard files are overwritten, never deleted: a run in flight or a resumed run still finds the files its arguments
+    # name, and each workflow's arguments list exactly the files of its own slice
     for s in shards:
         s["file"] = f"analysis/{args.program}/shards/{shard_slug(s['id'])}.json"
         write_json(os.path.join(ws, s["file"]), {"id": s["id"], "app": s["app"], "stack": s["stack"], "name": s["name"],
                                                  "files": s["files"], "hints": s["hints"]})
-    write_json(out, {"version": 1, "program": args.program, "maxLines": args.max_lines, "shards": shards})
+    write_json(out, {"version": 1, "program": args.program, "maxLines": args.max_lines, "slice": {"app": args.app, "pattern": args.pattern},
+                     "shards": shards})
     prog = load_program(ws, args.program)
     apps = [{k: a.get(k) for k in ("name", "product", "stack", "role", "twinOf")} for a in prog.get("apps", [])]
     compact = lambda sel: [{k: s[k] for k in ("id", "app", "stack", "kind", "name", "loc", "file")} for s in sel]
-    map_shards = [s for s in shards if s["kind"] in ("screens", "ui") or s["hints"].get("routes")]
-    write_json(os.path.join(pdir, "workflow-args.map.json"),
-               {"program": args.program, "apps": apps, "personas": prog.get("personas") or [], "shards": compact(map_shards)})
+    map_shards = [s for s in shards if s["kind"] in ("screens", "ui", "native") or s["hints"].get("routes")]
     index = load_json(os.path.join(pdir, "capability_index.json"))
-    rules_args = {"program": args.program, "apps": apps, "shards": compact(shards)}
-    if index:
-        rules_args["capabilityIndex"] = f"analysis/{args.program}/capability_index.json"
-        rules_args["capabilityIds"] = [c["id"] for c in index.get("capabilities", [])]
-    write_json(os.path.join(pdir, "workflow-args.rules.json"), rules_args)
+    if args.purpose in ("map", "both"):
+        map_args = {"program": args.program, "apps": apps, "personas": prog.get("personas") or [], "shards": compact(map_shards)}
+        if index:  # a re-run keeps the names (and so the ids) of capabilities it finds again
+            map_args["previousIndex"] = f"analysis/{args.program}/capability_index.json"
+        write_json(os.path.join(pdir, "workflow-args.map.json"), map_args)
+    if args.purpose in ("rules", "both"):
+        rules_args = {"program": args.program, "apps": apps, "shards": compact(shards)}
+        if index:
+            rules_args["capabilityIndex"] = f"analysis/{args.program}/capability_index.json"
+            rules_args["capabilityIds"] = [c["id"] for c in index.get("capabilities", [])]
+        write_json(os.path.join(pdir, "workflow-args.rules.json"), rules_args)
     by_app = {}
     for s in shards:
         by_app.setdefault(s["app"], []).append(s)
     for app, items in by_app.items():
-        kinds = {k: sum(1 for s in items if s["kind"] == k) for k in ("screens", "ui", "logic")}
-        print(f"{app}: {len(items)} shards ({kinds['screens']} screen areas, {kinds['ui']} UI, {kinds['logic']} logic), "
+        kinds = {k: sum(1 for s in items if s["kind"] == k) for k in ("screens", "ui", "logic", "native")}
+        print(f"{app}: {len(items)} shards ({kinds['screens']} screen areas, {kinds['ui']} UI, {kinds['logic']} logic"
+              + (f", {kinds['native']} native" if kinds["native"] else "") + "), "
               f"{sum(s['loc'] for s in items)} lines, largest {max(s['loc'] for s in items)}")
     if not shards:
         print("0 shards: the pattern matched nothing, or no source files were found")
         sys.exit(1)
-    print(f"wrote analysis/{args.program}/shards.json ({len(shards)} shards), one file per shard in shards/, and the "
-          f"workflow arguments workflow-args.map.json ({len(map_shards)} map shards) and workflow-args.rules.json")
+    wrote = {"map": f"workflow-args.map.json ({len(map_shards)} map shards)", "rules": "workflow-args.rules.json"}
+    print(f"wrote analysis/{args.program}/shards.json ({len(shards)} shards), one file per shard in shards/, and "
+          + " and ".join(v for k, v in wrote.items() if args.purpose in (k, "both")))
 
 
 if __name__ == "__main__":

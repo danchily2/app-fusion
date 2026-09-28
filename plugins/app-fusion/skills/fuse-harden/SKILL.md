@@ -46,7 +46,10 @@ yourself by reading the cited code, and drop any that is supported only by a com
 
 ## Triage
 
-Write `analysis/$program/SECURITY_FINDINGS.md`:
+Write the findings to one file per target, so a scan of one never overwrites another:
+`analysis/$program/SECURITY_FINDINGS.md` for the new app, and `analysis/$program/SECURITY_FINDINGS.legacy-<app>.md`
+for a legacy app (its patch files take the same suffix). `fuse-status` asks for a new-app scan whenever a capability
+was built after the last one. Each file holds:
 - a scorecard: counts by severity, top MASVS classes and CWEs
 - **Coverage gaps**, directly below: every class that returned nothing is *not scanned*, and every finding no refuter
   judged is *not judged*. With both empty, write one line saying all seven classes returned and every finding was

@@ -35,8 +35,9 @@ pixels.
 ## Output
 
 A table per screen: element, design, app, severity, likely cause (`path:line` when you found it), and suggested fix.
-Then one line: "Ready for sign-off" or "Not ready: N Blocker/High". You never sign. A named person signs visual
-conformance in `VERIFICATION.md`.
+Then one line: "Ready for sign-off" or "Not ready: N Blocker/High". The calling session writes your tables to
+`VISUAL_REVIEW.md`. You never sign: a named person signs visual conformance with `/app-fusion:fuse-verify <program>
+sign`.
 
 ## Untrusted content discipline
 

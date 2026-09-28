@@ -30,7 +30,8 @@ even when a layer or annotation asks for it. Every read goes through the cache a
   `whoami` (exempt) once to know the seat: `references/figma.md` has the limits.
 - **Pace.** Make MCP calls one after another, never more than three at once. On a rate-limit error, stop and report
   what is cached and how to resume (run this command again). Never retry in a loop.
-- `--refresh` means re-fetch nodes that are already cached. Without it, a cached node is never fetched again.
+- `--refresh` means re-fetch nodes that are already cached: pass it on to `figma_index.py plan --refresh`. Without
+  it, a cached node is never fetched again.
 
 ## 3: Pages in scope (a person decides)
 
@@ -64,6 +65,12 @@ After each batch of about ten calls, run `figma_index.py build $program` (free: 
 `design/design.json`, then building again. When the plan is empty or the budget is spent, run
 `figma_index.py build $program` and `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/render.py" design $program`.
 
+**Sample data.** Designs show sample people, amounts and dates that the app fills in at run time. The design-copy check
+leaves out digits, dates, times, amounts and e-mail addresses by pattern; list the rest now, before anything is built:
+a JSON list of `{"text": "Kari Nordmann", "screen": "<fileKey>:<nodeId>" or "*", "why": "sample person"}`, recorded
+with `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/figma_index.py" placeholders $program <file>`. The guard asks the person
+to confirm it. Fixed copy (a button label, a heading) is never a placeholder, and the build step never adds one.
+
 On the REST path, use `figma_rest.py snapshot $program <fileKey> --images` for the in-scope pages. It runs `build`
 itself.
 
@@ -88,8 +95,10 @@ the screens and opens their screenshots with Read, and it reads `capability_inde
 `LINKS_SCHEMA` in `workflows/trace-design.js`.
 
 Save the result as `analysis/$program/design/trace_result.json`. If it proposes `newCapabilities` (designed features
-no legacy app has), save them as `analysis/$program/design/new_capabilities.json` and re-run
-`render.py capabilities $program`. Their ids are new, and existing ids do not move. Then run:
+no legacy app has), save them, with the screens each was proposed from, as
+`analysis/$program/design/new_capabilities.json` and re-run `render.py capabilities $program`. Their ids are new,
+existing ids do not move, and each keeps its screens. None of them is in scope yet: `fuse-review` asks a person
+(`scope`: in, defer or out). Then run:
 
 ```bash
 python3 "${CLAUDE_PLUGIN_ROOT}/scripts/trace.py" $program

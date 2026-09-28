@@ -1,7 +1,7 @@
 {
   "name": "app-fusion",
   "displayName": "App Fusion",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Build one new mobile app from two or more legacy apps (native iOS, React Native, native Android), guided by the new app's Figma designs. Start with /app-fusion:fuse and get an inventory of every app, a capability map that shows what overlaps and what conflicts, the designs traced to every capability, the business rules of both codebases, the decisions only a person can make, and a phased plan you approve. The new app is then built capability by capability, with scripted proof that API calls, rules, strings, journeys and design copy still match. Includes a legacy write guard, a Figma call budget and cache, and a one-page report.",
   "author": {
     "name": "Dan-Mihai Cuc",

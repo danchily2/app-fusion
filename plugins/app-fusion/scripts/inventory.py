@@ -19,9 +19,24 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from fusionlib import android, detect, ios, rn  # noqa: E402
 from fusionlib import strings as strcat  # noqa: E402
 from fusionlib.common import (PROGRAMMING, app_dir, check_name, die, git_info, load_program, loc_by_language,  # noqa: E402
-                              md_table, now_iso, one_line, workspace, write_json, write_text)
+                              md_table, now_iso, one_line, sanitize_url, workspace, write_json, write_text)
 
 EXTRACTORS = {"react-native": rn.extract, "ios-native": ios.extract, "android-native": android.extract}
+
+
+class NoExtractor(Exception):
+    """The app's stack has no deterministic extractor; an analyst agent reads it in fuse-assess."""
+
+
+def stub(ws, program, app, stack):
+    """A minimal inventory for a stack without an extractor, so later steps know the app is there and why its counts
+    are empty."""
+    inv = {"app": app, "stack": stack, "version": 1, "generated": now_iso(), "counts": {}, "rules": {},
+           "extractor": None, "notes": [f"No deterministic extractor for stack {stack!r}: fuse-assess reads this app with an "
+                                        "analyst agent, and the map works from its fragments alone."]}
+    write_json(os.path.join(app_dir(ws, program, app), "inventory.json"), inv)
+    write_text(os.path.join(app_dir(ws, program, app), "INVENTORY.md"), f"# Inventory: {app}\n\n{inv['notes'][0]}\n")
+    return inv
 
 
 def run(ws, program, app):
@@ -37,10 +52,14 @@ def run(ws, program, app):
         found = detect.detect(path)
         stack = found["stack"]
     if stack not in EXTRACTORS:
-        die(f"{app}: stack {stack!r} has no extractor (react-native, ios-native and android-native do); "
-            "the assess step reads it with an analyst agent instead", code=3)
+        raise NoExtractor(stack)
 
     raw = EXTRACTORS[stack](path)
+    for key in ("endpoints", "webLinks"):
+        for e in raw.get(key) or []:
+            for field in ("raw", "url", "host"):
+                if e.get(field):
+                    e[field] = sanitize_url(e[field])
     langs, loc_rule = loc_by_language(path)
     git = git_info(path)
     catalog = raw.pop("strings")
@@ -167,13 +186,23 @@ def main():
     check_name(args.program, "program")
     prog = load_program(ws, args.program)
     apps = [a["name"] for a in prog.get("apps", [])] if args.all else [check_name(args.app or "", "app")]
+    missing = []
     for app in apps:
-        inv = run(ws, args.program, app)
+        try:
+            inv = run(ws, args.program, app)
+        except NoExtractor as e:
+            stub(ws, args.program, app, str(e))
+            missing.append(app)
+            print(f"{app} ({e}): no extractor for this stack; wrote a stub inventory. The assess step reads it with an "
+                  "analyst agent instead.")
+            continue
         c = inv["counts"]
         keys = [k for k in ("screens", "routes", "endpoints", "events", "stringKeys", "locales", "storageKeys", "testFiles",
                             "maestroFlows", "code") if k in c]
         print(f"{app} ({inv['stack']}): " + ", ".join(f"{k} {c[k]}" for k in keys))
         print(f"  wrote analysis/{args.program}/apps/{app}/inventory.json, strings.json, INVENTORY.md")
+    if missing:
+        sys.exit(3)
 
 
 if __name__ == "__main__":

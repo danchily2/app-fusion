@@ -12,7 +12,7 @@ model to the problem:
 | One legacy system, one target | N source apps (plus optional twins), one new app |
 | The legacy code is the spec | The legacy code is the spec for **behavior**, Figma is the spec for **UI**, and people decide **scope** |
 | Rules, then rewrite | Capabilities (what each app lets a person do), overlap and conflict, design trace, rules, decisions, then build |
-| Equivalence = same bytes out | Equivalence = same capabilities, same rules, same API calls, same strings and events, and the designed screens. Journeys run end to end. |
+| Equivalence = same bytes out | Equivalence = same capabilities, same rules, same API calls, same strings and analytics events, the designed screens, and what existing users rely on (links, push, identity). Journeys run end to end, on every platform. |
 
 This file is the contract between the skills, agents, workflows and scripts. When they disagree, this file wins.
 
@@ -72,32 +72,58 @@ This file is the contract between the skills, agents, workflows and scripts. Whe
     apps/<app>/inventory.json       deterministic inventory (scripts/inventory.py); every count with its rule
     apps/<app>/strings.json         string keys and which locales have them
     apps/<app>/INVENTORY.md
-    ASSESSMENT.md
-    capabilities.json               the unified capability catalog and the journeys
-    CAPABILITIES.md
+    ASSESSMENT.md, overlap.json
+    shards.json, shards/<id>.json   the fan-out shards and the file each agent reads
+    workflow-args.map.json, workflow-args.rules.json, workflow-args.trace.json   the exact Workflow arguments
+    map_result.json                 the map workflow's result, as returned (edit this, never capabilities.json)
+    map_aliases.json                optional: {"CAP-007": "<name in map_result.json>"} keeps an id across a rename
+    capabilities.json, capability_index.json, CAPABILITIES.md   the capability catalog (rendered), its compact index
     platform.json, PLATFORM.md      platform capability matrix (push, links, extensions, permissions, storage ...)
     design/design.json              Figma inventory: files, pages, screens, components, tokens
     design/cache/<fileKey>/...      every raw Figma response, keyed by node and tool
     design/shots/<fileKey>/<node>.png
     design/budget.json              Figma calls spent per day
+    design/placeholders.json        design texts that are sample data (figma_index.py placeholders)
+    design/batches/, design/trace_result.json, design/new_capabilities.json   the trace workflow's input and result
     DESIGN_INVENTORY.md
     traceability.json, TRACEABILITY.md   capability <-> screens <-> new-app module; the gaps
-    rules_result.json, BUSINESS_RULES.md, DATA_OBJECTS.md
-    DECISIONS.json, DECISIONS.md
+    rules_result.json               the rules workflow's result, as returned
+    rules.json, BUSINESS_RULES.md, DATA_OBJECTS.md   the rendered rules, with stable RULE ids
+    DECISIONS.json, DECISIONS.md    a person's answers (decisions.py)
     CONTINUITY.md                   store identity, users, data, auth, push, links, analytics, sunset
     FUSION_BRIEF.md
+    SIGNOFF.json                    what a named person signed: the brief, the proof, visual conformance (signoff.py)
     PLAYBOOK.md                     what the pilot capability taught (before any batch port)
-    evidence/                       JUnit XML, logs, canaries, Maestro reports, parity results, screenshots
-    VERIFICATION.md, VERIFICATION.json
-    SECURITY_FINDINGS.md, security_remediation.patch
+    evidence/test-runs.json         every recorded run: its result files, their hashes, the code hashes it ran on
+    evidence/junit/<CAP|verify|scaffold>/run-N/       one folder per test run
+    evidence/canary/<CAP>/run-N/    the canary's saved original and its results; pending.json while one is in place
+    evidence/maestro/<JRN>/<platform>/run-N/
+    evidence/shots/                 app screenshots
+    evidence/api-parity.json, i18n-parity.json, events-parity.json, design-text.json, platform-parity.json
+    VERIFICATION.md, VERIFICATION.json   the verdicts (fusion_proof.py only)
+    VISUAL_REVIEW.md                the conformance reviewer's tables
+    SECURITY_FINDINGS.md (new app), SECURITY_FINDINGS.legacy-<app>.md, security_remediation*.patch
     REPORT.html                     one page with everything so far
   new-app/<program>/                the new app, with its own git history (or a link to an existing repo, --target)
     docs/fusion/SCAFFOLD.md         what Phase 0 built: the scaffold's completion marker
-    docs/fusion/CAP-NNN.md          porting notes, one per capability: the completion marker
-    docs/fusion/i18n-map.json       legacy string key -> new key ({"<app>:<key>": "<newKey>" | null for dropped})
+    docs/fusion/CAP-NNN.md          porting notes, one per capability: the completion marker (sections below)
+    docs/fusion/i18n-map.json       {"<app>:<key>": "<newKey>" | null}; a null counts only with a `strings: drop` decision
+    docs/fusion/analytics-map.json  {"<app>:<event>": "<newEvent>" | null}; renames need `analytics` decisions
+    docs/fusion/api-map.json        {"<METHOD> <legacy path>": "<METHOD> <new path>"} for a backend move
 ```
 
-`analysis/.gitignore` always holds `SECRETS.local.md`, `*.local.patch` and `design/cache/**/*.token*`.
+`analysis/.gitignore` always holds `SECRETS.local.md`, `*.local.patch`, `**/*.token*` and `**/*.har` (with
+`!**/*.sanitized.har`: record traffic, sanitize it with `api_parity.py sanitize`, keep only the copy).
+
+**Porting notes.** `docs/fusion/CAP-NNN.md` sections the scripts read, headings exactly:
+- `## Files`: the capability's own module files (for a native pair, under `ios/` and `android/`)
+- `## Shared files`: shared files it changed (routes, the API client, catalogs)
+- `## Tests`: its test files and Maestro flows
+- `## API`: `path:line` call sites in shared clients, one per endpoint it calls through them
+
+Backticked paths must exist inside the new app; anything under `docs/`, and any path that leaves the new app, never
+counts. The files of these four sections, by path and content, make the capability's **code hash**, which every
+recorded result is bound to.
 
 ## The steps
 
@@ -108,19 +134,20 @@ This file is the contract between the skills, agents, workflows and scripts. Whe
 | 2 | `fuse-assess` | apps/*/inventory.json, ASSESSMENT.md | none |
 | 3 | `fuse-map` | capabilities.json, CAPABILITIES.md, platform.json, PLATFORM.md | none |
 | 4 | `fuse-design` | design/*, DESIGN_INVENTORY.md, traceability.json, TRACEABILITY.md | which Figma pages are the new app |
-| 5 | `fuse-rules` | rules_result.json, BUSINESS_RULES.md, DATA_OBJECTS.md | none |
-| 6 | `fuse-review` | DECISIONS.json, DECISIONS.md | conflicts, design gaps, flagged rules, platform items |
-| 7 | `fuse-brief` | CONTINUITY.md, FUSION_BRIEF.md | approval, including the target stack and continuity |
+| 5 | `fuse-rules` | rules_result.json, rules.json, BUSINESS_RULES.md, DATA_OBJECTS.md | none |
+| 6 | `fuse-review` | DECISIONS.json, DECISIONS.md | conflicts, design gaps, new designed features, flagged rules, API differences, analytics naming, platform items |
+| 7 | `fuse-brief` | CONTINUITY.md, FUSION_BRIEF.md; with `approve`, SIGNOFF.json | the approval and its scope, which settle the stack and store listing left to the plan |
 | 8 | `fuse-scaffold` | `new-app/<program>/` foundation | the scaffold plan |
-| 9 | `fuse-build` | one capability in the new app, `docs/fusion/CAP-NNN.md` | the plan and the tests, per capability; batch fan-out after the pilot |
-| 10 | `fuse-verify` | evidence/, VERIFICATION.md/json | each difference, visual conformance, the sign-off |
+| 9 | `fuse-build` | one capability in the new app, `docs/fusion/CAP-NNN.md` | the plan and the tests, per capability, with its doubtful rules; batch fan-out after the pilot |
+| 10 | `fuse-verify` | evidence/, VERIFICATION.md/json, VISUAL_REVIEW.md; with `sign`, SIGNOFF.json | each difference, the proof and visual sign-offs |
 | 11 | `fuse-harden` | SECURITY_FINDINGS.md, patch | applying the patch |
 | – | `fuse-status` | REPORT.html | none |
 
 Order: `design` needs `capabilities.json` to trace, and when that file is missing it inventories the designs and
 defers the trace. `rules` needs the capabilities to attribute rules. `review` can run again whenever new questions
 appear. The brief refuses to run with an undecided P0 conflict unless it lists that conflict as a blocker of the
-phase that needs it.
+phase that needs it. `goal: understand` ends with the approved brief. `fuse-status` gives the one next command, and
+only proposes capabilities of phases the approval covers.
 
 ## Schemas
 
@@ -202,8 +229,14 @@ Endpoint paths are normalized: parameters become `{}`, the host and query are dr
 }
 ```
 
-IDs are stable. When the file exists, `render.py capabilities` keeps each id whose normalized name, domain and app
-set match, and numbers new capabilities after the highest existing id. It never reuses an id.
+IDs are stable. When the file exists, `render.py capabilities` gives each capability an earlier id in this order: a
+person's alias (`map_aliases.json`), the same normalized name (and domain), then the same evidence: the earlier
+capability whose screens, files and endpoints overlap most (Jaccard at least 0.5), because a re-run renames freely.
+New capabilities are numbered after the highest id ever issued, and an id is never reused. An earlier id that
+matches nothing but is still used by a decision, a rule, a design link or porting notes is listed in `retired`, and
+`fuse-status` stops there until a person maps it. The map workflow also gets the earlier names (`previousIndex`).
+A capability of fusion `new` (designed, in no legacy app) keeps the screens it was proposed from (`designScreens`),
+which the trace links, and is out of the plan until a person decides its `scope`.
 
 ### design/design.json
 
@@ -237,9 +270,11 @@ set match, and numbers new capabilities after the highest existing id. It never 
 `scripts/trace.py` computes `capabilities`, `gaps` and `coverage` from `links`, `capabilities.json` and
 `DECISIONS.json`. The mapping agents only write `links`.
 
-### rules_result.json and BUSINESS_RULES.md
+### rules_result.json, rules.json and BUSINESS_RULES.md
 
-Each rule has these fields:
+`rules_result.json` is the workflow's result as returned; `render.py rules` writes `rules.json` from it, and every
+consumer reads `rules.json`. A rule no referee could check (`unverified`) is kept at Low confidence with a question,
+never dropped, and an `attach` decision gives a rule its capability. Each rule has these fields:
 - `name`, `app`, `capability` (a CAP id or null)
 - `category`: Calculation | Validation | Eligibility | Lifecycle | Policy | Formatting
 - `priority`: P0 | P1 | P2
@@ -255,63 +290,104 @@ app, source file and normalized name.
 
 ```json
 { "program": "", "version": 1, "decisions": {
-  "DEC-001": { "about": "CAP-014 | RULE-007 | <fileKey>:<nodeId> | PLT-003 | scope", "kind": "conflict | gap | rule | design | platform | scope | stack | continuity | api",
-               "question": "", "choice": "", "note": "<their words>", "by": "", "at": "<ISO time>" } } }
+  "DEC-001": { "about": "<see the table>", "kind": "<see the table>", "question": "", "choice": "", "note": "<their words>",
+               "by": "", "at": "<ISO time>", "replaces": "<the earlier choice, when this answer changed one>" } } }
 ```
 
-These are the `choice` values each `kind` allows. `scripts/decisions.py` refuses any other value:
+Every question has its own `about`, so two questions never share an answer: a new answer to the same question
+replaces the earlier one and keeps its DEC id. `scripts/decisions.py` refuses an `about` or a `choice` that does not
+fit its kind, and the guard asks the person to confirm every `add` and `add-json`:
 
-| kind | choices |
-| --- | --- |
-| conflict | `take:<app>`, `design`, `both-by-role`, `new-spec`, `defer` |
-| gap | `design-it`, `carry-as-is`, `drop`, `defer` |
-| rule | `confirmed`, `wrong`, `discuss` |
-| design | `in-scope`, `out-of-scope`, `new-spec` |
-| platform | `keep`, `drop`, `decide-later` |
-| scope | `in`, `out` |
-| stack | the target stack id |
-| continuity | free text, verbatim |
-| api | `replaced`, `dropped`, `accepted`. `about` is `CAP-NNN:<METHOD> <path>`: a legacy endpoint the new app deliberately calls differently or not at all |
+| kind | about | choices |
+| --- | --- | --- |
+| conflict | `CAP-NNN` (the capability), `CAP-NNN:RULE-a+RULE-b` (a rule conflict inside it) or `rules:RULE-a+RULE-b` | `take:<app>`, `design`, `both-by-role`, `new-spec`, `defer` |
+| gap | `CAP-NNN` (no design) | `design-it`, `carry-as-is`, `drop`, `defer` |
+| scope | `CAP-NNN` (a designed feature no legacy app has) | `in`, `out`, `defer` |
+| rule | `RULE-NNN` | `confirmed` (keep the legacy behavior), `wrong` (fix it; the fix in the note), `discuss` |
+| attach | `RULE-NNN` (a rule no capability owns) | `CAP-NNN` or `none` |
+| design | `<fileKey>:<nodeId>` (a frame no capability matches) | `in-scope`, `out-of-scope`, `new-spec` |
+| platform | `PLT-NNN` | `keep`, `drop`, `decide-later` |
+| api | `CAP-NNN:<METHOD> <path>` (a legacy endpoint the new app calls differently or not at all) | `replaced`, `dropped`, `accepted` |
+| strings | `<app>:<key>` or `CAP-NNN:<app>:<key>` | `drop` |
+| analytics | `analytics:taxonomy`; or `<app>:<event>` / `CAP-NNN:<app>:<event>` | `keep-names`, `new-taxonomy`; `drop`, `rename` |
+| roles | `CAP-NNN` | the personas who see it, comma separated |
+| stack | `stack` | the target stack id |
+| continuity | `continuity:<topic>` (`continuity:store-identity` first) | free text, verbatim |
 
-### evidence/test-runs.json (written by verify, paths only, never typed counts)
+Question priorities (`decisions.py open`): 1 and 2 block the plan (`fuse-review` asks them by default); 3 and 4 are
+asked on request, or when their capability is built. A P0 rule with any doubt is 1; a P1 or P2 rule with a suspected
+defect or a question is 3; platform items that existing users depend on (identity, links, push, extensions, sharing,
+storage, locales, privacy) are 2, the others 4. The stack and the store listing are 3 until the brief is approved
+(the approval settles them), 1 after.
+
+### evidence/test-runs.json (paths and hashes, never typed counts)
 
 ```json
-{ "date": "YYYY-MM-DD",
-  "suites":   [ { "capability": "CAP-001 | all", "name": "unit", "command": "", "junit": [], "log": [], "note": "" } ],
-  "journeys": [ { "journey": "JRN-001", "flow": "", "junit": [], "device": "", "note": "" } ],
-  "canaries": [ { "capability": "CAP-001", "change": "", "junit": [], "log": [] } ],
-  "screenshots": [ { "screen": "<fileKey>:<nodeId>", "capability": "CAP-001", "app": "evidence/shots/...png" } ] }
+{ "version": 2, "date": "YYYY-MM-DD",
+  "suites":   [ { "capability": "CAP-001 | all", "name": "unit", "command": "", "junit": ["<files>"], "hashes": {"<file>": "<sha256>"},
+                  "codeHashes": {"CAP-001": "<code hash>"}, "log": [], "note": "", "recordedAt": "" } ],
+  "journeys": [ { "journey": "JRN-001", "platform": "ios", "flow": "", "flowHash": "", "junit": [], "hashes": {}, "codeHashes": {},
+                  "device": "", "recordedAt": "" } ],
+  "canaries": [ { "capability": "CAP-001", "change": "", "file": "", "diff": "", "linesChanged": 1, "junit": [], "hashes": {},
+                  "failedCases": ["<classname>::<name>"], "failedOther": 0, "codeHash": "", "recordedAt": "" } ],
+  "screenshots": [ { "screen": "<fileKey>:<nodeId>", "capability": "CAP-001", "app": "evidence/shots/...png", "hash": "" } ] }
 ```
+
+`evidence.py` writes suites, journeys and screenshots; `canary.py` writes canaries. A `--junit` folder is expanded to
+its XML files when the run is recorded, and `evidence.py dir` makes a fresh run folder, so files of other runs never
+count. `codeHashes` holds the code hash of every built capability at recording time.
+
+### SIGNOFF.json
+
+`{"brief": [{by, at, hash, covers}], "proof": [{by, at, capabilities: {CAP: {verdict, codeHash}}, accept?}],
+"visual": [{by, at, capabilities: {CAP: {codeHash, shots: {screen: hash}}}}]}`, appended by `scripts/signoff.py`. The
+latest entry counts, and only while what it names is unchanged: the brief's text, a capability's verdict and code, its
+screenshots. A PARTLY PROVEN capability is signed only with the person's reason (`accept`); a NOT PROVEN one never.
 
 ## Proof
 
 `scripts/fusion_proof.py` gives each built capability exactly one verdict. The rules are fixed and are written into
-`VERIFICATION.md`:
+`VERIFICATION.md`. A result counts only while it is **fresh**: the files it read still hash to what was recorded
+(file times never count), the decisions it relied on are unchanged, and it ran on the capability's current code hash.
 
-1. **Built**: `new-app/<program>/docs/fusion/CAP-NNN.md` exists and names at least one new-app file that exists.
-2. **Tests ran**: a fresh JUnit result names the capability or one of its rules, at least one test executed, none
-   failed, and the results are newer than the code. A count typed into `test-runs.json` counts for nothing.
-3. **Rules traced**: every P0 rule of the capability is named by a test that ran and passed. A rule named only by a
-   skipped or failing test is "named, not run".
-4. **Journeys**: every in-scope journey through the capability has a Maestro flow whose JUnit result passed.
-5. **API parity**: `api_parity.py` finds the legacy endpoint set of the capability inside the new one, and any
-   difference is covered by a decision.
-6. **Strings**: `i18n_parity.py` finds every legacy string key of the capability mapped and present in every
-   required locale.
-7. **Design text**: `design_text.py` finds at least 90% of the text of each mapped screen in the new app's strings.
-   Placeholder texts are excluded, and the threshold is written into the output.
-8. **Canary**: a deliberate one-line break in the capability's code made at least one test fail.
-9. **Legacy untouched**: every `legacy/<app>` still has a clean working tree and the commit recorded in
-   `program.json` (checked with read-only git).
+1. **Built**: the porting notes' `## Files` name at least one source file inside the new app (one per half of a
+   native pair).
+2. **Tests ran**: a fresh recorded suite has tests naming the capability or one of its rules; at least one executed
+   and none failed. A result file edited after it was recorded is a failure; a result older than the code is a gap.
+3. **Rules traced**: every P0 and P1 rule of the capability is named by a test that passed in a fresh suite. Left
+   out: rules marked `wrong`, and rules of an app a `take:<app>` decision did not keep (for the capability, or for a
+   rule conflict). A gap: a `discuss` rule; a rule with a suspected defect (or a doubtful P0 rule) no person decided;
+   an undecided conflict; a `design` or `new-spec` decision without a passing test named after its DEC id.
+4. **Journeys**: every journey through the capability passed on every target platform, in a result that names the
+   journey, recorded after the current code of every capability on it, with the flow unchanged. A journey through a
+   capability not built yet is a gap, and `fuse-status` moves on to build that capability instead of looping.
+5. **API parity**: `api_parity.py` finds every legacy endpoint of the capability in its own files or listed call
+   sites, mapped through `api-map.json`, or covered by an `api` decision.
+6. **Strings**: `i18n_parity.py` finds every legacy key mapped and present in every required locale, in each half; a
+   dropped key needs a `strings: drop` decision.
+7. **Analytics**: `events_parity.py` finds every legacy event sent under the same name, or renamed or dropped by a
+   person's decision.
+8. **Design text**: `design_text.py` finds at least 90% of each linked screen's text in the new app's strings,
+   leaving out patterns and the recorded placeholders. No design by intent (no Figma file), `carry-as-is` and
+   `dropped` are n/a; an undecided missing design is a gap.
+9. **Canary**: `canary.py` broke the capability's own code and restored it byte for byte; a test naming the
+   capability or one of its rules failed under the break and passed in a fresh suite, on unchanged code.
+10. **Legacy untouched**: every `legacy/<app>` has a clean working tree (untracked files count) at the commit
+    recorded in `program.json`. A change fails; a moved commit is a gap.
+
+A parity check is n/a only when it has nothing to compare **and** the capability's own legacy files agree: when the
+map lists no endpoint, key or event but the inventory finds some in the capability's cited files, the result is a gap.
 
 Each capability gets one verdict:
-- **PROVEN**: all nine checks pass.
-- **NOT PROVEN**: any check failed. For example, a test failed, nothing ran, an unapproved API difference, or a
-  canary that nothing caught.
+- **PROVEN**: all ten checks pass.
+- **NOT PROVEN**: any check failed.
 - **PARTLY PROVEN**: nothing failed, but a check could not pass. Each such check is listed with its reason.
 
-Visual conformance is never automatic. The report shows each designed screen beside the app's screenshot, and a
-named person signs it in `VERIFICATION.md`.
+Judging some capabilities replaces only their verdicts. **Platform continuity** is judged once for the app
+(`platform_parity.py`: identity under the kept store listing, link domains, URL schemes, push, notification
+categories and channels, extensions, app and keychain groups, locales, privacy manifest) and shown with the verdicts.
+Visual conformance is never automatic: the report shows each designed screen beside the app's screenshot, and a named
+person signs it, and the proof, with `/app-fusion:fuse-verify <program> sign`.
 
 ## Agents
 
@@ -353,15 +429,20 @@ is unavailable.
   the screens in scope. Read variables from one to three representative frames. Call `get_design_context` only when a
   screen is built.
 - **Cache.** Each response is saved under `design/cache/<fileKey>/<nodeId>.<tool>.<ext>` before it is used. A cached
-  node is never fetched again unless `--refresh` is passed.
-- **Budget.** `userConfig.figmaCallBudget` (default 150 per run) and `design/budget.json` (calls per day) are both
-  checked before every batch. `whoami` (which is exempt) runs first to see the seat. View and Collab seats get 6 calls
-  a month, so the step switches to the REST path or asks for exports.
+  node is never planned again (`figma_index.py plan` checks the cache itself) unless the person asks for `--refresh`.
+- **Budget.** The step records every call but `whoami` with `figma_index.py budget --spend 1` (a per-day ledger in
+  `design/budget.json`) and stops before it spends `userConfig.figmaCallBudget` (default 150) in one run. `whoami`
+  runs first to see the seat. View and Collab seats get 6 calls a month, so the step switches to the REST path or
+  asks for exports.
 - **REST path.** `scripts/figma_rest.py` reads `FIGMA_TOKEN` from the environment only and never writes it. It pulls
   the file tree, texts, frame images and variables in a handful of requests and writes the same cache and
   `design.json`.
-- **Read only.** The design analyst may never call a Figma write tool. It uses `use_figma`, `create_new_file`,
-  `upload_assets` and the Code Connect writers only when a person asks for that in so many words.
+- **Read only.** The design analyst's tools are Read, Glob, Grep and the Figma read tools of the servers named
+  `claude_ai_Figma`, `figma` and `figma-desktop`: no write tool, shell, web or other connector. A session calls a
+  Figma write tool only when a person asks for that in so many words; the plugin never does.
+- **Texts.** A screen's texts are the characters of its cached design context when there is one, else its text-layer
+  names (inside component instances those are often the component's own names, so the build fetches design context
+  for every screen it builds).
 
 ## Scripts
 
@@ -374,8 +455,11 @@ is unavailable.
 | `figma_index.py`, `figma_rest.py` | Figma cache, budget, plan and index (MCP path), and the REST snapshot path |
 | `trace.py` | traceability, gaps and coverage |
 | `decisions.py` | record a person's decisions; list open questions |
-| `api_parity.py`, `i18n_parity.py`, `design_text.py` | the per-capability parity checks the proof reads |
+| `evidence.py`, `canary.py` | record test, journey and screenshot evidence with hashes; the safe canary |
+| `api_parity.py`, `i18n_parity.py`, `events_parity.py`, `design_text.py` | the per-capability parity checks the proof reads (`api_parity.py` also compares and sanitizes HAR recordings) |
+| `platform_parity.py` | the app-level continuity check |
 | `fusion_proof.py` | the verdicts |
+| `signoff.py` | a named person's sign-offs: the brief, the proof, visual conformance |
 | `status.py`, `build_report.py` | where things stand and the next command; REPORT.html |
 | `guard.py` (via `hooks/guard.sh`) | the PreToolUse legacy guard |
 
@@ -384,10 +468,17 @@ is unavailable.
 `hooks/hooks.json` registers one `PreToolUse` hook on `Edit|Write|NotebookEdit|MultiEdit|Bash`. It is a no-op outside
 a workspace with `analysis/*/program.json`. Inside one:
 - It denies a file write whose path resolves under `legacy/` or under a source app's real path.
-- It asks for a shell command that names such a path together with a writing verb: `>`, `tee`, `sed -i`, `rm`, `mv`,
-  `cp`, `git commit|checkout|reset|clean|stash|apply`, or a package install.
+- It denies a file write to what the proof reads: `DECISIONS.*`, `SIGNOFF.json`, `VERIFICATION.*`,
+  `capabilities.json`, `capability_index.json`, `rules.json`, `traceability.json`, `platform.json`,
+  `design/placeholders.json` and everything under `evidence/`. Their scripts write them.
+- It asks the person before a shell command that records their decision or sign-off (`decisions.py add|add-json`,
+  `signoff.py brief|proof|visual`) or the design's sample data (`figma_index.py placeholders`).
+- It asks for a shell command that names a legacy path together with a writing verb: `>`, `tee`, `sed -i`, `rm`,
+  `mv`, `cp`, `git commit|checkout|reset|clean|stash|apply`, or a package install.
 
-`userConfig.guard=false` turns it off.
+The skills that record a person's answers (`fuse-review`, `fuse-brief`, `fuse-build`, `fuse-verify`) can only be
+started by a person (`disable-model-invocation`), and they ask in pop-ups. `userConfig.guard=false` turns the hook
+off.
 
 ## Safety
 

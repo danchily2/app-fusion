@@ -1,0 +1,7 @@
+App Fusion
+Copyright 2026 Dan-Mihai Cuc
+
+This plugin is modeled on the structure of the code-modernization plugin by Anthropic
+(https://github.com/anthropics/claude-plugins-official/tree/main/plugins/code-modernization, Apache License 2.0):
+guided steps, human decision points, state in files, specialist agents, scripted fan-outs and deterministic proof.
+Its text, agents, workflows and scripts were written for App Fusion.

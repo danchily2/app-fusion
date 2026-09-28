@@ -1,0 +1,28 @@
+{
+  "name": "app-fusion",
+  "displayName": "App Fusion",
+  "version": "0.1.0",
+  "description": "Build one new mobile app from two or more legacy apps (native iOS, React Native, native Android), guided by the new app's Figma designs. Start with /app-fusion:fuse and get an inventory of every app, a capability map that shows what overlaps and what conflicts, the designs traced to every capability, the business rules of both codebases, the decisions only a person can make, and a phased plan you approve. The new app is then built capability by capability, with scripted proof that API calls, rules, strings, journeys and design copy still match. Includes a legacy write guard, a Figma call budget and cache, and a one-page report.",
+  "author": {
+    "name": "Dan-Mihai Cuc",
+    "email": "dan-mihai.cuc@visma.com"
+  },
+  "license": "Apache-2.0",
+  "keywords": ["mobile", "consolidation", "ios", "react-native", "android", "figma", "migration", "modernization", "maestro"],
+  "userConfig": {
+    "figmaCallBudget": {
+      "type": "number",
+      "title": "Figma call budget",
+      "description": "Most Figma MCP read calls one fuse-design run may spend (whoami is free). Figma allows 600 a day on an Enterprise Dev or Full seat, 200 on Organization or Professional, and only 6 a month on View or Collab seats. Every response is cached, so a re-run costs nothing for what is already read.",
+      "default": 150,
+      "min": 1,
+      "max": 600
+    },
+    "guard": {
+      "type": "boolean",
+      "title": "Legacy write guard",
+      "description": "Deny file edits under legacy/<app> (and the real folders the links point to), and ask before shell commands that would write there. Only active in a workspace with analysis/<program>/program.json.",
+      "default": true
+    }
+  }
+}

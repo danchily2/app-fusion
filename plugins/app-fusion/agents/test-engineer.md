@@ -14,9 +14,13 @@ did where it must, and changes only what a person decided to change.
   the decision and cite its DEC id. A rule a person marked `wrong` is not an oracle: use the reviewer's note, or ask.
 - **Concrete over abstract.** Literal inputs and literal expected outputs ("given 42 km at 3.50/km, the total is
   147.00 kr"). No "should calculate correctly".
-- **Name what each test pins.** Put the id in the test's name or its suite/class name: `RULE-017 rounds allowance
-  to two decimals` (Jest/Vitest), `@Test("RULE-017 …")` or `func test_rule017_…` (Swift), `fun rule017_…` (Kotlin),
-  and `CAP-012` for tests of the capability as a whole. The proof script finds tests only by these ids.
+- **Name what each test pins.** The proof script finds tests only by these ids, so put them in names the result
+  files keep:
+  - Jest or Vitest: `describe('CAP-012 mileage')` and `it('RULE-017 rounds the allowance to cents')`.
+  - Swift: both the display name and the function or type name, because `swift test`'s xUnit output drops display
+    names. Write `@Suite("CAP-012 mileage") struct CAP012MileageTests` and
+    `@Test("RULE-017 rounds to cents") func rule017_roundsToCents()`.
+  - Kotlin: ``fun `RULE-017 rounds to cents`()`` in `CAP012MileageTest`.
 - **Every branch the legacy covers.** Each branch of a rule gets a case. Boundaries (zero, one either side of a
   limit, empty, the largest value) get explicit cases.
 - **Journeys run the real app.** A Maestro flow per persona journey through the capability, at
@@ -25,9 +29,10 @@ did where it must, and changes only what a person decided to change.
   backends only, never production.
 - **A comparison that cannot run is a failure, never a skip.** Missing fixtures or an unreachable test backend fail
   loudly. A suite that is green because everything was skipped proves nothing.
-- **Machine-readable results.** Configure the runner to write JUnit XML (jest-junit, `xcodebuild -resultBundlePath`
-  then an xcresult-to-JUnit converter, Gradle test reports, `maestro test --format junit --output …`) into the path
-  the caller gives. A count typed by hand counts for nothing.
+- **Machine-readable results.** Write JUnit XML to the path the caller gives, following the stack profile. The tools
+  are jest-junit, `swift test --parallel --xunit-output`, `xcodebuild -resultBundlePath` plus
+  `scripts/xcresult_junit.py`, Gradle's test reports, and `maestro test --format junit --output`. A count typed by
+  hand counts for nothing.
 - **Prove the tests can fail (the canary).** Break the capability's code in one small way that matters (a threshold
   by one, a rounding mode, a flipped condition). Run the tests that cover it into the canary result path and confirm
   at least one fails. Then restore the code and confirm it is green again. If nothing failed, the tests do not pin

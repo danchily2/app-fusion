@@ -1,0 +1,219 @@
+import json
+import os
+import subprocess
+import sys
+import threading
+import unittest
+from http.server import BaseHTTPRequestHandler, HTTPServer
+
+import helpers
+from helpers import Workspace
+
+KEY = "C" * 22
+PAGE_LIST = "No nodeId was provided.\n\nTop-level pages of the document:\n- 1:1: App screens\n- 2:1: -> Archive\n"
+METADATA = """<canvas id="1:1" name="App screens" x="0" y="0" width="0" height="0">
+  <section id="5:1" name="Approvals &amp; flow" x="0" y="0" width="2000" height="1000">
+    <frame id="5:2" name="Approvals / List" x="0" y="0" width="390" height="844">
+      <text id="5:3" name="Approvals" x="0" y="0" width="10" height="10" />
+      <instance id="5:4" name="Button/Primary" x="0" y="0" width="10" height="10"><text id="5:5" name="Approve all" x="0" y="0" width="1" height="1"/></instance>
+    </frame>
+    <frame id="5:6" name="Approvals / Empty state" x="0" y="0" width="390" height="844" />
+  </section>
+  <frame id="5:7" name="Icons" x="0" y="0" width="120" height="120" />
+</canvas>IMPORTANT: After you call this tool, you MUST call get_design_context"""
+
+
+class FigmaIndex(unittest.TestCase):
+    def setUp(self):
+        self.w = Workspace(git=False).init()
+        self.w.run("workspace.py", "init", "p", "--figma", f"https://www.figma.com/design/{KEY}/New-App?node-id=1-2")
+
+    def tearDown(self):
+        self.w.close()
+
+    def test_pages_scope_build_plan_budget(self):
+        w = self.w
+        prog = w.json("analysis", "p", "program.json")
+        self.assertEqual(prog["figma"][0]["fileKey"], KEY)
+        pages_path = w.run("figma_index.py", "path", "p", KEY, "pages", "pages").stdout.strip()
+        with open(w.path(pages_path), "w") as fh:
+            fh.write(PAGE_LIST)
+        w.run("figma_index.py", "pages", "p", KEY, w.path(pages_path), "--name", "New App")
+        self.assertIn("-> Archive", w.run("figma_index.py", "plan", "p").stdout + json.dumps(w.json("analysis", "p", "design", "design.json")))
+        w.run("figma_index.py", "scope", "p", KEY, "--pages", "1:1")
+        plan = json.loads(w.run("figma_index.py", "plan", "p", "--json").stdout)
+        self.assertEqual(plan["next"][0]["call"], "get_metadata")
+        meta_path = w.run("figma_index.py", "path", "p", KEY, "1:1", "metadata").stdout.strip()
+        with open(w.path(meta_path), "w") as fh:
+            fh.write(METADATA)
+        w.run("figma_index.py", "build", "p")
+        d = w.json("analysis", "p", "design", "design.json")
+        kinds = {s["name"]: s["kind"] for s in d["screens"]}
+        self.assertEqual(kinds["Approvals / List"], "screen")
+        self.assertEqual(kinds["Approvals / Empty state"], "state")
+        self.assertEqual(kinds["Icons"], "component")
+        lst = next(s for s in d["screens"] if s["name"] == "Approvals / List")
+        self.assertEqual(lst["texts"], ["Approvals", "Approve all"])
+        self.assertEqual(lst["section"], "Approvals & flow", "XML entities are unescaped")
+        plan = json.loads(w.run("figma_index.py", "plan", "p", "--json").stdout)
+        self.assertEqual([s["call"] for s in plan["next"]].count("get_screenshot"), 2, "screens and states, not components")
+        # a cached screenshot is not planned again
+        shot = w.run("figma_index.py", "path", "p", KEY, "5:2", "shot").stdout.strip()
+        with open(w.path(shot), "wb") as fh:
+            fh.write(b"\x89PNG")
+        w.run("figma_index.py", "build", "p")
+        plan = json.loads(w.run("figma_index.py", "plan", "p", "--json").stdout)
+        self.assertEqual([s["call"] for s in plan["next"]].count("get_screenshot"), 1)
+        b1 = json.loads(w.run("figma_index.py", "budget", "p", "--spend", "3").stdout)
+        self.assertEqual(b1["spentToday"], 3)
+        w.run("render.py", "design", "p")
+        self.assertIn("Approvals / List", w.text("analysis", "p", "DESIGN_INVENTORY.md"))
+        # path traversal in ids is refused
+        self.assertNotEqual(w.run("figma_index.py", "path", "p", KEY, "../../x", "metadata", check=False).returncode, 0)
+        self.assertNotEqual(w.run("figma_index.py", "path", "p", "short", "1:1", "metadata", check=False).returncode, 0)
+
+
+class FakeFigma(BaseHTTPRequestHandler):
+    seen_tokens = []
+
+    def log_message(self, *a):
+        pass
+
+    def do_GET(self):
+        FakeFigma.seen_tokens.append((self.path.split("?")[0], self.headers.get("X-Figma-Token")))
+        path = self.path.split("?")[0]
+        if path == f"/v1/files/{KEY}":
+            body = {"name": "New App", "document": {"children": [{"id": "1:1", "name": "App screens"}, {"id": "2:1", "name": "Archive"}]}}
+        elif path == f"/v1/files/{KEY}/nodes":
+            body = {"nodes": {"1:1": {"document": {"id": "1:1", "name": "App screens", "children": [
+                {"id": "5:2", "type": "FRAME", "name": "Approvals / List", "absoluteBoundingBox": {"width": 390, "height": 844},
+                 "children": [{"type": "TEXT", "characters": "Approve all"}, {"type": "INSTANCE", "name": "Button/Primary", "children": []}]},
+                {"id": "6:1", "type": "SECTION", "name": "Flow", "children": [
+                    {"id": "6:2", "type": "FRAME", "name": "Details", "absoluteBoundingBox": {"width": 390, "height": 844},
+                     "children": [{"type": "TEXT", "characters": "Comment"}]}]}]}}}}
+        elif path == f"/v1/images/{KEY}":
+            port = self.server.server_address[1]
+            body = {"images": {"5:2": f"http://127.0.0.1:{port}/img/5-2.png", "6:2": f"http://127.0.0.1:{port}/img/6-2.png"}}
+        elif path.startswith("/img/"):
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(b"\x89PNG fake")
+            return
+        elif path == f"/v1/files/{KEY}/variables/local":
+            body = {"meta": {"variableCollections": {"c1": {"defaultModeId": "m1"}}, "variables": {
+                "v1": {"name": "g-surface/primary", "variableCollectionId": "c1", "valuesByMode": {"m1": {"r": 1, "g": 1, "b": 1, "a": 1}}},
+                "v2": {"name": "g-text/body", "variableCollectionId": "c1", "valuesByMode": {"m1": {"type": "VARIABLE_ALIAS", "id": "v1"}}}}}}
+        else:
+            self.send_response(404)
+            self.end_headers()
+            return
+        data = json.dumps(body).encode()
+        self.send_response(200)
+        self.send_header("Content-Type", "application/json")
+        self.end_headers()
+        self.wfile.write(data)
+
+
+class FigmaRest(unittest.TestCase):
+    def test_snapshot_against_a_fake_api(self):
+        server = HTTPServer(("127.0.0.1", 0), FakeFigma)
+        threading.Thread(target=server.serve_forever, daemon=True).start()
+        w = Workspace(git=False).init()
+        try:
+            env = {"FIGMA_TOKEN": "figd_secret_value", "FIGMA_API_BASE": f"http://127.0.0.1:{server.server_address[1]}"}
+            w.run("figma_rest.py", "pages", "p", KEY, env=env)
+            w.run("figma_index.py", "scope", "p", KEY, "--pages", "1:1")
+            w.run("figma_rest.py", "snapshot", "p", KEY, "--images", env=env)
+            d = w.json("analysis", "p", "design", "design.json")
+            self.assertEqual(d["source"], "rest")
+            names = {s["name"]: s for s in d["screens"]}
+            self.assertEqual(names["Approvals / List"]["texts"], ["Approve all"])
+            self.assertEqual(names["Details"]["section"], "Flow")
+            self.assertTrue(all(s["shot"] for s in d["screens"]))
+            self.assertEqual(d["tokens"]["colors"].get("g-text/body"), "#FFFFFF", "aliases resolved")
+            api = [t for p, t in FakeFigma.seen_tokens if p.startswith("/v1/")]
+            images = [t for p, t in FakeFigma.seen_tokens if p.startswith("/img/")]
+            self.assertTrue(api and all(t == "figd_secret_value" for t in api), "API calls carry the token")
+            self.assertTrue(images and all(t is None for t in images), "image downloads never send the token to another host")
+            for dirpath, _, files in os.walk(w.path("analysis")):
+                for f in files:
+                    with open(os.path.join(dirpath, f), "rb") as fh:
+                        self.assertNotIn(b"figd_secret_value", fh.read(), f"the token leaked into {f}")
+            out = w.run("figma_rest.py", "pages", "p", KEY, check=False, env={"FIGMA_TOKEN": ""})
+            self.assertEqual(out.returncode, 4)
+        finally:
+            server.shutdown()
+            server.server_close()
+            w.close()
+
+
+class Guard(unittest.TestCase):
+    def setUp(self):
+        self.w = Workspace(git=False).init()
+
+    def tearDown(self):
+        self.w.close()
+
+    def decide(self, tool, **tool_input):
+        payload = json.dumps({"tool_name": tool, "tool_input": tool_input, "cwd": self.w.ws})
+        out = subprocess.run([sys.executable, os.path.join(helpers.SCRIPTS, "guard.py")], input=payload, capture_output=True,
+                             text=True, env={**os.environ, "CLAUDE_PROJECT_DIR": self.w.ws})
+        self.assertEqual(out.returncode, 0)
+        return json.loads(out.stdout)["hookSpecificOutput"]["permissionDecision"] if out.stdout.strip() else "allow"
+
+    def test_decisions(self):
+        w = self.w
+        self.assertEqual(self.decide("Write", file_path="legacy/mgr/src/x.ts"), "deny")
+        self.assertEqual(self.decide("Edit", file_path=os.path.join(w.ios, "Emp", "Info.plist")), "deny", "the real path too")
+        self.assertEqual(self.decide("NotebookEdit", notebook_path="legacy/emp/x.ipynb"), "deny")
+        self.assertEqual(self.decide("Write", file_path="analysis/p/x.md"), "allow")
+        self.assertEqual(self.decide("Write", file_path="new-app/p/src/a.ts"), "allow")
+        self.assertEqual(self.decide("Bash", command="grep -rn x legacy/mgr/src > /tmp/out.txt"), "allow")
+        self.assertEqual(self.decide("Bash", command="git -C legacy/mgr log --oneline"), "allow")
+        self.assertEqual(self.decide("Bash", command="cp legacy/mgr/package.json /tmp/p.json"), "allow")
+        self.assertEqual(self.decide("Bash", command="echo x > legacy/mgr/README.md"), "ask")
+        self.assertEqual(self.decide("Bash", command="cd legacy/emp && git checkout -b x"), "ask")
+        self.assertEqual(self.decide("Bash", command="cd legacy/mgr && yarn install"), "ask")
+        self.assertEqual(self.decide("Bash", command=f"rm -rf {w.rn}/node_modules"), "ask")
+        self.assertEqual(self.decide("Bash", command="sed -i '' s/a/b/ legacy/mgr/package.json"), "ask")
+        self.assertEqual(self.decide("Bash", command="cp /tmp/x legacy/mgr/x"), "ask")
+
+    def test_off_switch_and_outside_a_workspace(self):
+        payload = json.dumps({"tool_name": "Write", "tool_input": {"file_path": "legacy/mgr/x"}, "cwd": self.w.ws})
+        out = subprocess.run([sys.executable, os.path.join(helpers.SCRIPTS, "guard.py")], input=payload, capture_output=True, text=True,
+                             env={**os.environ, "CLAUDE_PROJECT_DIR": self.w.ws, "CLAUDE_PLUGIN_OPTION_GUARD": "false"})
+        self.assertEqual(out.stdout.strip(), "")
+        out = subprocess.run([sys.executable, os.path.join(helpers.SCRIPTS, "guard.py")], input=payload, capture_output=True, text=True,
+                             env={**os.environ, "CLAUDE_PROJECT_DIR": self.w.root})
+        self.assertEqual(out.stdout.strip(), "", "no analysis/ here: no-op")
+        out = subprocess.run([sys.executable, os.path.join(helpers.SCRIPTS, "guard.py")], input="not json", capture_output=True, text=True)
+        self.assertEqual((out.returncode, out.stdout.strip()), (0, ""), "garbage in: allow, never crash the session")
+
+
+class XcresultJunit(unittest.TestCase):
+    def test_convert_keeps_display_names_and_ids(self):
+        sample = {"testNodes": [{"nodeType": "Test Plan", "name": "App", "children": [{"nodeType": "Unit test bundle", "name": "AppTests", "children": [
+            {"nodeType": "Test Suite", "name": "CAP-012 mileage", "children": [
+                {"nodeType": "Test Case", "name": "RULE-019 zero km is zero", "nodeIdentifier": "MileageSuite/zero()", "result": "Passed", "durationInSeconds": 0.1},
+                {"nodeType": "Test Case", "name": "test_rule020()", "nodeIdentifier": "MileageSuite/test_rule020()", "result": "Failed",
+                 "children": [{"nodeType": "Failure Message", "name": "x.swift:3: expected 1"}]},
+                {"nodeType": "Test Case", "name": "skipped()", "nodeIdentifier": "MileageSuite/skipped()", "result": "Skipped"}]}]}]}]}
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            src = os.path.join(d, "t.json")
+            with open(src, "w") as fh:
+                json.dump(sample, fh)
+            out = os.path.join(d, "j.xml")
+            r = subprocess.run([sys.executable, os.path.join(helpers.SCRIPTS, "xcresult_junit.py"), src, out], capture_output=True, text=True)
+            self.assertEqual(r.returncode, 0, r.stderr)
+            import fusion_proof
+            cases, _ = fusion_proof.junit_cases([out], d)
+            by = {c["name"]: c for c in cases}
+            self.assertEqual({c["status"] for c in cases}, {"passed", "failed", "skipped"})
+            zero = next(c for c in cases if c["name"].startswith("RULE-019"))
+            self.assertEqual(fusion_proof.ids_in(zero["name"] + " " + zero["classname"]), {"RULE-019", "CAP-012"})
+            self.assertIn("test_rule020()", by)
+
+
+if __name__ == "__main__":
+    unittest.main()

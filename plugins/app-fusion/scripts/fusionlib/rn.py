@@ -227,7 +227,7 @@ def extract(root):
 
         is_rtk = "createApi" in text or "injectEndpoints" in text or "builder.query" in text or "builder.mutation" in text
         for m in _URL_PROP.finditer(text):
-            window = text[max(0, m.start() - 300): m.end() + 300]
+            window = _enclosing_object(text, m.start())
             mm = _METHOD_NEAR.search(window)
             method = mm.group(1).upper() if mm else ("GET" if is_rtk else None)
             add_endpoint(_lit(m.group(1)), method, "rtk-query" if is_rtk else "other", m.start())
@@ -415,6 +415,22 @@ def extract(root):
                   "maestro": maestro},
         "strings": catalog, "notes": notes,
     }
+
+
+def _enclosing_object(text, index):
+    """The object literal around a `url:` property, so a neighbouring endpoint's `method:` is never read."""
+    depth, i = 0, index
+    while i > 0:
+        i -= 1
+        c = text[i]
+        if c == "}":
+            depth += 1
+        elif c == "{":
+            if depth == 0:
+                close = match_brace(text, i)
+                return text[i: close + 1 if close > 0 else index + 400]
+            depth -= 1
+    return text[max(0, index - 200): index + 200]
 
 
 def _area(rel):

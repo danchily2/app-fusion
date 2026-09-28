@@ -334,7 +334,7 @@ def normalize_endpoint(raw):
     s = _HOST.sub("", s)
     s = _replace_templates(s)
     s = _PARAM.sub("{}", s)
-    s = re.split(r"[?#]", s, 1)[0]
+    s = re.split(r"[?#]", s, maxsplit=1)[0]
     s = re.sub(r"\{\}(\{\})+", "{}", s)
     s = s.strip()
     if not s or s.startswith("{}") and "/" not in s[2:]:
@@ -349,6 +349,9 @@ def normalize_endpoint(raw):
     s = re.sub(r"/{2,}", "/", s)
     s = s.rstrip("/") or "/"
     s = re.sub(r"(?<=[A-Za-z0-9_])\{\}$", "", s)  # a query-string builder glued to the last segment
+    # concrete ids in recorded traffic or literals: numbers, UUIDs, long hex or base64-ish tokens become parameters
+    s = "/".join("{}" if re.fullmatch(r"\d+|[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{24,}", seg)
+                 else seg for seg in s.split("/"))
     s = s.lower()
     if s == "/" or not re.search(r"[a-z]", s):
         return None
@@ -371,7 +374,7 @@ def looks_like_path(raw):
         return False
     if s.startswith(("file:", "data:", "mailto:", "tel:", "sms:", "./", "../", "~/", "#")):
         return False
-    body = re.split(r"[?#]", s, 1)[0]
+    body = re.split(r"[?#]", s, maxsplit=1)[0]
     if _FILEISH.search(body) and not body.lower().endswith(".json") or re.search(r"[\\^$*+[\]]{2,}", s):
         return False
     return True

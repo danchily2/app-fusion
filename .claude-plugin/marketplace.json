@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "app-fusion",
+  "description": "App Fusion: guided consolidation of several mobile apps into one new app, designed in Figma, with proof.",
+  "owner": {
+    "name": "Dan-Mihai Cuc",
+    "email": "dan-mihai.cuc@visma.com"
+  },
+  "plugins": [
+    {
+      "name": "app-fusion",
+      "source": "./plugins/app-fusion",
+      "description": "Build one new mobile app from two or more legacy apps (native iOS, React Native, native Android), guided by Figma, with a capability map, decisions, an approved plan and scripted proof.",
+      "version": "0.1.0",
+      "category": "development",
+      "tags": ["mobile", "ios", "react-native", "android", "figma", "consolidation"]
+    }
+  ]
+}

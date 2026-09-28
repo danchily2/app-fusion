@@ -2,7 +2,7 @@
 """Set up and check an App Fusion workspace.
 
     python3 workspace.py init <program> --source <app>=<path> [--source ...] [--product <app>=<name>] [--twin <app>=<of>]
-                               [--figma <url> ...] [--target <path>] [--workspace DIR]
+                               [--figma <url> ...] [--target <path>] [--snapshot] [--workspace DIR]
     python3 workspace.py intent <program> [--goal build|understand] [--platforms ios,android] [--stack S] [--persona P ...]
                                [--must TEXT ...] [--store APP|new-listing|undecided] [--locales en,da,...]
     python3 workspace.py check <program> [--json]          are the legacy apps linked, clean and at the recorded commit?
@@ -10,8 +10,10 @@
 
 `init` makes legacy/<app> a symlink to each source (copying nothing), records stack, platforms, repository, branch
 and commit in analysis/<program>/program.json (merging with what is there), links new-app/<program> when --target
-names an existing repository, and makes sure analysis/.gitignore keeps secrets out of git. It never writes inside a
-source app. `check` and `guard` only read.
+names an existing repository, and makes sure analysis/.gitignore keeps secrets out of git. With --snapshot, legacy/<app>
+is instead a local clone of the source's current commit (`git clone --local`, which only reads the source), so the
+developer's own edits in their working copy never change what is analyzed or fail the legacy check. It never writes
+inside a source app. `check` and `guard` only read.
 """
 
 import argparse
@@ -71,6 +73,25 @@ def _link(ws, link_rel, target):
     return real, True
 
 
+def _snapshot(ws, link_rel, target):
+    """Clone the source's committed HEAD into the workspace (read-only on the source), detached at that commit."""
+    real = os.path.realpath(os.path.expanduser(target))
+    info = git_info(real)
+    if not info.get("commit"):
+        die(f"--snapshot needs a git repository: {target} is not one (link it without --snapshot)")
+    dest = os.path.join(ws, link_rel)
+    if os.path.lexists(dest):
+        current = git_info(dest).get("commit") if not os.path.islink(dest) else None
+        if os.path.islink(dest) or current is None:
+            die(f"{link_rel} already exists and is not a snapshot: change nothing and ask which one is right")
+        return dest, False, info
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
+    import subprocess
+    subprocess.run(["git", "clone", "--quiet", "--local", "--no-checkout", real, dest], check=True)
+    subprocess.run(["git", "-C", dest, "checkout", "--quiet", "--detach", info["commit"]], check=True)
+    return dest, True, info
+
+
 def _ensure_gitignore(ws):
     path = os.path.join(ws, "analysis", ".gitignore")
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -98,9 +119,15 @@ def cmd_init(args):
     }
     messages = []
     for app, target in sources.items():
-        real, created = _link(ws, f"legacy/{app}", target)
+        if args.snapshot:
+            real, created, source_info = _snapshot(ws, f"legacy/{app}", target)
+        else:
+            real, created = _link(ws, f"legacy/{app}", target)
         found = detect.detect(real)
         info = git_info(real)
+        if args.snapshot:
+            info["repo"] = source_info.get("repo") or info.get("repo")
+            info["branch"] = source_info.get("branch")
         entry = next((a for a in prog["apps"] if a["name"] == app), None)
         if entry is None:
             entry = {"name": app}
@@ -111,8 +138,9 @@ def cmd_init(args):
             "repo": info["repo"], "branch": info["branch"], "commit": info["commit"],
             "role": "twin" if app in twins else entry.get("role", "source"),
             "twinOf": twins.get(app, entry.get("twinOf")),
+            "snapshotOf": os.path.realpath(os.path.expanduser(target)) if args.snapshot else entry.get("snapshotOf"),
         })
-        state = "linked" if created else "already linked"
+        state = ("snapshot of" if args.snapshot else "linked") if created else ("snapshot already there" if args.snapshot else "already linked")
         clean = {True: "clean", False: "HAS LOCAL CHANGES", None: "not a git checkout"}[info["clean"]]
         messages.append(f"{app}: {state} legacy/{app} -> {real} · {found['stack']} ({', '.join(found['platforms']) or 'no platform'})"
                         f" · {info['branch'] or '-'} @ {(info['commit'] or '-')[:12]} · {clean}"
@@ -264,6 +292,7 @@ def main():
     p.add_argument("--twin", action="append")
     p.add_argument("--figma", action="append")
     p.add_argument("--target")
+    p.add_argument("--snapshot", action="store_true", help="clone each source's current commit instead of linking its working copy")
     p.add_argument("--workspace")
     p = sub.add_parser("intent")
     p.add_argument("program")

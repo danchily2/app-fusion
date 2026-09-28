@@ -64,7 +64,7 @@ This file is the contract between the skills, agents, workflows and scripts. Whe
 
 ```
 <workspace>/
-  legacy/<app>/                     read-only: a symlink (--source) or a clone, one per source app
+  legacy/<app>/                     read-only: a symlink (--source), a local clone of its commit (--snapshot) or a clone of a git URL
   analysis/<program>/
     INTENT.md                       the person's answers, verbatim
     program.json                    machine-readable program: apps, figma files, target, intent fields

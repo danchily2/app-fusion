@@ -75,6 +75,25 @@ class Pipeline(unittest.TestCase):
         pair = w.json("analysis", "p", "overlap.json")["pairs"][0]
         self.assertEqual(pair["apps"], ["mgr", "emp"])
 
+    def test_snapshot_is_immune_to_the_developers_edits(self):
+        import subprocess
+        from helpers import Workspace as W
+        w = W()
+        try:
+            w.run("workspace.py", "init", "s", "--source", f"mgr={w.rn}", "--snapshot")
+            link = w.path("legacy", "mgr")
+            self.assertFalse(os.path.islink(link))
+            prog = w.json("analysis", "s", "program.json")
+            head = subprocess.run(["git", "-C", w.rn, "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip()
+            self.assertEqual(prog["apps"][0]["commit"], head)
+            self.assertEqual(prog["apps"][0]["snapshotOf"], os.path.realpath(w.rn))
+            with open(os.path.join(w.rn, "package.json"), "a", encoding="utf-8") as fh:
+                fh.write("\n")  # the developer keeps working in their own copy
+            rows = json.loads(w.run("workspace.py", "check", "s", "--json").stdout)
+            self.assertEqual((rows[0]["clean"], rows[0]["atRecordedCommit"]), (True, True))
+        finally:
+            w.close()
+
     def test_capabilities_rules_decisions_trace_status_report(self):
         w = self.w
         w.run("inventory.py", "p", "--all")

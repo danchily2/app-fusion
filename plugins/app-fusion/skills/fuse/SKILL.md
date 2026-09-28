@@ -1,7 +1,7 @@
 ---
 name: fuse
 description: Start here. Builds one new mobile app from two or more existing apps (native iOS, React Native, native Android), guided by the new app's Figma designs. It asks what you want, links the apps without copying them, records your answers once and gives the exact first step. Use when someone wants to merge, consolidate or replace several apps with one.
-argument-hint: "[program] [--source <app>=<path or git url> ...] [--figma <url> ...] [--target <path>]"
+argument-hint: "[program] [--source <app>=<path or git url> ...] [--figma <url> ...] [--target <path>] [--snapshot]"
 arguments: program
 ---
 
@@ -37,10 +37,12 @@ plugin never edits it (a hook denies writes there).
   ```bash
   python3 "${CLAUDE_PLUGIN_ROOT}/scripts/workspace.py" init $program \
     --source <app>=<path> [--source ...] [--product <app>=<Product> ...] [--twin <app>=<of>] \
-    [--figma <url> ...] [--target <existing new-app repo>]
+    [--figma <url> ...] [--target <existing new-app repo>] [--snapshot]
   ```
   It prints one line per app: stack, platforms, branch and commit, clean or not. Repeat those lines. If an app has
-  local changes, say so: the analysis describes the working tree, not the commit.
+  local changes, say so: the analysis describes the working tree, not the commit. When someone keeps working in a
+  source's working copy, `--snapshot` (in `$ARGUMENTS`, or offered when an app has local changes) clones its current
+  commit into `legacy/<app>` instead of linking it, so their edits never change what is analyzed.
 
 ## 3: Ask what they want (two pop-ups at most)
 

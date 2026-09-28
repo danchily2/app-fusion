@@ -32,7 +32,8 @@ Open an empty folder for the work and type:
 ```
 
 `work-app` is a short name for the program. Each `--source` makes a **link** at `legacy/<app>` and copies nothing.
-A git URL is cloned once you agree. The front door:
+A git URL is cloned once you agree. With `--snapshot`, each source's current commit is cloned locally instead, so
+edits someone makes in their own working copy never change what is analyzed. The front door:
 1. asks what you want (two short pop-ups)
 2. records your answers once in `analysis/work-app/INTENT.md`
 3. shows the road
@@ -156,7 +157,7 @@ Built against two production apps (Visma Manager, React Native, 218k code lines,
 The inventory's counts were checked against a hand-certified knowledge graph of both apps: routes, string keys,
 locales and Swift packages match exactly; event and endpoint counts differ by the rule that made them (both rules
 are printed). An adversarial review of the whole plugin found 2 blockers and 15 high-severity issues, all fixed and
-covered by tests (`scripts/tests/`, 35 cases, and `tests/`, 11 workflow cases).
+covered by tests (`scripts/tests/`, 36 cases, and `tests/`, 11 workflow cases).
 
 ## Set it up so it runs smoothly
 

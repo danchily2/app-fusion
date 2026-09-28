@@ -23,6 +23,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import status as statusmod  # noqa: E402
 from fusionlib.common import check_name, load_json, program_dir, workspace, write_text  # noqa: E402
+from fusionlib import signatures  # noqa: E402
 from fusionlib.status import parse_brief  # noqa: E402
 
 STYLE = """
@@ -120,14 +121,16 @@ const S = D.status || {};
 })();
 // plan
 (function(){ const s = sec('plan'); const b = D.brief || {}; if (!b.exists) { s.appendChild($('p', {cls: 'muted', text: 'No brief yet: run fuse-brief.'})); return; }
-  s.appendChild($('p', null, [pill(b.approved ? 'approved' : 'not approved', b.approved ? 'pass' : 'gap'), ' ', b.approved ? ('by ' + b.approvedBy + (b.covers ? ', covers ' + b.covers : '')) : 'Nothing is built before a person signs the Approval block.']));
+  s.appendChild($('p', null, [pill(b.approved ? 'approved' : 'not approved', b.approved ? 'pass' : 'gap'), ' ', b.approved ? ('by ' + b.approvedBy + (b.covers ? ', covers ' + b.covers : '')) : (b.stale ? 'The brief changed after it was approved: a person approves it again (fuse-brief <program> approve).' : 'Nothing is built before a person approves it (fuse-brief <program> approve).')]));
   s.appendChild(table(['Phase', 'Name', 'Command', 'Capabilities', 'Scale', 'Risk'], (b.phases||[]).map(p => [p.number, p.name, p.command, (p.capabilities||[]).join(', '), p.scale, p.risk])));
 })();
 // proof
 (function(){ const s = sec('proof'); const v = (D.verification||{}).capabilities || {}; const ids = Object.keys(v); const checks = (D.verification||{}).checks || [];
   if (!ids.length) { s.appendChild($('p', {cls: 'muted', text: 'Nothing verified yet: build a capability, then run fuse-verify.'})); return; }
   s.appendChild($('p', {cls: 'muted', text: 'Computed by scripts/fusion_proof.py from evidence files, never by a model. Visual conformance is signed by a person.'}));
-  s.appendChild(table(['Capability', 'Name', 'Verdict'].concat(checks), ids.map(k => [k, v[k].name, pill(v[k].verdict)].concat(checks.map(c => pill((v[k].checks[c]||{}).status || '-'))))));
+  const so = D.signoff || {}; const cont = (D.verification||{}).continuity || {};
+  s.appendChild($('p', null, [pill('platform continuity: ' + (cont.verdict || 'not run'), cont.verdict === 'pass' ? 'pass' : (cont.verdict === 'fail' ? 'fail' : 'gap')), ' ', cont.detail || 'run fuse-verify: scripts/platform_parity.py checks links, schemes, push, extensions and identity for existing users.']));
+  s.appendChild(table(['Capability', 'Name', 'Verdict', 'Sign-off'].concat(checks), ids.map(k => [k, v[k].name, pill(v[k].verdict), ((so[k]||{}).proof ? 'proof signed' : 'proof not signed') + ((so[k]||{}).visual === true ? ', visual signed' : ((so[k]||{}).visual === false ? ', visual not signed' : ''))].concat(checks.map(c => pill((v[k].checks[c]||{}).status || '-'))))));
   ids.forEach(k => { const d = $('details', null, [$('summary', {text: k + ' ' + v[k].name + ': ' + v[k].verdict})]); const ul = $('ul'); checks.forEach(c => ul.appendChild($('li', {text: c + ' (' + ((v[k].checks[c]||{}).status||'-') + '): ' + ((v[k].checks[c]||{}).detail||'')}))); d.appendChild(ul); s.appendChild(d); });
 })();
 // security
@@ -160,7 +163,9 @@ def collect(ws, program):
             inv[a["name"]] = {"counts": data.get("counts"), "rules": data.get("rules")}
     design = load_json(os.path.join(pdir, "design", "design.json")) or {}
     runs = load_json(os.path.join(pdir, "evidence", "test-runs.json")) or {}
-    brief = parse_brief(os.path.join(pdir, "FUSION_BRIEF.md"))
+    brief = parse_brief(os.path.join(pdir, "FUSION_BRIEF.md"), ws, program)
+    verification = load_json(os.path.join(pdir, "VERIFICATION.json")) or {}
+    signed = signatures.signed_state(ws, program, verification.get("capabilities") or {}) if verification else {}
     status = statusmod.summary(ws, program) if prog else {}
     security = safe_read(os.path.join(pdir, "SECURITY_FINDINGS.md"), 60_000)
     return {
@@ -170,7 +175,7 @@ def collect(ws, program):
         "design": {"screens": [{k: s.get(k) for k in ("id", "name", "kind", "shot", "page")} for s in design.get("screens", [])]},
         "rules": load_json(os.path.join(pdir, "rules.json")) or {},
         "decisions": load_json(os.path.join(pdir, "DECISIONS.json")) or {},
-        "brief": brief, "verification": load_json(os.path.join(pdir, "VERIFICATION.json")) or {},
+        "brief": brief, "verification": verification, "signoff": signed,
         "runs": {"screenshots": runs.get("screenshots") or []}, "security": security,
         # images are referenced relative to the workspace root; the page lives in analysis/<program>/
         "rel": "../../",

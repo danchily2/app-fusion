@@ -545,7 +545,7 @@ def _package_resolved(full, rel):
         name = p.get("identity") or p.get("package") or ""
         state = p.get("state") or {}
         out.append({"name": name, "version": state.get("version") or state.get("branch") or (state.get("revision") or "")[:12],
-                    "source": rel})
+                    "url": p.get("location") or p.get("repositoryURL") or "", "source": rel})
     return out
 
 

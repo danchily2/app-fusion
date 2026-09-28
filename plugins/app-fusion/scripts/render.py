@@ -321,12 +321,32 @@ def data_objects_md(data):
 
 # ---------------------------------------------------------------- platform matrix
 
-ANALYTICS_DEPS = {"@react-native-firebase/analytics": "Firebase Analytics", "@snowplow/react-native-tracker": "Snowplow",
-                  "@sentry/react-native": "Sentry", "@react-native-firebase/crashlytics": "Crashlytics",
-                  "snowplow-ios-tracker": "Snowplow", "sentry-cocoa": "Sentry", "firebase-ios-sdk": "Firebase",
-                  "amplitude": "Amplitude", "mixpanel": "Mixpanel", "appcenter": "App Center"}
-AUTH_DEPS = {"react-native-app-auth": "OAuth (AppAuth)", "appauth-ios": "OAuth (AppAuth)", "msal": "MSAL",
-             "react-native-msal": "MSAL", "expo-auth-session": "OAuth (expo-auth-session)"}
+# Third-party SDKs worth a keep-or-drop decision, matched against dependency names and (Swift packages) repository URLs.
+SDKS = [
+    ("analytics", "Firebase Analytics", ("@react-native-firebase/analytics", "firebaseanalytics", "firebase-analytics")),
+    ("analytics", "Firebase iOS SDK (which products are used is not visible in Package.resolved)", ("firebase-ios-sdk",)),
+    ("analytics", "Snowplow", ("snowplow",)),
+    ("analytics", "Amplitude", ("amplitude",)),
+    ("analytics", "Mixpanel", ("mixpanel",)),
+    ("crash", "Sentry", ("sentry",)),
+    ("crash", "Crashlytics", ("crashlytics",)),
+    ("crash", "App Center", ("appcenter",)),
+    ("flags", "Firebase Remote Config", ("remote-config", "remoteconfig")),
+    ("flags", "LaunchDarkly", ("launchdarkly",)),
+    ("flags", "Unleash", ("unleash",)),
+    ("surveys", "Survicate", ("survicate",)),
+    ("surveys", "Wootric / InMoment", ("wootric",)),
+    ("messaging", "Firebase In-App Messaging", ("in-app-messaging", "inappmessaging")),
+    ("push", "Firebase Cloud Messaging", ("@react-native-firebase/messaging", "firebasemessaging")),
+    ("push", "Notifee", ("notifee",)),
+    ("maps", "Google Maps", ("google-maps", "googlemaps", "react-native-maps")),
+    ("auth", "OAuth (AppAuth)", ("react-native-app-auth", "appauth")),
+    ("auth", "MSAL", ("msal",)),
+    ("storage", "Realm", ("realm",)),
+    ("storage", "MMKV", ("mmkv",)),
+    ("graphql", "Apollo GraphQL", ("@apollo/client", "apollo-ios")),
+    ("ui", "Lottie", ("lottie",)),
+]
 
 
 def platform_items(prog, invs):
@@ -357,13 +377,12 @@ def platform_items(prog, invs):
     add("flags", "Remote-config flags", {a: f"{len(get(a, 'flags') or [])} keys" if get(a, "flags") else "" for a in apps})
     for a in apps:
         inv = invs.get(a) or {}
-        deps = {d["name"].lower(): d for d in inv.get("dependencies") or []}
-        for dep, label in ANALYTICS_DEPS.items():
-            if any(dep in name for name in deps):
-                items.append({"area": "analytics", "name": label, "apps": {a: dep}, "newApp": "decide"})
-        for dep, label in AUTH_DEPS.items():
-            if any(dep in name for name in deps):
-                items.append({"area": "auth", "name": label, "apps": {a: dep}, "newApp": "decide"})
+        deps = [((d.get("name") or "").lower(), (d.get("url") or "").lower(), d) for d in inv.get("dependencies") or []]
+        for area, label, needles in SDKS:
+            hits = [d for name, url, d in deps if any(n in name or (url and n in url) for n in needles)]
+            if hits:
+                items.append({"area": area, "name": label, "apps": {a: ", ".join(sorted({f"{h['name']} {h.get('version') or ''}".strip() for h in hits}))},
+                              "newApp": "decide"})
         kinds_used = sorted({s.get("kind") for s in inv.get("storage") or []})
         if kinds_used:
             items.append({"area": "storage", "name": "Local storage", "apps": {a: ", ".join(kinds_used)}, "newApp": "decide"})

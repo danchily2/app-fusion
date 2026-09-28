@@ -9,8 +9,10 @@ Check whether this environment can analyze the apps of program `$program` and bu
 what to fix before later steps run into it. Run **every** check even when an early one fails: the point is one
 complete readiness report. Scripts are in `${CLAUDE_PLUGIN_ROOT}/scripts/`. Run from the workspace root.
 
-Read `analysis/$program/program.json` and `INTENT.md`. If they are missing, stop: the fix is
-`/app-fusion:fuse $program --source <app>=<path> ...`. Never modify anything under `legacy/`.
+Read `analysis/$program/program.json` and `INTENT.md`. Without `program.json`, stop: the fix is
+`/app-fusion:fuse $program --source <app>=<path> ...`. Without `INTENT.md`, say that nobody has recorded what they want
+yet, run the checks anyway, and name `/app-fusion:fuse $program` as the step to run before `fuse-assess`. Never modify
+anything under `legacy/`.
 
 ## Check 0: Ask the person (these answers are not in any repository)
 

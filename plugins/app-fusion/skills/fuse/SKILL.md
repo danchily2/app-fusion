@@ -13,9 +13,10 @@ command from the workspace root (the folder the person opened).
 
 - Run `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/status.py" --list`. The program name is `$program` if given.
   Otherwise, with one program, use it. With several, ask which one (pop-up). With none, this is a new program.
-- **Return visit.** If `analysis/$program/program.json` exists, run
+- **Return visit.** If `analysis/$program/INTENT.md` exists, run
   `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/status.py" $program`, say where things stand in at most five lines, give its
-  exact next command, and stop.
+  exact next command, and stop. If `program.json` exists but `INTENT.md` does not, the apps are linked but nobody
+  said what they want yet: skip to step 3. New `--source` or `--figma` arguments are still added through step 2.
 - A new program needs a short name: letters, digits, `-` and `_`. Take it from `$program`, or propose one from the
   apps (the new app's working name, e.g. `work-app`) and let the person change it.
 

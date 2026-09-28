@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: status-next
+description: After preflight and assess, fuse-status names fuse-map as the next command.
+tags: [smoke, status]
+context:
+  scaffold_script: scaffold.sh

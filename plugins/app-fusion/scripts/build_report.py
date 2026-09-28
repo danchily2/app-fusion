@@ -79,7 +79,10 @@ const S = D.status || {};
   s.appendChild($('p', {cls: 'muted', text: 'Every number is printed with the rule that produced it: quote the rule with the number.'}));
   const rows = keys.map(k => {
     const vals = names.map(n => { const c = inv[n].counts || {}; return c[k] === undefined ? '' : c[k]; });
-    const rule = names.map(n => (inv[n].rules || {})[k]).filter(Boolean)[0] || '';
+    // the apps may count by different rules (Swift files versus TypeScript files): show each app's rule when they differ
+    const rules = names.map(n => [n, (inv[n].rules || {})[k]]).filter(x => x[1]);
+    const distinct = [...new Set(rules.map(x => x[1]))];
+    const rule = distinct.length <= 1 ? (distinct[0] || '') : rules.map(([n, r]) => n + ': ' + r).join('  |  ');
     return [k].concat(vals).concat([rule]);
   });
   s.appendChild(table(['What'].concat(names).concat(['Rule']), rows, names.map((_, i) => i + 1)));
@@ -129,6 +132,8 @@ const S = D.status || {};
 })();
 // security
 (function(){ const s = sec('security'); if (!D.security) { s.appendChild($('p', {cls: 'muted', text: 'No security review yet: run fuse-harden.'})); return; } s.appendChild($('pre', {text: D.security})); })();
+// open the tab named in the URL hash (REPORT.html#caps), so a link can point at one tab
+const want = (location.hash || '').slice(1); const btn = document.querySelector('nav button[data-tab="' + want.replace(/[^a-z]/g, '') + '"]'); if (btn) btn.click();
 })();
 """
 

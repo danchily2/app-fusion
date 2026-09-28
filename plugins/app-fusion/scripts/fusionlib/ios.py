@@ -83,7 +83,9 @@ def parse_pbxproj(xcodeproj):
     return {
         "project": os.path.basename(xcodeproj),
         "targets": targets,
-        "bundleIds": [b for b in values("PRODUCT_BUNDLE_IDENTIFIER") if b and not b.startswith("$(")],
+        # test bundles (EmployeeTests, AppUITests) are not identities a store listing or a keychain group depends on
+        "bundleIds": [b for b in values("PRODUCT_BUNDLE_IDENTIFIER")
+                      if b and not b.startswith("$(") and not re.search(r"(?i)(ui)?tests?$", b)],
         "deploymentTargets": values("IPHONEOS_DEPLOYMENT_TARGET"),
         "infoPlists": values("INFOPLIST_FILE"),
         "entitlements": values("CODE_SIGN_ENTITLEMENTS"),

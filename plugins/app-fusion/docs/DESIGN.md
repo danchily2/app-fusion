@@ -92,7 +92,9 @@ This file is the contract between the skills, agents, workflows and scripts. Whe
     SECURITY_FINDINGS.md, security_remediation.patch
     REPORT.html                     one page with everything so far
   new-app/<program>/                the new app, with its own git history (or a link to an existing repo, --target)
+    docs/fusion/SCAFFOLD.md         what Phase 0 built: the scaffold's completion marker
     docs/fusion/CAP-NNN.md          porting notes, one per capability: the completion marker
+    docs/fusion/i18n-map.json       legacy string key -> new key ({"<app>:<key>": "<newKey>" | null for dropped})
 ```
 
 `analysis/.gitignore` always holds `SECRETS.local.md`, `*.local.patch` and `design/cache/**/*.token*`.
@@ -253,7 +255,7 @@ app, source file and normalized name.
 
 ```json
 { "program": "", "version": 1, "decisions": {
-  "DEC-001": { "about": "CAP-014 | RULE-007 | <fileKey>:<nodeId> | PLT-003 | scope", "kind": "conflict | gap | rule | design | platform | scope | stack | continuity",
+  "DEC-001": { "about": "CAP-014 | RULE-007 | <fileKey>:<nodeId> | PLT-003 | scope", "kind": "conflict | gap | rule | design | platform | scope | stack | continuity | api",
                "question": "", "choice": "", "note": "<their words>", "by": "", "at": "<ISO time>" } } }
 ```
 
@@ -269,6 +271,7 @@ These are the `choice` values each `kind` allows. `scripts/decisions.py` refuses
 | scope | `in`, `out` |
 | stack | the target stack id |
 | continuity | free text, verbatim |
+| api | `replaced`, `dropped`, `accepted`. `about` is `CAP-NNN:<METHOD> <path>`: a legacy endpoint the new app deliberately calls differently or not at all |
 
 ### evidence/test-runs.json (written by verify, paths only, never typed counts)
 
@@ -359,6 +362,22 @@ is unavailable.
   `design.json`.
 - **Read only.** The design analyst may never call a Figma write tool. It uses `use_figma`, `create_new_file`,
   `upload_assets` and the Code Connect writers only when a person asks for that in so many words.
+
+## Scripts
+
+| Script | Does |
+| --- | --- |
+| `workspace.py` | `init` links sources and writes program.json; `check` reads the legacy links' git state; `guard` reports permission deny rules |
+| `inventory.py` | per-app inventory (fusionlib/rn.py, ios.py, android.py); every count with its rule |
+| `shard.py` | shards for the map and rules fan-outs |
+| `render.py` | map_result.json, rules_result.json, inventories and design.json rendered into catalogs and Markdown, with stable ids |
+| `figma_index.py`, `figma_rest.py` | Figma cache, budget, plan and index (MCP path), and the REST snapshot path |
+| `trace.py` | traceability, gaps and coverage |
+| `decisions.py` | record a person's decisions; list open questions |
+| `api_parity.py`, `i18n_parity.py`, `design_text.py` | the per-capability parity checks the proof reads |
+| `fusion_proof.py` | the verdicts |
+| `status.py`, `build_report.py` | where things stand and the next command; REPORT.html |
+| `guard.py` (via `hooks/guard.sh`) | the PreToolUse legacy guard |
 
 ## Hooks
 

@@ -48,6 +48,7 @@ def _merge(catalog, locale, flat, rel):
 
 
 def _choose_source(catalog, flats):
+    catalog["allValues"] = {loc: {k: v for k, v in flat.items() if isinstance(v, str)} for loc, flat in flats.items()}
     if not catalog["locales"]:
         return
     preferred = next((l for l in catalog["locales"] if l.split("-")[0].split("_")[0] == "en"), None)
@@ -146,6 +147,7 @@ def parse_xcstrings(root, files):
                     flats.setdefault(loc, {})[key] = value
             flats.setdefault(source, {}).setdefault(key, key)
     catalog["source"] = next(iter(catalog["locales"]), None)
+    catalog["allValues"] = {loc: {k: v for k, v in flat.items() if isinstance(v, str)} for loc, flat in flats.items()}
     if catalog["source"]:
         catalog["values"] = {k: v for k, v in flats.get(catalog["source"], {}).items() if isinstance(v, str)}
     return catalog if catalog["files"] else None
@@ -215,6 +217,7 @@ def parse_android_strings(root, files):
     if catalog["files"]:
         catalog["source"] = "default" if "default" in catalog["locales"] else catalog["locales"][0]
         catalog["values"] = {k: v for k, v in flats.get(catalog["source"], {}).items() if isinstance(v, str)}
+        catalog["allValues"] = {loc: {k: v for k, v in flat.items() if isinstance(v, str)} for loc, flat in flats.items()}
     return catalog if catalog["files"] else None
 
 
@@ -243,11 +246,11 @@ def combine(*catalogs):
     """Merge several catalogs of one app (for example xcstrings plus a legacy .strings file)."""
     parts = [c for c in catalogs if c]
     if not parts:
-        return {"format": "none", "files": [], "locales": [], "source": None, "keys": {}, "values": {}}
+        return {"format": "none", "files": [], "locales": [], "source": None, "keys": {}, "values": {}, "allValues": {}}
     if len(parts) == 1:
         return parts[0]
     out = {"format": "+".join(p["format"] for p in parts), "files": [], "locales": [], "source": parts[0]["source"],
-           "keys": {}, "values": {}}
+           "keys": {}, "values": {}, "allValues": {}}
     for p in parts:
         out["files"] += p["files"]
         for loc in p["locales"]:
@@ -258,6 +261,10 @@ def combine(*catalogs):
             merged.extend(l for l in locs if l not in merged)
         for key, value in p["values"].items():
             out["values"].setdefault(key, value)
+        for loc, vals in (p.get("allValues") or {}).items():
+            merged_vals = out["allValues"].setdefault(loc, {})
+            for key, value in vals.items():
+                merged_vals.setdefault(key, value)
     return out
 
 
@@ -277,3 +284,14 @@ def summary(catalog):
         "perLocale": per_locale,
         "missingPerLocale": {loc: len(keys) - n for loc, n in per_locale.items()},
     }
+
+
+NORWEGIAN = {"no", "nb", "nn"}
+
+
+def base_locale(code):
+    """Compare locales by language: 'nb-NO', 'no' and 'nb' are all Norwegian Bokmål ('nb'); 'da-DK' is 'da'."""
+    if not code:
+        return ""
+    lang = str(code).replace("_", "-").split("-")[0].lower()
+    return "nb" if lang in ("no", "nb") else lang

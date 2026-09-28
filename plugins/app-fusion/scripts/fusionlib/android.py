@@ -7,6 +7,7 @@ import os
 import re
 import xml.etree.ElementTree as ET
 
+from . import notify
 from . import strings as strcat
 from .common import (is_test_path, line_of, looks_like_path, normalize_endpoint, read_text, sanitize_url,
                      strip_comments, walk)
@@ -218,6 +219,7 @@ def extract(root):
                 maestro.append(rel)
 
     plat = platform(root)
+    plat["notificationCategories"] = notify.scan(root)
     uniq_paths = {e["path"] for e in endpoints}
     counts = {
         "sourceFiles": sum(1 for rel in texts if not is_test_path(rel) and "/src/test/" not in f"/{rel}" and "/src/androidTest/" not in f"/{rel}"),

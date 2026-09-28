@@ -3,94 +3,151 @@
 
     python3 fusion_proof.py <program> [CAP-NNN ...] [--workspace DIR]
 
-Writes analysis/<program>/VERIFICATION.md (for people) and VERIFICATION.json (for the report). A model never gives
-the verdict: this script does, from files it parses itself, and every rule is written into the output.
+Writes analysis/<program>/VERIFICATION.md (for people) and VERIFICATION.json (for the report and fuse-status). A model
+never gives the verdict: this script does, from files it parses itself, and every rule is written into the output.
+Judging some capabilities replaces only their verdicts; the others stay as they were, each with the time it was
+judged and the code it was judged on. A result is fresh for a capability while the files its porting notes name still
+hash to the value recorded with the result; file times never count.
 
-  1 Built           new-app/<program>/docs/fusion/CAP-NNN.md exists and names at least one new-app file that exists.
-  2 Tests ran       in the JUnit results listed in evidence/test-runs.json, tests whose name or class names the
-                    capability (CAP-012, cap012) or one of its rules executed, none failed, and the result files are
-                    newer than the capability's files. Nothing executed, a failure, or only skipped tests is a failure;
-                    results older than the code are a gap. A count typed into test-runs.json counts for nothing.
-  3 Rules traced    every P0 rule of the capability is named by a test that ran and passed. A rule a person marked
-                    `wrong` is left out (it is not the oracle); one marked `discuss` is a gap; one named only by a
-                    skipped or failing test is "named, not run" (a gap).
-  4 Journeys        every journey through the capability has a Maestro (or other UI) run whose JUnit passed.
-  5 API parity      evidence/api-parity.json says pass (or n/a) for the capability.
-  6 Strings         evidence/i18n-parity.json says pass (or n/a).
-  7 Design text     evidence/design-text.json says pass (or n/a: no design screen).
-  8 Canary          a deliberate break of the capability's code made at least one test fail (evidence/test-runs.json
-                    canaries). A canary that nothing caught is a failure: the tests do not pin the behavior.
-  9 Legacy          every legacy/<app> is still a clean git checkout (read-only git).
+  1 Built           new-app/<program>/docs/fusion/CAP-NNN.md names at least one source file inside the new app (for a
+                    native pair, one in each half: ios/ and android/).
+  2 Tests ran       a recorded suite whose result files are unchanged since they were recorded, run on the
+                    capability's current code, has tests naming the capability (CAP-012, cap012) or its rules; at least
+                    one executed and none failed. A result recorded before the code changed is a gap; a result file
+                    edited after it was recorded is a failure. A count typed anywhere counts for nothing.
+  3 Rules traced    every P0 and P1 rule of the capability is named by a test that passed in such a fresh suite. Left
+                    out: a rule a person marked `wrong`, and the rules of an app a person did not keep (`take:<app>` for
+                    the capability or for a rule conflict). A gap: a rule under `discuss`; a rule with a suspected legacy
+                    defect (or a P0 rule with an open question) that no person has confirmed or marked wrong; an
+                    undecided conflict; a behavior a person chose to redesign (`design`, `new-spec`) without a passing
+                    test naming that DEC id.
+  4 Journeys        every journey through the capability passed on every target platform, in a Maestro (or other UI)
+                    result that names the journey (JRN-NNN), recorded after the current code of every capability on
+                    it and with the flow unchanged. A journey through a capability that is not built yet is a gap.
+  5 API parity      evidence/api-parity.json passes (or is n/a) for the capability, and nothing it read changed since.
+  6 Strings         evidence/i18n-parity.json likewise.
+  7 Analytics       evidence/events-parity.json likewise.
+  8 Design text     evidence/design-text.json likewise.
+  9 Canary          scripts/canary.py broke the capability's code on purpose and restored it; a test naming the
+                    capability or one of its rules failed under the break and passed in a fresh suite, and the code is
+                    unchanged since. A break nothing caught is a failure; a canary still in place is a gap.
+ 10 Legacy          every legacy/<app> is still a clean git checkout (untracked files count) at the commit recorded in
+                    program.json. A change is a failure; a moved commit is a gap (the analysis describes the old one).
 
-  PROVEN        all nine checks pass (n/a counts as a pass).
+  PROVEN        all ten checks pass (n/a counts as a pass: a check that has nothing to compare, confirmed by the
+                capability's own legacy files, or excused by a person's decision).
   NOT PROVEN    any check failed.
   PARTLY PROVEN nothing failed, but a check could not pass; each such check is listed with its reason.
 
-Visual conformance is never computed: a named person signs it from the side-by-side screenshots. Exit 0 when every
-judged capability is PROVEN, 1 otherwise. Standard library only.
+Platform continuity is judged once for the app (evidence/platform-parity.json, from scripts/platform_parity.py) and
+shown beside the verdicts. Visual conformance is never computed: a named person signs it, and the proof, with
+scripts/signoff.py. Exit 0 when every judged capability is PROVEN, 1 otherwise. Standard library only.
 """
 
 import argparse
-import glob
 import os
 import re
 import sys
-import xml.etree.ElementTree as ET
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+import canary as canarymod  # noqa: E402
 import workspace as wsmod  # noqa: E402
-from fusionlib import newapp  # noqa: E402
+from fusionlib import newapp, proofkit  # noqa: E402
+from fusionlib import signatures as signoff  # noqa: E402
 from fusionlib.common import (check_name, die, load_json, md_table, now_iso, one_line, program_dir, workspace,  # noqa: E402
                               write_json, write_text)
 
-CHECKS = ["Built", "Tests ran", "Rules traced", "Journeys", "API parity", "Strings", "Design text", "Canary", "Legacy untouched"]
-ID = re.compile(r"(CAP|RULE)[-_ ]?0*(\d{1,5})", re.I)
+CHECKS = ["Built", "Tests ran", "Rules traced", "Journeys", "API parity", "Strings", "Analytics", "Design text", "Canary",
+          "Legacy untouched"]
+PARITY = [("API parity", "api-parity.json", "api_parity.py"), ("Strings", "i18n-parity.json", "i18n_parity.py"),
+          ("Analytics", "events-parity.json", "events_parity.py"), ("Design text", "design-text.json", "design_text.py")]
 
 
-def ids_in(text):
-    return {f"{m.group(1).upper()}-{int(m.group(2)):03d}" for m in ID.finditer(text or "")}
+def entry_state(ws, e):
+    """'ok', 'old' (recorded by an earlier version, no hashes) or 'tampered' (a result file changed or is gone)."""
+    if "hashes" not in e:
+        return "old"
+    return "tampered" if proofkit.changed_inputs(ws, e["hashes"]) else "ok"
 
 
-def junit_cases(paths, ws):
-    """Test cases from JUnit-style XML files or folders of them: [{name, classname, status, file}]."""
-    cases, files = [], []
-    for p in paths or []:
-        full = p if os.path.isabs(p) else os.path.join(ws, p)
-        if os.path.isdir(full):
-            files += sorted(glob.glob(os.path.join(full, "**", "*.xml"), recursive=True))
-        elif os.path.isfile(full):
-            files.append(full)
-    for f in files:
-        try:
-            root = ET.parse(f).getroot()
-        except (ET.ParseError, OSError):
+def fresh_for(e, cid, current):
+    return current is not None and (e.get("codeHashes") or {}).get(cid) == current
+
+
+class Evidence:
+    """test-runs.json, parsed once."""
+
+    def __init__(self, ws, program):
+        self.ws = ws
+        self.runs = load_json(os.path.join(program_dir(ws, program), "evidence", "test-runs.json")) or {}
+        self.suites = []
+        for e in self.runs.get("suites") or []:
+            cases, _ = proofkit.junit_cases(proofkit.xml_files(e.get("junit"), ws), ws)
+            self.suites.append((e, entry_state(ws, e), cases))
+        self.pending = {}
+
+    def fresh_cases(self, cid, current, wanted):
+        """(cases naming `wanted` in fresh valid suites, stale count, tampered suite names, old-format count)."""
+        fresh, stale, tampered, old = [], 0, [], 0
+        for e, state, cases in self.suites:
+            named = [tc for tc in cases if proofkit.case_ids(tc) & wanted]
+            if not named:
+                continue
+            if state == "tampered":
+                tampered.append(e.get("name") or "?")
+            elif state == "old":
+                old += 1
+            elif not fresh_for(e, cid, current):
+                stale += 1
+            else:
+                fresh += named
+        return fresh, stale, tampered, old
+
+
+def decision_effects(decisions, cid, cap, cap_rules, rules_by_id, conflicts):
+    """What the person's decisions do to the rules check: ({rule: why left out}, [DEC ids a test must name], [gaps])."""
+    excluded, required, gaps = {}, [], []
+    mine = {r["id"] for r in cap_rules}
+    cap_dec = next(((k, d) for k, d in decisions.items() if d.get("kind") == "conflict" and d.get("about") == cid), (None, None))
+    if cap.get("fusion") == "shared-diverged" and not cap_dec[0]:
+        gaps.append("no decision yet on which app's behavior the new app keeps (fuse-review conflicts)")
+    did, d = cap_dec
+    if d:
+        if d["choice"].startswith("take:"):
+            keep = d["choice"][5:]
+            for r in cap_rules:
+                if r.get("app") != keep:
+                    excluded[r["id"]] = f"{did} keeps {keep}'s behavior"
+        elif d["choice"] in ("design", "new-spec"):
+            required.append(did)
+        elif d["choice"] == "defer":
+            gaps.append(f"{did} defers this capability: it is not to be built yet")
+    decided_sets = set()
+    for k, dd in decisions.items():
+        m = re.match(r"^(?:CAP-\d+|rules):((?:RULE-\d+\+?)+)$", dd.get("about") or "")
+        if dd.get("kind") != "conflict" or not m:
             continue
-        for tc in root.iter("testcase"):
-            status = "passed"
-            children = {c.tag for c in tc}
-            if "failure" in children or "error" in children:
-                status = "failed"
-            elif "skipped" in children:
-                status = "skipped"
-            attr_status = (tc.get("status") or "").lower()
-            if attr_status in ("failed", "failure", "error", "errored"):
-                status = "failed"
-            elif attr_status in ("skipped", "disabled", "pending"):
-                status = "skipped"
-            cases.append({"name": tc.get("name") or "", "classname": tc.get("classname") or "", "status": status,
-                          "file": os.path.relpath(f, ws)})
-    return cases, [os.path.relpath(f, ws) for f in files]
-
-
-def newest_mtime(paths):
-    times = [os.path.getmtime(p) for p in paths if os.path.exists(p)]
-    return max(times) if times else 0
-
-
-def oldest_mtime(paths):
-    times = [os.path.getmtime(p) for p in paths if os.path.exists(p)]
-    return min(times) if times else 0
+        ids = set(m.group(1).split("+"))
+        if not ids & mine:
+            continue
+        decided_sets.add(frozenset(ids))
+        if dd["choice"].startswith("take:"):
+            keep = dd["choice"][5:]
+            for rid in ids & mine:
+                if (rules_by_id.get(rid) or {}).get("app") != keep:
+                    excluded[rid] = f"{k} keeps {keep}'s rule"
+        elif dd["choice"] in ("design", "new-spec"):
+            for rid in ids & mine:
+                excluded[rid] = f"{k} replaces it with a new behavior"
+            required.append(k)
+        elif dd["choice"] == "defer":
+            gaps.append(f"{k} defers the rule conflict {'+'.join(sorted(ids))}")
+    for conf in conflicts:
+        ids = set(conf.get("rules") or [])
+        if len(ids) >= 2 and ids & mine and frozenset(ids) not in decided_sets:
+            gaps.append(f"rule conflict {'+'.join(sorted(ids))} is not decided (fuse-review conflicts)")
+    return excluded, sorted(set(required)), gaps
 
 
 def judge(ws, program, only=None):
@@ -99,103 +156,175 @@ def judge(ws, program, only=None):
     if not caps:
         die(f"analysis/{program}/capabilities.json not found")
     prog = load_json(os.path.join(pdir, "program.json")) or {}
-    rules = (load_json(os.path.join(pdir, "rules.json")) or {}).get("rules") or []
+    rules_doc = load_json(os.path.join(pdir, "rules.json")) or {}
+    rules = rules_doc.get("rules") or []
     decisions = (load_json(os.path.join(pdir, "DECISIONS.json")) or {}).get("decisions") or {}
-    verdict_of = {(d["about"], d["kind"]): d["choice"] for d in decisions.values()}
-    runs = load_json(os.path.join(pdir, "evidence", "test-runs.json")) or {}
-    api = (load_json(os.path.join(pdir, "evidence", "api-parity.json")) or {}).get("capabilities")
-    i18n = (load_json(os.path.join(pdir, "evidence", "i18n-parity.json")) or {}).get("capabilities")
-    dtext = (load_json(os.path.join(pdir, "evidence", "design-text.json")) or {}).get("capabilities")
+    attach = {d["about"]: d["choice"] for d in decisions.values() if d.get("kind") == "attach"}
+    for r in rules:
+        if r["id"] in attach:
+            r["capability"] = attach[r["id"]] if attach[r["id"]] != "none" else None
+    rules_by_id = {r["id"]: r for r in rules}
+    verdict_of = {(d["about"], d["kind"]): (k, d["choice"]) for k, d in decisions.items()}
+    ev = Evidence(ws, program)
+    pending = canarymod.pending_all(ws, program)
+    parity = {label: (load_json(os.path.join(pdir, "evidence", name)) or {}).get("capabilities") for label, name, _ in PARITY}
     legacy = wsmod.legacy_state(ws, prog)
-    base = newapp.root(ws, program)
     trace_caps = (load_json(os.path.join(pdir, "traceability.json")) or {}).get("capabilities") or {}
-
-    suite_paths = [p for s in runs.get("suites") or [] for p in (s.get("junit") or [])]
-    all_cases, suite_files = junit_cases(suite_paths, ws)
+    platforms = (prog.get("target") or {}).get("platforms") or []
+    halves = newapp.halves(ws, program)
+    built = proofkit.built(ws, program)
+    by_id = {c["id"]: c for c in caps.get("capabilities", [])}
+    hashes = {cid: proofkit.code_hash(ws, program, cid) for cid in built}
+    not_building = {cid for cid in by_id if verdict_of.get((cid, "gap"), (None, ""))[1] == "drop"
+                    or verdict_of.get((cid, "scope"), (None, ""))[1] == "out"}
     results = {}
-    for c in caps.get("capabilities", []):
-        cid = c["id"]
-        if only and cid not in only:
+    for cid in sorted(set(only) if only else built, key=lambda x: int(x.split("-")[1])):
+        c = by_id.get(cid)
+        if not c:
             continue
-        notes = newapp.notes_path(ws, program, cid)
-        if not os.path.isfile(notes) and not only:
-            continue
+        info = proofkit.notes(ws, program, cid)
+        current = hashes.get(cid) if cid in built else None
         checks = {}
-        files = newapp.notes_files(ws, program, cid)
-        full_files = [os.path.join(base, f) for f in files]
-        checks["Built"] = ("pass", f"{len(files)} new-app file(s) named in {os.path.relpath(notes, ws)}") if files else \
-            ("fail", "no porting notes" if not os.path.isfile(notes) else "the porting notes name no new-app file that exists")
 
+        # 1 Built
+        sources = [f for f in info["files"] if proofkit.is_source(f)]
+        if not info["exists"]:
+            checks["Built"] = ("fail", "no porting notes")
+        elif not sources:
+            checks["Built"] = ("fail", "the porting notes' ## Files section names no source file that exists inside the new app")
+        else:
+            missing_half = [p for p, h in halves if p and not any(newapp.in_half(f, h) for f in sources)]
+            checks["Built"] = (("fail", f"no source file in the {', '.join(missing_half)} half of the native pair") if missing_half
+                               else ("pass", f"{len(sources)} source file(s) named in docs/fusion/{cid}.md"))
+
+        # 2 Tests ran
         cap_rules = [r for r in rules if r.get("capability") == cid]
-        rule_ids = {r["id"] for r in cap_rules}
-        mine = [tc for tc in all_cases if (ids_in(tc["name"] + " " + tc["classname"]) & ({cid} | rule_ids))]
-        ran = [tc for tc in mine if tc["status"] != "skipped"]
-        failed = [tc for tc in mine if tc["status"] == "failed"]
-        fresh = oldest_mtime([os.path.join(ws, f) for f in suite_files]) >= newest_mtime(full_files) if suite_files and full_files else False
-        if not suite_files:
-            checks["Tests ran"] = ("fail", "evidence/test-runs.json lists no JUnit result file")
+        wanted = {cid} | {r["id"] for r in cap_rules}
+        fresh, stale, tampered, old = ev.fresh_cases(cid, current, wanted)
+        ran = [tc for tc in fresh if tc["status"] != "skipped"]
+        failed = [tc for tc in fresh if tc["status"] == "failed"]
+        if tampered:
+            checks["Tests ran"] = ("fail", f"result file(s) of suite {', '.join(tampered)} changed after they were recorded")
+        elif not fresh and not (stale or old):
+            checks["Tests ran"] = ("fail", "no recorded result has a test naming the capability or its rules"
+                                   if ev.suites else "evidence/test-runs.json lists no suite")
+        elif not fresh:
+            checks["Tests ran"] = ("gap", "the recorded results predate the capability's current code" if stale else
+                                   "the results were recorded by an older version of the plugin: record them again")
         elif failed:
             checks["Tests ran"] = ("fail", f"{len(failed)} failing: " + ", ".join(one_line(t['name'], 60) for t in failed[:5]))
         elif not ran:
-            checks["Tests ran"] = ("fail", "no executed test names the capability or its rules" + (" (only skipped ones do)" if mine else ""))
-        elif not fresh:
-            checks["Tests ran"] = ("gap", f"{len(ran)} passed, but the results are older than the capability's code: run the tests again")
+            checks["Tests ran"] = ("fail", "only skipped tests name the capability or its rules")
         else:
-            checks["Tests ran"] = ("pass", f"{len(ran)} executed and passed")
+            checks["Tests ran"] = ("pass", f"{len(ran)} executed and passed on the current code")
+        passed_keys = {tc["key"] for tc in fresh if tc["status"] == "passed"}
 
-        p0 = [r for r in cap_rules if r.get("priority") == "P0"]
-        excluded = [r["id"] for r in p0 if verdict_of.get((r["id"], "rule")) == "wrong"]
-        discuss = [r["id"] for r in p0 if verdict_of.get((r["id"], "rule")) == "discuss"]
-        untested, named_not_run = [], []
+        # 3 Rules traced
+        excluded, required_decs, conflict_gaps = decision_effects(decisions, cid, c, cap_rules, rules_by_id, rules_doc.get("conflicts") or [])
+        p0 = [r for r in cap_rules if r.get("priority") in ("P0", "P1")]
+        untested, named_not_run, discuss, wrong, undecided = [], [], [], [], []
         for r in p0:
-            if r["id"] in excluded or r["id"] in discuss:
+            v = verdict_of.get((r["id"], "rule"), (None, None))[1]
+            if v == "wrong":
+                wrong.append(r["id"])
                 continue
-            naming = [tc for tc in all_cases if r["id"] in ids_in(tc["name"] + " " + tc["classname"])]
+            if r["id"] in excluded:
+                continue
+            if v == "discuss":
+                discuss.append(r["id"])
+                continue
+            if v is None and (r.get("suspectedDefect") or (r.get("priority") == "P0" and (r.get("confidence") != "High" or r.get("question")))):
+                undecided.append(r["id"])
+                continue
+            naming = [tc for tc in fresh if r["id"] in proofkit.case_ids(tc)]
             if any(tc["status"] == "passed" for tc in naming):
                 continue
             (named_not_run if naming else untested).append(r["id"])
-        if not p0:
-            checks["Rules traced"] = ("pass", "no P0 rule belongs to this capability")
-        elif untested or named_not_run or discuss:
-            parts = []
-            if untested:
-                parts.append(f"not named by any test: {', '.join(untested)}")
-            if named_not_run:
-                parts.append(f"named, not run: {', '.join(named_not_run)}")
-            if discuss:
-                parts.append(f"under discussion: {', '.join(discuss)}")
+        dec_fresh, _, _, _ = ev.fresh_cases(cid, current, set(required_decs)) if required_decs else ([], 0, [], 0)
+        dec_untested = [d for d in required_decs if not any(tc["status"] == "passed" and d in proofkit.case_ids(tc) for tc in dec_fresh)]
+        parts = []
+        if untested:
+            parts.append(f"not named by any passing test: {', '.join(untested)}")
+        if named_not_run:
+            parts.append(f"named, not passed: {', '.join(named_not_run)}")
+        if discuss:
+            parts.append(f"under discussion: {', '.join(discuss)}")
+        if undecided:
+            parts.append(f"a person has not decided whether the new app keeps or fixes {', '.join(undecided)} (a suspected "
+                         "legacy defect or an open question: fuse-build asks in its plan, or fuse-review rules)")
+        if dec_untested:
+            parts.append(f"the behavior decided in {', '.join(dec_untested)} has no passing test naming that decision")
+        parts += conflict_gaps
+        left_out = [f"{rid} ({why})" for rid, why in sorted(excluded.items())] + [f"{rid} (marked wrong)" for rid in wrong]
+        if parts:
             checks["Rules traced"] = ("gap", "; ".join(parts))
+        elif not p0 and not required_decs:
+            checks["Rules traced"] = ("pass", "no P0 or P1 rule belongs to this capability" + (f"; left out {', '.join(left_out)}" if left_out else ""))
         else:
-            checks["Rules traced"] = ("pass", f"{len(p0) - len(excluded)} P0 rule(s) backed by passing tests"
-                                      + (f"; {', '.join(excluded)} left out (marked wrong by a person)" if excluded else ""))
+            kept = len(p0) - len([r for r in p0 if r["id"] in excluded]) - len(wrong)
+            checks["Rules traced"] = ("pass", f"{kept} P0/P1 rule(s) backed by passing tests" +
+                                      (f", {len(required_decs)} decided behavior(s) tested" if required_decs else "") +
+                                      (f"; left out {', '.join(left_out)}" if left_out else ""))
 
+        # 4 Journeys
         journeys = [j for j in caps.get("journeys", []) if any(cid in st.get("capabilities", []) for st in j.get("steps", []))]
         if not journeys:
             checks["Journeys"] = ("pass", "n/a: no journey runs through this capability")
         else:
-            missing, failing = [], []
+            failing, missing, stale_j, waiting, ok = [], [], [], [], 0
+            runs = ev.runs.get("journeys") or []
             for j in journeys:
-                entries = [e for e in runs.get("journeys") or [] if e.get("journey") == j["id"]]
-                cases, _ = junit_cases([p for e in entries for p in e.get("junit") or []], ws)
-                if not cases:
-                    missing.append(j["id"])
-                elif any(tc["status"] == "failed" for tc in cases) or not any(tc["status"] == "passed" for tc in cases):
-                    failing.append(j["id"])
+                on = sorted({x for st in j.get("steps", []) for x in st.get("capabilities", [])} - not_building)
+                unbuilt = [x for x in on if x not in built]
+                if unbuilt:
+                    waiting.append(f"{j['id']} waits for {', '.join(unbuilt)}")
+                    continue
+                for platform in platforms or [None]:
+                    entries = [e for e in runs if e.get("journey") == j["id"] and (platform is None or e.get("platform", platform) == platform)]
+                    label = j["id"] + (f" on {platform}" if platform else "")
+                    if not entries:
+                        missing.append(label)
+                        continue
+                    e = entries[-1]
+                    state = entry_state(ws, e)
+                    cases, _ = proofkit.junit_cases(proofkit.xml_files(e.get("junit"), ws), ws)
+                    named = [tc for tc in cases if j["id"] in proofkit.case_ids(tc)]
+                    if state == "tampered":
+                        failing.append(f"{label}: result changed after it was recorded")
+                    elif state == "old":
+                        stale_j.append(f"{label} (recorded by an older version)")
+                    elif not named:
+                        failing.append(f"{label}: the result names no {j['id']} test")
+                    elif any(tc["status"] == "failed" for tc in named) or not any(tc["status"] == "passed" for tc in named):
+                        failing.append(label)
+                    elif proofkit.changed_inputs(ws, {e["flow"]: e.get("flowHash")}) if e.get("flow") else False:
+                        stale_j.append(f"{label} (the flow changed since)")
+                    elif any(not fresh_for(e, x, hashes.get(x)) for x in on):
+                        stale_j.append(f"{label} (code on the journey changed since)")
+                    else:
+                        ok += 1
             if failing:
-                checks["Journeys"] = ("fail", f"failing: {', '.join(failing)}")
-            elif missing:
-                checks["Journeys"] = ("gap", f"no UI run recorded for {', '.join(missing)}")
+                checks["Journeys"] = ("fail", "failing: " + "; ".join(failing))
+            elif missing or stale_j or waiting:
+                bits = ([f"no run recorded for {', '.join(missing)}"] if missing else []) + \
+                       ([f"stale: {', '.join(stale_j)}"] if stale_j else []) + waiting
+                checks["Journeys"] = ("gap", "; ".join(bits))
             else:
-                checks["Journeys"] = ("pass", f"{len(journeys)} journey(s) passed")
+                checks["Journeys"] = ("pass", f"{len(journeys)} journey(s) passed" + (f" on {', '.join(platforms)}" if platforms else ""))
 
-        for label, source, name in (("API parity", api, "api_parity.py"), ("Strings", i18n, "i18n_parity.py"),
-                                    ("Design text", dtext, "design_text.py")):
+        # 5-8 parity results
+        for label, name, script in PARITY:
+            source = parity[label]
+            r = (source or {}).get(cid) if source is not None else None
             if source is None:
-                checks[label] = ("gap", f"not run: python3 scripts/{name} {program}")
-                continue
-            r = source.get(cid)
-            if not r:
-                checks[label] = ("gap", f"{name} has no result for {cid}: run it again")
+                checks[label] = ("gap", f"not run: python3 scripts/{script} {program}")
+            elif not r:
+                checks[label] = ("gap", f"{script} has no result for {cid}: run it again")
+            elif "inputs" not in r and r.get("verdict") != "gap":
+                checks[label] = ("gap", f"recorded by an older version of the plugin: run {script} again")
+            elif r.get("codeHash") != current or proofkit.changed_inputs(ws, r.get("inputs")) or \
+                    proofkit.changed_decisions(decisions, r.get("decisionsUsed")):
+                checks[label] = ("gap", f"what {script} read changed since it ran: run it again")
             elif r["verdict"] in ("pass", "n/a"):
                 checks[label] = ("pass", ("n/a: " if r["verdict"] == "n/a" else "") + one_line(r.get("reason"), 200))
             elif r["verdict"] == "fail":
@@ -203,65 +332,111 @@ def judge(ws, program, only=None):
             else:
                 checks[label] = ("gap", one_line(r.get("reason"), 200))
 
-        canaries = [e for e in runs.get("canaries") or [] if e.get("capability") == cid]
-        if not canaries:
-            checks["Canary"] = ("gap", "no canary recorded for this capability")
+        # 9 Canary
+        entry = next((e for e in ev.runs.get("canaries") or [] if e.get("capability") == cid), None)
+        if cid in pending:
+            checks["Canary"] = ("gap", f"a canary is still in place in {pending[cid].get('file')}: run canary.py finish or abort")
+        elif not entry:
+            checks["Canary"] = ("gap", "no canary recorded for this capability (scripts/canary.py)")
+        elif "codeHash" not in entry:
+            checks["Canary"] = ("gap", "recorded by an older version of the plugin: run a new canary with scripts/canary.py")
+        elif entry_state(ws, entry) == "tampered":
+            checks["Canary"] = ("fail", "the canary's result file changed after it was recorded")
+        elif entry.get("codeHash") != current:
+            checks["Canary"] = ("gap", "the capability's code changed since the canary: run a new one")
+        elif not entry.get("failedCases"):
+            checks["Canary"] = ("fail", f"{entry.get('change', 'the deliberate break')} made no test naming the capability or "
+                                        "its rules fail: the tests do not pin the behavior")
         else:
-            cases, cfiles = junit_cases([p for e in canaries for p in e.get("junit") or []], ws)
-            broke = [tc for tc in cases if tc["status"] == "failed"]
-            if not cfiles:
-                checks["Canary"] = ("gap", "the canary's JUnit result is missing")
-            elif broke:
-                checks["Canary"] = ("pass", f"{canaries[0].get('change', 'a deliberate break')}: {len(broke)} test(s) failed")
+            caught = [k for k in entry["failedCases"] if k in passed_keys]
+            if not caught:
+                checks["Canary"] = ("gap", "the tests that failed under the canary did not pass in a fresh recorded suite: record "
+                                           "the suite after the canary")
             else:
-                checks["Canary"] = ("fail", f"{canaries[0].get('change', 'the deliberate break')} made no test fail: the tests do not pin the behavior")
+                checks["Canary"] = ("pass", f"{one_line(entry.get('change'), 80)} ({entry.get('linesChanged', '?')} line(s) in "
+                                            f"{entry.get('file')}): {len(caught)} test(s) that pass on the real code failed")
 
+        # 10 Legacy
         dirty = [r["app"] for r in legacy if r["clean"] is False]
         missing_apps = [r["app"] for r in legacy if not r["exists"]]
         unknown = [r["app"] for r in legacy if r["exists"] and r["clean"] is None]
+        moved = [r for r in legacy if r["recordedCommit"] and r["exists"] and r["clean"] is not None and not r["atRecordedCommit"]]
         if dirty:
             checks["Legacy untouched"] = ("fail", f"local changes in {', '.join(dirty)}")
         elif missing_apps:
             checks["Legacy untouched"] = ("gap", f"{', '.join(missing_apps)} not linked")
         elif unknown:
             checks["Legacy untouched"] = ("gap", f"{', '.join(unknown)} is not a git checkout, so it cannot be checked")
+        elif moved:
+            checks["Legacy untouched"] = ("gap", "; ".join(f"{r['app']} moved from {r['recordedCommit'][:10]} to {(r['commit'] or '?')[:10]}: "
+                                                           "the analysis describes the recorded commit" for r in moved))
         else:
-            moved = [r["app"] for r in legacy if r["recordedCommit"] and not r["atRecordedCommit"]]
-            checks["Legacy untouched"] = ("pass", "clean" + (f" ({', '.join(moved)} moved to a newer commit since preflight)" if moved else ""))
+            checks["Legacy untouched"] = ("pass", "clean, at the recorded commit")
 
         states = [s for s, _ in checks.values()]
         verdict = "NOT PROVEN" if "fail" in states else ("PARTLY PROVEN" if "gap" in states else "PROVEN")
         results[cid] = {"name": c["name"], "verdict": verdict,
                         "checks": {k: {"status": checks[k][0], "detail": checks[k][1]} for k in CHECKS},
-                        "screens": len((trace_caps.get(cid) or {}).get("screens") or [])}
+                        "screens": len((trace_caps.get(cid) or {}).get("screens") or []),
+                        "codeHash": current, "judgedAt": now_iso()}
     return results
 
 
-def render(program, results, runs_date):
+def continuity(ws, program):
+    p = load_json(os.path.join(program_dir(ws, program), "evidence", "platform-parity.json"))
+    if not p:
+        return {"verdict": "gap", "detail": f"not run: python3 scripts/platform_parity.py {program}"}
+    decisions = (load_json(os.path.join(program_dir(ws, program), "DECISIONS.json")) or {}).get("decisions") or {}
+    if proofkit.changed_inputs(ws, p.get("inputs")) or proofkit.changed_decisions(decisions, p.get("decisionsUsed")):
+        return {"verdict": "gap", "detail": "the new app's platform files or decisions changed since platform_parity.py ran: run it again",
+                "checks": p.get("checks")}
+    bad = [f"{r['check']}: {r['why']}" for r in p.get("checks") or [] if r["verdict"] in ("fail", "gap")]
+    return {"verdict": p.get("verdict"), "detail": "; ".join(bad) or "every required or kept platform item is present",
+            "checks": p.get("checks"), "generated": p.get("generated")}
+
+
+def render(ws, program, results, cont):
+    signed = signoff.signed_state(ws, program, results)
     lines = [f"# Verification: {program}", "",
-             f"Computed {now_iso()} by `scripts/fusion_proof.py` from evidence files, never by a model. Test results "
-             f"recorded {runs_date or 'never'}. The rules are fixed and listed at the end.", ""]
+             f"Rendered {now_iso()} by `scripts/fusion_proof.py` from evidence files, never by a model. Each verdict carries the "
+             "time it was judged; one marked *stale* was judged on code that has changed since. The rules are fixed and listed "
+             "at the end.", ""]
     if not results:
         lines += ["No built capability yet: nothing to judge. Build one with `/app-fusion:fuse-build`.", ""]
     else:
-        lines += [md_table(["Capability", "Name", "Verdict"] + CHECKS,
-                           [[cid, r["name"], r["verdict"]] + [r["checks"][k]["status"] for k in CHECKS]
-                            for cid, r in results.items()]), ""]
+        rows = []
+        for cid, r in results.items():
+            stale = r.get("codeHash") != proofkit.code_hash(ws, program, cid)
+            s = signed.get(cid) or {}
+            sign = ("proof signed" if s.get("proof") else "proof not signed") + \
+                   ("" if s.get("visual") is None else (", visual signed" if s.get("visual") else ", visual not signed"))
+            rows.append([cid, r["name"], r["verdict"] + (" (stale)" if stale else ""), (r.get("judgedAt") or "")[:16], sign] +
+                        [r["checks"][k]["status"] for k in CHECKS])
+        lines += [md_table(["Capability", "Name", "Verdict", "Judged", "Sign-off"] + CHECKS, rows), ""]
         for cid, r in results.items():
             lines += [f"## {cid}: {r['name']}: {r['verdict']}", ""]
             lines += [f"- **{k}** ({r['checks'][k]['status']}): {r['checks'][k]['detail']}" for k in CHECKS]
             lines.append("")
+    lines += ["## Continuity for existing users (the whole app)", "",
+              f"**Platform parity: {cont['verdict']}.** {cont['detail']}", ""]
+    if cont.get("checks"):
+        lines += [md_table(["Check", "Item", "Verdict", "Why"], [[r["check"], r.get("item") or "-", r["verdict"], r["why"]] for r in cont["checks"]]), ""]
+    approval = signoff.brief_approval(ws, program)
     lines += ["## What this does not prove", "",
               "- **Look and feel.** The design-text check proves the copy, not the layout, spacing or colour. A person compares "
-              "the screenshots side by side (REPORT.html, Design tab) and signs below.",
+              "the screenshots side by side (REPORT.html, Design tab; the reviewer's notes are in VISUAL_REVIEW.md) and signs.",
               "- **Behaviour the tests do not exercise.** A rule no test names is listed as a gap, never assumed.",
               "- **Production data and services.** Runs use simulators and the test backends a person named.",
               "- **Store, migration and rollout steps.** CONTINUITY.md holds them, and people run them.", "",
               "## Sign-off", "",
-              "```", "Proof reviewed by: ________________  Date: __________",
-              "Visual conformance signed by: ________________  Date: __________",
-              "Covers: <capability ids>", "```", "",
-              "## Rules", "", "```"] + __doc__[__doc__.index("  1 Built"):__doc__.index("Visual conformance")].rstrip().splitlines() + ["```", ""]
+              "Sign-offs are recorded by a person with `scripts/signoff.py` (`/app-fusion:fuse-verify <program> sign`) in "
+              "SIGNOFF.json, never in this file. Each binds to the verdict and code it covers: when either changes, it no "
+              "longer counts.", "",
+              f"- Brief: " + (f"approved by {approval['by']} ({(approval['at'] or '')[:10]}), covers {approval['covers']}" if approval["approved"]
+                              else ("the approval is for an earlier version of the brief" if approval["stale"] and approval["by"] else "not approved")),
+              f"- Proof signed for: {', '.join(c for c, s in signed.items() if s['proof']) or 'none'}",
+              f"- Visual conformance signed for: {', '.join(c for c, s in signed.items() if s['visual']) or 'none'}", "",
+              "## Rules", "", "```"] + __doc__[__doc__.index("  1 Built"):__doc__.index("Platform continuity")].rstrip().splitlines() + ["```", ""]
     return "\n".join(lines)
 
 
@@ -276,21 +451,26 @@ def main():
     for c in args.capabilities:
         if not re.match(r"^CAP-\d+$", c):
             die(f"{c!r} is not a capability id (CAP-NNN)")
-    results = judge(ws, args.program, set(args.capabilities))
+    judged = judge(ws, args.program, set(args.capabilities))
     pdir = program_dir(ws, args.program)
-    runs = load_json(os.path.join(pdir, "evidence", "test-runs.json")) or {}
-    write_json(os.path.join(pdir, "VERIFICATION.json"), {"program": args.program, "version": 1, "generated": now_iso(),
-                                                          "checks": CHECKS, "capabilities": results})
-    write_text(os.path.join(pdir, "VERIFICATION.md"), render(args.program, results, runs.get("date")))
+    built = proofkit.built(ws, args.program)
+    previous = (load_json(os.path.join(pdir, "VERIFICATION.json")) or {}).get("capabilities") or {}
+    merged = {cid: r for cid, r in previous.items() if cid in built and cid not in judged and "codeHash" in r}
+    merged.update(judged)
+    merged = dict(sorted(merged.items(), key=lambda kv: int(kv[0].split("-")[1])))
+    cont = continuity(ws, args.program)
+    write_json(os.path.join(pdir, "VERIFICATION.json"), {"program": args.program, "version": 2, "generated": now_iso(),
+                                                          "checks": CHECKS, "capabilities": merged, "continuity": cont})
+    write_text(os.path.join(pdir, "VERIFICATION.md"), render(ws, args.program, merged, cont))
     counts = {}
-    for r in results.values():
+    for r in judged.values():
         counts[r["verdict"]] = counts.get(r["verdict"], 0) + 1
     print(", ".join(f"{v} {k}" for k, v in sorted(counts.items())) or "nothing built yet",
-          f"-> analysis/{args.program}/VERIFICATION.md")
-    for cid, r in results.items():
+          f"-> analysis/{args.program}/VERIFICATION.md ({len(merged)} capability verdict(s) in total; platform parity {cont['verdict']})")
+    for cid, r in judged.items():
         reasons = [f"{k}: {v['detail']}" for k, v in r["checks"].items() if v["status"] != "pass"]
         print(f"  {cid} {r['verdict']}" + (f" ({'; '.join(reasons[:3])})" if reasons else ""))
-    sys.exit(0 if results and all(r["verdict"] == "PROVEN" for r in results.values()) else 1)
+    sys.exit(0 if judged and all(r["verdict"] == "PROVEN" for r in judged.values()) else 1)
 
 
 if __name__ == "__main__":

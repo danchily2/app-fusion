@@ -462,7 +462,8 @@ def git_info(path):
     real = os.path.realpath(path)
     if git(real, "rev-parse", "--is-inside-work-tree") != "true":
         return {"commit": None, "branch": None, "repo": None, "clean": None, "shallow": None}
-    status = git(real, "status", "--porcelain", "--untracked-files=no")
+    # untracked files count: a file an agent added is a change too (ignored files, such as build output, do not)
+    status = git(real, "status", "--porcelain", "--untracked-files=normal")
     return {
         "commit": git(real, "rev-parse", "HEAD"),
         "branch": git(real, "rev-parse", "--abbrev-ref", "HEAD"),

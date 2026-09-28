@@ -9,6 +9,7 @@ import re
 
 from . import android as droid
 from . import ios as apple
+from . import notify
 from . import strings as strcat
 from .common import (is_test_path, line_of, looks_like_path, match_brace, normalize_endpoint, read_text,
                      sanitize_url, strip_comments, walk)
@@ -355,6 +356,7 @@ def extract(root):
                          "@react-native-community/push-notification-ios", "expo-notifications") for d in deps):
         plat["push"] = True
     plat["linkingPrefixes"] = prefixes
+    plat["notificationCategories"] = notify.scan(root)
     plat["flags"] = flags
 
     for entry in screens_by_file.values():

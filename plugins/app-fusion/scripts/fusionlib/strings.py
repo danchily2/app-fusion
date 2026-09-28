@@ -290,8 +290,27 @@ NORWEGIAN = {"no", "nb", "nn"}
 
 
 def base_locale(code):
-    """Compare locales by language: 'nb-NO', 'no' and 'nb' are all Norwegian Bokmål ('nb'); 'da-DK' is 'da'."""
+    """Compare locales by what users read. 'nb-NO', 'no' and 'nb' are Norwegian Bokmål ('nb'); 'da-DK' is 'da'. Chinese
+    keeps its script (zh-hans, zh-hant) and Portuguese its region (pt-br, pt), because those differ for their users.
+    Apple's Base and Android's default folder hold the development language: 'base' and 'default' stay as they are,
+    and the parity checks read them as English unless the catalog says otherwise."""
     if not code:
         return ""
-    lang = str(code).replace("_", "-").split("-")[0].lower()
-    return "nb" if lang in ("no", "nb") else lang
+    parts = [p for p in str(code).replace("_", "-").replace("+", "-").lower().split("-") if p]
+    if parts and parts[0] == "b" and len(parts) > 1:  # Android BCP 47 folders: values-b+zh+Hant+TW
+        parts = parts[1:]
+    lang, rest = parts[0], [p[1:] if len(p) == 3 and p.startswith("r") else p for p in parts[1:]]
+    if lang in ("no", "nb"):
+        return "nb"
+    if lang == "zh":
+        return "zh-hant" if "hant" in rest or any(r in ("tw", "hk", "mo") for r in rest) else "zh-hans"
+    if lang == "pt":
+        return "pt-br" if "br" in rest else "pt"
+    return lang
+
+
+def source_language(catalog):
+    """The language the 'base' or 'default' entries of a catalog are written in: the catalog's source when it names a
+    real locale, else English."""
+    src = base_locale((catalog or {}).get("source"))
+    return src if src and src not in ("base", "default") else "en"

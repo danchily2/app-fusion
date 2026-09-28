@@ -21,8 +21,8 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from fusionlib.common import (check_name, die, load_json, load_program, md_table, now_iso, one_line,  # noqa: E402
-                              program_dir, workspace, write_json, write_text)
+from fusionlib.common import (check_name, die, load_json, load_program, md_table, normalize_endpoint, now_iso,  # noqa: E402
+                              one_line, program_dir, workspace, write_json, write_text)
 
 FUSION = ["unique", "shared-same", "shared-diverged", "new"]
 CATEGORIES = ["Calculation", "Validation", "Eligibility", "Lifecycle", "Policy", "Formatting"]
@@ -40,6 +40,41 @@ def next_id(prefix, used):
 
 # ---------------------------------------------------------------- capabilities
 
+def evidence_tokens(impls):
+    """What a capability's implementations cite, as comparable tokens: per app, each screen, file and endpoint."""
+    toks = set()
+    for app, impl in (impls or {}).items():
+        if not isinstance(impl, dict):
+            continue
+        for kind in ("screens", "files", "endpoints"):
+            for v in impl.get(kind) or []:
+                v = str(v)
+                if kind == "files":
+                    v = v.split(":")[0]
+                elif kind == "endpoints":
+                    parts = v.split(None, 1)
+                    path = normalize_endpoint(parts[-1]) or parts[-1]
+                    v = f"{parts[0].upper() if len(parts) == 2 else '?'} {path}"
+                toks.add(f"{app}|{kind}|{v.strip().lower()}")
+    return toks
+
+
+def references(ws, program, pdir, cid):
+    """Where a capability id is still used: decisions, rules, design links, porting notes."""
+    refs = []
+    decisions = (load_json(os.path.join(pdir, "DECISIONS.json")) or {}).get("decisions") or {}
+    refs += [f"{k} ({d.get('kind')})" for k, d in decisions.items()
+             if d.get("about") == cid or str(d.get("about") or "").startswith(cid + ":") or d.get("choice") == cid]
+    refs += [r["id"] for r in (load_json(os.path.join(pdir, "rules.json")) or {}).get("rules", []) if r.get("capability") == cid]
+    if any(cid in (l.get("capabilities") or []) for l in (load_json(os.path.join(pdir, "design", "trace_result.json")) or {}).get("links") or []):
+        refs.append("design/trace_result.json")
+    prog = load_json(os.path.join(pdir, "program.json")) or {}
+    notes = os.path.join(ws, (prog.get("target") or {}).get("path") or f"new-app/{program}", "docs", "fusion", f"{cid}.md")
+    if os.path.isfile(notes):
+        refs.append(os.path.relpath(notes, ws))
+    return refs
+
+
 def render_capabilities(ws, program, result_path=None):
     pdir = program_dir(ws, program)
     result = load_json(result_path or os.path.join(pdir, "map_result.json"))
@@ -49,26 +84,50 @@ def render_capabilities(ws, program, result_path=None):
     prog = load_program(ws, program)
     apps = [a["name"] for a in prog.get("apps", [])]
     previous = load_json(os.path.join(pdir, "capabilities.json")) or {}
-    issued = set(previous.get("issuedIds") or []) | {c["id"] for c in previous.get("capabilities", [])}
-    by_key = {(norm(c["name"]), norm(c.get("domain"))): c["id"] for c in previous.get("capabilities", [])}
+    prev_caps = previous.get("capabilities", [])
+    issued = set(previous.get("issuedIds") or []) | {c["id"] for c in prev_caps}
+    by_key = {(norm(c["name"]), norm(c.get("domain"))): c["id"] for c in prev_caps}
     by_name = {}
-    for c in previous.get("capabilities", []):
+    for c in prev_caps:
         by_name.setdefault(norm(c["name"]), []).append(c["id"])
+    aliases = {norm(v): k for k, v in (load_json(os.path.join(pdir, "map_aliases.json")) or {}).items()
+               if re.match(r"^CAP-\d+$", str(k)) and isinstance(v, str)}
 
     design_only = load_json(os.path.join(pdir, "design", "new_capabilities.json")) or []
-    raws = list(result.get("capabilities", [])) + [
-        {**d, "fusion": "new", "implementations": {}} for d in design_only if isinstance(d, dict) and d.get("name")]
-    caps, taken = [], set()
-    for raw in raws:
+    raws = [r for r in list(result.get("capabilities", [])) + [
+        {**d, "fusion": "new", "implementations": {}, "designScreens": [str(x) for x in d.get("screens") or []]}
+        for d in design_only if isinstance(d, dict) and d.get("name")] if one_line(r.get("name"), 120)]
+    # ids, in three passes: a person's alias, the same name, then the same evidence (a re-run renames freely)
+    assigned, taken = {}, set()
+    for i, raw in enumerate(raws):
         name = one_line(raw.get("name"), 120)
-        if not name:
+        cid = aliases.get(norm(name))
+        if cid is None:
+            key = (norm(name), norm(raw.get("domain")))
+            cid = by_key.get(key) or (by_name[key[0]][0] if len(by_name.get(key[0], [])) == 1 else None)
+        if cid and cid not in taken:
+            assigned[i] = cid
+            taken.add(cid)
+    left = [c for c in prev_caps if c["id"] not in taken]
+    pairs = []
+    for i, raw in enumerate(raws):
+        if i in assigned:
             continue
-        key = (norm(name), norm(raw.get("domain")))
-        cid = by_key.get(key)
-        if cid is None and len(by_name.get(key[0], [])) == 1:
-            cid = by_name[key[0]][0]
-        if cid is None or cid in taken:
-            cid = next_id("CAP", issued | taken)
+        mine = evidence_tokens(raw.get("implementations"))
+        for c in left:
+            theirs = evidence_tokens(c.get("implementations"))
+            if mine and theirs:
+                score = len(mine & theirs) / len(mine | theirs)
+                if score >= 0.5:
+                    pairs.append((score, i, c["id"]))
+    for score, i, cid in sorted(pairs, key=lambda p: -p[0]):
+        if i not in assigned and cid not in taken:
+            assigned[i] = cid
+            taken.add(cid)
+    caps = []
+    for i, raw in enumerate(raws):
+        name = one_line(raw.get("name"), 120)
+        cid = assigned.get(i) or next_id("CAP", issued | taken)
         taken.add(cid)
         impls = {}
         for app, impl in (raw.get("implementations") or {}).items():
@@ -88,20 +147,26 @@ def render_capabilities(ws, program, result_path=None):
             "confidence": raw.get("confidence") if raw.get("confidence") in ("High", "Medium", "Low") else "Medium",
             "notes": one_line(raw.get("notes"), 400),
         })
+        if raw.get("designScreens"):
+            caps[-1]["designScreens"] = raw["designScreens"][:40]
     caps.sort(key=lambda c: int(c["id"].split("-")[1]))
+    retired = []
+    for c in prev_caps:
+        if c["id"] not in taken:
+            refs = references(ws, program, pdir, c["id"])
+            if refs:
+                retired.append({"id": c["id"], "name": c["name"], "referencedBy": refs})
     name_to_id = {norm(c["name"]): c["id"] for c in caps}
 
     journeys, jissued = [], set(previous.get("issuedJourneyIds") or []) | {j["id"] for j in previous.get("journeys", [])}
     jprev = {norm(j["name"]): j["id"] for j in previous.get("journeys", [])}
+    jby_caps = {(norm(j.get("persona")), tuple(x for st in j.get("steps", []) for x in st.get("capabilities", []))): j["id"]
+                for j in previous.get("journeys", [])}
     jtaken = set()
     for raw in result.get("journeys", []):
         name = one_line(raw.get("name"), 120)
         if not name:
             continue
-        jid = jprev.get(norm(name))
-        if jid is None or jid in jtaken:
-            jid = next_id("JRN", jissued | jtaken)
-        jtaken.add(jid)
         steps = []
         for st in raw.get("steps") or []:
             ids = []
@@ -110,6 +175,12 @@ def render_capabilities(ws, program, result_path=None):
                 if ref_id and ref_id not in ids:
                     ids.append(ref_id)
             steps.append({"label": one_line(st.get("label"), 200), "capabilities": ids})
+        jid = jprev.get(norm(name))
+        if jid is None or jid in jtaken:
+            jid = jby_caps.get((norm(raw.get("persona")), tuple(x for st in steps for x in st["capabilities"])))
+        if jid is None or jid in jtaken:
+            jid = next_id("JRN", jissued | jtaken)
+        jtaken.add(jid)
         journeys.append({"id": jid, "name": name, "persona": one_line(raw.get("persona"), 40),
                          "description": one_line(raw.get("description"), 300), "steps": steps})
     journeys.sort(key=lambda j: int(j["id"].split("-")[1]))
@@ -133,6 +204,7 @@ def render_capabilities(ws, program, result_path=None):
         "issuedIds": sorted(issued | taken, key=lambda x: int(x.split("-")[1])),
         "issuedJourneyIds": sorted(jissued | jtaken, key=lambda x: int(x.split("-")[1])),
         "stats": result.get("stats") or {},
+        "retired": retired,
     }
     write_json(os.path.join(pdir, "capabilities.json"), out)
     write_json(os.path.join(pdir, "capability_index.json"), {"program": program, "version": 1, "capabilities": [
@@ -142,6 +214,10 @@ def render_capabilities(ws, program, result_path=None):
     counts = collections.Counter(c["fusion"] for c in caps)
     print(f"{len(caps)} capabilities ({', '.join(f'{counts[f]} {f}' for f in FUSION if counts[f])}), {len(journeys)} journeys, "
           f"{len(domains)} domains -> analysis/{program}/capabilities.json, CAPABILITIES.md")
+    for r in retired:
+        print(f"WARNING: {r['id']} ({r['name']}) is gone from the new map but still used by {', '.join(r['referencedBy'][:6])}. "
+              f"If a capability of the new map is the same one, name it in analysis/{program}/map_aliases.json "
+              f"({{\"{r['id']}\": \"<its name in map_result.json>\"}}) and render again.")
     return out
 
 
@@ -194,6 +270,12 @@ def capabilities_md(data, prog):
             lines += [f"### {j['id']}: {j['name']}", "", f"**Persona:** {j['persona'] or '-'}. {j['description']}", ""]
             lines += [f"{i}. {st['label']} ({', '.join(st['capabilities']) or 'no capability matched'})"
                       for i, st in enumerate(j["steps"], 1)] + [""]
+    if data.get("retired"):
+        lines += ["## Retired ids still in use", "",
+                  "These capabilities are not in the new map, but decisions, rules, design links or porting notes still name "
+                  "them. When a capability of the new map is the same one, name it in `map_aliases.json` and render again, "
+                  "so everything attached to the old id stays attached:", ""]
+        lines += [f"- **{r['id']}** {r['name']}: {', '.join(r['referencedBy'][:8])}" for r in data["retired"]] + [""]
     if data["observations"]:
         lines += ["## Observations", ""] + [f"- {o}" for o in data["observations"]] + [""]
     if data["rejected"]:
@@ -213,7 +295,13 @@ def render_rules(ws, program, result_path=None):
     issued = set(previous.get("issuedIds") or []) | {r["id"] for r in previous.get("rules", [])}
     prev_key = {(r.get("app"), (r.get("source") or "").split(":")[0], norm(r.get("name"))): r["id"] for r in previous.get("rules", [])}
     caps = {c["id"] for c in (load_json(os.path.join(pdir, "capabilities.json")) or {}).get("capabilities", [])}
-    raw_rules = sorted(result.get("rules") or [], key=lambda r: (
+    decisions = (load_json(os.path.join(pdir, "DECISIONS.json")) or {}).get("decisions") or {}
+    attach = {d["about"]: d["choice"] for d in decisions.values() if d.get("kind") == "attach"}
+    # a rule no referee could check is kept, at Low confidence and with a question, so it is never silently lost
+    unverified = [{**r, "confidence": "Low", "question": r.get("question") or
+                   f"No referee could check this rule ({one_line(r.get('why') or 'no verdict', 80)}): confirm it against the code."}
+                  for r in result.get("unverified") or [] if isinstance(r, dict) and r.get("name")]
+    raw_rules = sorted((result.get("rules") or []) + unverified, key=lambda r: (
         CATEGORIES.index(r.get("category")) if r.get("category") in CATEGORIES else 99,
         PRIORITY.get(r.get("priority"), 3), str(r.get("app")), str(r.get("source"))))
     rules, taken = [], set()
@@ -224,6 +312,8 @@ def render_rules(ws, program, result_path=None):
             rid = next_id("RULE", issued | taken)
         taken.add(rid)
         cap = r.get("capability") if r.get("capability") in caps else None
+        if attach.get(rid) in caps:
+            cap = attach[rid]
         rules.append({
             "id": rid, "name": one_line(r.get("name"), 120), "app": r.get("app"), "capability": cap,
             "category": r.get("category") if r.get("category") in CATEGORIES else "Policy",
@@ -256,9 +346,14 @@ def render_rules(ws, program, result_path=None):
     write_json(os.path.join(pdir, "rules.json"), out)
     write_text(os.path.join(pdir, "BUSINESS_RULES.md"), rules_md(out, result))
     write_text(os.path.join(pdir, "DATA_OBJECTS.md"), data_objects_md(out))
-    p0 = sum(1 for r in rules if r["priority"] == "P0")
-    flagged = sum(1 for r in rules if r["priority"] == "P0" and (r["confidence"] != "High" or r["suspectedDefect"] or r["question"]))
-    print(f"{len(rules)} rules ({p0} P0, {flagged} flagged for a person), {len(conflicts)} cross-app conflicts "
+    by_priority = collections.Counter(r["priority"] for r in rules)
+    doubt = [r for r in rules if r["confidence"] != "High" or r["suspectedDefect"] or r["question"]]
+    flagged = collections.Counter(r["priority"] for r in doubt)
+    print(f"{len(rules)} rules ({', '.join(f'{by_priority[p]} {p}' for p in PRIORITY if by_priority[p])}; "
+          f"{len(unverified)} kept unverified), {len(doubt)} flagged for a person "
+          f"({', '.join(f'{flagged[p]} {p}' for p in PRIORITY if flagged[p]) or 'none'}), "
+          f"{sum(1 for r in rules if r['suspectedDefect'])} with a suspected defect, {len(conflicts)} cross-app conflicts, "
+          f"{sum(1 for r in rules if not r['capability'])} without a capability "
           f"-> analysis/{program}/BUSINESS_RULES.md, DATA_OBJECTS.md, rules.json")
     return out
 
@@ -365,6 +460,8 @@ def platform_items(prog, invs):
     add("identity", "Bundle / application ids", {a: ", ".join(get(a, "bundleIds") or []) for a in apps}, "decide")
     add("identity", "Minimum OS", {a: ", ".join(f"{k} {v}" for k, v in (get(a, "minOS") or {}).items()) for a in apps}, "decide")
     add("push", "Push notifications", {a: "yes" if get(a, "push") else "" for a in apps}, "required")
+    add("push", "Notification categories and channels",
+        {a: ", ".join(f"{c.get('kind')}:{c.get('id')}" for c in get(a, "notificationCategories") or []) for a in apps}, "required")
     add("links", "Universal / app links", {a: ", ".join((get(a, "associatedDomains") or []) + (get(a, "appLinkHosts") or [])) for a in apps}, "required")
     add("links", "Custom URL schemes", {a: ", ".join(get(a, "urlSchemes") or []) for a in apps}, "required")
     kinds = sorted({x.get("type") for a in apps for x in get(a, "extensions") or []})

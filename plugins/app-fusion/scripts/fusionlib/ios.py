@@ -6,6 +6,7 @@ import os
 import plistlib
 import re
 
+from . import notify
 from . import strings as strcat
 from .common import (is_test_path, line_of, looks_like_path, match_brace, normalize_endpoint, read_text,
                      sanitize_url, strip_comments, walk)
@@ -446,6 +447,7 @@ def extract(root):
 
     maestro = _maestro_flows(root)
     plat = platform(root)
+    plat["notificationCategories"] = notify.scan(root)
     uniq_endpoints = sorted({(e["method"] or "?", e["path"]) for e in endpoints})
     uniq_events = sorted({e["name"] for e in events})
     counts = {

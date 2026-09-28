@@ -183,7 +183,7 @@ def parse_metadata(xml_text, file_key, page_name):
                 kind = "component"
             screens.append({"id": f"{file_key}:{node}", "fileKey": file_key, "nodeId": node, "name": name,
                             "page": page_name, "section": section, "width": round(w), "height": round(h), "kind": kind,
-                            "shot": None, "texts": texts_of(child) if kind in ("screen", "state") else []})
+                            "shot": None, "texts": texts_of(child)})
 
     visit(root, "")
     for inst in root.iter("instance"):
@@ -270,10 +270,16 @@ def build(ws, program):
             s["shot"] = os.path.relpath(shot, ws)
         ctx = os.path.join(base, "cache", s["fileKey"], f"{node_slug(s['nodeId'])}.context.txt")
         if os.path.isfile(ctx):
-            for t in texts_from_context(read_text(ctx)):
-                if t not in s["texts"]:
-                    s["texts"].append(t)
+            # the design context holds the characters people read; metadata only has layer names, which inside
+            # component instances are the component's own names ("Label", "Title")
+            shown = texts_from_context(read_text(ctx))
+            if shown:
+                s["layerNames"] = s["texts"]
+                s["texts"] = shown
+                s["textsFrom"] = "design context"
             s["context"] = os.path.relpath(ctx, ws)
+        elif s.get("texts"):
+            s.setdefault("textsFrom", "layer names")
         prev = old.get(s["id"])
         if prev and prev.get("kindOverride"):
             s["kind"] = prev["kindOverride"]
@@ -326,7 +332,8 @@ def plan(ws, program, limit):
             if page.get("inScope") and not os.path.isfile(os.path.join(base, "cache", f["fileKey"], f"{node_slug(page['id'])}.metadata.xml")):
                 steps.append({"call": "get_metadata", "fileKey": f["fileKey"], "nodeId": page["id"], "save": "metadata",
                               "why": f"frames on page {page['name']}"})
-    shots = [s for s in data.get("screens", []) if s.get("kind") in ("screen", "state") and not s.get("shot")]
+    shots = [s for s in data.get("screens", []) if s.get("kind") in ("screen", "state") and not s.get("shot")
+             and not os.path.isfile(os.path.join(base, "shots", s["fileKey"], f"{node_slug(s['nodeId'])}.png"))]
     for s in shots:
         steps.append({"call": "get_screenshot", "fileKey": s["fileKey"], "nodeId": s["nodeId"], "save": "shot",
                       "why": f"screenshot of {s['name']}"})

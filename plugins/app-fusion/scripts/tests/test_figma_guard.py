@@ -206,12 +206,12 @@ class XcresultJunit(unittest.TestCase):
             out = os.path.join(d, "j.xml")
             r = subprocess.run([sys.executable, os.path.join(helpers.SCRIPTS, "xcresult_junit.py"), src, out], capture_output=True, text=True)
             self.assertEqual(r.returncode, 0, r.stderr)
-            import fusion_proof
-            cases, _ = fusion_proof.junit_cases([out], d)
+            from fusionlib import proofkit
+            cases, _ = proofkit.junit_cases([out], d)
             by = {c["name"]: c for c in cases}
             self.assertEqual({c["status"] for c in cases}, {"passed", "failed", "skipped"})
             zero = next(c for c in cases if c["name"].startswith("RULE-019"))
-            self.assertEqual(fusion_proof.ids_in(zero["name"] + " " + zero["classname"]), {"RULE-019", "CAP-012"})
+            self.assertEqual(proofkit.case_ids(zero), {"RULE-019", "CAP-012"})
             self.assertIn("test_rule020()", by)
 
 

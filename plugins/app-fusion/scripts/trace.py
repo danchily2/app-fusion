@@ -11,7 +11,9 @@ TRACEABILITY.md. A link to a screen or capability that does not exist is dropped
 
 A capability's status is computed with these rules, in this order:
   dropped        a person decided `gap: drop` or `scope: out`
-  designed       at least one link to a design screen
+  deferred       a person decided `gap: defer` or `scope: defer` (a later phase; not counted in coverage)
+  designed       at least one link to a design screen (a designed feature no legacy app has keeps the screens it
+                 was proposed from)
   new            fusion class `new` (only the design has it)
   design-exempt  a person decided `gap: carry-as-is` (built from the legacy screens, restyled)
   no-design      none of the above: a gap a person must answer in fuse-review
@@ -54,6 +56,13 @@ def compute(ws, program, result_path=None):
                       "confidence": link.get("confidence") if link.get("confidence") in ("High", "Medium", "Low") else "Medium",
                       "evidence": one_line(link.get("evidence"), 300)})
 
+    # a designed feature no legacy app has keeps the screens it was proposed with
+    for cid, c in cap_ids.items():
+        for sid in c.get("designScreens") or []:
+            if sid in screens and not any(sid == l["screen"] and cid in l["capabilities"] for l in links):
+                links.append({"screen": sid, "capabilities": [cid], "confidence": "High",
+                              "evidence": "the screen this designed feature was proposed from (design/new_capabilities.json)"})
+
     decided = {}
     for d in decisions.values():
         decided[(d.get("about"), d.get("kind"))] = d.get("choice")
@@ -72,6 +81,8 @@ def compute(ws, program, result_path=None):
         gap = decided.get((cid, "gap"))
         if gap == "drop" or decided.get((cid, "scope")) == "out":
             status = "dropped"
+        elif gap == "defer" or decided.get((cid, "scope")) == "defer":
+            status = "deferred"
         elif linked:
             status = "designed"
         elif c.get("fusion") == "new":
@@ -87,7 +98,7 @@ def compute(ws, program, result_path=None):
     screens_without = [s["id"] for s in candidate_screens if s["id"] not in linked_screens
                        and decided.get((s["id"], "design")) not in ("out-of-scope", "in-scope", "new-spec")]
     diverged = [cid for cid, c in cap_ids.items() if c.get("fusion") == "shared-diverged" and (cid, "conflict") not in decided]
-    in_scope = [cid for cid, t in per_cap.items() if t["status"] != "dropped"]
+    in_scope = [cid for cid, t in per_cap.items() if t["status"] not in ("dropped", "deferred")]
     designed = [cid for cid in in_scope if per_cap[cid]["status"] in ("designed", "new")]
     out = {
         "program": program, "version": 1, "generated": now_iso(), "links": links, "capabilities": per_cap,

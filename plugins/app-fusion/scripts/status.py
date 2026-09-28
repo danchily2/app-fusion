@@ -31,7 +31,7 @@ def summary(ws, program):
     trace = load_json(os.path.join(pdir, "traceability.json")) or {}
     verification = (load_json(os.path.join(pdir, "VERIFICATION.json")) or {}).get("capabilities") or {}
     built = st.built_capabilities(target)
-    brief = st.parse_brief(os.path.join(pdir, "FUSION_BRIEF.md"))
+    brief = st.parse_brief(os.path.join(pdir, "FUSION_BRIEF.md"), ws, program)
     verdicts = {}
     for r in verification.values():
         verdicts[r["verdict"]] = verdicts.get(r["verdict"], 0) + 1
@@ -41,7 +41,7 @@ def summary(ws, program):
         "capabilities": len(caps.get("capabilities", [])), "journeys": len(caps.get("journeys", [])),
         "coverage": trace.get("coverage"), "openQuestions": len(questions), "blockingQuestions": len(blocking),
         "brief": {"exists": brief["exists"], "approved": brief["approved"], "approvedBy": brief["approvedBy"],
-                  "phases": len(brief["phases"])},
+                  "covers": brief["covers"], "stale": brief["stale"], "phases": len(brief["phases"])},
         "built": sorted(built), "verdicts": verdicts, "next": {"command": command, "reason": reason},
     }
 
@@ -78,7 +78,8 @@ def main():
     print(f"  open questions: {s['openQuestions']} ({s['blockingQuestions']} blocking)")
     b = s["brief"]
     if b["exists"]:
-        print(f"  brief: {b['phases']} phase(s), " + (f"approved by {b['approvedBy']}" if b["approved"] else "NOT approved"))
+        print(f"  brief: {b['phases']} phase(s), " + (f"approved by {b['approvedBy']} (covers {b['covers'] or 'all'})" if b["approved"]
+                                                      else ("approval is for an earlier version" if b["stale"] else "NOT approved")))
     for line in s["stale"]:
         print(f"  stale: {line}")
     print(f"Next: {s['next']['command']}")

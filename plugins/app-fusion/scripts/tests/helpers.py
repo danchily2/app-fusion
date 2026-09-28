@@ -19,6 +19,11 @@ def write(root, rel, text):
     return path
 
 
+def read(path):
+    with open(path, encoding="utf-8") as fh:
+        return fh.read()
+
+
 def git_init(root):
     env = {**os.environ, "GIT_AUTHOR_NAME": "t", "GIT_AUTHOR_EMAIL": "t@t", "GIT_COMMITTER_NAME": "t", "GIT_COMMITTER_EMAIL": "t@t"}
     subprocess.run(["git", "init", "-q", "-b", "main", root], check=True, env=env)

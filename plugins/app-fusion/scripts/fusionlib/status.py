@@ -3,6 +3,7 @@
 import os
 import re
 
+from . import proofkit, signatures
 from .common import load_json, program_dir
 
 PREFIX = "/app-fusion:"
@@ -15,10 +16,12 @@ def _mtime(path):
         return None
 
 
-def parse_brief(path):
-    """Phases and approval from FUSION_BRIEF.md. A phase is '#### Phase N — name' followed by 'Key: value' lines."""
+def parse_brief(path, ws=None, program=None):
+    """Phases from FUSION_BRIEF.md ('#### Phase N — name' followed by 'Key: value' lines) and the approval, which
+    lives in SIGNOFF.json (scripts/signoff.py), never in the brief itself: a model writes the brief."""
+    empty = {"exists": False, "phases": [], "approved": False, "approvedBy": None, "covers": None, "stale": False}
     if not os.path.isfile(path):
-        return {"exists": False, "phases": [], "approved": False, "approvedBy": None, "covers": None}
+        return empty
     text = open(path, encoding="utf-8", errors="replace").read()
     phases = []
     for m in re.finditer(r"(?m)^####\s+Phase\s+(\d+)\s*[—–-]+\s*(.+?)\s*$", text):
@@ -32,12 +35,12 @@ def parse_brief(path):
                        "scale": fields.get("scale", ""), "risk": fields.get("risk", ""),
                        "entry": re.findall(r"(?m)^- \[( |x|X)\]\s*(.+)$", body.split("Exit criteria")[0]),
                        "exit": re.findall(r"(?m)^- \[( |x|X)\]\s*(.+)$", body.split("Exit criteria")[1]) if "Exit criteria" in body else []})
-    approved_by = re.search(r"(?m)^Approved by:\s*(.*?)\s{2,}Date:\s*(.*)$", text) or re.search(r"(?m)^Approved by:\s*(.*)$", text)
-    who = approved_by.group(1).strip() if approved_by else ""
-    signed = bool(who) and not re.fullmatch(r"_+|<[^>]*>|\.+", who)
-    covers = re.search(r"(?m)^Approval covers:\s*(.*)$", text)
-    return {"exists": True, "phases": phases, "approved": signed, "approvedBy": who if signed else None,
-            "covers": covers.group(1).strip() if covers else None}
+    out = dict(empty, exists=True, phases=phases)
+    if ws and program:
+        a = signatures.brief_approval(ws, program)
+        out.update({"approved": a["approved"], "approvedBy": a["by"] if a["approved"] else None, "covers": a["covers"],
+                    "stale": a["stale"] and bool(a["by"])})
+    return out
 
 
 def artifacts(ws, program):
@@ -83,7 +86,7 @@ def stale(ws, program):
         (("FUSION_BRIEF.md",), [("capabilities.json",), ("rules.json",), ("traceability.json",), ("DECISIONS.json",), ("CONTINUITY.md",)],
          "the brief predates {what}: re-run fuse-brief"),
         (("traceability.json",), [("capabilities.json",), ("design", "design.json"), ("DECISIONS.json",)],
-         "traceability predates {what}: re-run trace.py (fuse-design step 6)"),
+         "traceability predates {what}: re-run trace.py (fuse-design step 5)"),
         (("CAPABILITIES.md",), [("map_result.json",)], "CAPABILITIES.md predates {what}: re-run render.py capabilities"),
         (("BUSINESS_RULES.md",), [("rules_result.json",)], "BUSINESS_RULES.md predates {what}: re-run render.py rules"),
         (("DESIGN_INVENTORY.md",), [("design", "design.json")], "DESIGN_INVENTORY.md predates {what}: re-run render.py design"),
@@ -96,7 +99,18 @@ def stale(ws, program):
         newer = ["/".join(s) for s in sources if (t(*s) or 0) > tt + 1]
         if newer:
             out.append(message.format(what=", ".join(newer)))
+    brief = parse_brief(os.path.join(pdir, "FUSION_BRIEF.md"), ws, program)
+    if brief["stale"]:
+        out.append("the brief changed after it was approved: the approval no longer counts (fuse-brief approve)")
     return out
+
+
+def _waiting_only(r, built):
+    """True when a verdict's only open checks are journeys that wait for capabilities not built yet."""
+    open_checks = {k: v for k, v in (r.get("checks") or {}).items() if v.get("status") != "pass"}
+    return bool(open_checks) and set(open_checks) == {"Journeys"} and "waits for" in open_checks["Journeys"].get("detail", "") \
+        and open_checks["Journeys"].get("status") == "gap" and "no run recorded" not in open_checks["Journeys"]["detail"] \
+        and "stale" not in open_checks["Journeys"]["detail"]
 
 
 def next_step(ws, program, open_count=None):
@@ -107,39 +121,82 @@ def next_step(ws, program, open_count=None):
     p = program
     if not prog:
         return f"{PREFIX}fuse {p} --source <app>=<path> --source <app>=<path>", "nothing is set up yet"
+    pending = sorted(os.listdir(os.path.join(pdir, "evidence", "canary"))) if os.path.isdir(os.path.join(pdir, "evidence", "canary")) else []
+    pending = [c for c in pending if os.path.isfile(os.path.join(pdir, "evidence", "canary", c, "pending.json"))]
+    if pending:
+        return (f"python3 scripts/canary.py finish {p} {pending[0]}  (or: canary.py abort {p} {pending[0]})",
+                f"a deliberate break is still in {pending[0]}'s code: finish or abort the canary first")
     if not have["preflight"]:
         return f"{PREFIX}fuse-preflight {p}", "check the environment and ask the five questions first"
     if not have["assess"]:
         return f"{PREFIX}fuse-assess {p}", "inventory both apps"
-    if not os.path.exists(os.path.join(pdir, "capabilities.json")):
+    caps = load_json(os.path.join(pdir, "capabilities.json"))
+    if not caps:
         return f"{PREFIX}fuse-map {p}", "build the capability map across the apps"
+    if caps.get("retired"):
+        r = caps["retired"][0]
+        return (f"(map the retired ids) name the capability that replaces {r['id']} in analysis/{p}/map_aliases.json, then "
+                f"python3 scripts/render.py capabilities {p}",
+                f"{len(caps['retired'])} capability id(s) left the map but are still used by decisions, rules or notes")
     if prog.get("figma") and not have["design"]:
         return f"{PREFIX}fuse-design {p}", "read the new app's Figma designs and trace them to the capabilities"
     if not os.path.exists(os.path.join(pdir, "rules.json")):
         return f"{PREFIX}fuse-rules {p}", "mine the business rules of both apps"
     if open_count:
         return f"{PREFIX}fuse-review {p}", f"{open_count} question(s) only a person can answer"
-    brief = parse_brief(os.path.join(pdir, "FUSION_BRIEF.md"))
+    brief = parse_brief(os.path.join(pdir, "FUSION_BRIEF.md"), ws, p)
     if not brief["exists"]:
         return f"{PREFIX}fuse-brief {p}", "write the phased plan"
     if not brief["approved"]:
-        return "(a person) sign the Approval block of FUSION_BRIEF.md", "nothing is built before the brief is approved"
+        why = "the brief changed after it was approved" if brief["stale"] else "nothing is built before the brief is approved"
+        return f"(a person) {PREFIX}fuse-brief {p} approve", why
+    if prog.get("goal") == "understand":
+        return "(done) the analysis is complete: the brief and REPORT.html are the result", \
+            "the goal is to understand the apps, not to build (workspace.py intent --goal build to go on)"
     if not have["scaffold"]:
         return f"{PREFIX}fuse-scaffold {p}", "Phase 0: the new app's foundation"
+    covered = signatures.covered_phases(brief["covers"])
+    decisions = (load_json(os.path.join(pdir, "DECISIONS.json")) or {}).get("decisions") or {}
+    parked = {d["about"] for d in decisions.values()
+              if (d.get("kind") == "gap" and d.get("choice") in ("drop", "defer")) or (d.get("kind") == "scope" and d.get("choice") in ("out", "defer"))
+              or (d.get("kind") == "conflict" and d.get("choice") == "defer" and re.match(r"^CAP-\d+$", d.get("about") or ""))}
     built = built_capabilities(target)
     verification = load_json(os.path.join(pdir, "VERIFICATION.json")) or {}
-    vtime = _mtime(os.path.join(pdir, "VERIFICATION.json")) or 0
     judged = verification.get("capabilities") or {}
-    unverified = [c for c, t in built.items() if c not in judged or (t or 0) > vtime]
+    unverified = [c for c in built if c not in judged or judged[c].get("codeHash") != proofkit.code_hash(ws, p, c)]
     if unverified:
-        return f"{PREFIX}fuse-verify {p} {' '.join(sorted(unverified)[:5])}", "built capabilities are not proven until verify says so"
-    not_proven = [c for c, r in judged.items() if r.get("verdict") != "PROVEN"]
-    if not_proven:
-        return f"{PREFIX}fuse-build {p} {sorted(not_proven)[0]}", f"{len(not_proven)} capability(ies) not PROVEN yet: fix the first reason"
+        return f"{PREFIX}fuse-verify {p} {' '.join(sorted(unverified, key=lambda x: int(x.split('-')[1]))[:5])}", \
+            "built capabilities are not proven until verify judges their current code"
+    to_fix = [c for c, r in judged.items() if r.get("verdict") != "PROVEN" and c in built and not _waiting_only(r, built)]
+    if to_fix:
+        first = sorted(to_fix, key=lambda x: int(x.split("-")[1]))[0]
+        return f"{PREFIX}fuse-build {p} {first}", f"{len(to_fix)} capability(ies) not PROVEN yet: fix the first reason"
+    waiting = sorted(c for c, r in judged.items() if r.get("verdict") != "PROVEN" and _waiting_only(r, built))
     for phase in brief["phases"]:
+        if covered is not None and phase["number"] not in covered:
+            if any(cap not in built and cap not in parked for cap in phase["capabilities"]):
+                return (f"(a person) {PREFIX}fuse-brief {p} approve",
+                        f"the approval covers Phase(s) {', '.join(map(str, sorted(covered)))}; Phase {phase['number']} "
+                        f"({phase['name']}) needs a person's approval before it is built")
+            continue
         for cap in phase["capabilities"]:
-            if cap not in built:
-                return f"{PREFIX}fuse-build {p} {cap}", f"next capability of Phase {phase['number']} ({phase['name']})"
-    if not have["harden"]:
-        return f"{PREFIX}fuse-harden {p}", "security review of the new app"
-    return "(done) sign VERIFICATION.md and plan the rollout in CONTINUITY.md", "every phase is built and proven"
+            if cap not in built and cap not in parked:
+                why = f"next capability of Phase {phase['number']} ({phase['name']})"
+                if waiting:
+                    why += f"; {', '.join(waiting)} wait(s) for it or others on a shared journey"
+                return f"{PREFIX}fuse-build {p} {cap}", why
+    if waiting:
+        return f"{PREFIX}fuse-verify {p} {' '.join(waiting[:5])}", "every capability is built: verify the journeys that were waiting"
+    cont = verification.get("continuity") or {}
+    if cont.get("verdict") != "pass":
+        return f"{PREFIX}fuse-verify {p}", "platform continuity for existing users is not proven yet: " + \
+            (cont.get("detail") or "run scripts/platform_parity.py")
+    signed = signatures.signed_state(ws, p, judged)
+    unsigned = [c for c, s in signed.items() if not s["proof"] or s["visual"] is False]
+    if unsigned:
+        return f"(a person) {PREFIX}fuse-verify {p} sign", f"{len(unsigned)} proven capability(ies) wait for a person's sign-off"
+    security = os.path.join(pdir, "SECURITY_FINDINGS.md")
+    newest = max((t or 0) for t in built.values()) if built else 0
+    if not os.path.isfile(security) or (_mtime(security) or 0) < newest:
+        return f"{PREFIX}fuse-harden {p}", "security review of the new app as it is now"
+    return "(done) plan the rollout in CONTINUITY.md", "every phase is built, proven and signed"

@@ -42,9 +42,10 @@ every input, ask what changed before writing. Put the input timestamps in the br
 Existing users are the one thing no test in the repositories protects. For each legacy app, using `PLATFORM.md`,
 `program.json` (`storeIdentity`) and the references, cover:
 
-1. **Store identity.** Which listing and bundle or application id the new app ships under. Whose users get it as an
-   update, and whose must install it. With `storeIdentity: undecided`, give the options and a recommendation, and make
-   it the brief's first open question.
+1. **Store identity, per platform.** Which listing and bundle or application id the new app ships under on iOS and
+   on Android; the answer may differ (the iOS app updates one legacy app's listing, the Android app another's). Whose
+   users get it as an update, and whose must install it. With `storeIdentity: undecided`, give the options and a
+   recommendation, and make it the brief's first open question.
 2. **Sign-in and session.** Can the session carry over? Keychain access groups need the same team id, and the
    updated app keeps its container. Otherwise it is a one-time re-login, and the plan says how the message reads.
 3. **Local data.** What each app stores locally (`PLATFORM.md` storage items: Realm, AsyncStorage, MMKV, UserDefaults,
@@ -159,10 +160,11 @@ Only a person approves, with their own name. Read `FUSION_BRIEF.md` and `CONTINU
    or "Not yet". "Not yet" records nothing: say what they want changed and stop.
 2. **What the approval settles.** When `program.json` still has the stack or the store listing undecided, ask each with
    AskUserQuestion, the brief's recommendation first: "Use <stack> (the brief's recommendation)" and the other options;
-   for the store listing, each app's listing and "a new listing". Record the answers as decisions
-   (`decisions.py add-json`: kind `stack` about `stack`, kind `continuity` about `continuity:store-identity`) and in
-   `program.json` (`workspace.py intent $program --stack <s> --store <app|new-listing>`). The guard asks the person to
-   confirm each recording command.
+   for the store listing, each app's listing and "a new listing", once per target platform when the recommendation
+   differs by platform. Record the answers as decisions (`decisions.py add-json`: kind `stack` about `stack`, kind
+   `continuity` about `continuity:store-identity`) and in `program.json` (`workspace.py intent $program --stack <s>
+   --store <app|new-listing>`, or `--store ios=<app|new-listing>,android=<app|new-listing>`). The guard asks the
+   person to confirm each recording command.
 3. **The name.** Ask for the approver's name (they type it), then run
    `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/signoff.py" $program brief --by "<their name>" --covers "<all | Phase 0, Phase 1>"`.
    It binds the approval to the brief's current text.

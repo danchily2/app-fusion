@@ -3,15 +3,17 @@
 exactly as it was.
 
     python3 canary.py start <program> <CAP-NNN> --file <path in the new app> --change "what you will break"
-    python3 canary.py finish <program> <CAP-NNN> [--junit PATH ...]
+    python3 canary.py finish <program> <CAP-NNN>
     python3 canary.py abort <program> <CAP-NNN>
     python3 canary.py status <program>
 
-`start` checks that the file is production code the capability's porting notes name (never a test), copies its
-bytes to analysis/<program>/evidence/canary/<CAP>/run-N/, and prints that folder. Then make the break (one small
-change that matters: a threshold by one, a rounding mode, a flipped condition) and run the covering tests with their
-JUnit output into the run folder. `finish` refuses when the file was not changed, restores the saved bytes and checks
-their hash, then records which failing tests name the capability or its rules. `abort` restores without recording.
+`start` checks that no other canary is in place (one break at a time, whatever the capability), that the file is
+the capability's own production code (its notes' `## Files`, never a test), copies its bytes to
+analysis/<program>/evidence/canary/<CAP>/run-N/, and prints that folder. Then make the break (one small change that
+matters: a threshold by one, a rounding mode, a flipped condition) and run the covering tests with their JUnit output
+into the run folder. `finish` restores the saved bytes and checks their hash in every case; it records the canary only
+when the break changed at most six lines, and more than whitespace, and it reads results only from the run folder,
+so a result from another run can never be credited. `abort` restores without recording.
 The restore never uses git, so uncommitted work in the new app is never lost, and nothing is left broken: a pending
 canary shows in fuse-status until it is finished or aborted.
 
@@ -59,9 +61,15 @@ def rule_ids(ws, program, cap):
     return {r["id"] for r in rules if r.get("capability") == cap}
 
 
+MAX_LINES = 6
+
+
 def start(ws, program, cap, file, change):
-    if os.path.exists(pending_path(ws, program, cap)):
-        die(f"a canary is already in place for {cap}: run `canary.py finish` or `canary.py abort` first")
+    busy = pending_all(ws, program)
+    if busy:
+        other = next(iter(busy))
+        die(f"a canary is already in place for {other} ({busy[other].get('file')}): finish or abort it first, "
+            "one break at a time")
     info = proofkit.notes(ws, program, cap)
     if not info["exists"]:
         die(f"{cap} has no porting notes: build it before its canary")
@@ -71,9 +79,8 @@ def start(ws, program, cap, file, change):
         die(f"{file} is not a file inside the new app ({os.path.relpath(base, ws)})")
     if rel in info["tests"] or is_test_path(rel):
         die(f"{rel} is a test: the canary breaks the capability's production code, never its tests")
-    if rel not in info["files"] + info["shared"]:
-        die(f"{rel} is not named in the ## Files or ## Shared files section of {cap}'s porting notes: break the "
-            "capability's own code")
+    if rel not in info["files"]:
+        die(f"{rel} is not in the ## Files section of {cap}'s porting notes: break the capability's own code")
     full = os.path.join(base, rel)
     folder = cap_dir(ws, program, cap)
     os.makedirs(folder, exist_ok=True)
@@ -105,20 +112,34 @@ def _restore(ws, program, cap, p):
     return full
 
 
-def finish(ws, program, cap, extra_junit):
+def _lines(path):
+    if not os.path.isfile(path):
+        return None
+    with open(path, encoding="utf-8", errors="replace") as fh:
+        return fh.read().splitlines()
+
+
+def finish(ws, program, cap):
     p = load_json(pending_path(ws, program, cap))
     if not p:
         die(f"no canary in place for {cap}: start one with `canary.py start`")
     base = proofkit.target_root(ws, program)
     full = os.path.join(base, p["file"])
-    broken = open(full, encoding="utf-8", errors="replace").read().splitlines()
-    original = open(os.path.join(ws, p["run"], "original.bin"), encoding="utf-8", errors="replace").read().splitlines()
-    if proofkit.sha256_file(full) == p["sha256"]:
+    broken = _lines(full)
+    original = _lines(os.path.join(ws, p["run"], "original.bin")) or []
+    if broken is not None and proofkit.sha256_file(full) == p["sha256"]:
         die(f"{p['file']} is unchanged: make the break first, run the tests, then finish (or abort)")
-    diff = [l for l in difflib.unified_diff(original, broken, "before", "canary", n=0, lineterm="")][2:]
+    diff = [l for l in difflib.unified_diff(original, broken or [], "before", "canary", n=0, lineterm="")][2:]
     changed = sum(1 for l in diff if l[:1] in "+-")
+    only_space = [re.sub(r"\s+", "", l[1:]) for l in diff if l[:1] == "-"] == [re.sub(r"\s+", "", l[1:]) for l in diff if l[:1] == "+"]
     _restore(ws, program, cap, p)
-    rels = proofkit.xml_files([p["run"]] + [ev.rel_inside(ws, j) for j in extra_junit or []], ws)
+    refusal = ("the break deleted the file" if broken is None else
+               "the break changed only whitespace" if only_space else
+               f"the break changed {changed} lines (at most {MAX_LINES}: one small change that matters)" if changed > MAX_LINES else None)
+    if refusal:
+        os.remove(pending_path(ws, program, cap))
+        die(f"restored {p['file']} (hash checked), but recorded nothing: {refusal}. Start a new canary.")
+    rels = proofkit.xml_files([p["run"]], ws)
     cases, bad = proofkit.junit_cases(rels, ws)
     mine = {cap} | rule_ids(ws, program, cap)
     failed_mine = sorted({tc["key"] for tc in cases if tc["status"] == "failed" and proofkit.case_ids(tc) & mine})
@@ -166,8 +187,6 @@ def main():
         if name == "start":
             p.add_argument("--file", required=True)
             p.add_argument("--change", required=True)
-        if name == "finish":
-            p.add_argument("--junit", action="append", default=[])
         p.add_argument("--workspace")
     args = ap.parse_args()
     ws = workspace(args.workspace)
@@ -178,7 +197,7 @@ def main():
     if args.cmd == "start":
         start(ws, args.program, cap, args.file, args.change)
     elif args.cmd == "finish":
-        finish(ws, args.program, cap, args.junit)
+        finish(ws, args.program, cap)
     elif args.cmd == "abort":
         abort(ws, args.program, cap)
     else:

@@ -21,6 +21,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+from decisions import conflict_key  # noqa: E402
 from fusionlib.common import (check_name, die, load_json, load_program, md_table, normalize_endpoint, now_iso,  # noqa: E402
                               one_line, program_dir, workspace, write_json, write_text)
 
@@ -64,7 +65,8 @@ def references(ws, program, pdir, cid):
     refs = []
     decisions = (load_json(os.path.join(pdir, "DECISIONS.json")) or {}).get("decisions") or {}
     refs += [f"{k} ({d.get('kind')})" for k, d in decisions.items()
-             if d.get("about") == cid or str(d.get("about") or "").startswith(cid + ":") or d.get("choice") == cid]
+             if (d.get("about") == cid or str(d.get("about") or "").startswith(cid + ":") or d.get("choice") == cid)
+             and not (d.get("kind") == "gap" and d.get("choice") == "drop") and not (d.get("kind") == "scope" and d.get("choice") == "out")]
     refs += [r["id"] for r in (load_json(os.path.join(pdir, "rules.json")) or {}).get("rules", []) if r.get("capability") == cid]
     if any(cid in (l.get("capabilities") or []) for l in (load_json(os.path.join(pdir, "design", "trace_result.json")) or {}).get("links") or []):
         refs.append("design/trace_result.json")
@@ -90,8 +92,9 @@ def render_capabilities(ws, program, result_path=None):
     by_name = {}
     for c in prev_caps:
         by_name.setdefault(norm(c["name"]), []).append(c["id"])
-    aliases = {norm(v): k for k, v in (load_json(os.path.join(pdir, "map_aliases.json")) or {}).items()
-               if re.match(r"^CAP-\d+$", str(k)) and isinstance(v, str)}
+    alias_file = load_json(os.path.join(pdir, "map_aliases.json")) or {}
+    aliases = {norm(v): k for k, v in alias_file.items() if re.match(r"^CAP-\d+$", str(k)) and isinstance(v, str)}
+    let_go = {k for k, v in alias_file.items() if v is None}
 
     design_only = load_json(os.path.join(pdir, "design", "new_capabilities.json")) or []
     raws = [r for r in list(result.get("capabilities", [])) + [
@@ -152,7 +155,7 @@ def render_capabilities(ws, program, result_path=None):
     caps.sort(key=lambda c: int(c["id"].split("-")[1]))
     retired = []
     for c in prev_caps:
-        if c["id"] not in taken:
+        if c["id"] not in taken and c["id"] not in let_go:
             refs = references(ws, program, pdir, c["id"])
             if refs:
                 retired.append({"id": c["id"], "name": c["name"], "referencedBy": refs})
@@ -304,12 +307,46 @@ def render_rules(ws, program, result_path=None):
     raw_rules = sorted((result.get("rules") or []) + unverified, key=lambda r: (
         CATEGORIES.index(r.get("category")) if r.get("category") in CATEGORIES else 99,
         PRIORITY.get(r.get("priority"), 3), str(r.get("app")), str(r.get("source"))))
-    rules, taken = [], set()
-    for r in raw_rules:
-        key = (r.get("app"), (r.get("source") or "").split(":")[0], norm(r.get("name")))
-        rid = prev_key.get(key)
-        if rid is None or rid in taken:
-            rid = next_id("RULE", issued | taken)
+    aliases = {}
+    for old_id, name in (load_json(os.path.join(pdir, "rules_aliases.json")) or {}).items():
+        if re.match(r"^RULE-\d+$", str(old_id)):
+            aliases[old_id] = norm(name) if isinstance(name, str) else None
+    by_alias = {n: rid for rid, n in aliases.items() if n}
+
+    def span(source):
+        """(file, first line, last line) of a 'path:12-30' citation."""
+        path, _, lines = str(source or "").partition(":")
+        m = re.match(r"^(\d+)(?:-(\d+))?", lines)
+        return path, (int(m.group(1)) if m else 0), (int(m.group(2) or m.group(1)) if m else 0)
+
+    # ids, in three passes: a person's alias, the same app, file and name, then the same app and file with overlapping
+    # lines (a re-run rewords rule names freely)
+    assigned, taken = {}, set()
+    for i, r in enumerate(raw_rules):
+        rid = by_alias.get(norm(r.get("name"))) or prev_key.get((r.get("app"), (r.get("source") or "").split(":")[0], norm(r.get("name"))))
+        if rid and rid not in taken:
+            assigned[i] = rid
+            taken.add(rid)
+    pairs = []
+    for i, r in enumerate(raw_rules):
+        if i in assigned:
+            continue
+        f, a1, a2 = span(r.get("source"))
+        for old in previous.get("rules", []):
+            if old["id"] in taken or old.get("app") != r.get("app"):
+                continue
+            g, b1, b2 = span(old.get("source"))
+            if f and f == g and a1 and b1:
+                overlap = min(a2, b2) - max(a1, b1) + 1
+                if overlap > 0:
+                    pairs.append((overlap / (max(a2, b2) - min(a1, b1) + 1), i, old["id"]))
+    for score, i, rid in sorted(pairs, key=lambda p: -p[0]):
+        if score >= 0.5 and i not in assigned and rid not in taken:
+            assigned[i] = rid
+            taken.add(rid)
+    rules = []
+    for i, r in enumerate(raw_rules):
+        rid = assigned.get(i) or next_id("RULE", issued | taken)
         taken.add(rid)
         cap = r.get("capability") if r.get("capability") in caps else None
         if attach.get(rid) in caps:
@@ -326,19 +363,50 @@ def render_rules(ws, program, result_path=None):
             "question": one_line(r.get("question"), 400),
         })
     name_to_id = {(r["app"], norm(r["name"])): r["id"] for r in rules}
+
+    def resolve(ref, capability):
+        """A conflict names its rules by (app, name); the finder may paraphrase, so fall back to the closest name of
+        the same app in the same capability (word overlap of at least 0.6)."""
+        app, name = (ref.get("app"), ref.get("name")) if isinstance(ref, dict) else (None, ref)
+        if not isinstance(ref, dict) and ref in taken:
+            return ref
+        exact = name_to_id.get((app, norm(name))) if app else next((v for (a, n), v in name_to_id.items() if n == norm(name)), None)
+        if exact:
+            return exact
+        words = set(norm(name).split())
+        best, score = None, 0.0
+        for r in rules:
+            if (app and r["app"] != app) or (capability and r["capability"] not in (capability, None)):
+                continue
+            other = set(norm(r["name"]).split())
+            s_ = len(words & other) / len(words | other) if words | other else 0
+            if s_ > score:
+                best, score = r["id"], s_
+        return best if score >= 0.6 else None
+
     conflicts = []
     for c in result.get("conflicts") or []:
-        ids = []
+        capability = c.get("capability") if c.get("capability") in caps else None
+        ids, unresolved = [], []
         for ref in c.get("rules") or []:
-            if isinstance(ref, dict):
-                rid = name_to_id.get((ref.get("app"), norm(ref.get("name"))))
-            else:
-                rid = ref if ref in taken else next((v for (a, n), v in name_to_id.items() if n == norm(ref)), None)
+            rid = resolve(ref, capability)
             if rid and rid not in ids:
                 ids.append(rid)
-        conflicts.append({"capability": c.get("capability") if c.get("capability") in caps else None, "rules": ids,
-                          "difference": one_line(c.get("difference"), 400)})
-    out = {"program": program, "version": 1, "generated": now_iso(), "rules": rules, "conflicts": conflicts,
+            elif not rid:
+                unresolved.append(one_line(f"{ref.get('app')}: {ref.get('name')}" if isinstance(ref, dict) else ref, 160))
+        conf = {"capability": capability, "rules": ids, "unresolved": unresolved, "difference": one_line(c.get("difference"), 400)}
+        conf["key"] = conflict_key(conf)
+        conflicts.append(conf)
+    decisions_all = (load_json(os.path.join(pdir, "DECISIONS.json")) or {}).get("decisions") or {}
+    retired = []
+    for old in previous.get("rules", []):
+        if old["id"] in taken or (old["id"] in aliases and aliases[old["id"]] is None):
+            continue
+        refs = [f"{k} ({d.get('kind')})" for k, d in decisions_all.items()
+                if d.get("about") == old["id"] or old["id"] in re.findall(r"RULE-\d+", str(d.get("about") or ""))]
+        if refs:
+            retired.append({"id": old["id"], "name": old.get("name"), "app": old.get("app"), "referencedBy": refs})
+    out = {"program": program, "version": 1, "generated": now_iso(), "rules": rules, "conflicts": conflicts, "retired": retired,
            "dataObjects": result.get("dataObjects") or [],
            "issuedIds": sorted(issued | taken, key=lambda x: int(x.split("-")[1])),
            "stats": result.get("stats") or {}, "injectionFlags": result.get("injectionFlags") or [],
@@ -346,6 +414,11 @@ def render_rules(ws, program, result_path=None):
     write_json(os.path.join(pdir, "rules.json"), out)
     write_text(os.path.join(pdir, "BUSINESS_RULES.md"), rules_md(out, result))
     write_text(os.path.join(pdir, "DATA_OBJECTS.md"), data_objects_md(out))
+    for r in retired:
+        print(f"WARNING: {r['id']} ({r['name']}) is gone from the new rules but decisions still name it: "
+              f"{', '.join(r['referencedBy'][:6])}. If a rule of the new result is the same one, name it in "
+              f"analysis/{program}/rules_aliases.json ({{\"{r['id']}\": \"<its name in rules_result.json>\"}}), or map it to "
+              "null to let it go, and render again.")
     by_priority = collections.Counter(r["priority"] for r in rules)
     doubt = [r for r in rules if r["confidence"] != "High" or r["suspectedDefect"] or r["question"]]
     flagged = collections.Counter(r["priority"] for r in doubt)
@@ -371,8 +444,10 @@ def rules_md(data, result):
         lines += ["## Cross-app conflicts", "",
                   "The same decision is made differently by two apps. A person picks the behavior the new app keeps "
                   "(`/app-fusion:fuse-review`).", "",
-                  md_table(["Capability", "Rules", "Difference"],
-                           [[c["capability"] or "-", ", ".join(c["rules"]) or "-", c["difference"]] for c in data["conflicts"]]), ""]
+                  md_table(["Question", "Capability", "Rules", "Difference"],
+                           [[c.get("key") or "-", c["capability"] or "-",
+                             ", ".join(c["rules"] + [f"(not resolved: {u})" for u in c.get("unresolved") or []]) or "-",
+                             c["difference"]] for c in data["conflicts"]]), ""]
     for cat in CATEGORIES:
         items = [r for r in rules if r["category"] == cat]
         if not items:

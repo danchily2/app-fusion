@@ -23,8 +23,17 @@ def load(ws, program):
 
 
 def brief_hash(ws, program):
+    """The hash an approval binds to: the brief's text with every checkbox read as unticked and without the
+    `Proposed revision:` lines the build steps may add. Ticking a met criterion or proposing a change keeps the
+    approval; rewording anything else needs a new one."""
     p = os.path.join(program_dir(ws, program), "FUSION_BRIEF.md")
-    return proofkit.sha256_file(p) if os.path.isfile(p) else None
+    if not os.path.isfile(p):
+        return None
+    with open(p, encoding="utf-8", errors="replace") as fh:
+        text = fh.read()
+    text = re.sub(r"(?m)^(\s*[-*]\s+)\[[xX]\]", r"\1[ ]", text)
+    text = re.sub(r"(?m)^\s*(?:[-*]\s+)?Proposed revision:.*\n?", "", text)
+    return proofkit.sha256_text(text)
 
 
 def brief_approval(ws, program):

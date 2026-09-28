@@ -4,7 +4,7 @@
     python3 workspace.py init <program> --source <app>=<path> [--source ...] [--product <app>=<name>] [--twin <app>=<of>]
                                [--figma <url> ...] [--target <path>] [--snapshot] [--workspace DIR]
     python3 workspace.py intent <program> [--goal build|understand] [--platforms ios,android] [--stack S] [--persona P ...]
-                               [--must TEXT ...] [--store APP|new-listing|undecided] [--locales en,da,...]
+                               [--must TEXT ...] [--store APP|new-listing|undecided|ios=APP,android=APP] [--locales en,da,...]
     python3 workspace.py check <program> [--json]          are the legacy apps linked, clean and at the recorded commit?
     python3 workspace.py guard <program>                   which permission deny rules protect the legacy code?
 
@@ -195,9 +195,22 @@ def cmd_intent(args):
         prog["mustStayTrue"] = [m.strip() for m in args.must if m.strip()]
     if args.store:
         names = {a["name"] for a in prog.get("apps", [])}
-        if args.store not in names | {"new-listing", "undecided"}:
-            die(f"--store is an app name ({', '.join(sorted(names))}), new-listing or undecided")
-        prog["storeIdentity"] = args.store
+        allowed = names | {"new-listing", "undecided"}
+        if "=" in args.store:  # one listing per platform: ios=me-ios,android=vmm
+            mapping = {}
+            for part in args.store.split(","):
+                plat, _, choice = part.partition("=")
+                plat, choice = plat.strip(), choice.strip()
+                if plat not in ("ios", "android") or choice not in allowed:
+                    die(f"--store {args.store!r}: each part is ios=<listing> or android=<listing>, a listing being an app "
+                        f"name ({', '.join(sorted(names))}), new-listing or undecided")
+                mapping[plat] = choice
+            prog["storeIdentity"] = mapping
+        elif args.store not in allowed:
+            die(f"--store is an app name ({', '.join(sorted(names))}), new-listing, undecided, or one per platform "
+                "(ios=<listing>,android=<listing>)")
+        else:
+            prog["storeIdentity"] = args.store
     if args.locales is not None:
         prog["locales"] = [l.strip() for l in args.locales.split(",") if l.strip()]
     write_json(path, prog)

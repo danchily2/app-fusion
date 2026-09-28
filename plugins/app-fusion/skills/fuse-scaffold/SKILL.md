@@ -6,7 +6,10 @@ arguments: program
 disable-model-invocation: true
 ---
 
-Build the foundation of the new app of `$program`, Phase 0 of the brief. The new app lives at `program.json` →
+Build the foundation of the new app of `$program`, Phase 0 of the brief. When the scaffold exists already
+(`docs/fusion/SCAFFOLD.md`) and `fuse-status` sent you here because platform continuity fails, do only Step 3.4 on the
+existing app: add what `platform_parity.py` lists (identity, link domains, schemes, push, notification categories,
+extensions, groups) to the app shell, list the change in `SCAFFOLD.md`, and finish. The new app lives at `program.json` →
 `target.path` (default `new-app/$program`). It has its own git history, and never touches `legacy/`. Stop any
 simulator, Metro server or other process you started before you finish, and say that you did.
 

@@ -153,11 +153,12 @@ Built against two production apps (Visma Manager, React Native, 218k code lines,
 | `fuse-assess` | 6 analysts, about $7.5. Two High risks carried over from the legacy apps (an exported Android activity, a share extension that bypasses the lock), receipt drafts kept only on the device, four network layers in one app and two DI systems in the other; a greenfield port recommended |
 | `fuse-map`, calendar slice | 4 shards, 43 fragments, 29 capabilities (5 shared-diverged, each with its differences cited), 8 journeys including a person with both roles, about $9.8. A referee found that one app's agenda shows mock data |
 | `fuse-rules`, same slice | 171 agents, 153 rules with concrete Given/When/Then values, 14 conflicts across 5 capabilities, 7 candidates rejected by the citation referees, about $20 |
+| `fuse-brief`, same slice | 10 turns, about $5.9. Ten phases that the status parser reads, a role matrix with an open question on who sees a team member's calendar, a continuity plan that keeps each platform's existing listing, and a recommendation to approve Phase 0 and the pilot only, because the map covers one slice |
 
 The inventory's counts were checked against a hand-certified knowledge graph of both apps: routes, string keys,
 locales and Swift packages match exactly; event and endpoint counts differ by the rule that made them (both rules
-are printed). An adversarial review of the whole plugin found 2 blockers and 15 high-severity issues, all fixed and
-covered by tests (`scripts/tests/`, 37 cases, and `tests/`, 11 workflow cases).
+are printed). Two adversarial reviews (of the whole plugin, then of the fixes) found 3 blockers and 23 high-severity issues,
+all fixed and covered by tests (`scripts/tests/`, 47 cases, and `tests/`, 11 workflow cases).
 
 ## Set it up so it runs smoothly
 
@@ -194,8 +195,9 @@ paths:
   `SECRETS.local.md`.
 - **Apps run only on simulators, against test backends you named.** Recorded traffic (HAR) is gitignored; keep only
   the copy `api_parity.py sanitize` writes, with authorization headers, cookies and secret-looking values removed.
-- **The proof's inputs are written only by its scripts.** The guard denies file edits to decisions, sign-offs,
-  verdicts, catalogs and evidence, so the side being judged cannot rewrite what judges it.
+- **The proof's inputs are written only by its scripts.** The guard denies edits, from a file tool or the shell, to
+  `program.json`, decisions, sign-offs, verdicts, catalogs and evidence, so the side being judged cannot rewrite
+  what judges it. Test runners still write their results into their own run folders.
 - **Nothing is pushed, published or submitted, and no Figma file is changed.**
 
 ## Working in a team

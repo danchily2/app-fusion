@@ -4,7 +4,7 @@
     python3 evidence.py dir <program> suite|journey <CAP-NNN|all|JRN-NNN> [--platform ios|android]
                                                        print (and create) a fresh folder for one run's results
     python3 evidence.py suite <program> --capability CAP-NNN|all --name NAME --command "CMD" --junit PATH [--junit ...]
-                              [--log PATH] [--note N]
+                              [--platform ios|android] [--log PATH] [--note N]
     python3 evidence.py journey <program> --journey JRN-NNN --platform ios|android --flow PATH --junit PATH [--device D] [--note N]
     python3 evidence.py shot <program> --screen <fileKey>:<nodeId> --capability CAP-NNN --app PATH
     python3 evidence.py show <program>
@@ -14,8 +14,10 @@ Canaries are recorded by scripts/canary.py, which also restores the code they br
 A --junit folder is expanded into the XML files it holds when the run is recorded, so files a later run leaves in
 the same folder never count for this one. Each entry keeps the SHA-256 of every result file and, for every built
 capability, the hash of the files its porting notes name. The proof accepts a result only while both still match: an
-edited result file is rejected, and a result is stale for a capability whose code changed since the run. Each command
-replaces the earlier entry for the same capability and name (or journey and platform, or screen). Standard library only.
+edited or removed result file is rejected (each entry also keeps the ids its tests named), and a result is stale for a
+capability whose code changed since the run. For a native pair (ios/ and android/ in the new app), each half's suite is
+recorded with --platform, and the proof checks each half on its own results. Each command replaces the earlier entry
+for the same capability, name and platform (or journey and platform, or screen). Standard library only.
 """
 
 import argparse
@@ -113,6 +115,7 @@ def main():
         if name == "suite":
             p.add_argument("--name", required=True)
             p.add_argument("--command", required=True)
+            p.add_argument("--platform", choices=["ios", "android"])
         if name == "journey":
             p.add_argument("--journey", required=True)
             p.add_argument("--platform", choices=["ios", "android"])
@@ -138,11 +141,13 @@ def main():
         die(f"{cap!r} is not a capability id (CAP-NNN) or 'all'")
     if args.cmd == "suite":
         files, hashes = result_files(ws, args.junit)
-        entry = {"capability": cap, "name": args.name[:60], "command": args.command[:400], "junit": files, "hashes": hashes,
+        cases, _ = proofkit.junit_cases(files, ws)
+        entry = {"capability": cap, "name": args.name[:60], "platform": args.platform, "command": args.command[:400],
+                 "junit": files, "hashes": hashes, "named": sorted(set().union(*[proofkit.case_ids(c) for c in cases]) if cases else []),
                  "codeHashes": proofkit.code_hashes(ws, args.program), "log": [rel_inside(ws, l) for l in args.log],
                  "note": args.note[:250], "recordedAt": now_iso()}
-        data["suites"] = [s for s in data["suites"] if not (s.get("capability") == cap and s.get("name") == entry["name"])] + [entry]
-        cases, _ = proofkit.junit_cases(files, ws)
+        data["suites"] = [s for s in data["suites"] if not (s.get("capability") == cap and s.get("name") == entry["name"]
+                                                            and s.get("platform") == args.platform)] + [entry]
         summary = f"{len(cases)} test case(s) in {len(files)} file(s), {sum(1 for c in cases if c['status'] == 'failed')} failed"
     elif args.cmd == "journey":
         if not re.match(r"^JRN-\d+$", args.journey):
@@ -153,8 +158,10 @@ def main():
             die("--platform is required: the new app targets " + (", ".join(wanted) or "no platform yet"))
         files, hashes = result_files(ws, args.junit)
         flow = rel_inside(ws, args.flow)
+        named = proofkit.junit_cases(files, ws)[0]
         entry = {"journey": args.journey, "platform": platform, "flow": flow,
                  "flowHash": proofkit.sha256_file(os.path.join(ws, flow)), "junit": files, "hashes": hashes,
+                 "named": sorted(set().union(*[proofkit.case_ids(c) for c in named]) if named else []),
                  "codeHashes": proofkit.code_hashes(ws, args.program), "device": args.device[:120],
                  "log": [rel_inside(ws, l) for l in args.log], "note": args.note[:250], "recordedAt": now_iso()}
         data["journeys"] = [j for j in data["journeys"]

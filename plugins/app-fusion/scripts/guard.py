@@ -5,12 +5,13 @@ person's decisions and sign-offs are recorded only with that person's yes.
 Reads the hook input (JSON on stdin). Outside a workspace with analysis/*/program.json it does nothing. Inside one:
   - a file write (Edit, Write, MultiEdit, NotebookEdit) whose path resolves under legacy/<app>, or under the real
     directory a legacy link points to, is denied;
-  - a file write to what the proof reads is denied: analysis/<program>/DECISIONS.*, SIGNOFF.json, VERIFICATION.*,
-    capabilities.json, capability_index.json, rules.json, traceability.json, platform.json,
+  - a write to what the proof reads is denied, by a file tool or from the shell (a redirect, cp/mv/tee/sed -i, or
+    inline python -c / node -e code naming it): analysis/<program>/program.json, DECISIONS.*, SIGNOFF.json,
+    VERIFICATION.*, capabilities.json, capability_index.json, rules.json, traceability.json, platform.json,
     design/placeholders.json and everything under evidence/. The scripts that own them write them;
   - a shell command that records a person's decision or sign-off (decisions.py add|add-json, signoff.py
-    brief|proof|visual) or which design texts are sample data (figma_index.py placeholders) is sent to the person
-    to approve, so a model can never answer for them or exempt its own work;
+    brief|proof|visual, workspace.py intent) or which design texts are sample data (figma_index.py placeholders) is
+    sent to the person to approve, so a model can never answer for them or exempt its own work;
   - a shell command that writes into a legacy path (a redirect whose target is there, rm/mv/cp/tee/touch/sed -i/...
     with an argument there, a git or package-manager write run against it) is sent to the person to approve.
 Anything the guard cannot parse is allowed through to the normal permission rules, never silently blocked.
@@ -33,10 +34,12 @@ PKG_WRITES = re.compile(r"\b(?:npm|yarn|pnpm|bun)\s+(?:install|i|add|remove|ci|u
                         r"\bnpx\s+react-native\s+(?:upgrade|link)\b|\bfastlane\b")
 
 
-JUDGED = re.compile(r"^(?:DECISIONS\.(?:json|md)|SIGNOFF\.json|VERIFICATION\.(?:json|md)|capabilities\.json|capability_index\.json|"
-                    r"rules\.json|traceability\.json|platform\.json|design/placeholders\.json|evidence/.+)$")
-RECORDS = re.compile(r"\bdecisions\.py[\"']?\s+(?:add|add-json)\b|\bsignoff\.py[\"']?\s+\S+\s+(?:brief|proof|visual)\b|"
-                     r"\bfigma_index\.py[\"']?\s+placeholders\b")
+JUDGED = re.compile(r"^(?:program\.json|DECISIONS\.(?:json|md)|SIGNOFF\.json|VERIFICATION\.(?:json|md)|capabilities\.json|"
+                    r"capability_index\.json|rules\.json|traceability\.json|platform\.json|design/placeholders\.json|evidence/.+)$")
+# a person's answers and signatures: the subcommand may come anywhere after the script name
+RECORDS = re.compile(r"\bdecisions\.py\b[^|;&]*\s(?:add|add-json)\b|\bsignoff\.py\b[^|;&]*\s(?:brief|proof|visual)\b|"
+                     r"\bfigma_index\.py\b[^|;&]*\splaceholders\b|\bworkspace\.py\b[^|;&]*\sintent\b")
+INLINE_CODE = re.compile(r"\b(?:python3?|node|perl|ruby)\s+-(?:c|e)\b")
 
 
 def judged_file(ws, path):
@@ -49,6 +52,47 @@ def judged_file(ws, path):
         return None
     rel = "/".join(parts[1:])
     return rel if JUDGED.match(rel) else None
+
+
+# test runners write their results into run folders from the shell (jest, swift test, maestro, tee, cp of Gradle XML):
+# those stay writable from Bash; the file tools still cannot write them, so no result is typed by hand
+RUN_OUTPUT = re.compile(r"^evidence/(?:(?:junit|maestro|canary)/.+/run-\d+(?:/.+)?|shots(?:/.+)?|logs(?:/.+)?)$")
+
+
+def check_bash_judged(command, cwd, ws):
+    """A judged file the command would write: a redirect into it, a write verb naming it, or inline code (python -c,
+    node -e ...) that names it. Reads (cat, jq, grep) pass, and so do test results written into a run folder."""
+    def judged(path):
+        rel = judged_file(ws, resolve(path, cwd))
+        return rel if rel and not RUN_OUTPUT.match(rel) else None
+
+    try:
+        tokens = shlex.split(command, posix=True)
+    except ValueError:
+        tokens = command.split()
+    for m in re.finditer(r"(?<![0-9&<>])>>?\s*(\"[^\"]+\"|'[^']+'|[^\s;&|()]+)", command):
+        rel = judged(m.group(1).strip("\"'"))
+        if rel:
+            return rel
+    if INLINE_CODE.search(command):
+        # inline code names paths inside its own string: look for them in the command text
+        inline = [judged(m) for m in re.findall(r"[\w./~-]*analysis/[\w-]+/[\w./-]+", command)]
+        if any(inline):
+            return next(n for n in inline if n)
+    named = [judged(t) for t in tokens if "/" in t or t.endswith(".json") or t.endswith(".md")]
+    named = [n for n in named if n]
+    if not named:
+        return None
+    for i, t in enumerate(tokens):
+        verb = os.path.basename(t)
+        if verb in WRITE_VERBS or (verb == "sed" and any(a.startswith("-i") for a in tokens[i + 1:i + 4])):
+            rest = [a for a in tokens[i + 1:] if not a.startswith("-")]
+            rest = rest[: next((k for k, a in enumerate(rest) if a in ("&&", "||", ";", "|")), len(rest))]
+            targets = rest[-1:] if verb in ("cp", "rsync", "install", "ln") else rest
+            hit = [judged(a) for a in targets]
+            if any(hit):
+                return next(h for h in hit if h)
+    return None
 
 
 def decide(decision, reason):
@@ -75,6 +119,8 @@ def protected_roots(ws):
             roots[os.path.normpath(os.path.abspath(link))] = app.get("name")
             if os.path.exists(link):
                 roots[os.path.realpath(link)] = app.get("name")
+            if app.get("snapshotOf"):  # a snapshot's source repository is just as read-only
+                roots[os.path.realpath(app["snapshotOf"])] = app.get("name")
     legacy = os.path.join(ws, "legacy")
     if os.path.isdir(legacy):
         for entry in os.listdir(legacy):
@@ -185,6 +231,10 @@ def main():
         return
     if tool == "Bash":
         command = args.get("command") or ""
+        judged = check_bash_judged(command, cwd, os.path.realpath(ws))
+        if judged:
+            decide("deny", f"App Fusion: {judged} is an input of the proof, written only by its script. Run the script "
+                           "that owns it instead of writing it from the shell.")
         if RECORDS.search(command):
             decide("ask", "App Fusion: this records a person's decision or sign-off. Approve only if these are that "
                           "person's own answers, given in this session.")

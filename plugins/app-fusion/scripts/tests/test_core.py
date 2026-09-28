@@ -149,6 +149,15 @@ class Extractors(unittest.TestCase):
         self.assertEqual({t["kind"] for t in p["targets"]}, {"app", "extension"})
         self.assertEqual(len(p["privacyManifest"]), 1)
 
+    def test_android_ids_in_single_quotes_and_flavors(self):
+        from fusionlib import android as droid
+        with tempfile.TemporaryDirectory() as root:
+            helpers.write(root, "app/build.gradle", "android {\n  namespace 'com.x.mgr'\n  defaultConfig { applicationId 'com.x.mgr' }\n"
+                                                   "  productFlavors { develop { applicationId 'com.x.mgr.develop' } }\n}\n")
+            self.assertEqual(droid.platform(root)["bundleIds"], ["com.x.mgr", "com.x.mgr.develop"])
+            helpers.write(root, "app/build.gradle", "plugins { id 'com.android.application' }\nandroid { namespace = \"com.x.only\" }\n")
+            self.assertEqual(droid.platform(root)["bundleIds"], ["com.x.only"], "the namespace when no applicationId is set")
+
     def test_native_android(self):
         root = helpers.android_app(os.path.join(self.root, "and"))
         self.assertEqual(detect(root)["stack"], "android-native")

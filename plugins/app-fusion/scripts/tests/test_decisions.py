@@ -94,6 +94,53 @@ class Decisions(unittest.TestCase):
         self.assertEqual(self.ids()["View pay documents"], "CAP-002")
         self.assertEqual(self.w.json("analysis", "p", "capabilities.json")["retired"], [])
 
+    def test_retired_ids_a_person_let_go_and_reworded_rules(self):
+        self.render_map([cap("Approve a request", mgr={"files": ["src/approve.ts"], "evidence": "src/approve.ts:1"}),
+                         cap("Old export", mgr={"files": ["src/export.ts"], "evidence": "src/export.ts:1"})])
+        self.w.run("decisions.py", "add", "p", "--about", "CAP-002", "--kind", "gap", "--choice", "drop")
+        self.render_map([cap("Approve a request", mgr={"files": ["src/approve.ts"], "evidence": "src/approve.ts:1"})])
+        self.assertEqual(self.w.json("analysis", "p", "capabilities.json")["retired"], [], "the person's own drop keeps nothing alive")
+        # a reworded rule keeps its id by its citation, so the decision about it stays attached
+        self.w.put_json("analysis/p/rules_result.json", {"rules": [rule("Comment needed to reject", source="src/approve.ts:10-20")]})
+        self.w.run("render.py", "rules", "p")
+        rid = self.w.json("analysis", "p", "rules.json")["rules"][0]["id"]
+        self.w.run("decisions.py", "add", "p", "--about", rid, "--kind", "rule", "--choice", "wrong", "--note", "fixed on purpose")
+        self.w.put_json("analysis/p/rules_result.json", {"rules": [rule("A reject needs a comment", source="src/approve.ts:11-20")]})
+        self.w.run("render.py", "rules", "p")
+        rules = self.w.json("analysis", "p", "rules.json")
+        self.assertEqual(rules["rules"][0]["id"], rid)
+        self.assertEqual(rules["retired"], [])
+        # a rule that is really gone, with a decision about it, is reported until a person lets it go
+        self.w.put_json("analysis/p/rules_result.json", {"rules": [rule("Something else", source="src/other.ts:1-2")]})
+        out = self.w.run("render.py", "rules", "p")
+        self.assertIn(rid, out.stdout)
+        self.assertEqual([r["id"] for r in self.w.json("analysis", "p", "rules.json")["retired"]], [rid])
+        self.w.put_json("analysis/p/rules_aliases.json", {rid: None})
+        self.w.run("render.py", "rules", "p")
+        self.assertEqual(self.w.json("analysis", "p", "rules.json")["retired"], [])
+
+    def test_a_conflict_whose_rule_names_do_not_resolve_is_still_asked(self):
+        self.render_map([cap("Approve a request")])
+        self.w.put_json("analysis/p/rules_result.json", {"rules": [rule("Comment required on reject"), rule("No comment", app="emp")],
+                                                         "conflicts": [{"capability": "CAP-001", "difference": "one asks for a comment",
+                                                                        "rules": [{"app": "mgr", "name": "Comment required on a reject"},
+                                                                                  {"app": "emp", "name": "Totally unrelated wording"}]}]})
+        self.w.run("render.py", "rules", "p")
+        conf = self.w.json("analysis", "p", "rules.json")["conflicts"][0]
+        self.assertEqual(len(conf["rules"]), 1, "the paraphrased mgr name resolves, the other does not")
+        self.assertTrue(conf["key"].startswith("CAP-001:conflict-"))
+        qs = {(q["kind"], q["about"]) for q in self.open()}
+        self.assertIn(("conflict", conf["key"]), qs)
+        self.w.run("decisions.py", "add", "p", "--about", conf["key"], "--kind", "conflict", "--choice", "take:mgr")
+
+    def test_native_api_questions_use_keys_a_person_can_answer(self):
+        self.render_map([cap("Approve a request")])
+        self.w.put_json("analysis/p/evidence/api-parity.json", {"capabilities": {"CAP-001": {"missing": ["GET /x/{} (android)", "GET /x/{} (ios)"]}}})
+        api = [q for q in self.open() if q["kind"] == "api"]
+        self.assertEqual([q["about"] for q in api], ["CAP-001:GET /x/{}"])
+        self.w.run("decisions.py", "add", "p", "--about", "CAP-001:GET /x/{}", "--kind", "api", "--choice", "dropped")
+        self.assertEqual([q for q in self.open() if q["kind"] == "api"], [])
+
     def test_rules_no_referee_checked_or_no_capability_owns(self):
         self.render_map([cap("Approve a request")])
         self.w.put_json("analysis/p/rules_result.json", {
@@ -143,6 +190,8 @@ class Status(unittest.TestCase):
             # Brief
             #### Phase 0 — Foundation
             Command: /app-fusion:fuse-scaffold
+            Exit criteria:
+            - [ ] the app builds
             #### Phase 1 — Approvals
             Command: /app-fusion:fuse-build
             Capabilities: CAP-001
@@ -182,6 +231,32 @@ class Status(unittest.TestCase):
         self.w.run("workspace.py", "intent", "p", "--goal", "understand")
         self.w.run("signoff.py", "p", "brief", "--by", "Kari Nordmann")
         self.assertTrue(self.next()["command"].startswith("(done)"), "understanding ends with the approved brief")
+
+    def test_accepted_partial_proof_ticked_brief_and_a_dirty_legacy_app(self):
+        self.w.run("signoff.py", "p", "brief", "--by", "Kari Nordmann", "--covers", "Phase 0, Phase 1")
+        app = self.w.path("new-app", "p")
+        helpers.write(app, "docs/fusion/SCAFFOLD.md", "done\n")
+        helpers.write(app, "src/a.ts", "export const a = 1\n")
+        helpers.write(app, "docs/fusion/CAP-001.md", "## Files\n- `src/a.ts`\n")
+        self.w.run("fusion_proof.py", "p", check=False)
+        v = self.w.json("analysis", "p", "VERIFICATION.json")
+        v["capabilities"]["CAP-001"]["verdict"] = "PARTLY PROVEN"  # say the Android journey cannot run here
+        self.w.put_json("analysis/p/VERIFICATION.json", v)
+        self.assertEqual(self.next()["command"], "/app-fusion:fuse-build p CAP-001")
+        self.w.run("signoff.py", "p", "proof", "--by", "Kari Nordmann", "--caps", "CAP-001", "--accept", "no emulator in CI yet")
+        self.assertIn("fuse-brief p approve", self.next()["command"], "a signed, accepted partial proof is settled")
+        # ticking a met criterion or proposing a revision keeps the approval
+        path = self.w.path("analysis", "p", "FUSION_BRIEF.md")
+        with open(path, encoding="utf-8") as fh:
+            text = fh.read()
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(text.replace("- [ ] the app builds", "- [x] the app builds\nProposed revision: split Phase 2 by domain"))
+        self.assertNotIn("changed after it was approved", self.next()["reason"])
+        # a legacy checkout someone changed stops everything, with a step a person can take
+        with open(self.w.path("legacy", "mgr", "package.json"), "a", encoding="utf-8") as fh:
+            fh.write("\n")
+        step = self.next()
+        self.assertIn("restore legacy/mgr", step["command"])
 
 
 if __name__ == "__main__":

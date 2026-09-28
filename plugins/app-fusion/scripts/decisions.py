@@ -14,6 +14,7 @@ docs/DESIGN.md). The plugin's guard asks the person to confirm every `add` and `
 """
 
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -25,7 +26,7 @@ from fusionlib.common import (check_name, die, load_json, md_table, now_iso, one
                               write_json, write_text)
 
 STACKS = {"react-native", "native", "swiftui", "compose", "flutter", "kmp"}
-RULES = r"RULE-\d+(?:\+RULE-\d+)+"
+RULES = r"(?:RULE-\d+(?:\+RULE-\d+)+|conflict-[0-9a-f]{8})"
 EVENT_OR_KEY = r"(?:CAP-\d+:)?[A-Za-z0-9_.-]+:\S.*"
 KINDS = {
     "conflict": (rf"^(?:CAP-\d+|CAP-\d+:{RULES}|rules:{RULES})$",
@@ -82,6 +83,18 @@ def find(decisions, about, kind):
 def rule_conflict_about(capability, rule_ids):
     ids = "+".join(sorted(set(rule_ids), key=lambda r: int(r.split("-")[1])))
     return f"{capability}:{ids}" if capability else f"rules:{ids}"
+
+
+def conflict_key(conf):
+    """The question key of a rule conflict: its rule ids when two or more were resolved, else a key made from its
+    difference, so a conflict whose rule names did not resolve is still asked, never lost."""
+    if conf.get("key"):
+        return conf["key"]
+    ids = [r for r in conf.get("rules") or [] if isinstance(r, str) and re.match(r"^RULE-\d+$", r)]
+    if len(set(ids)) >= 2:
+        return rule_conflict_about(conf.get("capability"), ids)
+    digest = hashlib.sha1(one_line(conf.get("difference"), 400).encode("utf-8")).hexdigest()[:8]
+    return f"{conf.get('capability') or 'rules'}:conflict-{digest}"
 
 
 def add(ws, program, items):
@@ -188,18 +201,18 @@ def open_questions(ws, program):
                         "options": near[:3] + ["none"]})
     for conf in rules.get("conflicts", []):
         ids = conf.get("rules") or []
-        if len(ids) < 2:
-            continue
-        about = rule_conflict_about(conf.get("capability"), ids)
+        about = conflict_key(conf)
         if (about, "conflict") not in decided:
-            owners = sorted({r["app"] for r in rules.get("rules", []) if r["id"] in ids}) or apps
+            owners = sorted({r["app"] for r in rules.get("rules", []) if r["id"] in ids})
+            owners = owners if len(owners) >= 2 else apps
+            named = ", ".join(ids) if len(ids) >= 2 else "Two rules (" + (", ".join(ids + list(conf.get("unresolved") or [])) or "names not resolved") + ")"
             out.append({"about": about, "kind": "conflict", "priority": 1,
-                        "question": f"Rules {', '.join(ids)} decide the same thing differently"
+                        "question": f"{'Rules ' if len(ids) >= 2 else ''}{named} decide the same thing differently"
                                     + (f" in {conf['capability']} {names.get(conf['capability'], '')}" if conf.get("capability") else "")
                                     + f": {conf.get('difference')}",
                         "options": [f"take:{a}" for a in owners] + ["design", "new-spec", "defer"]})
     for cid, r in api.items():
-        for missing in r.get("missing") or []:
+        for missing in dict.fromkeys(re.sub(r" \((?:ios|android)\)$", "", m) for m in r.get("missing") or []):
             about = f"{cid}:{missing}"
             if (about, "api") not in decided:
                 out.append({"about": about, "kind": "api", "priority": 2,
@@ -222,10 +235,13 @@ def open_questions(ws, program):
     if target in (None, "", "undecided") and ("stack", "stack") not in decided:
         out.append({"about": "stack", "kind": "stack", "priority": 1 if approved else 3,
                     "question": "Which stack does the new app use?", "options": sorted(STACKS)})
-    if prog.get("storeIdentity") in (None, "", "undecided") and ("continuity:store-identity", "continuity") not in decided:
+    store = prog.get("storeIdentity")
+    store_open = store in (None, "", "undecided") or (isinstance(store, dict) and (not store or "undecided" in store.values()))
+    if store_open and ("continuity:store-identity", "continuity") not in decided:
         out.append({"about": "continuity:store-identity", "kind": "continuity", "priority": 1 if approved else 3,
-                    "question": "Which store listing and bundle id does the new app ship under (an existing app's, so its users "
-                                "update in place, or a new listing)?", "options": []})
+                    "question": "Which store listing and bundle id does the new app ship under on each platform (an existing "
+                                "app's, so its users update in place, or a new listing)? The answer may differ per platform.",
+                    "options": []})
     out.sort(key=lambda q: (q["priority"], q["kind"], q["about"]))
     return out
 

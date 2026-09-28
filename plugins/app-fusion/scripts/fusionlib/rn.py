@@ -344,6 +344,9 @@ def extract(root):
     ios_plat = apple.platform(os.path.join(root, "ios"), "ios/")
     and_plat = droid.platform(os.path.join(root, "android"), "android/")
     plat = _merge_platforms(ios_plat, and_plat)
+    # each shell's own facts, so continuity is checked per platform (an iOS entitlement never covers Android users)
+    plat["byPlatform"] = {name: {k: v for k, v in part.items() if k in PER_PLATFORM}
+                          for name, part in (("ios", ios_plat), ("android", and_plat)) if os.path.isdir(os.path.join(root, name))}
     for p in prefixes:
         if "://" in p:
             scheme, _, rest = p.partition("://")
@@ -457,6 +460,10 @@ def _area(rel):
         i = parts.index("screens")
         return parts[i + 1] if i + 1 < len(parts) - 1 else parts[i]
     return parts[1] if len(parts) > 2 and parts[0] == "src" else parts[0]
+
+
+PER_PLATFORM = {"bundleIds", "urlSchemes", "associatedDomains", "appLinkHosts", "push", "extensions", "appGroups",
+                "keychainGroups", "privacyManifest", "minOS"}
 
 
 def _merge_platforms(a, b):

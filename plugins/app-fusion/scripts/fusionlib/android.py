@@ -35,15 +35,19 @@ def _lit(s):
 
 
 def _gradle_values(root):
-    app_ids, min_sdk, target_sdk = [], [], []
+    """Application ids (single or double quotes, flavors included), else the namespace of an app module, and the SDK
+    levels from every build.gradle(.kts)."""
+    app_ids, namespaces, min_sdk, target_sdk = [], [], [], []
     for rel, full in walk(root, {".gradle", ".kts"}):
         if not os.path.basename(rel).startswith("build.gradle"):
             continue
         text = read_text(full) or ""
-        app_ids += re.findall(r"\bapplicationId\s*=?\s*\"([^\"]+)\"", text)
+        app_ids += re.findall(r"\bapplicationId\s*=?\s*[\"']([^\"']+)[\"']", text)
+        if "com.android.application" in text or re.search(r"\bapplicationId\b", text):
+            namespaces += re.findall(r"\bnamespace\s*=?\s*[\"']([^\"']+)[\"']", text)
         min_sdk += re.findall(r"\bminSdk(?:Version)?\s*=?\s*\(?\s*(\d+)", text)
         target_sdk += re.findall(r"\btargetSdk(?:Version)?\s*=?\s*\(?\s*(\d+)", text)
-    return sorted(set(app_ids)), sorted({int(x) for x in min_sdk}), sorted({int(x) for x in target_sdk})
+    return sorted(set(app_ids) or set(namespaces)), sorted({int(x) for x in min_sdk}), sorted({int(x) for x in target_sdk})
 
 
 def platform(root, rel_prefix=""):

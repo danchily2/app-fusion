@@ -33,6 +33,7 @@ Follow the stack profile `${CLAUDE_PLUGIN_ROOT}/references/targets/<stack>.md`:
    with JUnit output into `$RUN`, and keep the raw output with `2>&1 | tee $RUN/output.txt`.
 3. Record it:
    `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" suite $program --capability all --name verify-unit --command "<cmd>" --junit $RUN --log $RUN/output.txt`.
+   For a native pair, run and record each half: `--platform ios --name verify-ios`, then `--platform android --name verify-android`.
 
 A failure caused by this machine is still a failure: say why in `--note`.
 
@@ -70,8 +71,9 @@ python3 "${CLAUDE_PLUGIN_ROOT}/scripts/platform_parity.py" $program
 python3 "${CLAUDE_PLUGIN_ROOT}/scripts/fusion_proof.py" $program [CAP-NNN ...]
 ```
 
-`fusion_proof.py` writes `VERIFICATION.md` and `VERIFICATION.json`. Judging some capabilities keeps the other
-verdicts, each with the time it was judged. Its exit code 1 only means that something is not PROVEN.
+`fusion_proof.py` writes `VERIFICATION.md` and `VERIFICATION.json`. Every run judges every built capability, so a
+change for one (a shared catalog, a decision) shows in the others; the ids you give only choose what it prints and its
+exit code. Exit code 1 only means that something asked about is not PROVEN.
 
 Show the person:
 - the verdict per capability, and the reasons **word for word**

@@ -35,6 +35,15 @@ From an adversarial review of 0.1.0 and a trial on two production apps.
 - **The guard protects the judge.** File edits to decisions, sign-offs, verdicts, catalogs and evidence are denied;
   recording a person's answer asks that person. The design analyst has an allowlist of Figma read tools and nothing
   else. The review, brief, build and verify commands can only be started by a person.
+- **A second review, of these fixes.** Every run now judges every built capability, so a change made for one shows in
+  the others. A signed, accepted PARTLY PROVEN capability no longer holds up the status. Ticking a met criterion in
+  the brief keeps its approval. A rule-conflict decision wins over the capability's for its rules. A removed result
+  file counts as tampering. The canary allows one break at a time, in the capability's own files, of at most six real
+  lines, credited only from its own run folder. Parity results merge per capability. Parked capabilities leave their
+  journeys. A native pair is judged per half, and platform continuity per platform, with a store listing per platform
+  (`--store ios=me-ios,android=vmm`). Rule ids survive a reworded re-run, a conflict whose rule names do not resolve is
+  still asked, and a person's own drop no longer blocks a re-map. The guard also protects `program.json`, asks before
+  `workspace.py intent`, refuses shell writes to the proof's inputs, and protects a snapshot's source.
 - **Smaller fixes.** Locales keep script and region where users differ (zh-Hans and zh-Hant, pt-BR and pt) and read
   Base as the source language; design-copy templates match whole words; screen texts come from the design context
   when cached; a rules slice no longer overwrites the map's arguments; a React Native app's native code is sharded;

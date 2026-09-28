@@ -191,6 +191,31 @@ class Guard(unittest.TestCase):
         self.assertEqual(self.decide("Bash", command="python3 scripts/signoff.py p brief --by Kari"), "ask")
         self.assertEqual(self.decide("Bash", command="python3 scripts/decisions.py open p --json"), "allow")
         self.assertEqual(self.decide("Bash", command="python3 scripts/signoff.py p show"), "allow")
+        # the subcommand may come after other options; intent records the person's answers too
+        self.assertEqual(self.decide("Bash", command="python3 scripts/signoff.py --workspace . p proof --by X --caps CAP-001"), "ask")
+        self.assertEqual(self.decide("Bash", command="python3 scripts/signoff.py p --by X proof --caps CAP-001"), "ask")
+        self.assertEqual(self.decide("Bash", command="python3 scripts/workspace.py intent p --platforms ios"), "ask")
+        self.assertEqual(self.decide("Write", file_path="analysis/p/program.json"), "deny")
+        # the shell cannot write the judge's inputs either, but test runners still write their run folders
+        for cmd in ("echo '{}' > analysis/p/VERIFICATION.json", "cat x.json | tee analysis/p/SIGNOFF.json",
+                    "cp /tmp/v.json analysis/p/evidence/test-runs.json",
+                    "python3 -c \"open('analysis/p/SIGNOFF.json','w').write('{}')\""):
+            self.assertEqual(self.decide("Bash", command=cmd), "deny", cmd)
+        for cmd in ("cat analysis/p/VERIFICATION.json", "jq . analysis/p/DECISIONS.json",
+                    "npx jest 2>&1 | tee analysis/p/evidence/junit/verify/run-1/output.txt",
+                    "cp build/test-results/TEST-a.xml analysis/p/evidence/junit/CAP-001/run-2/"):
+            self.assertEqual(self.decide("Bash", command=cmd), "allow", cmd)
+
+    def test_a_snapshots_source_is_protected_too(self):
+        w = Workspace()
+        try:
+            w.run("workspace.py", "init", "s", "--source", f"mgr={w.rn}", "--snapshot")
+            payload = json.dumps({"tool_name": "Write", "tool_input": {"file_path": os.path.join(w.rn, "src", "x.ts")}, "cwd": w.ws})
+            out = subprocess.run([sys.executable, os.path.join(helpers.SCRIPTS, "guard.py")], input=payload, capture_output=True,
+                                 text=True, env={**os.environ, "CLAUDE_PROJECT_DIR": w.ws})
+            self.assertEqual(json.loads(out.stdout)["hookSpecificOutput"]["permissionDecision"], "deny")
+        finally:
+            w.close()
 
     def test_off_switch_and_outside_a_workspace(self):
         payload = json.dumps({"tool_name": "Write", "tool_input": {"file_path": "legacy/mgr/x"}, "cwd": self.w.ws})

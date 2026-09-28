@@ -62,9 +62,15 @@ def dec_ids(text):
 
 
 def write_result(ws, program, name, rule, results, extra=None):
-    out = {"program": program, "version": 2, "generated": now_iso(), "rule": rule, "capabilities": results}
-    out.update(extra or {})
+    """Merge this run's results into the file: a run for one capability replaces only that capability's entry, so
+    `--capability CAP-002` never wipes CAP-001's result. Each entry carries what it read, so the proof tells a
+    fresh one from a stale one."""
     path = os.path.join(program_dir(ws, program), "evidence", name)
+    merged = dict((load_json(path) or {}).get("capabilities") or {})
+    merged.update(results)
+    out = {"program": program, "version": 2, "generated": now_iso(), "rule": rule,
+           "capabilities": dict(sorted(merged.items(), key=lambda kv: int(kv[0].split("-")[1]) if kv[0].split("-")[-1].isdigit() else 0))}
+    out.update(extra or {})
     write_json(path, out)
     counts = {}
     for r in results.values():

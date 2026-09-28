@@ -146,7 +146,10 @@ const confirmations = await parallel(critHigh.map(f => () =>
     `confirm:${f.cwe}@${String(f.source).split(':')[0].split('/').pop()}`).then(v => ({ f, v }), () => ({ f, v: null }))))
 for (const item of confirmations.filter(Boolean)) {
   const { f, v } = item
-  if (!v) continue
+  if (!v) {
+    f.severityNote = 'The second judge did not answer (skipped, errored or out of budget): this severity is one agent\'s call. A person triages it before patching.'
+    continue
+  }
   if (!v.real) {
     f.severity = 'Medium'
     f.severityNote = `Split verdict (refuter kept it, confirmer disagreed): ${v.reason}. A person triages it before patching.`

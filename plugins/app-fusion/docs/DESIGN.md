@@ -89,6 +89,7 @@ This file is the contract between the skills, agents, workflows and scripts. Whe
     traceability.json, TRACEABILITY.md   capability <-> screens <-> new-app module; the gaps
     rules_result.json               the rules workflow's result, as returned
     rules.json, BUSINESS_RULES.md, DATA_OBJECTS.md   the rendered rules, with stable RULE ids
+    rules_aliases.json              optional: {"RULE-007": "<name in rules_result.json>" | null} for a retired rule id
     DECISIONS.json, DECISIONS.md    a person's answers (decisions.py)
     CONTINUITY.md                   store identity, users, data, auth, push, links, analytics, sunset
     FUSION_BRIEF.md
@@ -178,7 +179,8 @@ fields of legacy evidence, which are relative to `legacy/<app>`.
 - `goal`: `build` | `understand`.
 - `target.stack`: `react-native` | `native` (SwiftUI plus Compose) | `swiftui` | `compose` | `flutter` | `kmp` |
   `undecided`.
-- `storeIdentity`: an app name, `new-listing` or `undecided`.
+- `storeIdentity`: an app name, `new-listing` or `undecided`, or one per platform:
+  `{"ios": "me-ios", "android": "vmm"}` (the iOS app updates one app's listing, the Android app another's).
 
 ### apps/&lt;app&gt;/inventory.json
 
@@ -274,7 +276,12 @@ which the trace links, and is out of the plan until a person decides its `scope`
 
 `rules_result.json` is the workflow's result as returned; `render.py rules` writes `rules.json` from it, and every
 consumer reads `rules.json`. A rule no referee could check (`unverified`) is kept at Low confidence with a question,
-never dropped, and an `attach` decision gives a rule its capability. Each rule has these fields:
+never dropped, and an `attach` decision gives a rule its capability. RULE ids stay across re-runs: a person's alias
+(`rules_aliases.json`), then the same app, file and name, then the same app and file with overlapping cited lines
+(a re-run rewords names). An old id that matches nothing but that a decision still names is listed in `retired`, and
+`fuse-status` stops there until a person maps it or lets it go (`null`). Each conflict gets a stable `key`, its
+question: `CAP-NNN:RULE-a+RULE-b`, or, when its rule names did not resolve to two cards, `CAP-NNN:conflict-<8 hex>`
+from its difference, with the names in `unresolved`, so it is asked, never lost. Each rule has these fields:
 - `name`, `app`, `capability` (a CAP id or null)
 - `category`: Calculation | Validation | Eligibility | Lifecycle | Policy | Formatting
 - `priority`: P0 | P1 | P2
@@ -300,7 +307,7 @@ fit its kind, and the guard asks the person to confirm every `add` and `add-json
 
 | kind | about | choices |
 | --- | --- | --- |
-| conflict | `CAP-NNN` (the capability), `CAP-NNN:RULE-a+RULE-b` (a rule conflict inside it) or `rules:RULE-a+RULE-b` | `take:<app>`, `design`, `both-by-role`, `new-spec`, `defer` |
+| conflict | `CAP-NNN` (the capability), `CAP-NNN:RULE-a+RULE-b` (a rule conflict inside it), `rules:RULE-a+RULE-b`, or `CAP-NNN:conflict-<8 hex>` (a conflict whose rules did not resolve) | `take:<app>`, `design`, `both-by-role`, `new-spec`, `defer` |
 | gap | `CAP-NNN` (no design) | `design-it`, `carry-as-is`, `drop`, `defer` |
 | scope | `CAP-NNN` (a designed feature no legacy app has) | `in`, `out`, `defer` |
 | rule | `RULE-NNN` | `confirmed` (keep the legacy behavior), `wrong` (fix it; the fix in the note), `discuss` |
@@ -324,10 +331,11 @@ storage, locales, privacy) are 2, the others 4. The stack and the store listing 
 
 ```json
 { "version": 2, "date": "YYYY-MM-DD",
-  "suites":   [ { "capability": "CAP-001 | all", "name": "unit", "command": "", "junit": ["<files>"], "hashes": {"<file>": "<sha256>"},
+  "suites":   [ { "capability": "CAP-001 | all", "name": "unit", "platform": "ios | android | null", "command": "",
+                  "junit": ["<files>"], "hashes": {"<file>": "<sha256>"}, "named": ["CAP-001", "RULE-003"],
                   "codeHashes": {"CAP-001": "<code hash>"}, "log": [], "note": "", "recordedAt": "" } ],
-  "journeys": [ { "journey": "JRN-001", "platform": "ios", "flow": "", "flowHash": "", "junit": [], "hashes": {}, "codeHashes": {},
-                  "device": "", "recordedAt": "" } ],
+  "journeys": [ { "journey": "JRN-001", "platform": "ios", "flow": "", "flowHash": "", "junit": [], "hashes": {}, "named": [],
+                  "codeHashes": {}, "device": "", "recordedAt": "" } ],
   "canaries": [ { "capability": "CAP-001", "change": "", "file": "", "diff": "", "linesChanged": 1, "junit": [], "hashes": {},
                   "failedCases": ["<classname>::<name>"], "failedOther": 0, "codeHash": "", "recordedAt": "" } ],
   "screenshots": [ { "screen": "<fileKey>:<nodeId>", "capability": "CAP-001", "app": "evidence/shots/...png", "hash": "" } ] }
@@ -335,14 +343,22 @@ storage, locales, privacy) are 2, the others 4. The stack and the store listing 
 
 `evidence.py` writes suites, journeys and screenshots; `canary.py` writes canaries. A `--junit` folder is expanded to
 its XML files when the run is recorded, and `evidence.py dir` makes a fresh run folder, so files of other runs never
-count. `codeHashes` holds the code hash of every built capability at recording time.
+count. `codeHashes` holds the code hash of every built capability at recording time, and `named` the ids its tests
+named, so a result file that is later edited or removed counts as tampering for exactly those capabilities. A native
+pair records each half's suites with `platform`.
+
+`canary.py`: one canary at a time in the whole program; the break goes into a file of the capability's own `## Files`;
+results are read only from the canary's run folder; the break changes at most six lines and more than whitespace;
+the file is restored byte for byte, with its hash checked, whatever happens.
 
 ### SIGNOFF.json
 
 `{"brief": [{by, at, hash, covers}], "proof": [{by, at, capabilities: {CAP: {verdict, codeHash}}, accept?}],
 "visual": [{by, at, capabilities: {CAP: {codeHash, shots: {screen: hash}}}}]}`, appended by `scripts/signoff.py`. The
-latest entry counts, and only while what it names is unchanged: the brief's text, a capability's verdict and code, its
-screenshots. A PARTLY PROVEN capability is signed only with the person's reason (`accept`); a NOT PROVEN one never.
+latest entry counts, and only while what it names is unchanged: the brief's text (read with every checkbox as unticked
+and without `Proposed revision:` lines, so ticking a met criterion keeps the approval), a capability's verdict and code,
+its screenshots. A PARTLY PROVEN capability is signed only with the person's reason (`accept`); a NOT PROVEN one never,
+and a signed, accepted PARTLY PROVEN capability no longer holds up `fuse-status`.
 
 ## Proof
 
@@ -353,14 +369,17 @@ screenshots. A PARTLY PROVEN capability is signed only with the person's reason 
 1. **Built**: the porting notes' `## Files` name at least one source file inside the new app (one per half of a
    native pair).
 2. **Tests ran**: a fresh recorded suite has tests naming the capability or one of its rules; at least one executed
-   and none failed. A result file edited after it was recorded is a failure; a result older than the code is a gap.
+   and none failed; for a native pair, each half on its own suites. A result file edited or removed after it was
+   recorded is a failure; a result older than the code is a gap.
 3. **Rules traced**: every P0 and P1 rule of the capability is named by a test that passed in a fresh suite. Left
-   out: rules marked `wrong`, and rules of an app a `take:<app>` decision did not keep (for the capability, or for a
-   rule conflict). A gap: a `discuss` rule; a rule with a suspected defect (or a doubtful P0 rule) no person decided;
-   an undecided conflict; a `design` or `new-spec` decision without a passing test named after its DEC id.
+   out: rules marked `wrong`, and rules of an app a `take:<app>` decision did not keep; a rule-conflict decision is
+   the more specific answer and wins over the capability's for the rules it names. For a native pair, each rule passes
+   in each half. A gap: a `discuss` rule; a rule with a suspected defect (or a doubtful P0 rule) no person decided; an
+   undecided conflict; a `design` or `new-spec` decision without a passing test named after its DEC id.
 4. **Journeys**: every journey through the capability passed on every target platform, in a result that names the
-   journey, recorded after the current code of every capability on it, with the flow unchanged. A journey through a
-   capability not built yet is a gap, and `fuse-status` moves on to build that capability instead of looping.
+   journey, recorded after the current code of every capability on it, with the flow unchanged. A capability a
+   person parked (dropped, out of scope, deferred) is left out of its journeys. A journey through a capability not
+   built yet is a gap, and `fuse-status` moves on to build that capability instead of looping.
 5. **API parity**: `api_parity.py` finds every legacy endpoint of the capability in its own files or listed call
    sites, mapped through `api-map.json`, or covered by an `api` decision.
 6. **Strings**: `i18n_parity.py` finds every legacy key mapped and present in every required locale, in each half; a
@@ -383,9 +402,12 @@ Each capability gets one verdict:
 - **NOT PROVEN**: any check failed.
 - **PARTLY PROVEN**: nothing failed, but a check could not pass. Each such check is listed with its reason.
 
-Judging some capabilities replaces only their verdicts. **Platform continuity** is judged once for the app
-(`platform_parity.py`: identity under the kept store listing, link domains, URL schemes, push, notification
-categories and channels, extensions, app and keychain groups, locales, privacy manifest) and shown with the verdicts.
+Every run judges every built capability (a verdict kept from an earlier run could hide a change in a shared catalog,
+a decision or another capability's code); the ids given only choose what is printed and the exit code. Each parity
+script merges its results per capability, so a run for one never wipes another's. **Platform continuity** is judged
+once for the app, per target platform (`platform_parity.py`: identity under the store listing kept on that platform,
+link domains, URL schemes, push, notification categories on iOS and channels on Android, extensions, app and keychain
+groups, locales, privacy manifest), and shown with the verdicts.
 Visual conformance is never automatic: the report shows each designed screen beside the app's screenshot, and a named
 person signs it, and the proof, with `/app-fusion:fuse-verify <program> sign`.
 
@@ -468,11 +490,15 @@ is unavailable.
 `hooks/hooks.json` registers one `PreToolUse` hook on `Edit|Write|NotebookEdit|MultiEdit|Bash`. It is a no-op outside
 a workspace with `analysis/*/program.json`. Inside one:
 - It denies a file write whose path resolves under `legacy/` or under a source app's real path.
-- It denies a file write to what the proof reads: `DECISIONS.*`, `SIGNOFF.json`, `VERIFICATION.*`,
-  `capabilities.json`, `capability_index.json`, `rules.json`, `traceability.json`, `platform.json`,
-  `design/placeholders.json` and everything under `evidence/`. Their scripts write them.
+- It denies a write to what the proof reads, by a file tool or from the shell (a redirect, `cp`/`mv`/`tee`/`sed -i`,
+  or inline `python -c` / `node -e` code naming it): `program.json`, `DECISIONS.*`, `SIGNOFF.json`,
+  `VERIFICATION.*`, `capabilities.json`, `capability_index.json`, `rules.json`, `traceability.json`,
+  `platform.json`, `design/placeholders.json` and everything under `evidence/`. Their scripts write them. From the
+  shell, test runners still write their results into run folders, screenshots and logs.
 - It asks the person before a shell command that records their decision or sign-off (`decisions.py add|add-json`,
-  `signoff.py brief|proof|visual`) or the design's sample data (`figma_index.py placeholders`).
+  `signoff.py brief|proof|visual`, `workspace.py intent`) or the design's sample data (`figma_index.py
+  placeholders`), wherever the subcommand stands in the command.
+- A `--snapshot` source repository is protected like a link's target.
 - It asks for a shell command that names a legacy path together with a writing verb: `>`, `tee`, `sed -i`, `rm`,
   `mv`, `cp`, `git commit|checkout|reset|clean|stash|apply`, or a package install.
 

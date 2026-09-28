@@ -7,6 +7,12 @@ from . import proofkit, signatures
 from .common import load_json, program_dir
 
 PREFIX = "/app-fusion:"
+SCRIPTS = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def script(name):
+    """The command that runs one of the plugin's scripts from any folder."""
+    return f'python3 "{os.path.join(SCRIPTS, name)}"'
 
 
 def _mtime(path):
@@ -124,7 +130,7 @@ def next_step(ws, program, open_count=None):
     pending = sorted(os.listdir(os.path.join(pdir, "evidence", "canary"))) if os.path.isdir(os.path.join(pdir, "evidence", "canary")) else []
     pending = [c for c in pending if os.path.isfile(os.path.join(pdir, "evidence", "canary", c, "pending.json"))]
     if pending:
-        return (f"python3 scripts/canary.py finish {p} {pending[0]}  (or: canary.py abort {p} {pending[0]})",
+        return (f"{script('canary.py')} finish {p} {pending[0]}  (or: canary.py abort {p} {pending[0]})",
                 f"a deliberate break is still in {pending[0]}'s code: finish or abort the canary first")
     if not have["preflight"]:
         return f"{PREFIX}fuse-preflight {p}", "check the environment and ask the five questions first"
@@ -135,9 +141,15 @@ def next_step(ws, program, open_count=None):
         return f"{PREFIX}fuse-map {p}", "build the capability map across the apps"
     if caps.get("retired"):
         r = caps["retired"][0]
-        return (f"(map the retired ids) name the capability that replaces {r['id']} in analysis/{p}/map_aliases.json, then "
-                f"python3 scripts/render.py capabilities {p}",
+        return (f"(map the retired ids) name the capability that replaces {r['id']} in analysis/{p}/map_aliases.json "
+                f"(or null to let it go), then {script('render.py')} capabilities {p}",
                 f"{len(caps['retired'])} capability id(s) left the map but are still used by decisions, rules or notes")
+    rules_doc = load_json(os.path.join(pdir, "rules.json")) or {}
+    if rules_doc.get("retired"):
+        r = rules_doc["retired"][0]
+        return (f"(map the retired rule ids) name the rule that replaces {r['id']} in analysis/{p}/rules_aliases.json "
+                f"(or null to let it go), then {script('render.py')} rules {p}",
+                f"{len(rules_doc['retired'])} rule id(s) left the rules but decisions still name them")
     if prog.get("figma") and not have["design"]:
         return f"{PREFIX}fuse-design {p}", "read the new app's Figma designs and trace them to the capabilities"
     if not os.path.exists(os.path.join(pdir, "rules.json")):
@@ -161,13 +173,29 @@ def next_step(ws, program, open_count=None):
               if (d.get("kind") == "gap" and d.get("choice") in ("drop", "defer")) or (d.get("kind") == "scope" and d.get("choice") in ("out", "defer"))
               or (d.get("kind") == "conflict" and d.get("choice") == "defer" and re.match(r"^CAP-\d+$", d.get("about") or ""))}
     built = built_capabilities(target)
+    # the legacy apps first: no build step can fix a changed or moved checkout
+    import workspace as wsmod  # the script module: legacy state is read with read-only git
+    for r in wsmod.legacy_state(ws, prog):
+        if r["exists"] and r["clean"] is False:
+            return (f"(a person) restore legacy/{r['app']} to a clean checkout",
+                    f"legacy/{r['app']} has local changes; the plugin never writes there, so someone else did, and every "
+                    "verdict waits for it (untracked files count)")
+        if r["exists"] and r["recordedCommit"] and r["clean"] is not None and not r["atRecordedCommit"]:
+            return (f"(a person) check out {r['recordedCommit'][:12]} in legacy/{r['app']}, or record the new commit with "
+                    f"{script('workspace.py')} init {p} --source {r['app']}=<path> and re-run fuse-assess and fuse-map",
+                    f"legacy/{r['app']} moved from {r['recordedCommit'][:12]} to {(r['commit'] or '?')[:12]}: the analysis "
+                    "describes the recorded commit")
     verification = load_json(os.path.join(pdir, "VERIFICATION.json")) or {}
     judged = verification.get("capabilities") or {}
     unverified = [c for c in built if c not in judged or judged[c].get("codeHash") != proofkit.code_hash(ws, p, c)]
     if unverified:
         return f"{PREFIX}fuse-verify {p} {' '.join(sorted(unverified, key=lambda x: int(x.split('-')[1]))[:5])}", \
             "built capabilities are not proven until verify judges their current code"
-    to_fix = [c for c, r in judged.items() if r.get("verdict") != "PROVEN" and c in built and not _waiting_only(r, built)]
+    signed = signatures.signed_state(ws, p, judged)
+    # a PARTLY PROVEN capability a person signed with their reason for accepting its open checks is settled
+    accepted = {c for c, r in judged.items() if r.get("verdict") == "PARTLY PROVEN" and (signed.get(c) or {}).get("proof")}
+    to_fix = [c for c, r in judged.items() if r.get("verdict") != "PROVEN" and c in built and c not in accepted
+              and not _waiting_only(r, built)]
     if to_fix:
         first = sorted(to_fix, key=lambda x: int(x.split("-")[1]))[0]
         return f"{PREFIX}fuse-build {p} {first}", f"{len(to_fix)} capability(ies) not PROVEN yet: fix the first reason"
@@ -189,10 +217,20 @@ def next_step(ws, program, open_count=None):
         return f"{PREFIX}fuse-verify {p} {' '.join(waiting[:5])}", "every capability is built: verify the journeys that were waiting"
     cont = verification.get("continuity") or {}
     if cont.get("verdict") != "pass":
+        rows = cont.get("checks") or []
+        undecided = [r for r in rows if r.get("verdict") == "gap" and "not decided" in (r.get("why") or "")]
+        failing = [r for r in rows if r.get("verdict") == "fail"]
+        if undecided and not failing:
+            if any(r.get("check") == "identity" for r in undecided):
+                return f"(a person) {PREFIX}fuse-brief {p} approve", "the store listing the new app ships under is not decided"
+            return f"{PREFIX}fuse-review {p} platform", "platform items existing users depend on are not decided: " + \
+                "; ".join(f"{r['check']}: {r['why']}" for r in undecided[:3])
+        if failing:
+            return (f"{PREFIX}fuse-scaffold {p}", "the app shell lacks what existing users rely on (fuse-scaffold adds it to an "
+                    "existing scaffold): " + "; ".join(f"{r['check']}: {r['why']}" for r in failing[:3]))
         return f"{PREFIX}fuse-verify {p}", "platform continuity for existing users is not proven yet: " + \
-            (cont.get("detail") or "run scripts/platform_parity.py")
-    signed = signatures.signed_state(ws, p, judged)
-    unsigned = [c for c, s in signed.items() if not s["proof"] or s["visual"] is False]
+            (cont.get("detail") or "platform_parity.py has not run")
+    unsigned = [c for c, st in signed.items() if not st["proof"] or st["visual"] is False]
     if unsigned:
         return f"(a person) {PREFIX}fuse-verify {p} sign", f"{len(unsigned)} proven capability(ies) wait for a person's sign-off"
     security = os.path.join(pdir, "SECURITY_FINDINGS.md")

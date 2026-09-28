@@ -299,6 +299,8 @@ def base_locale(code):
     parts = [p for p in str(code).replace("_", "-").replace("+", "-").lower().split("-") if p]
     if parts and parts[0] == "b" and len(parts) > 1:  # Android BCP 47 folders: values-b+zh+Hant+TW
         parts = parts[1:]
+    if not parts:
+        return ""
     lang, rest = parts[0], [p[1:] if len(p) == 3 and p.startswith("r") else p for p in parts[1:]]
     if lang in ("no", "nb"):
         return "nb"

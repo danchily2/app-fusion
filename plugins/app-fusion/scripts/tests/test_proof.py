@@ -89,10 +89,11 @@ class Base(unittest.TestCase):
         return [dict(common, name="Reject needs a comment", priority="P0"), dict(common, name="Approve shows a toast", priority="P1")]
 
     # ---- recording helpers, the way the skills do it
-    def suite(self, cases, name="unit", cap="CAP-001"):
+    def suite(self, cases, name="unit", cap="CAP-001", platform=None):
         run = self.w.run("evidence.py", "dir", "p", "suite", cap).stdout.strip()
         junit(self.w.path(run, "unit.xml"), cases)
-        self.w.run("evidence.py", "suite", "p", "--capability", cap, "--name", name, "--command", "jest", "--junit", run)
+        self.w.run("evidence.py", "suite", "p", "--capability", cap, "--name", name, "--command", "jest", "--junit", run,
+                   *(["--platform", platform] if platform else []))
         return self.w.path(run, "unit.xml")
 
     def canary(self, cases, file=LOGIC, mutate=True, check=True):
@@ -185,7 +186,11 @@ class Proof(Base):
             fh.write("<!-- edited -->")
         v, _ = self.verdict()
         self.assertEqual(v["CAP-001"]["checks"]["Tests ran"]["status"], "fail")
-        self.assertIn("changed after they were recorded", v["CAP-001"]["checks"]["Tests ran"]["detail"])
+        self.assertIn("changed or were removed after they were recorded", v["CAP-001"]["checks"]["Tests ran"]["detail"])
+        # deleting the result file hides nothing either
+        os.remove(xml)
+        v, _ = self.verdict()
+        self.assertEqual(v["CAP-001"]["checks"]["Tests ran"]["status"], "fail", "a removed result file is tampering")
 
     def test_canary_is_safe_and_specific(self):
         # uncommitted work in the new app survives the canary byte for byte
@@ -215,7 +220,9 @@ class Proof(Base):
         # status points at a canary left in place
         self.w.run("canary.py", "start", "p", "CAP-001", "--file", LOGIC, "--change", "x")
         st = json.loads(self.w.run("status.py", "p", "--json").stdout)
-        self.assertIn("canary.py finish p CAP-001", st["next"]["command"])
+        self.assertIn('canary.py" finish p CAP-001', st["next"]["command"])
+        refused = self.w.run("canary.py", "start", "p", "CAP-001", "--file", LOGIC, "--change", "y", check=False)
+        self.assertNotEqual(refused.returncode, 0, "one canary at a time")
         v, _ = self.verdict()
         self.assertIn("still in place", v["CAP-001"]["checks"]["Canary"]["detail"])
 
@@ -246,10 +253,12 @@ class Proof(Base):
         helpers.write(self.app, "src/features/approvals/list/List.tsx", "export const List = () => null\n")
         helpers.write(self.app, "docs/fusion/CAP-002.md", "# CAP-002\n## Files\n- `src/features/approvals/list/List.tsx`\n")
         self.all_green()
-        v, _ = self.verdict("CAP-001")
-        self.assertEqual(set(v), {"CAP-001"})
+        v, out = self.verdict("CAP-001")
+        self.assertEqual(set(v), {"CAP-001", "CAP-002"}, "every built capability is judged on every run")
+        self.assertIn("CAP-001 PROVEN", out.stdout)
+        self.assertNotIn("CAP-002 NOT PROVEN (", out.stdout, "only the capabilities asked about are detailed")
+        self.assertEqual(out.returncode, 0, "the exit code follows the capabilities asked about")
         v, _ = self.verdict("CAP-002")
-        self.assertEqual(set(v), {"CAP-001", "CAP-002"}, "judging one capability keeps the other's verdict")
         self.assertEqual(v["CAP-001"]["verdict"], "PROVEN")
         refused = self.w.run("signoff.py", "p", "proof", "--by", "Kari Nordmann", "--caps", "CAP-002", check=False)
         self.assertNotEqual(refused.returncode, 0, "a NOT PROVEN capability cannot be signed")
@@ -265,6 +274,46 @@ class Proof(Base):
         self.assertEqual(len(state["proof"]), 1)
         self.w.run("fusion_proof.py", "p", "CAP-001", check=False)
         self.assertIn("Proof signed for: none", self.w.text("analysis", "p", "VERIFICATION.md"), "a code change voids the sign-off")
+
+    def test_a_later_change_elsewhere_reaches_every_verdict(self):
+        helpers.write(self.app, "src/features/approvals/list/List.tsx", "export const List = () => null\n")
+        helpers.write(self.app, "docs/fusion/CAP-002.md", "# CAP-002\n## Files\n- `src/features/approvals/list/List.tsx`\n")
+        self.all_green()
+        v, _ = self.verdict()
+        self.assertEqual(v["CAP-001"]["verdict"], "PROVEN")
+        # building CAP-002 drops a Danish string CAP-001 needs; its parity runs only for CAP-002 ...
+        helpers.write(self.app, "src/i18n/locales/da.json", json.dumps({"approvals": {"approve": "Godkend"}}))
+        self.w.run("i18n_parity.py", "p", "--capability", "CAP-002", check=False)
+        i18n = self.w.json("analysis", "p", "evidence", "i18n-parity.json")["capabilities"]
+        self.assertIn("CAP-001", i18n, "a run for one capability keeps the others' results")
+        # ... and verifying CAP-002 still re-judges CAP-001 on what changed
+        v, _ = self.verdict("CAP-002")
+        self.assertNotEqual(v["CAP-001"]["verdict"], "PROVEN")
+        self.assertIn("changed since it ran", v["CAP-001"]["checks"]["Strings"]["detail"])
+
+    def test_the_canary_must_be_a_small_real_break(self):
+        self.suite(GREEN)
+        self.w.run("canary.py", "start", "p", "CAP-001", "--file", LOGIC, "--change", "spaces")
+        pending = self.w.json("analysis", "p", "evidence", "canary", "CAP-001", "pending.json")
+        path = os.path.join(self.app, LOGIC)
+        original = helpers.read(path)
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(original.replace(" === ", "  ===  "))
+        junit(self.w.path(pending["run"], "unit.xml"), [("CAP-001 approvals", "RULE-001 reject needs a comment", "failed")])
+        out = self.w.run("canary.py", "finish", "p", "CAP-001", check=False)
+        self.assertNotEqual(out.returncode, 0)
+        self.assertIn("only whitespace", out.stderr + out.stdout)
+        self.assertEqual(helpers.read(path), original, "restored even when refused")
+        self.w.run("canary.py", "start", "p", "CAP-001", "--file", LOGIC, "--change", "rewrite")
+        pending = self.w.json("analysis", "p", "evidence", "canary", "CAP-001", "pending.json")
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write("\n".join(f"line {i}" for i in range(12)))
+        junit(self.w.path(pending["run"], "unit.xml"), [("CAP-001 approvals", "RULE-001 reject needs a comment", "failed")])
+        out = self.w.run("canary.py", "finish", "p", "CAP-001", check=False)
+        self.assertNotEqual(out.returncode, 0, "a rewrite is not a one-line break")
+        self.assertEqual(helpers.read(path), original)
+        v, _ = self.verdict()
+        self.assertEqual(v["CAP-001"]["checks"]["Canary"]["status"], "gap", "nothing was recorded")
 
     def test_decisions_that_excuse_differences(self):
         # API: a missing endpoint is a failure until a person records why
@@ -355,6 +404,14 @@ class TakeDecision(Base):
         rules = v["CAP-001"]["checks"]["Rules traced"]
         self.assertEqual(rules["status"], "pass", rules)
         self.assertIn(f"{ids['Confirm twice']} (DEC-001 keeps mgr's behavior)", rules["detail"])
+        # a rule conflict decided the other way is the more specific answer: emp's rule is back in the contract
+        pair = "+".join(sorted([ids["Reject needs a comment"], ids["Confirm twice"]], key=lambda r: int(r.split("-")[1])))
+        self.w.run("decisions.py", "add", "p", "--about", f"CAP-001:{pair}", "--kind", "conflict", "--choice", "take:emp")
+        v, _ = self.verdict()
+        rules = v["CAP-001"]["checks"]["Rules traced"]
+        self.assertEqual(rules["status"], "gap", rules)
+        self.assertIn(ids["Confirm twice"], rules["detail"])
+        self.assertIn(f"{ids['Reject needs a comment']} (DEC-002 keeps emp's rule)", rules["detail"])
         self.w.run("decisions.py", "add", "p", "--about", "CAP-001", "--kind", "conflict", "--choice", "design")
         v, _ = self.verdict()
         self.assertIn("has no passing test naming that decision", v["CAP-001"]["checks"]["Rules traced"]["detail"])
@@ -398,6 +455,39 @@ class Journeys(Base):
         v, _ = self.verdict("CAP-001")
         self.assertIn("names no JRN-001 test", v["CAP-001"]["checks"]["Journeys"]["detail"])
 
+    def test_a_deferred_capability_leaves_the_journey(self):
+        self.w.run("decisions.py", "add", "p", "--about", "CAP-002", "--kind", "gap", "--choice", "defer")
+        self.all_green()
+        v, _ = self.verdict()
+        self.assertEqual(v["CAP-001"]["checks"]["Journeys"]["status"], "pass", v["CAP-001"]["checks"]["Journeys"])
+
+
+class NativePair(Base):
+    """A new app built as two native projects: each half is judged on its own results."""
+
+    def setUp(self):
+        super().setUp()
+        import shutil
+        shutil.rmtree(self.app)
+        helpers.write(self.app, "ios/App/Approve.swift", "struct Approve { func needsComment(_ a: String) -> Bool { a == \"reject\" } }\n")
+        helpers.write(self.app, "android/app/src/main/java/x/Approve.kt", "fun needsComment(a: String) = a == \"reject\"\n")
+        helpers.write(self.app, "docs/fusion/CAP-001.md", "## Files\n- `ios/App/Approve.swift`\n- `android/app/src/main/java/x/Approve.kt`\n")
+        self.w.run("workspace.py", "intent", "p", "--platforms", "ios,android")
+
+    def test_each_half_needs_its_own_tests(self):
+        from fusionlib import newapp
+        self.assertEqual(newapp.stack(self.w.ws, "p"), "native")
+        self.suite(GREEN, platform="ios")
+        v, _ = self.verdict()
+        tests = v["CAP-001"]["checks"]["Tests ran"]
+        self.assertEqual(tests["status"], "fail", tests)
+        self.suite(GREEN, name="unit-ios", platform="ios")
+        self.suite(GREEN[:1], name="unit-android", platform="android")
+        v, _ = self.verdict()
+        self.assertEqual(v["CAP-001"]["checks"]["Tests ran"]["status"], "pass", v["CAP-001"]["checks"]["Tests ran"])
+        rules = v["CAP-001"]["checks"]["Rules traced"]
+        self.assertIn("RULE-002 (android)", rules["detail"], "a rule passed on iOS only is not traced on Android")
+
 
 class PlatformContinuity(Base):
     def test_existing_users_keep_links_schemes_push_and_identity(self):
@@ -406,9 +496,9 @@ class PlatformContinuity(Base):
         w.run("render.py", "platform", "p")
         w.run("platform_parity.py", "p", check=False)
         rows = {r["check"]: r for r in w.json("analysis", "p", "evidence", "platform-parity.json")["checks"]}
-        self.assertEqual(rows["identity"]["verdict"], "fail", "the store listing kept is mgr's: its bundle id must stay")
-        self.assertEqual(rows["links"]["verdict"], "fail")
-        self.assertEqual(rows["schemes"]["expected"], ["empauth", "mgrapp"])
+        self.assertEqual(rows["identity (ios)"]["verdict"], "fail", "the store listing kept is mgr's: its bundle id must stay")
+        self.assertEqual(rows["links (ios)"]["verdict"], "fail")
+        self.assertEqual(rows["schemes (ios)"]["expected"], ["empauth", "mgrapp"])
         self.assertEqual(rows["extension:share"]["verdict"], "gap", "nobody decided the share extension yet")
         self.assertEqual(rows["locales"]["expected"], ["da", "en", "nb"])
         # the new app ships what users rely on, and a person drops what it will not keep
@@ -442,6 +532,18 @@ class PlatformContinuity(Base):
             fh.write("<!-- -->")
         w.run("fusion_proof.py", "p", check=False)
         self.assertEqual(w.json("analysis", "p", "VERIFICATION.json")["continuity"]["verdict"], "gap")
+        # with Android too, the iOS files cover nothing there: each platform on its own, with its own store listing
+        w.run("workspace.py", "intent", "p", "--platforms", "ios,android", "--store", "ios=emp,android=mgr")
+        w.run("platform_parity.py", "p", check=False)
+        rows = {r["check"]: r for r in w.json("analysis", "p", "evidence", "platform-parity.json")["checks"]}
+        self.assertEqual(rows["links (android)"]["verdict"], "fail", "mgr's Android app links are missing on Android")
+        self.assertEqual(rows["identity (ios)"]["expected"], ["com.x.emp"])
+        self.assertEqual(rows["identity (android)"]["expected"], ["com.x.mgr"])
+        bad = w.run("workspace.py", "intent", "p", "--store", "android=emp", check=False)
+        self.assertEqual(bad.returncode, 0)
+        w.run("platform_parity.py", "p", check=False)
+        rows = {r["check"]: r for r in w.json("analysis", "p", "evidence", "platform-parity.json")["checks"]}
+        self.assertIn("emp has no android listing", rows["identity (android)"]["why"])
 
 
 if __name__ == "__main__":

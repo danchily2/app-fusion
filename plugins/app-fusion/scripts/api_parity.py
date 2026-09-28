@@ -108,7 +108,7 @@ def static(ws, program, only=None):
                     unreadable.append(f"{app}: {raw}")
                 elif parsed not in legacy:
                     legacy.append(parsed)
-        matched, mapped, missing, approved_rows, used, extra = [], [], [], [], [], set()
+        matched, mapped, missing, approved_rows, used, extra, missing_halves = [], [], [], [], [], set(), {}
         for platform, half in halves:
             new = _new_side(by_half[half], info, half)
             where = f" ({platform})" if platform else ""
@@ -125,7 +125,9 @@ def static(ws, program, only=None):
                     approved_rows.append({"legacy": f"{lm or '?'} {lp}", "decision": did, "choice": choice, "half": platform})
                     used.append(did)
                 else:
-                    missing.append(f"{lm or '?'} {lp}" + where)
+                    missing.append(f"{lm or '?'} {lp}")
+                    if platform:
+                        missing_halves.setdefault(f"{lm or '?'} {lp}", []).append(platform)
             extra |= {f"{m or '?'} {p}{where}" for m, p in new if not any(endpoints_match(p, lp) for _, lp in legacy)}
         files = info["files"] + [f for f, _ in info["api"]] + [MAP]
         stamp = parity.stamp(ws, program, cid, files, decisions, used)
@@ -148,9 +150,10 @@ def static(ws, program, only=None):
             verdict, reason = "gap", f"{len(unreadable)} legacy endpoint string(s) could not be read: {'; '.join(unreadable[:3])}"
         else:
             verdict, reason = "pass", f"{len(matched)} matched, {len(mapped)} through {MAP}, {len(approved_rows)} approved differences"
+        missing = list(dict.fromkeys(missing))
         results[cid] = {"verdict": verdict, "reason": reason, "legacy": [f"{m or '?'} {p}" for m, p in legacy],
                         "unreadable": unreadable, "files": info["files"], "callSites": [f"{f}:{l}" for f, l in info["api"]],
-                        "matched": matched, "mapped": mapped, "missing": missing, "approved": approved_rows,
+                        "matched": matched, "mapped": mapped, "missing": missing, "missingIn": missing_halves, "approved": approved_rows,
                         "extra": sorted(extra), **stamp}
     path, counts = parity.write_result(
         ws, program, "api-parity.json",

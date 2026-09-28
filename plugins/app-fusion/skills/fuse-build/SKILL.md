@@ -84,7 +84,8 @@ client index and dependencies. Add each shared file you changed to the notes' `#
 Iterate on this capability's tests only. Then, in this order:
 
 1. **Canary.** Pick one line of the capability's own code (a file in `## Files`) that a rule depends on, and one
-   small change that matters: a threshold by one, a rounding mode, a flipped condition. Then:
+   small change that matters: a threshold by one, a rounding mode, a flipped condition. At most six lines, more than
+   whitespace, and one canary at a time in the whole program. Then:
    - `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/canary.py" start $program $capability --file <that file> --change "<what you will break>"`.
      It saves the file and prints a run folder.
    - Make the break with Edit, run the tests that cover it with JUnit output into that run folder, then
@@ -94,7 +95,9 @@ Iterate on this capability's tests only. Then, in this order:
    - If no test of the capability failed, the tests do not pin the behavior: strengthen them and run a new canary.
 2. **The whole suite, last.** `RUN=$(python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" dir $program suite $capability)`,
    run the full unit suite with JUnit output into `$RUN` (the profile's command), then
-   `evidence.py suite $program --capability $capability --name unit --command "<cmd>" --junit $RUN`.
+   `evidence.py suite $program --capability $capability --name unit --command "<cmd>" --junit $RUN`. For a native pair
+   (`ios/` and `android/` in the new app), run and record each half's suite on its own, with `--platform ios` and
+   `--platform android` and names such as `unit-ios`: the proof checks each half on its own results.
    Report `tests executed: N`. Zero executed, or only skipped, is not green. A canary counts only for tests that pass
    in this recorded suite.
 3. **Parity checks.** Run them, and fix or take to a person anything they report:

@@ -22,4 +22,8 @@ Development checks:
 claude plugin validate plugins/app-fusion
 python3 -m unittest discover -s plugins/app-fusion/scripts/tests -v
 node --test plugins/app-fusion/tests/*.test.mjs
+claude plugin eval plugins/app-fusion --scaffold --trust-plugin --allow-tools Bash Write Edit --ablation none
 ```
+
+The eval cases (`plugins/app-fusion/evals/`) run real headless sessions against tiny fixture apps: the front door,
+the next command from `fuse-status`, and the guard refusing an edit to a legacy app. All three score 1.00.

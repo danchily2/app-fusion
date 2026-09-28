@@ -48,7 +48,9 @@ plugin never edits it (a hook denies writes there).
 
 Use AskUserQuestion, never chat text. A pop-up has at most four questions, each with at most four options, and the
 person can always type their own answer. In a headless run (no pop-up tool), take the defaults marked below and
-record each as an open item in INTENT.md.
+record each as an open item in INTENT.md, but do not run `workspace.py intent`: it records a person's answers, the
+guard asks that person to confirm it, and nobody is there to. `program.json` keeps its `undecided` values until a
+person answers (this command again in a session with pop-ups, or `fuse-review` and `fuse-brief approve`).
 
 **Pop-up 1**
 
@@ -84,7 +86,8 @@ record each as an open item in INTENT.md.
 
 Write `analysis/$program/INTENT.md`. It holds the goal, the apps and their products, the design links, the
 platforms, the stack choice, the personas, what must stay true and the store listing, each answer **word for word**,
-plus today's date. Then record the machine-readable part:
+plus today's date. Then record the machine-readable part (the guard asks the person to confirm the command; skip it
+in a headless run):
 
 ```bash
 python3 "${CLAUDE_PLUGIN_ROOT}/scripts/workspace.py" intent $program --goal build|understand \

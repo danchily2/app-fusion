@@ -26,6 +26,8 @@ _URL_PROP = re.compile(r"\burl\s*:\s*(" + _STR + r")")
 _QUERY_STR = re.compile(r"\bquery\s*:\s*\([^)]*\)\s*=>\s*(" + _STR + r")")
 _HTTP_CALL = re.compile(r"\b([A-Za-z_$][A-Za-z0-9_$]*)\s*\.\s*(get|post|put|patch|delete|head)\s*(?:<[^>()]*(?:<[^>]*>[^>()]*)*>)?\s*\(\s*(" + _STR + r")")
 _FETCH = re.compile(r"\bfetch\s*\(\s*(" + _STR + r")")
+_URL_VAR = re.compile(r"\b(?:const|let|var)\s+(?:url|uri|path|endpoint|resource|route|requestUrl|fullUrl)[A-Za-z0-9_]*\s*(?::\s*string\s*)?=\s*(" + _STR + r")")
+_METHOD_ASSIGN = re.compile(r"\bmethod\s*(?::\s*[A-Za-z_.<>|'\" ]+)?\s*[:=]\s*['\"](GET|POST|PUT|PATCH|DELETE|HEAD)['\"]", re.I)
 _OPEN_URL = re.compile(r"\b(?:Linking\.openURL|InAppBrowser\.open(?:Auth)?|openBrowserAsync|openUrl|openURL)\s*\(\s*(" + _STR + r")")
 _GQL = re.compile(r"\b(?:gql|graphql)\s*`\s*(query|mutation|subscription|fragment)\s+([A-Za-z_][A-Za-z0-9_]*)")
 _EVENTS_OBJ = re.compile(r"\b(?:export\s+)?const\s+([A-Z][A-Z0-9_]*_EVENTS)\s*(?::[^=]+)?=\s*\{")
@@ -242,6 +244,20 @@ def extract(root):
             add_endpoint(_lit(m.group(3)), m.group(2).upper(), "axios", m.start())
         for m in _FETCH.finditer(text):
             add_endpoint(_lit(m.group(1)), None, "fetch", m.start())
+        # `const url = `${base}autopay/list``, then makeRequest({ method, url }): the method is the nearest method
+        # assignment between this url assignment and its neighbours, so one request's method never leaks into another's
+        url_vars = list(_URL_VAR.finditer(text))
+        for k, m in enumerate(url_vars):
+            lo = url_vars[k - 1].end() if k else max(0, m.start() - 800)
+            hi = url_vars[k + 1].start() if k + 1 < len(url_vars) else min(len(text), m.end() + 800)
+            before = list(_METHOD_ASSIGN.finditer(text, lo, m.start()))
+            after = _METHOD_ASSIGN.search(text, m.end(), hi)
+            # the nearest assignment wins: code that declares the method after the url (and code that declares it
+            # before) both resolve to their own request, not the neighbouring function's
+            cands = ([(m.start() - before[-1].end(), before[-1].group(1))] if before else []) + \
+                    ([(after.start() - m.end(), after.group(1))] if after else [])
+            method = min(cands)[1] if cands else None
+            add_endpoint(_lit(m.group(1)), method.upper() if method else None, "http-helper", m.start())
         for m in _OPEN_URL.finditer(text):
             val = _resolve_template(_lit(m.group(1)), consts)
             if re.match(r"^https?://", val, re.I):
@@ -383,7 +399,7 @@ def extract(root):
         "routeSites": "every <X.Screen name=...> element (one route can be registered in several navigators)",
         "screens": "distinct component files registered as a route's component (resolved through the file's imports, tsconfig paths and babel aliases), navigators excluded",
         "screenDirFiles": ".tsx/.jsx files under screens/ or src/screens/ (a cross-check, not a screen count)",
-        "endpoints": "distinct normalized paths from url: properties, RTK Query query: string returns, axios-style <client>.get/post/put/patch/delete calls and fetch() literals, in non-test, non-mock files; ${CONSTANT} templates resolved",
+        "endpoints": "distinct normalized paths from url: properties, RTK Query query: string returns, axios-style <client>.get/post/put/patch/delete calls, fetch() literals and url/path/endpoint variable assignments, in non-test, non-mock files; ${CONSTANT} templates resolved",
         "graphqlOperations": "distinct named queries, mutations and subscriptions in gql`` tags and .graphql files",
         "events": "distinct wire values of top-level members of *_EVENTS objects (when no catalog exists: distinct literals passed to logEvent/trackEvent/logScreenView)",
         "eventCatalogMembers": "top-level members of *_EVENTS objects (two members may share a wire value)",

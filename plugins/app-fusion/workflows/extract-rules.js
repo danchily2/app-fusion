@@ -3,7 +3,7 @@ export const meta = {
   description:
     'Business rules of every source app: one extractor per shard, a citation referee per rule, a two-judge panel for each P0 rule, and a conflict judge per capability that two apps implement',
   whenToUse:
-    'Invoked by /app-fusion:fuse-rules when the Workflow tool is available. Requires args {program, apps: [{name, product, stack}], shards: [{id, app, stack, name, files, hints}], capabilities?: [{id, name, domain, apps, fusion}]}. Returns {rules, conflicts, dataObjects, rejected, unverified, injectionFlags, rerunShards, stats}; the calling session saves it as analysis/<program>/rules_result.json and renders BUSINESS_RULES.md with scripts/render.py rules. Resumable: identical args plus resumeFromRunId.',
+    'Invoked by /app-fusion:fuse-rules when the Workflow tool is available. Requires args {program, apps: [{name, product, stack}], shards: [{id, app, stack, name, loc, file}], capabilityIndex?: "analysis/<program>/capability_index.json", capabilityIds?: ["CAP-001", ...]} - pass analysis/<program>/workflow-args.rules.json (from scripts/shard.py) plus the ids from capability_index.json. Agents read their shard file and the index themselves. Returns {rules, conflicts, dataObjects, rejected, unverified, injectionFlags, rerunShards, stats}; the calling session saves it as analysis/<program>/rules_result.json and renders BUSINESS_RULES.md with scripts/render.py rules. Resumable: identical args plus resumeFromRunId.',
   phases: [
     { title: 'Extract', detail: 'one business-rules extractor per shard' },
     { title: 'Verify', detail: 'one citation referee per fresh rule' },
@@ -18,17 +18,30 @@ const program = ARGS && ARGS.program
 const apps = (ARGS && ARGS.apps) || []
 const shards = (ARGS && ARGS.shards) || []
 const capabilities = (ARGS && ARGS.capabilities) || []
+const capabilityIndex = ARGS && ARGS.capabilityIndex
+const capabilityIds = (ARGS && ARGS.capabilityIds) || capabilities.map(c => c.id)
 if (!program || !SAFE.test(program)) throw new Error('fuse-extract-rules requires args.program: a plain name')
 if (!Array.isArray(apps) || !apps.length || apps.some(a => !a || !SAFE.test(a.name || ''))) throw new Error('fuse-extract-rules requires args.apps with plain names')
 if (!Array.isArray(shards) || !shards.length) throw new Error('fuse-extract-rules requires args.shards - build them with scripts/shard.py')
 const appNames = new Set(apps.map(a => a.name))
+const SHARD_FILE = new RegExp(`^analysis/${program}/shards/[A-Za-z0-9._-]+\\.json$`)
 for (const s of shards) {
-  if (!s || !appNames.has(s.app) || !Array.isArray(s.files)) throw new Error(`shard ${JSON.stringify(s && s.id)} is malformed`)
-  for (const f of s.files) {
+  if (!s || !appNames.has(s.app)) throw new Error(`shard ${JSON.stringify(s && s.id)} names an unknown app`)
+  if (s.file != null && (typeof s.file !== 'string' || !SHARD_FILE.test(s.file))) throw new Error(`shard ${s.id}: file must be analysis/${program}/shards/<name>.json`)
+  if (s.file == null && !Array.isArray(s.files)) throw new Error(`shard ${s.id} has neither a file nor a files list`)
+  for (const f of s.files || []) {
     if (typeof f !== 'string' || f.startsWith('/') || /(^|\/)\.\.(\/|$)/.test(f)) throw new Error(`shard ${s.id}: unsafe path ${JSON.stringify(f)}`)
   }
 }
-const capIds = new Set(capabilities.map(c => c.id))
+if (capabilityIndex != null && capabilityIndex !== `analysis/${program}/capability_index.json`) {
+  throw new Error(`capabilityIndex must be analysis/${program}/capability_index.json`)
+}
+if (!Array.isArray(capabilityIds) || capabilityIds.some(id => !/^CAP-\d+$/.test(id))) throw new Error('capabilityIds must be a list of CAP-NNN ids')
+// With no id list, any well-formed CAP id is kept here; scripts/render.py drops ids the catalog does not hold.
+const capIds = capabilityIds.length ? new Set(capabilityIds) : { has: id => /^CAP-\d+$/.test(String(id || '')) }
+const areaOf = s => s.file
+  ? `Its file list is in ${s.file} ("files", relative to legacy/${s.app}); read that file first.`
+  : `Files, relative to legacy/${s.app}:\n${s.files.map(f => `- ${f}`).join('\n')}`
 
 const fence = s => `<<<UNTRUSTED\n${String(s == null ? '' : s).replace(/<<<UNTRUSTED|UNTRUSTED>>>/g, '[fence marker stripped]')}\nUNTRUSTED>>>`
 const UNTRUSTED = `
@@ -100,9 +113,11 @@ const CONFLICTS = {
   },
 }
 
-const catalog = capabilities.length
-  ? `Capability catalog (attach each rule to one id when it clearly belongs, else leave capability empty):\n${fence(capabilities.map(c => `${c.id} | ${c.name} | ${c.domain || ''} | apps: ${(c.apps || []).join(', ')}`).join('\n'))}`
-  : 'No capability catalog yet: leave capability empty.'
+const catalog = capabilityIndex
+  ? `Attach each rule to one capability id when it clearly belongs (else leave capability empty). The catalog is ${capabilityIndex}: a JSON list of {id, name, domain, apps}; read it.`
+  : capabilities.length
+    ? `Capability catalog (attach each rule to one id when it clearly belongs, else leave capability empty):\n${fence(capabilities.map(c => `${c.id} | ${c.name} | ${c.domain || ''} | apps: ${(c.apps || []).join(', ')}`).join('\n'))}`
+    : 'No capability catalog yet: leave capability empty.'
 const norm = s => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
 const file = src => String(src || '').split(':')[0]
 
@@ -113,8 +128,7 @@ const perShard = await pipeline(
   shards,
   s =>
     agent(
-      `Extract the business rules the ${s.app} app (legacy/${s.app}, ${s.stack}) enforces in ONE area: "${s.name}". Files, relative to legacy/${s.app}:
-${s.files.map(f => `- ${f}`).join('\n')}
+      `Extract the business rules the ${s.app} app (legacy/${s.app}, ${s.stack}) enforces in ONE area: "${s.name}". ${areaOf(s)}
 Client-side rules only: validations, calculations, eligibility and visibility by role or flag, status lifecycles,
 formatting and rounding a user relies on, offline/retry/cache/session policies. Not layout, styling, logging or
 network plumbing. Given/When/Then with concrete values; one source range per rule; P0 when a wrong result moves money,

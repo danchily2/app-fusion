@@ -3,7 +3,7 @@ export const meta = {
   description:
     'Capability map across source apps: one stack analyst per shard extracts capability fragments, a planner assigns business domains, one cartographer per domain merges them across apps and classifies each, one referee per capability re-checks citations and the fusion class, then persona journeys',
   whenToUse:
-    'Invoked by /app-fusion:fuse-map when the Workflow tool is available. Requires args {program, apps: [{name, product, stack, role?, twinOf?}], shards: [{id, app, stack, kind, name, files, loc, hints}], personas?}. Returns {capabilities, journeys, domains, observations, rejected, unverified, platformItems, injectionFlags, rerunShards, stats}; the calling session saves it as analysis/<program>/map_result.json and renders it with scripts/render.py. Resumable after a stop: re-invoke with identical args plus resumeFromRunId.',
+    'Invoked by /app-fusion:fuse-map when the Workflow tool is available. Requires args {program, apps: [{name, product, stack, role?, twinOf?}], shards: [{id, app, stack, kind, name, loc, file}], personas?} - pass analysis/<program>/workflow-args.map.json as written by scripts/shard.py: each shard names a small JSON file (its files and inventory hints) that its agent reads, so the call carries no file lists. Returns {capabilities, journeys, domains, observations, rejected, unverified, platformItems, injectionFlags, rerunShards, stats}; the calling session saves it as analysis/<program>/map_result.json and renders it with scripts/render.py. Resumable after a stop: re-invoke with identical args plus resumeFromRunId.',
   phases: [
     { title: 'Extract', detail: 'one stack analyst per shard: capability fragments with evidence' },
     { title: 'Domains', detail: 'one planner groups every fragment into business domains' },
@@ -31,16 +31,23 @@ if (!Array.isArray(shards) || shards.length === 0) {
   throw new Error('fuse-map-capabilities requires args.shards (from analysis/<program>/shards.json) - build them with scripts/shard.py first')
 }
 const appNames = new Set(apps.map(a => a.name))
+const SHARD_FILE = new RegExp(`^analysis/${program}/shards/[A-Za-z0-9._-]+\\.json$`)
 for (const s of shards) {
-  if (!s || !appNames.has(s.app) || !Array.isArray(s.files)) {
-    throw new Error(`shard ${JSON.stringify(s && s.id)} names an unknown app or has no files list`)
+  if (!s || !appNames.has(s.app)) throw new Error(`shard ${JSON.stringify(s && s.id)} names an unknown app`)
+  if (s.file != null && (typeof s.file !== 'string' || !SHARD_FILE.test(s.file))) {
+    throw new Error(`shard ${s.id}: file must be analysis/${program}/shards/<name>.json (got ${JSON.stringify(s.file)})`)
   }
-  for (const f of s.files) {
+  if (s.file == null && !Array.isArray(s.files)) throw new Error(`shard ${s.id} has neither a file nor a files list`)
+  for (const f of s.files || []) {
     if (typeof f !== 'string' || f.startsWith('/') || /(^|\/)\.\.(\/|$)/.test(f)) {
       throw new Error(`shard ${s.id}: unsafe file path ${JSON.stringify(f)}`)
     }
   }
 }
+// Where an agent finds its area: a small shard file it reads first, or (small projects) the list given inline.
+const areaOf = (s, app) => s.file
+  ? `Its file list and the facts the inventory scripts found in it are in ${s.file} (JSON: "files" are relative to legacy/${app}, "hints" are routes, screens, endpoints and events found there - verify, do not assume). Read that file first.`
+  : `Its files, relative to legacy/${app}:\n${s.files.map(f => `- ${f}`).join('\n')}\n\nFacts the inventory scripts found in this area (verify, do not assume):\n${fence(JSON.stringify(s.hints || {}))}`
 const appOf = name => apps.find(a => a.name === name) || {}
 
 // Text derived from untrusted code crosses into later prompts only inside a fence it cannot escape.
@@ -186,14 +193,9 @@ log(`${shards.length} shard(s) across ${apps.length} app(s); the runtime queues 
 const extracted = await parallel(
   shards.map(s => () => {
     const a = appOf(s.app)
-    const hints = s.hints || {}
     return agent(
       `You are mapping what people can DO with the ${a.product || s.app} app (legacy/${s.app}, ${s.stack}) for a consolidation into one new app.
-Read ONE area of it: "${s.name}" (${s.loc || '?'} lines). Its files, relative to legacy/${s.app}:
-${s.files.map(f => `- ${f}`).join('\n')}
-
-Facts the inventory scripts already found in this area (verify, do not assume):
-${fence(JSON.stringify(hints))}
+Read ONE area of it: "${s.name}" (${s.loc || '?'} lines). ${areaOf(s, s.app)}
 
 For every capability this area implements - one thing a person can do, named verb-first in business words - return
 a fragment with its screens, main files, the endpoints it calls ("METHOD /path", constants resolved; follow calls

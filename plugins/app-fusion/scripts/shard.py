@@ -9,13 +9,16 @@ target folder, an Android module or feature package. Areas over --max-lines (def
 split by sub-folder; areas under 300 lines are merged into one shard per app. Each shard carries hints from the
 inventory (the routes, endpoints and events whose file is inside it), so an agent starts from facts.
 
-Writes analysis/<program>/shards.json: {"version": 1, "shards": [{id, app, stack, kind, name, files, loc, hints}]}.
-Standard library only.
+Writes analysis/<program>/shards.json ({"version": 1, "shards": [{id, app, stack, kind, name, files, loc, hints, file}]}),
+one small file per shard (analysis/<program>/shards/<id>.json: its files and hints, which each agent reads), and the
+compact workflow arguments workflow-args.map.json and workflow-args.rules.json (ids and paths only, so a Workflow call
+never carries thousands of file names). Standard library only.
 """
 
 import argparse
 import fnmatch
 import os
+import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -210,6 +213,10 @@ def _shard(app, stack, area, files, inv):
             "files": sorted(files), "loc": sum(files.values()), "hints": {k: v for k, v in hints.items() if v}}
 
 
+def shard_slug(shard_id):
+    return re.sub(r"[^A-Za-z0-9._-]+", "_", shard_id).strip("_")[:120]
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("program")
@@ -223,8 +230,30 @@ def main():
     if args.app:
         check_name(args.app, "app")
     shards = build(ws, args.program, args.app, args.pattern, args.max_lines)
-    out = os.path.join(program_dir(ws, args.program), "shards.json")
+    pdir = program_dir(ws, args.program)
+    out = os.path.join(pdir, "shards.json")
+    shard_dir = os.path.join(pdir, "shards")
+    if os.path.isdir(shard_dir):
+        for old in os.listdir(shard_dir):
+            if old.endswith(".json"):
+                os.remove(os.path.join(shard_dir, old))
+    for s in shards:
+        s["file"] = f"analysis/{args.program}/shards/{shard_slug(s['id'])}.json"
+        write_json(os.path.join(ws, s["file"]), {"id": s["id"], "app": s["app"], "stack": s["stack"], "name": s["name"],
+                                                 "files": s["files"], "hints": s["hints"]})
     write_json(out, {"version": 1, "program": args.program, "maxLines": args.max_lines, "shards": shards})
+    prog = load_program(ws, args.program)
+    apps = [{k: a.get(k) for k in ("name", "product", "stack", "role", "twinOf")} for a in prog.get("apps", [])]
+    compact = lambda sel: [{k: s[k] for k in ("id", "app", "stack", "kind", "name", "loc", "file")} for s in sel]
+    map_shards = [s for s in shards if s["kind"] in ("screens", "ui") or s["hints"].get("routes")]
+    write_json(os.path.join(pdir, "workflow-args.map.json"),
+               {"program": args.program, "apps": apps, "personas": prog.get("personas") or [], "shards": compact(map_shards)})
+    index = load_json(os.path.join(pdir, "capability_index.json"))
+    rules_args = {"program": args.program, "apps": apps, "shards": compact(shards)}
+    if index:
+        rules_args["capabilityIndex"] = f"analysis/{args.program}/capability_index.json"
+        rules_args["capabilityIds"] = [c["id"] for c in index.get("capabilities", [])]
+    write_json(os.path.join(pdir, "workflow-args.rules.json"), rules_args)
     by_app = {}
     for s in shards:
         by_app.setdefault(s["app"], []).append(s)
@@ -235,7 +264,8 @@ def main():
     if not shards:
         print("0 shards: the pattern matched nothing, or no source files were found")
         sys.exit(1)
-    print(f"wrote analysis/{args.program}/shards.json ({len(shards)} shards)")
+    print(f"wrote analysis/{args.program}/shards.json ({len(shards)} shards), one file per shard in shards/, and the "
+          f"workflow arguments workflow-args.map.json ({len(map_shards)} map shards) and workflow-args.rules.json")
 
 
 if __name__ == "__main__":

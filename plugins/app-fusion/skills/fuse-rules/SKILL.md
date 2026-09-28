@@ -15,9 +15,10 @@ foreground and wait for it.
 
 ## 1: Shards
 
-Reuse `analysis/$program/shards.json` when it is newer than every inventory. Otherwise run
-`python3 "${CLAUDE_PLUGIN_ROOT}/scripts/shard.py" $program [--app <app>] [--pattern <glob>]`. Rules use **every**
-shard, including logic (services, reducers, utils), because that is where validation and calculation live.
+Run `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/shard.py" $program [--app <app>] [--pattern <glob>]`. Run it again even when
+`shards.json` exists, so `workflow-args.rules.json` carries the current capability ids from `capability_index.json`.
+Rules use **every** shard, including logic (services, reducers, utils), because that is where validation and
+calculation live.
 
 ## 2: Estimate, ask if large, launch
 
@@ -32,14 +33,11 @@ so split more than about 80 shards into parts of at most 80, run them one after 
 ```
 Workflow({
   name: "app-fusion:fuse-extract-rules",
-  args: {
-    program: "$program",
-    apps: [ {name, product, stack} ... ],
-    shards: [ ... shards.json ... ],
-    capabilities: [ {id, name, domain, apps: [<app names that implement it>], fusion} ... ]   // [] if no map yet
-  }
+  args: <the JSON object in analysis/$program/workflow-args.rules.json, passed as it is>
 })
 ```
+
+Each extractor reads its shard file and `capability_index.json` itself, so the call carries ids and paths only.
 
 Record the Run ID. If the run stops without a result, **resume, never restart**: identical `name` and `args` plus
 `resumeFromRunId`. A completed run with `rerunShards` is rendered as it is. Then offer one follow-up run on those

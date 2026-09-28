@@ -66,6 +66,14 @@ def rn_app(root):
         searchParams.get('Status');
         const license = { url: 'https://github.com/axios/axios/blob/HEAD/LICENSE' };
     """)
+    write(root, "src/services/apiAutopay.ts", """
+        export const list = () => { const method = 'GET'; const url = `${apiBase.getBaseUrl()}autopay/transaction/list?rows=${2000}`; return makeRequest({ method, url }) }
+        export const approve = () => {
+          const method = 'POST';
+          const url = `${apiBase.getBaseUrl()}autopay/transactions/approve`;
+          return makeRequest({ method, url })
+        }
+    """)
     write(root, "src/services/mswHandlers.ts", "http.get('https://mock.example/api/mocked', () => {})\n")
     write(root, "src/utils/eventLogging/events/approvalEvents.ts", """
         export const APPROVAL_EVENTS = {

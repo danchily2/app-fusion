@@ -19,10 +19,14 @@ it: never end your turn while one is running.
 python3 "${CLAUDE_PLUGIN_ROOT}/scripts/shard.py" $program [--app <app>] [--pattern <glob>]
 ```
 
-This writes `analysis/$program/shards.json`: areas of at most about 9,000 lines, each with inventory hints (routes,
-screens, endpoints, events). The map uses the shards whose `kind` is `screens` or `ui`, plus any other shard with
-route hints (navigation config). Build that list with a short python one-liner, and keep the shard objects exactly as
-written. If it prints **0 shards**, stop and say why (the pattern matched nothing).
+This writes:
+- `analysis/$program/shards.json`: areas of at most about 9,000 lines.
+- One small file per shard under `shards/`, holding its file list and inventory hints (routes, screens, endpoints,
+  events). Each agent reads its own file.
+- `workflow-args.map.json`: the exact arguments for the fan-out. They cover the screen and UI shards plus any shard
+  with route hints, by id and path only, so the Workflow call stays a few kilobytes even for large apps.
+
+If it prints **0 shards**, stop and say why (the pattern matched nothing).
 
 ## 2: Estimate, ask if large, launch
 
@@ -37,12 +41,7 @@ name, pass `scriptPath: "${CLAUDE_PLUGIN_ROOT}/workflows/map-capabilities.js"` i
 ```
 Workflow({
   name: "app-fusion:fuse-map-capabilities",
-  args: {
-    program: "$program",
-    apps: [ { name, product, stack, role, twinOf } ... from program.json ],
-    shards: [ ... the map shards from shards.json ... ],
-    personas: [ ... program.json personas ... ]
-  }
+  args: <the JSON object in analysis/$program/workflow-args.map.json, passed as it is>
 })
 ```
 

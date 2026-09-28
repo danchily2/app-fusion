@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Render workflow results into the program's catalogs, keeping every id stable across re-runs.
 
-    python3 render.py capabilities <program> [--result FILE]   map_result.json (+ design/new_capabilities.json) -> capabilities.json, CAPABILITIES.md
+    python3 render.py capabilities <program> [--result FILE]   map_result.json (+ design/new_capabilities.json) -> capabilities.json,
+                                                               capability_index.json (compact, for the workflows), CAPABILITIES.md
     python3 render.py rules <program> [--result FILE]          rules_result.json -> rules.json, BUSINESS_RULES.md, DATA_OBJECTS.md
     python3 render.py platform <program>                       inventories (+ map_result platformItems) -> platform.json, PLATFORM.md
     python3 render.py design <program>                         design/design.json -> DESIGN_INVENTORY.md
@@ -134,6 +135,9 @@ def render_capabilities(ws, program, result_path=None):
         "stats": result.get("stats") or {},
     }
     write_json(os.path.join(pdir, "capabilities.json"), out)
+    write_json(os.path.join(pdir, "capability_index.json"), {"program": program, "version": 1, "capabilities": [
+        {"id": c["id"], "name": c["name"], "domain": c["domain"], "fusion": c["fusion"], "personas": c["personas"],
+         "apps": sorted(c["implementations"]), "description": c["description"][:200]} for c in caps]})
     write_text(os.path.join(pdir, "CAPABILITIES.md"), capabilities_md(out, prog))
     counts = collections.Counter(c["fusion"] for c in caps)
     print(f"{len(caps)} capabilities ({', '.join(f'{counts[f]} {f}' for f in FUSION if counts[f])}), {len(journeys)} journeys, "

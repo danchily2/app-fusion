@@ -88,6 +88,8 @@ class Extractors(unittest.TestCase):
         self.assertIn(("POST", "/approval/rest/tasks/approve"), paths)
         self.assertIn(("POST", "/api/v1/feedback"), paths, "the ${PATH} constant is resolved")
         self.assertIn(("GET", "/api/v1/bootstrap"), paths)
+        self.assertIn(("GET", "/autopay/transaction/list"), paths, "url variable + makeRequest, method from its own function")
+        self.assertIn(("POST", "/autopay/transactions/approve"), paths)
         self.assertFalse(any("mocked" in p for _, p in paths), "msw mock handlers are not the app")
         self.assertFalse(any("license" in p for _, p in paths))
         self.assertEqual(c["events"], 2, "top-level catalog members only")

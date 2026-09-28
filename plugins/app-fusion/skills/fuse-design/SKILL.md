@@ -71,23 +71,21 @@ itself.
 
 This needs `analysis/$program/capabilities.json`. Without it, say that the trace waits for `fuse-map`, and finish.
 
-It reads cached screenshots, so it costs no Figma calls. **With the Workflow tool**, call it by name. If the tool does
-not know the name, pass `scriptPath: "${CLAUDE_PLUGIN_ROOT}/workflows/trace-design.js"` instead:
+It reads cached screenshots, so it costs no Figma calls. First run
+`python3 "${CLAUDE_PLUGIN_ROOT}/scripts/trace.py" $program prepare`. It writes the screens in batches of eight
+(`design/batches/`) and the arguments file `workflow-args.trace.json`. **With the Workflow tool**, call it by name. If
+the tool does not know the name, pass `scriptPath: "${CLAUDE_PLUGIN_ROOT}/workflows/trace-design.js"` instead:
 
 ```
 Workflow({
   name: "app-fusion:fuse-trace-design",
-  args: {
-    program: "$program",
-    screens: [ {id, name, page, section, texts, shot} for every screen or state in design.json ],
-    capabilities: [ {id, name, domain, description, personas, fusion} from capabilities.json ]
-  }
+  args: <the JSON object in analysis/$program/workflow-args.trace.json, passed as it is>
 })
 ```
 
-**Without it**, give batches of about eight screens to `app-fusion:capability-cartographer` agents, at most three at
-once. Each receives the screens' names, texts and screenshot paths (which it opens with Read) and the capability
-list. Ask for the same shape as `LINKS_SCHEMA` in `workflows/trace-design.js`.
+**Without it**, give each batch file to an `app-fusion:capability-cartographer` agent, at most three at once. It reads
+the screens and opens their screenshots with Read, and it reads `capability_index.json`. Ask for the same shape as
+`LINKS_SCHEMA` in `workflows/trace-design.js`.
 
 Save the result as `analysis/$program/design/trace_result.json`. If it proposes `newCapabilities` (designed features
 no legacy app has), save them as `analysis/$program/design/new_capabilities.json` and re-run

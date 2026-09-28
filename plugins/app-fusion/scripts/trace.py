@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Trace every capability to the new design and to the new app, and list the gaps.
 
-    python3 trace.py <program> [--result FILE] [--workspace DIR]
+    python3 trace.py <program> [--result FILE] [--workspace DIR]          compute traceability.json and TRACEABILITY.md
+    python3 trace.py <program> prepare [--batch-size 8]                   write screen batches for the fuse-trace-design workflow
 
 Reads capabilities.json, design/design.json, the mapping links (design/trace_result.json, written from the
 fuse-trace-design workflow: {"links": [{screen, capabilities, confidence, evidence}], "unmapped": [...]}),
@@ -137,15 +138,50 @@ def render(t, caps, screens):
     return "\n".join(lines)
 
 
+def prepare(ws, program, size=8):
+    """Write the screens to trace in batches (design/batches/batch-NNN.json) and the workflow's compact arguments, so a
+    Workflow call carries paths, not every screen's texts."""
+    pdir = program_dir(ws, program)
+    design = load_json(os.path.join(pdir, "design", "design.json"))
+    if not design:
+        die(f"analysis/{program}/design/design.json not found: run the inventory part of /app-fusion:fuse-design first")
+    if not os.path.isfile(os.path.join(pdir, "capability_index.json")):
+        die(f"analysis/{program}/capability_index.json not found: run render.py capabilities {program} first")
+    screens = [{"id": s["id"], "name": s.get("name"), "page": s.get("page"), "section": s.get("section"),
+                "texts": (s.get("texts") or [])[:40], "shot": s.get("shot")}
+               for s in design.get("screens", []) if s.get("kind") in ("screen", "state")]
+    bdir = os.path.join(pdir, "design", "batches")
+    os.makedirs(bdir, exist_ok=True)
+    for old in os.listdir(bdir):
+        if old.endswith(".json"):
+            os.remove(os.path.join(bdir, old))
+    batches = []
+    for i in range(0, len(screens), size):
+        rel = f"analysis/{program}/design/batches/batch-{i // size + 1:03d}.json"
+        write_json(os.path.join(ws, rel), {"screens": screens[i: i + size]})
+        batches.append({"file": rel, "screens": [s["id"] for s in screens[i: i + size]]})
+    ids = [c["id"] for c in (load_json(os.path.join(pdir, "capability_index.json")) or {}).get("capabilities", [])]
+    args = {"program": program, "batches": batches, "capabilityIndex": f"analysis/{program}/capability_index.json",
+            "capabilityIds": ids}
+    write_json(os.path.join(pdir, "workflow-args.trace.json"), args)
+    print(f"{len(screens)} screen(s) in {len(batches)} batch(es) -> analysis/{program}/design/batches/, "
+          f"workflow-args.trace.json")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("program")
+    ap.add_argument("mode", nargs="?", default="compute", choices=["compute", "prepare"])
     ap.add_argument("--result")
+    ap.add_argument("--batch-size", type=int, default=8)
     ap.add_argument("--workspace")
     args = ap.parse_args()
     ws = workspace(args.workspace)
     check_name(args.program, "program")
-    compute(ws, args.program, args.result)
+    if args.mode == "prepare":
+        prepare(ws, args.program, max(1, min(12, args.batch_size)))
+    else:
+        compute(ws, args.program, args.result)
 
 
 if __name__ == "__main__":

@@ -66,6 +66,26 @@ class Strings(unittest.TestCase):
             self.assertEqual(sorted(cat["locales"]), ["da", "default"])
 
 
+class Notifications(unittest.TestCase):
+    def test_categories_and_channels_with_constants(self):
+        from fusionlib import notify
+        with tempfile.TemporaryDirectory() as root:
+            helpers.write(root, "ios/App/Push.swift", """
+                let approveCategory = "APPROVE_REJECT"
+                center.setNotificationCategories([UNNotificationCategory(identifier: approveCategory, actions: [a], intentIdentifiers: [])])
+                let info = UNNotificationCategory(identifier: "INFO", actions: [], intentIdentifiers: [])
+            """)
+            helpers.write(root, "android/app/src/main/java/x/Push.kt", """
+                private const val CHANNEL_ID = "high-priority"
+                val channel = NotificationChannel(CHANNEL_ID, "High", NotificationManager.IMPORTANCE_HIGH)
+            """)
+            helpers.write(root, "src/notifications.ts", "await notifee.createChannel({ id: 'fallback', name: 'x' })\n")
+            helpers.write(root, "src/__tests__/n.test.ts", "notifee.createChannel({ id: 'test-only' })\n")
+            found = {(r["kind"], r["id"]) for r in notify.scan(root)}
+            self.assertEqual(found, {("category", "APPROVE_REJECT"), ("category", "INFO"), ("channel", "high-priority"),
+                                     ("channel", "fallback")})
+
+
 class Extractors(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()

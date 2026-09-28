@@ -10,10 +10,12 @@ from .common import is_test_path, line_of, read_text, walk
 
 EXTS = {".swift", ".m", ".mm", ".ts", ".tsx", ".js", ".jsx", ".kt", ".java"}
 PATTERNS = [
-    ("category", re.compile(r"UNNotificationCategory\s*\(\s*identifier\s*:\s*\"([^\"\\]+)\"")),
-    ("category", re.compile(r"categoryWithIdentifier\s*:\s*@\"([^\"\\]+)\"")),
-    ("channel", re.compile(r"NotificationChannel(?:Compat\.Builder)?\s*\(\s*\"([^\"\\]+)\"")),
+    ("category", re.compile(r"UNNotificationCategory\s*\(\s*identifier\s*:\s*(?:\"([^\"\\]+)\"|([A-Za-z_][\w.]*))")),
+    ("category", re.compile(r"categoryWithIdentifier\s*:\s*(?:@\"([^\"\\]+)\"|([A-Za-z_]\w*))")),
+    ("channel", re.compile(r"NotificationChannel(?:Compat\.Builder)?\s*\(\s*(?:\"([^\"\\]+)\"|([A-Za-z_][\w.]*))")),
 ]
+# a constant in the same file: Kotlin `const val X = "..."`, Swift `let X = "..."`, Objective-C `NSString *const X = @"..."`
+CONST = re.compile(r"(?:\bconst\s+val|\b(?:static\s+)?let|\bNSString\s*\*\s*(?:const\s+)?)\s*([A-Za-z_]\w*)\s*(?::\s*String\s*)?=\s*@?\"([^\"\\]+)\"")
 BLOCK = re.compile(r"\b(setNotificationCategories|createChannels?|createChannelGroup)\s*\(")
 BLOCK_ID = re.compile(r"\bid\s*:\s*['\"]([^'\"]+)['\"]")
 
@@ -27,7 +29,13 @@ def scan(root, rel_prefix=""):
         text = read_text(full)
         if not text or ("Notification" not in text and "Channel" not in text and "Categor" not in text):
             continue
-        found = [(kind, m.group(1), m.start()) for kind, rx in PATTERNS for m in rx.finditer(text)]
+        consts = {m.group(1): m.group(2) for m in CONST.finditer(text)}
+        found = []
+        for kind, rx in PATTERNS:
+            for m in rx.finditer(text):
+                ident = m.group(1) or consts.get((m.group(2) or "").split(".")[-1])
+                if ident:
+                    found.append((kind, ident, m.start()))
         for m in BLOCK.finditer(text):
             kind = "category" if "Categor" in m.group(1) else "channel"
             window = text[m.end(): m.end() + 1500]

@@ -157,7 +157,7 @@ Built against two production apps (Visma Manager, React Native, 218k code lines,
 The inventory's counts were checked against a hand-certified knowledge graph of both apps: routes, string keys,
 locales and Swift packages match exactly; event and endpoint counts differ by the rule that made them (both rules
 are printed). An adversarial review of the whole plugin found 2 blockers and 15 high-severity issues, all fixed and
-covered by tests (`scripts/tests/`, 36 cases, and `tests/`, 11 workflow cases).
+covered by tests (`scripts/tests/`, 37 cases, and `tests/`, 11 workflow cases).
 
 ## Set it up so it runs smoothly
 

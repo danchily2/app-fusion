@@ -55,10 +55,10 @@ const $ = (t, a, kids) => { const e = document.createElement(t); if (a) for (con
 const table = (heads, rows, numeric) => { const t = $('table'); const h = $('tr'); heads.forEach(x => h.appendChild($('th', {text: x}))); t.appendChild($('thead', null, [h])); const b = $('tbody'); rows.forEach(r => { const tr = $('tr'); r.forEach((c, i) => { const td = $('td', (numeric||[]).includes(i) ? {cls: 'num'} : null); if (c instanceof Node) td.appendChild(c); else td.textContent = c == null ? '' : String(c); tr.appendChild(td); }); b.appendChild(tr); }); t.appendChild(b); return t; };
 const pill = (text, cls) => $('span', {cls: 'pill ' + (cls || String(text).split(' ')[0]), text: text});
 const card = (n, label) => $('div', {cls: 'card'}, [$('b', {text: String(n)}), $('span', {text: label})]);
-const sec = id => document.getElementById(id);
+const sec = id => document.getElementById('tab-' + id);
 const tabs = [['overview','Overview'],['apps','Apps'],['caps','Capabilities'],['design','Design'],['rules','Rules'],['decisions','Decisions'],['plan','Plan'],['proof','Proof'],['security','Security']];
 const nav = document.querySelector('nav');
-tabs.forEach(([id, label], i) => { const b = $('button', {text: label, 'aria-selected': i === 0 ? 'true' : 'false', 'data-tab': id}); b.addEventListener('click', () => { document.querySelectorAll('nav button').forEach(x => x.setAttribute('aria-selected', 'false')); b.setAttribute('aria-selected', 'true'); document.querySelectorAll('section').forEach(s => s.classList.toggle('on', s.id === id)); }); nav.appendChild(b); });
+tabs.forEach(([id, label], i) => { const b = $('button', {text: label, 'aria-selected': i === 0 ? 'true' : 'false', 'data-tab': id}); b.addEventListener('click', () => { document.querySelectorAll('nav button').forEach(x => x.setAttribute('aria-selected', 'false')); b.setAttribute('aria-selected', 'true'); document.querySelectorAll('section').forEach(s => s.classList.toggle('on', s.id === 'tab-' + id)); if (history.replaceState) history.replaceState(null, '', '#' + id); }); nav.appendChild(b); });
 const S = D.status || {};
 // overview
 (function(){ const o = sec('overview'); o.classList.add('on');
@@ -189,7 +189,7 @@ def render(data):
             f"<title>App Fusion: {title}</title><style>{STYLE}</style></head><body>"
             f"<header><h1>App Fusion: {title}</h1><p>One page with everything found so far. Refreshed by every step; "
             "the files under analysis/ are the source of truth.</p></header><nav></nav><main>"
-            + "".join(f"<section id=\"{s}\"></section>" for s in ("overview", "apps", "caps", "design", "rules", "decisions", "plan", "proof", "security"))
+            + "".join(f"<section id=\"tab-{s}\"></section>" for s in ("overview", "apps", "caps", "design", "rules", "decisions", "plan", "proof", "security"))
             + f"</main><script type=\"application/json\" id=\"data\">{payload}</script><script>{SCRIPT}</script></body></html>\n")
 
 

@@ -3,6 +3,8 @@
 
     python3 workspace.py init <program> --source <app>=<path> [--source ...] [--product <app>=<name>] [--twin <app>=<of>]
                                [--figma <url> ...] [--target <path>] [--workspace DIR]
+    python3 workspace.py intent <program> [--goal build|understand] [--platforms ios,android] [--stack S] [--persona P ...]
+                               [--must TEXT ...] [--store APP|new-listing|undecided] [--locales en,da,...]
     python3 workspace.py check <program> [--json]          are the legacy apps linked, clean and at the recorded commit?
     python3 workspace.py guard <program>                   which permission deny rules protect the legacy code?
 
@@ -138,6 +140,44 @@ def cmd_init(args):
     print(f"wrote analysis/{program}/program.json ({len(prog['apps'])} app(s), {len(prog['figma'])} Figma file(s))")
 
 
+def cmd_intent(args):
+    """Record the machine-readable part of the front door's answers in program.json (INTENT.md keeps the words)."""
+    ws = workspace(args.workspace)
+    path = os.path.join(program_dir(ws, args.program), "program.json")
+    prog = load_json(path)
+    if not prog:
+        die(f"analysis/{args.program}/program.json not found: run `workspace.py init` first")
+    stacks = {"react-native", "native", "swiftui", "compose", "flutter", "kmp", "undecided"}
+    if args.goal:
+        if args.goal not in ("build", "understand"):
+            die("--goal is build or understand")
+        prog["goal"] = args.goal
+    if args.platforms:
+        plats = [p.strip() for p in args.platforms.split(",") if p.strip()]
+        if not set(plats) <= {"ios", "android"}:
+            die("--platforms is ios, android or ios,android")
+        prog["target"]["platforms"] = plats
+    if args.stack:
+        if args.stack not in stacks:
+            die(f"--stack is one of {', '.join(sorted(stacks))}")
+        prog["target"]["stack"] = args.stack
+    if args.persona:
+        prog["personas"] = [p.strip() for p in args.persona if p.strip()]
+    if args.must:
+        prog["mustStayTrue"] = [m.strip() for m in args.must if m.strip()]
+    if args.store:
+        names = {a["name"] for a in prog.get("apps", [])}
+        if args.store not in names | {"new-listing", "undecided"}:
+            die(f"--store is an app name ({', '.join(sorted(names))}), new-listing or undecided")
+        prog["storeIdentity"] = args.store
+    if args.locales is not None:
+        prog["locales"] = [l.strip() for l in args.locales.split(",") if l.strip()]
+    write_json(path, prog)
+    print(f"analysis/{args.program}/program.json: goal {prog['goal']}, platforms {','.join(prog['target'].get('platforms') or []) or '-'}, "
+          f"stack {prog['target'].get('stack')}, personas {', '.join(prog.get('personas') or []) or '-'}, store {prog.get('storeIdentity')}, "
+          f"locales {', '.join(prog.get('locales') or []) or 'from the apps'}")
+
+
 def legacy_state(ws, prog):
     rows = []
     for a in prog.get("apps", []):
@@ -223,6 +263,16 @@ def main():
     p.add_argument("--figma", action="append")
     p.add_argument("--target")
     p.add_argument("--workspace")
+    p = sub.add_parser("intent")
+    p.add_argument("program")
+    p.add_argument("--goal")
+    p.add_argument("--platforms")
+    p.add_argument("--stack")
+    p.add_argument("--persona", action="append")
+    p.add_argument("--must", action="append")
+    p.add_argument("--store")
+    p.add_argument("--locales")
+    p.add_argument("--workspace")
     p = sub.add_parser("check")
     p.add_argument("program")
     p.add_argument("--json", action="store_true")
@@ -235,6 +285,8 @@ def main():
     args = ap.parse_args()
     if args.cmd == "init":
         cmd_init(args)
+    elif args.cmd == "intent":
+        cmd_intent(args)
     elif args.cmd == "check":
         cmd_check(args)
     elif args.cmd == "guard":

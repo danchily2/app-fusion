@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Render workflow results into the program's catalogs, keeping every id stable across re-runs.
 
-    python3 render.py capabilities <program> [--result FILE]   map_result.json  -> capabilities.json, CAPABILITIES.md
+    python3 render.py capabilities <program> [--result FILE]   map_result.json (+ design/new_capabilities.json) -> capabilities.json, CAPABILITIES.md
     python3 render.py rules <program> [--result FILE]          rules_result.json -> rules.json, BUSINESS_RULES.md, DATA_OBJECTS.md
     python3 render.py platform <program>                       inventories (+ map_result platformItems) -> platform.json, PLATFORM.md
     python3 render.py design <program>                         design/design.json -> DESIGN_INVENTORY.md
+    python3 render.py overlap <program>                        inventories -> overlap.json (shared endpoints, copy, locales)
 
 Ids never move: an existing CAP-/RULE-/PLT- id is kept for the entry with the same normalized key (see
 docs/DESIGN.md), new entries are numbered after the highest id ever issued, and an id is never reused. Every value
@@ -53,8 +54,11 @@ def render_capabilities(ws, program, result_path=None):
     for c in previous.get("capabilities", []):
         by_name.setdefault(norm(c["name"]), []).append(c["id"])
 
+    design_only = load_json(os.path.join(pdir, "design", "new_capabilities.json")) or []
+    raws = list(result.get("capabilities", [])) + [
+        {**d, "fusion": "new", "implementations": {}} for d in design_only if isinstance(d, dict) and d.get("name")]
     caps, taken = [], set()
-    for raw in result.get("capabilities", []):
+    for raw in raws:
         name = one_line(raw.get("name"), 120)
         if not name:
             continue
@@ -463,9 +467,53 @@ def render_design(ws, program):
     print(f"{len(screens)} frames ({', '.join(f'{v} {k}' for k, v in kinds.most_common())}) -> analysis/{program}/DESIGN_INVENTORY.md")
 
 
+# ---------------------------------------------------------------- overlap
+
+def render_overlap(ws, program):
+    """Deterministic overlap between the apps before any agent runs: shared backend endpoints, shared UI copy, and
+    the locales each app ships. A first signal of how much of the fusion is merging and how much is carrying over."""
+    from fusionlib.common import endpoints_match
+    from fusionlib.strings import base_locale
+    pdir = program_dir(ws, program)
+    prog = load_program(ws, program)
+    apps = [a["name"] for a in prog.get("apps", [])]
+    invs = {a: load_json(os.path.join(pdir, "apps", a, "inventory.json")) or {} for a in apps}
+    strs = {a: load_json(os.path.join(pdir, "apps", a, "strings.json")) or {} for a in apps}
+    pairs = []
+    for i, a in enumerate(apps):
+        for b in apps[i + 1:]:
+            ea = sorted({(e.get("method"), e["path"]) for e in invs[a].get("endpoints", [])}, key=lambda x: x[1])
+            eb = sorted({(e.get("method"), e["path"]) for e in invs[b].get("endpoints", [])}, key=lambda x: x[1])
+            shared = []
+            for m1, p1 in ea:
+                hit = next(((m2, p2) for m2, p2 in eb if endpoints_match(p1, p2) and (m1 is None or m2 is None or m1 == m2)), None)
+                if hit:
+                    shared.append({a: f"{m1 or '?'} {p1}", b: f"{hit[0] or '?'} {hit[1]}"})
+            va = {norm(v) for v in (strs[a].get("values") or {}).values() if len(norm(v)) >= 4}
+            vb = {norm(v) for v in (strs[b].get("values") or {}).values() if len(norm(v)) >= 4}
+            la = {base_locale(l) for l in strs[a].get("locales") or []}
+            lb = {base_locale(l) for l in strs[b].get("locales") or []}
+            pairs.append({"apps": [a, b], "sharedEndpoints": shared,
+                          "endpointCounts": {a: len({p for _, p in ea}), b: len({p for _, p in eb})},
+                          "sharedCopy": len(va & vb), "copyCounts": {a: len(va), b: len(vb)},
+                          "locales": {"both": sorted(la & lb), f"only {a}": sorted(la - lb), f"only {b}": sorted(lb - la)}})
+    out = {"program": program, "version": 1, "generated": now_iso(), "pairs": pairs,
+           "rules": {"sharedEndpoints": "endpoint pairs whose normalized paths match by segment suffix ({} matches any segment) and whose methods agree",
+                     "sharedCopy": "distinct source-locale string values (normalized, at least 4 characters) present in both apps",
+                     "locales": "compared by language (nb-NO, nb and no are one)"}}
+    write_json(os.path.join(pdir, "overlap.json"), out)
+    for p in pairs:
+        a, b = p["apps"]
+        print(f"{a} x {b}: {len(p['sharedEndpoints'])} shared endpoint(s) ({p['endpointCounts'][a]} / {p['endpointCounts'][b]}), "
+              f"{p['sharedCopy']} shared UI strings, locales both {','.join(p['locales']['both']) or '-'}; "
+              f"only {a}: {','.join(p['locales'][f'only {a}']) or '-'}; only {b}: {','.join(p['locales'][f'only {b}']) or '-'}")
+    print(f"-> analysis/{program}/overlap.json")
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    ap.add_argument("kind", choices=["capabilities", "rules", "platform", "design"])
+    ap.add_argument("kind", choices=["capabilities", "rules", "platform", "design", "overlap"])
     ap.add_argument("program")
     ap.add_argument("--result")
     ap.add_argument("--workspace")
@@ -478,6 +526,8 @@ def main():
         render_rules(ws, args.program, args.result)
     elif args.kind == "platform":
         render_platform(ws, args.program)
+    elif args.kind == "overlap":
+        render_overlap(ws, args.program)
     else:
         render_design(ws, args.program)
 

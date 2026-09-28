@@ -382,17 +382,32 @@ def endpoint_segments(path):
 
 
 def endpoints_match(a, b):
-    """True when two normalized paths name the same endpoint: equal, or one is a suffix of the other at a segment
-    boundary with at least two segments in common ('{}' matches any segment). Covers base-URL prefix differences."""
+    """True when two normalized paths name the same endpoint: the shorter is a suffix of the longer at a segment
+    boundary (covers base-URL prefix differences), '{}' matches any one segment, no two literal segments differ, and
+    enough literals agree: at least min(2, literal segments of the shorter path), including the shorter path's last
+    literal segment. So /users/{}/settings matches /api/users/{}/settings, but /financials/{}/{} does not match
+    /employees/{}/calendar/checkin."""
     if not a or not b:
         return False
     sa, sb = endpoint_segments(a), endpoint_segments(b)
     if len(sa) > len(sb):
         sa, sb = sb, sa
-    if len(sa) < 2 and len(sa) != len(sb):
+    if not sa or (len(sa) < 2 and len(sa) != len(sb)):
         return False
     tail = sb[len(sb) - len(sa):]
-    return all(x == y or x == "{}" or y == "{}" for x, y in zip(sa, tail))
+    equal_literals = 0
+    for x, y in zip(sa, tail):
+        if x != "{}" and y != "{}":
+            if x != y:
+                return False
+            equal_literals += 1
+    literals = [i for i, x in enumerate(sa) if x != "{}"]
+    if not literals:
+        return sa == tail
+    last = literals[-1]
+    if tail[last] != sa[last]:
+        return False
+    return equal_literals >= min(2, len(literals))
 
 
 # ---------------------------------------------------------------- secrets

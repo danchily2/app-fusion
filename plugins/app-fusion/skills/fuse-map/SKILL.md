@@ -30,10 +30,12 @@ If it prints **0 shards**, stop and say why (the pattern matched nothing).
 
 ## 2: Estimate, ask if large, launch
 
-The fan-out is one extractor per shard, one domain planner, one reconciler per domain (about 8–14), one referee per
-capability (roughly 2–4 per shard) and one journey writer. Say the estimate, for example "30 shards: about 130
-agents". With more than 40 shards, ask first with AskUserQuestion. Offer "Run all N", "Only one app, or a pattern",
-and "Cancel".
+The fan-out is one extractor per shard, one domain planner, one reconciler per domain (about one per 10 fragments,
+at most 16), one referee per capability and one journey writer. Measured on two production apps, that came to about
+11 agents per shard: a 4-shard calendar slice produced 43 fragments, 29 capabilities and 43 agents. Say the estimate,
+for example "30 shards: about 330 agents". With more than 20 shards, ask first with AskUserQuestion. Offer "Run all N",
+"Only a slice (an app or a pattern such as `--pattern \"*alendar*\"`)" and "Cancel". A slice through one domain of every
+app is the recommended pilot.
 
 **With the Workflow tool** (this command is your authorization), call it by name. If the tool does not know the
 name, pass `scriptPath: "${CLAUDE_PLUGIN_ROOT}/workflows/map-capabilities.js"` instead:

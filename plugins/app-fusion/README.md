@@ -118,9 +118,11 @@ Figma is **read only**: the plugin never calls a Figma write tool.
 
 ## What to expect
 
-On two apps of 200–300k lines each (the size this plugin was built against), typical runs are:
-- the inventory: seconds
-- `fuse-map`: 40–50 shards, about 150 agents
+These are measured on the two production apps this plugin was built against (218k and 285k code lines):
+- the inventory: under 10 seconds for both apps
+- `fuse-assess`: 6 analyst agents
+- `fuse-map`: about 11 agents per shard. A slice through the calendar domain of both apps had 4 shards and used 43
+  agents; the whole of both apps is 35 map shards.
 - `fuse-rules`: 6–12 agents per shard
 
 Every fan-out step says how many agents it will start, and asks before a big run. Large runs are resumable workflows:

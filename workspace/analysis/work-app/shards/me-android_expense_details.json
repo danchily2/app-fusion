@@ -1,0 +1,37 @@
+{
+  "id": "me-android:expense/details",
+  "app": "me-android",
+  "stack": "android-native",
+  "name": "expense/details",
+  "files": [
+    "expense/src/main/java/com/visma/employee/expense/details/ClaimField.kt",
+    "expense/src/main/java/com/visma/employee/expense/details/ClaimTitleAndCommentData.kt",
+    "expense/src/main/java/com/visma/employee/expense/details/EditClaimDraftData.kt",
+    "expense/src/main/java/com/visma/employee/expense/details/ExpenseRowsScreen.kt",
+    "expense/src/main/java/com/visma/employee/expense/details/ExpenseRowsUiState.kt",
+    "expense/src/main/java/com/visma/employee/expense/details/ExpenseRowsViewModel.kt",
+    "expense/src/main/java/com/visma/employee/expense/details/RequestStatus.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/details/AttachmentsAdapter.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/details/CurrencyViewModel.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/details/DraftDetailsCoordinator.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/details/DraftDetailsDialogs.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/details/DraftFieldsBuilder.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/details/ExpenseDraftDetailsScreen.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/details/ExpenseDraftDetailsViewModel.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/details/ExpenseDraftNavigator.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/details/ExpenseFieldKeys.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/details/ExpenseFieldsBuilderSubscriber.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/details/FieldViewModelMapper.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/details/FilePickerResult.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/details/ImageAttachmentsService.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/details/ImageAttachmentsServiceImpl.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/details/MainPreviewState.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/details/TemplateFieldsMapper.kt"
+  ],
+  "hints": {
+    "screens": [
+      "ExpenseDraftDetailsScreen",
+      "ExpenseRowsScreen"
+    ]
+  }
+}

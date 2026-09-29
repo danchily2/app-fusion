@@ -1,0 +1,49 @@
+{
+  "id": "vmm:screens/manager/ApprovalTaskBXNLineEditScreen",
+  "app": "vmm",
+  "stack": "react-native",
+  "name": "screens/manager/ApprovalTaskBXNLineEditScreen",
+  "files": [
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/ApprovalTaskBXNLineEditScreen.tsx",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/components/EditableDateRow/index.tsx",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/components/EditableDateRow/style.ts",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/components/EditableNumericRow/AccountTypeSelector.tsx",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/components/EditableNumericRow/EditableNumericRow.tsx",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/components/EditableNumericRow/FieldEditModal.tsx",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/components/EditableNumericRow/RegularFieldSelector.tsx",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/components/EditableNumericRow/fieldModalStyle.ts",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/components/EditableNumericRow/hooks/useAccountTypeSelection.ts",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/components/EditableNumericRow/hooks/useDisplaySubtitle.ts",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/components/EditableNumericRow/hooks/useMapDataSelection.ts",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/components/EditableNumericRow/index.ts",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/components/EditableNumericRow/style.ts",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/components/EditableTextRow/EditableTextRow.tsx",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/components/EditableTextRow/TextEditModal.tsx",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/components/EditableTextRow/style.ts",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/components/FieldSelectionModal/FieldSelectionModal.tsx",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/components/FieldSelectionModal/style.ts",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/components/VoucherLineEditComponent.tsx",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/context/BulkApplyContext.tsx",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/context/FieldEditOverlayContext.tsx",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/context/VoucherLineEditContext.tsx",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/context/hooks/index.ts",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/context/hooks/useChangeDetection.ts",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/context/hooks/useDateHandlers.ts",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/context/hooks/useEditableRows.ts",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/context/hooks/useSaveHandler.ts",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/context/hooks/useVoucherLineState.ts",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/context/style.ts",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/context/types.ts",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/style.ts",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/utils/lineEditUtils.ts",
+    "src/screens/manager/ApprovalTaskBXNLineEditScreen/utils/voucherLineEditUtils.ts"
+  ],
+  "hints": {
+    "routes": [
+      "SCREEN_NAME_APPROVAL_TASK_BXN_LINE_EDIT"
+    ],
+    "screens": [
+      "ApprovalTaskBXNLineEditScreen"
+    ]
+  }
+}

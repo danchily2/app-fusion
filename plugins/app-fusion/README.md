@@ -136,8 +136,8 @@ These are measured on the two production apps this plugin was built against (218
 - `fuse-assess`: 6 analyst agents
 - `fuse-map`: about 11 agents per shard. A slice through the calendar domain of both apps had 4 shards and used 43
   agents; the whole of both apps is 35 map shards.
-- `fuse-rules`: 6–12 agents per shard, more where rules are dense. The same calendar slice (4 shards) used 171
-  agents and found 153 rules and 14 cross-app conflicts, for about $20 of usage
+- `fuse-rules`: about 43 agents per shard in rule-dense code: the same calendar slice (4 shards) used 171 agents and
+  found 153 rules and 14 cross-app conflicts, for about $20 of usage. Large apps run in parts of about 20 shards
 
 Every fan-out step says how many agents it will start, and asks before a big run. Large runs are resumable workflows:
 a stopped run resumes with its run id, and finished agents replay from the journal.

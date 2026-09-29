@@ -1,0 +1,1672 @@
+{
+  "app": "me-android",
+  "stack": "android-native",
+  "version": 1,
+  "generated": "2026-09-29T06:27:34+00:00",
+  "commit": "bdc1335e0f55200eea93cd701dd473a3abbcbfd3",
+  "branch": "development",
+  "shallowClone": true,
+  "counts": {
+    "sourceFiles": 1481,
+    "screens": 61,
+    "endpoints": 83,
+    "events": 0,
+    "stringKeys": 904,
+    "locales": 1,
+    "storageKeys": 14,
+    "webLinks": 1,
+    "testFiles": 386,
+    "maestroFlows": 69,
+    "packages": 11,
+    "dependencies": 18,
+    "targets": 10,
+    "code": 202469
+  },
+  "rules": {
+    "sourceFiles": "non-test .kt, .java and .kts files, generated and build directories excluded",
+    "screens": "classes extending *Activity or *Fragment plus @Composable functions named *Screen/*Page/*Route, outside test source sets",
+    "endpoints": "distinct normalized paths from Retrofit @GET/@POST/@PUT/@DELETE/@PATCH/@HEAD/@HTTP annotations with a literal path, Ktor client calls and OkHttp .url() literals; const val templates resolved",
+    "events": "distinct string literals passed to logEvent/trackEvent/track",
+    "stringKeys": "<string> and <plurals> names in res/values*/ XML (union of locales; values-night and other non-locale qualifiers ignored)",
+    "locales": "values-<locale> folders holding strings (default counts as one)",
+    "storageKeys": "SharedPreferences and DataStore key literals, Room @Entity classes, one row per file using EncryptedSharedPreferences or the Android KeyStore (one row per distinct kind and key)",
+    "webLinks": "absolute http(s) URLs passed to Uri.parse/toUri (help, legal and marketing pages)",
+    "testFiles": ".kt/.java files under src/test or src/androidTest (or other test paths)",
+    "maestroFlows": "YAML files under a maestro folder with an appId: header",
+    "packages": "modules named in include(...) of settings.gradle(.kts)",
+    "dependencies": "distinct group:artifact coordinates in Gradle files and version catalogs",
+    "targets": "AndroidManifest.xml files under src/main",
+    "code": "scc: code lines per language, generated and vendored directories excluded; summed over programming languages only (JSON, YAML, Markdown and other data formats are listed, not counted)"
+  },
+  "languages": [
+    {
+      "name": "Kotlin",
+      "files": 1865,
+      "code": 201089,
+      "complexity": 12943
+    },
+    {
+      "name": "JSON",
+      "files": 73,
+      "code": 65604,
+      "complexity": 0
+    },
+    {
+      "name": "Markdown",
+      "files": 72,
+      "code": 11285,
+      "complexity": 0
+    },
+    {
+      "name": "XML",
+      "files": 289,
+      "code": 8299,
+      "complexity": 0
+    },
+    {
+      "name": "YAML",
+      "files": 83,
+      "code": 2939,
+      "complexity": 0
+    },
+    {
+      "name": "Gradle",
+      "files": 16,
+      "code": 1952,
+      "complexity": 0
+    },
+    {
+      "name": "Python",
+      "files": 1,
+      "code": 593,
+      "complexity": 20
+    },
+    {
+      "name": "Prolog",
+      "files": 17,
+      "code": 499,
+      "complexity": 9
+    },
+    {
+      "name": "Shell",
+      "files": 6,
+      "code": 466,
+      "complexity": 53
+    },
+    {
+      "name": "HTML",
+      "files": 1,
+      "code": 328,
+      "complexity": 0
+    },
+    {
+      "name": "Groovy",
+      "files": 1,
+      "code": 235,
+      "complexity": 21
+    },
+    {
+      "name": "TOML",
+      "files": 1,
+      "code": 223,
+      "complexity": 0
+    },
+    {
+      "name": "Java",
+      "files": 2,
+      "code": 86,
+      "complexity": 0
+    },
+    {
+      "name": "Batch",
+      "files": 1,
+      "code": 71,
+      "complexity": 11
+    },
+    {
+      "name": "Properties File",
+      "files": 7,
+      "code": 27,
+      "complexity": 0
+    }
+  ],
+  "strings": {
+    "format": "android-xml",
+    "files": [
+      "payslip/src/main/res/values/nav_arguments.xml",
+      "translations/src/main/res/values/faq.xml",
+      "translations/src/main/res/values/strings.xml"
+    ],
+    "locales": [
+      "default"
+    ],
+    "source": "default",
+    "keys": 904,
+    "perLocale": {
+      "default": 904
+    },
+    "missingPerLocale": {
+      "default": 0
+    }
+  },
+  "screens": [
+    {
+      "name": "EventSelectionScreen",
+      "file": "absence/src/main/java/com/visma/employee/absence/EventSelectionScreen.kt:89",
+      "area": "absence",
+      "kind": "composable"
+    },
+    {
+      "name": "AddEditEventScreen",
+      "file": "absence/src/main/java/com/visma/employee/absence/addedit/AddEditEventScreen.kt:126",
+      "area": "absence",
+      "kind": "composable"
+    },
+    {
+      "name": "EventDetailsScreen",
+      "file": "absence/src/main/java/com/visma/employee/absence/details/EventDetailsScreen.kt:94",
+      "area": "absence",
+      "kind": "composable"
+    },
+    {
+      "name": "AbsenceFeedScreen",
+      "file": "absence/src/main/java/com/visma/employee/absence/feed/AbsenceFeedScreen.kt:92",
+      "area": "absence",
+      "kind": "composable"
+    },
+    {
+      "name": "AbsenceSummaryScreen",
+      "file": "absence/src/main/java/com/visma/employee/absence/summary/AbsenceSummaryScreen.kt:42",
+      "area": "absence",
+      "kind": "composable"
+    },
+    {
+      "name": "CalendarBotChatScreen",
+      "file": "absence/src/main/java/com/visma/employee/calendar/calendar_bot/presentation/chat/CalendarBotChatScreen.kt:77",
+      "area": "absence",
+      "kind": "composable"
+    },
+    {
+      "name": "CalendarBotChatScreen",
+      "file": "absence/src/main/java/com/visma/employee/calendar/calendar_bot/presentation/chat/CalendarBotChatScreen.kt:197",
+      "area": "absence",
+      "kind": "composable"
+    },
+    {
+      "name": "CalendarBotLearnMoreScreen",
+      "file": "absence/src/main/java/com/visma/employee/calendar/calendar_bot/presentation/learn_more/CalendarBotLearnMoreScreen.kt:38",
+      "area": "absence",
+      "kind": "composable"
+    },
+    {
+      "name": "AccessibilityStatementScreen",
+      "file": "app/src/main/java/com/visma/employee/about/accessibility_statement/AccessibilityStatementScreen.kt:34",
+      "area": "app",
+      "kind": "composable"
+    },
+    {
+      "name": "LicensesScreen",
+      "file": "app/src/main/java/com/visma/employee/about/licenses/LicensesScreen.kt:34",
+      "area": "app",
+      "kind": "composable"
+    },
+    {
+      "name": "TermsOfServiceScreen",
+      "file": "app/src/main/java/com/visma/employee/about/terms_of_service/TermsOfServiceScreen.kt:38",
+      "area": "app",
+      "kind": "composable"
+    },
+    {
+      "name": "PersonalInformationScreen",
+      "file": "app/src/main/java/com/visma/employee/about/user_information/presentation/personal_information/PersonalInformationScreen.kt:88",
+      "area": "app",
+      "kind": "composable"
+    },
+    {
+      "name": "RelativeDetailsScreen",
+      "file": "app/src/main/java/com/visma/employee/about/user_information/presentation/relative_details/RelativeDetailsScreen.kt:70",
+      "area": "app",
+      "kind": "composable"
+    },
+    {
+      "name": "MainActivity",
+      "file": "app/src/main/java/com/visma/employee/home/MainActivity.kt:94",
+      "area": "app",
+      "kind": "activity"
+    },
+    {
+      "name": "HomeScreen",
+      "file": "app/src/main/java/com/visma/employee/home/presentation/HomeScreen.kt:29",
+      "area": "app",
+      "kind": "composable"
+    },
+    {
+      "name": "BiometricsLandingScreen",
+      "file": "app/src/main/java/com/visma/employee/login/pincode/composable/BiometricsLandingScreen.kt:23",
+      "area": "app",
+      "kind": "composable"
+    },
+    {
+      "name": "MessageInboxScreen",
+      "file": "app/src/main/java/com/visma/employee/message_inbox/presentation/message_inbox/MessageInboxScreen.kt:66",
+      "area": "app",
+      "kind": "composable"
+    },
+    {
+      "name": "LockEnterScreen",
+      "file": "app/src/main/java/com/visma/employee/navigation/entries/LockEntries.kt:83",
+      "area": "app",
+      "kind": "composable"
+    },
+    {
+      "name": "PinCodeSetScreen",
+      "file": "app/src/main/java/com/visma/employee/navigation/entries/LockEntries.kt:194",
+      "area": "app",
+      "kind": "composable"
+    },
+    {
+      "name": "LoginRootScreen",
+      "file": "app/src/main/java/com/visma/employee/navigation/entries/LoginEntries.kt:69",
+      "area": "app",
+      "kind": "composable"
+    },
+    {
+      "name": "SettingsScreen",
+      "file": "app/src/main/java/com/visma/employee/settings/presentation/SettingsScreen.kt:68",
+      "area": "app",
+      "kind": "composable"
+    },
+    {
+      "name": "SecuritySetupScreen",
+      "file": "app/src/main/java/com/visma/employee/welcome/pinCode/composable/SecuritySetupScreen.kt:13",
+      "area": "app",
+      "kind": "composable"
+    },
+    {
+      "name": "BaseActivity",
+      "file": "core/src/main/java/com/visma/employee/core/BaseActivity.kt:30",
+      "area": "core",
+      "kind": "activity"
+    },
+    {
+      "name": "LoadableScreen",
+      "file": "core/src/main/java/com/visma/employee/core/compose/loadable/LoadableScreen.kt:13",
+      "area": "core",
+      "kind": "composable"
+    },
+    {
+      "name": "ImagePreviewScreen",
+      "file": "core/src/main/java/com/visma/employee/core/preview/image/ImagePreviewScreen.kt:36",
+      "area": "core",
+      "kind": "composable"
+    },
+    {
+      "name": "PdfPreviewScreen",
+      "file": "core/src/main/java/com/visma/employee/core/preview/pdf/PdfPreviewScreen.kt:42",
+      "area": "core",
+      "kind": "composable"
+    },
+    {
+      "name": "DocumentsAndBenefitsScreen",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/presentation/documents_and_benefits/components/DocumentsAndBenefitsScreen.kt:54",
+      "area": "dottie",
+      "kind": "composable"
+    },
+    {
+      "name": "EmployeeInfoScreen",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/presentation/employee_info/components/EmployeeInfoScreen.kt:62",
+      "area": "dottie",
+      "kind": "composable"
+    },
+    {
+      "name": "EmployeesScreen",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/presentation/employees/components/EmployeesScreen.kt:49",
+      "area": "dottie",
+      "kind": "composable"
+    },
+    {
+      "name": "CircularCropScreen",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/presentation/image/CircularCropScreen.kt:51",
+      "area": "dottie",
+      "kind": "composable"
+    },
+    {
+      "name": "AllowancesStepOneScreen",
+      "file": "expense/src/main/java/com/visma/employee/expense/allowances/presentation/step_one/AllowancesStepOneScreen.kt:93",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "AllowancesStepTwoScreen",
+      "file": "expense/src/main/java/com/visma/employee/expense/allowances/presentation/step_two/AllowancesStepTwoScreen.kt:107",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "MapScreen",
+      "file": "expense/src/main/java/com/visma/employee/expense/compose/MapScreen.kt:8",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "MileageScreen",
+      "file": "expense/src/main/java/com/visma/employee/expense/compose/MileageScreen.kt:108",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "DrawRoute",
+      "file": "expense/src/main/java/com/visma/employee/expense/compose/map/Components.kt:253",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "DrawSelectedRoute",
+      "file": "expense/src/main/java/com/visma/employee/expense/compose/map/Components.kt:319",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "MileageMapDestinationScreen",
+      "file": "expense/src/main/java/com/visma/employee/expense/destination/screens/MileageMapDestinationScreen.kt:83",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "MileageDestinationScreen",
+      "file": "expense/src/main/java/com/visma/employee/expense/destination/screens/MileagesDestinationScreen.kt:77",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "ExpenseRowsScreen",
+      "file": "expense/src/main/java/com/visma/employee/expense/details/ExpenseRowsScreen.kt:66",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "CostUnitSelectionScreen",
+      "file": "expense/src/main/java/com/visma/employee/expense/dimension/CostUnitSelectionScreen.kt:54",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "ClaimsFeedScreen",
+      "file": "expense/src/main/java/com/visma/employee/expense/feed/compose/ClaimsFeedScreen.kt:65",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "ClaimSelectionScreen",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/claimselection/ClaimSelectionScreen.kt:36",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "SelectedClaimScreen",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/claimselection/SelectedClaimScreen.kt:26",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "NewClaimScreen",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/claimselection/create/NewClaimScreen.kt:40",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "ExpenseDraftsScreen",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/compose/ExpenseDraftsScreen.kt:121",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "ExpenseInboxScreen",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/compose/ExpenseInboxScreen.kt:36",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "ExpenseDraftDetailsScreen",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/details/ExpenseDraftDetailsScreen.kt:69",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "ProjectAccountingSelectionScreen",
+      "file": "expense/src/main/java/com/visma/employee/expense/project_accounting/selection/ProjectAccountingSelectionScreen.kt:54",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "EmissionsSummaryScreen",
+      "file": "expense/src/main/java/com/visma/employee/expense/sustainability/presentation/emissions_summary/EmissionsSummaryScreen.kt:60",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "EmissionsSummaryScreen",
+      "file": "expense/src/main/java/com/visma/employee/expense/sustainability/presentation/emissions_summary/EmissionsSummaryScreen.kt:104",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "HowDoWeCalculateEmissionsScreen",
+      "file": "expense/src/main/java/com/visma/employee/expense/sustainability/presentation/how_do_we_calculate_emissions/HowDoWeCalculateEmissionsScreen.kt:41",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "HowDoWeCalculateEmissionsScreen",
+      "file": "expense/src/main/java/com/visma/employee/expense/sustainability/presentation/how_do_we_calculate_emissions/HowDoWeCalculateEmissionsScreen.kt:78",
+      "area": "expense",
+      "kind": "composable"
+    },
+    {
+      "name": "FaqScreen",
+      "file": "faq/src/main/java/com/visma/employee/faq/FaqScreen.kt:23",
+      "area": "faq",
+      "kind": "composable"
+    },
+    {
+      "name": "FaqContextScreen",
+      "file": "faq/src/main/java/com/visma/employee/faq/faq_context/presentation/FaqContextScreen.kt:29",
+      "area": "faq",
+      "kind": "composable"
+    },
+    {
+      "name": "FaqSendFeedbackScreen",
+      "file": "faq/src/main/java/com/visma/employee/faq/presentation/components/FaqSendFeedbackScreen.kt:42",
+      "area": "faq",
+      "kind": "composable"
+    },
+    {
+      "name": "LoginScreen",
+      "file": "login/src/main/java/com/visma/employee/login/LoginScreen.kt:31",
+      "area": "login",
+      "kind": "composable"
+    },
+    {
+      "name": "SalaryFeedScreen",
+      "file": "payslip/src/main/java/com/visma/employee/payslip/feed/SalaryFeedScreen.kt:79",
+      "area": "payslip",
+      "kind": "composable"
+    },
+    {
+      "name": "PayslipBotChatScreen",
+      "file": "payslip/src/main/java/com/visma/employee/payslip/payslip_bot/presentation/chat_screen/PayslipBotChatScreen.kt:96",
+      "area": "payslip",
+      "kind": "composable"
+    },
+    {
+      "name": "PayslipDetailsScreen",
+      "file": "payslip/src/main/java/com/visma/employee/payslip/payslip_detail/components/PayslipDetailsScreen.kt:53",
+      "area": "payslip",
+      "kind": "composable"
+    },
+    {
+      "name": "PayslipDetailsScreen",
+      "file": "payslip/src/main/java/com/visma/employee/payslip/payslip_detail/components/PayslipDetailsScreen.kt:96",
+      "area": "payslip",
+      "kind": "composable"
+    },
+    {
+      "name": "ReportDetailsScreen",
+      "file": "payslip/src/main/java/com/visma/employee/payslip/report_detail/presentation/components/ReportDetailsScreen.kt:57",
+      "area": "payslip",
+      "kind": "composable"
+    }
+  ],
+  "routes": [],
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/calendar/balances/combined",
+      "raw": "api/v1/employees/{odpUserId}/calendar/balances/combined",
+      "client": "retrofit",
+      "file": "absence/src/main/java/com/visma/employee/absence/data/BalancesServiceImpl.kt:59"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/employees/{}/absenceregistration",
+      "raw": "api/v1/employees/{odpUserId}/absenceregistration",
+      "client": "retrofit",
+      "file": "absence/src/main/java/com/visma/employee/absence/data/absence_service/AbsenceServiceImpl.kt:455"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/calendar/templates",
+      "raw": "api/v1/employees/{odpUserId}/calendar/templates",
+      "client": "retrofit",
+      "file": "absence/src/main/java/com/visma/employee/absence/data/absence_service/AbsenceServiceImpl.kt:458"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/remotecontrol/employee/{}/message",
+      "raw": "api/v1/RemoteControl/employee/{odpUserId}/message",
+      "client": "retrofit",
+      "file": "absence/src/main/java/com/visma/employee/absence/data/important_info/ImportantInfoServiceImpl.kt:74"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/remotecontrol/config",
+      "raw": "api/v1/RemoteControl/Config",
+      "client": "retrofit",
+      "file": "absence/src/main/java/com/visma/employee/absence/data/important_info/ImportantInfoServiceImpl.kt:77"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/surveys",
+      "raw": "api/v1/surveys",
+      "client": "retrofit",
+      "file": "absence/src/main/java/com/visma/employee/absence/data/survey/SurveyServiceImpl.kt:43"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/employees/{}/chatbot/predictcalendarregistration",
+      "raw": "api/v1/employees/{odpUserId}/chatbot/predictCalendarRegistration",
+      "client": "retrofit",
+      "file": "absence/src/main/java/com/visma/employee/calendar/calendar_bot/data/CalendarBotServiceImpl.kt:76"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/chatbot/exampleprompts",
+      "raw": "api/v1/employees/{odpUserId}/chatbot/examplePrompts",
+      "client": "retrofit",
+      "file": "absence/src/main/java/com/visma/employee/calendar/calendar_bot/data/CalendarBotServiceImpl.kt:81"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/calendar",
+      "raw": "api/v1/employees/{odpUserId}/calendar",
+      "client": "retrofit",
+      "file": "absence/src/main/java/com/visma/employee/calendar/data/CalendarServiceImpl.kt:411"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/calendar/feed",
+      "raw": "api/v1/employees/{odpUserId}/calendar/feed",
+      "client": "retrofit",
+      "file": "absence/src/main/java/com/visma/employee/calendar/data/CalendarServiceImpl.kt:417"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/calendar/confirm",
+      "raw": "api/v1/employees/{odpUserId}/calendar/confirm",
+      "client": "retrofit",
+      "file": "absence/src/main/java/com/visma/employee/calendar/data/CalendarServiceImpl.kt:427"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/calendar/confirm/template",
+      "raw": "api/v1/employees/{odpUserId}/calendar/confirm/template",
+      "client": "retrofit",
+      "file": "absence/src/main/java/com/visma/employee/calendar/data/CalendarServiceImpl.kt:430"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/calendar/checkin",
+      "raw": "api/v1/employees/{odpUserId}/calendar/checkin",
+      "client": "retrofit",
+      "file": "absence/src/main/java/com/visma/employee/calendar/data/CalendarServiceImpl.kt:441"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/employees/{}/calendar/checkin",
+      "raw": "api/v1/employees/{odpUserId}/calendar/checkin",
+      "client": "retrofit",
+      "file": "absence/src/main/java/com/visma/employee/calendar/data/CalendarServiceImpl.kt:444"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/calendar/workshift",
+      "raw": "api/v1/employees/{odpUserId}/calendar/workshift",
+      "client": "retrofit",
+      "file": "absence/src/main/java/com/visma/employee/calendar/data/CalendarServiceImpl.kt:460"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/calendar/specialdays",
+      "raw": "api/v2/Calendar/specialdays",
+      "client": "retrofit",
+      "file": "absence/src/main/java/com/visma/employee/calendar/data/CalendarServiceImpl.kt:466"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/empman/employees/me",
+      "raw": "api/v1/employees/{odpUserId}/EmpMan/employees/me",
+      "client": "retrofit",
+      "file": "app/src/main/java/com/visma/employee/about/user_information/data/PersonalInformationServiceImpl.kt:107"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/employees/{}/empman/employees/me",
+      "raw": "api/v1/employees/{odpUserId}/EmpMan/employees/me",
+      "client": "retrofit",
+      "file": "app/src/main/java/com/visma/employee/about/user_information/data/PersonalInformationServiceImpl.kt:110"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/empman/selections",
+      "raw": "api/v1/employees/{odpUserId}/EmpMan/selections",
+      "client": "retrofit",
+      "file": "app/src/main/java/com/visma/employee/about/user_information/data/PersonalInformationServiceImpl.kt:115"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/feedback",
+      "raw": "api/v1/feedback",
+      "client": "retrofit",
+      "file": "app/src/main/java/com/visma/employee/feedback/data/FeedbackServiceImpl.kt:33"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/notification/inbox/items",
+      "raw": "api/v1/notification/inbox/items",
+      "client": "retrofit",
+      "file": "app/src/main/java/com/visma/employee/message_inbox/data/MessageInboxServiceImpl.kt:65"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/authorization/currentsession",
+      "raw": "api/v1/authorization/currentsession",
+      "client": "retrofit",
+      "file": "core/src/main/java/com/visma/employee/core/auth/AuthorizationServiceImpl.kt:185"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/notification/registerdevice",
+      "raw": "api/v1/notification/RegisterDevice",
+      "client": "retrofit",
+      "file": "core/src/main/java/com/visma/employee/core/notification/SubscriptionServiceImpl.kt:59"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/notification/unregisterdevice",
+      "raw": "api/v1/notification/UnregisterDevice",
+      "client": "retrofit",
+      "file": "core/src/main/java/com/visma/employee/core/notification/SubscriptionServiceImpl.kt:62"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/configuration/third-party-keys",
+      "raw": "api/v2/Configuration/third-party-keys",
+      "client": "retrofit",
+      "file": "core/src/main/java/com/visma/employee/core/remotekeys/data/ConfigurationApi.kt:10"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/dottie/benefits",
+      "raw": "api/v2/dottie/benefits",
+      "client": "retrofit",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:471"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/dottie/documents/organization",
+      "raw": "api/v2/dottie/documents/organization",
+      "client": "retrofit",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:474"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/dottie/documents/my",
+      "raw": "api/v2/dottie/documents/my",
+      "client": "retrofit",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:477"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/dottie/documents/organization/{}/download",
+      "raw": "api/v2/dottie/documents/organization/{id}/download",
+      "client": "retrofit",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:480"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/dottie/documents/my/{}/download",
+      "raw": "api/v2/dottie/documents/my/{id}/download",
+      "client": "retrofit",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:483"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/dottie/documents/organization/{}/mark-as-read",
+      "raw": "api/v2/dottie/documents/organization/{id}/mark-as-read",
+      "client": "retrofit",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:486"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/dottie/employees",
+      "raw": "api/v2/dottie/employees",
+      "client": "retrofit",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:489"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/dottie/employees/possible-quick-filters",
+      "raw": "api/v2/dottie/employees/possible-quick-filters",
+      "client": "retrofit",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:497"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/dottie/notifications",
+      "raw": "api/v2/dottie/notifications",
+      "client": "retrofit",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:500"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/dottie/notifications/new-count",
+      "raw": "api/v2/dottie/notifications/new-count",
+      "client": "retrofit",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:503"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/dottie/employee/{}/profile-image",
+      "raw": "api/v2/dottie/employee/{id}/profile-image",
+      "client": "retrofit",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:506"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/dottie/employee/me",
+      "raw": "api/v2/dottie/employee/me",
+      "client": "retrofit",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:515"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/dottie/employee/me/template",
+      "raw": "api/v2/dottie/employee/me/template",
+      "client": "retrofit",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:518"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/dottie/employee/me",
+      "raw": "api/v2/dottie/employee/me",
+      "client": "retrofit",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:521"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/dottie/employee/{}",
+      "raw": "api/v2/dottie/employee/{id}",
+      "client": "retrofit",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:524"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/dottie/employee/{}/template",
+      "raw": "api/v2/dottie/employee/{id}/template",
+      "client": "retrofit",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:527"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/dottie/employee/me/profile-image",
+      "raw": "api/v2/dottie/employee/me/profile-image",
+      "client": "retrofit",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:530"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/dottie/employee/me/profile-image",
+      "raw": "api/v2/dottie/employee/me/profile-image",
+      "client": "retrofit",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:534"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/dottie/employee/me/profile-image",
+      "raw": "api/v2/dottie/employee/me/profile-image",
+      "client": "retrofit",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:537"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/dottie/employee/job-titles",
+      "raw": "api/v2/dottie/employee/job-titles",
+      "client": "retrofit",
+      "file": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:540"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/expense/templates/allowance/periods",
+      "raw": "api/v1/expense/templates/allowance/periods",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/allowances/data/AllowancesServiceImpl.kt:282"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/expense/templates/allowance/segments",
+      "raw": "api/v1/expense/templates/allowance/segments",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/allowances/data/AllowancesServiceImpl.kt:287"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/maps/hotels",
+      "raw": "api/v1/maps/hotels",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/allowances/data/AllowancesServiceImpl.kt:290"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/expense/allowances",
+      "raw": "api/v1/expense/allowances",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/allowances/data/AllowancesServiceImpl.kt:295"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/expense/templates/mileage",
+      "raw": "api/v1/employees/{odpUserId}/expense/templates/mileage",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/api/MileagesApi.kt:24"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/employees/{}/expense/mileages",
+      "raw": "api/v1/employees/{odpUserId}/expense/mileages",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/api/MileagesApi.kt:27"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/employees/{}/expense/claims/{}/update-from-mileage-drafts",
+      "raw": "api/v1/employees/{odpUserId}/expense/claims/{claimId}/update-from-mileage-drafts",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/api/MileagesApi.kt:43"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/employees/expense/mileages/calculateroadtoll",
+      "raw": "api/v1/employees/expense/mileages/calculateRoadToll",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/api/MileagesApi.kt:49"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/expense/preferences",
+      "raw": "api/v1/employees/{odpUserId}/expense/preferences",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/api/MileagesApi.kt:54"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/employees/{}/expense/preferences",
+      "raw": "api/v1/employees/{odpUserId}/expense/preferences",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/api/MileagesApi.kt:57"
+    },
+    {
+      "method": "GET",
+      "path": "/api/directions/json",
+      "raw": "api/directions/json?",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/api/directions/DirectionsApi.kt:9"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/maps/directions",
+      "raw": "api/v1/maps/directions",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/api/directions/DirectionsApiService.kt:10"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/maps/getplace",
+      "raw": "api/v1/maps/getPlace",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/api/location/LocationApiService.kt:8"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/machinelearning/predictexpensetype",
+      "raw": "api/v1/machineLearning/predictExpenseType",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/api/machine_learning/MachineLearningServiceImpl.kt:107"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/machinelearning/trainexpensetypepredictionmodel",
+      "raw": "api/v1/machineLearning/trainExpenseTypePredictionModel",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/api/machine_learning/MachineLearningServiceImpl.kt:112"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/machinelearning/annotatedocument",
+      "raw": "api/v1/machineLearning/AnnotateDocument",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/api/machine_learning/MachineLearningServiceImpl.kt:117"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/machinelearning/sendfeedback",
+      "raw": "api/v1/machineLearning/SendFeedback",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/api/machine_learning/MachineLearningServiceImpl.kt:124"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/expenseclaims/{}",
+      "raw": "api/v1/employees/{odpUserId}/expenseclaims/{claimId}",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/data/ExpenseServiceImpl.kt:354"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/expense/ehrmdefaults",
+      "raw": "api/v1/employees/expense/eHrmDefaults",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/data/ExpenseServiceImpl.kt:372"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/expense/currencies/{}/exchangerate",
+      "raw": "api/v1/expense/currencies/{currencyCode}/exchangerate",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/data/ExchangeRateServiceImpl.kt:26"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/expense/upsert-draft",
+      "raw": "api/v1/expense/upsert-draft",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/data/ExpenseDraftsServiceImpl.kt:422"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/expense/merge",
+      "raw": "api/v2/expense/merge",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/data/ExpenseDraftsServiceImpl.kt:436"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/expense/drafts/{}/attachments/{}",
+      "raw": "api/v1/expense/drafts/{draftId}/attachments/{attachmentId}",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/data/ExpenseDraftsServiceImpl.kt:442"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/expense/currencies",
+      "raw": "api/v1/employees/{odpUserId}/expense/currencies",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/data/ExpenseTemplatesServiceImpl.kt:223"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/expense/templates/{}",
+      "raw": "api/v1/employees/{odpUserId}/expense/templates/{type}",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/data/ExpenseTemplatesServiceImpl.kt:226"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/expense/claims",
+      "raw": "api/v1/employees/{odpUserId}/expense/claims",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/data/ExpensesInboxServiceImpl.kt:637"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/expense/claims",
+      "raw": "api/v1/employees/{odpUserId}/expense/claims",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/data/ExpensesInboxServiceImpl.kt:643"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/expense/claims/possible-filters",
+      "raw": "api/v2/expense/claims/possible-filters",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/data/ExpensesInboxServiceImpl.kt:657"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/expense/claims",
+      "raw": "api/v1/employees/{odpUserId}/expense/claims",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/data/ExpensesInboxServiceImpl.kt:660"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/expense/inbox",
+      "raw": "api/v1/employees/{odpUserId}/expense/inbox",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/data/ExpensesInboxServiceImpl.kt:666"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/employees/{}/expense/claims/{}/{}",
+      "raw": "api/v1/employees/{odpUserId}/expense/claims/{id}/{expenseType}",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/data/ExpensesInboxServiceImpl.kt:669"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/employees/{}/expense/claims",
+      "raw": "api/v1/employees/{odpUserId}/expense/claims",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/data/ExpensesInboxServiceImpl.kt:688"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/employees/{}/expense/claims/{}/approvalrequest",
+      "raw": "api/v1/employees/{odpUserId}/expense/claims/{claimId}/approvalRequest",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/data/ExpensesInboxServiceImpl.kt:691"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/expense/claims/template",
+      "raw": "api/v1/employees/{odpUserId}/expense/claims/template",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/data/ExpensesInboxServiceImpl.kt:694"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/expense/send-draft-for-approval",
+      "raw": "api/v1/expense/send-draft-for-approval",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/inbox/data/ExpensesInboxServiceImpl.kt:698"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/expense/climatereport",
+      "raw": "api/v1/employees/{odpUserId}/expense/climateReport",
+      "client": "retrofit",
+      "file": "expense/src/main/java/com/visma/employee/expense/sustainability/data/SustainabilityServiceImpl.kt:45"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/org/{}/license/{}",
+      "raw": "api/v1/org/{orgId}/license/{featureId}",
+      "client": "retrofit",
+      "file": "faq/src/main/java/com/visma/employee/faq/api/LicenseApi.kt:8"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/allpayslips",
+      "raw": "api/v1/employees/{odpUserId}/allpayslips",
+      "client": "retrofit",
+      "file": "payslip/src/main/java/com/visma/employee/payslip/data/PayslipServiceImpl.kt:237"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/payslips/{}",
+      "raw": "api/v1/employees/{odpUserId}/payslips/{payslipId}",
+      "client": "retrofit",
+      "file": "payslip/src/main/java/com/visma/employee/payslip/data/PayslipServiceImpl.kt:248"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/payslip/getpayslipdocumentanytenantfile",
+      "raw": "api/v1/payslip/getpayslipdocumentanytenantfile",
+      "client": "retrofit",
+      "file": "payslip/src/main/java/com/visma/employee/payslip/data/PayslipServiceImpl.kt:251"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/{}/payslips/exportfromalltenants",
+      "raw": "api/v1/employees/{odpUserId}/payslips/exportFromAllTenants",
+      "client": "retrofit",
+      "file": "payslip/src/main/java/com/visma/employee/payslip/data/PayslipServiceImpl.kt:254"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/employeeassistant/chat",
+      "raw": "api/v1/employeeAssistant/chat",
+      "client": "retrofit",
+      "file": "payslip/src/main/java/com/visma/employee/payslip/payslip_bot/data/PayslipBotServiceImpl.kt:143"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employeeassistant/suggestedquestions",
+      "raw": "api/v1/employeeassistant/suggestedQuestions",
+      "client": "retrofit",
+      "file": "payslip/src/main/java/com/visma/employee/payslip/payslip_bot/data/PayslipBotServiceImpl.kt:148"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/employeeassistant/feedback",
+      "raw": "api/v2/EmployeeAssistant/feedback",
+      "client": "retrofit",
+      "file": "payslip/src/main/java/com/visma/employee/payslip/payslip_bot/data/PayslipBotServiceImpl.kt:153"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/report/{}/export/pdf",
+      "raw": "api/v1/employees/report/{reportId}/export/pdf",
+      "client": "retrofit",
+      "file": "payslip/src/main/java/com/visma/employee/payslip/report_detail/data/ReportsServiceImpl.kt:158"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/report/{}",
+      "raw": "api/v1/employees/report/{reportId}",
+      "client": "retrofit",
+      "file": "payslip/src/main/java/com/visma/employee/payslip/report_detail/data/ReportsServiceImpl.kt:161"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/employees/allreports",
+      "raw": "api/v1/employees/allreports",
+      "client": "retrofit",
+      "file": "payslip/src/main/java/com/visma/employee/payslip/report_detail/data/ReportsServiceImpl.kt:164"
+    }
+  ],
+  "webLinks": [
+    {
+      "url": "https://play.google.com/store/apps/details?id={}",
+      "file": "core/src/main/java/com/visma/employee/core/BaseExtensions.kt:47"
+    }
+  ],
+  "events": [],
+  "storage": [
+    {
+      "kind": "room-entity",
+      "key": "attachments",
+      "file": "core/src/main/java/com/visma/employee/core/storage/persistance/AttachmentDbModel.kt:5",
+      "sites": 1
+    },
+    {
+      "kind": "room-entity",
+      "key": "CurrencyDbModel",
+      "file": "core/src/main/java/com/visma/employee/core/storage/persistance/CurrencyDbModel.kt:7",
+      "sites": 1
+    },
+    {
+      "kind": "room-entity",
+      "key": "FrequentlyUsedCostUnitTypeDbModel",
+      "file": "core/src/main/java/com/visma/employee/core/storage/persistance/FrequentlyUsedCostUnitTypeDbModel.kt:7",
+      "sites": 1
+    },
+    {
+      "kind": "room-entity",
+      "key": "MileageLocationDbModel",
+      "file": "core/src/main/java/com/visma/employee/core/storage/persistance/MileageLocationDbModel.kt:7",
+      "sites": 1
+    },
+    {
+      "kind": "room-entity",
+      "key": "MileageTemplateCacheModel",
+      "file": "core/src/main/java/com/visma/employee/core/storage/persistance/MileageTemplateCacheModel.kt:7",
+      "sites": 1
+    },
+    {
+      "kind": "room-entity",
+      "key": "receipts",
+      "file": "core/src/main/java/com/visma/employee/core/storage/persistance/ReceiptDbModel.kt:8",
+      "sites": 1
+    },
+    {
+      "kind": "room-entity",
+      "key": "TemplateResponseCacheModel",
+      "file": "core/src/main/java/com/visma/employee/core/storage/persistance/TemplateResponseCacheModel.kt:8",
+      "sites": 1
+    },
+    {
+      "kind": "room-entity",
+      "key": "api_keys",
+      "file": "core/src/main/java/com/visma/employee/core/storage/persistance/apikey/ApiKeysDbModel.kt:8",
+      "sites": 1
+    },
+    {
+      "kind": "room-entity",
+      "key": "FrequentlyUsedHotelDbModel",
+      "file": "core/src/main/java/com/visma/employee/core/storage/persistance/user/FrequentlyUsedHotelDbModel.kt:7",
+      "sites": 1
+    },
+    {
+      "kind": "room-entity",
+      "key": "app_preferences",
+      "file": "core/src/main/java/com/visma/employee/core/storage/persistance/user/models/AppPreferenceDbModel.kt:8",
+      "sites": 1
+    },
+    {
+      "kind": "room-entity",
+      "key": "highlight_dismissals",
+      "file": "core/src/main/java/com/visma/employee/core/storage/persistance/user/models/HighlightDismissalDbModel.kt:6",
+      "sites": 1
+    },
+    {
+      "kind": "room-entity",
+      "key": "mileage_preferences",
+      "file": "core/src/main/java/com/visma/employee/core/storage/persistance/user/models/MileagePreferenceDbModel.kt:7",
+      "sites": 1
+    },
+    {
+      "kind": "room-entity",
+      "key": "UserAccountDbModel",
+      "file": "core/src/main/java/com/visma/employee/core/storage/persistance/user/models/UserAccountDbModel.kt:8",
+      "sites": 1
+    },
+    {
+      "kind": "room-entity",
+      "key": "user_preferences",
+      "file": "core/src/main/java/com/visma/employee/core/storage/persistance/user/models/UserPreferenceDbModel.kt:8",
+      "sites": 1
+    }
+  ],
+  "platform": {
+    "bundleIds": [
+      "com.visma.vme.payslip"
+    ],
+    "urlSchemes": [
+      "vismame"
+    ],
+    "associatedDomains": [],
+    "backgroundModes": [],
+    "permissions": [
+      {
+        "key": "com.visma.employee.permission.SHOW_NOTIFICATION",
+        "file": "app/src/main/AndroidManifest.xml"
+      },
+      {
+        "key": "android.permission.INTERNET",
+        "file": "app/src/main/AndroidManifest.xml"
+      },
+      {
+        "key": "android.permission.RECORD_AUDIO",
+        "file": "app/src/main/AndroidManifest.xml"
+      },
+      {
+        "key": "android.permission.USE_BIOMETRIC",
+        "file": "app/src/main/AndroidManifest.xml"
+      },
+      {
+        "key": "android.permission.POST_NOTIFICATIONS",
+        "file": "app/src/main/AndroidManifest.xml"
+      },
+      {
+        "key": "android.permission.VIBRATE",
+        "file": "app/src/main/AndroidManifest.xml"
+      },
+      {
+        "key": "android.permission.CAMERA",
+        "file": "app/src/main/AndroidManifest.xml"
+      },
+      {
+        "key": "android.permission.FOREGROUND_SERVICE",
+        "file": "app/src/main/AndroidManifest.xml"
+      },
+      {
+        "key": "android.permission.ACCESS_NETWORK_STATE",
+        "file": "app/src/main/AndroidManifest.xml"
+      },
+      {
+        "key": "android.permission.ACCESS_FINE_LOCATION",
+        "file": "app/src/main/AndroidManifest.xml"
+      },
+      {
+        "key": "android.permission.ACCESS_COARSE_LOCATION",
+        "file": "app/src/main/AndroidManifest.xml"
+      },
+      {
+        "key": "com.google.android.gms.permission.AD_ID",
+        "file": "app/src/main/AndroidManifest.xml"
+      },
+      {
+        "key": "android.permission.WAKE_LOCK",
+        "file": "core/src/main/AndroidManifest.xml"
+      }
+    ],
+    "extensions": [],
+    "appGroups": [],
+    "keychainGroups": [],
+    "push": true,
+    "minOS": {},
+    "entitlements": [],
+    "exported": [
+      {
+        "component": "activity",
+        "name": ".home.MainActivity",
+        "file": "app/src/main/AndroidManifest.xml"
+      }
+    ],
+    "deepLinks": [
+      {
+        "scheme": "https",
+        "host": null,
+        "path": "",
+        "component": ".home.MainActivity",
+        "autoVerify": true,
+        "browsable": true
+      },
+      {
+        "scheme": null,
+        "host": null,
+        "path": "/app",
+        "component": ".home.MainActivity",
+        "autoVerify": true,
+        "browsable": true
+      },
+      {
+        "scheme": null,
+        "host": "static.mobileemployee.stag.visma.net",
+        "path": "",
+        "component": ".home.MainActivity",
+        "autoVerify": true,
+        "browsable": true
+      },
+      {
+        "scheme": null,
+        "host": "static.mobileemployee.visma.net",
+        "path": "",
+        "component": ".home.MainActivity",
+        "autoVerify": true,
+        "browsable": true
+      },
+      {
+        "scheme": "https",
+        "host": null,
+        "path": "",
+        "component": ".home.MainActivity",
+        "autoVerify": true,
+        "browsable": true
+      },
+      {
+        "scheme": null,
+        "host": null,
+        "path": "/auth/callback",
+        "component": ".home.MainActivity",
+        "autoVerify": true,
+        "browsable": true
+      },
+      {
+        "scheme": null,
+        "host": "static.mobileemployee.stag.visma.net",
+        "path": "",
+        "component": ".home.MainActivity",
+        "autoVerify": true,
+        "browsable": true
+      },
+      {
+        "scheme": null,
+        "host": "static.mobileemployee.visma.net",
+        "path": "",
+        "component": ".home.MainActivity",
+        "autoVerify": true,
+        "browsable": true
+      },
+      {
+        "scheme": "vismame",
+        "host": "auth",
+        "path": "/callback",
+        "component": ".home.MainActivity",
+        "autoVerify": false,
+        "browsable": true
+      }
+    ],
+    "cleartext": [],
+    "manifests": [
+      "absence/src/main/AndroidManifest.xml",
+      "app/src/main/AndroidManifest.xml",
+      "core/src/main/AndroidManifest.xml",
+      "dottie/src/main/AndroidManifest.xml",
+      "expense/src/main/AndroidManifest.xml",
+      "faq/src/main/AndroidManifest.xml",
+      "login/src/main/AndroidManifest.xml",
+      "payslip/src/main/AndroidManifest.xml",
+      "templates/src/main/AndroidManifest.xml",
+      "translations/src/main/AndroidManifest.xml"
+    ],
+    "appLinkHosts": [],
+    "notificationCategories": [
+      {
+        "kind": "channel",
+        "id": "PAYSLIP_CHANNEL_2",
+        "file": "core/src/main/java/com/visma/employee/core/notification/ChannelConfigurationsProvider.kt:27"
+      },
+      {
+        "kind": "channel",
+        "id": "YEAR_END_CHANNEL_2",
+        "file": "core/src/main/java/com/visma/employee/core/notification/ChannelConfigurationsProvider.kt:37"
+      },
+      {
+        "kind": "channel",
+        "id": "RECEIPTS_SYNC_CHANNEL_2",
+        "file": "core/src/main/java/com/visma/employee/core/notification/ChannelConfigurationsProvider.kt:47"
+      },
+      {
+        "kind": "channel",
+        "id": "OTHER_NOTIFICATIONS_CHANNEL_2",
+        "file": "core/src/main/java/com/visma/employee/core/notification/ChannelConfigurationsProvider.kt:60"
+      }
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "io.coil-kt:coil",
+      "version": "2.7.0",
+      "source": "app/build.gradle"
+    },
+    {
+      "name": "androidx.hilt:hilt-compiler",
+      "version": "",
+      "source": "gradle/libs.versions.toml"
+    },
+    {
+      "name": "com.google.firebase:firebase-appdistribution-gradle",
+      "version": "",
+      "source": "gradle/libs.versions.toml"
+    },
+    {
+      "name": "com.google.firebase:firebase-crashlytics-gradle",
+      "version": "",
+      "source": "gradle/libs.versions.toml"
+    },
+    {
+      "name": "com.google.gms:google-services",
+      "version": "",
+      "source": "gradle/libs.versions.toml"
+    },
+    {
+      "name": "com.android.tools.build:gradle",
+      "version": "",
+      "source": "gradle/libs.versions.toml"
+    },
+    {
+      "name": "com.google.dagger:hilt-android-gradle-plugin",
+      "version": "",
+      "source": "gradle/libs.versions.toml"
+    },
+    {
+      "name": "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin",
+      "version": "",
+      "source": "gradle/libs.versions.toml"
+    },
+    {
+      "name": "org.jetbrains.kotlin:kotlin-gradle-plugin",
+      "version": "",
+      "source": "gradle/libs.versions.toml"
+    },
+    {
+      "name": "org.jetbrains.kotlinx:kotlinx-serialization-json",
+      "version": "",
+      "source": "gradle/libs.versions.toml"
+    },
+    {
+      "name": "androidx.datastore:datastore-preferences",
+      "version": "",
+      "source": "gradle/libs.versions.toml"
+    },
+    {
+      "name": "androidx.camera:camera-camera2",
+      "version": "",
+      "source": "gradle/libs.versions.toml"
+    },
+    {
+      "name": "androidx.camera:camera-lifecycle",
+      "version": "",
+      "source": "gradle/libs.versions.toml"
+    },
+    {
+      "name": "androidx.camera:camera-view",
+      "version": "",
+      "source": "gradle/libs.versions.toml"
+    },
+    {
+      "name": "org.jacoco:org.jacoco.core",
+      "version": "",
+      "source": "gradle/libs.versions.toml"
+    },
+    {
+      "name": "gradle.plugin.com.mendhak.gradlecrowdin:plugin",
+      "version": "",
+      "source": "gradle/libs.versions.toml"
+    },
+    {
+      "name": "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin",
+      "version": "",
+      "source": "gradle/libs.versions.toml"
+    },
+    {
+      "name": "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin",
+      "version": "",
+      "source": "gradle/libs.versions.toml"
+    }
+  ],
+  "localPackages": [
+    {
+      "name": ":faq",
+      "file": "settings.gradle"
+    },
+    {
+      "name": ":login",
+      "file": "settings.gradle"
+    },
+    {
+      "name": ":core",
+      "file": "settings.gradle"
+    },
+    {
+      "name": ":expense",
+      "file": "settings.gradle"
+    },
+    {
+      "name": ":app",
+      "file": "settings.gradle"
+    },
+    {
+      "name": ":translations",
+      "file": "settings.gradle"
+    },
+    {
+      "name": ":absence",
+      "file": "settings.gradle"
+    },
+    {
+      "name": ":payslip",
+      "file": "settings.gradle"
+    },
+    {
+      "name": ":dottie",
+      "file": "settings.gradle"
+    },
+    {
+      "name": ":templates",
+      "file": "settings.gradle"
+    },
+    {
+      "name": ":baselineprofile",
+      "file": "settings.gradle"
+    }
+  ],
+  "tests": {
+    "frameworks": [
+      "Compose UI test",
+      "JUnit",
+      "Kotest",
+      "MockK",
+      "Robolectric"
+    ],
+    "unitTestFiles": 386,
+    "uiTestFiles": 0,
+    "maestroFlows": 69,
+    "maestro": [
+      "maestro/broken/absence_suite.yaml",
+      "maestro/broken/absence_view_switching.yaml",
+      "maestro/broken/cleanup_all_ui_test_data.yaml",
+      "maestro/broken/create_filled_in_new_claim_subflow.yaml",
+      "maestro/broken/delete_absence_entry_subflow.yaml",
+      "maestro/broken/delete_allowance_draft_subflow.yaml",
+      "maestro/broken/delete_claim_subflow.yaml",
+      "maestro/broken/delete_mileage_draft_subflow.yaml",
+      "maestro/broken/delete_receipt_draft_subflow.yaml",
+      "maestro/broken/direct_allowance_existing_claim.yaml",
+      "maestro/broken/direct_allowance_new_claim.yaml",
+      "maestro/broken/direct_mileage_existing_claim.yaml",
+      "maestro/broken/direct_mileage_new_claim.yaml",
+      "maestro/broken/direct_receipt_existing_claim.yaml",
+      "maestro/broken/direct_receipt_new_claim.yaml",
+      "maestro/broken/fill_mileage_form_subflow.yaml",
+      "maestro/broken/fill_receipt_form_subflow.yaml",
+      "maestro/broken/full_migration_e2e.yaml",
+      "maestro/broken/inbox_allowance_existing_claim.yaml",
+      "maestro/broken/inbox_allowance_new_claim.yaml",
+      "maestro/broken/inbox_mileage_existing_claim.yaml",
+      "maestro/broken/inbox_mileage_new_claim.yaml",
+      "maestro/broken/inbox_receipt_existing_claim.yaml",
+      "maestro/broken/inbox_receipt_new_claim.yaml",
+      "maestro/broken/issue_01_accessibility_feedback_crash.yaml",
+      "maestro/broken/issue_02_faq_feedback_crash.yaml",
+      "maestro/broken/issue_03_edit_absence_event_type_crash.yaml",
+      "maestro/broken/issue_05_calendarbot_edit_loading.yaml",
+      "maestro/broken/issue_07_faq_category_crash.yaml",
+      "maestro/broken/issue_08_absence_summary_back.yaml",
+      "maestro/broken/issue_09_latest_salary_card_crash.yaml",
+      "maestro/broken/issue_11_register_time_back_closes.yaml",
+      "maestro/broken/issue_11b_register_time_select_event_crash.yaml",
+      "maestro/broken/issue_11c_register_absence_success_navigates_to_calendar.yaml",
+      "maestro/broken/issue_suite.yaml",
+      "maestro/broken/mileage_back_press_from_home.yaml",
+      "maestro/broken/mileage_back_press_from_nav_graph.yaml",
+      "maestro/broken/mileage_save_from_expense_row_edit.yaml",
+      "maestro/broken/navigate_to_absence_subflow.yaml",
+      "maestro/broken/navigate_to_expenses_subflow.yaml",
+      "maestro/broken/new_claim_suite.yaml",
+      "maestro/broken/open_existing_claim_subflow.yaml",
+      "maestro/broken/payslip_suite.yaml",
+      "maestro/broken/save_allowance_to_inbox_subflow.yaml",
+      "maestro/broken/save_mileage_to_inbox_subflow.yaml",
+      "maestro/broken/save_receipt_to_inbox_subflow.yaml",
+      "maestro/broken/set_absence_summary.yaml",
+      "maestro/broken/set_calendar_settings.yaml",
+      "maestro/broken/set_critical_settings.yaml",
+      "maestro/broken/set_high_impact_settings.yaml",
+      "maestro/broken/set_home_cards.yaml",
+      "maestro/broken/set_medium_impact_settings.yaml",
+      "maestro/broken/set_payslip_filter.yaml",
+      "maestro/broken/verify_absence_summary.yaml",
+      "maestro/broken/verify_calendar_settings.yaml",
+      "maestro/broken/verify_critical_settings.yaml",
+      "maestro/broken/verify_high_impact_settings.yaml",
+      "maestro/broken/verify_home_cards.yaml",
+      "maestro/broken/verify_medium_impact_settings.yaml",
+      "maestro/broken/verify_payslip_filter.yaml",
+      "maestro/subflows/fill_new_claim_form_subflow.yaml",
+      "maestro/subflows/login_subflow.yaml",
+      "maestro/tests/Absence/subflows/fill_working_hours_form_subflow.yaml",
+      "maestro/tests/Deeplink/tests/deeplink_tab_navigation.yaml",
+      "maestro/tests/Expense/subflows/fill_allowance_form_subflow.yaml",
+      "maestro/tests/Migration/subflows/login_subflow.yaml",
+      "maestro/tests/Migration/subflows/verify_low_impact_settings.yaml",
+      "maestro/tests/Notification/tests/notification_payslip.yaml",
+      "maestro/tests/Notification/tests/notification_suite.yaml"
+    ]
+  },
+  "notes": [
+    "Endpoints whose path comes from @Url parameters or runtime values have no literal and are not counted.",
+    "Navigation destinations defined in Compose NavHost builders are found only through *Screen composables."
+  ]
+}

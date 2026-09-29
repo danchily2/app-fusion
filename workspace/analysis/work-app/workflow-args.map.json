@@ -14,6 +14,13 @@
       "stack": "ios-native",
       "role": "source",
       "twinOf": null
+    },
+    {
+      "name": "me-android",
+      "product": "Employee",
+      "stack": "android-native",
+      "role": "twin",
+      "twinOf": "me-ios"
     }
   ],
   "personas": [
@@ -22,13 +29,139 @@
   ],
   "shards": [
     {
-      "id": "vmm:[components..types]",
+      "id": "vmm:components/[(top)..uiless]",
+      "app": "vmm",
+      "stack": "react-native",
+      "kind": "ui",
+      "name": "components/[(top)..uiless]",
+      "loc": 4134,
+      "file": "analysis/work-app/shards/vmm_components_top_..uiless.json"
+    },
+    {
+      "id": "vmm:components/approval",
+      "app": "vmm",
+      "stack": "react-native",
+      "kind": "ui",
+      "name": "components/approval",
+      "loc": 8654,
+      "file": "analysis/work-app/shards/vmm_components_approval.json"
+    },
+    {
+      "id": "vmm:components/autopay",
       "app": "vmm",
       "stack": "react-native",
       "kind": "screens",
-      "name": "[components..types]",
-      "loc": 3201,
-      "file": "analysis/work-app/shards/vmm_components..types.json"
+      "name": "components/autopay",
+      "loc": 4069,
+      "file": "analysis/work-app/shards/vmm_components_autopay.json"
+    },
+    {
+      "id": "vmm:components/common/[(top)..NoAttachment]",
+      "app": "vmm",
+      "stack": "react-native",
+      "kind": "ui",
+      "name": "components/common/[(top)..NoAttachment]",
+      "loc": 8813,
+      "file": "analysis/work-app/shards/vmm_components_common_top_..NoAttachment.json"
+    },
+    {
+      "id": "vmm:components/common/[NpsDialog..buttons]",
+      "app": "vmm",
+      "stack": "react-native",
+      "kind": "ui",
+      "name": "components/common/[NpsDialog..buttons]",
+      "loc": 5136,
+      "file": "analysis/work-app/shards/vmm_components_common_NpsDialog..buttons.json"
+    },
+    {
+      "id": "vmm:components/hrm",
+      "app": "vmm",
+      "stack": "react-native",
+      "kind": "ui",
+      "name": "components/hrm",
+      "loc": 5390,
+      "file": "analysis/work-app/shards/vmm_components_hrm.json"
+    },
+    {
+      "id": "vmm:components/modals",
+      "app": "vmm",
+      "stack": "react-native",
+      "kind": "screens",
+      "name": "components/modals",
+      "loc": 4066,
+      "file": "analysis/work-app/shards/vmm_components_modals.json"
+    },
+    {
+      "id": "vmm:configs",
+      "app": "vmm",
+      "stack": "react-native",
+      "kind": "screens",
+      "name": "configs",
+      "loc": 5245,
+      "file": "analysis/work-app/shards/vmm_configs.json"
+    },
+    {
+      "id": "vmm:screens/common",
+      "app": "vmm",
+      "stack": "react-native",
+      "kind": "screens",
+      "name": "screens/common",
+      "loc": 3935,
+      "file": "analysis/work-app/shards/vmm_screens_common.json"
+    },
+    {
+      "id": "vmm:screens/hrm",
+      "app": "vmm",
+      "stack": "react-native",
+      "kind": "screens",
+      "name": "screens/hrm",
+      "loc": 5235,
+      "file": "analysis/work-app/shards/vmm_screens_hrm.json"
+    },
+    {
+      "id": "vmm:screens/manager/[ApprovalProcessDetailsScreen..BnxtOrderDetailScreen]",
+      "app": "vmm",
+      "stack": "react-native",
+      "kind": "screens",
+      "name": "screens/manager/[ApprovalProcessDetailsScreen..BnxtOrderDetailScreen]",
+      "loc": 8729,
+      "file": "analysis/work-app/shards/vmm_screens_manager_ApprovalProcessDetailsScreen..BnxtOrderDetailScreen.json"
+    },
+    {
+      "id": "vmm:screens/manager/ApprovalTaskBXNLineEditScreen",
+      "app": "vmm",
+      "stack": "react-native",
+      "kind": "screens",
+      "name": "screens/manager/ApprovalTaskBXNLineEditScreen",
+      "loc": 7087,
+      "file": "analysis/work-app/shards/vmm_screens_manager_ApprovalTaskBXNLineEditScreen.json"
+    },
+    {
+      "id": "vmm:screens/manager/ApprovalTaskEditFinancialsLinesScreen",
+      "app": "vmm",
+      "stack": "react-native",
+      "kind": "screens",
+      "name": "screens/manager/ApprovalTaskEditFinancialsLinesScreen",
+      "loc": 3676,
+      "file": "analysis/work-app/shards/vmm_screens_manager_ApprovalTaskEditFinancialsLinesScreen.json"
+    },
+    {
+      "id": "vmm:screens/StartScreen",
+      "app": "vmm",
+      "stack": "react-native",
+      "kind": "screens",
+      "name": "screens/StartScreen",
+      "loc": 3569,
+      "file": "analysis/work-app/shards/vmm_screens_StartScreen.json"
+    },
+    {
+      "id": "vmm:[screens/autopay..web-build]",
+      "app": "vmm",
+      "stack": "react-native",
+      "kind": "screens",
+      "name": "[screens/autopay..web-build]",
+      "loc": 8072,
+      "file": "analysis/work-app/shards/vmm_screens_autopay..web-build.json"
     },
     {
       "id": "me-ios:CalendarFeature#1",
@@ -49,13 +182,302 @@
       "file": "analysis/work-app/shards/me-ios_CalendarFeature_2.json"
     },
     {
-      "id": "me-ios:[Calendar..SnowplowAnalytics]",
+      "id": "me-ios:DottieFeature",
       "app": "me-ios",
       "stack": "ios-native",
       "kind": "screens",
-      "name": "[Calendar..SnowplowAnalytics]",
-      "loc": 4450,
-      "file": "analysis/work-app/shards/me-ios_Calendar..SnowplowAnalytics.json"
+      "name": "DottieFeature",
+      "loc": 6441,
+      "file": "analysis/work-app/shards/me-ios_DottieFeature.json"
+    },
+    {
+      "id": "me-ios:[Calendar..Employee]",
+      "app": "me-ios",
+      "stack": "ios-native",
+      "kind": "screens",
+      "name": "[Calendar..Employee]",
+      "loc": 7925,
+      "file": "analysis/work-app/shards/me-ios_Calendar..Employee.json"
+    },
+    {
+      "id": "me-ios:[Employee/Accounts..Employee/Security]",
+      "app": "me-ios",
+      "stack": "ios-native",
+      "kind": "screens",
+      "name": "[Employee/Accounts..Employee/Security]",
+      "loc": 8645,
+      "file": "analysis/work-app/shards/me-ios_Employee_Accounts..Employee_Security.json"
+    },
+    {
+      "id": "me-ios:Employee/StartPage",
+      "app": "me-ios",
+      "stack": "ios-native",
+      "kind": "screens",
+      "name": "Employee/StartPage",
+      "loc": 5864,
+      "file": "analysis/work-app/shards/me-ios_Employee_StartPage.json"
+    },
+    {
+      "id": "me-ios:[Employee/Services..EmployeeAppCore]",
+      "app": "me-ios",
+      "stack": "ios-native",
+      "kind": "screens",
+      "name": "[Employee/Services..EmployeeAppCore]",
+      "loc": 7887,
+      "file": "analysis/work-app/shards/me-ios_Employee_Services..EmployeeAppCore.json"
+    },
+    {
+      "id": "me-ios:EmployeeExpenses#1",
+      "app": "me-ios",
+      "stack": "ios-native",
+      "kind": "screens",
+      "name": "EmployeeExpenses#1",
+      "loc": 8982,
+      "file": "analysis/work-app/shards/me-ios_EmployeeExpenses_1.json"
+    },
+    {
+      "id": "me-ios:EmployeeExpenses#2",
+      "app": "me-ios",
+      "stack": "ios-native",
+      "kind": "screens",
+      "name": "EmployeeExpenses#2",
+      "loc": 8535,
+      "file": "analysis/work-app/shards/me-ios_EmployeeExpenses_2.json"
+    },
+    {
+      "id": "me-ios:EmployeeExpenses#3",
+      "app": "me-ios",
+      "stack": "ios-native",
+      "kind": "screens",
+      "name": "EmployeeExpenses#3",
+      "loc": 8517,
+      "file": "analysis/work-app/shards/me-ios_EmployeeExpenses_3.json"
+    },
+    {
+      "id": "me-ios:EmployeeExpenses#4",
+      "app": "me-ios",
+      "stack": "ios-native",
+      "kind": "screens",
+      "name": "EmployeeExpenses#4",
+      "loc": 8943,
+      "file": "analysis/work-app/shards/me-ios_EmployeeExpenses_4.json"
+    },
+    {
+      "id": "me-ios:EmployeeExpenses#5",
+      "app": "me-ios",
+      "stack": "ios-native",
+      "kind": "screens",
+      "name": "EmployeeExpenses#5",
+      "loc": 9124,
+      "file": "analysis/work-app/shards/me-ios_EmployeeExpenses_5.json"
+    },
+    {
+      "id": "me-ios:[EmployeeAppCoreInterface..EmployeeDatabaseInterface]",
+      "app": "me-ios",
+      "stack": "ios-native",
+      "kind": "screens",
+      "name": "[EmployeeAppCoreInterface..EmployeeDatabaseInterface]",
+      "loc": 8898,
+      "file": "analysis/work-app/shards/me-ios_EmployeeAppCoreInterface..EmployeeDatabaseInterface.json"
+    },
+    {
+      "id": "me-ios:EmployeeUIComponents#1",
+      "app": "me-ios",
+      "stack": "ios-native",
+      "kind": "screens",
+      "name": "EmployeeUIComponents#1",
+      "loc": 8705,
+      "file": "analysis/work-app/shards/me-ios_EmployeeUIComponents_1.json"
+    },
+    {
+      "id": "me-ios:EmployeeUIComponents#2",
+      "app": "me-ios",
+      "stack": "ios-native",
+      "kind": "screens",
+      "name": "EmployeeUIComponents#2",
+      "loc": 3777,
+      "file": "analysis/work-app/shards/me-ios_EmployeeUIComponents_2.json"
+    },
+    {
+      "id": "me-ios:[EmployeeResources..ExpenseShareExtension/VersionProvider]",
+      "app": "me-ios",
+      "stack": "ios-native",
+      "kind": "screens",
+      "name": "[EmployeeResources..ExpenseShareExtension/VersionProvider]",
+      "loc": 8819,
+      "file": "analysis/work-app/shards/me-ios_EmployeeResources..ExpenseShareExtension_VersionProvider.json"
+    },
+    {
+      "id": "me-ios:PayslipsFeature",
+      "app": "me-ios",
+      "stack": "ios-native",
+      "kind": "screens",
+      "name": "PayslipsFeature",
+      "loc": 4033,
+      "file": "analysis/work-app/shards/me-ios_PayslipsFeature.json"
+    },
+    {
+      "id": "me-ios:PersonalInformation",
+      "app": "me-ios",
+      "stack": "ios-native",
+      "kind": "screens",
+      "name": "PersonalInformation",
+      "loc": 3299,
+      "file": "analysis/work-app/shards/me-ios_PersonalInformation.json"
+    },
+    {
+      "id": "me-ios:[FeatureKit..UserServiceInterface]",
+      "app": "me-ios",
+      "stack": "ios-native",
+      "kind": "screens",
+      "name": "[FeatureKit..UserServiceInterface]",
+      "loc": 7845,
+      "file": "analysis/work-app/shards/me-ios_FeatureKit..UserServiceInterface.json"
+    },
+    {
+      "id": "me-android:[absence/absence..absence/confirm_time]",
+      "app": "me-android",
+      "stack": "android-native",
+      "kind": "screens",
+      "name": "[absence/absence..absence/confirm_time]",
+      "loc": 8984,
+      "file": "analysis/work-app/shards/me-android_absence_absence..absence_confirm_time.json"
+    },
+    {
+      "id": "me-android:[absence/confirmtime..app/company_selector]",
+      "app": "me-android",
+      "stack": "android-native",
+      "kind": "screens",
+      "name": "[absence/confirmtime..app/company_selector]",
+      "loc": 8986,
+      "file": "analysis/work-app/shards/me-android_absence_confirmtime..app_company_selector.json"
+    },
+    {
+      "id": "me-android:app/home",
+      "app": "me-android",
+      "stack": "android-native",
+      "kind": "screens",
+      "name": "app/home",
+      "loc": 3096,
+      "file": "analysis/work-app/shards/me-android_app_home.json"
+    },
+    {
+      "id": "me-android:[app/components..app/models]",
+      "app": "me-android",
+      "stack": "android-native",
+      "kind": "screens",
+      "name": "[app/components..app/models]",
+      "loc": 7766,
+      "file": "analysis/work-app/shards/me-android_app_components..app_models.json"
+    },
+    {
+      "id": "me-android:[app/navigation..core/bottom_sheet]",
+      "app": "me-android",
+      "stack": "android-native",
+      "kind": "screens",
+      "name": "[app/navigation..core/bottom_sheet]",
+      "loc": 8891,
+      "file": "analysis/work-app/shards/me-android_app_navigation..core_bottom_sheet.json"
+    },
+    {
+      "id": "me-android:[core/buttons..core/feedback]",
+      "app": "me-android",
+      "stack": "android-native",
+      "kind": "screens",
+      "name": "[core/buttons..core/feedback]",
+      "loc": 8351,
+      "file": "analysis/work-app/shards/me-android_core_buttons..core_feedback.json"
+    },
+    {
+      "id": "me-android:[core/fields..core/tag]",
+      "app": "me-android",
+      "stack": "android-native",
+      "kind": "screens",
+      "name": "[core/fields..core/tag]",
+      "loc": 8577,
+      "file": "analysis/work-app/shards/me-android_core_fields..core_tag.json"
+    },
+    {
+      "id": "me-android:[core/theme..dottie/form]",
+      "app": "me-android",
+      "stack": "android-native",
+      "kind": "screens",
+      "name": "[core/theme..dottie/form]",
+      "loc": 8361,
+      "file": "analysis/work-app/shards/me-android_core_theme..dottie_form.json"
+    },
+    {
+      "id": "me-android:[dottie/image..expense/claimselection]",
+      "app": "me-android",
+      "stack": "android-native",
+      "kind": "screens",
+      "name": "[dottie/image..expense/claimselection]",
+      "loc": 8061,
+      "file": "analysis/work-app/shards/me-android_dottie_image..expense_claimselection.json"
+    },
+    {
+      "id": "me-android:expense/compose",
+      "app": "me-android",
+      "stack": "android-native",
+      "kind": "screens",
+      "name": "expense/compose",
+      "loc": 5150,
+      "file": "analysis/work-app/shards/me-android_expense_compose.json"
+    },
+    {
+      "id": "me-android:expense/details",
+      "app": "me-android",
+      "stack": "android-native",
+      "kind": "screens",
+      "name": "expense/details",
+      "loc": 4843,
+      "file": "analysis/work-app/shards/me-android_expense_details.json"
+    },
+    {
+      "id": "me-android:[expense/components..expense/expense_type]",
+      "app": "me-android",
+      "stack": "android-native",
+      "kind": "screens",
+      "name": "[expense/components..expense/expense_type]",
+      "loc": 8739,
+      "file": "analysis/work-app/shards/me-android_expense_components..expense_expense_type.json"
+    },
+    {
+      "id": "me-android:[expense/extension..expense/rules]",
+      "app": "me-android",
+      "stack": "android-native",
+      "kind": "screens",
+      "name": "[expense/extension..expense/rules]",
+      "loc": 8996,
+      "file": "analysis/work-app/shards/me-android_expense_extension..expense_rules.json"
+    },
+    {
+      "id": "me-android:expense/step_two",
+      "app": "me-android",
+      "stack": "android-native",
+      "kind": "screens",
+      "name": "expense/step_two",
+      "loc": 3273,
+      "file": "analysis/work-app/shards/me-android_expense_step_two.json"
+    },
+    {
+      "id": "me-android:[expense/selected_claim..expense/viewmodel]",
+      "app": "me-android",
+      "stack": "android-native",
+      "kind": "screens",
+      "name": "[expense/selected_claim..expense/viewmodel]",
+      "loc": 7905,
+      "file": "analysis/work-app/shards/me-android_expense_selected_claim..expense_viewmodel.json"
+    },
+    {
+      "id": "me-android:[expense/viewmodels..payslip/model]",
+      "app": "me-android",
+      "stack": "android-native",
+      "kind": "screens",
+      "name": "[expense/viewmodels..payslip/model]",
+      "loc": 8799,
+      "file": "analysis/work-app/shards/me-android_expense_viewmodels..payslip_model.json"
     }
-  ]
+  ],
+  "previousIndex": "analysis/work-app/capability_index.json"
 }

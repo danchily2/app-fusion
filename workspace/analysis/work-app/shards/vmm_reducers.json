@@ -1,0 +1,52 @@
+{
+  "id": "vmm:reducers",
+  "app": "vmm",
+  "stack": "react-native",
+  "name": "reducers",
+  "files": [
+    "src/reducers/appRateReducer.ts",
+    "src/reducers/approval/approvalActivityReducer.ts",
+    "src/reducers/approval/approvalBxnReducer.ts",
+    "src/reducers/approval/approvalDocumentsDrawerReducer.ts",
+    "src/reducers/approval/approvalForwardReviewReducer.ts",
+    "src/reducers/approval/approvalListReducer.ts",
+    "src/reducers/approval/approvalMultiselectReducer.ts",
+    "src/reducers/approval/approvalProcessReducer.ts",
+    "src/reducers/approval/approvalRecentSearchesReducer.ts",
+    "src/reducers/approval/approvalReducer.ts",
+    "src/reducers/approval/approvalVoucherlinesReducer.ts",
+    "src/reducers/autopay/autopayImageDocumentsReducer.ts",
+    "src/reducers/autopay/autopayMultiselectReducer.ts",
+    "src/reducers/autopay/autopayOverviewReducer.ts",
+    "src/reducers/autopay/autopayRecentSearchesReducer.ts",
+    "src/reducers/autopay/autopayReducer.ts",
+    "src/reducers/bnxtOrdersReducer.ts",
+    "src/reducers/common/settingsReducer/settingsReducer.ts",
+    "src/reducers/documentViewReducer.ts",
+    "src/reducers/featureReducer.ts",
+    "src/reducers/gaia/gaiaChatReducer.ts",
+    "src/reducers/gaia/gaiaRunsReducer.ts",
+    "src/reducers/gaia/gaiaTaskContextReducer.ts",
+    "src/reducers/hrm/hrmAnniversaryReducer.ts",
+    "src/reducers/hrm/hrmDialogueCollapsedGroupsReducer.ts",
+    "src/reducers/hrm/hrmDialogueReducer.ts",
+    "src/reducers/hrm/hrmEmployeeDetailReducer.ts",
+    "src/reducers/hrm/hrmEmployeeListReducer.ts",
+    "src/reducers/hrm/hrmRecentSearchesReducer.ts",
+    "src/reducers/loginManagerReducer.ts",
+    "src/reducers/modalDialogReducer.ts",
+    "src/reducers/npsSurveyReducer.ts",
+    "src/reducers/osr/osrReducer.ts",
+    "src/reducers/rootReducer.ts",
+    "src/reducers/toastReducer.ts",
+    "src/reducers/tosReducer.ts",
+    "src/reducers/whatsNewReducer.ts"
+  ],
+  "hints": {
+    "storage": [
+      "asyncstorage:hrm_notification_enabled",
+      "asyncstorage:translations_predicted_local",
+      "asyncstorage:translations_selected_local"
+    ]
+  }
+}

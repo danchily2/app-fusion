@@ -1,0 +1,49 @@
+{
+  "id": "vmm:screens/manager/ApprovalTaskEditFinancialsLinesScreen",
+  "app": "vmm",
+  "stack": "react-native",
+  "name": "screens/manager/ApprovalTaskEditFinancialsLinesScreen",
+  "files": [
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/ApprovalTaskEditFinancialsLinesScreen.tsx",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/components/EditableSelectRow/EditableSelectRow.tsx",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/components/EditableSelectRow/index.ts",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/components/EditableTextRow/EditableTextRow.tsx",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/components/EditableTextRow/index.tsx",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/components/EditableTextRow/style.ts",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/components/FieldEditModal/FieldEditModal.tsx",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/components/FieldEditModal/index.ts",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/components/FieldSelectionModal/FieldSelectionModal.tsx",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/components/FieldSelectionModal/index.ts",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/components/FieldSelectionModal/style.ts",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/components/FinancialFieldSelector/FinancialFieldSelector.tsx",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/components/FinancialFieldSelector/index.ts",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/components/FinancialFieldSelector/style.ts",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/components/FinancialLineEditComponent.tsx",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/components/FinancialLineEditItem.tsx",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/components/TextEditModal/TextEditModal.tsx",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/components/TextEditModal/index.ts",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/components/fieldModalStyle.ts",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/components/index.ts",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/context/BulkApplyContext.tsx",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/context/FieldEditOverlayContext.tsx",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/context/FinancialLineEditContext.tsx",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/context/hooks/index.ts",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/context/hooks/useChangeDetection.ts",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/context/hooks/useDateHandlers.ts",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/context/hooks/useEditableRows.ts",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/context/hooks/useFinancialLineState.ts",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/context/hooks/useSaveHandler.ts",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/context/index.ts",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/context/style.ts",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/context/types.ts",
+    "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/style.ts"
+  ],
+  "hints": {
+    "routes": [
+      "SCREEN_NAME_APPROVAL_TASK_VOUCHERLINES_EDITOR"
+    ],
+    "screens": [
+      "ApprovalTaskEditFinancialsLinesScreen"
+    ]
+  }
+}

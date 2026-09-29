@@ -24,9 +24,11 @@ calculation live.
 ## 2: Estimate, ask if large, launch
 
 The fan-out is one extractor per shard, one citation referee per rule, two judges per P0 rule, and one conflict judge
-per shared capability. Typical counts are 6 to 12 agents per shard. Say the estimate. With more than 25 shards, ask
-first (AskUserQuestion): "Run all N", "Only a slice (an app or a pattern)", "Cancel". A run is capped at 1,000 agents,
-so split more than about 80 shards into parts of at most 80, run them one after another, and merge.
+per shared capability, so the count follows how many rules the code holds. Measured on two production apps, a 4-shard
+calendar slice produced 153 rules and used 171 agents, about 43 per shard (about $5 per shard); plumbing-heavy code
+needs far fewer. Say the estimate. With more than 10 shards, ask first (AskUserQuestion): "Run all N", "Only a slice
+(an app or a pattern)", "Cancel". A run is capped at 1,000 agents, so split into parts of at most about 20 shards,
+run them one after another, and merge.
 
 **With the Workflow tool** (this command authorizes it), call it by name. If the tool does not know the name, pass
 `scriptPath: "${CLAUDE_PLUGIN_ROOT}/workflows/extract-rules.js"` instead:

@@ -1,0 +1,61 @@
+{
+  "id": "me-ios:PersonalInformation",
+  "app": "me-ios",
+  "stack": "ios-native",
+  "name": "PersonalInformation",
+  "files": [
+    "Modules/PersonalInformation/Sources/PersonalInformation/Analytics/AnalyticsFeature.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/ContactDetails/ContactDetailsFeature.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/ContactDetails/ContactDetailsView.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Coordinator/PersonalInformationCoordinator.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Model/Domain/Models.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Model/Domain/RelativeType.mock.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Model/Domain/UserPersonalInformation.mock.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Model/UI/UIModels.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/PersonalInformationFeature.State.Preview.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/PersonalInformationFeature.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/PersonalInformationView.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Repository/Mappers/EmpManEmployeeResponseToDomainMapper.Dependencies.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Repository/Mappers/EmpManEmployeeResponseToDomainMapper.employee.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Repository/Mappers/EmpManEmployeeResponseToDomainMapper.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Repository/Mappers/EmpManSelectionsResponseToDomainMapper.Dependencies.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Repository/Mappers/EmpManSelectionsResponseToDomainMapper.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Repository/Mappers/RelativeTypeToUIModelMapper.Dependencies.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Repository/Mappers/RelativeTypeToUIModelMapper.employee.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Repository/Mappers/RelativeTypeToUIModelMapper.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Repository/Mappers/UserPersonalInformationToDTOMapper.Dependencies.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Repository/Mappers/UserPersonalInformationToDTOMapper.employee.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Repository/Mappers/UserPersonalInformationToDTOMapper.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Repository/PersonalInformationRepository.Dependencies.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Repository/PersonalInformationRepository.employee.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Repository/PersonalInformationRepository.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Service/EmpManService.Dependencies.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Service/EmpManService.employee.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Service/EmpManService.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Service/Request/GetEmpManEmployee.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Service/Request/GetEmpManSelections.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Service/Request/PostEmpManEmployee.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Service/Response/EmpManEmployeeResponse.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Service/Response/EmpManSelectionsResponse.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/UserContactUIModelToUserContactMapper.employee.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/UserContactUIModelToUserContactMapper.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/UserPersonalInformationToUIModelMapper.Dependencies.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/UserPersonalInformationToUIModelMapper.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/UserPersonalInformationUIModelToDomainMapper.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Utils/StringUtils.swift",
+    "Modules/PersonalInformation/Sources/PersonalInformation/Views/BankAccountTextField.swift"
+  ],
+  "hints": {
+    "screens": [
+      "AnalyticsFeature",
+      "ContactDetailsFeature",
+      "Destination",
+      "PersonalInformationFeature"
+    ],
+    "endpoints": [
+      "GET /employee/api/v1/employees/{}/empman/employees/me",
+      "GET /employee/api/v1/employees/{}/empman/selections",
+      "POST /employee/api/v1/employees/{}/empman/employees/me"
+    ]
+  }
+}

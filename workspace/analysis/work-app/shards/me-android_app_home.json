@@ -1,0 +1,27 @@
+{
+  "id": "me-android:app/home",
+  "app": "me-android",
+  "stack": "android-native",
+  "name": "app/home",
+  "files": [
+    "app/src/main/java/com/visma/employee/home/ComposeBottomModalSheetDelegate.kt",
+    "app/src/main/java/com/visma/employee/home/FeedResponsesFilter.kt",
+    "app/src/main/java/com/visma/employee/home/HomeButtonsProvider.kt",
+    "app/src/main/java/com/visma/employee/home/HomeErrorResponsesResolver.kt",
+    "app/src/main/java/com/visma/employee/home/HomeHighlightsManager.kt",
+    "app/src/main/java/com/visma/employee/home/HomeModule.kt",
+    "app/src/main/java/com/visma/employee/home/HomeViewModel.kt",
+    "app/src/main/java/com/visma/employee/home/MainActivity.kt",
+    "app/src/main/java/com/visma/employee/home/NotificationHandler.kt",
+    "app/src/main/java/com/visma/employee/home/presentation/HighlightResourcesProvider.kt",
+    "app/src/main/java/com/visma/employee/home/presentation/HomeCallbacks.kt",
+    "app/src/main/java/com/visma/employee/home/presentation/HomeScreen.kt",
+    "app/src/main/java/com/visma/employee/home/presentation/HomeUiEventEffect.kt"
+  ],
+  "hints": {
+    "screens": [
+      "HomeScreen",
+      "MainActivity"
+    ]
+  }
+}

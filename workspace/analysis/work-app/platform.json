@@ -1,18 +1,19 @@
 {
   "program": "work-app",
   "version": 1,
-  "generated": "2026-09-28T18:42:35+00:00",
+  "generated": "2026-09-29T06:27:34+00:00",
   "items": [
     {
       "id": "PLT-001",
       "area": "identity",
       "name": "Bundle / application ids",
       "apps": {
-        "vmm": "com.visma.vmm, com.visma.vmm.VmmNotificationContent, com.visma.vmm.VmmNotificationService",
-        "me-ios": "com.visma.Employee, com.visma.Employee.expense-share-extension, com.visma.vme.payslip, com.visma.vme.payslip.expense-share-extension"
+        "vmm": "com.visma.vmm, com.visma.vmm.VmmNotificationContent, com.visma.vmm.VmmNotificationService, com.visma.vmm.develop",
+        "me-ios": "com.visma.Employee, com.visma.Employee.expense-share-extension, com.visma.vme.payslip, com.visma.vme.payslip.expense-share-extension",
+        "me-android": "com.visma.vme.payslip"
       },
       "newApp": "decide",
-      "decision": null
+      "decision": "drop"
     },
     {
       "id": "PLT-002",
@@ -23,7 +24,7 @@
         "me-ios": "ios 18.0"
       },
       "newApp": "decide",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-003",
@@ -31,7 +32,8 @@
       "name": "Push notifications",
       "apps": {
         "vmm": "yes",
-        "me-ios": "yes"
+        "me-ios": "yes",
+        "me-android": "yes"
       },
       "newApp": "required",
       "decision": null
@@ -41,7 +43,8 @@
       "area": "push",
       "name": "Notification categories and channels",
       "apps": {
-        "vmm": "channel:high-priority, category:ANNIVERSARY_CATEGORY, category:DIALOGUE_CATEGORY, category:APPROVAL_INFO_CATEGORY, category:APPROVAL_ACTIONS_APPROVE_REJECT_CATEGORY, category:APPROVAL_ACTIONS_APPROVE_ONLY_CATEGORY, category:APPROVAL_ACTIONS_REJECT_ONLY_CATEGORY, channel:fcm_fallback_notification_channel"
+        "vmm": "channel:high-priority, category:ANNIVERSARY_CATEGORY, category:DIALOGUE_CATEGORY, category:APPROVAL_INFO_CATEGORY, category:APPROVAL_ACTIONS_APPROVE_REJECT_CATEGORY, category:APPROVAL_ACTIONS_APPROVE_ONLY_CATEGORY, category:APPROVAL_ACTIONS_REJECT_ONLY_CATEGORY, channel:fcm_fallback_notification_channel",
+        "me-android": "channel:PAYSLIP_CHANNEL_2, channel:YEAR_END_CHANNEL_2, channel:RECEIPTS_SYNC_CHANNEL_2, channel:OTHER_NOTIFICATIONS_CHANNEL_2"
       },
       "newApp": "required",
       "decision": null
@@ -63,7 +66,8 @@
       "name": "Custom URL schemes",
       "apps": {
         "vmm": "vismamanager",
-        "me-ios": "vismame, vismamedev"
+        "me-ios": "vismame, vismamedev",
+        "me-android": "vismame"
       },
       "newApp": "required",
       "decision": null
@@ -76,7 +80,7 @@
         "vmm": "ios/VmmNotificationContent/Info.plist"
       },
       "newApp": "decide",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-007",
@@ -86,7 +90,7 @@
         "vmm": "ios/VmmNotificationService/Info.plist"
       },
       "newApp": "decide",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-008",
@@ -96,7 +100,7 @@
         "me-ios": "ExpenseShareExtension/Info.plist"
       },
       "newApp": "decide",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-009",
@@ -202,11 +206,32 @@
       "decision": null
     },
     {
+      "id": "PLT-080",
+      "area": "permissions",
+      "name": "Permission: android.permission.ACCESS_COARSE_LOCATION",
+      "apps": {
+        "me-android": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-081",
+      "area": "permissions",
+      "name": "Permission: android.permission.ACCESS_FINE_LOCATION",
+      "apps": {
+        "me-android": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
       "id": "PLT-019",
       "area": "permissions",
       "name": "Permission: android.permission.ACCESS_NETWORK_STATE",
       "apps": {
-        "vmm": "yes"
+        "vmm": "yes",
+        "me-android": "yes"
       },
       "newApp": "decide",
       "decision": null
@@ -222,11 +247,32 @@
       "decision": null
     },
     {
+      "id": "PLT-082",
+      "area": "permissions",
+      "name": "Permission: android.permission.CAMERA",
+      "apps": {
+        "me-android": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-083",
+      "area": "permissions",
+      "name": "Permission: android.permission.FOREGROUND_SERVICE",
+      "apps": {
+        "me-android": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
       "id": "PLT-021",
       "area": "permissions",
       "name": "Permission: android.permission.INTERNET",
       "apps": {
-        "vmm": "yes"
+        "vmm": "yes",
+        "me-android": "yes"
       },
       "newApp": "decide",
       "decision": null
@@ -246,7 +292,8 @@
       "area": "permissions",
       "name": "Permission: android.permission.POST_NOTIFICATIONS",
       "apps": {
-        "vmm": "yes"
+        "vmm": "yes",
+        "me-android": "yes"
       },
       "newApp": "decide",
       "decision": null
@@ -276,7 +323,18 @@
       "area": "permissions",
       "name": "Permission: android.permission.RECORD_AUDIO",
       "apps": {
-        "vmm": "yes"
+        "vmm": "yes",
+        "me-android": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-084",
+      "area": "permissions",
+      "name": "Permission: android.permission.USE_BIOMETRIC",
+      "apps": {
+        "me-android": "yes"
       },
       "newApp": "decide",
       "decision": null
@@ -296,7 +354,8 @@
       "area": "permissions",
       "name": "Permission: android.permission.VIBRATE",
       "apps": {
-        "vmm": "yes"
+        "vmm": "yes",
+        "me-android": "yes"
       },
       "newApp": "decide",
       "decision": null
@@ -306,7 +365,8 @@
       "area": "permissions",
       "name": "Permission: android.permission.WAKE_LOCK",
       "apps": {
-        "vmm": "yes"
+        "vmm": "yes",
+        "me-android": "yes"
       },
       "newApp": "decide",
       "decision": null
@@ -342,6 +402,26 @@
       "decision": null
     },
     {
+      "id": "PLT-085",
+      "area": "permissions",
+      "name": "Permission: com.google.android.gms.permission.AD_ID",
+      "apps": {
+        "me-android": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-086",
+      "area": "permissions",
+      "name": "Permission: com.visma.employee.permission.SHOW_NOTIFICATION",
+      "apps": {
+        "me-android": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
       "id": "PLT-033",
       "area": "sharing",
       "name": "App groups",
@@ -350,7 +430,7 @@
         "me-ios": "group.com.visma.vme.payslip.shared, group.com.visma.Employee.shared"
       },
       "newApp": "decide",
-      "decision": null
+      "decision": "drop"
     },
     {
       "id": "PLT-034",
@@ -419,7 +499,8 @@
       "area": "crash",
       "name": "Crashlytics",
       "apps": {
-        "vmm": "@react-native-firebase/crashlytics ^25.1.0"
+        "vmm": "@react-native-firebase/crashlytics ^25.1.0",
+        "me-android": "com.google.firebase:firebase-crashlytics-gradle"
       },
       "newApp": "decide",
       "decision": null
@@ -463,7 +544,7 @@
         "vmm": "@react-native-firebase/messaging ^25.1.0"
       },
       "newApp": "decide",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-041",
@@ -483,7 +564,7 @@
         "vmm": "react-native-mmkv ^4"
       },
       "newApp": "decide",
-      "decision": null
+      "decision": "decide-later"
     },
     {
       "id": "PLT-052",
@@ -511,10 +592,11 @@
       "name": "Local storage",
       "apps": {
         "vmm": "asyncstorage, keychain",
-        "me-ios": "keychain, realm-model"
+        "me-ios": "keychain, realm-model",
+        "me-android": "room-entity"
       },
       "newApp": "decide",
-      "decision": null
+      "decision": "drop"
     },
     {
       "id": "PLT-043",
@@ -522,7 +604,8 @@
       "name": "Locales",
       "apps": {
         "vmm": "da, en, fi, nl, no, sv",
-        "me-ios": "en, da-DK, fi-FI, nb-NO, sv-SE"
+        "me-ios": "en, da-DK, fi-FI, nb-NO, sv-SE",
+        "me-android": "default"
       },
       "newApp": "required",
       "decision": null
@@ -565,7 +648,7 @@
         "me-ios": "realm-core 20.1.5, realm-swift 20.0.5"
       },
       "newApp": "decide",
-      "decision": null
+      "decision": "decide-later"
     },
     {
       "id": "PLT-058",
@@ -878,6 +961,13 @@
     "PLT-076",
     "PLT-077",
     "PLT-078",
-    "PLT-079"
+    "PLT-079",
+    "PLT-080",
+    "PLT-081",
+    "PLT-082",
+    "PLT-083",
+    "PLT-084",
+    "PLT-085",
+    "PLT-086"
   ]
 }

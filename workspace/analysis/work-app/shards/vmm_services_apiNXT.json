@@ -1,0 +1,26 @@
+{
+  "id": "vmm:services/apiNXT",
+  "app": "vmm",
+  "stack": "react-native",
+  "name": "services/apiNXT",
+  "files": [
+    "src/services/apiNXT/apiNXT.ts",
+    "src/services/apiNXT/approvalTaskQueries.ts",
+    "src/services/apiNXT/columnsToMapTypes.ts",
+    "src/services/apiNXT/likeFilter.ts",
+    "src/services/apiNXT/lookupQueries.ts",
+    "src/services/apiNXT/orderMutations.ts",
+    "src/services/apiNXT/orderQueries.ts",
+    "src/services/apiNXT/queries.ts",
+    "src/services/apiNXT/shouldFetchMaps.ts",
+    "src/services/apiNXT/types.ts",
+    "src/services/apiNXT/useApiNXTLookup.ts",
+    "src/services/apiNXT/useApiNXTOrders.ts"
+  ],
+  "hints": {
+    "endpoints": [
+      "GET /gui/layout/approvalcolumns/v2/{}",
+      "GET /{}/gui/companyinfo"
+    ]
+  }
+}

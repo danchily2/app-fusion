@@ -1,0 +1,3634 @@
+{
+  "app": "me-android",
+  "version": 1,
+  "format": "android-xml",
+  "files": [
+    "payslip/src/main/res/values/nav_arguments.xml",
+    "translations/src/main/res/values/faq.xml",
+    "translations/src/main/res/values/strings.xml"
+  ],
+  "locales": [
+    "default"
+  ],
+  "source": "default",
+  "keys": {
+    "absence_add_event_save_button_text": [
+      "default"
+    ],
+    "absence_delete_deleting": [
+      "default"
+    ],
+    "absence_delete_dialog_message": [
+      "default"
+    ],
+    "absence_delete_failed": [
+      "default"
+    ],
+    "absence_delete_success": [
+      "default"
+    ],
+    "absence_dimensions_all": [
+      "default"
+    ],
+    "absence_dimensions_recently_used": [
+      "default"
+    ],
+    "absence_dimensions_select": [
+      "default"
+    ],
+    "absence_failed_to_save": [
+      "default"
+    ],
+    "absence_fields_time_end_time": [
+      "default"
+    ],
+    "absence_fields_time_start_time": [
+      "default"
+    ],
+    "absence_highlight_no_vacation_days_remaining": [
+      "default"
+    ],
+    "absence_highlight_parental_leave_ongoing": [
+      "default"
+    ],
+    "absence_highlight_parental_leave_upcoming": [
+      "default"
+    ],
+    "absence_highlight_vacation_approved": [
+      "default"
+    ],
+    "absence_highlight_vacation_days_remaining": [
+      "default"
+    ],
+    "absence_highlight_vacation_declined": [
+      "default"
+    ],
+    "absence_highlight_vacation_ongoing": [
+      "default"
+    ],
+    "absence_highlight_vacation_upcoming": [
+      "default"
+    ],
+    "absence_medical_certificate": [
+      "default"
+    ],
+    "absence_saved_generic_messsage": [
+      "default"
+    ],
+    "absence_saved_messsage": [
+      "default"
+    ],
+    "absence_sending_text": [
+      "default"
+    ],
+    "absence_types_cant_load": [
+      "default"
+    ],
+    "absence_types_no_items": [
+      "default"
+    ],
+    "absence_updated_generic_messsage": [
+      "default"
+    ],
+    "absence_updated_messsage": [
+      "default"
+    ],
+    "absence_vacation_days_left_part_one": [
+      "default"
+    ],
+    "absence_vacation_days_left_part_three": [
+      "default"
+    ],
+    "absence_vacation_days_left_part_two": [
+      "default"
+    ],
+    "accessibility_statement": [
+      "default"
+    ],
+    "account_manager_add_account": [
+      "default"
+    ],
+    "account_manager_logged_in_status": [
+      "default"
+    ],
+    "account_manager_logged_out_status": [
+      "default"
+    ],
+    "account_manager_remove_account_confirmation_dialog_body": [
+      "default"
+    ],
+    "account_manager_remove_account_confirmation_dialog_title": [
+      "default"
+    ],
+    "account_manager_selected_account": [
+      "default"
+    ],
+    "account_manager_title": [
+      "default"
+    ],
+    "action_close": [
+      "default"
+    ],
+    "action_confirm": [
+      "default"
+    ],
+    "action_copy": [
+      "default"
+    ],
+    "action_done": [
+      "default"
+    ],
+    "action_download": [
+      "default"
+    ],
+    "action_edit": [
+      "default"
+    ],
+    "action_info": [
+      "default"
+    ],
+    "action_open_link": [
+      "default"
+    ],
+    "action_remove": [
+      "default"
+    ],
+    "action_save": [
+      "default"
+    ],
+    "action_search": [
+      "default"
+    ],
+    "action_send": [
+      "default"
+    ],
+    "action_update": [
+      "default"
+    ],
+    "add_absence_title": [
+      "default"
+    ],
+    "add_allowance_accommodation_type_mixed": [
+      "default"
+    ],
+    "add_allowance_delete_travel": [
+      "default"
+    ],
+    "add_allowance_end_date_display_field_name": [
+      "default"
+    ],
+    "add_allowance_end_time_display_field_name": [
+      "default"
+    ],
+    "add_allowance_hotel_stay_before_minimum_date_error": [
+      "default"
+    ],
+    "add_allowance_hotel_stay_outside_lodging_periods_error": [
+      "default"
+    ],
+    "add_allowance_select_allowance_type_display_name": [
+      "default"
+    ],
+    "add_allowance_start_date_field_display_name": [
+      "default"
+    ],
+    "add_allowance_start_time_field_display_name": [
+      "default"
+    ],
+    "add_allowance_step_two_amount": [
+      "default"
+    ],
+    "add_allowance_step_two_meal_amount": [
+      "default"
+    ],
+    "add_allowance_step_two_meal_benefit": [
+      "default"
+    ],
+    "add_allowance_step_two_meal_deduction": [
+      "default"
+    ],
+    "add_allowance_step_two_total_allowance": [
+      "default"
+    ],
+    "add_allowance_travel_periods_overlapping_error": [
+      "default"
+    ],
+    "add_event_button_text": [
+      "default"
+    ],
+    "add_to_claim_button": [
+      "default"
+    ],
+    "address_details_city_field_display_name": [
+      "default"
+    ],
+    "address_details_country_field_display_name": [
+      "default"
+    ],
+    "address_details_country_selection_bottom_sheet_item_list_header": [
+      "default"
+    ],
+    "address_details_country_selection_bottom_sheet_search_bar_header": [
+      "default"
+    ],
+    "address_details_street_field_display_name": [
+      "default"
+    ],
+    "address_details_zipcode_field_display_name": [
+      "default"
+    ],
+    "allowance_draft_failed_to_delete": [
+      "default"
+    ],
+    "allowance_draft_failed_to_save": [
+      "default"
+    ],
+    "allowance_main_screen_title_edit_claim": [
+      "default"
+    ],
+    "allowance_view_claim_screen_title": [
+      "default"
+    ],
+    "allowances_screen_edit_title": [
+      "default"
+    ],
+    "allowances_screen_regular_day_travel_explanation_body_1": [
+      "default"
+    ],
+    "allowances_screen_regular_day_travel_explanation_title": [
+      "default"
+    ],
+    "allowances_screen_regular_day_travel_item_label": [
+      "default"
+    ],
+    "allowances_screen_search_hotel_title": [
+      "default"
+    ],
+    "allowances_screen_step_one_title": [
+      "default"
+    ],
+    "allowances_screen_step_two_period_group_defined_label_body_1": [
+      "default"
+    ],
+    "allowances_screen_step_two_period_group_defined_label_body_2": [
+      "default"
+    ],
+    "allowances_screen_step_two_period_group_defined_label_header_1": [
+      "default"
+    ],
+    "allowances_screen_step_two_period_group_defined_label_header_2": [
+      "default"
+    ],
+    "allowances_screen_step_two_period_group_defined_label_link_title_1": [
+      "default"
+    ],
+    "allowances_screen_step_two_period_group_defined_label_title": [
+      "default"
+    ],
+    "allowances_screen_step_two_title": [
+      "default"
+    ],
+    "app_version_and_build_version": [
+      "default"
+    ],
+    "attachment_add_more": [
+      "default"
+    ],
+    "attachment_default_title": [
+      "default"
+    ],
+    "attachment_delete_confirmation_body": [
+      "default"
+    ],
+    "attachment_delete_error": [
+      "default"
+    ],
+    "attachment_delete_title": [
+      "default"
+    ],
+    "attachment_fallback_name": [
+      "default"
+    ],
+    "attachment_thumbnail_description": [
+      "default"
+    ],
+    "attachments_title": [
+      "default"
+    ],
+    "biometrics_confirmation_dialog_button": [
+      "default"
+    ],
+    "biometrics_confirmation_dialog_description": [
+      "default"
+    ],
+    "biometrics_confirmation_dialog_title": [
+      "default"
+    ],
+    "biometrics_deactivation_description": [
+      "default"
+    ],
+    "biometrics_deactivation_title": [
+      "default"
+    ],
+    "biometrics_landing_retry_button": [
+      "default"
+    ],
+    "biometrics_prompt_dialog_button": [
+      "default"
+    ],
+    "biometrics_prompt_dialog_description": [
+      "default"
+    ],
+    "biometrics_prompt_dialog_title": [
+      "default"
+    ],
+    "calendar_absence_single_day": [
+      "default"
+    ],
+    "calendar_bot_chat_additional_message": [
+      "default"
+    ],
+    "calendar_bot_chat_confirm_registration_message": [
+      "default"
+    ],
+    "calendar_bot_chat_error_mandatory_sickness_certificate_in_multiple_events_message": [
+      "default"
+    ],
+    "calendar_bot_chat_event_to_be_registered_summary_message": [
+      "default"
+    ],
+    "calendar_bot_chat_first_message": [
+      "default"
+    ],
+    "calendar_bot_chat_input_field_hint": [
+      "default"
+    ],
+    "calendar_bot_chat_mandatory_sickness_certificate_message": [
+      "default"
+    ],
+    "calendar_bot_chat_screen_title": [
+      "default"
+    ],
+    "calendar_bot_chat_second_message": [
+      "default"
+    ],
+    "calendar_bot_chat_successful_confirm_time_message": [
+      "default"
+    ],
+    "calendar_bot_chat_successful_event_registration_summary_message": [
+      "default"
+    ],
+    "calendar_bot_chat_voice_input_description": [
+      "default"
+    ],
+    "calendar_bot_learn_more_about_description": [
+      "default"
+    ],
+    "calendar_bot_learn_more_about_title": [
+      "default"
+    ],
+    "calendar_bot_learn_more_examples": [
+      "default"
+    ],
+    "calendar_bot_learn_more_feedback_button_title": [
+      "default"
+    ],
+    "calendar_bot_learn_more_how_to_description": [
+      "default"
+    ],
+    "calendar_bot_learn_more_how_to_title": [
+      "default"
+    ],
+    "calendar_bot_learn_more_screen_title": [
+      "default"
+    ],
+    "calendar_empty": [
+      "default"
+    ],
+    "calendar_error_while_loading_more_future": [
+      "default"
+    ],
+    "calendar_error_while_loading_more_historical": [
+      "default"
+    ],
+    "calendar_feed_timesheet_confirmation_item_title": [
+      "default"
+    ],
+    "calendar_filter_events_style_header": [
+      "default"
+    ],
+    "calendar_filter_events_style_icons": [
+      "default"
+    ],
+    "calendar_filter_events_style_text": [
+      "default"
+    ],
+    "calendar_filter_hide_weekends": [
+      "default"
+    ],
+    "calendar_filter_show_absence": [
+      "default"
+    ],
+    "calendar_filter_show_attendance": [
+      "default"
+    ],
+    "calendar_filter_show_roster": [
+      "default"
+    ],
+    "calendar_filter_show_supplement": [
+      "default"
+    ],
+    "calendar_filter_show_week_numbers": [
+      "default"
+    ],
+    "calendar_filter_view_header": [
+      "default"
+    ],
+    "calendar_highlight_check_in_button_text": [
+      "default"
+    ],
+    "calendar_highlight_check_in_description_text": [
+      "default"
+    ],
+    "calendar_highlight_check_in_error_text": [
+      "default"
+    ],
+    "calendar_highlight_check_in_event_name": [
+      "default"
+    ],
+    "calendar_highlight_check_out_button_text": [
+      "default"
+    ],
+    "calendar_highlight_check_out_checked_in_time_description_text": [
+      "default"
+    ],
+    "calendar_highlight_check_out_different_days_error_body_text": [
+      "default"
+    ],
+    "calendar_highlight_check_out_error_editable_button_text": [
+      "default"
+    ],
+    "calendar_highlight_check_out_error_editable_timestamps_text": [
+      "default"
+    ],
+    "calendar_highlight_check_out_error_editable_title_text": [
+      "default"
+    ],
+    "calendar_highlight_check_out_error_text": [
+      "default"
+    ],
+    "calendar_highlight_check_out_less_than_one_minute_passed_body_text": [
+      "default"
+    ],
+    "calendar_highlight_check_out_less_than_one_minute_passed_title_text": [
+      "default"
+    ],
+    "calendar_month_view_week_day_friday": [
+      "default"
+    ],
+    "calendar_month_view_week_day_monday": [
+      "default"
+    ],
+    "calendar_month_view_week_day_saturday": [
+      "default"
+    ],
+    "calendar_month_view_week_day_sunday": [
+      "default"
+    ],
+    "calendar_month_view_week_day_thursday": [
+      "default"
+    ],
+    "calendar_month_view_week_day_tuesday": [
+      "default"
+    ],
+    "calendar_month_view_week_day_wednesday": [
+      "default"
+    ],
+    "calendar_offline": [
+      "default"
+    ],
+    "calendar_required_field_unfilled_error": [
+      "default"
+    ],
+    "calendar_roster_scheduled_hours": [
+      "default"
+    ],
+    "calendar_special_day_holiday": [
+      "default"
+    ],
+    "calendar_summary_include_future_registrations": [
+      "default"
+    ],
+    "calendar_title": [
+      "default"
+    ],
+    "camera_confirm_image_crop": [
+      "default"
+    ],
+    "camera_flash_automatic": [
+      "default"
+    ],
+    "camera_flash_off": [
+      "default"
+    ],
+    "camera_flash_on": [
+      "default"
+    ],
+    "camera_object_detection_description_detecting": [
+      "default"
+    ],
+    "camera_object_detection_description_start": [
+      "default"
+    ],
+    "camera_open_gallery": [
+      "default"
+    ],
+    "camera_permission_is_needed": [
+      "default"
+    ],
+    "camera_take_picture": [
+      "default"
+    ],
+    "cancel_button": [
+      "default"
+    ],
+    "claims_feed_toolbar_title": [
+      "default"
+    ],
+    "close_button": [
+      "default"
+    ],
+    "confirm_time_button_text": [
+      "default"
+    ],
+    "confirm_time_choose_other_date": [
+      "default"
+    ],
+    "confirm_time_dialog_description": [
+      "default"
+    ],
+    "confirm_time_dialog_title_generic": [
+      "default"
+    ],
+    "confirm_time_event_selection_title": [
+      "default"
+    ],
+    "confirm_time_event_selection_title_with_date": [
+      "default"
+    ],
+    "confirm_time_failed_to_sent_generic": [
+      "default"
+    ],
+    "confirm_time_feed_item_click_text": [
+      "default"
+    ],
+    "confirm_time_period_sent": [
+      "default"
+    ],
+    "confirm_time_sent_success_dialog_text": [
+      "default"
+    ],
+    "context_selector_company_description": [
+      "default"
+    ],
+    "context_selector_company_title": [
+      "default"
+    ],
+    "date_picker_default_title": [
+      "default"
+    ],
+    "default_failed_to_load_error_message": [
+      "default"
+    ],
+    "details_net_total": [
+      "default"
+    ],
+    "device_credential_deactivation_description": [
+      "default"
+    ],
+    "device_credential_deactivation_title": [
+      "default"
+    ],
+    "dialog_confirm_negative": [
+      "default"
+    ],
+    "dialog_confirm_positive": [
+      "default"
+    ],
+    "dialog_delete": [
+      "default"
+    ],
+    "dialog_delete_title": [
+      "default"
+    ],
+    "dialog_error_occurred_title": [
+      "default"
+    ],
+    "dialog_failure_title": [
+      "default"
+    ],
+    "dialog_keep": [
+      "default"
+    ],
+    "dialog_loading_title": [
+      "default"
+    ],
+    "dialog_success_title": [
+      "default"
+    ],
+    "dialog_warning_title": [
+      "default"
+    ],
+    "dismiss_button": [
+      "default"
+    ],
+    "document_retrieval_failed": [
+      "default"
+    ],
+    "document_retrieved": [
+      "default"
+    ],
+    "document_retrieving": [
+      "default"
+    ],
+    "dottie_documents_and_benefits_benefits_tab": [
+      "default"
+    ],
+    "dottie_documents_and_benefits_common_tab": [
+      "default"
+    ],
+    "dottie_documents_and_benefits_empty_title": [
+      "default"
+    ],
+    "dottie_documents_and_benefits_error_title": [
+      "default"
+    ],
+    "dottie_documents_and_benefits_mark_as_read": [
+      "default"
+    ],
+    "dottie_documents_and_benefits_mark_as_read_confirmation": [
+      "default"
+    ],
+    "dottie_documents_and_benefits_mark_as_read_error": [
+      "default"
+    ],
+    "dottie_documents_and_benefits_maybe_later": [
+      "default"
+    ],
+    "dottie_documents_and_benefits_must_read": [
+      "default"
+    ],
+    "dottie_documents_and_benefits_new_badge": [
+      "default"
+    ],
+    "dottie_documents_and_benefits_personal_document_download_error": [
+      "default"
+    ],
+    "dottie_documents_and_benefits_personal_tab": [
+      "default"
+    ],
+    "dottie_documents_and_benefits_read_status": [
+      "default"
+    ],
+    "dottie_documents_and_benefits_should_read": [
+      "default"
+    ],
+    "dottie_documents_and_benefits_title": [
+      "default"
+    ],
+    "dottie_documents_and_benefits_unread_status": [
+      "default"
+    ],
+    "dottie_employee_info_add_item": [
+      "default"
+    ],
+    "dottie_employee_info_delete_title": [
+      "default"
+    ],
+    "dottie_employee_info_discard_cancel": [
+      "default"
+    ],
+    "dottie_employee_info_discard_confirm": [
+      "default"
+    ],
+    "dottie_employee_info_discard_title": [
+      "default"
+    ],
+    "dottie_employee_info_load_error": [
+      "default"
+    ],
+    "dottie_employee_info_save": [
+      "default"
+    ],
+    "dottie_employee_info_save_error": [
+      "default"
+    ],
+    "dottie_employee_info_search_country": [
+      "default"
+    ],
+    "dottie_employee_info_select_country": [
+      "default"
+    ],
+    "dottie_employee_info_title": [
+      "default"
+    ],
+    "dottie_employee_info_title_other_user": [
+      "default"
+    ],
+    "dottie_employee_list_empty_title": [
+      "default"
+    ],
+    "dottie_employee_list_error_title": [
+      "default"
+    ],
+    "dottie_employee_list_quick_filter_show_all": [
+      "default"
+    ],
+    "dottie_employee_list_search_placeholder": [
+      "default"
+    ],
+    "dottie_employee_list_title": [
+      "default"
+    ],
+    "dottie_notifications_provider_name": [
+      "default"
+    ],
+    "dottie_profile_image_cancel": [
+      "default"
+    ],
+    "dottie_profile_image_choose_library": [
+      "default"
+    ],
+    "dottie_profile_image_close": [
+      "default"
+    ],
+    "dottie_profile_image_crop_close": [
+      "default"
+    ],
+    "dottie_profile_image_crop_save": [
+      "default"
+    ],
+    "dottie_profile_image_delete": [
+      "default"
+    ],
+    "dottie_profile_image_delete_confirm": [
+      "default"
+    ],
+    "dottie_profile_image_delete_title": [
+      "default"
+    ],
+    "dottie_profile_image_error": [
+      "default"
+    ],
+    "dottie_profile_image_select": [
+      "default"
+    ],
+    "dottie_profile_image_source_title": [
+      "default"
+    ],
+    "dottie_profile_image_take_photo": [
+      "default"
+    ],
+    "dottie_profile_image_title": [
+      "default"
+    ],
+    "each_day": [
+      "default"
+    ],
+    "edit_absence_title": [
+      "default"
+    ],
+    "emissions_summary": [
+      "default"
+    ],
+    "error_failed_to_load_emissions_summary": [
+      "default"
+    ],
+    "error_message_something_went_wrong_try_again_later": [
+      "default"
+    ],
+    "error_no_internet_connection": [
+      "default"
+    ],
+    "error_unexpected": [
+      "default"
+    ],
+    "error_user_has_no_payslips": [
+      "default"
+    ],
+    "error_user_unauthorized": [
+      "default"
+    ],
+    "events_cards_select": [
+      "default"
+    ],
+    "expense_add_remove_receipts": [
+      "default"
+    ],
+    "expense_add_to_claim_error_message_invalid_fields": [
+      "default"
+    ],
+    "expense_add_to_claim_error_message_missing_required_fields": [
+      "default"
+    ],
+    "expense_allowance_added_to_claim_success_toast": [
+      "default"
+    ],
+    "expense_allowance_draft_deleted_text": [
+      "default"
+    ],
+    "expense_allowance_edit_claim_edit_success_toast": [
+      "default"
+    ],
+    "expense_assign_cost_allocation": [
+      "default"
+    ],
+    "expense_attachments_existing_claim_failed_to_save": [
+      "default"
+    ],
+    "expense_attachments_existing_claim_failed_to_save_click_details": [
+      "default"
+    ],
+    "expense_attachments_failed_to_save": [
+      "default"
+    ],
+    "expense_attachments_failed_to_save_click_details": [
+      "default"
+    ],
+    "expense_attachments_to_claim_failed_to_save": [
+      "default"
+    ],
+    "expense_bottom_sheet_add_a_existing_expense": [
+      "default"
+    ],
+    "expense_bottom_sheet_add_a_new_allowance": [
+      "default"
+    ],
+    "expense_bottom_sheet_add_a_new_mileage": [
+      "default"
+    ],
+    "expense_bottom_sheet_add_a_new_receipt": [
+      "default"
+    ],
+    "expense_bottom_sheet_delete_allowance": [
+      "default"
+    ],
+    "expense_bottom_sheet_delete_credit_card_transaction": [
+      "default"
+    ],
+    "expense_bottom_sheet_delete_mileage": [
+      "default"
+    ],
+    "expense_bottom_sheet_delete_receipt": [
+      "default"
+    ],
+    "expense_cancel_claim_approval_failed": [
+      "default"
+    ],
+    "expense_claim_cancel_request": [
+      "default"
+    ],
+    "expense_claim_cancel_request_failed_text": [
+      "default"
+    ],
+    "expense_claim_failed_to_save": [
+      "default"
+    ],
+    "expense_claim_receipts_error": [
+      "default"
+    ],
+    "expense_claim_request_canceling_text": [
+      "default"
+    ],
+    "expense_claim_saved_in_camera_share_mode_label": [
+      "default"
+    ],
+    "expense_claim_saved_in_camera_share_mode_text": [
+      "default"
+    ],
+    "expense_claim_saved_label": [
+      "default"
+    ],
+    "expense_claim_saved_text": [
+      "default"
+    ],
+    "expense_claim_saving_text": [
+      "default"
+    ],
+    "expense_claim_send_failed_text": [
+      "default"
+    ],
+    "expense_claim_send_for_approval_failed_text": [
+      "default"
+    ],
+    "expense_claim_sending_text": [
+      "default"
+    ],
+    "expense_claim_sent_label": [
+      "default"
+    ],
+    "expense_claim_sent_text": [
+      "default"
+    ],
+    "expense_claim_total_amount_unavailable_text": [
+      "default"
+    ],
+    "expense_claim_update_claim_description_and_comment_failed_default_text": [
+      "default"
+    ],
+    "expense_claim_update_cost_units_failed_default_text": [
+      "default"
+    ],
+    "expense_claim_update_failed": [
+      "default"
+    ],
+    "expense_claims_empty": [
+      "default"
+    ],
+    "expense_claims_empty_offline": [
+      "default"
+    ],
+    "expense_close_existing_expense_screen_dialog_body": [
+      "default"
+    ],
+    "expense_close_new_expense_screen_dialog_body": [
+      "default"
+    ],
+    "expense_close_screen_dialog_title": [
+      "default"
+    ],
+    "expense_cost_units_split": [
+      "default"
+    ],
+    "expense_credit_card": [
+      "default"
+    ],
+    "expense_credit_card_details_unavailable": [
+      "default"
+    ],
+    "expense_credit_card_send_one_transaction": [
+      "default"
+    ],
+    "expense_credit_card_send_transactions": [
+      "default"
+    ],
+    "expense_credit_card_transaction": [
+      "default"
+    ],
+    "expense_credit_card_transaction_authorized": [
+      "default"
+    ],
+    "expense_credit_card_transaction_deleted_text": [
+      "default"
+    ],
+    "expense_credit_card_transactions_section": [
+      "default"
+    ],
+    "expense_delete_allowance": [
+      "default"
+    ],
+    "expense_delete_claim_deleted": [
+      "default"
+    ],
+    "expense_delete_claim_dialog_delete_action": [
+      "default"
+    ],
+    "expense_delete_claim_dialog_description": [
+      "default"
+    ],
+    "expense_delete_claim_dialog_title": [
+      "default"
+    ],
+    "expense_delete_claim_failed": [
+      "default"
+    ],
+    "expense_delete_credit_card_transaction": [
+      "default"
+    ],
+    "expense_delete_mileage": [
+      "default"
+    ],
+    "expense_delete_receipt": [
+      "default"
+    ],
+    "expense_deleting_allowance": [
+      "default"
+    ],
+    "expense_deleting_allowance_confirmation_dialog_body": [
+      "default"
+    ],
+    "expense_deleting_claim": [
+      "default"
+    ],
+    "expense_deleting_mileage": [
+      "default"
+    ],
+    "expense_deleting_mileage_confirmation_dialog_body": [
+      "default"
+    ],
+    "expense_deleting_receipt": [
+      "default"
+    ],
+    "expense_deleting_receipt_confirmation_dialog_body": [
+      "default"
+    ],
+    "expense_details_claim_category_mileages": [
+      "default"
+    ],
+    "expense_details_claim_category_receipts": [
+      "default"
+    ],
+    "expense_details_claim_id_text": [
+      "default"
+    ],
+    "expense_details_claim_total": [
+      "default"
+    ],
+    "expense_details_claim_transaction_changed": [
+      "default"
+    ],
+    "expense_details_display_name_default": [
+      "default"
+    ],
+    "expense_draft_action_delete": [
+      "default"
+    ],
+    "expense_draft_action_download_error": [
+      "default"
+    ],
+    "expense_draft_action_download_image": [
+      "default"
+    ],
+    "expense_draft_action_download_success": [
+      "default"
+    ],
+    "expense_draft_all_cost_units_header": [
+      "default"
+    ],
+    "expense_draft_all_expense_types_header": [
+      "default"
+    ],
+    "expense_draft_cost_unit_empty_dimension": [
+      "default"
+    ],
+    "expense_draft_cost_unit_save_button": [
+      "default"
+    ],
+    "expense_draft_failed_to_add_to_claim_because_of_internet_issues": [
+      "default"
+    ],
+    "expense_draft_failed_to_delete": [
+      "default"
+    ],
+    "expense_draft_failed_to_save": [
+      "default"
+    ],
+    "expense_draft_frequently_used_header": [
+      "default"
+    ],
+    "expense_draft_get_data_from_link_default_error_message": [
+      "default"
+    ],
+    "expense_draft_info_limited_functionality_text": [
+      "default"
+    ],
+    "expense_draft_info_limited_functionality_title": [
+      "default"
+    ],
+    "expense_draft_recently_used_header": [
+      "default"
+    ],
+    "expense_draft_saved_text": [
+      "default"
+    ],
+    "expense_draft_searchable_modal_bottom_sheet_nothing_found_header": [
+      "default"
+    ],
+    "expense_draft_searchable_modal_bottom_sheet_search_bar_hint": [
+      "default"
+    ],
+    "expense_draft_select_cost_unit": [
+      "default"
+    ],
+    "expense_draft_select_currency": [
+      "default"
+    ],
+    "expense_draft_select_currency_type": [
+      "default"
+    ],
+    "expense_draft_select_expense_type": [
+      "default"
+    ],
+    "expense_drafts_searchable_dialog_hint": [
+      "default"
+    ],
+    "expense_expense_type_description_accessibility_label": [
+      "default"
+    ],
+    "expense_failed_to_get_mileage_templates_because_company_has_not_enabled_mileage_types": [
+      "default"
+    ],
+    "expense_failed_to_load": [
+      "default"
+    ],
+    "expense_inbox_add_expenses_to_new_claim": [
+      "default"
+    ],
+    "expense_inbox_add_new_expenses": [
+      "default"
+    ],
+    "expense_inbox_add_receipt_to": [
+      "default"
+    ],
+    "expense_inbox_add_receipts_to": [
+      "default"
+    ],
+    "expense_inbox_add_receipts_to_claim": [
+      "default"
+    ],
+    "expense_inbox_create_claim_title": [
+      "default"
+    ],
+    "expense_inbox_deselect_all_description": [
+      "default"
+    ],
+    "expense_inbox_disabled_write_permission": [
+      "default"
+    ],
+    "expense_inbox_disabled_write_permission_card_text": [
+      "default"
+    ],
+    "expense_inbox_disabled_write_permission_title": [
+      "default"
+    ],
+    "expense_inbox_display_name_allowance_default": [
+      "default"
+    ],
+    "expense_inbox_display_name_default": [
+      "default"
+    ],
+    "expense_inbox_display_name_mileage_default": [
+      "default"
+    ],
+    "expense_inbox_empty": [
+      "default"
+    ],
+    "expense_inbox_empty_offline": [
+      "default"
+    ],
+    "expense_inbox_failed_to_load_expenses": [
+      "default"
+    ],
+    "expense_inbox_failed_to_load_image": [
+      "default"
+    ],
+    "expense_inbox_new_claim_title": [
+      "default"
+    ],
+    "expense_inbox_no_attached_image": [
+      "default"
+    ],
+    "expense_inbox_no_previous_content": [
+      "default"
+    ],
+    "expense_inbox_select_all_description": [
+      "default"
+    ],
+    "expense_inbox_send_number_of_receipts": [
+      "default"
+    ],
+    "expense_inbox_send_number_of_receipts_max": [
+      "default"
+    ],
+    "expense_inbox_send_receipt_singular": [
+      "default"
+    ],
+    "expense_inbox_send_receipts": [
+      "default"
+    ],
+    "expense_mileage_add_destination": [
+      "default"
+    ],
+    "expense_mileage_draft_deleted_text": [
+      "default"
+    ],
+    "expense_new_claim_create_failed_text": [
+      "default"
+    ],
+    "expense_new_claim_save_for_later_button": [
+      "default"
+    ],
+    "expense_new_claim_send_failed_text": [
+      "default"
+    ],
+    "expense_new_claim_send_for_approval_button": [
+      "default"
+    ],
+    "expense_no_items": [
+      "default"
+    ],
+    "expense_offline_limited_functionality_title": [
+      "default"
+    ],
+    "expense_paid_by_company_label": [
+      "default"
+    ],
+    "expense_project_accounting": [
+      "default"
+    ],
+    "expense_project_accounting_all_projects": [
+      "default"
+    ],
+    "expense_project_accounting_all_tasks": [
+      "default"
+    ],
+    "expense_project_accounting_select_project": [
+      "default"
+    ],
+    "expense_project_accounting_select_task": [
+      "default"
+    ],
+    "expense_receipt_draft_deleted_text": [
+      "default"
+    ],
+    "expense_receipt_edit_claim_edit_success_toast": [
+      "default"
+    ],
+    "expense_receipts_bulk_send_deviation_error_message": [
+      "default"
+    ],
+    "expense_receipts_bulk_send_deviation_error_title": [
+      "default"
+    ],
+    "expense_receipts_delete_credit_card_confirmation_message": [
+      "default"
+    ],
+    "expense_receipts_deleting_credit_card_transaction": [
+      "default"
+    ],
+    "expense_receipts_merge_button": [
+      "default"
+    ],
+    "expense_receipts_merge_confirmation_message": [
+      "default"
+    ],
+    "expense_receipts_merge_confirmation_title": [
+      "default"
+    ],
+    "expense_receipts_merge_credit_card_transaction_linked": [
+      "default"
+    ],
+    "expense_receipts_merge_failed": [
+      "default"
+    ],
+    "expense_receipts_merge_info_message": [
+      "default"
+    ],
+    "expense_receipts_merge_merging": [
+      "default"
+    ],
+    "expense_receipts_merge_no_candidates": [
+      "default"
+    ],
+    "expense_receipts_merge_similarity_exact": [
+      "default"
+    ],
+    "expense_receipts_merge_similarity_possible": [
+      "default"
+    ],
+    "expense_receipts_merge_with_credit_card_transaction_title": [
+      "default"
+    ],
+    "expense_receipts_merge_with_receipt_title": [
+      "default"
+    ],
+    "expense_receipts_requires_attention": [
+      "default"
+    ],
+    "expense_save_to_claim_button_text": [
+      "default"
+    ],
+    "expense_save_to_from_existing_claim_button_text": [
+      "default"
+    ],
+    "expense_saving_mileage": [
+      "default"
+    ],
+    "expense_saving_receipt": [
+      "default"
+    ],
+    "expense_selected_claim_previously_added_header": [
+      "default"
+    ],
+    "expense_selected_claim_save_for_later_button": [
+      "default"
+    ],
+    "expense_selected_claim_send_for_approval_button": [
+      "default"
+    ],
+    "expense_selected_claim_to_be_added_header": [
+      "default"
+    ],
+    "expense_send_approval_dont_show_again": [
+      "default"
+    ],
+    "expense_send_for_approval_loading_message": [
+      "default"
+    ],
+    "expense_send_single_expense_dialog_message": [
+      "default"
+    ],
+    "expense_send_single_expense_dialog_title": [
+      "default"
+    ],
+    "expense_sustainability_co2_emissions_body": [
+      "default"
+    ],
+    "expense_sustainability_co2_emissions_label": [
+      "default"
+    ],
+    "expense_sustainability_emissions_summary_empty_screen_label": [
+      "default"
+    ],
+    "expense_sustainability_emissions_summary_how_we_calculate_emissions_label": [
+      "default"
+    ],
+    "expense_sustainability_emissions_summary_other_emission_category_label": [
+      "default"
+    ],
+    "expense_sustainability_emissions_summary_top_co2_emissions_categories_label": [
+      "default"
+    ],
+    "expense_sustainability_emissions_summary_total_co2_emissions_label": [
+      "default"
+    ],
+    "expense_sustainability_how_we_calculate_emissions_data_body1": [
+      "default"
+    ],
+    "expense_sustainability_how_we_calculate_emissions_data_body2": [
+      "default"
+    ],
+    "expense_sustainability_how_we_calculate_emissions_data_header1": [
+      "default"
+    ],
+    "expense_sustainability_how_we_calculate_emissions_data_header2": [
+      "default"
+    ],
+    "expense_sustainability_limitations_data_body3": [
+      "default"
+    ],
+    "expense_sustainability_limitations_data_header3": [
+      "default"
+    ],
+    "export_payslips_button_aria_label": [
+      "default"
+    ],
+    "export_payslips_select_company_title": [
+      "default"
+    ],
+    "faq_addAbsence_answer_2": [
+      "default"
+    ],
+    "faq_addAbsence_answer_3": [
+      "default"
+    ],
+    "faq_addAbsence_question_2": [
+      "default"
+    ],
+    "faq_addAbsence_question_3": [
+      "default"
+    ],
+    "faq_context_absence_no_license_description": [
+      "default"
+    ],
+    "faq_context_absence_title": [
+      "default"
+    ],
+    "faq_context_expense_no_license_description": [
+      "default"
+    ],
+    "faq_context_expense_title": [
+      "default"
+    ],
+    "faq_context_frequent_questions": [
+      "default"
+    ],
+    "faq_context_no_absence_title": [
+      "default"
+    ],
+    "faq_context_no_expense_title": [
+      "default"
+    ],
+    "faq_context_no_payslip_title": [
+      "default"
+    ],
+    "faq_context_no_time_title": [
+      "default"
+    ],
+    "faq_context_payslip_no_license_description": [
+      "default"
+    ],
+    "faq_context_payslip_title": [
+      "default"
+    ],
+    "faq_context_time_no_license_description": [
+      "default"
+    ],
+    "faq_context_time_title": [
+      "default"
+    ],
+    "faq_default_answer_2": [
+      "default"
+    ],
+    "faq_default_answer_3": [
+      "default"
+    ],
+    "faq_default_question_2": [
+      "default"
+    ],
+    "faq_default_question_3": [
+      "default"
+    ],
+    "faq_expenseClaims_answer_2": [
+      "default"
+    ],
+    "faq_expenseClaims_answer_4": [
+      "default"
+    ],
+    "faq_expenseClaims_question_2": [
+      "default"
+    ],
+    "faq_expenseClaims_question_4": [
+      "default"
+    ],
+    "faq_expense_description": [
+      "default"
+    ],
+    "faq_expense_description_grey": [
+      "default"
+    ],
+    "faq_expense_title": [
+      "default"
+    ],
+    "faq_feedback_description_grey": [
+      "default"
+    ],
+    "faq_feedback_detail_button": [
+      "default"
+    ],
+    "faq_feedback_detail_description_1": [
+      "default"
+    ],
+    "faq_feedback_detail_description_2": [
+      "default"
+    ],
+    "faq_feedback_detail_description_3": [
+      "default"
+    ],
+    "faq_feedback_detail_email": [
+      "default"
+    ],
+    "faq_feedback_detail_hint": [
+      "default"
+    ],
+    "faq_feedback_failed_text": [
+      "default"
+    ],
+    "faq_feedback_sending_text": [
+      "default"
+    ],
+    "faq_feedback_sent_text": [
+      "default"
+    ],
+    "faq_feedback_title": [
+      "default"
+    ],
+    "faq_license_activated_answer_1": [
+      "default"
+    ],
+    "faq_license_answer_1": [
+      "default"
+    ],
+    "faq_license_never_activated_answer_1": [
+      "default"
+    ],
+    "faq_license_question_1": [
+      "default"
+    ],
+    "faq_license_terminated_and_deactivated_answer_1": [
+      "default"
+    ],
+    "faq_my_profile_answer_1": [
+      "default"
+    ],
+    "faq_my_profile_answer_2": [
+      "default"
+    ],
+    "faq_my_profile_answer_3": [
+      "default"
+    ],
+    "faq_my_profile_answer_4": [
+      "default"
+    ],
+    "faq_my_profile_answer_5": [
+      "default"
+    ],
+    "faq_my_profile_answer_6": [
+      "default"
+    ],
+    "faq_my_profile_description": [
+      "default"
+    ],
+    "faq_my_profile_description_grey": [
+      "default"
+    ],
+    "faq_my_profile_question_1": [
+      "default"
+    ],
+    "faq_my_profile_question_2": [
+      "default"
+    ],
+    "faq_my_profile_question_3": [
+      "default"
+    ],
+    "faq_my_profile_question_4": [
+      "default"
+    ],
+    "faq_my_profile_question_5": [
+      "default"
+    ],
+    "faq_my_profile_question_6": [
+      "default"
+    ],
+    "faq_my_profile_title": [
+      "default"
+    ],
+    "faq_other_answer_1": [
+      "default"
+    ],
+    "faq_other_answer_2": [
+      "default"
+    ],
+    "faq_other_answer_3": [
+      "default"
+    ],
+    "faq_other_answer_6": [
+      "default"
+    ],
+    "faq_other_description": [
+      "default"
+    ],
+    "faq_other_description_dottie": [
+      "default"
+    ],
+    "faq_other_description_grey": [
+      "default"
+    ],
+    "faq_other_question_1": [
+      "default"
+    ],
+    "faq_other_question_2": [
+      "default"
+    ],
+    "faq_other_question_3": [
+      "default"
+    ],
+    "faq_other_question_6": [
+      "default"
+    ],
+    "faq_other_title": [
+      "default"
+    ],
+    "faq_payslips_answer_1": [
+      "default"
+    ],
+    "faq_payslips_answer_2": [
+      "default"
+    ],
+    "faq_payslips_answer_3": [
+      "default"
+    ],
+    "faq_payslips_answer_download": [
+      "default"
+    ],
+    "faq_payslips_answer_select_companies_filter": [
+      "default"
+    ],
+    "faq_payslips_description": [
+      "default"
+    ],
+    "faq_payslips_description_grey": [
+      "default"
+    ],
+    "faq_payslips_question_1": [
+      "default"
+    ],
+    "faq_payslips_question_2": [
+      "default"
+    ],
+    "faq_payslips_question_3": [
+      "default"
+    ],
+    "faq_payslips_question_download": [
+      "default"
+    ],
+    "faq_payslips_question_select_companies_filter": [
+      "default"
+    ],
+    "faq_payslips_title": [
+      "default"
+    ],
+    "faq_time_description": [
+      "default"
+    ],
+    "faq_time_description_grey": [
+      "default"
+    ],
+    "faq_time_title": [
+      "default"
+    ],
+    "faq_title": [
+      "default"
+    ],
+    "faq_toolbar_title": [
+      "default"
+    ],
+    "file_picker_result_type_not_supported": [
+      "default"
+    ],
+    "future_absence": [
+      "default"
+    ],
+    "generic_continue": [
+      "default"
+    ],
+    "generic_deactivate": [
+      "default"
+    ],
+    "generic_failed_to_load": [
+      "default"
+    ],
+    "generic_later": [
+      "default"
+    ],
+    "generic_processing": [
+      "default"
+    ],
+    "generic_save_changes": [
+      "default"
+    ],
+    "got_it": [
+      "default"
+    ],
+    "greeting_good_afternoon": [
+      "default"
+    ],
+    "greeting_good_evening": [
+      "default"
+    ],
+    "greeting_good_morning": [
+      "default"
+    ],
+    "home_allowances_to_send_body_multiple": [
+      "default"
+    ],
+    "home_allowances_to_send_body_singular": [
+      "default"
+    ],
+    "home_allowances_to_send_header": [
+      "default"
+    ],
+    "home_card_expense_all_sent_title": [
+      "default"
+    ],
+    "home_card_expense_title": [
+      "default"
+    ],
+    "home_card_payslip_title": [
+      "default"
+    ],
+    "home_card_shift_title": [
+      "default"
+    ],
+    "home_claim_approved": [
+      "default"
+    ],
+    "home_claim_approved_title": [
+      "default"
+    ],
+    "home_claim_declined": [
+      "default"
+    ],
+    "home_claim_receipts_all_sent": [
+      "default"
+    ],
+    "home_claim_rejected_title": [
+      "default"
+    ],
+    "home_claim_sent_for_approval": [
+      "default"
+    ],
+    "home_claim_transaction_changed_credit_card_changed": [
+      "default"
+    ],
+    "home_claim_transaction_changed_credit_card_never_cleared": [
+      "default"
+    ],
+    "home_claim_transaction_changed_error_sending_to_approval": [
+      "default"
+    ],
+    "home_claim_unsent": [
+      "default"
+    ],
+    "home_combined_expenses_allowance": [
+      "default"
+    ],
+    "home_combined_expenses_allowances": [
+      "default"
+    ],
+    "home_combined_expenses_credit_card_transaction": [
+      "default"
+    ],
+    "home_combined_expenses_credit_card_transactions": [
+      "default"
+    ],
+    "home_combined_expenses_mileage": [
+      "default"
+    ],
+    "home_combined_expenses_mileages": [
+      "default"
+    ],
+    "home_combined_expenses_receipt": [
+      "default"
+    ],
+    "home_combined_expenses_receipts": [
+      "default"
+    ],
+    "home_credit_card_transactions_to_send": [
+      "default"
+    ],
+    "home_distance_unit_kilometers": [
+      "default"
+    ],
+    "home_expenses_to_send_body_multiple_mileages_and_allowances": [
+      "default"
+    ],
+    "home_expenses_to_send_body_multiple_receipts_and_allowances": [
+      "default"
+    ],
+    "home_expenses_to_send_body_multiple_receipts_and_multiple_mileages": [
+      "default"
+    ],
+    "home_expenses_to_send_body_multiple_receipts_and_multiple_mileages_and_allowances": [
+      "default"
+    ],
+    "home_expenses_to_send_body_multiple_receipts_and_singular_mileage": [
+      "default"
+    ],
+    "home_expenses_to_send_body_singular_receipt_and_multiple_mileages": [
+      "default"
+    ],
+    "home_expenses_to_send_body_singular_receipt_and_singular_mileage": [
+      "default"
+    ],
+    "home_expenses_to_send_header": [
+      "default"
+    ],
+    "home_mileages_to_send": [
+      "default"
+    ],
+    "home_new_feature_long_description": [
+      "default"
+    ],
+    "home_new_feature_positive_button_text": [
+      "default"
+    ],
+    "home_new_feature_short_description": [
+      "default"
+    ],
+    "home_new_feature_title": [
+      "default"
+    ],
+    "home_no_events_title": [
+      "default"
+    ],
+    "home_no_payslips_published": [
+      "default"
+    ],
+    "home_no_recent_events": [
+      "default"
+    ],
+    "home_ongoing_parental_leave_title": [
+      "default"
+    ],
+    "home_ongoing_vacation_title": [
+      "default"
+    ],
+    "home_payslip_filter_payslips_by_company_filter_label": [
+      "default"
+    ],
+    "home_payslip_filter_payslips_by_company_header": [
+      "default"
+    ],
+    "home_payslip_future": [
+      "default"
+    ],
+    "home_payslip_past": [
+      "default"
+    ],
+    "home_quick_selections": [
+      "default"
+    ],
+    "home_receipts_to_send": [
+      "default"
+    ],
+    "home_survey_negative_button_text": [
+      "default"
+    ],
+    "home_survey_positive_button_text": [
+      "default"
+    ],
+    "home_title": [
+      "default"
+    ],
+    "home_unsent_expenses_title": [
+      "default"
+    ],
+    "home_upcoming_parental_leave_title": [
+      "default"
+    ],
+    "home_upcoming_vacation_title": [
+      "default"
+    ],
+    "home_vacation_approved_title": [
+      "default"
+    ],
+    "home_vacation_days_title": [
+      "default"
+    ],
+    "home_vacation_rejected_title": [
+      "default"
+    ],
+    "home_whats_new_highlight_negative_button_text": [
+      "default"
+    ],
+    "learn_more_button": [
+      "default"
+    ],
+    "licenses": [
+      "default"
+    ],
+    "load_payslip_failed": [
+      "default"
+    ],
+    "load_payslips_failed": [
+      "default"
+    ],
+    "login_failed": [
+      "default"
+    ],
+    "login_failed_no_params": [
+      "default"
+    ],
+    "login_failed_no_session": [
+      "default"
+    ],
+    "login_failed_no_token_data": [
+      "default"
+    ],
+    "login_label": [
+      "default"
+    ],
+    "login_label_account_manager_screen": [
+      "default"
+    ],
+    "login_logging_in": [
+      "default"
+    ],
+    "login_no_features_error": [
+      "default"
+    ],
+    "login_only_successfully": [
+      "default"
+    ],
+    "login_pincode_title": [
+      "default"
+    ],
+    "logout_confirmation_dialog_description": [
+      "default"
+    ],
+    "logout_information_login_dialog_description": [
+      "default"
+    ],
+    "logout_information_login_dialog_title": [
+      "default"
+    ],
+    "message_inbox_empty_screen_text": [
+      "default"
+    ],
+    "message_inbox_native_provider_name": [
+      "default"
+    ],
+    "message_inbox_title": [
+      "default"
+    ],
+    "mileage_add_to_claim_button_text": [
+      "default"
+    ],
+    "mileage_added_to_existing_claim_button_text": [
+      "default"
+    ],
+    "mileage_automatic_road_toll_calculation_error": [
+      "default"
+    ],
+    "mileage_bottom_sheet_select_fuel": [
+      "default"
+    ],
+    "mileage_bottom_sheet_select_vehicle": [
+      "default"
+    ],
+    "mileage_destination_cached_places_header": [
+      "default"
+    ],
+    "mileage_destination_no_route_error_message_body_text": [
+      "default"
+    ],
+    "mileage_destination_no_route_error_message_clickable_text": [
+      "default"
+    ],
+    "mileage_destination_no_route_error_message_header_text": [
+      "default"
+    ],
+    "mileage_destination_screen_title": [
+      "default"
+    ],
+    "mileage_destination_screen_title_alternative": [
+      "default"
+    ],
+    "mileage_destination_view_map_item": [
+      "default"
+    ],
+    "mileage_edit_claim_delete_success_toast": [
+      "default"
+    ],
+    "mileage_edit_claim_edit_success_toast": [
+      "default"
+    ],
+    "mileage_error_invalid_field": [
+      "default"
+    ],
+    "mileage_inbox_empty_offline": [
+      "default"
+    ],
+    "mileage_input_press_while_in_waypoint_edit_mode_text": [
+      "default"
+    ],
+    "mileage_main_screen_title": [
+      "default"
+    ],
+    "mileage_main_screen_title_alternative": [
+      "default"
+    ],
+    "mileage_main_screen_title_edit_claim": [
+      "default"
+    ],
+    "mileage_main_screen_title_edit_claim_preview": [
+      "default"
+    ],
+    "mileage_map_destination_bottom_container_header": [
+      "default"
+    ],
+    "mileage_map_destination_button_primary": [
+      "default"
+    ],
+    "mileage_map_destination_current_location_denied": [
+      "default"
+    ],
+    "mileage_map_destination_current_location_gps_not_active": [
+      "default"
+    ],
+    "mileage_map_destination_current_location_loading": [
+      "default"
+    ],
+    "mileage_map_destination_current_location_not_found": [
+      "default"
+    ],
+    "mileage_map_destination_current_location_open_settings": [
+      "default"
+    ],
+    "mileage_map_destination_screen_title": [
+      "default"
+    ],
+    "mileage_map_destination_screen_title_alternative": [
+      "default"
+    ],
+    "mileage_map_destination_should_automatically_calculate_road_tolls": [
+      "default"
+    ],
+    "mileage_map_review_route_excluding_ferry": [
+      "default"
+    ],
+    "mileage_map_review_route_maximum_destinations_reached": [
+      "default"
+    ],
+    "mileage_map_screen_title": [
+      "default"
+    ],
+    "mileage_passenger_delete_button_description": [
+      "default"
+    ],
+    "mileage_return_trip_toggle_header_text": [
+      "default"
+    ],
+    "mileage_save_button_press_while_calculating_road_toll_text": [
+      "default"
+    ],
+    "mileage_save_error_dialog_description": [
+      "default"
+    ],
+    "mileage_select_start_waypoint_optional_text": [
+      "default"
+    ],
+    "mileage_select_start_waypoint_text": [
+      "default"
+    ],
+    "mileage_template_fetch_error": [
+      "default"
+    ],
+    "mileage_waypoint_delete_button_description": [
+      "default"
+    ],
+    "mileage_waypoint_edit_mode_done_text": [
+      "default"
+    ],
+    "mileage_waypoint_edit_mode_edit_text": [
+      "default"
+    ],
+    "mileage_waypoint_header_text": [
+      "default"
+    ],
+    "my_page_attendance_title": [
+      "default"
+    ],
+    "my_page_payslips_title": [
+      "default"
+    ],
+    "my_page_report_retrieval_failed": [
+      "default"
+    ],
+    "my_page_report_retrieved": [
+      "default"
+    ],
+    "my_page_report_retrieving": [
+      "default"
+    ],
+    "my_page_sick_child_title": [
+      "default"
+    ],
+    "my_page_sickness_title": [
+      "default"
+    ],
+    "my_page_total": [
+      "default"
+    ],
+    "my_page_vacation_title": [
+      "default"
+    ],
+    "nav_calendar": [
+      "default"
+    ],
+    "nav_expenses": [
+      "default"
+    ],
+    "nav_go_back": [
+      "default"
+    ],
+    "nav_information": [
+      "default"
+    ],
+    "nav_logout": [
+      "default"
+    ],
+    "nav_user_settings": [
+      "default"
+    ],
+    "new_payslip_channel_name": [
+      "default"
+    ],
+    "new_year_end_report_channel_name": [
+      "default"
+    ],
+    "next_button": [
+      "default"
+    ],
+    "no_more_items": [
+      "default"
+    ],
+    "notifications_settings_manage_description": [
+      "default"
+    ],
+    "occurrence_singular": [
+      "default"
+    ],
+    "occurrences_plural": [
+      "default"
+    ],
+    "open_button": [
+      "default"
+    ],
+    "open_file_action": [
+      "default"
+    ],
+    "open_file_cant_find_browser_app": [
+      "default"
+    ],
+    "open_file_cant_find_suitable_app": [
+      "default"
+    ],
+    "open_payslip_bot_chat_screen_aria_label": [
+      "default"
+    ],
+    "other_channel_name": [
+      "default"
+    ],
+    "payslip_bot_chat_first_message": [
+      "default"
+    ],
+    "payslip_bot_chat_input_field_hint": [
+      "default"
+    ],
+    "payslip_bot_chat_screen_title": [
+      "default"
+    ],
+    "payslip_bot_disclaimer": [
+      "default"
+    ],
+    "payslip_bot_feedback_char_counter": [
+      "default"
+    ],
+    "payslip_bot_feedback_details_placeholder": [
+      "default"
+    ],
+    "payslip_bot_feedback_disclaimer": [
+      "default"
+    ],
+    "payslip_bot_feedback_issue_incomplete": [
+      "default"
+    ],
+    "payslip_bot_feedback_issue_incorrect": [
+      "default"
+    ],
+    "payslip_bot_feedback_issue_label": [
+      "default"
+    ],
+    "payslip_bot_feedback_issue_none": [
+      "default"
+    ],
+    "payslip_bot_feedback_issue_not_what_i_asked_for": [
+      "default"
+    ],
+    "payslip_bot_feedback_issue_other": [
+      "default"
+    ],
+    "payslip_bot_feedback_subheading": [
+      "default"
+    ],
+    "payslip_bot_feedback_thank_you": [
+      "default"
+    ],
+    "payslip_bot_feedback_title": [
+      "default"
+    ],
+    "payslip_bot_holiday_pay_prompt": [
+      "default"
+    ],
+    "payslip_bot_suggested_questions_header": [
+      "default"
+    ],
+    "payslip_company_id_arg": [
+      "default"
+    ],
+    "payslip_details_payment_date": [
+      "default"
+    ],
+    "payslip_failed_to_load_latest": [
+      "default"
+    ],
+    "payslip_odp_user_id_arg": [
+      "default"
+    ],
+    "payslip_payslip_id_arg": [
+      "default"
+    ],
+    "payslip_payslip_item_arg": [
+      "default"
+    ],
+    "payslip_report_id_arg": [
+      "default"
+    ],
+    "payslip_report_item_arg": [
+      "default"
+    ],
+    "payslip_see": [
+      "default"
+    ],
+    "payslip_year_end_report_title": [
+      "default"
+    ],
+    "payslips_feed_empty": [
+      "default"
+    ],
+    "payslips_feed_empty_action_button_text": [
+      "default"
+    ],
+    "payslips_feed_offline": [
+      "default"
+    ],
+    "payslips_tab": [
+      "default"
+    ],
+    "pdf_corrupted_validation_error": [
+      "default"
+    ],
+    "pdf_generic_validation_error": [
+      "default"
+    ],
+    "pdf_password_protected_validation_error": [
+      "default"
+    ],
+    "pdf_size_validation_error": [
+      "default"
+    ],
+    "personal_information_add_emergency_contact_button_label": [
+      "default"
+    ],
+    "personal_information_bank_account_and_taxes_label_field_display_name": [
+      "default"
+    ],
+    "personal_information_bank_account_field_display_name": [
+      "default"
+    ],
+    "personal_information_email_field_display_name": [
+      "default"
+    ],
+    "personal_information_emergency_contacts_label_field_display_name": [
+      "default"
+    ],
+    "personal_information_failed_to_load": [
+      "default"
+    ],
+    "personal_information_failed_to_save": [
+      "default"
+    ],
+    "personal_information_label_field_display_name": [
+      "default"
+    ],
+    "personal_information_phone_number_business_field_display_name": [
+      "default"
+    ],
+    "personal_information_phone_number_private_field_display_name": [
+      "default"
+    ],
+    "personal_information_polling_timeout_dialog_message": [
+      "default"
+    ],
+    "personal_information_polling_timeout_dialog_title": [
+      "default"
+    ],
+    "personal_information_screen_title": [
+      "default"
+    ],
+    "personal_information_tax_percentage_field_display_name": [
+      "default"
+    ],
+    "personal_information_tax_table_field_display_name": [
+      "default"
+    ],
+    "personal_information_tooltip_text": [
+      "default"
+    ],
+    "pin_choose_backup_pin": [
+      "default"
+    ],
+    "pin_deactivation_description": [
+      "default"
+    ],
+    "pin_deactivation_title": [
+      "default"
+    ],
+    "pin_enter_new_pin": [
+      "default"
+    ],
+    "pin_re_enter__pin": [
+      "default"
+    ],
+    "pin_repeat_backup_pin": [
+      "default"
+    ],
+    "pin_set_successfully": [
+      "default"
+    ],
+    "quick_selection_register_absence": [
+      "default"
+    ],
+    "quick_selection_register_new_allowance": [
+      "default"
+    ],
+    "quick_selection_register_new_mileage": [
+      "default"
+    ],
+    "quick_selection_register_new_receipt": [
+      "default"
+    ],
+    "quick_selection_register_time": [
+      "default"
+    ],
+    "quick_selection_register_time_and_absence": [
+      "default"
+    ],
+    "quick_selection_view_latest_payslip": [
+      "default"
+    ],
+    "receipt_add_to_claim_button_text": [
+      "default"
+    ],
+    "receipt_added_to_existing_claim_button_text": [
+      "default"
+    ],
+    "receipt_main_screen_title_edit_claim": [
+      "default"
+    ],
+    "receipt_main_screen_title_edit_claim_preview": [
+      "default"
+    ],
+    "relative_details_chronically_ill_date_from_field_display_name": [
+      "default"
+    ],
+    "relative_details_chronically_ill_date_to_field_display_name": [
+      "default"
+    ],
+    "relative_details_chronically_ill_or_disabled_child_field_display_name": [
+      "default"
+    ],
+    "relative_details_date_of_birth_field_display_name": [
+      "default"
+    ],
+    "relative_details_delete_relative_body": [
+      "default"
+    ],
+    "relative_details_delete_relative_title": [
+      "default"
+    ],
+    "relative_details_first_name_field_display_name": [
+      "default"
+    ],
+    "relative_details_last_name_field_display_name": [
+      "default"
+    ],
+    "relative_details_main_contact_field_display_name": [
+      "default"
+    ],
+    "relative_details_phone_number_field_display_name": [
+      "default"
+    ],
+    "relative_details_relative_type_selection_dialog_title": [
+      "default"
+    ],
+    "relative_details_relative_type_selection_field_display_name": [
+      "default"
+    ],
+    "relative_details_screen_title": [
+      "default"
+    ],
+    "relative_details_sole_custody_field_display_name": [
+      "default"
+    ],
+    "required_field_template": [
+      "default"
+    ],
+    "salary_channel_group_name": [
+      "default"
+    ],
+    "salary_feed_payslip_title": [
+      "default"
+    ],
+    "salary_feed_toolbar_title": [
+      "default"
+    ],
+    "security_activation_only_takes_a_moment": [
+      "default"
+    ],
+    "security_biometric_authentication": [
+      "default"
+    ],
+    "security_biometric_authentication_activated": [
+      "default"
+    ],
+    "security_biometrics_activated": [
+      "default"
+    ],
+    "security_biometrics_auth_description": [
+      "default"
+    ],
+    "security_device_credential_activated": [
+      "default"
+    ],
+    "security_device_credential_activated_description": [
+      "default"
+    ],
+    "security_device_credential_description": [
+      "default"
+    ],
+    "security_device_credential_setup": [
+      "default"
+    ],
+    "security_pin_activated_description_settings": [
+      "default"
+    ],
+    "security_pin_code_activated": [
+      "default"
+    ],
+    "security_pin_code_setup": [
+      "default"
+    ],
+    "security_pin_code_setup_description": [
+      "default"
+    ],
+    "security_setup_only_takes_a_moment": [
+      "default"
+    ],
+    "security_the_pin_code_setup_was_successful": [
+      "default"
+    ],
+    "select_flight_duration_hhmm": [
+      "default"
+    ],
+    "selected_content_description": [
+      "default"
+    ],
+    "settings_allow_screenshots": [
+      "default"
+    ],
+    "settings_appearance_dark_label": [
+      "default"
+    ],
+    "settings_appearance_label": [
+      "default"
+    ],
+    "settings_appearance_light_label": [
+      "default"
+    ],
+    "settings_appearance_system_label": [
+      "default"
+    ],
+    "settings_biometrics_logout_biometrics_description": [
+      "default"
+    ],
+    "settings_biometrics_logout_pin_description": [
+      "default"
+    ],
+    "settings_choose_language_title": [
+      "default"
+    ],
+    "settings_device_credential_logout_description": [
+      "default"
+    ],
+    "settings_info_data_app_version_label": [
+      "default"
+    ],
+    "settings_info_data_email_label": [
+      "default"
+    ],
+    "settings_info_data_os_version_body": [
+      "default"
+    ],
+    "settings_info_data_os_version_label": [
+      "default"
+    ],
+    "settings_language": [
+      "default"
+    ],
+    "settings_notification": [
+      "default"
+    ],
+    "settings_open_app_with_biometrics": [
+      "default"
+    ],
+    "settings_open_app_with_code": [
+      "default"
+    ],
+    "settings_open_app_with_device_credential": [
+      "default"
+    ],
+    "settings_screenshots_description_disabled": [
+      "default"
+    ],
+    "settings_screenshots_description_enabled": [
+      "default"
+    ],
+    "share_to_login_dialog_description": [
+      "default"
+    ],
+    "share_to_login_dialog_title": [
+      "default"
+    ],
+    "share_to_no_expense_role_description": [
+      "default"
+    ],
+    "share_to_no_expense_role_title": [
+      "default"
+    ],
+    "share_to_receipt_saved_description": [
+      "default"
+    ],
+    "share_to_receipt_saved_title": [
+      "default"
+    ],
+    "share_to_select_employer_description": [
+      "default"
+    ],
+    "share_to_select_employer_title": [
+      "default"
+    ],
+    "single_date_common": [
+      "default"
+    ],
+    "smart_scan_progress_done_title": [
+      "default"
+    ],
+    "smart_scan_progress_title": [
+      "default"
+    ],
+    "snackbar_go_to_settings_action": [
+      "default"
+    ],
+    "snackbar_open_action": [
+      "default"
+    ],
+    "snackbar_retry_action": [
+      "default"
+    ],
+    "start_page_could_not_load_data_about": [
+      "default"
+    ],
+    "start_page_error_text_absences": [
+      "default"
+    ],
+    "start_page_error_text_expenses": [
+      "default"
+    ],
+    "start_page_error_text_latest_payslip": [
+      "default"
+    ],
+    "start_page_error_text_vacation_balances": [
+      "default"
+    ],
+    "status_approved": [
+      "default"
+    ],
+    "status_awaiting_approval": [
+      "default"
+    ],
+    "status_awaiting_clearance": [
+      "default"
+    ],
+    "status_cancelled": [
+      "default"
+    ],
+    "status_declined": [
+      "default"
+    ],
+    "status_not_sent": [
+      "default"
+    ],
+    "status_paid": [
+      "default"
+    ],
+    "summary_cant_load": [
+      "default"
+    ],
+    "summary_page_empty": [
+      "default"
+    ],
+    "summary_toolbar_title": [
+      "default"
+    ],
+    "switch_to_list_view": [
+      "default"
+    ],
+    "switch_to_month_view": [
+      "default"
+    ],
+    "sync_receipts_channel_name": [
+      "default"
+    ],
+    "syncing_upload_business_error": [
+      "default"
+    ],
+    "syncing_upload_failed": [
+      "default"
+    ],
+    "syncing_upload_failed_connection_issues": [
+      "default"
+    ],
+    "syncing_upload_failed_dialog_title": [
+      "default"
+    ],
+    "syncing_upload_failed_generic": [
+      "default"
+    ],
+    "syncing_upload_failed_invalid_documents": [
+      "default"
+    ],
+    "syncing_upload_in_progress": [
+      "default"
+    ],
+    "templates_mileage_not_found_description": [
+      "default"
+    ],
+    "templates_not_found_description": [
+      "default"
+    ],
+    "terms_of_service": [
+      "default"
+    ],
+    "terms_of_service_data_usage_text": [
+      "default"
+    ],
+    "terms_of_service_read_more_data_usage": [
+      "default"
+    ],
+    "terms_of_service_read_more_terms": [
+      "default"
+    ],
+    "terms_of_service_user_terms_text": [
+      "default"
+    ],
+    "terms_of_service_user_terms_title": [
+      "default"
+    ],
+    "terms_of_service_welcome_title": [
+      "default"
+    ],
+    "third_party_licenses": [
+      "default"
+    ],
+    "time_feed_button_title": [
+      "default"
+    ],
+    "time_picker_default_title": [
+      "default"
+    ],
+    "try_again": [
+      "default"
+    ],
+    "update_dialog_button_playstore": [
+      "default"
+    ],
+    "update_dialog_title": [
+      "default"
+    ],
+    "update_os_dialog_title": [
+      "default"
+    ],
+    "user_menu_documents_and_benefits": [
+      "default"
+    ],
+    "user_menu_employee_list": [
+      "default"
+    ],
+    "user_menu_my_profile": [
+      "default"
+    ],
+    "user_menu_sign_out": [
+      "default"
+    ],
+    "user_menu_switch_account": [
+      "default"
+    ],
+    "voice_input_permissions_rationale": [
+      "default"
+    ],
+    "voice_input_permissions_rationale_open_settings": [
+      "default"
+    ],
+    "welcome_got_it": [
+      "default"
+    ],
+    "welcome_next": [
+      "default"
+    ],
+    "year_end_reports_tab": [
+      "default"
+    ],
+    "you_have_no_network_connection": [
+      "default"
+    ]
+  },
+  "values": {
+    "absence_add_event_save_button_text": "Save",
+    "absence_delete_deleting": "Deleting registration…",
+    "absence_delete_dialog_message": "Are you sure you want to delete this registration?",
+    "absence_delete_failed": "Failed to delete absence",
+    "absence_delete_success": "Registration deleted!",
+    "absence_dimensions_all": "All",
+    "absence_dimensions_recently_used": "Recently Used",
+    "absence_dimensions_select": "Select dimension",
+    "absence_failed_to_save": "Failed to save absence.",
+    "absence_fields_time_end_time": "End Time",
+    "absence_fields_time_start_time": "Start Time",
+    "absence_highlight_no_vacation_days_remaining": "No vacation days left",
+    "absence_highlight_parental_leave_ongoing": "Ongoing parental leave",
+    "absence_highlight_parental_leave_upcoming": "Upcoming parental leave",
+    "absence_highlight_vacation_approved": "Vacation has been approved for",
+    "absence_highlight_vacation_days_remaining": "You have %1$s vacation days remaining",
+    "absence_highlight_vacation_declined": "Vacation has been declined for",
+    "absence_highlight_vacation_ongoing": "Ongoing vacation",
+    "absence_highlight_vacation_upcoming": "Upcoming vacation",
+    "absence_medical_certificate": "Medical certificate",
+    "absence_saved_generic_messsage": "%1$s registration successfully sent",
+    "absence_saved_messsage": "%1$s registration from %2$s to %3$s successfully sent",
+    "absence_sending_text": "Sending…",
+    "absence_types_cant_load": "Can\\'t load absence types.",
+    "absence_types_no_items": "No absence types loaded",
+    "absence_updated_generic_messsage": "%1$s registration successfully updated",
+    "absence_updated_messsage": "%1$s registration from %2$s to %3$s successfully updated",
+    "absence_vacation_days_left_part_one": "You have",
+    "absence_vacation_days_left_part_three": "available",
+    "absence_vacation_days_left_part_two": "%1$s vacation days",
+    "accessibility_statement": "Accessibility statement",
+    "account_manager_add_account": "Add account",
+    "account_manager_logged_in_status": "Logged in",
+    "account_manager_logged_out_status": "Session expired",
+    "account_manager_remove_account_confirmation_dialog_body": "Are you sure you want to remove this account?\\n\\nThis action will not delete the account but only remove it from the apps account list.",
+    "account_manager_remove_account_confirmation_dialog_title": "Remove account",
+    "account_manager_selected_account": "Selected account",
+    "account_manager_title": "Account manager",
+    "action_close": "Close",
+    "action_confirm": "Confirm",
+    "action_copy": "Copy",
+    "action_done": "Done",
+    "action_download": "Download",
+    "action_edit": "Edit",
+    "action_info": "Info",
+    "action_open_link": "Open link",
+    "action_remove": "Remove",
+    "action_save": "Save",
+    "action_search": "Search",
+    "action_send": "Send",
+    "action_update": "Update",
+    "add_absence_title": "Add Absence",
+    "add_allowance_accommodation_type_mixed": "Mixed",
+    "add_allowance_delete_travel": "Delete travel",
+    "add_allowance_end_date_display_field_name": "End date",
+    "add_allowance_end_time_display_field_name": "End time",
+    "add_allowance_hotel_stay_before_minimum_date_error": "It is not allowed to select a date before %1$s.",
+    "add_allowance_hotel_stay_outside_lodging_periods_error": "This stay isn\\'t on a night that requires lodging information. Change its start date or remove the stay.",
+    "add_allowance_select_allowance_type_display_name": "Select allowance type",
+    "add_allowance_start_date_field_display_name": "Start date",
+    "add_allowance_start_time_field_display_name": "Start time",
+    "add_allowance_step_two_amount": "Allowance",
+    "add_allowance_step_two_meal_amount": "Meal amount",
+    "add_allowance_step_two_meal_benefit": "Meal benefit",
+    "add_allowance_step_two_meal_deduction": "Meal deduction",
+    "add_allowance_step_two_total_allowance": "Total allowance",
+    "add_allowance_travel_periods_overlapping_error": "Travel periods are overlapping. Please adjust your travel periods",
+    "add_event_button_text": "Add time or absence",
+    "add_to_claim_button": "Add to claim",
+    "address_details_city_field_display_name": "City",
+    "address_details_country_field_display_name": "Country",
+    "address_details_country_selection_bottom_sheet_item_list_header": "Country",
+    "address_details_country_selection_bottom_sheet_search_bar_header": "Select country",
+    "address_details_street_field_display_name": "Street",
+    "address_details_zipcode_field_display_name": "Zipcode",
+    "allowance_draft_failed_to_delete": "The allowance was not possible to remove at the moment. Please try again later.",
+    "allowance_draft_failed_to_save": "Allowance failed to save.",
+    "allowance_main_screen_title_edit_claim": "Editing allowance",
+    "allowance_view_claim_screen_title": "View Allowance",
+    "allowances_screen_edit_title": "Edit allowance",
+    "allowances_screen_regular_day_travel_explanation_body_1": "For people who travel on a regular basis for their job, the \"regular day travel\" rule applies. This means fully taxable allowance will be calculated for you.\\nIf the travel period changes to less than a day trip (6 hours) or becomes an overnight stay, the checkbox is removed and the allowance is calculated as tax-free.",
+    "allowances_screen_regular_day_travel_explanation_title": "Regular day travel",
+    "allowances_screen_regular_day_travel_item_label": "Regular day travel",
+    "allowances_screen_search_hotel_title": "Search hotel",
+    "allowances_screen_step_one_title": "Add new allowance (1/2)",
+    "allowances_screen_step_two_period_group_defined_label_body_1": "A travel allowance is money given by an employer to cover costs when an employee travels for work. This can include expenses like transportation, meals, and accommodation.\\nEmployees can claim a travel allowance when they need to travel away from their usual workplace to attend things like meetings, conferences, or training.",
+    "allowances_screen_step_two_period_group_defined_label_body_2": "Understanding your company’s travel policy is important, so you know what expenses are covered and the limits for claims.\\nContact your admin to learn more about your company’s travel policies.",
+    "allowances_screen_step_two_period_group_defined_label_header_1": "What is allowance",
+    "allowances_screen_step_two_period_group_defined_label_header_2": "Company policy",
+    "allowances_screen_step_two_period_group_defined_label_link_title_1": "Read more about allowances",
+    "allowances_screen_step_two_period_group_defined_label_title": "Allowances",
+    "allowances_screen_step_two_title": "Add new allowance (2/2)",
+    "app_version_and_build_version": "%s (Build %s)",
+    "attachment_add_more": "Add more",
+    "attachment_default_title": "Receipt",
+    "attachment_delete_confirmation_body": "Are you sure you want to remove this attachment?",
+    "attachment_delete_error": "Failed to delete attachment. Please try again.",
+    "attachment_delete_title": "Delete attachment",
+    "attachment_fallback_name": "Attachment %1$s",
+    "attachment_thumbnail_description": "Attachment preview",
+    "attachments_title": "Attachments",
+    "biometrics_confirmation_dialog_button": "Cancel biometrics setup",
+    "biometrics_confirmation_dialog_description": "This app will use biometric authentication to protect your data.",
+    "biometrics_confirmation_dialog_title": "Confirmation required",
+    "biometrics_deactivation_description": "Turning off biometrics may make it easier for unwanted people to access your data.",
+    "biometrics_deactivation_title": "Deactivate biometric authentication",
+    "biometrics_landing_retry_button": "Retry biometrics or PIN",
+    "biometrics_prompt_dialog_button": "Use backup PIN",
+    "biometrics_prompt_dialog_description": "Please authenticate with biometrics",
+    "biometrics_prompt_dialog_title": "Employee authentication",
+    "calendar_absence_single_day": "Single day",
+    "calendar_bot_chat_additional_message": "Anything else I can do for you?",
+    "calendar_bot_chat_confirm_registration_message": "Confirm registration",
+    "calendar_bot_chat_error_mandatory_sickness_certificate_in_multiple_events_message": "Error: Several events require extra handling. Please try submitting one event at a time",
+    "calendar_bot_chat_event_to_be_registered_summary_message": "This is a summary of the events the bot will register:",
+    "calendar_bot_chat_first_message": "I can help you with reporting your hours and absences. Simply write what it is you want me to report, which day and hours",
+    "calendar_bot_chat_input_field_hint": "Write or record your message",
+    "calendar_bot_chat_mandatory_sickness_certificate_message": "According to legislation you need to have a doctors certificate from %1$s\\nYou can add a certificate by editing registration",
+    "calendar_bot_chat_screen_title": "Employee agent",
+    "calendar_bot_chat_second_message": "How can I help you?",
+    "calendar_bot_chat_successful_confirm_time_message": "Timesheet successfully sent for approval",
+    "calendar_bot_chat_successful_event_registration_summary_message": "This is a confirmation of the events that were registered:",
+    "calendar_bot_chat_voice_input_description": "Record your message",
+    "calendar_bot_learn_more_about_description": "The Employee agent simplifies reporting your working hours and absences. Simply tell the bot what you want to report and confirm your entry. This feature is work-in-progress and as we continue to improve it, your feedback is invaluable to us. Use the feedback form below to send us your thoughts.",
+    "calendar_bot_learn_more_about_title": "About Employee agent",
+    "calendar_bot_learn_more_examples": "Examples",
+    "calendar_bot_learn_more_feedback_button_title": "Feedback",
+    "calendar_bot_learn_more_how_to_description": "To ensure accurate reporting, include all necessary details such as the event type and date in each entry. Here are a few examples to guide you:",
+    "calendar_bot_learn_more_how_to_title": "How to use Employee agent",
+    "calendar_bot_learn_more_screen_title": "Learn more",
+    "calendar_empty": "Your calendar events will be shown here.",
+    "calendar_error_while_loading_more_future": "Failed to load more future events.",
+    "calendar_error_while_loading_more_historical": "Failed to load more past events.",
+    "calendar_feed_timesheet_confirmation_item_title": "Timesheet confirmation",
+    "calendar_filter_events_style_header": "Events style",
+    "calendar_filter_events_style_icons": "Icons",
+    "calendar_filter_events_style_text": "Text",
+    "calendar_filter_hide_weekends": "Hide weekends",
+    "calendar_filter_show_absence": "Absence",
+    "calendar_filter_show_attendance": "Attendance",
+    "calendar_filter_show_roster": "Show roster",
+    "calendar_filter_show_supplement": "Supplement",
+    "calendar_filter_show_week_numbers": "Show week numbers",
+    "calendar_filter_view_header": "Filter view",
+    "calendar_highlight_check_in_button_text": "Check in",
+    "calendar_highlight_check_in_description_text": "Start your next shift",
+    "calendar_highlight_check_in_error_text": "Unable to check in, please try again later",
+    "calendar_highlight_check_in_event_name": "Check in",
+    "calendar_highlight_check_out_button_text": "Check out",
+    "calendar_highlight_check_out_checked_in_time_description_text": "Checked in at:",
+    "calendar_highlight_check_out_different_days_error_body_text": "It is not allowed to save check in workshifts that span multiple days. Please edit timestamps before saving the event.",
+    "calendar_highlight_check_out_error_editable_button_text": "Edit",
+    "calendar_highlight_check_out_error_editable_timestamps_text": "Unable to save event, please edit timestamps",
+    "calendar_highlight_check_out_error_editable_title_text": "Error",
+    "calendar_highlight_check_out_error_text": "Unable to check out, please try again later",
+    "calendar_highlight_check_out_less_than_one_minute_passed_body_text": "Registrations that are less than 1 minute will not be saved.",
+    "calendar_highlight_check_out_less_than_one_minute_passed_title_text": "Event not saved",
+    "calendar_month_view_week_day_friday": "Fr",
+    "calendar_month_view_week_day_monday": "Mo",
+    "calendar_month_view_week_day_saturday": "Sa",
+    "calendar_month_view_week_day_sunday": "Su",
+    "calendar_month_view_week_day_thursday": "Th",
+    "calendar_month_view_week_day_tuesday": "Tu",
+    "calendar_month_view_week_day_wednesday": "We",
+    "calendar_offline": "Calendar events will be shown when you are online",
+    "calendar_required_field_unfilled_error": "This field is mandatory",
+    "calendar_roster_scheduled_hours": "Scheduled hours",
+    "calendar_special_day_holiday": "Holiday",
+    "calendar_summary_include_future_registrations": "Include future registrations",
+    "calendar_title": "Calendar",
+    "camera_confirm_image_crop": "Confirm image crop",
+    "camera_flash_automatic": "Flash automatic",
+    "camera_flash_off": "Flash off",
+    "camera_flash_on": "Flash on",
+    "camera_object_detection_description_detecting": "Capturing image",
+    "camera_object_detection_description_start": "Point your camera at a receipt",
+    "camera_open_gallery": "Open image gallery",
+    "camera_permission_is_needed": "Camera permission is needed for this action",
+    "camera_take_picture": "Take picture",
+    "cancel_button": "Cancel",
+    "claims_feed_toolbar_title": "Claims",
+    "close_button": "Close",
+    "confirm_time_button_text": "Confirm time sheet",
+    "confirm_time_choose_other_date": "Choose other date",
+    "confirm_time_dialog_description": "All new events up to and including the selected date will be sent for approval.",
+    "confirm_time_dialog_title_generic": "Confirm date",
+    "confirm_time_event_selection_title": "Confirm time",
+    "confirm_time_event_selection_title_with_date": "Confirm to %1$s",
+    "confirm_time_failed_to_sent_generic": "Failed to confirm time sheet. Please try again.",
+    "confirm_time_feed_item_click_text": "This is the last confirmed date",
+    "confirm_time_period_sent": "Period sent",
+    "confirm_time_sent_success_dialog_text": "Your time sheet has been sent and will be reviewed by your manager.",
+    "context_selector_company_description": "Your employers:",
+    "context_selector_company_title": "Choose employer",
+    "date_picker_default_title": "Select date",
+    "default_failed_to_load_error_message": "Failed to load",
+    "details_net_total": "Net Amount",
+    "device_credential_deactivation_description": "Turning off device security may make it easier for unwanted people to access your data.",
+    "device_credential_deactivation_title": "Deactivate device security",
+    "dialog_confirm_negative": "No",
+    "dialog_confirm_positive": "Yes",
+    "dialog_delete": "Delete",
+    "dialog_delete_title": "Delete event",
+    "dialog_error_occurred_title": "An error occurred",
+    "dialog_failure_title": "Error",
+    "dialog_keep": "Keep",
+    "dialog_loading_title": "Please Wait..",
+    "dialog_success_title": "Success",
+    "dialog_warning_title": "Warning",
+    "dismiss_button": "Dismiss",
+    "document_retrieval_failed": "Document retrieval failed",
+    "document_retrieved": "Document retrieved",
+    "document_retrieving": "Retrieving document…",
+    "dottie_documents_and_benefits_benefits_tab": "Benefits",
+    "dottie_documents_and_benefits_common_tab": "Common",
+    "dottie_documents_and_benefits_empty_title": "Nothing here yet",
+    "dottie_documents_and_benefits_error_title": "Couldn\\'t load documents and benefits",
+    "dottie_documents_and_benefits_mark_as_read": "Mark as read",
+    "dottie_documents_and_benefits_mark_as_read_confirmation": "Would you like to mark this document as read?",
+    "dottie_documents_and_benefits_mark_as_read_error": "Unable to mark document as read.",
+    "dottie_documents_and_benefits_maybe_later": "Maybe later",
+    "dottie_documents_and_benefits_must_read": "Must read",
+    "dottie_documents_and_benefits_new_badge": "New",
+    "dottie_documents_and_benefits_personal_document_download_error": "Couldn\\'t download document.",
+    "dottie_documents_and_benefits_personal_tab": "Personal",
+    "dottie_documents_and_benefits_read_status": "Read",
+    "dottie_documents_and_benefits_should_read": "Should read",
+    "dottie_documents_and_benefits_title": "Documents and benefits",
+    "dottie_documents_and_benefits_unread_status": "Unread",
+    "dottie_employee_info_add_item": "Add %1$s",
+    "dottie_employee_info_delete_title": "Are you sure you want to delete this item?",
+    "dottie_employee_info_discard_cancel": "Cancel",
+    "dottie_employee_info_discard_confirm": "Discard changes",
+    "dottie_employee_info_discard_title": "You have unsaved changes",
+    "dottie_employee_info_load_error": "Could not load your information.",
+    "dottie_employee_info_save": "Save",
+    "dottie_employee_info_save_error": "Could not save your changes. Please try again.",
+    "dottie_employee_info_search_country": "Search",
+    "dottie_employee_info_select_country": "Select country",
+    "dottie_employee_info_title": "Personal information",
+    "dottie_employee_info_title_other_user": "Employee information",
+    "dottie_employee_list_empty_title": "No employees found",
+    "dottie_employee_list_error_title": "Couldn\\'t load employees",
+    "dottie_employee_list_quick_filter_show_all": "Show all",
+    "dottie_employee_list_search_placeholder": "Search employees",
+    "dottie_employee_list_title": "Employees",
+    "dottie_notifications_provider_name": "Dottie",
+    "dottie_profile_image_cancel": "Cancel",
+    "dottie_profile_image_choose_library": "Choose from library",
+    "dottie_profile_image_close": "Close",
+    "dottie_profile_image_crop_close": "Close",
+    "dottie_profile_image_crop_save": "Done",
+    "dottie_profile_image_delete": "Delete",
+    "dottie_profile_image_delete_confirm": "Remove",
+    "dottie_profile_image_delete_title": "Remove profile picture?",
+    "dottie_profile_image_error": "Something went wrong. Please try again.",
+    "dottie_profile_image_select": "Select image",
+    "dottie_profile_image_source_title": "Select image",
+    "dottie_profile_image_take_photo": "Take photo",
+    "dottie_profile_image_title": "Profile picture",
+    "each_day": "each day",
+    "edit_absence_title": "Edit registration",
+    "emissions_summary": "Emissions summary",
+    "error_failed_to_load_emissions_summary": "Failed to load emissions summary, please try again later",
+    "error_message_something_went_wrong_try_again_later": "Something went wrong when trying to submit your expense for approval. Please try again later.",
+    "error_no_internet_connection": "Internet connection is offline. Please connect to the internet and try again.",
+    "error_unexpected": "An unexpected error occurred",
+    "error_user_has_no_payslips": "You have no payslips",
+    "error_user_unauthorized": "We are not able to authenticate your user",
+    "events_cards_select": "Select event",
+    "expense_add_remove_receipts": "Add expenses",
+    "expense_add_to_claim_error_message_invalid_fields": "Please review and correct the highlighted fields before continuing.",
+    "expense_add_to_claim_error_message_missing_required_fields": "All required fields have to be filled in before adding to claim",
+    "expense_allowance_added_to_claim_success_toast": "Allowance added to claim successfully",
+    "expense_allowance_draft_deleted_text": "Allowance has been deleted.",
+    "expense_allowance_edit_claim_edit_success_toast": "Allowance has been updated",
+    "expense_assign_cost_allocation": "Cost allocation",
+    "expense_attachments_existing_claim_failed_to_save": "There are some issues with your expenses.",
+    "expense_attachments_existing_claim_failed_to_save_click_details": "There are some issues with your expenses. Click on them to see the details.",
+    "expense_attachments_failed_to_save": "Your new claim has been created but there are some issues with your expenses.",
+    "expense_attachments_failed_to_save_click_details": "Your new claim has been created but there are some issues with your expenses. Click on them to see the details.",
+    "expense_attachments_to_claim_failed_to_save": "Attachments could not be saved to the claim at this time, but are still available.",
+    "expense_bottom_sheet_add_a_existing_expense": "Select existing expenses",
+    "expense_bottom_sheet_add_a_new_allowance": "Add new allowance",
+    "expense_bottom_sheet_add_a_new_mileage": "Add a new mileage",
+    "expense_bottom_sheet_add_a_new_receipt": "Add a new receipt",
+    "expense_bottom_sheet_delete_allowance": "Delete allowance",
+    "expense_bottom_sheet_delete_credit_card_transaction": "Delete credit card transaction",
+    "expense_bottom_sheet_delete_mileage": "Delete mileage",
+    "expense_bottom_sheet_delete_receipt": "Delete receipt",
+    "expense_cancel_claim_approval_failed": "Failed to cancel claim approval request",
+    "expense_claim_cancel_request": "Cancel approval flow",
+    "expense_claim_cancel_request_failed_text": "Your claim request can not be canceled at this time.",
+    "expense_claim_failed_to_save": "The claim was not saved. Please try again.",
+    "expense_claim_receipts_error": "The receipt must be handled in Visma.net Expense.",
+    "expense_claim_request_canceling_text": "Canceling claim request…",
+    "expense_claim_saved_in_camera_share_mode_label": "Receipt added to claim",
+    "expense_claim_saved_in_camera_share_mode_text": "Please open the app to view and send claim for approval",
+    "expense_claim_saved_label": "Claim saved",
+    "expense_claim_saved_text": "Your claim has been updated with the latest changes and is also accessible from Visma.net",
+    "expense_claim_saving_text": "Saving claim…",
+    "expense_claim_send_failed_text": "Your claim can not be sent for approval at this time but changes has been saved.",
+    "expense_claim_send_for_approval_failed_text": "Your claim can not be sent for approval at this time.",
+    "expense_claim_sending_text": "Sending claim…",
+    "expense_claim_sent_label": "Claim sent",
+    "expense_claim_sent_text": "Your claim has been sent for approval. Your manager will be notified",
+    "expense_claim_total_amount_unavailable_text": "The total amount will be calculated once the expenses have been saved to a claim",
+    "expense_claim_update_claim_description_and_comment_failed_default_text": "Unable to update claim description/comment, please try again later",
+    "expense_claim_update_cost_units_failed_default_text": "Unable to update cost units, please try again later",
+    "expense_claim_update_failed": "Claim update failed. Please try again.",
+    "expense_claims_empty": "The claims you create will appear here.",
+    "expense_claims_empty_offline": "Claims will be shown when you are online",
+    "expense_close_existing_expense_screen_dialog_body": "All changes will be discarded if you close this page, do you want to proceed?",
+    "expense_close_new_expense_screen_dialog_body": "All information will be lost if you close this page, do you want to proceed?",
+    "expense_close_screen_dialog_title": "Discard information?",
+    "expense_cost_units_split": "Split cost",
+    "expense_credit_card": "Credit card",
+    "expense_credit_card_details_unavailable": "We couldn\\'t load the latest credit card details. Please connect to the internet and try again.",
+    "expense_credit_card_send_one_transaction": "Send 1 transaction",
+    "expense_credit_card_send_transactions": "Send %1$d transactions",
+    "expense_credit_card_transaction": "Credit card transaction",
+    "expense_credit_card_transaction_authorized": "Credit card transaction - authorized",
+    "expense_credit_card_transaction_deleted_text": "Credit card transaction has been deleted.",
+    "expense_credit_card_transactions_section": "Credit card transactions",
+    "expense_delete_allowance": "Delete allowance",
+    "expense_delete_claim_deleted": "Claim deleted!",
+    "expense_delete_claim_dialog_delete_action": "Delete claim",
+    "expense_delete_claim_dialog_description": "Do you want to permanently delete this claim? This will also be reflected in Visma.net Expense",
+    "expense_delete_claim_dialog_title": "Delete claim",
+    "expense_delete_claim_failed": "Failed to delete claim",
+    "expense_delete_credit_card_transaction": "Delete credit card transaction",
+    "expense_delete_mileage": "Delete mileage",
+    "expense_delete_receipt": "Delete receipt",
+    "expense_deleting_allowance": "Deleting allowance…",
+    "expense_deleting_allowance_confirmation_dialog_body": "Deleting this allowance will permanently remove it from being used in any claim.",
+    "expense_deleting_claim": "Deleting claim…",
+    "expense_deleting_mileage": "Deleting mileage…",
+    "expense_deleting_mileage_confirmation_dialog_body": "Deleting this mileage will permanently remove it from being used in any claim.",
+    "expense_deleting_receipt": "Deleting receipt…",
+    "expense_deleting_receipt_confirmation_dialog_body": "Deleting this receipt will permanently remove it from being used in any claim.",
+    "expense_details_claim_category_mileages": "Mileages",
+    "expense_details_claim_category_receipts": "Receipts",
+    "expense_details_claim_id_text": "Claim ID: %1$s",
+    "expense_details_claim_total": "Total",
+    "expense_details_claim_transaction_changed": "Transaction changed",
+    "expense_details_display_name_default": "Claim",
+    "expense_draft_action_delete": "Delete receipt",
+    "expense_draft_action_download_error": "Failed to save receipt.",
+    "expense_draft_action_download_image": "Download image",
+    "expense_draft_action_download_success": "Receipt has been saved to downloads folder.",
+    "expense_draft_all_cost_units_header": "All cost units",
+    "expense_draft_all_expense_types_header": "All expense types",
+    "expense_draft_cost_unit_empty_dimension": "(empty)",
+    "expense_draft_cost_unit_save_button": "Done",
+    "expense_draft_failed_to_add_to_claim_because_of_internet_issues": "Internet connection is required to add a receipt to a claim, please connect to the internet and try again",
+    "expense_draft_failed_to_delete": "The expense was not possible to remove at the moment. Please try again later.",
+    "expense_draft_failed_to_save": "Receipt failed to save.",
+    "expense_draft_frequently_used_header": "Frequently used",
+    "expense_draft_get_data_from_link_default_error_message": "Unable to load data, please try again later",
+    "expense_draft_info_limited_functionality_text": "The receipt will be available to send once the app is online.",
+    "expense_draft_info_limited_functionality_title": "The receipt is saved offline.",
+    "expense_draft_recently_used_header": "Recently used",
+    "expense_draft_saved_text": "Expense has been saved.",
+    "expense_draft_searchable_modal_bottom_sheet_nothing_found_header": "No matches found",
+    "expense_draft_searchable_modal_bottom_sheet_search_bar_hint": "Search",
+    "expense_draft_select_cost_unit": "Select cost unit",
+    "expense_draft_select_currency": "Currency",
+    "expense_draft_select_currency_type": "Select currency",
+    "expense_draft_select_expense_type": "Select expense type",
+    "expense_drafts_searchable_dialog_hint": "Search",
+    "expense_expense_type_description_accessibility_label": "Show description",
+    "expense_failed_to_get_mileage_templates_because_company_has_not_enabled_mileage_types": "You cannot create a new mileage expense since no mileage types are active for your user.\\n\\nIn order to be able to use this function, please contact your system administrator.",
+    "expense_failed_to_load": "Failed to load claim data",
+    "expense_inbox_add_expenses_to_new_claim": "Add expenses to new claim",
+    "expense_inbox_add_new_expenses": "Add new expenses",
+    "expense_inbox_add_receipt_to": "Add expense to",
+    "expense_inbox_add_receipts_to": "Add expenses to",
+    "expense_inbox_add_receipts_to_claim": "Save to \\\"%1$s\\\"",
+    "expense_inbox_create_claim_title": "New claim",
+    "expense_inbox_deselect_all_description": "Deselect all expenses",
+    "expense_inbox_disabled_write_permission": "Please note! The company has been closed for claim registration - contact company admin for details.",
+    "expense_inbox_disabled_write_permission_card_text": "The company has been closed for claim registration - contact company admin for details.",
+    "expense_inbox_disabled_write_permission_title": "Company closed",
+    "expense_inbox_display_name_allowance_default": "Allowance",
+    "expense_inbox_display_name_default": "Receipt",
+    "expense_inbox_display_name_mileage_default": "Mileage",
+    "expense_inbox_empty": "The receipts and mileages you add will appear here.",
+    "expense_inbox_empty_offline": "Expenses will be shown when you are online",
+    "expense_inbox_failed_to_load_expenses": "Failed to load expenses",
+    "expense_inbox_failed_to_load_image": "Failed to load image",
+    "expense_inbox_new_claim_title": "New claim",
+    "expense_inbox_no_attached_image": "No attached image",
+    "expense_inbox_no_previous_content": "No previous content",
+    "expense_inbox_select_all_description": "Select all expenses",
+    "expense_inbox_send_number_of_receipts": "Send %1$s expenses",
+    "expense_inbox_send_number_of_receipts_max": "Send %1$s expenses (max)",
+    "expense_inbox_send_receipt_singular": "Send 1 expense",
+    "expense_inbox_send_receipts": "Send expenses",
+    "expense_mileage_add_destination": "Add destination",
+    "expense_mileage_draft_deleted_text": "Mileage has been deleted.",
+    "expense_new_claim_create_failed_text": "New claim could not be created at this time, but attachments are still available.",
+    "expense_new_claim_save_for_later_button": "Save for later",
+    "expense_new_claim_send_failed_text": "Your new claim has been created but it can not be sent for approval at this time.",
+    "expense_new_claim_send_for_approval_button": "Send for approval",
+    "expense_no_items": "No expenses in the claim",
+    "expense_offline_limited_functionality_title": "Limited functionality when offline",
+    "expense_paid_by_company_label": "Paid by company",
+    "expense_project_accounting": "Project accounting",
+    "expense_project_accounting_all_projects": "All projects",
+    "expense_project_accounting_all_tasks": "All tasks",
+    "expense_project_accounting_select_project": "Select project",
+    "expense_project_accounting_select_task": "Select task",
+    "expense_receipt_draft_deleted_text": "Receipt has been deleted.",
+    "expense_receipt_edit_claim_edit_success_toast": "Receipt has been updated",
+    "expense_receipts_bulk_send_deviation_error_message": "Some receipts have validation errors and cannot be sent. Please review and correct them before sending.",
+    "expense_receipts_bulk_send_deviation_error_title": "Cannot send receipts",
+    "expense_receipts_delete_credit_card_confirmation_message": "This will permanently remove the credit card transaction from being used in any claim.",
+    "expense_receipts_deleting_credit_card_transaction": "Deleting credit card transaction...",
+    "expense_receipts_merge_button": "Merge",
+    "expense_receipts_merge_confirmation_message": "You are about to merge two items into one. After merging, you will not be able to undo these changes.",
+    "expense_receipts_merge_confirmation_title": "Merge items",
+    "expense_receipts_merge_credit_card_transaction_linked": "Credit card transaction linked",
+    "expense_receipts_merge_failed": "Failed to merge the expenses.",
+    "expense_receipts_merge_info_message": "Select one credit card transaction and one receipt to merge them.",
+    "expense_receipts_merge_merging": "Merging…",
+    "expense_receipts_merge_no_candidates": "There are no items to merge with.",
+    "expense_receipts_merge_similarity_exact": "Exact match",
+    "expense_receipts_merge_similarity_possible": "Possible match",
+    "expense_receipts_merge_with_credit_card_transaction_title": "Merge with credit card transaction",
+    "expense_receipts_merge_with_receipt_title": "Merge with receipt",
+    "expense_receipts_requires_attention": "Requires your attention",
+    "expense_save_to_claim_button_text": "Save to claim",
+    "expense_save_to_from_existing_claim_button_text": "Save to %s",
+    "expense_saving_mileage": "Saving mileage…",
+    "expense_saving_receipt": "Saving receipt…",
+    "expense_selected_claim_previously_added_header": "Previously added",
+    "expense_selected_claim_save_for_later_button": "Save for later",
+    "expense_selected_claim_send_for_approval_button": "Send for approval",
+    "expense_selected_claim_to_be_added_header": "To be added",
+    "expense_send_approval_dont_show_again": "Don\\'t show again",
+    "expense_send_for_approval_loading_message": "Adding to new claim and sending for approval",
+    "expense_send_single_expense_dialog_message": "Are you sure you want to send a single expense for approval?\\n\\nIt\\'s recommended to send \\\"related\\\" expenses together in the same claim.",
+    "expense_send_single_expense_dialog_title": "Send single expense",
+    "expense_sustainability_co2_emissions_body": "%1$s kg CO₂e",
+    "expense_sustainability_co2_emissions_label": "Emissions",
+    "expense_sustainability_emissions_summary_empty_screen_label": "Your emissions summary will appear here when a claim has been approved",
+    "expense_sustainability_emissions_summary_how_we_calculate_emissions_label": "How do we calculate emissions",
+    "expense_sustainability_emissions_summary_other_emission_category_label": "Other",
+    "expense_sustainability_emissions_summary_top_co2_emissions_categories_label": "Top emissions per expenses type",
+    "expense_sustainability_emissions_summary_total_co2_emissions_label": "Your emissions this year",
+    "expense_sustainability_how_we_calculate_emissions_data_body1": "In the emissions summary we’re showing you this years amount of kilograms that are related to your expenses, mileages and travels.\\n\\nThe numbers are based on all of your approved claims.\\n\\nWe also show you the increase or decrease percentage compared to the same period last year.\\n\\nWhy do we show this? In some cases, your company might want to reduce its amount of emissions. Information like this might give valuable insight to help with this reduction.",
+    "expense_sustainability_how_we_calculate_emissions_data_body2": "Our emissions calculator uses a large database of emissions data from our partners to estimate your emissions by using the type and amount. If you’re interested you can read more about our partners by following these links.",
+    "expense_sustainability_how_we_calculate_emissions_data_header1": "About emissions summary",
+    "expense_sustainability_how_we_calculate_emissions_data_header2": "How do we calculate these emissions?",
+    "expense_sustainability_limitations_data_body3": "The emissions report represents a significant step towards promoting sustainability and eco-conscious decision-making. However, it’s important to acknowledge that this feature does come with certain limitations.\\nWe do not support calculating emissions for custom mileage types, snowmobiles or ATVs.\\nWe do not calculate emissions for special allowances (e.g. compensation abroad), tax deductions (e.g. fuel benefits), or custom allowances.",
+    "expense_sustainability_limitations_data_header3": "Limitations",
+    "export_payslips_button_aria_label": "Export payslips",
+    "export_payslips_select_company_title": "Export payslips for",
+    "faq_addAbsence_answer_2": "To access this specific event code, your child must be registered in the system.",
+    "faq_addAbsence_answer_3": "Your user is not fully set up with your employee data. Please contact your payroll admin.",
+    "faq_addAbsence_question_2": "I can not report \\\"Care of sick child\\\".",
+    "faq_addAbsence_question_3": "I got the message \\\"Your user setup is incorrect\\”.",
+    "faq_context_absence_no_license_description": "absence",
+    "faq_context_absence_title": "You can report absence for",
+    "faq_context_expense_no_license_description": "expense claims",
+    "faq_context_expense_title": "You can handle expense claims",
+    "faq_context_frequent_questions": "Frequent questions",
+    "faq_context_no_absence_title": "You do not have access to absence reporting",
+    "faq_context_no_expense_title": "You do not have access to expense claims",
+    "faq_context_no_payslip_title": "You do not have access to payslips",
+    "faq_context_no_time_title": "You do not have access to time or absence reporting",
+    "faq_context_payslip_no_license_description": "payslips",
+    "faq_context_payslip_title": "You can see payslips for",
+    "faq_context_time_no_license_description": "time",
+    "faq_context_time_title": "You can report time for",
+    "faq_default_answer_2": "If you can not find an employer in the list, you can add it to the app. Click on the account icon on top of the Start page and select \\\"Add account\\\". We now allow multiple accounts, which means that you can add more employers with different email addresses (as long as the company you add to the app is using our Visma services).",
+    "faq_default_answer_3": "Please check the \\\"Other\\\" section to see if you can find the answer there.",
+    "faq_default_question_2": "I can not find my employer in the list above.",
+    "faq_default_question_3": "The answer to my question is not here.",
+    "faq_expenseClaims_answer_2": "All receipts must be sent as claims to get approved. From the receipt overview page, mark all receipts you wish to send as a claim and choose to Send with the button at the bottom of the screen. Once sent as a claim, the claim will always show the current status of the claim and who is the approver.",
+    "faq_expenseClaims_answer_4": "Please contact your payroll admin to see if they have given you the correct access in Visma.net Expense settings.",
+    "faq_expenseClaims_question_2": "How can I see the status of a sent receipt?",
+    "faq_expenseClaims_question_4": "I can not register a mileage",
+    "faq_expense_description": "It is not possible to enter toll road costs.\\nI can\\'t add allowance.\\nI forgot to add an expense for a closed month.",
+    "faq_expense_description_grey": "Other expense related questions",
+    "faq_expense_title": "Expenses",
+    "faq_feedback_description_grey": "Do you have feedback to the general feel and function of the app? We would love to hear that!",
+    "faq_feedback_detail_button": "Send feedback",
+    "faq_feedback_detail_description_1": "Note: This message does not reach your employer.",
+    "faq_feedback_detail_description_2": "For questions regarding content or access, please contact your payroll administrator directly.",
+    "faq_feedback_detail_description_3": "Comments or requests regarding the app functionality? Tell us how we can improve! Write a message to the app team in Visma that is developing the app.",
+    "faq_feedback_detail_email": "Feedback will be sent as",
+    "faq_feedback_detail_hint": "Your feedback",
+    "faq_feedback_failed_text": "Feedback failed to be sent. Please try again.",
+    "faq_feedback_sending_text": "Sending feedback…",
+    "faq_feedback_sent_text": "Thank you for your feedback!",
+    "faq_feedback_title": "Send feedback",
+    "faq_license_activated_answer_1": "%s has not granted you access to %s. Please ask your local payroll administrator to give you access.\\n\\n",
+    "faq_license_answer_1": "Please wait",
+    "faq_license_never_activated_answer_1": "%s has no license for %s. For more information, please contact your local payroll administrator directly.\\n\\n",
+    "faq_license_question_1": "Why do I not have access to %s?",
+    "faq_license_terminated_and_deactivated_answer_1": "%s is no longer using license for %s. For more information, please contact your local payroll administrator directly.\\n\\n",
+    "faq_my_profile_answer_1": "Tap the person icon in the top-right corner to open the Account manager. You\\'ll see all accounts you\\'ve added to the app. Tap the one you want to use. If an account shows \\\"Session expired\\\", you\\'ll be asked to sign in again before it becomes active.",
+    "faq_my_profile_answer_2": "Open the Account manager and tap + Add account at the bottom. You can keep several accounts signed in at the same time — useful if you work for more than one employer or have both a private and a work account.",
+    "faq_my_profile_answer_3": "Personal information is managed by your employer\\'s payroll system, not directly in the app. Open My profile to see your current details. To request a change, contact your HR or payroll administrator — once they update your record, the new information will sync to the app.",
+    "faq_my_profile_answer_4": "Simply open the document. Once closed, a separate \\\"mark as read\\\" action will prompt. If selected, the document will be tagged as Read in the list.",
+    "faq_my_profile_answer_5": "It estimates the CO₂ equivalent (CO₂e) generated by the expenses you\\'ve reported this year — mainly travel-related items such as car mileage, road tolls and accommodation. The percentage at the top compares your current year against the same period last year.",
+    "faq_my_profile_answer_6": "Emissions are estimated from the expense type and the amount or distance reported, using standard CO₂e conversion factors. Tap How do we calculate emissions at the bottom of the screen for the full methodology.",
+    "faq_my_profile_description": "How do I switch between accounts?\\nHow do I add another account?",
+    "faq_my_profile_description_grey": "Other profile related questions",
+    "faq_my_profile_question_1": "How do I switch between accounts?",
+    "faq_my_profile_question_2": "How do I add another account?",
+    "faq_my_profile_question_3": "Where do I update personal information such as address or bank accounts?",
+    "faq_my_profile_question_4": "How do I mark a document as read?",
+    "faq_my_profile_question_5": "What does the Emissions summary show?",
+    "faq_my_profile_question_6": "How are emissions calculated?",
+    "faq_my_profile_title": "My profile",
+    "faq_other_answer_1": "If your employer uses Visma.net Payroll you can change some of your personal information yourself. Go to Settings and Personal information. If you do not have that option, please contact your payroll admin so that they can change it for you.",
+    "faq_other_answer_2": "Go to the Start page and click on the account icon on top of the page. Click on \\\"Add account\\\". You can add multiple accounts with different email addresses. For this to work, the company you add needs to use our Visma.net Services. Please contact your payroll admin for further assistance.",
+    "faq_other_answer_3": "For any questions related to Payslip, Expense or Time/Absence not answered here please contact your payroll administrator. For issues or requests regarding app functionality you can message the app team via the \\\"Send feedback\\\" form.",
+    "faq_other_answer_6": "To ensure security and privacy, we advise users against entering text with sensitive data in free text fields.",
+    "faq_other_description": "Why can’t I see all my employers?\\nWhere do I update my personal information, such as bank account and email?",
+    "faq_other_description_dottie": "Why can’t I see all my employers?\\nThe answer to my question is not here.",
+    "faq_other_description_grey": "Other general questions",
+    "faq_other_question_1": "Where do I update personal information such as name, email or bank accounts?",
+    "faq_other_question_2": "How can I add another employer to this app?",
+    "faq_other_question_3": "The answer to my question is not here.",
+    "faq_other_question_6": "Avoid entering text with sensitive data.",
+    "faq_other_title": "Other",
+    "faq_payslips_answer_1": "Ask your payroll administrator if they have properly set up your user, if you are using the correct user and if they have published any payslips to you yet.",
+    "faq_payslips_answer_2": "Check with payroll admin if they have properly published the payslip.",
+    "faq_payslips_answer_3": "We can only publish payslips related to your current account. If your company has made organisation changes, older payslips may be connected to your old account and not possible to show.",
+    "faq_payslips_answer_download": "To download the pdf version of a single payslip, select the document icon in the top right corner of the payslip screen.\\n\\nTo download all the payslips as a single document, go to the Salary overview screen and select the summary button in the top right corner of the screen.",
+    "faq_payslips_answer_select_companies_filter": "If you have more than one company under the same account, you can filter out the companies for which you want to see the payslips.\\n\\nWhen a company is marked in the filter, its payslips will be displayed in the list regardless if it is the selected company or not.",
+    "faq_payslips_description": "Why can’t I see new payslips?\\nHow can I see old payslips?",
+    "faq_payslips_description_grey": "Other payslip related questions",
+    "faq_payslips_question_1": "I can not see any payslips at all.",
+    "faq_payslips_question_2": "My newest payslip is missing.",
+    "faq_payslips_question_3": "Old payslips are missing.",
+    "faq_payslips_question_download": "How do I download my payslips?",
+    "faq_payslips_question_select_companies_filter": "Select companies filter",
+    "faq_payslips_title": "Payslips",
+    "faq_time_description": "Why can’t I see my calendar?\\nWhy can’t I publish overtime?",
+    "faq_time_description_grey": "Other time & absence related questions",
+    "faq_time_title": "Time & absence",
+    "faq_title": "What issue do you need help with?",
+    "faq_toolbar_title": "FAQ",
+    "file_picker_result_type_not_supported": "This file type is not supported",
+    "future_absence": "Future registration",
+    "generic_continue": "Continue",
+    "generic_deactivate": "Deactivate",
+    "generic_failed_to_load": "Error! Unable to load data, please try again later",
+    "generic_later": "Later",
+    "generic_processing": "Processing...",
+    "generic_save_changes": "Save changes",
+    "got_it": "Got it",
+    "greeting_good_afternoon": "Good afternoon",
+    "greeting_good_evening": "Good evening",
+    "greeting_good_morning": "Good morning",
+    "home_allowances_to_send_body_multiple": "%1$s allowances",
+    "home_allowances_to_send_body_singular": "1 allowance",
+    "home_allowances_to_send_header": "You have unsent allowances",
+    "home_card_expense_all_sent_title": "All expenses sent",
+    "home_card_expense_title": "Expense Card",
+    "home_card_payslip_title": "Payslip Card",
+    "home_card_shift_title": "Start new shift",
+    "home_claim_approved": "has been approved",
+    "home_claim_approved_title": "Claim approved",
+    "home_claim_declined": "has been declined",
+    "home_claim_receipts_all_sent": "All receipts and claims are sent!",
+    "home_claim_rejected_title": "Claim rejected",
+    "home_claim_sent_for_approval": "is sent for approval",
+    "home_claim_transaction_changed_credit_card_changed": "Expense amount changed",
+    "home_claim_transaction_changed_credit_card_never_cleared": "Claim automatically returned",
+    "home_claim_transaction_changed_error_sending_to_approval": "Error occurred when sending for approval",
+    "home_claim_unsent": "You have an unsent claim",
+    "home_combined_expenses_allowance": "allowance",
+    "home_combined_expenses_allowances": "allowances",
+    "home_combined_expenses_credit_card_transaction": "credit card transaction",
+    "home_combined_expenses_credit_card_transactions": "credit card transactions",
+    "home_combined_expenses_mileage": "mileage",
+    "home_combined_expenses_mileages": "mileages",
+    "home_combined_expenses_receipt": "receipt",
+    "home_combined_expenses_receipts": "receipts",
+    "home_credit_card_transactions_to_send": "You have credit card transactions to send",
+    "home_distance_unit_kilometers": "km",
+    "home_expenses_to_send_body_multiple_mileages_and_allowances": "%1$s mileages & %2$s allowances",
+    "home_expenses_to_send_body_multiple_receipts_and_allowances": "%1$s receipts & %2$s allowances",
+    "home_expenses_to_send_body_multiple_receipts_and_multiple_mileages": "%1$s receipts & %2$s mileages",
+    "home_expenses_to_send_body_multiple_receipts_and_multiple_mileages_and_allowances": "%1$s receipts, %2$s mileages & %3$s allowances",
+    "home_expenses_to_send_body_multiple_receipts_and_singular_mileage": "%1$s receipts & 1 mileage",
+    "home_expenses_to_send_body_singular_receipt_and_multiple_mileages": "1 receipt & %1$s mileages",
+    "home_expenses_to_send_body_singular_receipt_and_singular_mileage": "1 receipt & 1 mileage",
+    "home_expenses_to_send_header": "You have unsent expenses",
+    "home_mileages_to_send": "You have unsent mileages",
+    "home_new_feature_long_description": "Ask the Payslip agent to estimate your holiday pay for this year.",
+    "home_new_feature_positive_button_text": "Open Payslip agent",
+    "home_new_feature_short_description": "Ask the Payslip agent to estimate your holiday pay for this year.",
+    "home_new_feature_title": "Estimate your holiday pay",
+    "home_no_events_title": "No events",
+    "home_no_payslips_published": "There are no payslips published yet",
+    "home_no_recent_events": "No recent events!",
+    "home_ongoing_parental_leave_title": "Ongoing parental leave",
+    "home_ongoing_vacation_title": "Ongoing vacation",
+    "home_payslip_filter_payslips_by_company_filter_label": "Apply filter",
+    "home_payslip_filter_payslips_by_company_header": "Show payslips from",
+    "home_payslip_future": "Your next salary will be paid",
+    "home_payslip_past": "Latest salary was paid",
+    "home_quick_selections": "Quick selections",
+    "home_receipts_to_send": "You have unsent receipts",
+    "home_survey_negative_button_text": "Dismiss card",
+    "home_survey_positive_button_text": "Open survey",
+    "home_title": "Start",
+    "home_unsent_expenses_title": "Unsent expenses",
+    "home_upcoming_parental_leave_title": "Upcoming parental leave",
+    "home_upcoming_vacation_title": "Upcoming vacation",
+    "home_vacation_approved_title": "Vacation approved",
+    "home_vacation_days_title": "Vacation days",
+    "home_vacation_rejected_title": "Vacation rejected",
+    "home_whats_new_highlight_negative_button_text": "Don\\'t show again",
+    "learn_more_button": "Learn more",
+    "licenses": "Licenses",
+    "load_payslip_failed": "Failed to load notification payslip",
+    "load_payslips_failed": "Failed to load payslips",
+    "login_failed": "Failed to login. Try again.",
+    "login_failed_no_params": "Something went wrong while connecting.",
+    "login_failed_no_session": "We’re having trouble loading your session",
+    "login_failed_no_token_data": "We couldn’t complete the sign-in right now.",
+    "login_label": "Login",
+    "login_label_account_manager_screen": "Use another account",
+    "login_logging_in": "Logging in…",
+    "login_no_features_error": "You don\\'t have the right roles in Visma.net to use this app",
+    "login_only_successfully": "Security type changed successfully",
+    "login_pincode_title": "RELOG",
+    "logout_confirmation_dialog_description": "Are you sure you want to log out?",
+    "logout_information_login_dialog_description": "You were logged out. The receipts that were offline could not be saved and need to be retaken",
+    "logout_information_login_dialog_title": "Logged out",
+    "message_inbox_empty_screen_text": "No messages received in the last 90 days",
+    "message_inbox_native_provider_name": "Notifications",
+    "message_inbox_title": "Messages",
+    "mileage_add_to_claim_button_text": "Add to claim",
+    "mileage_added_to_existing_claim_button_text": "Mileage added to claim",
+    "mileage_automatic_road_toll_calculation_error": "Unable to calculate road tolls",
+    "mileage_bottom_sheet_select_fuel": "Select Fuel",
+    "mileage_bottom_sheet_select_vehicle": "Select Vehicle",
+    "mileage_destination_cached_places_header": "Frequently used",
+    "mileage_destination_no_route_error_message_body_text": "Could not find a route, please select another destination",
+    "mileage_destination_no_route_error_message_clickable_text": "Select another destination",
+    "mileage_destination_no_route_error_message_header_text": "An Error Occurred",
+    "mileage_destination_screen_title": "Select destination",
+    "mileage_destination_screen_title_alternative": "Select starting point",
+    "mileage_destination_view_map_item": "View map",
+    "mileage_edit_claim_delete_success_toast": "Mileage has been deleted",
+    "mileage_edit_claim_edit_success_toast": "Mileage has been updated",
+    "mileage_error_invalid_field": "Invalid value",
+    "mileage_inbox_empty_offline": "Mileage will be shown when you are online",
+    "mileage_input_press_while_in_waypoint_edit_mode_text": "Please confirm reordering of the route by pressing “Done” before proceeding",
+    "mileage_main_screen_title": "Mileages",
+    "mileage_main_screen_title_alternative": "Edit mileage",
+    "mileage_main_screen_title_edit_claim": "Editing mileage",
+    "mileage_main_screen_title_edit_claim_preview": "Viewing mileage details",
+    "mileage_map_destination_bottom_container_header": "Address",
+    "mileage_map_destination_button_primary": "Select",
+    "mileage_map_destination_current_location_denied": "This permission is required to get your current location",
+    "mileage_map_destination_current_location_gps_not_active": "Please turn on your GPS",
+    "mileage_map_destination_current_location_loading": "Getting location…",
+    "mileage_map_destination_current_location_not_found": "Location not found",
+    "mileage_map_destination_current_location_open_settings": "Open settings",
+    "mileage_map_destination_screen_title": "Select destination",
+    "mileage_map_destination_screen_title_alternative": "Select starting point",
+    "mileage_map_destination_should_automatically_calculate_road_tolls": "Automatically calculate road toll",
+    "mileage_map_review_route_excluding_ferry": "Ferry kilometers removed from total distance",
+    "mileage_map_review_route_maximum_destinations_reached": "Maximum number of destinations reached",
+    "mileage_map_screen_title": "Map",
+    "mileage_passenger_delete_button_description": "Remove passenger",
+    "mileage_return_trip_toggle_header_text": "Return trip",
+    "mileage_save_button_press_while_calculating_road_toll_text": "Calculating road toll amount",
+    "mileage_save_error_dialog_description": "Unable to save mileage, please try again later!",
+    "mileage_select_start_waypoint_optional_text": "(optional)",
+    "mileage_select_start_waypoint_text": "Calculate distance",
+    "mileage_template_fetch_error": "Something went wrong. Can\\'t fetch template of mileage.",
+    "mileage_waypoint_delete_button_description": "Remove waypoint",
+    "mileage_waypoint_edit_mode_done_text": "Done",
+    "mileage_waypoint_edit_mode_edit_text": "Edit",
+    "mileage_waypoint_header_text": "Route overview",
+    "my_page_attendance_title": "Attendance",
+    "my_page_payslips_title": "Payslips",
+    "my_page_report_retrieval_failed": "Report retrieval failed",
+    "my_page_report_retrieved": "Report retrieved",
+    "my_page_report_retrieving": "Retrieving report…",
+    "my_page_sick_child_title": "Sick child",
+    "my_page_sickness_title": "Sickness",
+    "my_page_total": "Total",
+    "my_page_vacation_title": "Vacation",
+    "nav_calendar": "Calendar",
+    "nav_expenses": "Expenses",
+    "nav_go_back": "Navigate up",
+    "nav_information": "Information",
+    "nav_logout": "Log out",
+    "nav_user_settings": "Settings",
+    "new_payslip_channel_name": "Payslip received",
+    "new_year_end_report_channel_name": "Year-end report generated",
+    "next_button": "Next",
+    "no_more_items": "No more items",
+    "notifications_settings_manage_description": "Manage notification settings",
+    "occurrence_singular": "occurrence",
+    "occurrences_plural": "occurrences",
+    "open_button": "Open",
+    "open_file_action": "Open File",
+    "open_file_cant_find_browser_app": "Can\\'t find a browser to open Visma.net",
+    "open_file_cant_find_suitable_app": "Can\\'t find an app to open PDF with",
+    "open_payslip_bot_chat_screen_aria_label": "Open payslip agent",
+    "other_channel_name": "Other notifications",
+    "payslip_bot_chat_first_message": "How can I help you today?",
+    "payslip_bot_chat_input_field_hint": "Write or record your message",
+    "payslip_bot_chat_screen_title": "Payslip agent",
+    "payslip_bot_disclaimer": "AI responses may be inaccurate. Always verify important information.",
+    "payslip_bot_feedback_char_counter": "%d / 1000",
+    "payslip_bot_feedback_details_placeholder": "Share details (optional)",
+    "payslip_bot_feedback_disclaimer": "Submitting this report will send your conversation to Visma Employee to help improve our models.",
+    "payslip_bot_feedback_issue_incomplete": "Incomplete",
+    "payslip_bot_feedback_issue_incorrect": "Incorrect",
+    "payslip_bot_feedback_issue_label": "Issue",
+    "payslip_bot_feedback_issue_none": "None",
+    "payslip_bot_feedback_issue_not_what_i_asked_for": "Not what I asked for",
+    "payslip_bot_feedback_issue_other": "Other",
+    "payslip_bot_feedback_subheading": "What could have been better?",
+    "payslip_bot_feedback_thank_you": "Thank you for your feedback!",
+    "payslip_bot_feedback_title": "Feedback",
+    "payslip_bot_holiday_pay_prompt": "What will be my holiday pay this year?",
+    "payslip_bot_suggested_questions_header": "Here are a couple of suggestions:",
+    "payslip_company_id_arg": "companyId",
+    "payslip_details_payment_date": "Payment date",
+    "payslip_failed_to_load_latest": "Failed to load payslip data",
+    "payslip_odp_user_id_arg": "odpUserId",
+    "payslip_payslip_id_arg": "payslipId",
+    "payslip_payslip_item_arg": "payslipItem",
+    "payslip_report_id_arg": "reportId",
+    "payslip_report_item_arg": "reportItem",
+    "payslip_see": "Show PDF",
+    "payslip_year_end_report_title": "Year-end report",
+    "payslips_feed_empty": "Your payslips will be shown here.",
+    "payslips_feed_empty_action_button_text": "Why can’t I see new payslips?",
+    "payslips_feed_offline": "Payslips will be shown when you are online",
+    "payslips_tab": "Payslips",
+    "pdf_corrupted_validation_error": "Attachment file is corrupted",
+    "pdf_generic_validation_error": "Attachment cannot be processed. Verify the document and try again",
+    "pdf_password_protected_validation_error": "Attachment file is password protected",
+    "pdf_size_validation_error": "Attachment exceeds maximum allowed file size (5 MB)",
+    "personal_information_add_emergency_contact_button_label": "Add contact person or child",
+    "personal_information_bank_account_and_taxes_label_field_display_name": "Bank account and taxes",
+    "personal_information_bank_account_field_display_name": "Bank account",
+    "personal_information_email_field_display_name": "Email",
+    "personal_information_emergency_contacts_label_field_display_name": "Emergency contacts and children",
+    "personal_information_failed_to_load": "Error! Unable to load data, please try again later",
+    "personal_information_failed_to_save": "Error! Unable to save changes, please try again later",
+    "personal_information_label_field_display_name": "Personal information",
+    "personal_information_phone_number_business_field_display_name": "Phone number (Business)",
+    "personal_information_phone_number_private_field_display_name": "Phone number (Private)",
+    "personal_information_polling_timeout_dialog_message": "Updating your information is taking a bit longer than usual. Update is still pending and you can close this page.",
+    "personal_information_polling_timeout_dialog_title": "Update pending",
+    "personal_information_screen_title": "Personal information",
+    "personal_information_tax_percentage_field_display_name": "Tax percentage",
+    "personal_information_tax_table_field_display_name": "Tax table",
+    "personal_information_tooltip_text": "To change your email, payment type or taxes, please contact your local payroll administrator",
+    "pin_choose_backup_pin": "Choose a backup PIN",
+    "pin_deactivation_description": "Turning off PIN code may make it easier for unwanted people to access your data.",
+    "pin_deactivation_title": "Deactivate PIN code",
+    "pin_enter_new_pin": "Enter a new PIN-code",
+    "pin_re_enter__pin": "Re-enter PIN-code",
+    "pin_repeat_backup_pin": "Repeat backup PIN",
+    "pin_set_successfully": "PIN-code set successfully",
+    "quick_selection_register_absence": "Register absence",
+    "quick_selection_register_new_allowance": "Add new allowance",
+    "quick_selection_register_new_mileage": "Add new mileage",
+    "quick_selection_register_new_receipt": "Register new receipt",
+    "quick_selection_register_time": "Report time",
+    "quick_selection_register_time_and_absence": "Register time or absence",
+    "quick_selection_view_latest_payslip": "View latest payslip",
+    "receipt_add_to_claim_button_text": "Add to claim",
+    "receipt_added_to_existing_claim_button_text": "Receipt added to claim",
+    "receipt_main_screen_title_edit_claim": "Editing receipt",
+    "receipt_main_screen_title_edit_claim_preview": "Viewing receipt details",
+    "relative_details_chronically_ill_date_from_field_display_name": "Chronically ill from date",
+    "relative_details_chronically_ill_date_to_field_display_name": "Chronically ill to date",
+    "relative_details_chronically_ill_or_disabled_child_field_display_name": "Chronically, long-term ill or disabled child",
+    "relative_details_date_of_birth_field_display_name": "Date of birth",
+    "relative_details_delete_relative_body": "Are you sure you want to delete this relative?",
+    "relative_details_delete_relative_title": "Delete relative",
+    "relative_details_first_name_field_display_name": "First name",
+    "relative_details_last_name_field_display_name": "Last name",
+    "relative_details_main_contact_field_display_name": "Main contact",
+    "relative_details_phone_number_field_display_name": "Phone number",
+    "relative_details_relative_type_selection_dialog_title": "Select relative type",
+    "relative_details_relative_type_selection_field_display_name": "Type of relative",
+    "relative_details_screen_title": "Contact person and children",
+    "relative_details_sole_custody_field_display_name": "Sole custody",
+    "required_field_template": "%1$s (required)",
+    "salary_channel_group_name": "Salary",
+    "salary_feed_payslip_title": "Payslip",
+    "salary_feed_toolbar_title": "Salary",
+    "security_activation_only_takes_a_moment": "Activation only takes a moment.",
+    "security_biometric_authentication": "Biometric authentication",
+    "security_biometric_authentication_activated": "Biometric authentication was successfully activated!",
+    "security_biometrics_activated": "Biometrics activated",
+    "security_biometrics_auth_description": "Biometric authentication keeps your information secure and accessible without having to provide your login credentials all the time.",
+    "security_device_credential_activated": "Device security activated",
+    "security_device_credential_activated_description": "Device security was successfully activated!",
+    "security_device_credential_description": "Your device\\'s PIN, pattern, or password will be used to keep your information secure without having to provide your login credentials all the time.",
+    "security_device_credential_setup": "Device security setup",
+    "security_pin_activated_description_settings": "Although we highly recommend keeping it active, you may change its state in settings.",
+    "security_pin_code_activated": "PIN code activated",
+    "security_pin_code_setup": "PIN code setup",
+    "security_pin_code_setup_description": "A PIN code helps keeping your information secure and accessible without having to provide your login credentials all the time.",
+    "security_setup_only_takes_a_moment": "Setup only takes a moment.",
+    "security_the_pin_code_setup_was_successful": "The PIN code setup was successful!",
+    "select_flight_duration_hhmm": "Select flight duration (HH:MM)",
+    "selected_content_description": "Selected",
+    "settings_allow_screenshots": "Allow screenshots",
+    "settings_appearance_dark_label": "Dark",
+    "settings_appearance_label": "Appearance",
+    "settings_appearance_light_label": "Light",
+    "settings_appearance_system_label": "System",
+    "settings_biometrics_logout_biometrics_description": "Having biometrics activated keeps your information safe without having to log out",
+    "settings_biometrics_logout_pin_description": "Having PIN code activated keeps your information safe without having to log out",
+    "settings_choose_language_title": "Choose language",
+    "settings_device_credential_logout_description": "Having device security activated keeps your information safe without having to log out",
+    "settings_info_data_app_version_label": "App version:",
+    "settings_info_data_email_label": "Email:",
+    "settings_info_data_os_version_body": "Android %s",
+    "settings_info_data_os_version_label": "OS version:",
+    "settings_language": "Language",
+    "settings_notification": "Notifications",
+    "settings_open_app_with_biometrics": "Open app with biometrics",
+    "settings_open_app_with_code": "Open app with PIN code",
+    "settings_open_app_with_device_credential": "Open app with device PIN/pattern",
+    "settings_screenshots_description_disabled": "When enabled, also displays app content when app is in background which can cause privacy issues",
+    "settings_screenshots_description_enabled": "App content is visible when app is in background which can cause privacy issues",
+    "share_to_login_dialog_description": "Please open the Employee app and ensure that you\\'re logged in to use this feature.",
+    "share_to_login_dialog_title": "Are you logged in?",
+    "share_to_no_expense_role_description": "You are lacking the correct role in Employee app to share an image as a receipt",
+    "share_to_no_expense_role_title": "Role missing",
+    "share_to_receipt_saved_description": "Please open the app to view the receipt and complete the claim",
+    "share_to_receipt_saved_title": "Receipt sent to Employee",
+    "share_to_select_employer_description": "It seems like you have multiple employers.\\nPlease select which one you want to send this receipt to.",
+    "share_to_select_employer_title": "Select employer",
+    "single_date_common": "Date",
+    "smart_scan_progress_done_title": "Analysed",
+    "smart_scan_progress_title": "Analysing",
+    "snackbar_go_to_settings_action": "Go to settings",
+    "snackbar_open_action": "Open",
+    "snackbar_retry_action": "Retry",
+    "start_page_could_not_load_data_about": "Could not load data about",
+    "start_page_error_text_absences": "absences",
+    "start_page_error_text_expenses": "expenses",
+    "start_page_error_text_latest_payslip": "latest payslip",
+    "start_page_error_text_vacation_balances": "vacation balances",
+    "status_approved": "Approved",
+    "status_awaiting_approval": "Awaiting approval",
+    "status_awaiting_clearance": "Waiting for credit card clearance",
+    "status_cancelled": "Cancelled",
+    "status_declined": "Declined",
+    "status_not_sent": "Not sent",
+    "status_paid": "Paid",
+    "summary_cant_load": "Can\\'t load summary page",
+    "summary_page_empty": "Summary page is empty",
+    "summary_toolbar_title": "Show summary",
+    "switch_to_list_view": "Switch to list view",
+    "switch_to_month_view": "Switch to month view",
+    "sync_receipts_channel_name": "Syncing receipts",
+    "syncing_upload_business_error": "Attachment is already used in a claim, expense or mileage trip.",
+    "syncing_upload_failed": "Uploading pending",
+    "syncing_upload_failed_connection_issues": "Connection failed. Please try again.",
+    "syncing_upload_failed_dialog_title": "Something went wrong",
+    "syncing_upload_failed_generic": "Failed to upload one or more documents. Please try again",
+    "syncing_upload_failed_invalid_documents": "Documents you have selected while offline do not match the criteria for uploading documents.",
+    "syncing_upload_in_progress": "Uploading",
+    "templates_mileage_not_found_description": "Offline mileages are possible to use once the app has stored some data from this company. \\nThe next time you are online for this company, we will fetch this data. Then you can add mileages while offline.",
+    "templates_not_found_description": "Offline receipts are possible to use once the app has stored some data from this company. \\nThe next time you are online for this company, we will fetch this data. Then you can add receipts while offline.",
+    "terms_of_service": "Terms of Service",
+    "terms_of_service_data_usage_text": "Note that using services from Visma may involve the processing of your personal data. For more information:",
+    "terms_of_service_read_more_data_usage": "Read more about Data Usage",
+    "terms_of_service_read_more_terms": "Read more about Terms of Service",
+    "terms_of_service_user_terms_text": "Please note that you are responsible for your account information, including your device, its location and connection of any other devices you use. Keep your password or other login and security credentials confidential, do not share your user account with others or use it in a manner inconsistent with the Terms of Service:",
+    "terms_of_service_user_terms_title": "User terms",
+    "terms_of_service_welcome_title": "Welcome to Visma",
+    "third_party_licenses": "Third party licenses",
+    "time_feed_button_title": "Time",
+    "time_picker_default_title": "Select time",
+    "try_again": "Try again",
+    "update_dialog_button_playstore": "Open Play Store",
+    "update_dialog_title": "Update available",
+    "update_os_dialog_title": "Newer OS version required",
+    "user_menu_documents_and_benefits": "Documents and benefits",
+    "user_menu_employee_list": "Employee list",
+    "user_menu_my_profile": "My profile",
+    "user_menu_sign_out": "Sign out",
+    "user_menu_switch_account": "Switch account",
+    "voice_input_permissions_rationale": "This permission is required to use the voice to text feature",
+    "voice_input_permissions_rationale_open_settings": "Open settings",
+    "welcome_got_it": "Got it!",
+    "welcome_next": "Next",
+    "year_end_reports_tab": "Year-end reports",
+    "you_have_no_network_connection": "You have no network connection"
+  }
+}

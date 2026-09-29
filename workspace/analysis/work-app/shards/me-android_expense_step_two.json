@@ -1,0 +1,17 @@
+{
+  "id": "me-android:expense/step_two",
+  "app": "me-android",
+  "stack": "android-native",
+  "name": "expense/step_two",
+  "files": [
+    "expense/src/main/java/com/visma/employee/expense/allowances/presentation/step_two/AllowancesFieldsProcessor.kt",
+    "expense/src/main/java/com/visma/employee/expense/allowances/presentation/step_two/AllowancesStepTwoScreen.kt",
+    "expense/src/main/java/com/visma/employee/expense/allowances/presentation/step_two/AllowancesStepTwoState.kt",
+    "expense/src/main/java/com/visma/employee/expense/allowances/presentation/step_two/AllowancesStepTwoViewModel.kt"
+  ],
+  "hints": {
+    "screens": [
+      "AllowancesStepTwoScreen"
+    ]
+  }
+}

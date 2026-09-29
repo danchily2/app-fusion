@@ -1,0 +1,51 @@
+{
+  "id": "vmm:screens/StartScreen",
+  "app": "vmm",
+  "stack": "react-native",
+  "name": "screens/StartScreen",
+  "files": [
+    "src/screens/StartScreen/StartScreen.tsx",
+    "src/screens/StartScreen/components/GaiaHeroPanel/GaiaHeroPanel.tsx",
+    "src/screens/StartScreen/components/GaiaHeroPanel/style.ts",
+    "src/screens/StartScreen/components/StartActivityFeed/StartActivityFeed.tsx",
+    "src/screens/StartScreen/components/StartActivityFeed/style.ts",
+    "src/screens/StartScreen/components/StartActivityRow/StartActivityRow.tsx",
+    "src/screens/StartScreen/components/StartActivityRow/style.ts",
+    "src/screens/StartScreen/components/StartAllClearCard/StartAllClearCard.tsx",
+    "src/screens/StartScreen/components/StartAllClearCard/style.ts",
+    "src/screens/StartScreen/components/StartGreetingHeader/StartGreetingHeader.tsx",
+    "src/screens/StartScreen/components/StartGreetingHeader/style.ts",
+    "src/screens/StartScreen/components/StartHub/StartHub.tsx",
+    "src/screens/StartScreen/components/StartHubSkeleton/StartHubSkeleton.tsx",
+    "src/screens/StartScreen/components/StartHubSkeleton/style.ts",
+    "src/screens/StartScreen/components/StartItemRow/StartItemRow.tsx",
+    "src/screens/StartScreen/components/StartItemRow/style.ts",
+    "src/screens/StartScreen/components/StartModuleCard/StartModuleCard.tsx",
+    "src/screens/StartScreen/components/StartModuleCard/style.ts",
+    "src/screens/StartScreen/components/StartScreenHeaderRight/StartScreenHeaderRight.tsx",
+    "src/screens/StartScreen/components/StartSection/StartSection.tsx",
+    "src/screens/StartScreen/components/StartSection/style.ts",
+    "src/screens/StartScreen/components/StartStatTile/StartStatTile.tsx",
+    "src/screens/StartScreen/components/StartStatTile/style.ts",
+    "src/screens/StartScreen/components/StartWhatsNew/StartWhatsNew.tsx",
+    "src/screens/StartScreen/components/StartWhatsNew/style.ts",
+    "src/screens/StartScreen/components/StartWhatsNewCard/StartWhatsNewCard.tsx",
+    "src/screens/StartScreen/components/StartWhatsNewCard/style.ts",
+    "src/screens/StartScreen/hooks/startFormatting.ts",
+    "src/screens/StartScreen/hooks/startGreeting.ts",
+    "src/screens/StartScreen/hooks/startSuggestions.ts",
+    "src/screens/StartScreen/hooks/useApprovalActionDrawer.ts",
+    "src/screens/StartScreen/hooks/useHomeSearchResults.ts",
+    "src/screens/StartScreen/hooks/useStartActivityFeed.ts",
+    "src/screens/StartScreen/hooks/useStartScreenData.ts",
+    "src/screens/StartScreen/style.ts"
+  ],
+  "hints": {
+    "routes": [
+      "SCREEN_NAME_START_SCREEN"
+    ],
+    "screens": [
+      "StartScreen"
+    ]
+  }
+}

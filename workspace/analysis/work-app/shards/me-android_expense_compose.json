@@ -1,0 +1,38 @@
+{
+  "id": "me-android:expense/compose",
+  "app": "me-android",
+  "stack": "android-native",
+  "name": "expense/compose",
+  "files": [
+    "expense/src/main/java/com/visma/employee/expense/compose/ExpenseDimens.kt",
+    "expense/src/main/java/com/visma/employee/expense/compose/FieldDataTypes.kt",
+    "expense/src/main/java/com/visma/employee/expense/compose/MapScreen.kt",
+    "expense/src/main/java/com/visma/employee/expense/compose/MileageScreen.kt",
+    "expense/src/main/java/com/visma/employee/expense/compose/Screen.kt",
+    "expense/src/main/java/com/visma/employee/expense/feed/compose/ClaimsFeedScreen.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/compose/ClaimAddedExpenseItemView.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/compose/ClaimTotalOrAmountUnavailableView.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/compose/DoublePaddedButtonView.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/compose/DraftsListView.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/compose/ExpenseDraftsFab.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/compose/ExpenseDraftsScreen.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/compose/ExpenseInboxScreen.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/compose/FieldViews.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/compose/LocalDecimalFormat.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/compose/PreviewButtonLayout.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/compose/SinglePaddedButtonView.kt",
+    "expense/src/main/java/com/visma/employee/expense/inbox/compose/TotalAmountUnavailableView.kt",
+    "expense/src/main/java/com/visma/employee/expense/mileage/compose/MileageContent.kt",
+    "expense/src/main/java/com/visma/employee/expense/mileage/compose/MileageDialogs.kt",
+    "expense/src/main/java/com/visma/employee/expense/mileage/compose/MileageInternalNavKeys.kt"
+  ],
+  "hints": {
+    "screens": [
+      "ClaimsFeedScreen",
+      "ExpenseDraftsScreen",
+      "ExpenseInboxScreen",
+      "MapScreen",
+      "MileageScreen"
+    ]
+  }
+}

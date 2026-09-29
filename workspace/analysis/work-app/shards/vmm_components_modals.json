@@ -1,0 +1,53 @@
+{
+  "id": "vmm:components/modals",
+  "app": "vmm",
+  "stack": "react-native",
+  "name": "components/modals",
+  "files": [
+    "src/components/modals/ChatModal/ChatHistoryItem.tsx",
+    "src/components/modals/ChatModal/ChatHistoryModal.tsx",
+    "src/components/modals/ChatModal/ChatItem.tsx",
+    "src/components/modals/ChatModal/style.ts",
+    "src/components/modals/ChatModal/utils.ts",
+    "src/components/modals/GaiaChatModal/ApprovalTaskLinkCard/ApprovalTaskLinkCard.tsx",
+    "src/components/modals/GaiaChatModal/ApprovalTaskLinkCard/style.ts",
+    "src/components/modals/GaiaChatModal/GaiaActionButton/GaiaActionButton.tsx",
+    "src/components/modals/GaiaChatModal/GaiaActionButton/style.ts",
+    "src/components/modals/GaiaChatModal/GaiaApprovalRequestCard/GaiaApprovalRequestCard.tsx",
+    "src/components/modals/GaiaChatModal/GaiaApprovalRequestCard/style.ts",
+    "src/components/modals/GaiaChatModal/GaiaChatContent.tsx",
+    "src/components/modals/GaiaChatModal/GaiaChatItem.tsx",
+    "src/components/modals/GaiaChatModal/GaiaChatModal.tsx",
+    "src/components/modals/GaiaChatModal/GaiaToolStatus/GaiaToolStatus.tsx",
+    "src/components/modals/GaiaChatModal/GaiaToolStatus/style.ts",
+    "src/components/modals/GaiaChatModal/gaiaContentParser.ts",
+    "src/components/modals/GaiaChatModal/style.ts",
+    "src/components/modals/GaiaChatModal/useGaiaFrontendToolExecutor.ts",
+    "src/components/modals/HrmDialogueDeleteModal/HrmDialogueDeleteModal.tsx",
+    "src/components/modals/HrmDialogueDeleteModal/style.ts",
+    "src/components/modals/InfoModal/InfoModal.tsx",
+    "src/components/modals/InfoModal/style.ts",
+    "src/components/modals/WebviewModal/WebviewModal.tsx",
+    "src/components/modals/WebviewModal/style.ts",
+    "src/components/modals/components/items/InfoListItem/InfoListItem.tsx",
+    "src/components/modals/components/items/InfoListItem/style.ts",
+    "src/components/modals/components/items/OnboardingListItem.tsx",
+    "src/components/modals/components/items/style.ts"
+  ],
+  "hints": {
+    "routes": [
+      "SCREEN_NAME_CHAT_HISTORY_MODAL",
+      "SCREEN_NAME_DELETE_DIALOGUE_MODAL",
+      "SCREEN_NAME_GAIA_CHAT_MODAL",
+      "SCREEN_NAME_INFO_MODAL",
+      "SCREEN_NAME_WEBVIEW_MODAL"
+    ],
+    "screens": [
+      "ChatHistoryModal",
+      "GaiaChatModal",
+      "HrmDialogueDeleteModal",
+      "InfoModal",
+      "WebviewModal"
+    ]
+  }
+}

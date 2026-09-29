@@ -1,0 +1,69 @@
+{
+  "id": "vmm:screens/common",
+  "app": "vmm",
+  "stack": "react-native",
+  "name": "screens/common",
+  "files": [
+    "src/screens/common/HomeSearchScreen/HomeSearchScreen.tsx",
+    "src/screens/common/HomeSearchScreen/style.ts",
+    "src/screens/common/LoginSelectScreen/LoginSelectScreen.tsx",
+    "src/screens/common/LoginSelectScreen/style.ts",
+    "src/screens/common/NoRolesScreen/NoRolesScreen.tsx",
+    "src/screens/common/NoRolesScreen/style.ts",
+    "src/screens/common/ProfilePictureScreen/ProfilePictureScreen.tsx",
+    "src/screens/common/ProfilePictureScreen/style.ts",
+    "src/screens/common/RequestErrorLogsScreen/RequestErrorLogsScreen.tsx",
+    "src/screens/common/RequestErrorLogsScreen/style.ts",
+    "src/screens/common/SettingsDevToolsScreen/SettingsDevToolsScreen.tsx",
+    "src/screens/common/SettingsDevToolsScreen/components/TriggerNotificationModal/TriggerNotificationModal.tsx",
+    "src/screens/common/SettingsDevToolsScreen/components/TriggerNotificationModal/index.ts",
+    "src/screens/common/SettingsDevToolsScreen/components/TriggerNotificationModal/style.ts",
+    "src/screens/common/SettingsDevToolsScreen/style.ts",
+    "src/screens/common/SettingsLicensesScreen/SettingsLicensesScreen.tsx",
+    "src/screens/common/SettingsLicensesScreen/components/LicensesListItem/LicensesListItem.tsx",
+    "src/screens/common/SettingsLicensesScreen/components/LicensesListItem/style.ts",
+    "src/screens/common/SettingsLicensesScreen/licenses.ts",
+    "src/screens/common/SettingsLicensesScreen/style.ts",
+    "src/screens/common/SettingsPrivacyScreen/SettingsPrivacyScreen.tsx",
+    "src/screens/common/SettingsPrivacyScreen/style.ts",
+    "src/screens/common/SettingsScreen/SettingsScreen.tsx",
+    "src/screens/common/SettingsScreen/components/SettingsItem/SettingsItem.tsx",
+    "src/screens/common/SettingsScreen/components/SettingsItem/style.ts",
+    "src/screens/common/SettingsScreen/components/UserTestingSettingsItem/UserTestingSettingsItem.tsx",
+    "src/screens/common/SettingsScreen/components/UserTestingSettingsItem/style.ts",
+    "src/screens/common/SettingsScreen/style.ts",
+    "src/screens/common/SettingsTosScreen/SettingsTosScreen.tsx",
+    "src/screens/common/SettingsTosScreen/style.ts"
+  ],
+  "hints": {
+    "routes": [
+      "SCREEN_NAME_APPROVAL_REQ_ERROR_LOGS",
+      "SCREEN_NAME_HOME_SEARCH",
+      "SCREEN_NAME_LOGIN_SELECT",
+      "SCREEN_NAME_NO_ROLES",
+      "SCREEN_NAME_PROFILE_PICTURE",
+      "SCREEN_NAME_SETTINGS",
+      "SCREEN_NAME_SETTINGS_DEV_TOOLS",
+      "SCREEN_NAME_SETTINGS_LICENSES",
+      "SCREEN_NAME_SETTINGS_PRIVACY",
+      "SCREEN_NAME_SETTINGS_TOS"
+    ],
+    "screens": [
+      "HomeSearchScreen",
+      "LoginSelectScreen",
+      "NoRolesScreen",
+      "ProfilePictureScreen",
+      "RequestErrorLogsScreen",
+      "SettingsDevToolsScreen",
+      "SettingsLicensesScreen",
+      "SettingsPrivacyScreen",
+      "SettingsScreen",
+      "SettingsTosScreen"
+    ],
+    "events": [
+      "clicked_on_approval_hrm_button",
+      "login_authorize_recovered",
+      "login_cancelled"
+    ]
+  }
+}

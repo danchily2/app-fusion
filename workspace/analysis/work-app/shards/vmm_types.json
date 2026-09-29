@@ -1,0 +1,23 @@
+{
+  "id": "vmm:types",
+  "app": "vmm",
+  "stack": "react-native",
+  "name": "types",
+  "files": [
+    "src/types/approval.ts",
+    "src/types/autopay.ts",
+    "src/types/bnxtMasterData.ts",
+    "src/types/bnxtOrders.ts",
+    "src/types/calendar.ts",
+    "src/types/compello.ts",
+    "src/types/dottie.ts",
+    "src/types/hrm.ts",
+    "src/types/nxt.ts",
+    "src/types/osr.ts",
+    "src/types/settings.ts",
+    "src/types/stubs/react-native-image-zoom-response.d.ts",
+    "src/types/stubs/react-native-tiff-converter.d.ts",
+    "types/env.d.ts"
+  ],
+  "hints": {}
+}

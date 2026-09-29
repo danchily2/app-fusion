@@ -1,7 +1,7 @@
 {
   "program": "work-app",
   "version": 1,
-  "generated": "2026-09-28T17:17:34+00:00",
+  "generated": "2026-09-29T06:27:34+00:00",
   "pairs": [
     {
       "apps": [
@@ -22,6 +22,10 @@
           "me-ios": "GET /employee/api/v2/dottie/employee/me"
         },
         {
+          "vmm": "GET /api/v2/dottie/employees",
+          "me-ios": "GET /employee/api/v2/dottie/employees"
+        },
+        {
           "vmm": "GET /api/v2/dottie/employees/possible-quick-filters",
           "me-ios": "GET /employee/api/v2/dottie/employees/possible-quick-filters"
         },
@@ -31,7 +35,7 @@
         }
       ],
       "endpointCounts": {
-        "vmm": 52,
+        "vmm": 93,
         "me-ios": 85
       },
       "sharedCopy": 122,
@@ -51,6 +55,423 @@
           "nl"
         ],
         "only me-ios": []
+      }
+    },
+    {
+      "apps": [
+        "vmm",
+        "me-android"
+      ],
+      "sharedEndpoints": [
+        {
+          "vmm": "GET /api/v1/authorization/currentsession",
+          "me-android": "GET /api/v1/authorization/currentsession"
+        },
+        {
+          "vmm": "GET /api/v2/configuration/third-party-keys",
+          "me-android": "GET /api/v2/configuration/third-party-keys"
+        },
+        {
+          "vmm": "GET /api/v2/dottie/employee/{}",
+          "me-android": "GET /api/v2/dottie/employee/job-titles"
+        },
+        {
+          "vmm": "GET /api/v2/dottie/employees",
+          "me-android": "GET /api/v2/dottie/employees"
+        },
+        {
+          "vmm": "GET /api/v2/dottie/employees/possible-quick-filters",
+          "me-android": "GET /api/v2/dottie/employees/possible-quick-filters"
+        },
+        {
+          "vmm": "POST /employee/api/v1/feedback",
+          "me-android": "POST /api/v1/feedback"
+        }
+      ],
+      "endpointCounts": {
+        "vmm": 93,
+        "me-android": 83
+      },
+      "sharedCopy": 98,
+      "copyCounts": {
+        "vmm": 1836,
+        "me-android": 797
+      },
+      "locales": {
+        "both": [],
+        "only vmm": [
+          "da",
+          "en",
+          "fi",
+          "nb",
+          "nl",
+          "sv"
+        ],
+        "only me-android": [
+          "default"
+        ]
+      }
+    },
+    {
+      "apps": [
+        "me-ios",
+        "me-android"
+      ],
+      "sharedEndpoints": [
+        {
+          "me-ios": "GET /employee/api/v1/authorization/currentsession",
+          "me-android": "GET /api/v1/authorization/currentsession"
+        },
+        {
+          "me-ios": "POST /employee/api/v1/employeeassistant/chat",
+          "me-android": "POST /api/v1/employeeassistant/chat"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employeeassistant/suggestedquestions",
+          "me-android": "GET /api/v1/employeeassistant/suggestedquestions"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/allreports",
+          "me-android": "GET /api/v1/employees/allreports"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/expense/ehrmdefaults",
+          "me-android": "GET /api/v1/employees/expense/ehrmdefaults"
+        },
+        {
+          "me-ios": "POST /employee/api/v1/employees/expense/mileages/calculateroadtoll",
+          "me-android": "POST /api/v1/employees/expense/mileages/calculateroadtoll"
+        },
+        {
+          "me-ios": "POST /employee/api/v1/employees/{}/absenceregistration",
+          "me-android": "POST /api/v1/employees/{}/absenceregistration"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/{}/calendar",
+          "me-android": "GET /api/v1/employees/{}/calendar"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/{}/calendar/balances/combined",
+          "me-android": "GET /api/v1/employees/{}/calendar/balances/combined"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/{}/calendar/checkin",
+          "me-android": "GET /api/v1/employees/{}/calendar/checkin"
+        },
+        {
+          "me-ios": "PUT /employee/api/v1/employees/{}/calendar/checkin",
+          "me-android": "PUT /api/v1/employees/{}/calendar/checkin"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/{}/calendar/confirm",
+          "me-android": "GET /api/v1/employees/{}/calendar/confirm"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/{}/calendar/confirm/template",
+          "me-android": "GET /api/v1/employees/{}/calendar/confirm/template"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/{}/calendar/templates",
+          "me-android": "GET /api/v1/employees/{}/calendar/templates"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/{}/calendar/workshift",
+          "me-android": "GET /api/v1/employees/{}/calendar/workshift"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/{}/chatbot/exampleprompts",
+          "me-android": "GET /api/v1/employees/{}/chatbot/exampleprompts"
+        },
+        {
+          "me-ios": "POST /employee/api/v1/employees/{}/chatbot/predictcalendarregistration",
+          "me-android": "POST /api/v1/employees/{}/chatbot/predictcalendarregistration"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/{}/empman/employees/me",
+          "me-android": "GET /api/v1/employees/{}/empman/employees/me"
+        },
+        {
+          "me-ios": "POST /employee/api/v1/employees/{}/empman/employees/me",
+          "me-android": "POST /api/v1/employees/{}/empman/employees/me"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/{}/empman/selections",
+          "me-android": "GET /api/v1/employees/{}/empman/selections"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/{}/expense/claims",
+          "me-android": "GET /api/v1/employees/{}/expense/claims"
+        },
+        {
+          "me-ios": "PUT /employee/api/v1/employees/{}/expense/claims",
+          "me-android": "PUT /api/v1/employees/{}/expense/claims"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/{}/expense/claims/template",
+          "me-android": "GET /api/v1/employees/{}/expense/claims/template"
+        },
+        {
+          "me-ios": "POST /employee/api/v1/employees/{}/expense/claims/{}/approvalrequest",
+          "me-android": "POST /api/v1/employees/{}/expense/claims/{}/approvalrequest"
+        },
+        {
+          "me-ios": "POST /employee/api/v1/employees/{}/expense/claims/{}/update-from-drafts",
+          "me-android": "POST /api/v1/employees/{}/expense/claims/{}/{}"
+        },
+        {
+          "me-ios": "POST /employee/api/v1/employees/{}/expense/claims/{}/update-from-mileage-drafts",
+          "me-android": "POST /api/v1/employees/{}/expense/claims/{}/update-from-mileage-drafts"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/{}/expense/climatereport",
+          "me-android": "GET /api/v1/employees/{}/expense/climatereport"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/{}/expense/currencies",
+          "me-android": "GET /api/v1/employees/{}/expense/currencies"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/{}/expense/inbox",
+          "me-android": "GET /api/v1/employees/{}/expense/inbox"
+        },
+        {
+          "me-ios": "POST /employee/api/v1/employees/{}/expense/mileages",
+          "me-android": "POST /api/v1/employees/{}/expense/mileages"
+        },
+        {
+          "me-ios": "POST /employee/api/v1/employees/{}/expense/preferences",
+          "me-android": "POST /api/v1/employees/{}/expense/preferences"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/{}/expense/preferences",
+          "me-android": "GET /api/v1/employees/{}/expense/preferences"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/{}/expense/templates/expense",
+          "me-android": "GET /api/v1/employees/{}/expense/templates/{}"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/{}/expense/templates/mileage",
+          "me-android": "GET /api/v1/employees/{}/expense/templates/mileage"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/{}/expenseclaims/{}",
+          "me-android": "GET /api/v1/employees/{}/expenseclaims/{}"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/{}/payslips/exportfromalltenants",
+          "me-android": "GET /api/v1/employees/{}/payslips/exportfromalltenants"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/employees/{}/payslips/{}",
+          "me-android": "GET /api/v1/employees/{}/payslips/{}"
+        },
+        {
+          "me-ios": "POST /employee/api/v1/expense/allowances",
+          "me-android": "POST /api/v1/expense/allowances"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/expense/currencies/{}/exchangerate",
+          "me-android": "GET /api/v1/expense/currencies/{}/exchangerate"
+        },
+        {
+          "me-ios": "DELETE /employee/api/v1/expense/drafts/{}/attachments/{}",
+          "me-android": "DELETE /api/v1/expense/drafts/{}/attachments/{}"
+        },
+        {
+          "me-ios": "POST /employee/api/v1/expense/send-draft-for-approval",
+          "me-android": "POST /api/v1/expense/send-draft-for-approval"
+        },
+        {
+          "me-ios": "POST /employee/api/v1/expense/templates/allowance/periods",
+          "me-android": "POST /api/v1/expense/templates/allowance/periods"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/expense/templates/allowance/segments",
+          "me-android": "GET /api/v1/expense/templates/allowance/segments"
+        },
+        {
+          "me-ios": "POST /employee/api/v1/expense/upsert-draft",
+          "me-android": "POST /api/v1/expense/upsert-draft"
+        },
+        {
+          "me-ios": "POST /employee/api/v1/feedback",
+          "me-android": "POST /api/v1/feedback"
+        },
+        {
+          "me-ios": "POST /employee/api/v1/machinelearning/annotatedocument",
+          "me-android": "POST /api/v1/machinelearning/annotatedocument"
+        },
+        {
+          "me-ios": "POST /employee/api/v1/machinelearning/predictexpensetype",
+          "me-android": "POST /api/v1/machinelearning/predictexpensetype"
+        },
+        {
+          "me-ios": "POST /employee/api/v1/machinelearning/sendfeedback",
+          "me-android": "POST /api/v1/machinelearning/sendfeedback"
+        },
+        {
+          "me-ios": "POST /employee/api/v1/machinelearning/trainexpensetypepredictionmodel",
+          "me-android": "POST /api/v1/machinelearning/trainexpensetypepredictionmodel"
+        },
+        {
+          "me-ios": "POST /employee/api/v1/maps/directions",
+          "me-android": "POST /api/v1/maps/directions"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/maps/getplace",
+          "me-android": "GET /api/v1/maps/getplace"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/notification/inbox/items",
+          "me-android": "GET /api/v1/notification/inbox/items"
+        },
+        {
+          "me-ios": "POST /employee/api/v1/notification/registerdevice",
+          "me-android": "POST /api/v1/notification/registerdevice"
+        },
+        {
+          "me-ios": "DELETE /employee/api/v1/notification/unregisterdevice",
+          "me-android": "DELETE /api/v1/notification/unregisterdevice"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/org/{}/license/{}",
+          "me-android": "GET /api/v1/org/{}/license/{}"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/payslip/getpayslipdocumentanytenantfile",
+          "me-android": "GET /api/v1/payslip/getpayslipdocumentanytenantfile"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/remotecontrol/config",
+          "me-android": "GET /api/v1/remotecontrol/config"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/remotecontrol/employee/{}/message",
+          "me-android": "GET /api/v1/remotecontrol/employee/{}/message"
+        },
+        {
+          "me-ios": "GET /employee/api/v1/surveys",
+          "me-android": "GET /api/v1/surveys"
+        },
+        {
+          "me-ios": "GET /employee/api/v2/calendar/specialdays",
+          "me-android": "GET /api/v2/calendar/specialdays"
+        },
+        {
+          "me-ios": "GET /employee/api/v2/configuration/third-party-keys",
+          "me-android": "GET /api/v2/configuration/third-party-keys"
+        },
+        {
+          "me-ios": "GET /employee/api/v2/dottie/benefits",
+          "me-android": "GET /api/v2/dottie/benefits"
+        },
+        {
+          "me-ios": "GET /employee/api/v2/dottie/documents/my",
+          "me-android": "GET /api/v2/dottie/documents/my"
+        },
+        {
+          "me-ios": "GET /employee/api/v2/dottie/documents/my/{}/download",
+          "me-android": "GET /api/v2/dottie/documents/my/{}/download"
+        },
+        {
+          "me-ios": "GET /employee/api/v2/dottie/documents/organization",
+          "me-android": "GET /api/v2/dottie/documents/organization"
+        },
+        {
+          "me-ios": "GET /employee/api/v2/dottie/documents/organization/{}/download",
+          "me-android": "GET /api/v2/dottie/documents/organization/{}/download"
+        },
+        {
+          "me-ios": "POST /employee/api/v2/dottie/documents/organization/{}/mark-as-read",
+          "me-android": "POST /api/v2/dottie/documents/organization/{}/mark-as-read"
+        },
+        {
+          "me-ios": "PUT /employee/api/v2/dottie/employee/me",
+          "me-android": "PUT /api/v2/dottie/employee/me"
+        },
+        {
+          "me-ios": "GET /employee/api/v2/dottie/employee/me",
+          "me-android": "GET /api/v2/dottie/employee/me"
+        },
+        {
+          "me-ios": "POST /employee/api/v2/dottie/employee/me/profile-image",
+          "me-android": "POST /api/v2/dottie/employee/me/profile-image"
+        },
+        {
+          "me-ios": "GET /employee/api/v2/dottie/employee/me/profile-image",
+          "me-android": "GET /api/v2/dottie/employee/me/profile-image"
+        },
+        {
+          "me-ios": "DELETE /employee/api/v2/dottie/employee/me/profile-image",
+          "me-android": "DELETE /api/v2/dottie/employee/me/profile-image"
+        },
+        {
+          "me-ios": "GET /employee/api/v2/dottie/employee/me/template",
+          "me-android": "GET /api/v2/dottie/employee/me/template"
+        },
+        {
+          "me-ios": "GET /employee/api/v2/dottie/employee/{}",
+          "me-android": "GET /api/v2/dottie/employee/{}"
+        },
+        {
+          "me-ios": "GET /employee/api/v2/dottie/employee/{}/profile-image",
+          "me-android": "GET /api/v2/dottie/employee/me/profile-image"
+        },
+        {
+          "me-ios": "GET /employee/api/v2/dottie/employee/{}/template",
+          "me-android": "GET /api/v2/dottie/employee/me/template"
+        },
+        {
+          "me-ios": "GET /employee/api/v2/dottie/employees",
+          "me-android": "GET /api/v2/dottie/employees"
+        },
+        {
+          "me-ios": "GET /employee/api/v2/dottie/employees/possible-quick-filters",
+          "me-android": "GET /api/v2/dottie/employees/possible-quick-filters"
+        },
+        {
+          "me-ios": "GET /employee/api/v2/dottie/notifications",
+          "me-android": "GET /api/v2/dottie/notifications"
+        },
+        {
+          "me-ios": "GET /employee/api/v2/dottie/notifications/new-count",
+          "me-android": "GET /api/v2/dottie/notifications/new-count"
+        },
+        {
+          "me-ios": "POST /employee/api/v2/employeeassistant/feedback",
+          "me-android": "POST /api/v2/employeeassistant/feedback"
+        },
+        {
+          "me-ios": "GET /employee/api/v2/expense/claims/possible-filters",
+          "me-android": "GET /api/v2/expense/claims/possible-filters"
+        },
+        {
+          "me-ios": "POST /employee/api/v2/expense/merge",
+          "me-android": "POST /api/v2/expense/merge"
+        }
+      ],
+      "endpointCounts": {
+        "me-ios": 85,
+        "me-android": 83
+      },
+      "sharedCopy": 433,
+      "copyCounts": {
+        "me-ios": 839,
+        "me-android": 797
+      },
+      "locales": {
+        "both": [],
+        "only me-ios": [
+          "da",
+          "en",
+          "fi",
+          "nb",
+          "sv"
+        ],
+        "only me-android": [
+          "default"
+        ]
       }
     }
   ],

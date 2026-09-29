@@ -1,7 +1,7 @@
 {
   "program": "work-app",
   "version": 1,
-  "generated": "2026-09-29T06:27:34+00:00",
+  "generated": "2026-09-29T13:51:32+00:00",
   "items": [
     {
       "id": "PLT-001",
@@ -651,53 +651,1153 @@
       "decision": "decide-later"
     },
     {
-      "id": "PLT-058",
-      "area": "calendar",
-      "name": "Device calendar write access (react-native-calendar-events) to create or remove the birthday and anniversary calendars;…",
+      "id": "PLT-087",
+      "area": "remote config",
+      "name": "Firebase Remote Config fetchAndActivate for the Snowplow analytics switch",
       "apps": {
-        "vmm": "src/hooks/useSyncCalendar.ts:41-77; ios/vmm/Info.plist:61-64; android/app/src/main/AndroidManifest.xml:11-12"
+        "vmm": "src/components/uiless/AnalyticsSettingWatcher/AnalyticsSettingWatcher.tsx:27-40"
       },
       "newApp": "decide",
       "note": "",
       "decision": null
     },
     {
-      "id": "PLT-059",
+      "id": "PLT-088",
+      "area": "remote config",
+      "name": "Firebase Remote Config user-testing phase JSON with a 13-hour recheck timer",
+      "apps": {
+        "vmm": "src/components/uiless/UserTestingRecruitmentAccessWatcher/UserTestingRecruitmentAccessWatcher.tsx:16-105"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-089",
+      "area": "analytics",
+      "name": "Firebase Analytics collection toggle and an integration-roles custom dimension",
+      "apps": {
+        "vmm": "src/components/uiless/AnalyticsRolesWatcher/AnalyticsRolesWatcher.ts:14-34"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-090",
+      "area": "android system UI",
+      "name": "Edge-to-edge Android navigation bar icon colour follows the app theme (@zoontek/react-native-navigation-bar)",
+      "apps": {
+        "vmm": "src/components/uiless/NavigationBarStyleWatcher/NavigationBarStyleWatcher.tsx:7-11"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-091",
+      "area": "performance monitoring",
+      "name": "Performance monitoring gated on Remote Config readiness",
+      "apps": {
+        "vmm": "src/components/uiless/PerfMonitoringGate/PerfMonitoringGate.tsx:8-11"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-092",
+      "area": "settings persistence",
+      "name": "Settings persistence hook host (useSettingsPersistence)",
+      "apps": {
+        "vmm": "src/components/uiless/SettingsInitializer/SettingsInitializer.tsx:8-14"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-093",
+      "area": "app update",
+      "name": "App update check overlay host (useUpdateCheck)",
+      "apps": {
+        "vmm": "src/components/uiless/UpdateCheckWatcher/UpdateCheckWatcher.tsx:15-18"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-094",
+      "area": "push",
+      "name": "Approval push token registration (APNs/FCM) on foreground, POST Devices",
+      "apps": {
+        "vmm": "src/components/approval/ApprovalNotificationsReregister/ApprovalNotificationsReregister.tsx:22-90; src/services/queryApi/queryEndpointsHRM/approval/queryEndpointsApproval.ts:688-716"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-095",
+      "area": "push",
+      "name": "Unregister device token on logout (DELETE Devices/{token}) via logoutUnregisterApprovalNotificationsEpic",
+      "apps": {
+        "vmm": "src/epics/logoutUnregisterApprovalNotificationsEpic.ts:19; src/services/queryApi/queryEndpointsHRM/approval/queryEndpointsApproval.ts:719-730"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-096",
+      "area": "external link",
+      "name": "Store rating deep links market:// and itms-apps://",
+      "apps": {
+        "vmm": "src/components/approval/AppRateDialog/AppRateDialog.tsx:157-169"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-097",
+      "area": "share",
+      "name": "System share sheet for task documents with image-to-PDF generation",
+      "apps": {
+        "vmm": "src/components/approval/ApprovalDocumentShare/ApprovalDocumentShare.tsx:8-9,26-117"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-098",
+      "area": "file system",
+      "name": "Attachment download/cache and TIFF conversion via react-native-blob-util",
+      "apps": {
+        "vmm": "src/utils/attachments.ts:4,229-270"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-099",
+      "area": "haptics",
+      "name": "Vibration on multiselect of a task (respects vibration setting)",
+      "apps": {
+        "vmm": "src/components/approval/ApprovalList/ApprovalListItem/ApprovalListItem.tsx:152-156"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-100",
+      "area": "accessibility",
+      "name": "Swipe actions hidden when screen reader is enabled",
+      "apps": {
+        "vmm": "src/components/approval/ApprovalListSwipeItemRight/ApprovalListSwipeItemRight.tsx:34-38"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-101",
+      "area": "storage",
+      "name": "Encrypted MMKV persistence of approval, approvalRecentSearches, appRate, settings, collapsed groups slices (RTK Query c…",
+      "apps": {
+        "vmm": "src/configs/reduxState.ts:107-128"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-102",
+      "area": "webview / external app handoff",
+      "name": "BankID / bank 2FA WebView that opens custom URL schemes (bankid://) through Linking.openURL, with a scheme blocklist",
+      "apps": {
+        "vmm": "src/components/autopay/AutopayApproveTransaction/webViewUrlPolicy.ts:16-34; src/components/autopay/AutopayApproveTransaction/AutopayApproveTransaction.tsx:101-126"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-103",
+      "area": "webview",
+      "name": "Approval completion detected by redirect-URL sniffing (firebaseapp.com = ok, web.app = cancel)",
+      "apps": {
+        "vmm": "src/components/autopay/AutopayApproveTransaction/AutopayApproveTransaction.tsx:132-156; src/services/apiAutopay/apiAutopay.ts:119-124"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-104",
+      "area": "debug",
+      "name": "Dev-only HTML dump script injected into the approve WebView (__DEV__ guard)",
+      "apps": {
+        "vmm": "src/components/autopay/AutopayApproveTransaction/approveWebViewDebug.ts:15-28; AutopayApproveTransaction.tsx:293-297"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-105",
+      "area": "haptics",
+      "name": "Vibration on payment selection (android.permission.VIBRATE)",
+      "apps": {
+        "vmm": "src/components/autopay/TransactionListItem/TransactionListItem.tsx:72-74; android/app/src/main/AndroidManifest.xml:10"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-106",
+      "area": "file system",
+      "name": "Invoice PDF saved to a local file from an arraybuffer response",
+      "apps": {
+        "vmm": "src/services/apiAutopay/apiAutopay.ts:287-300"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-107",
       "area": "feature flag",
-      "name": "Calendar sync gated on dev flag VMM-7635-calendar-sync-dev-flag (isCalendarSyncEnabled), mentioned only in a comment",
+      "name": "features.showAutopayOverviewTab gates the Overview tab",
       "apps": {
-        "vmm": "src/screens/common/SettingsScreen/SettingsScreen.tsx:404-405"
+        "vmm": "src/components/autopay/AutopayTopBar/AutopayTopBar.tsx:30,57-59"
       },
       "newApp": "decide",
       "note": "",
       "decision": null
     },
     {
-      "id": "PLT-060",
+      "id": "PLT-108",
+      "area": "calendar",
+      "name": "Device calendar sync of birthdays/anniversaries via react-native-calendar-events",
+      "apps": {
+        "vmm": "src/hooks/useSyncCalendar.ts:41-60"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-109",
+      "area": "notifications",
+      "name": "App icon badge reset on forced logout",
+      "apps": {
+        "vmm": "src/components/common/ModalDialog/ModalDialog.tsx:37"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-110",
+      "area": "debug",
+      "name": "Hidden environment switcher (prod/stage/sandbox) unlocked by 6 taps",
+      "apps": {
+        "vmm": "src/components/common/EnvPicker/EnvPicker.tsx:59-65"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-111",
+      "area": "webview",
+      "name": "Accessibility statement rendered in WebviewModal with embedded fonts",
+      "apps": {
+        "vmm": "src/components/common/LangAccPicker/LangAccPicker.tsx:81-88"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-112",
       "area": "navigation",
-      "name": "EmployeeCalendarScreen registered in the HRM and Approval stacks, with CalendarOptionsMenu as headerRight; opened from…",
+      "name": "Android hardware back handler that closes the document selector, then the fullscreen document viewer, then clears the a…",
       "apps": {
-        "vmm": "src/configs/navConfig/hrm/HrmNavConfig.tsx:139-147; src/configs/navConfig/approval/ApprovalNavConfig.tsx:113-121; src/components/hrm/HrmEmployeeDetailAccordeon/HrmEmployeeDetailAccordion.tsx:272"
+        "vmm": "src/components/common/ThemedBackButtonWithDocViewer/ThemedBackButtonWithDocViewer.tsx:26-53"
       },
       "newApp": "decide",
       "note": "",
       "decision": null
     },
     {
-      "id": "PLT-061",
+      "id": "PLT-113",
+      "area": "external links",
+      "name": "Opens the store listing with market:// on Android and itms-apps:// on iOS",
+      "apps": {
+        "vmm": "src/components/common/UpdateDialog/UpdateDialog.tsx:23-29"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-114",
+      "area": "storage",
+      "name": "redux-persist whitelist includes settings, npsSurvey, features and whatsNew, which hold dontShowNpsSurvey, sandboxColor…",
+      "apps": {
+        "vmm": "src/configs/reduxState.ts:107-128"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-115",
+      "area": "accessibility",
+      "name": "What's New media honours the reduce-motion and screen-reader settings",
+      "apps": {
+        "vmm": "src/components/common/WhatsNewMedia/WhatsNewMedia.tsx:32-33"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-116",
+      "area": "network",
+      "name": "Sandbox status is fetched from a hardcoded external Azure dashboard URL, outside the app's apiBase",
+      "apps": {
+        "vmm": "src/consts/constants.ts:18"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-117",
+      "area": "device integration",
+      "name": "Open phone dialer, SMS and mail apps via Linking (tel:, sms:, mailto:) with canOpenURL check",
+      "apps": {
+        "vmm": "src/components/hrm/HrmEmployeeDetailHead/HrmEmployeeDetailHead.tsx:125-155"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-118",
+      "area": "device integration",
+      "name": "Native Share sheet for contact values",
+      "apps": {
+        "vmm": "src/components/hrm/HrmEmployeeDetailAccordeon/ReadOnlyField/ReadOnlyField.tsx:50-54"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-119",
+      "area": "device integration",
+      "name": "Clipboard write of employee post address (@react-native-clipboard/clipboard)",
+      "apps": {
+        "vmm": "src/components/hrm/HrmEmployeeDetailAccordeon/HrmEmployeeDetailAccordion.tsx:1,261"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-120",
+      "area": "storage",
+      "name": "Redux slices hrmEmployeeList, hrmAnniversary, hrmDialogue, hrmDialogueCollapsedGroups, features persisted via custom en…",
+      "apps": {
+        "vmm": "src/configs/reduxState.ts:107-128"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-121",
+      "area": "network",
+      "name": "Authenticated image loading for Dottie profile photos (Bearer header on Image source)",
+      "apps": {
+        "vmm": "src/hooks/useDottieProfileImageSource.ts:20-22"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-122",
+      "area": "push notification",
+      "name": "Notification payload normalizer (integration, attributes, taskId, action button, RemoteInput userText, Gaia threadId; a…",
+      "apps": {
+        "vmm": "src/components/modals/ChatModal/utils.ts:162-218"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-123",
+      "area": "speech",
+      "name": "Speech-to-text dictation via @react-native-voice/voice with Android microphone permission",
+      "apps": {
+        "vmm": "src/hooks/useSpeech.ts:1-15"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-124",
+      "area": "keyboard",
+      "name": "Android soft input mode switched to adjustResize while the Gaia chat is focused",
+      "apps": {
+        "vmm": "src/components/modals/GaiaChatModal/GaiaChatModal.tsx:268-279"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-125",
+      "area": "webview",
+      "name": "In-app WebView showing sanitized HTML with an external-link allowlist for W3C WAI",
+      "apps": {
+        "vmm": "src/components/modals/WebviewModal/WebviewModal.tsx:30-76"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-126",
+      "area": "external links",
+      "name": "Linking.openURL for Gaia citation sources and task-card browser fallback",
+      "apps": {
+        "vmm": "src/components/modals/GaiaChatModal/GaiaChatItem.tsx:85-95"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-127",
+      "area": "feature flags",
+      "name": "Gaia capabilities catalog and frontend navigation tools gated by dev flags",
+      "apps": {
+        "vmm": "src/components/modals/GaiaChatModal/useGaiaFrontendToolExecutor.ts:70"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-128",
+      "area": "credentials",
+      "name": "OpenAI base URL and API key constants in code (both empty strings, '' preview)",
+      "apps": {
+        "vmm": "src/hooks/useAi.tsx:6-7"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-129",
+      "area": "storage",
+      "name": "Encrypted MMKV redux store (id redux-state, AES-256, key from persistent random seed)",
+      "apps": {
+        "vmm": "src/configs/persistEngine.ts:70-75"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-130",
+      "area": "storage",
+      "name": "One-time legacy AsyncStorage persist:root import with keychain key, then cleanup",
+      "apps": {
+        "vmm": "src/configs/legacyPersistImport.ts:56-188"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-131",
+      "area": "monitoring",
+      "name": "Firebase Performance HTTP metrics on every axios request (react-native-firebase/perf)",
+      "apps": {
+        "vmm": "src/configs/axiosInterceptors.ts:85-134"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-132",
+      "area": "monitoring",
+      "name": "Sentry crash, session, stall, failed-request and navigation tracing with dev/prod DSNs",
+      "apps": {
+        "vmm": "src/configs/sentryConfig.ts:100-123"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-133",
+      "area": "notifications",
+      "name": "Notification open consumer and reminder sync mounted in the logged-in tab navigator",
+      "apps": {
+        "vmm": "src/configs/navConfig/navConfig.tsx:61-63"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-134",
+      "area": "notifications",
+      "name": "Common stacks register employee detail and birthday-bot screens so notification taps push onto the focused tab",
+      "apps": {
+        "vmm": "src/configs/navConfig/common/CommonScreensNavConfig.tsx:375-405"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-135",
+      "area": "navigation",
+      "name": "No linking config on NavigationContainer (no React Navigation deep-link paths in this area)",
+      "apps": {
+        "vmm": "src/configs/navConfig/navConfig.tsx:177-189"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-136",
+      "area": "device",
+      "name": "Shake gesture watcher and network logger screen (dev tools)",
+      "apps": {
+        "vmm": "src/configs/navConfig/navConfig.tsx:185; src/configs/navConfig/common/CommonScreensNavConfig.tsx:308-312"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-137",
+      "area": "startup",
+      "name": "BootSplash hidden on navigation ready",
+      "apps": {
+        "vmm": "src/configs/navConfig/navConfig.tsx:151-161"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-138",
+      "area": "analytics",
+      "name": "Screen view event on every route change (SCREEN_VIEW)",
+      "apps": {
+        "vmm": "src/configs/navConfig/navConfig.tsx:124-126"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-139",
+      "area": "secrets",
+      "name": "Hardcoded Sentry DSNs (masked 'b5d7…', 'b5bb…')",
+      "apps": {
+        "vmm": "src/configs/sentryConfig.ts:114; src/configs/sentryConfig.ts:120"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-140",
+      "area": "secrets",
+      "name": "Hardcoded legacy encryption key prefix constant (masked 'nIH…')",
+      "apps": {
+        "vmm": "src/configs/legacyPersistImport.ts:17"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-141",
+      "area": "auth",
+      "name": "Visma Connect OAuth via react-native-app-auth with universal-link redirect https://visma-manager.web.app/connect-login",
+      "apps": {
+        "vmm": "src/screens/common/LoginSelectScreen/LoginSelectScreen.tsx:93; src/services/apiManagerConnect/apiManagerConnect.ts:55"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-142",
+      "area": "auth",
+      "name": "Web logout via Linking.openURL endsession and universal-link callback connect-logout (10s fallback)",
+      "apps": {
+        "vmm": "src/services/apiManagerConnect/apiManagerConnect.ts:468-501"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-143",
+      "area": "notifications",
+      "name": "App icon badge reset on logout",
+      "apps": {
+        "vmm": "src/screens/common/SettingsScreen/SettingsScreen.tsx:194"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-144",
+      "area": "notifications",
+      "name": "Notifee local/trigger notifications with approve/reject/forward action categories (dev tools)",
+      "apps": {
+        "vmm": "src/screens/common/SettingsDevToolsScreen/SettingsDevToolsScreen.tsx:663-745"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-145",
+      "area": "notifications",
+      "name": "Push device registration POST/DELETE Devices (RTK Query)",
+      "apps": {
+        "vmm": "src/services/queryApi/queryEndpointsHRM/approval/queryEndpointsApproval.ts:688-735"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-146",
+      "area": "media",
+      "name": "Photo library picker with crop (react-native-image-crop-picker)",
+      "apps": {
+        "vmm": "src/screens/common/ProfilePictureScreen/ProfilePictureScreen.tsx:11-19"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-147",
+      "area": "system",
+      "name": "Android hardware back blocked during login and pending ToS",
+      "apps": {
+        "vmm": "src/screens/common/LoginSelectScreen/LoginSelectScreen.tsx:156-171; src/screens/common/SettingsTosScreen/SettingsTosScreen.tsx:32-42"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-148",
+      "area": "system",
+      "name": "Share sheet for error reports; clipboard in dev tools",
+      "apps": {
+        "vmm": "src/screens/common/RequestErrorLogsScreen/RequestErrorLogsScreen.tsx:36"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-149",
+      "area": "browser",
+      "name": "In-app browser for legal/license links",
+      "apps": {
+        "vmm": "src/screens/common/SettingsLicensesScreen/SettingsLicensesScreen.tsx:34"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-150",
+      "area": "push",
+      "name": "Dialogue detail opened from push notification (fromNotification param) with custom back navigation",
+      "apps": {
+        "vmm": "src/screens/hrm/DialogueDetailsScreen/DialogueDetailsScreen.tsx:71-77,156-203"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-151",
+      "area": "push",
+      "name": "Birthday bot flow can be cold-started from a notification",
+      "apps": {
+        "vmm": "src/screens/hrm/HrmBirthdayBot/HrmBotGenerateMessageScreen/HrmBotGenerateMessageScreen.tsx:58-64"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-152",
+      "area": "lifecycle",
+      "name": "AppState foreground refetch of open dialogue",
+      "apps": {
+        "vmm": "src/screens/hrm/DialogueDetailsScreen/DialogueDetailsScreen.tsx:208-225"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-153",
+      "area": "share",
+      "name": "react-native-share system share sheet",
+      "apps": {
+        "vmm": "src/screens/hrm/HrmBirthdayBot/HrmBotGeneratingFinishedScreen/HrmBotGeneratingFinishedScreen.tsx:29,200"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-154",
+      "area": "deep link out",
+      "name": "sms: URL opened via Linking",
+      "apps": {
+        "vmm": "src/screens/hrm/HrmBirthdayBot/HrmBotGeneratingFinishedScreen/HrmBotGeneratingFinishedScreen.tsx:226-228"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-155",
+      "area": "android",
+      "name": "Hardware back button handling",
+      "apps": {
+        "vmm": "src/screens/hrm/DialogueSplitsScreen/DialogueSplitsScreen.tsx:98-110"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-156",
+      "area": "android",
+      "name": "Keyboard soft input adjustResize via react-native-keyboard-controller",
+      "apps": {
+        "vmm": "src/screens/hrm/DialogueDetailsScreen/DialogueDetailsScreen.tsx:128-140"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-157",
+      "area": "storage",
+      "name": "Encrypted MMKV redux persistence whitelist includes hrmEmployeeList, hrmAnniversary, hrmDialogue, hrmDialogueCollapsedG…",
+      "apps": {
+        "vmm": "src/configs/reduxState.ts:107-128"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-158",
+      "area": "notifications",
+      "name": "App icon badge count set to number of pending approval tasks",
+      "apps": {
+        "vmm": "src/screens/manager/ApprovalScreen/components/TabPresent/TabPresent.tsx:108-114"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-159",
+      "area": "remote config",
+      "name": "Firebase Remote Config fetch for user-testing recruitment phase",
+      "apps": {
+        "vmm": "src/screens/manager/ApprovalScreen/components/TabPresent/TabPresent.tsx:156-169"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-160",
+      "area": "surveys",
+      "name": "Survicate survey triggered on approval list after a task is closed (feature flag useSurvicate)",
+      "apps": {
+        "vmm": "src/screens/manager/ApprovalScreen/ApprovalScreen.tsx:71-84"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-161",
+      "area": "navigation",
+      "name": "Android hardware back handling on approval list, task detail (fullscreen document), Compello and order field overlays",
+      "apps": {
+        "vmm": "src/screens/manager/ApprovalScreen/ApprovalScreen.tsx:125-156"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-162",
+      "area": "navigation",
+      "name": "beforeRemove unsaved-changes guard on BXN order edit",
+      "apps": {
+        "vmm": "src/screens/manager/BnxtOrderDetailScreen/BnxtOrderDetailScreen.tsx:211-224"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-163",
+      "area": "linking",
+      "name": "tel: and mailto: links from BXN associate card",
+      "apps": {
+        "vmm": "src/screens/manager/BnxtAssociateCardScreen/BnxtAssociateCardScreen.tsx:144-166"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-164",
+      "area": "files",
+      "name": "Base64 attachment written to cache and rendered with react-native-pdf",
+      "apps": {
+        "vmm": "src/screens/manager/BnxtAttachmentViewerScreen/BnxtAttachmentViewerScreen.tsx:19-42"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-165",
+      "area": "device info",
+      "name": "react-native-device-info used for feedback payload",
+      "apps": {
+        "vmm": "src/screens/manager/ApprovalTaskBXNLineEditFeedbackScreen/ApprovalTaskBXNLineEditFeedbackScreen.tsx:56-65"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-166",
+      "area": "feature flag",
+      "name": "BXN tabbed hub (getBnxtTabbedHubEnabled) swaps BnxtHubScreen for BnxtWorkspaceScreen",
+      "apps": {
+        "vmm": "src/configs/navConfig/bnxtOrders/BnxtOrdersNavConfig.tsx:63-80"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-167",
+      "area": "api",
+      "name": "Business NXT GraphQL via Apollo at business.visma.net / business.stag.visma.net /api/graphql",
+      "apps": {
+        "vmm": "src/services/apiBaseStateless.ts:37-44"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-168",
+      "area": "navigation",
+      "name": "beforeRemove guard blocks Android hardware back and iOS swipe-back while there are unsaved line edits or open overlays",
+      "apps": {
+        "vmm": "src/screens/manager/ApprovalTaskBXNLineEditScreen/ApprovalTaskBXNLineEditScreen.tsx:434-459"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-169",
+      "area": "navigation",
+      "name": "Route 'ApprovalTaskBXNLineEditScreen' registered in the Approval stack and opened from DocumentEditorButton via TAB_ROU…",
+      "apps": {
+        "vmm": "src/configs/navConfig/approval/ApprovalNavConfig.tsx:135"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-170",
+      "area": "network",
+      "name": "Apollo GraphQL client with endpoint {PRODUCTION/STAGING}_URI_BASE/api/graphql",
+      "apps": {
+        "vmm": "src/services/apolloClient.ts:204-206; src/services/apiBaseStateless.ts:41-45"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-171",
+      "area": "storage",
+      "name": "Custom mode and selected fields are kept in the persisted settings slice (redux persist whitelist)",
+      "apps": {
+        "vmm": "src/configs/reduxState.ts:107-108"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-172",
+      "area": "navigation",
+      "name": "beforeRemove guard blocks leaving the line editor with unsaved changes (Android hardware back, iOS swipe-back)",
+      "apps": {
+        "vmm": "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/ApprovalTaskEditFinancialsLinesScreen.tsx:299-325"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-173",
+      "area": "navigation",
+      "name": "Edit overlay back handler closes the field edit overlay before popping the screen",
+      "apps": {
+        "vmm": "src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/context/FieldEditOverlayContext.tsx:118-150"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-174",
+      "area": "storage",
+      "name": "The settings slice (custom mode and selected financial line fields) is persisted through the redux whitelist",
+      "apps": {
+        "vmm": "src/configs/reduxState.ts:107-108"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-175",
+      "area": "navigation",
+      "name": "Stack route ApprovalTaskVoucherlinesEditorScreen registered in the approval stack, with params { index: number }",
+      "apps": {
+        "vmm": "src/configs/navConfig/approval/ApprovalNavConfig.tsx:165-172"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-176",
+      "area": "remote config",
+      "name": "What's New spotlight payload from Firebase Remote Config key feature_whats_new_v1",
+      "apps": {
+        "vmm": "src/services/whatsNew/whatsNewConfig.ts:114-123; src/consts/firebase.ts:19"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-177",
+      "area": "feature flag",
+      "name": "Start tab dark-shipped behind loginManager.toggledStartPageDevFlag",
+      "apps": {
+        "vmm": "src/configs/navConfig/navConfig.tsx:61; src/configs/TabBar.tsx:94"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-178",
+      "area": "feature flag",
+      "name": "Home search overlay behind features.showHomeSearch (dev tools)",
+      "apps": {
+        "vmm": "src/hooks/useHomeSearchEnabled.ts"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-179",
+      "area": "dev tools",
+      "name": "'Empty on shake' debug empty mode honoured by Home, cleared by pull-to-refresh",
+      "apps": {
+        "vmm": "src/screens/StartScreen/hooks/useStartScreenData.ts:144,646"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-180",
+      "area": "navigation",
+      "name": "Start stack registers StartScreen, ApprovalTaskScreen and common screens; mounts ApprovalTaskActionsDrawer",
+      "apps": {
+        "vmm": "src/configs/navConfig/startScreen/StartScreenNavConfig.tsx:18-77"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-181",
       "area": "persistence",
-      "name": "Calendar display preferences and calendarSync live in the settings slice, which is on the redux-persist whitelist",
+      "name": "redux-persist whitelist includes features, hrmAnniversary, whatsNew, autopay; RTK Query cache not persisted",
       "apps": {
-        "vmm": "src/configs/reduxState.ts:107-108; src/reducers/common/settingsReducer/settingsReducer.ts:73,111"
+        "vmm": "src/configs/reduxState.ts:107-126"
       },
       "newApp": "decide",
       "note": "",
       "decision": null
     },
     {
-      "id": "PLT-062",
+      "id": "PLT-182",
+      "area": "remote config",
+      "name": "Firebase Remote Config gates user-testing recruitment banner in AutoPay list",
+      "apps": {
+        "vmm": "src/screens/autopay/AutopayHomeTabPaymentsScreen/AutopayHomeTabPaymentsScreen.tsx:340-353"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-183",
+      "area": "remote config",
+      "name": "Firebase Remote Config supplies localized user-test description HTML (prod/stage keys)",
+      "apps": {
+        "vmm": "src/screens/UserTestingRecruitment/UserTestingTestDescriptionScreen/UserTestingTestDescriptionScreen.tsx:34-54"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-184",
+      "area": "app lifecycle",
+      "name": "AppState listener reloads AutoPay payments when app returns from background",
+      "apps": {
+        "vmm": "src/screens/autopay/AutopayHomeTabPaymentsScreen/AutopayHomeTabPaymentsScreen.tsx:296-313"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-185",
+      "area": "android",
+      "name": "Hardware back button clears AutoPay multiselect instead of navigating",
+      "apps": {
+        "vmm": "src/screens/autopay/AutopayHomeScreen/AutopayListMultiselectBar/AutopayListMultiselectBar.tsx:45-59"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-186",
+      "area": "device info",
+      "name": "react-native-device-info used for OS/model/version in feedback and user-testing payloads",
+      "apps": {
+        "vmm": "src/screens/FeedbackScreen/FeedbackScreen.tsx:60-69"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-187",
+      "area": "web",
+      "name": "Expo web build registers a service worker (/expo-service-worker.js)",
+      "apps": {
+        "vmm": "web-build/register-service-worker.js:3-14"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-188",
+      "area": "performance",
+      "name": "Screen performance tracing and React Profiler on AutoPay screens",
+      "apps": {
+        "vmm": "src/screens/autopay/AutopayHomeTabPaymentsScreen/AutopayHomeTabPaymentsScreen.tsx:402"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-189",
+      "area": "feature flags",
+      "name": "Business NXT integration, order edit and tabbed hub flags (dev-tools gated)",
+      "apps": {
+        "vmm": "src/selectors/bnxtOrders/bnxtOrdersSelectors.ts:9-20"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-190",
+      "area": "persistence",
+      "name": "Persisted redux slices include settings, osr, autopay, features, gaiaChat, gaiaRuns, hrmDialogueCollapsedGroups",
+      "apps": {
+        "vmm": "src/configs/reduxState.ts:108-127"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-191",
       "area": "navigation",
-      "name": "Root coordinator actions showCalendarFeed(initialDate) / showCalendarMonthView / appWillEnterForeground routed into the…",
+      "name": "Coordinator actions showCalendarFeed(initialDate) / showCalendarMonthView / appWillEnterForeground routed to calendar",
       "apps": {
         "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarCoordinator.swift:77-94"
       },
@@ -706,31 +1806,9 @@
       "decision": null
     },
     {
-      "id": "PLT-063",
-      "area": "lifecycle",
-      "name": "Month grid reloads the current month when the app returns to the foreground",
-      "apps": {
-        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarContainerViewController.swift:444-448"
-      },
-      "newApp": "decide",
-      "note": "",
-      "decision": null
-    },
-    {
-      "id": "PLT-064",
-      "area": "in-app messaging",
-      "name": "NotificationCenter AppMessage.reloadStartPage posted after a registration or time confirmation",
-      "apps": {
-        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AddAbsenceCoordinator/AddAbsenceCoordinator.swift:240"
-      },
-      "newApp": "decide",
-      "note": "",
-      "decision": null
-    },
-    {
-      "id": "PLT-065",
-      "area": "third-party SDK",
-      "name": "Survicate survey (requestSurveyShowingThankYouToast) after saving a registration",
+      "id": "PLT-192",
+      "area": "in-app survey",
+      "name": "Survicate survey with thank-you toast after saving absence/checkout or leaving balances",
       "apps": {
         "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AbsenceRegistrationCoordinator/CreateAbsenceRegistrationCoordinator.swift:86"
       },
@@ -739,143 +1817,2651 @@
       "decision": null
     },
     {
-      "id": "PLT-066",
-      "area": "local storage",
-      "name": "UserDefaults-backed calendar preferences (view mode, filter toggles, balances control options)",
-      "apps": {
-        "me-ios": "Modules/EmployeeAppCoreInterface/Sources/EmployeeAppCoreInterface/Preferences/UserPreferencesKeys.swift:13-21"
-      },
-      "newApp": "decide",
-      "note": "",
-      "decision": null
-    },
-    {
-      "id": "PLT-067",
-      "area": "permissions",
-      "name": "Microphone and speech recognition for agent voice input (SFSpeechRecognizer)",
-      "apps": {
-        "me-ios": "Employee/Info.plist:50-57; Employee/AppDependencies.swift:1182-1184"
-      },
-      "newApp": "decide",
-      "note": "",
-      "decision": null
-    },
-    {
-      "id": "PLT-068",
-      "area": "deep link / system URL",
-      "name": "Opens the app Settings page when speech permission is denied",
-      "apps": {
-        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/Chatbot/CalendarChatBotView.swift:40-44"
-      },
-      "newApp": "decide",
-      "note": "",
-      "decision": null
-    },
-    {
-      "id": "PLT-069",
-      "area": "external URL",
-      "name": "Agent feedback Google Form URL, hard-coded",
-      "apps": {
-        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/LearnMore/LearnMoreConstants.swift:12"
-      },
-      "newApp": "decide",
-      "note": "",
-      "decision": null
-    },
-    {
-      "id": "PLT-070",
+      "id": "PLT-193",
       "area": "app messaging",
-      "name": "Closing the agent posts AppMessage.reloadStartPage and AppMessage.resetCalendar",
+      "name": "NotificationCenter AppMessage.reloadStartPage posted after registration/confirm",
       "apps": {
-        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Coordinator/CalendarChatBotCoordinator.swift:79-82"
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AddAbsenceCoordinator/AddAbsenceCoordinator.swift:240"
       },
       "newApp": "decide",
       "note": "",
       "decision": null
     },
     {
-      "id": "PLT-071",
-      "area": "lifecycle",
-      "name": "Calendar list resets after the app returns from background (AppMessage.resetCalendarBackground)",
+      "id": "PLT-194",
+      "area": "app events",
+      "name": "TCA AppEventsFeature/AppEventPublisher bus for calendar, chatbot and absence-registration events (e.g. absenceViewAppea…",
       "apps": {
-        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarViewController.swift:138-139"
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/AppEvents/AppEventPublisher.swift:14-60"
       },
       "newApp": "decide",
       "note": "",
       "decision": null
     },
     {
-      "id": "PLT-072",
-      "area": "navigation entry",
-      "name": "Employee Agent opened from a calendar navigation bar button, presented modally",
+      "id": "PLT-195",
+      "area": "chatbot entry",
+      "name": "EditAbsenceRegistrationCoordinator initializers for editing from chatbot links and predictions",
       "apps": {
-        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarContainerViewController.swift:125-135,417-421"
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AbsenceRegistrationCoordinator/EditAbsenceRegistrationCoordinator.swift:58-80"
       },
       "newApp": "decide",
       "note": "",
       "decision": null
     },
     {
-      "id": "PLT-073",
-      "area": "dead code",
-      "name": "EditAbsenceRegistrationView and EditAbsenceRegistrationFeature are declared but never instantiated or scoped (not in Ca…",
+      "id": "PLT-196",
+      "area": "permissions",
+      "name": "Microphone and speech recognition usage descriptions used by chatbot voice input",
       "apps": {
-        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/EditAbsenceRegistration/EditAbsenceRegistrationView.swift:43"
+        "me-ios": "Employee/Info.plist:50, Employee/Info.plist:56"
       },
       "newApp": "decide",
       "note": "",
       "decision": null
     },
     {
-      "id": "PLT-074",
-      "area": "dead code",
-      "name": "AbsenceRegistrationEventsFeature logs nothing itself. Only the parent CalendarEventsFeature logs calendarBotEditRegistr…",
+      "id": "PLT-197",
+      "area": "deep link / system URL",
+      "name": "Opens UIApplication.openSettingsURLString when speech permission is denied",
       "apps": {
-        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Events/CalendarEventsFeature.swift:43-51"
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/Chatbot/CalendarChatBotView.swift:40-42"
       },
       "newApp": "decide",
       "note": "",
       "decision": null
     },
     {
-      "id": "PLT-075",
-      "area": "dead code",
-      "name": "GetAbsenceRegistration, GetDimensionValues and TimeService.getTimeTemplates are never called by production code (only m…",
+      "id": "PLT-198",
+      "area": "in-app messaging",
+      "name": "NotificationCenter AppMessage.resetCalendar / resetCalendarBackground observers reload calendar; chatbot close posts re…",
       "apps": {
-        "me-ios": "EmployeeServices/Calendar/Sources/Calendar/Request/Absence/GetAbsenceRegistration.swift:19; EmployeeServices/Calendar/Sources/Calendar/Request/Absence/GetDimensionValues.swift:20; EmployeeServices/Ca…"
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarViewController.swift:138-139; Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Coordinator/CalendarChatBotCoordinator.…"
       },
       "newApp": "decide",
       "note": "",
       "decision": null
     },
     {
-      "id": "PLT-076",
-      "area": "networking",
-      "name": "HATEOAS-driven endpoints: update/delete/checkout/confirm/dimension URLs come from server links, not constants",
+      "id": "PLT-199",
+      "area": "connectivity",
+      "name": "Reachability status change toggles offline placeholder and disables calendar buttons",
       "apps": {
-        "me-ios": "EmployeeServices/Calendar/Sources/Calendar/Service/TimeService.swift:113-126"
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarViewController.swift:913-960"
       },
       "newApp": "decide",
       "note": "",
       "decision": null
     },
     {
-      "id": "PLT-077",
+      "id": "PLT-200",
       "area": "analytics",
-      "name": "Snowplow structured calendar events built in SnowplowEventFactory",
+      "name": "Snowplow structured events in category CalendarBot for chatbot actions",
       "apps": {
-        "me-ios": "Modules/SnowplowAnalytics/Sources/SnowplowAnalytics/Events/Factory/SnowplowEventFactory.swift:38-59"
+        "me-ios": "Modules/SnowplowAnalytics/Sources/SnowplowAnalytics/Events/Events.swift:112-115, 370-385"
       },
       "newApp": "decide",
       "note": "",
       "decision": null
     },
     {
-      "id": "PLT-078",
+      "id": "PLT-201",
       "area": "dead code",
-      "name": "CalendarViewModelPayslip.getCellInstance asserts; migrated to PayslipsFeature",
+      "name": "EditAbsenceRegistrationFeature/EditAbsenceRegistrationView are defined but never presented (chat uses EditPredictedAbse…",
       "apps": {
-        "me-ios": "Employee/CalendarLeftover/CalendarViewModelPayslip.swift:33-36"
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/EditAbsenceRegistration/EditAbsenceRegistrationView.swift:43; no references found outside its own files"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-202",
+      "area": "external URL",
+      "name": "Hardcoded chatbot feedback form URL (Google Forms)",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/LearnMore/LearnMoreConstants.swift:4 (https://forms.gle/****)"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-203",
+      "area": "camera / photo library",
+      "name": "UIImagePickerController with camera or photo library source for the profile picture (needs NSCameraUsageDescription / p…",
+      "apps": {
+        "me-ios": "Modules/DottieFeature/Sources/DottieFeature/Features/EmployeeInfo/Sheets/ProfileImageSheet/ImagePickerView.swift:8-18"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-204",
+      "area": "file preview",
+      "name": "Quick Look preview of downloaded documents stored as temporary files that are deleted on dismiss",
+      "apps": {
+        "me-ios": "Modules/DottieFeature/Sources/DottieFeature/Features/DocumentsAndBenefits/DocumentsAndBenefitsView.swift:59-62"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-205",
+      "area": "in-app browser",
+      "name": "openURLInApp for external document links and benefit links; dismissing it triggers the mark-as-read prompt",
+      "apps": {
+        "me-ios": "Modules/DottieFeature/Sources/DottieFeature/Features/OrgDocumentPreview/OrgDocumentPreviewView.swift:17-23"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-206",
+      "area": "inbox integration",
+      "name": "Dottie notifications plugged into the shared InboxMessages inbox as InboxContentProvider id 'dottie-notifications'",
+      "apps": {
+        "me-ios": "Modules/DottieFeature/Sources/DottieFeature/Features/Notifications/DottieNotificationsInboxProvider.swift:9-33"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-207",
+      "area": "session / cache",
+      "name": "In-memory profile cache keyed by userId_tenantId and shared profile image; refreshed when stale (15 min) from Start pag…",
+      "apps": {
+        "me-ios": "Modules/DottieFeature/Sources/DottieFeature/Repository/DottieEmployeeRepository.Live.swift:7-58"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-208",
+      "area": "push",
+      "name": "APNs registration with multi-account token register/deregister on change",
+      "apps": {
+        "me-ios": "Employee/AppDelegate.swift:115-129"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-209",
+      "area": "push",
+      "name": "Badge count cleared when scene becomes active",
+      "apps": {
+        "me-ios": "Employee/SceneDelegate.swift:79-81"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-210",
+      "area": "security",
+      "name": "Passcode/biometric lock presented on launch and after background timeout when a session is active",
+      "apps": {
+        "me-ios": "Employee/SceneDelegate.swift:67-73,134-138"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-211",
+      "area": "security",
+      "name": "Blur overlay hides sensitive content in app switcher",
+      "apps": {
+        "me-ios": "Employee/SceneDelegate.swift:83-92,150-156"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-212",
+      "area": "storage",
+      "name": "KeychainBiometricStorage for biometric token (service Constants.Security.biometricKeychainService)",
+      "apps": {
+        "me-ios": "Employee/AppDependencies.swift:244-252"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-213",
+      "area": "storage",
+      "name": "UserDefaultsPasscodeRepository for passcode configuration",
+      "apps": {
+        "me-ios": "Employee/AppDependencies.swift:452"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-214",
+      "area": "deep link",
+      "name": "URLRouterCoordinator started at launch; scene openURLContexts is empty",
+      "apps": {
+        "me-ios": "Employee/SceneDelegate.swift:94-95,115-117"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-215",
+      "area": "app group",
+      "name": "App group group.com.visma.vme.payslip.shared (AppStore) / group.com.visma.Employee.shared",
+      "apps": {
+        "me-ios": "Employee/EmployeeAppConstants.swift:13-19"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-216",
+      "area": "analytics",
+      "name": "Snowplow analytics and Survicate surveys configured",
+      "apps": {
+        "me-ios": "Employee/AppDependencies.swift:156-170,491-494"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-217",
+      "area": "tips",
+      "name": "TipKit configured with immediate display frequency",
+      "apps": {
+        "me-ios": "Employee/AppDelegate.swift:100-108"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-218",
+      "area": "third-party",
+      "name": "Google Maps / Google Places SDK and ThirdPartyKeyProvisioner initialized from storage",
+      "apps": {
+        "me-ios": "Employee/AppDelegate.swift:25-26,95"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-219",
+      "area": "push",
+      "name": "Push permission request and APNs registration on app entry; deregisters stored token if denied",
+      "apps": {
+        "me-ios": "Employee/MainCoordinator/MainCoordinator.swift:409-427"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-220",
+      "area": "push",
+      "name": "UNUserNotificationCenter delegate: foreground banner+sound and tap routing by eventId",
+      "apps": {
+        "me-ios": "Employee/PushNotifications/PushNotificationHandlingService.UserNotificationsCenter.swift:11-29"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-221",
+      "area": "push",
+      "name": "Multi-account push registration: device token registered for every authenticated account",
+      "apps": {
+        "me-ios": "Employee/PushNotifications/MultiAccountPushManager.live.swift:37-73"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-222",
+      "area": "storage",
+      "name": "APNs device token kept in UserDefaults key <bundleID>.deviceToken",
+      "apps": {
+        "me-ios": "Employee/PushNotifications/PushTokenStorage.userDefaults.swift:14-25"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-223",
+      "area": "auth",
+      "name": "OAuth login via ASWebAuthenticationSession, ephemeral session, universal-link callback (AllowedAppLinks.hostname/callba…",
+      "apps": {
+        "me-ios": "Employee/Accounts/Feature/Login/OAuthLogin.live.swift:35-44"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-224",
+      "area": "biometrics",
+      "name": "Biometric app lock using Keychain item with .userPresence and kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly, optional…",
+      "apps": {
+        "me-ios": "Employee/Security/Biometric/BiometricSecureStorage.swift:28-55"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-225",
+      "area": "biometrics",
+      "name": "LocalAuthentication capability checks (Face ID / Touch ID / Optic ID mapped to Face ID)",
+      "apps": {
+        "me-ios": "Employee/Security/DeviceSecurityService.swift:12-32"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-226",
+      "area": "security",
+      "name": "App lock window presented on launch/resume above main window when PIN or biometric token exists",
+      "apps": {
+        "me-ios": "Employee/Security/Passcode/PasscodePresenter.swift:39-63"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-227",
+      "area": "security",
+      "name": "Legacy UserDefaults PIN repository (plain string array) used only by UserDataMigrationService",
+      "apps": {
+        "me-ios": "Employee/Security/Passcode/UserDefaultsPasscodeRepository.swift:40-50"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-228",
+      "area": "developer",
+      "name": "developerForcePincode AppStorage flag disables biometrics",
+      "apps": {
+        "me-ios": "Employee/Security/DeveloperForcePincodeKey.swift:6-8"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-229",
+      "area": "developer",
+      "name": "Hidden 5-tap environment switcher on login screen (staging/production), not DEBUG-gated",
+      "apps": {
+        "me-ios": "Employee/Accounts/Feature/Login/SelectAccountView.swift:48-50"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-230",
+      "area": "extension",
+      "name": "Share extension can change current company; main app reloads context on foreground",
+      "apps": {
+        "me-ios": "Employee/MainCoordinator/MainCoordinator.swift:371-377"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-231",
+      "area": "app update",
+      "name": "Forced/optional app update gate (AppUpdateCoordinator via RemoteControl) before entering app",
+      "apps": {
+        "me-ios": "Employee/MainCoordinator/MainCoordinator.swift:75-81"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-232",
+      "area": "navigation",
+      "name": "Start tab root: StartPageCoordinator shows StartPageViewController from the StartPage storyboard in a TabNavigationCont…",
+      "apps": {
+        "me-ios": "Employee/StartPage/Coordinator/StartPageCoordinator.swift:28-62"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-233",
+      "area": "in-app messaging",
+      "name": "NotificationCenter AppMessage.reloadStartPage triggers a start page reload; AppMessage.resetCalendar is posted after ch…",
+      "apps": {
+        "me-ios": "Employee/StartPage/StartPageViewController.swift:418-420; Employee/StartPage/ViewControllerCheckinWrapper.swift:158-160"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-234",
+      "area": "connectivity",
+      "name": "Reachability listener reloads the start page on online/offline change; offline disables quick actions and adds an offli…",
+      "apps": {
+        "me-ios": "Employee/StartPage/StartPageViewController.swift:1054-1075"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-235",
+      "area": "biometrics",
+      "name": "First-run biometrics setup gate before the start page loads",
+      "apps": {
+        "me-ios": "Employee/StartPage/StartPageViewController.swift:222-234"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-236",
+      "area": "web",
+      "name": "Survey form opens in Safari (SafariCoordinator); information-message links open externally via MEURLHandler",
+      "apps": {
+        "me-ios": "Employee/StartPage/Cards/DetailProviders/SurveyCardDetailsProvider.swift:30-31; Employee/StartPage/Cards/DetailProviders/InformationCardDetailsProvider.swift:31-34"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-237",
+      "area": "UI / OS version",
+      "name": "iOS 26 Liquid Glass branches: company selector moves to a nav-bar UIMenu, large titles are turned off, and bar button b…",
+      "apps": {
+        "me-ios": "Employee/StartPage/StartPageViewController.swift:634-660,778-781"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-238",
+      "area": "sync",
+      "name": "SyncService.sync() runs before every start page data load",
+      "apps": {
+        "me-ios": "Employee/StartPage/StartPageViewController.swift:407-413,430-434"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-239",
+      "area": "security",
+      "name": "Auto-lock after 15 seconds in background (securityLockTimer pause/resume, lockTimeout 15.0)",
+      "apps": {
+        "me-ios": "Employee/Services/SecurityService.swift:129-139"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-240",
+      "area": "security",
+      "name": "Security state sanitizer on launch (align login type with biometric token/PIN presence)",
+      "apps": {
+        "me-ios": "Employee/Services/SecurityService.swift:149-164"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-241",
+      "area": "migration",
+      "name": "Biometric migration: legacy PIN replaced by biometric token when device owner auth is available",
+      "apps": {
+        "me-ios": "Employee/Services/Migration/BiometricMigrationService.swift:21-57"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-242",
+      "area": "migration",
+      "name": "Multi-user migration of single-user storage, login type and passcode",
+      "apps": {
+        "me-ios": "Employee/Services/Migration/MultiuserMigrationService.swift:28-33"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-243",
+      "area": "migration",
+      "name": "Realm and user data migrations",
+      "apps": {
+        "me-ios": "Employee/Services/Migration/RealmMigrationService.swift:1"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-244",
+      "area": "app group",
+      "name": "Shared app-group container with per-user Realm db_<sha256(userId)>.realm and shared UserDefaults (used by extensions)",
+      "apps": {
+        "me-ios": "Modules/EmployeeAppCore/Sources/EmployeeAppCore/SharedContainer/SharedContainer.swift:21-40"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-245",
+      "area": "deep link",
+      "name": "Universal link hosts static.mobileemployee(.stag).visma.net with /auth/callback (OAuth) and /close (registered but not…",
+      "apps": {
+        "me-ios": "EmployeeServices/EmployeeAPIInterface/Sources/EmployeeAPIInterface/APIInterfaceConstants.swift:67-96; Employee/Shared/URLRouter/URLRouterCoordinator.swift:22-42"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-246",
+      "area": "push",
+      "name": "Push registration on login and unregistration on logout",
+      "apps": {
+        "me-ios": "Employee/Services/AppStateService.swift:59-64,73-83"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-247",
+      "area": "speech",
+      "name": "Speech recognition service (SFSpeechRecognizer + AVAudioEngine) with mic/speech permission checks",
+      "apps": {
+        "me-ios": "Modules/EmployeeAppCore/Sources/EmployeeAppCore/Services/SpeechRecognition/SpeechRecognizerService.speechFramework.swift:16-176"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-248",
+      "area": "photos",
+      "name": "Save photo to Photo Library",
+      "apps": {
+        "me-ios": "Modules/EmployeeAppCore/Sources/EmployeeAppCore/Photos/PhotoLibrary.swift:15"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-249",
+      "area": "telemetry",
+      "name": "Client error logging POST /employee/api/v1/logging/clienterror (202 empty allowed)",
+      "apps": {
+        "me-ios": "EmployeeServices/EmployeeAPIInterface/Sources/EmployeeAPIInterface/Request/PostClientError.swift:11-28"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-250",
+      "area": "config",
+      "name": "Third-party keys (Firebase, Google Maps, Google Places, LaunchDarkly, Survicate) fetched from backend, cached and appli…",
+      "apps": {
+        "me-ios": "Employee/Services/ThirdPartyKeys/ThirdPartyKeyProvisioner.swift:25-56; Employee/Services/ThirdPartyKeys/FirebaseKeyInitializer.swift:25"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-251",
+      "area": "network",
+      "name": "API base URLs https://mobileemployee.visma.net (prod) / mobileemployee.stag.visma.net; Visma Connect authorize/token/re…",
+      "apps": {
+        "me-ios": "EmployeeServices/EmployeeAPIInterface/Sources/EmployeeAPIInterface/APIInterfaceConstants.swift:33-50; EmployeeServices/EmployeeAPI/Sources/EmployeeAPI/APIConstants.swift:12-60"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-252",
+      "area": "maps",
+      "name": "MapKit hotel/POI search (MKLocalSearchCompleter) for allowance lodging",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Allowance/Repository/HotelSearch/MapKitSearchService.swift:11-21"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-253",
+      "area": "photos",
+      "name": "Save attachment image to photo library (needs NSPhotoLibraryAddUsageDescription), falls back to opening Settings",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Attachments/AttachmentsFeature.swift:274-341"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-254",
+      "area": "camera",
+      "name": "Receipt scanner (camera/library/file sources) for adding attachments",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Attachments/ReceiptScannerView.swift:8-20"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-255",
+      "area": "quicklook",
+      "name": "QuickLook preview of attachments",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Attachments/AttachmentsView.swift:7-21"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-256",
+      "area": "files",
+      "name": "Export attachment file through the Files document picker",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Attachments/MediaPickerExportView.swift:1-61"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-257",
+      "area": "sync",
+      "name": "Sync plus calendar/start-page reload after an allowance is saved or deleted (NotificationCenter AppMessage.resetCalenda…",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Allowance/Coordinator/AddAllowanceCoordinator.swift:167-180"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-258",
+      "area": "feature flag",
+      "name": "rollBackToDraft flag sent with direct send-for-approval",
+      "apps": {
+        "me-ios": "EmployeeServices/Expense/Sources/Expense/Service/ExpenseService.swift:237-246"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-259",
+      "area": "camera",
+      "name": "Camera permission requested before receipt scanner (AVCaptureDevice.requestAccess for .video)",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Coordinators/AddNewReceiptCoordinator.swift:58-65"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-260",
+      "area": "in-app browser",
+      "name": "Emission methodology links (cornell.edu, ducky.eco) opened in-app",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/ClimateReports/Views/EmissionReports/HowDoWeCalculateEmissionsView.swift:26-33; Modules/EmployeeExpenses/Sources/EmployeeExpenses/ClimateReports/View…"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-261",
+      "area": "in-app survey",
+      "name": "Survicate thank-you survey requested after a receipt is saved or edited in a claim",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Coordinators/AddNewReceiptCoordinator.swift:268-272; Modules/EmployeeExpenses/Sources/EmployeeExpenses/Coordinators/EditReceiptInClaimCoordinator.swi…"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-262",
+      "area": "cross-screen refresh",
+      "name": "NotificationCenter AppMessage.reloadStartPage/resetCalendar/reloadReceiptScreen after claim changes",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Claims/ClaimsTableViewController.swift:282-284; Modules/EmployeeExpenses/Sources/EmployeeExpenses/Coordinators/PresentExpenseCoordinator.swift:62-66"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-263",
+      "area": "sync",
+      "name": "Receipt/draft sync triggered after claim save (syncService.syncReceipts / sync)",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Claims/Create/CreateClaimViewController.swift:243; Modules/EmployeeExpenses/Sources/EmployeeExpenses/Coordinators/EditReceiptInClaimCoordinator.swift…"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-264",
+      "area": "permissions",
+      "name": "When-in-use location for adding mileage (current location as start or destination)",
+      "apps": {
+        "me-ios": "Employee/Info.plist:48; Modules/EmployeeExpenses/Sources/EmployeeExpenses/Location/LocationService.swift"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-265",
+      "area": "third-party SDK",
+      "name": "Google Maps and Places SDK with an API key initializer (key value not reproduced)",
+      "apps": {
+        "me-ios": "Employee/Services/ThirdPartyKeys/GoogleMapsKeyInitializer.swift:14"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-266",
+      "area": "sync",
+      "name": "Offline mileage drafts are saved locally and uploaded later by SyncService; a reachability listener blocks online-only…",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Mileage/Repository/DraftRepository.mileageDatabase.swift; Modules/EmployeeExpenses/Sources/EmployeeExpenses/Mileage/ViewModels/ExpenseMileageViewMode…"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-267",
+      "area": "in-app messaging",
+      "name": "NotificationCenter AppMessage reloadReceiptScreen, reloadStartPage, resetCalendar and reloadExpenseScreen refresh other…",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Mileage/Coordinators/EditMileageInClaimCoordinator.swift:131-140"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-268",
+      "area": "extension",
+      "name": "Receipt detail reused by the Expense share extension (saveFromExtension config, resource release)",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Receipts/ReceiptDetailViewController.swift:142-147,255-270"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-269",
+      "area": "quicklook",
+      "name": "PDF receipt preview via QLPreviewController with temp file",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Receipts/ReceiptDetailViewController.swift:1533-1560"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-270",
+      "area": "connectivity",
+      "name": "Reachability listener toggles offline banner and disables send/merge actions",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Receipts/ReceiptDetailViewController.swift:2561-2580,2674"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-271",
+      "area": "background sync",
+      "name": "Receipt upload/sync triggered on inbox open and after merge; sync events drive list reload",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Receipts/Features/ReceiptsList/ReceiptsListFeature.swift:493-545"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-272",
+      "area": "maps",
+      "name": "Server-proxied directions (POST /employee/api/v1/maps/directions) and Google Places search for distance",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Receipts/Models/ReceiptDetailViewModel.swift:1401-1441"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-273",
+      "area": "storage",
+      "name": "UserDefaults: submit-for-approval don't-show-again flag and distance suggestions",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Receipts/ReceiptDetailViewController.swift:684-738,2459-2472"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-274",
+      "area": "camera",
+      "name": "Camera capture with permission gate and open-Settings fallback (WeScan)",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Wescan/CameraViewController.swift:112-196"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-275",
+      "area": "photos",
+      "name": "Photo library picker (UIImagePickerController .photoLibrary)",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Wescan/MediaPickerCoordinator.swift:54-95"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-276",
+      "area": "files",
+      "name": "Document picker import (pdf, image), security-scoped URL, and export to Files",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Wescan/MediaPickerCoordinator.swift:97-197"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-277",
+      "area": "background sync",
+      "name": "Reachability-triggered expense sync on background-QoS OperationQueues",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Services/SyncService.swift:80-82,324-330"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-278",
+      "area": "extension",
+      "name": "Share extension uses Smartscan for shared receipts (ExpenseShareExtension/ShareReceiptCoordinator)",
+      "apps": {
+        "me-ios": "ExpenseShareExtension/ShareReceiptCoordinator.swift:288"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-279",
+      "area": "third-party SDK",
+      "name": "Google Places autocomplete (placeProvider) with Powered-by-Google attribution",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Receipts/Repository/SearchList.Places/SearchListRepository.places.swift:54-97"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-280",
+      "area": "third-party SDK",
+      "name": "Survicate survey thank-you toast after saving or adding expenses to a claim",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Receipts/ReceiptsCoordinator.swift:276,297"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-281",
+      "area": "notifications (in-app)",
+      "name": "NotificationCenter AppMessage.reloadReceiptScreen reloads the expenses list",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Receipts/Repository/ReceiptsRepositoryClient.Live.swift:491-501"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-282",
+      "area": "orientation",
+      "name": "Camera scanner locked to portrait",
+      "apps": {
+        "me-ios": "Modules/EmployeeExpenses/Sources/EmployeeExpenses/Wescan/CameraViewController.swift:228-230"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-283",
+      "area": "permissions",
+      "name": "Speech recognition / microphone for voice-to-text in the assistant prompt bar",
+      "apps": {
+        "me-ios": "Modules/EmployeeAppCoreInterface/Sources/EmployeeAppCoreInterface/Services/SpeechRecognizerService.swift:13-38; Modules/EmployeeChatBot/Sources/EmployeeChatBot/View/PromptBar.swift:30-67"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-284",
+      "area": "storage/security",
+      "name": "Realm encryption key in the keychain (generic password, AfterFirstUnlock, optional access group)",
+      "apps": {
+        "me-ios": "EmployeeServices/EmployeeCore/Sources/EmployeeCore/Services/CryptoService/CryptoService.swift:21-110; EmployeeServices/EmployeeCore/Sources/EmployeeCore/Dependencies/CoreDependencyFactory.swift:16-21"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-285",
+      "area": "app group",
+      "name": "Shared container for the shared/per-user Realm files and shared UserDefaults (used by extensions)",
+      "apps": {
+        "me-ios": "Modules/EmployeeAppCoreInterface/Sources/EmployeeAppCoreInterface/SharedContainer/SharedContainer.swift:11-17"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-286",
+      "area": "storage",
+      "name": "Versioned encrypted Realm schema with migrations; the DB file is deleted when it cannot be opened",
+      "apps": {
+        "me-ios": "EmployeeServices/EmployeeDatabase/Sources/EmployeeDatabase/RealmService.swift:64-128; EmployeeServices/EmployeeDatabase/Sources/EmployeeDatabase/DatabaseConstants.swift:84"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-287",
+      "area": "storage",
+      "name": "UserDefaults preference keys (receipt hint, company selector, review prompt timing, survey dont-show-again, submit-for-…",
+      "apps": {
+        "me-ios": "Modules/EmployeeAppCoreInterface/Sources/EmployeeAppCoreInterface/Preferences/UserPreferencesKeys.swift:3-22"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-288",
+      "area": "connectivity",
+      "name": "Network reachability monitor shared as the in-memory 'isConnected' state",
+      "apps": {
+        "me-ios": "Modules/EmployeeAppCoreInterface/Sources/EmployeeAppCoreInterface/NetworkMonitor/NetworkMonitorReducer.swift:24-60"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-289",
+      "area": "photos",
+      "name": "Save photo to the photo library (interface only)",
+      "apps": {
+        "me-ios": "Modules/EmployeeAppCoreInterface/Sources/EmployeeAppCoreInterface/Photos/PhotoLibrary.swift:10-12"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-290",
+      "area": "appearance",
+      "name": "User-selectable appearance (light/dark) manager interface",
+      "apps": {
+        "me-ios": "Modules/EmployeeAppCoreInterface/Sources/EmployeeAppCoreInterface/Appearance/AppearanceManager.swift:12-23"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-291",
+      "area": "navigation",
+      "name": "Coordinator presenters (push, modal, sheet, tab bar, window) and URLHandler for opening external URLs",
+      "apps": {
+        "me-ios": "Modules/EmployeeAppCoreInterface/Sources/EmployeeAppCoreInterface/Coordinator/Coordinator.swift; Modules/EmployeeAppCoreInterface/Sources/EmployeeAppCoreInterface/URLHandler/URLHandler.swift:10-12"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-292",
+      "area": "clipboard",
+      "name": "Copy to system pasteboard via PasteboardHandler TCA dependency (UIPasteboard.general)",
+      "apps": {
+        "me-ios": "Modules/EmployeeUIComponents/Sources/EmployeeUIComponents/PasteboardHandler.Dependencies.swift:5-22"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-293",
+      "area": "analytics",
+      "name": "Free-text AnalyticsService.log breadcrumbs in form cells and item selector (e.g. 'Date cell tapped', 'Flight duration s…",
+      "apps": {
+        "me-ios": "Modules/EmployeeUIComponents/Sources/EmployeeUIComponents/FormCells/FormDateTableViewCell.swift:119-147"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-294",
+      "area": "permissions",
+      "name": "Microphone and speech-recognition usage descriptions for voice input to the employee agent",
+      "apps": {
+        "me-ios": "Employee/Info.plist:50-57"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-295",
+      "area": "in-app browser",
+      "name": "SFSafariView / openURLInApp modifier opens web links inside the app with SFSafariViewController (used by the Calendar c…",
+      "apps": {
+        "me-ios": "Modules/EmployeeUIComponents/Sources/EmployeeUIComponents/SwiftUI/SFSafariView/SafariViewControllerViewModifier.swift:30-51"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-296",
+      "area": "push notifications",
+      "name": "New payslip push opens payslip detail modal",
+      "apps": {
+        "me-ios": "Employee/PushNotifications/Events/NewPayslipNotificationPayload.swift:29; Employee/Payslips/Coordinator/ShowPayslipCoordinator.swift:36-77"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-297",
+      "area": "push notifications",
+      "name": "Year-end report push opens report modal",
+      "apps": {
+        "me-ios": "Employee/PushNotifications/Events/YearEndNotificationPayload.swift:29; Employee/Payslips/Coordinator/ShowEndYearCoordinator.swift:62"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-298",
+      "area": "document preview",
+      "name": "QuickLook preview of payslip / export / year-end PDFs",
+      "apps": {
+        "me-ios": "Modules/PayslipsFeature/Sources/PayslipFeature/Features/Main/MainPayslipView.swift:401; Modules/PayslipsFeature/Sources/PayslipFeature/Features/PayslipDetail/PayslipDetailView.swift:77; Modules/Paysl…"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-299",
+      "area": "app review",
+      "name": "App rating prompt triggered after viewing a payslip",
+      "apps": {
+        "me-ios": "Modules/PayslipsFeature/Sources/PayslipFeature/Features/AppRating/AppRatingFeature.swift:24-40; Employee/Payslips/Service/AppRatingService.RatingService.swift:13-17"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-300",
+      "area": "in-app survey",
+      "name": "Survicate survey after leaving payslip detail when no review prompt is shown",
+      "apps": {
+        "me-ios": "Modules/PayslipsFeature/Sources/PayslipFeature/Features/Main/MainPayslipFeature.swift:301-305; Modules/PayslipsFeature/Sources/PayslipFeature/Features/Main/PayslipDetail/MainPayslipDetailFeature.swif…"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-301",
+      "area": "app lifecycle",
+      "name": "Payslips reset and reload when app enters foreground",
+      "apps": {
+        "me-ios": "Employee/Payslips/Coordinator/PayslipsListCoordinator.swift:101-102"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-302",
+      "area": "connectivity",
+      "name": "Network monitor drives offline overlay and disables year-end PDF",
+      "apps": {
+        "me-ios": "Modules/PayslipsFeature/Sources/PayslipFeature/Features/Main/MainPayslipView.swift:451-456; Modules/PayslipsFeature/Sources/PayslipFeature/Features/YearEndReport/YearEndReportDetailView.swift:36"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-303",
+      "area": "entry point",
+      "name": "Start-page payslip card presents payslip detail",
+      "apps": {
+        "me-ios": "Employee/StartPage/Cards/DetailProviders/PayslipCardDetailsProvider.swift:86"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-304",
+      "area": "navigation",
+      "name": "Personal Information pushed from Start page",
+      "apps": {
+        "me-ios": "Employee/StartPage/StartPageViewController.swift:834-836"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-305",
+      "area": "navigation",
+      "name": "Personal Information presented modally from User Profile",
+      "apps": {
+        "me-ios": "Employee/Accounts/Feature/UserProfile/UserProfileCoordinator.swift:118-125"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-306",
+      "area": "navigation",
+      "name": "Interactive pop / sheet dismiss blocked when unsaved changes (UIGestureRecognizerDelegate, UIAdaptivePresentationContro…",
+      "apps": {
+        "me-ios": "Modules/PersonalInformation/Sources/PersonalInformation/Coordinator/PersonalInformationCoordinator.swift:106-133"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-307",
+      "area": "feature flag",
+      "name": "changeBankAccount company feature access gates bank account editing",
+      "apps": {
+        "me-ios": "Modules/PersonalInformation/Sources/PersonalInformation/UserPersonalInformationToUIModelMapper.swift:37"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-308",
+      "area": "analytics",
+      "name": "Snowplow event names Save changes success / failed / polling timeout",
+      "apps": {
+        "me-ios": "Modules/SnowplowAnalytics/Sources/SnowplowAnalytics/Events/Events.swift:386-390"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-309",
+      "area": "push notification",
+      "name": "New inbox message push opens the inbox coordinator",
+      "apps": {
+        "me-ios": "Employee/PushNotifications/Events/NewInboxMessageNotificationPayload.swift:30-34"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-310",
+      "area": "remote config",
+      "name": "LaunchDarkly feature flags with an anonymous 'me-ios' context (app_version, os_version, os_name); the mobile key comes…",
+      "apps": {
+        "me-ios": "Modules/FeatureKit/Sources/FeatureKit/Core/RemoteConfigClient/RemoteConfigClient.LaunchDarkly.swift:66-86"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-311",
+      "area": "secure storage",
+      "name": "Third-party SDK keys (LaunchDarkly, Firebase, GoogleMaps, GooglePlaces, Survicate) are fetched from the server and cach…",
+      "apps": {
+        "me-ios": "EmployeeServices/ThirdPartyKeys/Sources/ThirdPartyKeys/Service/ThirdPartyKeysService.Live.swift:3-36; EmployeeServices/ThirdPartyKeys/Sources/ThirdPartyKeys/Storage/ThirdPartyKeysStore.swift:11-43 (G…"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-312",
+      "area": "secure storage",
+      "name": "User session, logged-in users and the per-user current company context are persisted in SecureStorage",
+      "apps": {
+        "me-ios": "EmployeeServices/UserService/Sources/UserService/Service/UserService.swift:98-99,254-256,329-331"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-313",
+      "area": "maps",
+      "name": "Google Maps / Places provider (map view, path geometry, place autocomplete) used by mileage",
+      "apps": {
+        "me-ios": "Modules/GoogleMapsProvider/Sources/GoogleMapsProvider/GoogleMapsProviderRegistration.swift:13-17"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-314",
+      "area": "analytics",
+      "name": "Snowplow tracker with structured, unstructured and timing events and custom contexts (meal_count, sequence)",
+      "apps": {
+        "me-ios": "Modules/SnowplowAnalytics/Sources/SnowplowAnalytics/Events/Events.swift:13-148; Modules/SnowplowAnalytics/Sources/SnowplowAnalytics/Service/SnowplowService.swift"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-315",
+      "area": "app lifecycle",
+      "name": "Remote-control forced or suggested update gate at launch, which replaces window.rootViewController",
+      "apps": {
+        "me-ios": "Modules/RemoteControl/Sources/RemoteControl/UI/AppUpdateCoordinator.swift:33-53; Employee/MainCoordinator/MainCoordinator.swift:75-81"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-316",
+      "area": "reachability",
+      "name": "NetworkMonitorReducer in the inbox reloads when connectivity returns",
+      "apps": {
+        "me-ios": "Modules/InboxMessages/Sources/InboxMessages/InboxMessagesFeature.swift:156-157"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-317",
+      "area": "permissions",
+      "name": "RECORD_AUDIO runtime permission for voice input in the calendar assistant chat",
+      "apps": {
+        "me-android": "absence/src/main/java/com/visma/employee/calendar/calendar_bot/presentation/chat/CalendarBotChatScreen.kt:121-127"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-318",
+      "area": "speech",
+      "name": "Speech-to-text voice input handler feeding the chat input bar",
+      "apps": {
+        "me-android": "absence/src/main/java/com/visma/employee/calendar/calendar_bot/presentation/chat/CalendarBotChatViewModel.kt:106-130"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-319",
+      "area": "navigation",
+      "name": "Navigation3 NavKey entries for absence feed, event selection, add/edit event, details, summary, calendar bot chat and l…",
+      "apps": {
+        "me-android": "absence/src/main/java/com/visma/employee/navigation/entries/AbsenceEntries.kt:107-190"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-320",
+      "area": "surveys",
+      "name": "Survicate NPS survey trigger after registration save and time confirmation",
+      "apps": {
+        "me-android": "absence/src/main/java/com/visma/employee/absence/add_event/AddEventViewModel.kt:287-299"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-321",
+      "area": "gestures",
+      "name": "Drag-to-select date range and swipe month navigation on calendar grid",
+      "apps": {
+        "me-android": "absence/src/main/java/com/visma/employee/absence/feed/calendar_view/components/calendar/CalendarView.kt:186-210"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-322",
+      "area": "camera",
+      "name": "CameraX receipt scanner with ML object detection and auto-crop",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/camera/CameraCoordinator.kt:97-160"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-323",
+      "area": "file picker",
+      "name": "ACTION_GET_CONTENT chooser for image/PDF",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/camera/CameraCoordinator.kt:199-214"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-324",
+      "area": "store",
+      "name": "Google Play In-App Review flow",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/core/analytics/AppReviewManagerImpl.kt:24-58"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-325",
+      "area": "remote config",
+      "name": "RemoteControl config force/suggested update gate",
+      "apps": {
+        "me-android": "absence/src/main/java/com/visma/employee/absence/data/important_info/ImportantInfoServiceImpl.kt:37-78"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-326",
+      "area": "survey",
+      "name": "Survicate NPS trigger on leaving balances",
+      "apps": {
+        "me-android": "absence/src/main/java/com/visma/employee/absence/summary/AbsenceSummaryViewModel.kt:72-74"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-327",
+      "area": "external link",
+      "name": "Calendar bot feedback opens Google Form in browser",
+      "apps": {
+        "me-android": "absence/src/main/java/com/visma/employee/calendar/calendar_bot/presentation/learn_more/CalendarBotLearnMoreViewModel.kt:62-70"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-328",
+      "area": "navigation",
+      "name": "Navigation3 absence entries (feed, selection, summary, details, bot chat/learn more, add/edit)",
+      "apps": {
+        "me-android": "absence/src/main/java/com/visma/employee/navigation/entries/AbsenceEntries.kt:107-198"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-329",
+      "area": "connectivity",
+      "name": "Auto reload balances on connection restored",
+      "apps": {
+        "me-android": "absence/src/main/java/com/visma/employee/absence/summary/AbsenceSummaryViewModel.kt:50-60"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-330",
+      "area": "push",
+      "name": "Notification channels and channel groups created at startup",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/home/NotificationHandler.kt:22-35"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-331",
+      "area": "push",
+      "name": "Notification tap router (account/company switch + redirectTo deep link)",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/home/NotificationHandler.kt:37-90"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-332",
+      "area": "permissions",
+      "name": "POST_NOTIFICATIONS runtime request on Android 13+ with snackbar to settings on denial",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/home/MainActivity.kt:203-215,748-759"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-333",
+      "area": "deep link",
+      "name": "Gated root deep-link handler (lock/welcome deferral)",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/home/MainActivity.kt:572-614"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-334",
+      "area": "auth",
+      "name": "OAuth auth-callback intent capture and login re-host",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/home/MainActivity.kt:256-259,616-636,761-782"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-335",
+      "area": "share extension",
+      "name": "ACTION_SEND share target handling",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/home/MainActivity.kt:465-570"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-336",
+      "area": "security",
+      "name": "App lock shown on resume when locked; timestamp on pause",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/home/MainActivity.kt:317-335"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-337",
+      "area": "startup",
+      "name": "Splash screen with remote update gate and push device registration + analytics init",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/home/MainActivity.kt:217-221,337-459"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-338",
+      "area": "storage",
+      "name": "Corrupted storage event clears auth data",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/home/MainActivity.kt:338-345"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-339",
+      "area": "security",
+      "name": "App lock with biometrics / device credential / PIN after 180 s in background",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/navigation/entries/LockEntries.kt:111-140; app/src/main/java/com/visma/employee/core/SecurityServiceImpl.kt:61-78"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-340",
+      "area": "security",
+      "name": "Automatic security-type migration on lock (upgrade PIN to biometrics, downgrade when device lock removed)",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/core/SecurityMigrationHandlerImpl.kt:15-55"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-341",
+      "area": "security",
+      "name": "Screenshot allow/block preference",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/core/SecurityServiceImpl.kt:53-59"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-342",
+      "area": "background",
+      "name": "WorkManager with HiltWorkerFactory configured in Application",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/Application.kt:41-45"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-343",
+      "area": "storage",
+      "name": "DataStore-to-Room migration at app start",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/Application.kt:34"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-344",
+      "area": "remote config",
+      "name": "RemoteConfigService closed on terminate",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/Application.kt:22-50"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-345",
+      "area": "camera",
+      "name": "Camera permission request and ML prominent-object detection for receipts",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/navigation/entries/CameraEntry.kt:140-165"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-346",
+      "area": "share",
+      "name": "Inbound share (shareUri) routed to receipt camera flow with employer picker",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/navigation/entries/CameraEntry.kt:263-271; app/src/main/java/com/visma/employee/home/dialogs/MainActivityDialogs.kt:41-51"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-347",
+      "area": "auth",
+      "name": "OAuth auth-callback consumption on login screen",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/navigation/entries/LoginEntries.kt:123-129"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-348",
+      "area": "system",
+      "name": "Clipboard copy of colleague details",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/navigation/entries/DottieEntries.kt:109-113"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-349",
+      "area": "system",
+      "name": "Vibration on wrong PIN",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/navigation/entries/LockEntries.kt:146-150"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-350",
+      "area": "navigation",
+      "name": "Navigation3 NavKeys for all app destinations",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/navigation/keys/AppNavKeys.kt:11-71"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-351",
+      "area": "push",
+      "name": "DefaultFirebaseMessagingService (FCM messages and token refresh)",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/core/notification/DefaultFirebaseMessagingService.kt:23-75"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-352",
+      "area": "deep link",
+      "name": "https app links /app/* (autoVerify) on static.mobileemployee(.stag).visma.net",
+      "apps": {
+        "me-android": "app/src/main/AndroidManifest.xml:87-97"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-353",
+      "area": "deep link",
+      "name": "OAuth callback https /auth/callback (autoVerify) and vismame://auth/callback",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/navigation/RootDeepLinks.kt:161-170"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-354",
+      "area": "share extension",
+      "name": "ACTION_SEND intent filter for images and PDFs",
+      "apps": {
+        "me-android": "app/src/main/AndroidManifest.xml:99-105"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-355",
+      "area": "biometrics",
+      "name": "BiometricPrompt lock and setup (BIOMETRIC_STRONG / DEVICE_CREDENTIAL)",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/navigation/RootHostBiometricActions.kt:13-81"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-356",
+      "area": "security",
+      "name": "Lock re-push policy and screenshot blocking (FLAG_SECURE)",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/navigation/LockRepushPolicy.kt:11-18"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-357",
+      "area": "camera/ML",
+      "name": "ML Kit prominent-object detection for the receipt camera",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/camera/objectdetection/ProminentObjectProcessor.kt:18-40"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-358",
+      "area": "storage",
+      "name": "Room api_keys.db with an encrypted keys column",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/storage/persistance/apikey/ApiKeyDatabase.kt:10-38"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-359",
+      "area": "file sharing",
+      "name": "FileProvider for opening reports and exported payslips",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/navigation/RootHostFileActions.kt:90-138"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-360",
+      "area": "browser",
+      "name": "Chrome Custom Tabs for Visma Connect login",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/navigation/RootHostFileActions.kt:29-45"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-361",
+      "area": "in-app review",
+      "name": "AppReviewManager review prompt after payslip views",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/navigation/RootHostActionsFactory.kt:78-81"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-362",
+      "area": "security",
+      "name": "Screenshot blocking via FLAG_SECURE unless allowed by security service or debug/testing",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/BaseActivity.kt:100-107"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-363",
+      "area": "auth",
+      "name": "Forced logout relaunch on corrupted storage, unauthorized user, no-features user, or token failure",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/BaseActivity.kt:120-166"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-364",
+      "area": "i18n",
+      "name": "Per-app language applied via LanguageContextWrapper in attachBaseContext",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/BaseActivity.kt:83-98"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-365",
+      "area": "storage",
+      "name": "AndroidKeyStore AES key (alias constant) for encrypting stored strings (EncryptedStringConverter)",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/storage/crypto/Crypto.kt:12-40"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-366",
+      "area": "notifications",
+      "name": "Notification channel groups/channels mapped to event ids; default channel DEFAULT_CHANNEL",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/notification/channels/ChannelGroupDescription.kt:11-20"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-367",
+      "area": "review",
+      "name": "Google Play in-app review flow",
+      "apps": {
+        "me-android": "app/src/main/java/com/visma/employee/core/analytics/AppReviewManagerImpl.kt:23-64"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-368",
+      "area": "speech",
+      "name": "On-device SpeechRecognizer voice input",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/employee_assistant/data/SpeechRecognitionHelperImpl.kt:68-96"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-369",
+      "area": "files",
+      "name": "FileProvider + ACTION_VIEW chooser for file preview",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/PdfUtils.kt:22-44"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-370",
+      "area": "navigation",
+      "name": "Activity-level bottom modal sheet events (add/delete expense, account manager, calendar day details, highlight feature…",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/compose_activity_bottom_modal_sheet/ComposeActivityBottomModalSheetEvent.kt:9-51"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-371",
+      "area": "push",
+      "name": "FCM device registration and unregistration with retry",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/notification/RetryingSubscriptionService.kt:15-65"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-372",
+      "area": "push",
+      "name": "Notification channels: Salary group (payslip, year-end, receipt sync) and Other",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/notification/ChannelConfigurationsProvider.kt:18-108"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-373",
+      "area": "permissions",
+      "name": "Runtime permission helper that opens app and notification settings",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/camera/helpers/PermissionHelper.kt:17-52"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-374",
+      "area": "security",
+      "name": "App lock by biometrics, device credential or PIN, 180 s timeout, screenshot flag",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/settings/SecurityService.kt:10-25"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-375",
+      "area": "analytics",
+      "name": "Snowplow tracker with lifecycle, screen-view, exception and install autotracking",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/analytics/snowplow/SnowplowLogger.kt:57-85"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-376",
+      "area": "remote config",
+      "name": "LaunchDarkly feature flags keyed by a remotely fetched key",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/remote/RemoteConfigServiceImpl.kt:32-113"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-377",
+      "area": "remote keys",
+      "name": "Third-party keys (Survicate, LaunchDarkly, GooglePlaces) fetched and cached from the backend",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/remotekeys/RemoteKeysRepositoryImpl.kt:25-72"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-378",
+      "area": "storage",
+      "name": "Room CacheDatabase (receipts, attachments, currencies, mileage, templates, preferences) with a DataStore-to-Room migrat…",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/storage/migration/DataStoreToRoomMigration.kt"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-379",
+      "area": "storage",
+      "name": "FileProvider paths for sharing files",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/storage/FileProviderPaths.kt"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-380",
+      "area": "permissions",
+      "name": "RECORD_AUDIO runtime permission request with rationale and open-settings fallback for voice input",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/employee_assistant/presentation/util/voice_input/VoiceInputPermissionHandlers.kt:34-52"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-381",
+      "area": "lifecycle",
+      "name": "Speech recognizer torn down on pause or dispose",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/employee_assistant/presentation/util/voice_input/VoiceInputLifecycleEffect.kt:9-26"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-382",
+      "area": "storage",
+      "name": "Room UserDatabase with user accounts, app and user preferences, mileage preferences, highlight dismissals and frequentl…",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/storage/persistance/user/UserDatabase.kt:18-169"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-383",
+      "area": "file-cache",
+      "name": "Dottie document download cache: sanitized file names in cacheDir, cleared on screen load, deleted after preview",
+      "apps": {
+        "me-android": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:128-145"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-384",
+      "area": "clipboard",
+      "name": "Copy profile field values to the clipboard",
+      "apps": {
+        "me-android": "dottie/src/main/java/com/visma/employee/dottie/presentation/employee_info/form/ClipboardCopier.kt:7-9"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-385",
+      "area": "navigation",
+      "name": "Back handler blocks leaving the profile with unsaved changes and shows a discard dialog",
+      "apps": {
+        "me-android": "dottie/src/main/java/com/visma/employee/dottie/presentation/employee_info/components/EmployeeInfoScreen.kt:74"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-386",
+      "area": "app-update",
+      "name": "UpdateInfoState model: suggested, mandatory and OS updates (the logic lives outside this shard)",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/data/update/UpdateInfoState.kt:6-10"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-387",
+      "area": "network",
+      "name": "HATEOAS POST and GET by URL plus Dottie notifications and new-count; used by the app-module inbox and home badge, outsi…",
+      "apps": {
+        "me-android": "dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:169-214"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-388",
+      "area": "camera",
+      "name": "Camera capture with runtime CAMERA permission for the profile photo",
+      "apps": {
+        "me-android": "dottie/src/main/java/com/visma/employee/dottie/presentation/image/rememberImagePickerLaunchers.kt:40-118"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-389",
+      "area": "media picker",
+      "name": "Photo picker (PickVisualMedia ImageOnly)",
+      "apps": {
+        "me-android": "dottie/src/main/java/com/visma/employee/dottie/presentation/image/rememberImagePickerLaunchers.kt:35"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-390",
+      "area": "push",
+      "name": "FCM device unregister on sign-out",
+      "apps": {
+        "me-android": "dottie/src/main/java/com/visma/employee/dottie/presentation/user_menu/UserMenuViewModel.kt:125-133"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-391",
+      "area": "offline",
+      "name": "Mileage saved to a local offline draft when there is no network",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/api/MileagesServiceImpl.kt:191-198"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-392",
+      "area": "config",
+      "name": "Google Maps API key read from manifest meta-data (com.google.android.geo.API_KEY)",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/api/Constants.kt:8"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-393",
+      "area": "background task",
+      "name": "WorkManager-driven offline draft sync observed by inbox (SyncManagerImpl.draftsState)",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/inbox/compose/ExpenseDraftsScreen.kt:583-648"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-394",
+      "area": "navigation",
+      "name": "Navigation3 NavDisplay internal mileage back stack (MileageHomeKey, MileageMapKey, MileageDestinationKey, MileageMapDes…",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/mileage/compose/MileageContent.kt:199-305"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-395",
+      "area": "permissions",
+      "name": "Location permission settings opened from map destination picker",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/mileage/compose/MileageContent.kt:300"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-396",
+      "area": "window",
+      "name": "Soft input mode switched per mileage screen (adjust resize/pan)",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/mileage/compose/MileageContent.kt:211-229"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-397",
+      "area": "connectivity",
+      "name": "ConnectionManager offline banner and offline-disabled actions",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/inbox/compose/ExpenseDraftsScreen.kt:163-165"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-398",
+      "area": "camera",
+      "name": "Add receipt opens camera (onOpenCamera) when templates cached",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/inbox/compose/ExpenseDraftsScreen.kt:758-767"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-399",
+      "area": "storage",
+      "name": "Receipt attachment saved to the public Downloads folder via MediaStore",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/inbox/details/ExpenseDraftDetailsViewModel.kt:1643-1671"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-400",
+      "area": "camera",
+      "name": "Camera opened to add a receipt attachment",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/inbox/details/DraftDetailsCoordinator.kt:459-461"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-401",
+      "area": "survey",
+      "name": "Survicate NPS survey triggered after a receipt is saved",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/inbox/details/ExpenseDraftDetailsViewModel.kt:1738-1740"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-402",
+      "area": "connectivity",
+      "name": "Claim details reload when the connection comes back; offline banner on the receipt screen",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/details/ExpenseRowsViewModel.kt:270-280"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-403",
+      "area": "offline",
+      "name": "Receipt draft saved offline when upsert fails with UnknownHostException",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/inbox/data/ExpenseDraftsServiceImpl.kt:95-100"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-404",
+      "area": "share extension",
+      "name": "Camera/share-to-app mode: saving shows a 'receipt saved' dialog and then leaves share mode",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/inbox/details/DraftDetailsCoordinator.kt:271-286"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-405",
+      "area": "navigation",
+      "name": "Navigation3 keys ExpenseDraftDetailsKey, CostUnitSelectionKey and ProjectAccountingSelectionKey",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/inbox/details/DraftDetailsCoordinator.kt:323-454"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-406",
+      "area": "permissions",
+      "name": "ACCESS_FINE_LOCATION runtime request for current location in mileage map",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/destination/screens/MileageMapDestinationScreen.kt:112-130"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-407",
+      "area": "maps",
+      "name": "Google Maps map picker and Places autocomplete for mileage destinations",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/destination/screens/MileageMapDestinationScreen.kt:333-450"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-408",
+      "area": "storage",
+      "name": "Room cache of recent mileage locations (max 4)",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/viewmodel/destination/CachingRepository.kt:14-125"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-409",
+      "area": "navigation",
+      "name": "Navigation3 entry provider for expense destinations (inbox, claim selection, rows, cost unit, project, draft details, c…",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/navigation/entries/ExpenseEntries.kt:103-389"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-410",
+      "area": "dead code",
+      "name": "Unused DirectionsApi GET api/directions/json (takes a key query param; no implementation found)",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/api/directions/DirectionsApi.kt:8-17"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-411",
+      "area": "maps",
+      "name": "Google Maps compose map with route polylines and full-screen mode",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/compose/map/Components.kt:65-110"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-412",
+      "area": "maps",
+      "name": "Google Places SDK set up with a remote-provided API key (new Places API)",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/autocomplete/places/PlacesInitializerImpl.kt:10-12"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-413",
+      "area": "navigation",
+      "name": "Navigation3 NavKeys for expense inbox, claims, draft details and mileage",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/navigation/keys/ExpenseNavKeys.kt:6-45"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-414",
+      "area": "camera",
+      "name": "Camera claim and attachment results passed between screens through ExpenseResultHolder",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/navigation/result/ExpenseResultHolder.kt:266-280"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-415",
+      "area": "storage",
+      "name": "SharedPreferences key for the send-for-approval 'don't show again' choice",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/preferences/SendApprovalPreferences.kt:15"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-416",
+      "area": "persistence",
+      "name": "Room cache of frequently used hotels (table frequently_used_hotels)",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/storage/persistance/user/FrequentlyUsedHotelDbModel.kt:7-37"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-417",
+      "area": "persistence",
+      "name": "Per-user 'don't show send-for-approval confirmation again' preference",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/storage/preferences/UserPreferencesRepositoryImpl.kt:118"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-418",
+      "area": "background task",
+      "name": "ExpenseUploadWorker (Hilt CoroutineWorker) uploads offline drafts via WorkManager OneTimeWorkRequest",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/core/storage/sync/SyncManagerImpl.kt:61-68"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-419",
+      "area": "location",
+      "name": "Current GPS location lookup for mileage waypoint, GPS-disabled handling",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/viewmodel/DestinationViewModel.kt:232-256"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-420",
+      "area": "maps",
+      "name": "Google Places client and directions route manager for mileage",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/viewmodel/ExpenseMileageRouteViewModel.kt:17-34"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-421",
+      "area": "auth",
+      "name": "Visma Connect OAuth2 PKCE browser sign-in with redirect callback handling (code/state verification)",
+      "apps": {
+        "me-android": "login/src/main/java/com/visma/employee/login/LoginViewModel.kt:154-285"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-422",
+      "area": "auth",
+      "name": "Token revocation on account removal or logout (connect/revocation)",
+      "apps": {
+        "me-android": "login/src/main/java/com/visma/employee/account_manager/data/AccountManagerServiceImpl.kt:207-258"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-423",
+      "area": "background task",
+      "name": "Coroutine refresh of tokens for inactive saved accounts at startup",
+      "apps": {
+        "me-android": "login/src/main/java/com/visma/employee/account_manager/data/AccountManagerServiceImpl.kt:60-63,127-175"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-424",
+      "area": "persistence",
+      "name": "Room user-accounts table (UserDatabaseDao) behind AccountManagerDbService",
+      "apps": {
+        "me-android": "login/src/main/java/com/visma/employee/account_manager/data/database/AccountManagerDbServiceImpl.kt:15-30"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-425",
+      "area": "persistence",
+      "name": "Per-user preference cleanup (user, mileage, highlight dismissal, app prefs, appearance cache)",
+      "apps": {
+        "me-android": "login/src/main/java/com/visma/employee/account_manager/domain/PreferencesCleanupService.kt:11-35"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-426",
+      "area": "navigation",
+      "name": "Navigation3 NavKeys and entries for FAQ (FaqKey with PreselectedFaqContext, FaqContextKey, FaqSendFeedbackKey)",
+      "apps": {
+        "me-android": "faq/src/main/java/com/visma/employee/navigation/keys/FaqNavKeys.kt:7-21"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-427",
+      "area": "navigation",
+      "name": "Navigation3 NavKeys for Payslip (SalaryFeedKey, PayslipDetailsKey with payslipId/companyId, ReportDetailsKey, PayslipBo…",
+      "apps": {
+        "me-android": "payslip/src/main/java/com/visma/employee/navigation/keys/PayslipNavKeys.kt:6-24"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-428",
+      "area": "in-app review",
+      "name": "Review request when the salary feed resumes",
+      "apps": {
+        "me-android": "payslip/src/main/java/com/visma/employee/navigation/entries/PayslipEntries.kt:58-63"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-429",
+      "area": "voice input",
+      "name": "Speech-recognition voice input with runtime microphone permission in the payslip bot",
+      "apps": {
+        "me-android": "payslip/src/main/java/com/visma/employee/payslip/payslip_bot/presentation/chat_screen/PayslipBotChatScreen.kt:156-178"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-430",
+      "area": "clipboard",
+      "name": "Copy a bot message to the clipboard",
+      "apps": {
+        "me-android": "payslip/src/main/java/com/visma/employee/payslip/payslip_bot/presentation/chat_screen/PayslipBotChatScreen.kt:256"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-431",
+      "area": "file handling",
+      "name": "Open downloaded payslip, report or exported PDFs in an external app, with a 'no suitable app' fallback",
+      "apps": {
+        "me-android": "payslip/src/main/java/com/visma/employee/navigation/entries/PayslipEntries.kt:146-152"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-432",
+      "area": "analytics",
+      "name": "Snowplow structured events via AnalyticsLogger (FAQ, Payslip, Auth categories)",
+      "apps": {
+        "me-android": "core/src/main/java/com/visma/employee/core/analytics/AnalyticsEvents.kt:107-115,287-302"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-433",
+      "area": "ml",
+      "name": "On-device expense-type prediction model trained when a draft is saved",
+      "apps": {
+        "me-android": "expense/src/main/java/com/visma/employee/expense/inbox/claimselection/viewmodels/ClaimSummaryViewModel.kt:450-463"
       },
       "newApp": "decide",
       "note": "",
@@ -968,6 +4554,353 @@
     "PLT-083",
     "PLT-084",
     "PLT-085",
-    "PLT-086"
+    "PLT-086",
+    "PLT-087",
+    "PLT-088",
+    "PLT-089",
+    "PLT-090",
+    "PLT-091",
+    "PLT-092",
+    "PLT-093",
+    "PLT-094",
+    "PLT-095",
+    "PLT-096",
+    "PLT-097",
+    "PLT-098",
+    "PLT-099",
+    "PLT-100",
+    "PLT-101",
+    "PLT-102",
+    "PLT-103",
+    "PLT-104",
+    "PLT-105",
+    "PLT-106",
+    "PLT-107",
+    "PLT-108",
+    "PLT-109",
+    "PLT-110",
+    "PLT-111",
+    "PLT-112",
+    "PLT-113",
+    "PLT-114",
+    "PLT-115",
+    "PLT-116",
+    "PLT-117",
+    "PLT-118",
+    "PLT-119",
+    "PLT-120",
+    "PLT-121",
+    "PLT-122",
+    "PLT-123",
+    "PLT-124",
+    "PLT-125",
+    "PLT-126",
+    "PLT-127",
+    "PLT-128",
+    "PLT-129",
+    "PLT-130",
+    "PLT-131",
+    "PLT-132",
+    "PLT-133",
+    "PLT-134",
+    "PLT-135",
+    "PLT-136",
+    "PLT-137",
+    "PLT-138",
+    "PLT-139",
+    "PLT-140",
+    "PLT-141",
+    "PLT-142",
+    "PLT-143",
+    "PLT-144",
+    "PLT-145",
+    "PLT-146",
+    "PLT-147",
+    "PLT-148",
+    "PLT-149",
+    "PLT-150",
+    "PLT-151",
+    "PLT-152",
+    "PLT-153",
+    "PLT-154",
+    "PLT-155",
+    "PLT-156",
+    "PLT-157",
+    "PLT-158",
+    "PLT-159",
+    "PLT-160",
+    "PLT-161",
+    "PLT-162",
+    "PLT-163",
+    "PLT-164",
+    "PLT-165",
+    "PLT-166",
+    "PLT-167",
+    "PLT-168",
+    "PLT-169",
+    "PLT-170",
+    "PLT-171",
+    "PLT-172",
+    "PLT-173",
+    "PLT-174",
+    "PLT-175",
+    "PLT-176",
+    "PLT-177",
+    "PLT-178",
+    "PLT-179",
+    "PLT-180",
+    "PLT-181",
+    "PLT-182",
+    "PLT-183",
+    "PLT-184",
+    "PLT-185",
+    "PLT-186",
+    "PLT-187",
+    "PLT-188",
+    "PLT-189",
+    "PLT-190",
+    "PLT-191",
+    "PLT-192",
+    "PLT-193",
+    "PLT-194",
+    "PLT-195",
+    "PLT-196",
+    "PLT-197",
+    "PLT-198",
+    "PLT-199",
+    "PLT-200",
+    "PLT-201",
+    "PLT-202",
+    "PLT-203",
+    "PLT-204",
+    "PLT-205",
+    "PLT-206",
+    "PLT-207",
+    "PLT-208",
+    "PLT-209",
+    "PLT-210",
+    "PLT-211",
+    "PLT-212",
+    "PLT-213",
+    "PLT-214",
+    "PLT-215",
+    "PLT-216",
+    "PLT-217",
+    "PLT-218",
+    "PLT-219",
+    "PLT-220",
+    "PLT-221",
+    "PLT-222",
+    "PLT-223",
+    "PLT-224",
+    "PLT-225",
+    "PLT-226",
+    "PLT-227",
+    "PLT-228",
+    "PLT-229",
+    "PLT-230",
+    "PLT-231",
+    "PLT-232",
+    "PLT-233",
+    "PLT-234",
+    "PLT-235",
+    "PLT-236",
+    "PLT-237",
+    "PLT-238",
+    "PLT-239",
+    "PLT-240",
+    "PLT-241",
+    "PLT-242",
+    "PLT-243",
+    "PLT-244",
+    "PLT-245",
+    "PLT-246",
+    "PLT-247",
+    "PLT-248",
+    "PLT-249",
+    "PLT-250",
+    "PLT-251",
+    "PLT-252",
+    "PLT-253",
+    "PLT-254",
+    "PLT-255",
+    "PLT-256",
+    "PLT-257",
+    "PLT-258",
+    "PLT-259",
+    "PLT-260",
+    "PLT-261",
+    "PLT-262",
+    "PLT-263",
+    "PLT-264",
+    "PLT-265",
+    "PLT-266",
+    "PLT-267",
+    "PLT-268",
+    "PLT-269",
+    "PLT-270",
+    "PLT-271",
+    "PLT-272",
+    "PLT-273",
+    "PLT-274",
+    "PLT-275",
+    "PLT-276",
+    "PLT-277",
+    "PLT-278",
+    "PLT-279",
+    "PLT-280",
+    "PLT-281",
+    "PLT-282",
+    "PLT-283",
+    "PLT-284",
+    "PLT-285",
+    "PLT-286",
+    "PLT-287",
+    "PLT-288",
+    "PLT-289",
+    "PLT-290",
+    "PLT-291",
+    "PLT-292",
+    "PLT-293",
+    "PLT-294",
+    "PLT-295",
+    "PLT-296",
+    "PLT-297",
+    "PLT-298",
+    "PLT-299",
+    "PLT-300",
+    "PLT-301",
+    "PLT-302",
+    "PLT-303",
+    "PLT-304",
+    "PLT-305",
+    "PLT-306",
+    "PLT-307",
+    "PLT-308",
+    "PLT-309",
+    "PLT-310",
+    "PLT-311",
+    "PLT-312",
+    "PLT-313",
+    "PLT-314",
+    "PLT-315",
+    "PLT-316",
+    "PLT-317",
+    "PLT-318",
+    "PLT-319",
+    "PLT-320",
+    "PLT-321",
+    "PLT-322",
+    "PLT-323",
+    "PLT-324",
+    "PLT-325",
+    "PLT-326",
+    "PLT-327",
+    "PLT-328",
+    "PLT-329",
+    "PLT-330",
+    "PLT-331",
+    "PLT-332",
+    "PLT-333",
+    "PLT-334",
+    "PLT-335",
+    "PLT-336",
+    "PLT-337",
+    "PLT-338",
+    "PLT-339",
+    "PLT-340",
+    "PLT-341",
+    "PLT-342",
+    "PLT-343",
+    "PLT-344",
+    "PLT-345",
+    "PLT-346",
+    "PLT-347",
+    "PLT-348",
+    "PLT-349",
+    "PLT-350",
+    "PLT-351",
+    "PLT-352",
+    "PLT-353",
+    "PLT-354",
+    "PLT-355",
+    "PLT-356",
+    "PLT-357",
+    "PLT-358",
+    "PLT-359",
+    "PLT-360",
+    "PLT-361",
+    "PLT-362",
+    "PLT-363",
+    "PLT-364",
+    "PLT-365",
+    "PLT-366",
+    "PLT-367",
+    "PLT-368",
+    "PLT-369",
+    "PLT-370",
+    "PLT-371",
+    "PLT-372",
+    "PLT-373",
+    "PLT-374",
+    "PLT-375",
+    "PLT-376",
+    "PLT-377",
+    "PLT-378",
+    "PLT-379",
+    "PLT-380",
+    "PLT-381",
+    "PLT-382",
+    "PLT-383",
+    "PLT-384",
+    "PLT-385",
+    "PLT-386",
+    "PLT-387",
+    "PLT-388",
+    "PLT-389",
+    "PLT-390",
+    "PLT-391",
+    "PLT-392",
+    "PLT-393",
+    "PLT-394",
+    "PLT-395",
+    "PLT-396",
+    "PLT-397",
+    "PLT-398",
+    "PLT-399",
+    "PLT-400",
+    "PLT-401",
+    "PLT-402",
+    "PLT-403",
+    "PLT-404",
+    "PLT-405",
+    "PLT-406",
+    "PLT-407",
+    "PLT-408",
+    "PLT-409",
+    "PLT-410",
+    "PLT-411",
+    "PLT-412",
+    "PLT-413",
+    "PLT-414",
+    "PLT-415",
+    "PLT-416",
+    "PLT-417",
+    "PLT-418",
+    "PLT-419",
+    "PLT-420",
+    "PLT-421",
+    "PLT-422",
+    "PLT-423",
+    "PLT-424",
+    "PLT-425",
+    "PLT-426",
+    "PLT-427",
+    "PLT-428",
+    "PLT-429",
+    "PLT-430",
+    "PLT-431",
+    "PLT-432",
+    "PLT-433"
   ]
 }

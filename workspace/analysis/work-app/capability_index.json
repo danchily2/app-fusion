@@ -5,13 +5,14 @@
     {
       "id": "CAP-001",
       "name": "View a calendar month by month",
-      "domain": "Calendar",
+      "domain": "Time and absence",
       "fusion": "shared-diverged",
       "personas": [
         "Manager",
         "Employee"
       ],
       "apps": [
+        "me-android",
         "me-ios",
         "vmm"
       ],
@@ -20,28 +21,30 @@
     {
       "id": "CAP-002",
       "name": "Browse the calendar as a scrolling list",
-      "domain": "Calendar",
+      "domain": "Time and absence",
       "fusion": "shared-diverged",
       "personas": [
         "Manager",
         "Employee"
       ],
       "apps": [
+        "me-android",
         "me-ios",
         "vmm"
       ],
-      "description": "Scroll a chronological list of calendar entries that loads more entries while scrolling. In Employee the list also lets you jump to a date and open an item."
+      "description": "Scroll a chronological list of calendar entries that loads more entries while scrolling. In Employee the list also lets you jump to a date, open an item and confirm time from a feed item."
     },
     {
       "id": "CAP-003",
       "name": "Switch between list and month view of the calendar",
-      "domain": "Calendar",
+      "domain": "Time and absence",
       "fusion": "shared-diverged",
       "personas": [
         "Manager",
         "Employee"
       ],
       "apps": [
+        "me-android",
         "me-ios",
         "vmm"
       ],
@@ -50,28 +53,30 @@
     {
       "id": "CAP-004",
       "name": "See the details of a calendar day",
-      "domain": "Calendar",
+      "domain": "Time and absence",
       "fusion": "shared-diverged",
       "personas": [
         "Manager",
         "Employee"
       ],
       "apps": [
+        "me-android",
         "me-ios",
         "vmm"
       ],
-      "description": "Tap a day to open a sheet listing that day's entries with time or full-day label, title and status. In Employee the sheet also shows the special day and the scheduled roster hours, and entries can be "
+      "description": "Tap a day to open a sheet listing that day's entries with time or full-day label, title and status. In Employee the sheet also shows the special day and the scheduled roster hours, entries can be open"
     },
     {
       "id": "CAP-005",
       "name": "Customize what the calendar shows",
-      "domain": "Calendar",
+      "domain": "Time and absence",
       "fusion": "shared-diverged",
       "personas": [
         "Manager",
         "Employee"
       ],
       "apps": [
+        "me-android",
         "me-ios",
         "vmm"
       ],
@@ -80,7 +85,229 @@
     {
       "id": "CAP-006",
       "name": "Start a time or absence registration from the calendar",
-      "domain": "Calendar",
+      "domain": "Time and absence",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "From the calendar list add button, a day detail, a tapped empty day or a dragged day range, start registering new time or absence for yourself with the dates prefilled."
+    },
+    {
+      "id": "CAP-008",
+      "name": "See what needs attention across modules on Home",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "The manager opens Home and sees a greeting with an attention summary, one card per licensed module (Approval, Autopay, HRM) with counts, stat tiles and top items, or an all-clear card; pull-to-refresh"
+    },
+    {
+      "id": "CAP-009",
+      "name": "View an employee's absence balances",
+      "domain": "Time and absence",
+      "fusion": "unique",
+      "personas": [
+        "Manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager expands Balances on an employee's HRM detail to see this year's vacation balance (normal, additional, transferred, transferred additional) plus self-certification sickness over 12 months and"
+    },
+    {
+      "id": "CAP-010",
+      "name": "See my time and absence balances for a month",
+      "domain": "Time and absence",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee opens a balances summary (vacation, attendance/flex, sickness, sick child) from the calendar, expands rows and adjusts period or future-registration options, which the app remembers."
+    },
+    {
+      "id": "CAP-011",
+      "name": "See my vacation balances on the start page",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee sees a card with their remaining vacation days and taps it to open the balances overview."
+    },
+    {
+      "id": "CAP-012",
+      "name": "Register an absence or time event",
+      "domain": "Time and absence",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee chooses an absence or time type from a grouped, searchable list of calendar templates (recently used first), fills the server-driven form (dates, full/partial day or definite time, hours/"
+    },
+    {
+      "id": "CAP-013",
+      "name": "Pick cost-unit dimension values for a registration",
+      "domain": "Time and absence",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "While registering or editing, the employee picks dimension (cost unit/project) values from a paged, searchable list with recently used values first."
+    },
+    {
+      "id": "CAP-014",
+      "name": "View details of a registered absence",
+      "domain": "Time and absence",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee opens a registered absence or time entry to see its type, fields, comment, dates, certificate, dimensions and approval status, with edit/delete offered when the server allows."
+    },
+    {
+      "id": "CAP-015",
+      "name": "Edit a registered absence",
+      "domain": "Time and absence",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "From the absence detail, the employee edits a registered absence or time entry, including its type and cost units, and saves it through the entry's update link, confirming a future-registration warnin"
+    },
+    {
+      "id": "CAP-016",
+      "name": "Delete a registered absence",
+      "domain": "Time and absence",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee deletes a registered absence after a confirmation prompt, using the entry's delete link."
+    },
+    {
+      "id": "CAP-017",
+      "name": "See upcoming and ongoing vacation and parental leave on the start page",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee sees cards for declined, approved, upcoming or ongoing vacation and upcoming or ongoing parental leave; tapping one opens the absence detail and a grouped card opens the calendar."
+    },
+    {
+      "id": "CAP-018",
+      "name": "Check in and check out for the workday",
+      "domain": "Time and absence",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee checks in from a start-page/home card at the current local time, sees elapsed time since check-in, and later checks out. A too-short or failed/cross-day checkout routes to editing the reg"
+    },
+    {
+      "id": "CAP-019",
+      "name": "Edit or delete a check-in/check-out registration",
+      "domain": "Time and absence",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee corrects the fields of a check-in/check-out time registration (including a failed checkout), or deletes it, in the shared registration form."
+    },
+    {
+      "id": "CAP-020",
+      "name": "Confirm worked time up to a date",
+      "domain": "Time and absence",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee sends the timesheet for confirmation up to the suggested date or a chosen date, from the calendar list/feed, the month day detail or the event-type selector. Error-level validation blocks"
+    },
+    {
+      "id": "CAP-021",
+      "name": "Register time or absence by chatting with the Employee Agent",
+      "domain": "Time and absence",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee opens the Employee Agent, types or dictates a request such as 'sick tomorrow', reviews the predicted events and confirms to create them (in parallel), handling extra warning confirmations"
+    },
+    {
+      "id": "CAP-022",
+      "name": "Confirm the time sheet through the Employee Agent",
+      "domain": "Time and absence",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "When the agent reads the prompt as a time-confirmation request, it shows a confirm-time event; on confirm, the time sheet for that date is sent for approval."
+    },
+    {
+      "id": "CAP-023",
+      "name": "Ask the Employee Agent about leave balances",
+      "domain": "Time and absence",
       "fusion": "unique",
       "personas": [
         "Employee"
@@ -88,280 +315,63 @@
       "apps": [
         "me-ios"
       ],
-      "description": "From the calendar list or a day detail, start registering new time or absence for yourself."
-    },
-    {
-      "id": "CAP-007",
-      "name": "Sync team birthdays and work anniversaries to my calendar",
-      "domain": "Team overview",
-      "fusion": "unique",
-      "personas": [
-        "Manager with HRM access"
-      ],
-      "apps": [
-        "vmm"
-      ],
-      "description": "A manager with HRM access turns calendar sync on or off. When sync is on, the app creates 'Manager App - Birthdays' and 'Manager App - Anniversaries' device calendars. Each employee gets a yearly all-"
-    },
-    {
-      "id": "CAP-008",
-      "name": "See how many team members are absent today",
-      "domain": "Team overview",
-      "fusion": "unique",
-      "personas": [
-        "Manager"
-      ],
-      "apps": [
-        "vmm"
-      ],
-      "description": "On the Start screen, the manager sees how many managed employees are absent today. The count comes from the month's calendar feed for all managed employees. If the feed fails, the signal is not shown."
-    },
-    {
-      "id": "CAP-009",
-      "name": "View an employee's absence balances",
-      "domain": "Balances",
-      "fusion": "unique",
-      "personas": [
-        "Manager"
-      ],
-      "apps": [
-        "vmm"
-      ],
-      "description": "A manager sees one employee's absence balances: total vacation balance, sick-child days for the current year and self-certified sickness over the last 12 months. A balance hook combines them for displ"
-    },
-    {
-      "id": "CAP-010",
-      "name": "See my time and absence balances for a month",
-      "domain": "Balances",
-      "fusion": "unique",
-      "personas": [
-        "employee"
-      ],
-      "apps": [
-        "me-ios"
-      ],
-      "description": "From the calendar toolbar, an employee opens a summary of time and absence balances for the month on screen. They can expand a balance group for details and switch control options, which the app remem"
-    },
-    {
-      "id": "CAP-011",
-      "name": "See my vacation balances on the start page",
-      "domain": "Balances",
-      "fusion": "unique",
-      "personas": [
-        "employee"
-      ],
-      "apps": [
-        "me-ios"
-      ],
-      "description": "An employee sees their combined vacation and leave balances as cards on the start page."
-    },
-    {
-      "id": "CAP-012",
-      "name": "Register an absence or time event",
-      "domain": "Absence registration",
-      "fusion": "unique",
-      "personas": [
-        "employee"
-      ],
-      "apps": [
-        "me-ios"
-      ],
-      "description": "The employee picks a day, a dragged range or the add button in the calendar, chooses an absence or time type from grouped calendar templates, fills the dynamic form (dates, times, hours or percent, co"
-    },
-    {
-      "id": "CAP-013",
-      "name": "Pick cost-unit dimension values for a registration",
-      "domain": "Absence registration",
-      "fusion": "unique",
-      "personas": [
-        "employee"
-      ],
-      "apps": [
-        "me-ios"
-      ],
-      "description": "While registering or editing an absence, the employee picks dimension (cost unit) values from a paged, searchable list. Recently used values appear first."
-    },
-    {
-      "id": "CAP-014",
-      "name": "View details of a registered absence",
-      "domain": "Absence registration",
-      "fusion": "unique",
-      "personas": [
-        "employee"
-      ],
-      "apps": [
-        "me-ios"
-      ],
-      "description": "The employee opens a registered absence to see its type, fields, comment and approval status."
-    },
-    {
-      "id": "CAP-015",
-      "name": "Edit a registered absence",
-      "domain": "Absence registration",
-      "fusion": "unique",
-      "personas": [
-        "employee"
-      ],
-      "apps": [
-        "me-ios"
-      ],
-      "description": "From the absence detail, the employee edits a registered absence, including its type, and saves it through the entry's update link. The employee confirms a future-registration warning when the server "
-    },
-    {
-      "id": "CAP-016",
-      "name": "Delete a registered absence",
-      "domain": "Absence registration",
-      "fusion": "unique",
-      "personas": [
-        "employee"
-      ],
-      "apps": [
-        "me-ios"
-      ],
-      "description": "From the absence detail or editor, the employee deletes a registered absence after a confirmation prompt, using the entry's delete link."
-    },
-    {
-      "id": "CAP-017",
-      "name": "See upcoming and ongoing vacation and parental leave on the start page",
-      "domain": "Absence registration",
-      "fusion": "unique",
-      "personas": [
-        "employee"
-      ],
-      "apps": [
-        "me-ios"
-      ],
-      "description": "The start page shows cards for declined, upcoming, ongoing and approved vacations and for parental leave, from one week ago to one month ahead."
-    },
-    {
-      "id": "CAP-018",
-      "name": "Check in and check out for the workday",
-      "domain": "Time tracking",
-      "fusion": "unique",
-      "personas": [
-        "employee"
-      ],
-      "apps": [
-        "me-ios"
-      ],
-      "description": "The employee checks in from the start page, which sends the current local time, sees the current check-in status, and later checks out. The checkout template is fetched to register the worked time."
-    },
-    {
-      "id": "CAP-019",
-      "name": "Edit or delete a check-in/check-out registration",
-      "domain": "Time tracking",
-      "fusion": "unique",
-      "personas": [
-        "employee"
-      ],
-      "apps": [
-        "me-ios"
-      ],
-      "description": "The employee corrects the fields of a check-in/check-out time registration, or deletes it, through the shared registration form or the calendar event editor."
-    },
-    {
-      "id": "CAP-020",
-      "name": "Confirm worked time up to a date",
-      "domain": "Time tracking",
-      "fusion": "unique",
-      "personas": [
-        "employee"
-      ],
-      "apps": [
-        "me-ios"
-      ],
-      "description": "The employee sends the timesheet for confirmation up to a date: a day from the calendar or day detail, the suggested date, or a chosen date from the type selector. The app loads the confirmation statu"
-    },
-    {
-      "id": "CAP-021",
-      "name": "Register time or absence by chatting with the Employee Agent",
-      "domain": "Employee Agent",
-      "fusion": "unique",
-      "personas": [
-        "employee"
-      ],
-      "apps": [
-        "me-ios"
-      ],
-      "description": "The employee opens the Employee Agent from the calendar toolbar. They type or dictate a sentence such as 'I was sick yesterday', or pick an example prompt. The agent predicts one or more absence or ti"
-    },
-    {
-      "id": "CAP-022",
-      "name": "Confirm the time sheet through the Employee Agent",
-      "domain": "Employee Agent",
-      "fusion": "unique",
-      "personas": [
-        "employee"
-      ],
-      "apps": [
-        "me-ios"
-      ],
-      "description": "When the agent reads the prompt as a time-confirmation request, it shows a confirm-time event. On confirm, the time sheet for that date is sent for approval."
-    },
-    {
-      "id": "CAP-023",
-      "name": "Ask the Employee Agent about leave balances",
-      "domain": "Employee Agent",
-      "fusion": "unique",
-      "personas": [
-        "employee"
-      ],
-      "apps": [
-        "me-ios"
-      ],
-      "description": "The employee asks the agent about balances. The agent replies with the balance text that the prediction service returns."
+      "description": "The employee asks the agent about balances and it replies with the balance text returned by the prediction service."
     },
     {
       "id": "CAP-024",
       "name": "Edit a predicted registration before saving it",
-      "domain": "Employee Agent",
+      "domain": "Time and absence",
       "fusion": "unique",
       "personas": [
-        "employee"
+        "Employee"
       ],
       "apps": [
+        "me-android",
         "me-ios"
       ],
-      "description": "From the agent's suggestion, the employee opens the registration form pre-filled with the prediction, for example to add a medical certificate for sickness. They adjust it and save, and the agent then"
+      "description": "From the agent's suggestion, the employee opens the registration form pre-filled with the prediction (for example to add a required medical certificate for sickness), adjusts it and saves it as a real"
     },
     {
       "id": "CAP-025",
       "name": "View, edit or delete an absence created in the agent chat",
-      "domain": "Employee Agent",
+      "domain": "Time and absence",
       "fusion": "unique",
       "personas": [
-        "employee"
+        "Employee"
       ],
       "apps": [
+        "me-android",
         "me-ios"
       ],
-      "description": "The employee taps an event the agent has just registered to open its detail. There they can edit or delete it, and a deletion shows in the chat."
+      "description": "The employee taps an event the agent has just registered to open its detail, where they can edit or delete it; a deletion shows in the chat."
     },
     {
       "id": "CAP-026",
       "name": "Learn how to use the Employee Agent and try example prompts",
-      "domain": "Employee Agent",
+      "domain": "Time and absence",
       "fusion": "unique",
       "personas": [
-        "employee"
+        "Employee"
       ],
       "apps": [
+        "me-android",
         "me-ios"
       ],
-      "description": "The employee opens the info page to read about the agent and see example prompts from the server. Tapping an example puts it in the chat input."
+      "description": "The employee opens the info page to read about the agent and see example prompts from the server; tapping an example puts it in the chat input."
     },
     {
       "id": "CAP-027",
       "name": "Send feedback about the Employee Agent",
-      "domain": "Employee Agent",
+      "domain": "Time and absence",
       "fusion": "unique",
       "personas": [
-        "employee"
+        "Employee"
       ],
       "apps": [
+        "me-android",
         "me-ios"
       ],
-      "description": "From the Learn More page, the employee opens an external feedback form about the agent."
+      "description": "From the Learn More page, the employee opens an external feedback form (Google Forms) about the agent."
     },
     {
       "id": "CAP-028",
@@ -372,14 +382,1058 @@
         "employee"
       ],
       "apps": [
+        "me-android",
         "me-ios"
       ],
-      "description": "An employee sees their expense claims grouped by year, newest first. Claims without a date sit in their own section. Quick filters narrow the list by claim status."
+      "description": "The employee opens the Claims part of the Expenses tab, pages through their claims (older and newer) and narrows the list with status filter chips loaded from the server."
     },
     {
       "id": "CAP-029",
       "name": "Browse my payslips by payment date, filtered by employer",
-      "domain": "Pay",
+      "domain": "Pay and payroll",
+      "fusion": "unique",
+      "personas": [
+        "employee",
+        "employee with several employers"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee pages through past and upcoming payslips from every connected company, ordered by payment date. Each shows company, payment day and net amount. An employee with several employers picks whi"
+    },
+    {
+      "id": "CAP-030",
+      "name": "Switch the active Business NXT company",
+      "domain": "Business NXT",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager with access to several Business NXT companies picks which company every BXN order, invoice, money and approval screen shows, from an initials-avatar dropdown in the header."
+    },
+    {
+      "id": "CAP-031",
+      "name": "Open a Business NXT work area",
+      "domain": "Business NXT",
+      "fusion": "unique",
+      "personas": [
+        "BXN user",
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A Business NXT user opens sales orders, purchase orders, offers, invoices, approvals, money in/out or the registers, either from the BXN hub list or from the tabbed workspace. Areas the user has no ac"
+    },
+    {
+      "id": "CAP-032",
+      "name": "Browse Business NXT orders",
+      "domain": "Business NXT",
+      "fusion": "unique",
+      "personas": [
+        "Business NXT manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A Business NXT user lists sales orders, purchase orders or offers, searches them, sorts by date, number or name, and filters by creator, approval state and invoiced. Tapping an order opens it; from sa"
+    },
+    {
+      "id": "CAP-033",
+      "name": "View a Business NXT order",
+      "domain": "Business NXT",
+      "fusion": "unique",
+      "personas": [
+        "BXN user",
+        "buyer",
+        "sales person"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A user opens a sales order, purchase order or offer to see its status, totals, VAT, delivery date, counterparty, lines and approval status. From there they can jump to the customer or supplier card, o"
+    },
+    {
+      "id": "CAP-034",
+      "name": "Edit a Business NXT order's references, delivery date and lines",
+      "domain": "Business NXT",
+      "fusion": "unique",
+      "personas": [
+        "BXN user",
+        "buyer",
+        "sales person"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A user edits an order's delivery date, our reference and your reference, and updates, adds or deletes lines. They can then save or revert, and are warned about unsaved changes."
+    },
+    {
+      "id": "CAP-035",
+      "name": "Create a sales or purchase order",
+      "domain": "Business NXT",
+      "fusion": "unique",
+      "personas": [
+        "BXN user",
+        "buyer",
+        "sales person"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A user builds a new BXN order: they pick a customer (sales) or supplier (purchase), add products with quantities, preview totals calculated by the server, and confirm to create it."
+    },
+    {
+      "id": "CAP-036",
+      "name": "Send a purchase order to approval",
+      "domain": "Business NXT",
+      "fusion": "unique",
+      "personas": [
+        "buyer"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A buyer sends a purchase order into the BXN approval flow, with an optional comment."
+    },
+    {
+      "id": "CAP-037",
+      "name": "Cancel a purchase order",
+      "domain": "Business NXT",
+      "fusion": "unique",
+      "personas": [
+        "buyer"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A buyer cancels a BXN purchase order after a destructive confirmation."
+    },
+    {
+      "id": "CAP-038",
+      "name": "Open an order attachment",
+      "domain": "Business NXT",
+      "fusion": "unique",
+      "personas": [
+        "BXN user"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A user opens a PDF attached to a BXN order. It is downloaded, cached locally and shown in an in-app PDF viewer."
+    },
+    {
+      "id": "CAP-039",
+      "name": "Track documents sent for approval",
+      "domain": "Business NXT",
+      "fusion": "unique",
+      "personas": [
+        "BXN user",
+        "order sender"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A user views the Business NXT approval board, with paginated 'In approval' and 'History' segments. They open a task to see its status, document, sender, current approver and latest comment, and can ju"
+    },
+    {
+      "id": "CAP-040",
+      "name": "Withdraw a pending approval task",
+      "domain": "Business NXT",
+      "fusion": "unique",
+      "personas": [
+        "order sender",
+        "BXN user"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "From a Business NXT approval task, the sender cancels the pending task after a confirmation."
+    },
+    {
+      "id": "CAP-041",
+      "name": "Browse and search archived invoices",
+      "domain": "Business NXT",
+      "fusion": "unique",
+      "personas": [
+        "BXN user"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A user lists the company's BXN invoices, searches by customer name or invoice number, sorts by date, number, name or amount, and opens the order an invoice came from. A Gaia assist is also available."
+    },
+    {
+      "id": "CAP-042",
+      "name": "See money owed by customers or to suppliers",
+      "domain": "Business NXT",
+      "fusion": "unique",
+      "personas": [
+        "BXN user",
+        "finance manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A user opens Money in or Money out to see the total outstanding, the overdue total and the overdue count, plus a paged list of customer or supplier balances to drill into."
+    },
+    {
+      "id": "CAP-043",
+      "name": "Review an associate's open ledger entries",
+      "domain": "Business NXT",
+      "fusion": "unique",
+      "personas": [
+        "BXN user",
+        "finance manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A user sees a customer's or supplier's open ledger entries, paged, with the outstanding total, and can jump to the associate card."
+    },
+    {
+      "id": "CAP-044",
+      "name": "View a customer or supplier card",
+      "domain": "Business NXT",
+      "fusion": "unique",
+      "personas": [
+        "BXN user"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A user views a BXN customer's or supplier's outstanding balance, open-entry count, oldest due date, company details, contact info with tap-to-call or email, and contact persons, and can drill into ope"
+    },
+    {
+      "id": "CAP-045",
+      "name": "Look up products, customers, suppliers and stock",
+      "domain": "Business NXT",
+      "fusion": "unique",
+      "personas": [
+        "Business NXT manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A Business NXT user searches the product, customer, supplier or inventory registers and opens an entry."
+    },
+    {
+      "id": "CAP-046",
+      "name": "Check a product's stock",
+      "domain": "Business NXT",
+      "fusion": "unique",
+      "personas": [
+        "Business NXT manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A Business NXT user opens a product to see its physical, available, reserved and incoming stock, and whether it is suspended."
+    },
+    {
+      "id": "CAP-047",
+      "name": "Ask the AI assistant a question",
+      "domain": "AI assistant",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "A person types or taps a question in the assistant chat and reads the AI answer. Manager: Gaia, a general assistant with streamed answers, tool progress, rich text and follow-up reply buttons. Employe"
+    },
+    {
+      "id": "CAP-048",
+      "name": "Open the assistant for the current screen from the header",
+      "domain": "AI assistant",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "From the sparkles header button the manager opens the Gaia chat scoped to the current task, or to the current module when no task is passed. A status dot shows when a chat is still running, has an unr"
+    },
+    {
+      "id": "CAP-049",
+      "name": "Ask the assistant about an approval task or past approval",
+      "domain": "AI assistant",
+      "fusion": "unique",
+      "personas": [
+        "manager",
+        "approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "From a task, process, voucher-lines view or the approval list, the manager opens Gaia scoped to that document, or taps a suggested question chip (safe to approve?, approvers, comments, supplier histor"
+    },
+    {
+      "id": "CAP-050",
+      "name": "Ask the assistant about an employee",
+      "domain": "AI assistant",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "On the employee detail screen the manager taps a hint chip (pending tasks for this employee, vacation days) or the header assist button to ask Gaia about that employee."
+    },
+    {
+      "id": "CAP-051",
+      "name": "Ask the assistant from Home, Home search or a list's search band",
+      "domain": "AI assistant",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "The manager types a question, or taps a suggested question or prompt card, in the Home hero panel, the Home search (when nothing is found) or the combined search/ask band on list screens. This opens G"
+    },
+    {
+      "id": "CAP-052",
+      "name": "Ask the payslip assistant about a payslip or year-end report",
+      "domain": "AI assistant",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "From the payslips screen, a single payslip, a year-end report or a new-feature card, the employee opens the payslip AI assistant, optionally with a pre-filled question."
+    },
+    {
+      "id": "CAP-053",
+      "name": "Start from a suggested question",
+      "domain": "AI assistant",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "When a conversation is empty, the assistant shows example questions that the person can tap to send."
+    },
+    {
+      "id": "CAP-054",
+      "name": "Browse the catalog of questions the assistant can answer",
+      "domain": "AI assistant",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "From the chat header or the empty-chat link, the manager opens a catalog of example questions grouped by the integrations they can access, and taps one to send it to Gaia."
+    },
+    {
+      "id": "CAP-055",
+      "name": "Start a new assistant conversation",
+      "domain": "AI assistant",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "The manager clears the current chat and starts a fresh thread from the chat header or the conversation list."
+    },
+    {
+      "id": "CAP-056",
+      "name": "Find and resume a past assistant conversation",
+      "domain": "AI assistant",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "The manager opens the conversation history from the chat header, searches past conversations by title and reopens one. Threads still running or with unseen answers are raised to the top."
+    },
+    {
+      "id": "CAP-057",
+      "name": "Rename, pin or delete an assistant conversation",
+      "domain": "AI assistant",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "The manager long-presses a conversation in the list to rename it, pin or unpin it, or delete it after confirmation. Each row shows its title, last update, company and whether it is running or unread."
+    },
+    {
+      "id": "CAP-058",
+      "name": "Resume the conversation an answer-ready notification announced",
+      "domain": "AI assistant",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "Tapping an 'answer ready' push notification or toast opens the chat directly in the named thread and marks it as read."
+    },
+    {
+      "id": "CAP-059",
+      "name": "Rate an assistant answer",
+      "domain": "AI assistant",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "The person gives an assistant answer a thumbs up or thumbs down, or undoes it. In Employee, a thumbs down opens a sheet to pick an issue category and add details, and the rating is sent to the server."
+    },
+    {
+      "id": "CAP-060",
+      "name": "Copy an assistant answer",
+      "domain": "AI assistant",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee copies the text of a bot reply to the clipboard."
+    },
+    {
+      "id": "CAP-061",
+      "name": "Open a source cited in an assistant answer",
+      "domain": "AI assistant",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "The manager taps a knowledge source cited under a Gaia answer to open it in the external browser."
+    },
+    {
+      "id": "CAP-062",
+      "name": "Approve or decline an action the assistant asks permission for",
+      "domain": "AI assistant",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "When Gaia wants to run a gated tool, it shows a confirmation card and the manager approves or declines it."
+    },
+    {
+      "id": "CAP-063",
+      "name": "Approve or reject an approval task from within the assistant chat",
+      "domain": "AI assistant",
+      "fusion": "unique",
+      "personas": [
+        "manager",
+        "approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "An approval task linked in a Gaia answer renders as a card with amount, due date, attachments or comments, and the manager approves or rejects it without leaving the chat."
+    },
+    {
+      "id": "CAP-064",
+      "name": "Open an approval task linked in an assistant answer",
+      "domain": "AI assistant",
+      "fusion": "unique",
+      "personas": [
+        "manager",
+        "approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "Tapping the task card in a Gaia answer opens the approval task detail screen, or the original link in the browser if the task cannot be loaded."
+    },
+    {
+      "id": "CAP-065",
+      "name": "Let the assistant navigate the app",
+      "domain": "AI assistant",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "Gaia can open an approval task, the approval list (to-do or history, with a search), an employee's detail, or the start, conversation-history and settings screens, and reports the result back into the"
+    },
+    {
+      "id": "CAP-066",
+      "name": "Dictate a message to the assistant by voice",
+      "domain": "AI assistant",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "The person taps the microphone in the assistant's message field, grants permission and speaks. The transcript is added to what was already typed."
+    },
+    {
+      "id": "CAP-067",
+      "name": "Switch between the app's main areas",
+      "domain": "Home and navigation",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "A signed-in person moves between the app's main areas through a bottom tab bar that only shows the areas their roles or permissions grant."
+    },
+    {
+      "id": "CAP-068",
+      "name": "Open any integration from the More sheet",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "The manager opens the More sheet, sees a grid of every integration they can use with pinned, active and new or badge marks, and opens the one tapped."
+    },
+    {
+      "id": "CAP-069",
+      "name": "Customize which areas are pinned to the tab bar",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "In the More sheet's edit mode the manager pins or unpins integrations, reorders the pinned tabs and saves; newly granted areas are marked new."
+    },
+    {
+      "id": "CAP-070",
+      "name": "Search and sort a work list",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "From a list's header bar (approvals, HRM employees, autopay) the manager opens a search field or a sort panel, a dialogue-type selector or an overflow menu."
+    },
+    {
+      "id": "CAP-071",
+      "name": "Search across approvals, invoices, employees and orders",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "From Home the manager types a query and jumps to a matching approval task, Autopay invoice, HRM employee or Business NXT sales order, grouped by module."
+    },
+    {
+      "id": "CAP-073",
+      "name": "Open a pending approval task from Home",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "Tapping an approval row on the Home card opens the approval task detail inside the Start stack so back returns to Home."
+    },
+    {
+      "id": "CAP-074",
+      "name": "Open an upcoming Autopay payment from Home",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "Tapping a payment row on the Home Autopay card opens that transaction's invoice details in the Autopay tab."
+    },
+    {
+      "id": "CAP-075",
+      "name": "Follow up on unread dialogues, absent colleagues and new hires from Home",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "Tapping an HRM card row opens the dialogue thread or wage-run splits list for unread messages, or the employee detail for someone absent today or recently hired."
+    },
+    {
+      "id": "CAP-076",
+      "name": "Review recent activity across approval, payments and dialogues",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "The Home 'Recent activity' feed lists the latest 8 events from the last 30 days (own approval actions and outcomes, paid or cancelled payments, dialogue replies) and opens each in its module."
+    },
+    {
+      "id": "CAP-077",
+      "name": "Jump into a licensed module from Home",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "The Home Integrations list gives one row per licensed module (Approval, Autopay, HRM, OneStop Reporting, BNXT orders) that opens that module's tab, plus a 'Go to <module>' link on expanded cards."
+    },
+    {
+      "id": "CAP-078",
+      "name": "Discover and act on What's New announcements",
+      "domain": "Home and navigation",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "A person sees What's New cards about new app features on Home, can follow the call-to-action to the feature, or dismiss the card so it stays hidden."
+    },
+    {
+      "id": "CAP-079",
+      "name": "See personal highlights on the start page",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee opens Home and sees a sorted carousel of highlight cards about their own pay, absences, vacation balance, expenses, check-in and messages, chosen by their permissions, with offline, placeh"
+    },
+    {
+      "id": "CAP-080",
+      "name": "Open the latest or upcoming payslip from the start page",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee sees a salary card (past, future or none) or taps a 'View latest payslip' quick action to open that payslip or the payslip list."
+    },
+    {
+      "id": "CAP-081",
+      "name": "Track the status of submitted expense claims from the start page",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee sees cards for approved, rejected, sent and unsent claims and for claims whose card transaction changed, was returned automatically or failed to send for approval; tapping opens the claim"
+    },
+    {
+      "id": "CAP-082",
+      "name": "Resume unsent expense drafts from the start page",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee sees how many receipts, mileages, allowances or credit-card transactions are still unsent, with totals, and taps the card to open them and send."
+    },
+    {
+      "id": "CAP-083",
+      "name": "Read important messages, surveys and app-update prompts on Home",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android"
+      ],
+      "description": "The employee sees a remotely controlled important-info message, a survey card and an app-update card on Home, opens each in a bottom sheet to follow it (info link, survey URL, Play Store) or dismisses"
+    },
+    {
+      "id": "CAP-084",
+      "name": "Start a common task from Home quick selections",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android"
+      ],
+      "description": "The employee taps a Home quick-selection button to register absence or time, add a receipt or mileage, or view the latest payslip."
+    },
+    {
+      "id": "CAP-085",
+      "name": "Reach HR profile, documents and benefits or the employee list from Home shortcuts",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "HR-only (Dottie) employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee who only has the Dottie HR permission gets start-page shortcuts to My profile, Documents and benefits and the Employee list instead of the standard quick actions."
+    },
+    {
+      "id": "CAP-086",
+      "name": "Open my user menu to reach profile, account and HR pages",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee taps their avatar (Dottie photo or initials) to open a user menu with name and email, then switches account or opens My profile, Documents and benefits, Employee list or Emissions summary"
+    },
+    {
+      "id": "CAP-087",
+      "name": "Sign out from the user menu",
+      "domain": "Home and navigation",
+      "fusion": "shared-diverged",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee signs out from the user menu; the app revokes tokens, clears stored auth data and unregisters the device from push."
+    },
+    {
+      "id": "CAP-088",
+      "name": "Open a specific app section from a link",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android"
+      ],
+      "description": "A person taps a verified https app link and lands on the matching tab, payslip or year-end report, after unlocking and onboarding, falling back to Home when they lack the feature."
+    },
+    {
+      "id": "CAP-089",
+      "name": "Acknowledge a blocking startup notice",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android"
+      ],
+      "description": "At launch the employee may be shown a non-dismissable notice that must be confirmed before the app continues."
+    },
+    {
+      "id": "CAP-090",
+      "name": "Go through first-run onboarding",
+      "domain": "Home and navigation",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android"
+      ],
+      "description": "On first launch or after an app update a person sees the onboarding flow once, after unlocking if a lock is set."
+    },
+    {
+      "id": "CAP-091",
+      "name": "View a financial reporting dashboard for a company and period",
+      "domain": "Financial reporting",
+      "fusion": "unique",
+      "personas": [
+        "Manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager with OneStop Reporting access picks a company, a dashboard and a reporting interval and sees each dashboard element as a card. A card shows one figure or a line or column chart. Each element"
+    },
+    {
+      "id": "CAP-092",
+      "name": "Choose the customer and tenant to report on",
+      "domain": "Financial reporting",
+      "fusion": "unique",
+      "personas": [
+        "Manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager with OneStop Reporting access picks the customer and tenant that the dashboards report on. The choice is persisted."
+    },
+    {
+      "id": "CAP-093",
+      "name": "Filter a dashboard chart by category and choose which series to show",
+      "domain": "Financial reporting",
+      "fusion": "unique",
+      "personas": [
+        "Manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "On a dashboard card or its detail screen, the manager picks a category, which reloads the element for the selected interval. The manager also chooses which data series the chart draws."
+    },
+    {
+      "id": "CAP-094",
+      "name": "Examine a dashboard chart in detail",
+      "domain": "Financial reporting",
+      "fusion": "unique",
+      "personas": [
+        "Manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "The manager taps a dashboard card to open that element full-screen, keeping the current category and series selection. The detail screen shows a legend and lets the manager show or hide value labels."
+    },
+    {
+      "id": "CAP-095",
+      "name": "Read how-to help for the current screen",
+      "domain": "Help and feedback",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager taps the info icon in a screen header (approval list, document editor, Autopay, OneStop Reporting, employee list/details, settings) and reads an info sheet with a title, description and icon"
+    },
+    {
+      "id": "CAP-096",
+      "name": "Browse help (FAQ) by topic",
+      "domain": "Help and feedback",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee opens Help/FAQ (from Settings, a payslip route, or a disabled/placeholder start-page card) and picks a topic (Payslips, Expense, Time & Absence, My Profile, Other) to see which of their co"
+    },
+    {
+      "id": "CAP-097",
+      "name": "Check why a module is not available for my company",
+      "domain": "Help and feedback",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "In a help topic, the app looks up the license of each company that lacks the module and explains whether it was never activated, is activated, or was terminated/deactivated."
+    },
+    {
+      "id": "CAP-098",
+      "name": "Send feedback about the app",
+      "domain": "Help and feedback",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "A user writes a free-text message and sends it to Visma together with device and app version details, then sees a sent/failed confirmation."
+    },
+    {
+      "id": "CAP-099",
+      "name": "Send feedback about Business NXT line editing",
+      "domain": "Help and feedback",
+      "fusion": "unique",
+      "personas": [
+        "approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "An approver writes and sends free-text feedback specifically about the Business NXT line-editing experience, with a discard confirmation when cancelling a draft."
+    },
+    {
+      "id": "CAP-100",
+      "name": "Rate the app in the store",
+      "domain": "Help and feedback",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "After enough qualifying actions the user is asked to rate the app in the App Store / Google Play."
+    },
+    {
+      "id": "CAP-101",
+      "name": "Answer an NPS satisfaction survey",
+      "domain": "Help and feedback",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "vmm"
+      ],
+      "description": "An eligible user is shown a 0-10 likelihood-to-recommend survey inside the app and can add a comment and send it."
+    },
+    {
+      "id": "CAP-102",
+      "name": "Decline the NPS survey or stop it from showing again",
+      "domain": "Help and feedback",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager dismisses the NPS survey and chooses Close (decline this time) or 'Don't show again' (turn it off for good)."
+    },
+    {
+      "id": "CAP-103",
+      "name": "Take or dismiss a survey from the home card",
+      "domain": "Help and feedback",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "When a survey is active, the employee sees a start-page card and either opens the survey form or dismisses it; the card is not shown again for that survey."
+    },
+    {
+      "id": "CAP-104",
+      "name": "Volunteer for user testing",
+      "domain": "Help and feedback",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "An eligible manager is invited (from an empty list or Settings) to take part in user testing, reads the test description, and submits email and optional phone, or declines/closes the invitation for go"
+    },
+    {
+      "id": "CAP-105",
+      "name": "Review and share failed request logs",
+      "domain": "Help and feedback",
+      "fusion": "unique",
+      "personas": [
+        "manager",
+        "support"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "When requests have failed, a manager opens the error log list from Settings, views details and shares an error report via the system share sheet."
+    },
+    {
+      "id": "CAP-106",
+      "name": "Copy account and device details for support",
+      "domain": "Help and feedback",
       "fusion": "unique",
       "personas": [
         "employee"
@@ -387,7 +1441,2330 @@
       "apps": [
         "me-ios"
       ],
-      "description": "An employee pages through past and upcoming payslips in a calendar ordered by payment date. They can narrow the list to one or more employers (tenants)."
+      "description": "An employee taps their email, OS version or app version in Settings and all three are copied to the clipboard with a confirmation banner."
+    },
+    {
+      "id": "CAP-107",
+      "name": "Read open-source licenses and the accessibility statement",
+      "domain": "Help and feedback",
+      "fusion": "shared-diverged",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "From Settings an employee opens the open-source licenses or the accessibility statement (from which feedback can also be sent)."
+    },
+    {
+      "id": "CAP-108",
+      "name": "Open app settings",
+      "domain": "Settings and legal",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "Open the Settings screen from the gear button in the root header of any integration (OSR, BXN and others), or run a custom handler when the header supplies one."
+    },
+    {
+      "id": "CAP-109",
+      "name": "Choose the app language",
+      "domain": "Settings and legal",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "Pick the language the app is shown in. Without a choice, the app uses the device locale or the default language."
+    },
+    {
+      "id": "CAP-110",
+      "name": "Choose light, dark or system appearance",
+      "domain": "Settings and legal",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "Pick a light, dark or system/auto theme. The app restyles right away and remembers the choice."
+    },
+    {
+      "id": "CAP-111",
+      "name": "Turn vibration and the holiday theme on or off",
+      "domain": "Settings and legal",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "Turn vibration on select on or off and, during the Christmas season, turn the holiday theme on or off. Both are saved to the backend user settings."
+    },
+    {
+      "id": "CAP-112",
+      "name": "Control anonymous analytics collection",
+      "domain": "Settings and legal",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "Turn anonymous usage data collection on or off in Privacy settings. The consent is applied to the analytics SDK, and a Remote Config flag decides whether Snowplow is used."
+    },
+    {
+      "id": "CAP-113",
+      "name": "Read the accessibility statement",
+      "domain": "Settings and legal",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "Open and read the app's accessibility statement."
+    },
+    {
+      "id": "CAP-114",
+      "name": "Read the terms of service and privacy information",
+      "domain": "Settings and legal",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "Read the user terms and data-usage summary, and follow links to the Visma trust centre, data-usage and privacy pages."
+    },
+    {
+      "id": "CAP-115",
+      "name": "View app version and open-source licenses",
+      "domain": "Settings and legal",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "See the app version and build, and browse the third-party libraries and their licenses."
+    },
+    {
+      "id": "CAP-116",
+      "name": "See the signed-in account and device info in Settings",
+      "domain": "Settings and legal",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android"
+      ],
+      "description": "See the login e-mail, the OS version and the app version/build in an info block at the top of Settings."
+    },
+    {
+      "id": "CAP-117",
+      "name": "Allow or block screenshots of the app",
+      "domain": "Settings and legal",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android"
+      ],
+      "description": "Turn screenshots and screen capture of app content on or off. The choice is stored as a preference and applied through the window secure flag."
+    },
+    {
+      "id": "CAP-118",
+      "name": "Update the app when a new version is suggested or required",
+      "domain": "Settings and legal",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "At launch or after login the app checks a backend config. It then suggests or forces a store update, or tells the user to update the OS."
+    },
+    {
+      "id": "CAP-119",
+      "name": "Keep app state after restarting or updating the app",
+      "domain": "Settings and legal",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "Settings, login, terms, surveys, HRM, Autopay, OneStop, recent approval searches, Gaia chats and What's New state survive restarts in encrypted storage. State from the old storage format is imported o"
+    },
+    {
+      "id": "CAP-120",
+      "name": "Use internal developer tools and feature flags",
+      "domain": "Settings and legal",
+      "fusion": "shared-diverged",
+      "personas": [
+        "developer",
+        "internal tester"
+      ],
+      "apps": [
+        "me-ios",
+        "vmm"
+      ],
+      "description": "In stage or test builds, internal users toggle feature flags and use debugging tools such as push device management, test notifications, forced crashes or PIN, and survey reset."
+    },
+    {
+      "id": "CAP-121",
+      "name": "Switch backend environment in test builds",
+      "domain": "Settings and legal",
+      "fusion": "shared-diverged",
+      "personas": [
+        "internal tester"
+      ],
+      "apps": [
+        "me-android"
+      ],
+      "description": "In test builds a tester picks which backend environment (API and Connect URLs) the app talks to. Production builds always use production."
+    },
+    {
+      "id": "CAP-122",
+      "name": "See that an employee's birthday is coming up",
+      "domain": "People and HR",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager sees a cake badge on the HRM tab, a birthday/anniversary badge on list rows and a days-until countdown on the employee profile when an employee's birthday or work anniversary is within 10 da"
+    },
+    {
+      "id": "CAP-123",
+      "name": "Turn birthday and work-anniversary reminders on or off",
+      "domain": "People and HR",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager with HRM access switches reminders for employee birthdays and work anniversaries on or off in Settings."
+    },
+    {
+      "id": "CAP-124",
+      "name": "Browse the employee directory",
+      "domain": "People and HR",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "A person opens the employee directory and scrolls through the people they can see, pulls to refresh, and taps a person to open their profile. In Manager the list covers the manager's employees across "
+    },
+    {
+      "id": "CAP-125",
+      "name": "Search the employee directory by name",
+      "domain": "People and HR",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "A person types a name in the directory search bar to narrow the list."
+    },
+    {
+      "id": "CAP-126",
+      "name": "Filter the employee directory with quick filters",
+      "domain": "People and HR",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "A person taps a quick-filter chip (for example same leader, department or country) to narrow the directory, and taps it again or Show all to clear it."
+    },
+    {
+      "id": "CAP-127",
+      "name": "Hide or show companies in the employee list",
+      "domain": "People and HR",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "With the Dottie integration on, a manager ticks or unticks companies in the overflow menu to hide or show them. Showing a company again scrolls the list to it."
+    },
+    {
+      "id": "CAP-128",
+      "name": "View an employee's personal, address and employment details",
+      "domain": "People and HR",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager opens an HRM employee and expands accordion sections to read personal details, post address and current position (employee id, position type, employment date, start/end, form, work type, wor"
+    },
+    {
+      "id": "CAP-129",
+      "name": "View a colleague's Dottie profile",
+      "domain": "People and HR",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "A person opens a Dottie-sourced employee from the directory and reads their profile photo, name, job and organization details, contact, employment dates, manager and location, read-only."
+    },
+    {
+      "id": "CAP-130",
+      "name": "Contact an employee by call, SMS, email or share",
+      "domain": "People and HR",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "From the employee detail header or any phone or email field, a manager calls, texts, emails or shares the employee's contact value through the device apps."
+    },
+    {
+      "id": "CAP-131",
+      "name": "Copy an employee's post address",
+      "domain": "People and HR",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager copies the employee's full post address (street, city, zip, localized country) to the clipboard."
+    },
+    {
+      "id": "CAP-132",
+      "name": "Edit an employee's name, phone numbers and emails",
+      "domain": "People and HR",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager taps Edit on an employee's personal details, updates first and last name, business and private phone and email, and saves them to the HR system."
+    },
+    {
+      "id": "CAP-133",
+      "name": "Edit an employee's postal address",
+      "domain": "People and HR",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager taps Edit on the post address section and updates street, postal code, city and country (from a searchable picker) for an employee."
+    },
+    {
+      "id": "CAP-134",
+      "name": "Add or edit an employee's child",
+      "domain": "People and HR",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager sees an employee's children sorted by name. They tap Add child to register a new one (name, year of birth, sole custody), or open one to edit it from a read-only view."
+    },
+    {
+      "id": "CAP-135",
+      "name": "Remove an employee's child",
+      "domain": "People and HR",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager removes a child from an employee's relatives."
+    },
+    {
+      "id": "CAP-136",
+      "name": "Add or edit an employee's emergency contact",
+      "domain": "People and HR",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager sees an employee's non-child relatives as emergency contacts. They add a new one or open one to edit it (name, phone, email, main contact flag), with tappable phone and email in the read-onl"
+    },
+    {
+      "id": "CAP-137",
+      "name": "Remove an employee's emergency contact",
+      "domain": "People and HR",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager deletes an emergency contact from an employee's record."
+    },
+    {
+      "id": "CAP-138",
+      "name": "Generate an AI birthday or work-anniversary greeting",
+      "domain": "People and HR",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "When an employee's birthday or milestone work anniversary is within 10 days, a manager taps Create greeting on the employee profile or a celebration row on the Home HRM card. The bot writes a message "
+    },
+    {
+      "id": "CAP-139",
+      "name": "Send a greeting to the employee by share sheet or SMS",
+      "domain": "People and HR",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager edits the generated greeting and sends it through the system share sheet or an SMS pre-filled with the employee's phone number."
+    },
+    {
+      "id": "CAP-140",
+      "name": "Save a greeting for later",
+      "domain": "People and HR",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager stores the greeting, edited or not, against the employee and returns to their profile."
+    },
+    {
+      "id": "CAP-141",
+      "name": "View my personal information",
+      "domain": "People and HR",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee opens Personal Information to see their email, business and private phone, address, bank account or cash payment, tax table and tax percentage, and their emergency contacts and children. F"
+    },
+    {
+      "id": "CAP-142",
+      "name": "Update my phone numbers and home address",
+      "domain": "People and HR",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee edits their business and private phone, street, zip code and city, picks a country from a searchable list, and saves the changes to their payroll/HR record. A slow backend shows an 'update"
+    },
+    {
+      "id": "CAP-143",
+      "name": "Change my salary bank account number",
+      "domain": "People and HR",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee paid by bank transfer, whose company grants the change-bank-account permission, edits their salary bank account number and saves it. Otherwise the field is read-only."
+    },
+    {
+      "id": "CAP-144",
+      "name": "Add an emergency contact or child",
+      "domain": "People and HR",
+      "fusion": "shared-diverged",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee adds a relative (partner, contact person or child) with name, email, phone and main-contact flag. For children they also enter date of birth, sole custody and a chronic illness period. The"
+    },
+    {
+      "id": "CAP-145",
+      "name": "Edit an emergency contact or child",
+      "domain": "People and HR",
+      "fusion": "shared-diverged",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee opens an existing relative, changes its details and saves them to their employee record."
+    },
+    {
+      "id": "CAP-146",
+      "name": "Remove an emergency contact or child",
+      "domain": "People and HR",
+      "fusion": "shared-diverged",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee deletes a relative from their personal information."
+    },
+    {
+      "id": "CAP-147",
+      "name": "View and update my HR profile",
+      "domain": "People and HR",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee in a Dottie company opens their own HR profile, a server-template-driven form (names, contacts, addresses, bank accounts, children, next of kin and more). They edit the allowed fields and "
+    },
+    {
+      "id": "CAP-148",
+      "name": "Change or remove my profile picture",
+      "domain": "People and HR",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee takes a photo or picks one from the library, crops it to a circle and uploads it as their HR profile picture, or deletes the current picture after confirming."
+    },
+    {
+      "id": "CAP-149",
+      "name": "Pick and crop a profile picture (prototype)",
+      "domain": "People and HR",
+      "fusion": "unique",
+      "personas": [
+        "developer"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A prototype reachable only from developer tools lets a person choose a gallery photo cropped to a circle. The image is not saved or uploaded."
+    },
+    {
+      "id": "CAP-150",
+      "name": "See my pending approval tasks",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager opens the Approval tab and sees their inbox of open approval tasks (invoices, expenses, other) with amounts, due/overdue badges and optional company grouping with collapsible groups. They pu"
+    },
+    {
+      "id": "CAP-151",
+      "name": "Sort approval tasks",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager orders the task list by company, document due date or task due date; the choice is remembered."
+    },
+    {
+      "id": "CAP-152",
+      "name": "Search approval tasks and history",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager searches pending tasks or history by free text (or asks Gaia), reuses recent searches, or swipes a history row to search everything from the same requester."
+    },
+    {
+      "id": "CAP-153",
+      "name": "Review an approval task",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager opens one pending task to see its document, company, amount or hours/days, due dates, workflow and Gaia hints, and acts on it from the task actions."
+    },
+    {
+      "id": "CAP-154",
+      "name": "Approve an approval task",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager approves a task with an optional comment (up to 400 characters, saved as a draft) in the action drawer, from the task detail, by swiping a list row (quick approve), or directly from the docu"
+    },
+    {
+      "id": "CAP-155",
+      "name": "Reject an approval task",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager rejects a task, giving a mandatory comment."
+    },
+    {
+      "id": "CAP-156",
+      "name": "Complete a review of a task",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Reviewer"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A reviewer marks a task sent to them for review as reviewed, with a mandatory comment."
+    },
+    {
+      "id": "CAP-157",
+      "name": "Send a task for review to a colleague",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager picks a colleague from the process's user list and sends the task to them for review with a mandatory comment."
+    },
+    {
+      "id": "CAP-158",
+      "name": "Forward a task to another approver",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager hands the task over to another user of the process with a mandatory comment."
+    },
+    {
+      "id": "CAP-159",
+      "name": "Act on an approval task from the Home screen",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "From a task row on the Home approval card, the manager taps one quick-action button (approve, forward, review or reject) that opens the shared action drawer for that task."
+    },
+    {
+      "id": "CAP-160",
+      "name": "Approve several tasks at once",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager long-presses to multi-select tasks (or selects all) in the approval list or on an employee's profile, sees totals per currency split by invoices/expenses/other, confirms and approves them in"
+    },
+    {
+      "id": "CAP-161",
+      "name": "Review an employee's pending approval tasks",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "On an employee's profile the manager expands Approval tasks (badge shows count) to see tasks that employee submitted, swipe a row for quick actions or multi-select them."
+    },
+    {
+      "id": "CAP-162",
+      "name": "Open the requester's employee profile from a task",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager jumps from an approval task or handled process to the HR profile of the employee who requested it."
+    },
+    {
+      "id": "CAP-163",
+      "name": "Comment on an approval process",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager adds a free-text comment to a task's process from the task screen; the draft is autosaved per task."
+    },
+    {
+      "id": "CAP-164",
+      "name": "View a task's attached documents",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager views a task's invoice/receipt attachments (PDF, image, TIFF, HTML) as thumbnails and full screen, zooms and pages with a page counter, switches documents, approves from the viewer footer, a"
+    },
+    {
+      "id": "CAP-165",
+      "name": "Share or download a task document",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager exports a task's attachment(s) through the system share sheet; image attachments are combined into one PDF first."
+    },
+    {
+      "id": "CAP-166",
+      "name": "Browse my approval history",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager switches to the History tab to list processes they acted on, with status (awaiting, approved, rejected, cancelled), paging and pull-to-refresh, and opens a process."
+    },
+    {
+      "id": "CAP-167",
+      "name": "View a handled approval process",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager opens a history item to see document, company, amount, description, due date, resolution status, workflow history and Gaia hints."
+    },
+    {
+      "id": "CAP-168",
+      "name": "See a task's approval workflow and history",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager sees the workflow steps (initial source, current step with pending approvers, future/skipped steps, due dates) and the event history of a task or process."
+    },
+    {
+      "id": "CAP-169",
+      "name": "Approve or reject individual accounting lines",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "An approver sets each voucher line of an expense/claim to approved or rejected; when all their lines are decided the matching approve/reject drawer opens automatically."
+    },
+    {
+      "id": "CAP-170",
+      "name": "Open a task's accounting lines",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "From a task, a manager opens its voucher lines or Financials/Business NXT/Compello posting lines with a count of lines awaiting approval or editable, and switches between only their lines and all line"
+    },
+    {
+      "id": "CAP-171",
+      "name": "Edit the accounting lines of an invoice before approving",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / invoice approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "An approver edits the coding of an invoice's lines in the connected ERP (Visma.net Financials, Business NXT or Compello): text, accounts, subaccounts/org units, project and task, quantities, dates, ta"
+    },
+    {
+      "id": "CAP-172",
+      "name": "Apply one field value to all lines",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / invoice approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "While editing a field on one invoice line, the approver taps 'Apply to all lines' to copy that value onto every other line, pending save."
+    },
+    {
+      "id": "CAP-173",
+      "name": "Discard unsaved line edits",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / invoice approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "The approver reverts all unsaved line changes after a confirmation, or confirms before leaving the line editor with unsaved changes."
+    },
+    {
+      "id": "CAP-174",
+      "name": "Choose which line fields to show",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / invoice approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "The approver turns on Custom mode and picks which fields each invoice line shows; the choice is remembered across restarts."
+    },
+    {
+      "id": "CAP-175",
+      "name": "Jump to a specific invoice line",
+      "domain": "Approvals",
+      "fusion": "unique",
+      "personas": [
+        "Manager / invoice approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "On invoices with many lines, the approver taps a line number in a quick index rail to scroll to it and sees which lines have unsaved changes or errors."
+    },
+    {
+      "id": "CAP-176",
+      "name": "Receive push notifications on this device",
+      "domain": "Notifications and inbox",
+      "fusion": "shared-diverged",
+      "personas": [
+        "Manager / approver",
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "The device registers its push token with the backend so the person is notified: managers about new approval tasks, employees about new payslips, year-end reports, time-confirmation reminders, calendar"
+    },
+    {
+      "id": "CAP-177",
+      "name": "Stop push notifications to this device when signing out",
+      "domain": "Notifications and inbox",
+      "fusion": "shared-diverged",
+      "personas": [
+        "Manager / approver",
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "When the person signs out, the device token is unregistered from the backend so notifications stop arriving on this phone."
+    },
+    {
+      "id": "CAP-178",
+      "name": "Open a push notification in the right place",
+      "domain": "Notifications and inbox",
+      "fusion": "shared-diverged",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "Tapping a push notification switches to the right account and company and opens the matching payslip, year-end report, time-confirmation/calendar view, message inbox or home."
+    },
+    {
+      "id": "CAP-179",
+      "name": "See that new HR notifications are waiting",
+      "domain": "Notifications and inbox",
+      "fusion": "unique",
+      "personas": [
+        "Employee with Dottie HR permission"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The start/home page shows an inbox button with a badge dot when the server reports new Dottie HR notifications; opening the inbox clears the badge."
+    },
+    {
+      "id": "CAP-180",
+      "name": "Read the combined message inbox",
+      "domain": "Notifications and inbox",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee opens the inbox and sees one date-sorted list, newest first, of native calendar/expense messages and Dottie HR notifications with colleague avatars; it reloads when the device comes back o"
+    },
+    {
+      "id": "CAP-181",
+      "name": "Dismiss a message from the inbox",
+      "domain": "Notifications and inbox",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee removes a native inbox message (deleted on the server) or hides a Dottie HR notification from the list with the close button."
+    },
+    {
+      "id": "CAP-182",
+      "name": "Mark an HR notification as read",
+      "domain": "Notifications and inbox",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "From a Dottie notification's context/item menu, the employee marks it as read."
+    },
+    {
+      "id": "CAP-183",
+      "name": "Open a document notification and confirm it as read",
+      "domain": "Notifications and inbox",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android"
+      ],
+      "description": "The employee taps a Dottie notification to open its external link or download and preview its document; for must-read documents they are asked to confirm reading after closing the preview."
+    },
+    {
+      "id": "CAP-184",
+      "name": "Read an important message from the employer or Visma",
+      "domain": "Notifications and inbox",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An information, warning or error message published remotely for the employee is shown as a card on the start/home page, with an action link opened outside the app and a close action."
+    },
+    {
+      "id": "CAP-185",
+      "name": "Open the app's notification settings",
+      "domain": "Notifications and inbox",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android"
+      ],
+      "description": "A person opens the system notification settings for the app from Settings."
+    },
+    {
+      "id": "CAP-186",
+      "name": "Review AutoPay payments waiting for my approval",
+      "domain": "Payments",
+      "fusion": "unique",
+      "personas": [
+        "manager / payment approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager (AutoPay approver) sees all bank payments waiting for approval, grouped by company and bank account, with balance, total due, pay date, reference, warning marker and salary or domestic type."
+    },
+    {
+      "id": "CAP-187",
+      "name": "Search AutoPay payments",
+      "domain": "Payments",
+      "fusion": "unique",
+      "personas": [
+        "manager / payment approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager opens a search bar on the AutoPay home and filters payments and accounts by free text. Recent searches are remembered and all accounts are shown expanded while a search is active."
+    },
+    {
+      "id": "CAP-188",
+      "name": "Select AutoPay payments for approval",
+      "domain": "Payments",
+      "fusion": "unique",
+      "personas": [
+        "manager / payment approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager ticks single payments, selects a whole bank account, or selects all salary payments in one tap. They see the selected count and amount, then press Approve to continue to signing or cancel th"
+    },
+    {
+      "id": "CAP-189",
+      "name": "Approve selected AutoPay payments with bank two-factor signing (BankID)",
+      "domain": "Payments",
+      "fusion": "unique",
+      "personas": [
+        "manager / payment approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager sends the ticked payments for approval and signs them with BankID or bank 2FA in an embedded web page. They get a success toast, or return to the list if they cancel."
+    },
+    {
+      "id": "CAP-190",
+      "name": "Track the status of processed AutoPay payments (In progress / Deviation / In bank)",
+      "domain": "Payments",
+      "fusion": "unique",
+      "personas": [
+        "manager / payment approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "On an Overview tab, a manager reviews payments from the last 60 days in three buckets (in progress, deviation, in bank). Each bucket shows a count, a colour-coded status and the approvals still missin"
+    },
+    {
+      "id": "CAP-191",
+      "name": "View an AutoPay payment's details",
+      "domain": "Payments",
+      "fusion": "unique",
+      "personas": [
+        "manager / payment approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager opens a payment from the Payments list or the Overview list and sees its status, creditor and debtor, references, original pay date and amount, events, and the approvers still missing. Proce"
+    },
+    {
+      "id": "CAP-192",
+      "name": "View the invoice document attached to an AutoPay payment",
+      "domain": "Payments",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager previews the invoice attachment as a thumbnail and opens it full screen, as a PDF or, if the PDF fails, as page images."
+    },
+    {
+      "id": "CAP-193",
+      "name": "Change the pay date of an AutoPay payment",
+      "domain": "Payments",
+      "fusion": "unique",
+      "personas": [
+        "manager / payment approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager picks a new pay date from a date picker on the payment details. Past dates cannot be chosen and read-only payments cannot be changed."
+    },
+    {
+      "id": "CAP-194",
+      "name": "Add, edit or delete a note on an AutoPay payment",
+      "domain": "Payments",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager writes, saves, changes or clears a free-text note on a payment."
+    },
+    {
+      "id": "CAP-195",
+      "name": "Review and verify AutoPay payment warnings",
+      "domain": "Payments",
+      "fusion": "unique",
+      "personas": [
+        "manager / payment approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager sees fraud and risk warnings on a payment (new or changed creditor or debtor, duplicate invoice, Inyett detection) and marks them verified, one at a time or all at once, or removes a verific"
+    },
+    {
+      "id": "CAP-196",
+      "name": "Cancel an AutoPay payment",
+      "domain": "Payments",
+      "fusion": "unique",
+      "personas": [
+        "manager / payment approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager cancels a pending payment from its details screen after confirming a warning dialog. The payment then disappears from the list."
+    },
+    {
+      "id": "CAP-197",
+      "name": "Sign in with a Visma Connect account",
+      "domain": "Sign-in and accounts",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "A person signs in through the Visma Connect web login (OAuth in a browser session), the app stores their tokens, loads who they are and what they may use, and lands them in the app."
+    },
+    {
+      "id": "CAP-198",
+      "name": "Stay signed in without logging in again",
+      "domain": "Sign-in and accounts",
+      "fusion": "shared-diverged",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The app silently renews access tokens with the refresh token, on launch, on return to the foreground and when a token is about to expire, for every account saved on the device."
+    },
+    {
+      "id": "CAP-199",
+      "name": "Be signed out and told why when the session ends",
+      "domain": "Sign-in and accounts",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "When the session expires, is revoked or the token cannot be renewed, the person is signed out and shown a message explaining why."
+    },
+    {
+      "id": "CAP-200",
+      "name": "Handle an account with no access",
+      "domain": "Sign-in and accounts",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "A person whose account has no usable roles or permissions is told so and cannot enter the app. They can only sign out."
+    },
+    {
+      "id": "CAP-201",
+      "name": "Log out",
+      "domain": "Sign-in and accounts",
+      "fusion": "shared-diverged",
+      "personas": [
+        "manager",
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "A signed-in person logs out. The app revokes their tokens, unregisters push, clears local session data and returns to the login screen."
+    },
+    {
+      "id": "CAP-202",
+      "name": "Switch between saved accounts",
+      "domain": "Sign-in and accounts",
+      "fusion": "unique",
+      "personas": [
+        "employee with several accounts"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "A person with several Visma accounts on the device picks one, from the login screen or from the account manager, to make it active. A still-signed-in account opens right away; a signed-out one opens t"
+    },
+    {
+      "id": "CAP-203",
+      "name": "Add another account",
+      "domain": "Sign-in and accounts",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "From the account manager a person signs in to one more Visma account. It is stored next to the existing ones and becomes the current account."
+    },
+    {
+      "id": "CAP-204",
+      "name": "Remove a saved account from the device",
+      "domain": "Sign-in and accounts",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "In edit mode on the account list a person removes an account after confirming. The app revokes its tokens, unregisters push and deletes its local data."
+    },
+    {
+      "id": "CAP-205",
+      "name": "Switch between my employers",
+      "domain": "Sign-in and accounts",
+      "fusion": "unique",
+      "personas": [
+        "employee with multiple employers"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee who works for several companies picks the active employer from the start or home page. The app then reloads with that company's data, permissions and features. When none is chosen yet, the"
+    },
+    {
+      "id": "CAP-206",
+      "name": "Protect the app with Face ID, fingerprint or PIN",
+      "domain": "Sign-in and accounts",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "During first start or from Settings, an employee turns on an app lock: device biometrics, the device screen lock (Android), or a 4-digit app PIN chosen twice. They can also skip it for later."
+    },
+    {
+      "id": "CAP-207",
+      "name": "Unlock the app with Face ID, fingerprint or PIN",
+      "domain": "Sign-in and accounts",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "When the app starts or comes back with an active session, the employee unlocks it with biometrics, the device credential or the 4-digit app PIN, after a time-of-day greeting. They can also choose to l"
+    },
+    {
+      "id": "CAP-208",
+      "name": "Turn off the app lock",
+      "domain": "Sign-in and accounts",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "In Settings the employee switches off the 'open app with Face ID/fingerprint/PIN' toggle, confirms, and verifies once more. From then on the app opens without a lock."
+    },
+    {
+      "id": "CAP-209",
+      "name": "Switch the backend environment",
+      "domain": "Sign-in and accounts",
+      "fusion": "shared-diverged",
+      "personas": [
+        "internal tester",
+        "developer"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios",
+        "vmm"
+      ],
+      "description": "An internal tester unlocks a hidden environment picker on the login screen and points the app at another backend (production, stage/staging, sandbox), or switches back to production."
+    },
+    {
+      "id": "CAP-210",
+      "name": "Choose a sandbox environment at login",
+      "domain": "Sign-in and accounts",
+      "fusion": "unique",
+      "personas": [
+        "internal tester",
+        "developer"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "With the sandbox environment selected on the login screen, a tester picks which sandbox (by colour) the app talks to, from the sandboxes currently available."
+    },
+    {
+      "id": "CAP-211",
+      "name": "See my vacation balances on the start page",
+      "domain": "Time and absence",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "An employee sees their combined vacation and leave balances grouped with units."
+    },
+    {
+      "id": "CAP-212",
+      "name": "Preview a day timeline (prototype)",
+      "domain": "Time and absence",
+      "fusion": "unique",
+      "personas": [
+        "Developer / internal"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "An internal prototype screen shows an expandable week calendar with a day timeline of hardcoded sample events. It does not appear to be reachable by users."
+    },
+    {
+      "id": "CAP-213",
+      "name": "Fill in and edit a server-defined form",
+      "domain": "Time and absence",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "The employee edits server-driven forms with typed fields, repeatable groups, validation and reveal/hide of sensitive values. The fragment says it is used by the Dottie employee-info feature."
+    },
+    {
+      "id": "CAP-214",
+      "name": "Browse payroll dialogues",
+      "domain": "Pay and payroll",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager sees payroll and wage-run conversations grouped by company. Each row shows title, creator, created date, unread count, payout date, approvers and wage-run status. The manager can switch betw"
+    },
+    {
+      "id": "CAP-215",
+      "name": "Start a new payroll dialogue",
+      "domain": "Pay and payroll",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager creates a conversation with a title, a company and an optional linked wage run, then lands in it."
+    },
+    {
+      "id": "CAP-216",
+      "name": "Read a payroll dialogue conversation",
+      "domain": "Pay and payroll",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager opens a dialogue or split, from the list or from a push notification, and reads its messages under a company and wage-run header. The dialogue is marked read."
+    },
+    {
+      "id": "CAP-217",
+      "name": "Browse wage-run splits of a dialogue",
+      "domain": "Pay and payroll",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager sees the splits of a wage-run dialogue grouped by approval status (rejected, for approval, approved) and opens one."
+    },
+    {
+      "id": "CAP-218",
+      "name": "Send a message in a payroll dialogue",
+      "domain": "Pay and payroll",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager writes and sends a message to a dialogue or split. Unsent drafts are kept per dialogue."
+    },
+    {
+      "id": "CAP-219",
+      "name": "Edit a sent dialogue message",
+      "domain": "Pay and payroll",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager long-presses one of their messages, edits its text and saves."
+    },
+    {
+      "id": "CAP-220",
+      "name": "Delete a dialogue message",
+      "domain": "Pay and payroll",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager long-presses a message and deletes it."
+    },
+    {
+      "id": "CAP-221",
+      "name": "Rename a dialogue or change its linked wage run",
+      "domain": "Pay and payroll",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager edits a dialogue's title and links, changes or unlinks its wage run. The edit menu opens from the dialogue context menu, prefilled with the current values."
+    },
+    {
+      "id": "CAP-222",
+      "name": "Mark a dialogue as completed or reactivate it",
+      "domain": "Pay and payroll",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "From the dialogue context menu a manager marks a dialogue complete or re-enables a completed one."
+    },
+    {
+      "id": "CAP-223",
+      "name": "Delete a dialogue",
+      "domain": "Pay and payroll",
+      "fusion": "unique",
+      "personas": [
+        "manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "From the dialogue context menu a manager chooses Delete, confirms in a modal that warns the deletion cannot be undone, and sees a success or failure toast."
+    },
+    {
+      "id": "CAP-224",
+      "name": "Approve or reject a wage run",
+      "domain": "Pay and payroll",
+      "fusion": "unique",
+      "personas": [
+        "manager",
+        "payroll approver"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "Inside a wage-run dialogue or split that awaits approval, the manager approves or rejects the payroll run."
+    },
+    {
+      "id": "CAP-225",
+      "name": "View a payslip's details",
+      "domain": "Pay and payroll",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee opens a payslip to see payment date, net total, line items and the employer message. It opens from the list, from a start-page or home card, or from a new-payslip push notification."
+    },
+    {
+      "id": "CAP-226",
+      "name": "Download a payslip PDF",
+      "domain": "Pay and payroll",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "From the payslip details an employee downloads the payslip document as a PDF from any tenant to preview or share it."
+    },
+    {
+      "id": "CAP-227",
+      "name": "Export all my payslips to one PDF",
+      "domain": "Pay and payroll",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee exports all their payslips as one document. If they have payslips from several companies they first pick a company. They then preview or open the document."
+    },
+    {
+      "id": "CAP-228",
+      "name": "Browse my year-end reports",
+      "domain": "Pay and payroll",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee switches to the year-end reports segment or tab to see the annual tax and income reports for their selected companies."
+    },
+    {
+      "id": "CAP-229",
+      "name": "View a year-end report",
+      "domain": "Pay and payroll",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee opens a year-end report to see its titled field and value lines. It opens from the reports list or from a year-end push notification."
+    },
+    {
+      "id": "CAP-230",
+      "name": "Download a year-end report PDF",
+      "domain": "Pay and payroll",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee downloads a year-end report as a PDF and previews, shares or opens it."
+    },
+    {
+      "id": "CAP-231",
+      "name": "Learn why I have no payslips",
+      "domain": "Pay and payroll",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "When the payslip list is empty, the employee taps a link to open the payslips FAQ."
+    },
+    {
+      "id": "CAP-232",
+      "name": "Browse and search company documents",
+      "domain": "Documents and benefits",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee with Dottie access opens Documents and benefits from the profile menu and sees the organization's shared documents grouped by category, with read/unread status, new badge and must-read/sho"
+    },
+    {
+      "id": "CAP-233",
+      "name": "Open a company document",
+      "domain": "Documents and benefits",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee opens an organization document, either downloading the file and previewing it or opening its external link in the app, optionally from the document's description/details sheet."
+    },
+    {
+      "id": "CAP-234",
+      "name": "Confirm reading a required company document",
+      "domain": "Documents and benefits",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "After closing a must-read or should-read company document that is not yet read, the employee is asked to mark it as read; on confirm it is flagged read on the server and in the list, 'Maybe later' dis"
+    },
+    {
+      "id": "CAP-235",
+      "name": "View and open my personal documents",
+      "domain": "Documents and benefits",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee lists their own HR documents grouped by category, searches them by name, reads a document's description and downloads it to open it."
+    },
+    {
+      "id": "CAP-236",
+      "name": "Browse employee benefits",
+      "domain": "Documents and benefits",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "An employee browses the company's benefits grouped by category, searches them by name, body or supplier, opens a benefit's detail and follows its link to more information."
+    },
+    {
+      "id": "CAP-237",
+      "name": "Open and acknowledge a document from a notification",
+      "domain": "Documents and benefits",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "From a document read-request, reminder or document-link notification, the employee opens the document (external link or download preview) and is then asked to mark it as read."
+    },
+    {
+      "id": "CAP-238",
+      "name": "Preview a downloaded image or PDF inside the app",
+      "domain": "Documents and benefits",
+      "fusion": "shared-diverged",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "A person opens a downloaded or attached image or PDF full screen inside the app with pinch-to-zoom and pan, then closes it."
+    },
+    {
+      "id": "CAP-239",
+      "name": "Open a downloaded file in another app",
+      "domain": "Documents and benefits",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-android"
+      ],
+      "description": "A person opens a downloaded attachment, year-end report or exported payslips in a viewer app chosen from the system chooser, e.g. from an Open snackbar, with a first-page PDF preview available in-app."
+    },
+    {
+      "id": "CAP-240",
+      "name": "Browse my unsent expenses in the expenses inbox",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee sees every unsent receipt, credit card transaction, mileage and allowance in one list, with a collapsible credit card section, per-row sync status, offline and no-permission states, and o"
+    },
+    {
+      "id": "CAP-241",
+      "name": "Start a new receipt, mileage or allowance",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "From the expenses list add menu or the start/home page quick actions, the employee starts a new receipt (camera), a mileage or an allowance. The start is blocked when templates are missing, and allowa"
+    },
+    {
+      "id": "CAP-242",
+      "name": "Capture or import a receipt image or PDF",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee photographs a receipt with automatic edge or object detection, flash and cropping, or picks an image or PDF from the device, to start a receipt or add an attachment."
+    },
+    {
+      "id": "CAP-243",
+      "name": "Share a photo or PDF into the app to create an expense",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee shares an image or PDF from another app into the Employee app, picks an employer with expense access when needed, and continues in the receipt flow."
+    },
+    {
+      "id": "CAP-244",
+      "name": "Auto-fill a receipt from its image and get a suggested expense type",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "A scanned or shared receipt is sent to the machine-learning service. It pre-fills date, amount, VAT, currency, kilometres, flight duration and route, and suggests an expense type. When the employee sa"
+    },
+    {
+      "id": "CAP-245",
+      "name": "Create or edit a receipt",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee fills in or edits a receipt from its template (expense type, amount, date, VAT, purpose, flight duration and other fields), sees validation errors, and saves it as a draft in the inbox. T"
+    },
+    {
+      "id": "CAP-246",
+      "name": "Enter a receipt in a foreign currency with an exchange rate",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee picks the receipt currency, with frequently used currencies first. The app fetches a suggested exchange rate for the date and converts the amount to the company currency. The same currenc"
+    },
+    {
+      "id": "CAP-247",
+      "name": "Calculate driving distance for a kilometre receipt",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "On a receipt with a kilometres field, the employee picks from and to places (with recent suggestions) and an optional return trip, and the app fills in the distance from a route calculation."
+    },
+    {
+      "id": "CAP-248",
+      "name": "Add or remove attachments on an expense",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "From an expense's attachments sheet the employee adds more files (scan, photo or file) or removes an attachment after confirming, on a draft or on an item in an editable claim."
+    },
+    {
+      "id": "CAP-249",
+      "name": "View or download an expense attachment",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee opens a receipt image or PDF full screen (with zoom) and saves it to the device."
+    },
+    {
+      "id": "CAP-250",
+      "name": "Link a credit card transaction to a receipt (merge)",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee pairs one credit card transaction with one matching receipt, from the inbox merge mode or from an item's detail through a candidate list ranked as exact or possible match, and the two bec"
+    },
+    {
+      "id": "CAP-251",
+      "name": "Delete an unsent expense",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee deletes a receipt, credit card transaction, mileage or allowance draft from the inbox or from its detail screen after confirming. It is deleted on the server, or only on the device if it "
+    },
+    {
+      "id": "CAP-252",
+      "name": "Send selected expenses to a claim",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "In the inbox the employee selects several valid, synced drafts (one by one, per section or all), the app validates them, and the employee picks an existing editable claim or creates a new one. Before "
+    },
+    {
+      "id": "CAP-253",
+      "name": "Create a new expense claim from selected expenses",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee bundles selected receipts, mileages, allowances and card transactions into a new claim. They fill in title, comment, cost units and project, review the totals (reimbursable and paid by co"
+    },
+    {
+      "id": "CAP-254",
+      "name": "Send an expense claim for approval",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee sends a new or existing claim, with any newly added expenses, to the approver. The claim is saved first, and a server-defined confirmation may be shown."
+    },
+    {
+      "id": "CAP-255",
+      "name": "Add new or existing expenses to a claim from the claim screen",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "From an open claim, the employee creates a new receipt, mileage or allowance that is saved straight into the claim, or picks existing inbox drafts to add to it."
+    },
+    {
+      "id": "CAP-256",
+      "name": "Add a receipt, mileage or allowance to a claim from its form",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "From a receipt, mileage or allowance form, the employee saves the item and adds it to a claim they pick, or saves it straight into the claim the form was opened from ('Save to <claim>')."
+    },
+    {
+      "id": "CAP-257",
+      "name": "Send a single expense straight for approval",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "From a receipt, mileage or allowance form, the employee sends that one item for approval without building a claim. A confirmation can be turned off with 'don't show again'. If the server rolls the ite"
+    },
+    {
+      "id": "CAP-258",
+      "name": "Review an expense claim's details",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee opens a claim and sees its status, any status-change reason, the receipts, mileages and allowances grouped by category, the total, the amount paid by the company, and the actions the serv"
+    },
+    {
+      "id": "CAP-259",
+      "name": "Edit a claim's title and comment",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee changes an open claim's title (description) and comment and saves them back to the claim."
+    },
+    {
+      "id": "CAP-260",
+      "name": "Withdraw a claim from approval",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee cancels the approval request of a claim they already sent, after an optional server-defined confirmation. The claim then reloads."
+    },
+    {
+      "id": "CAP-261",
+      "name": "Delete an expense claim",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee confirms and deletes a claim they no longer need, and the claim screen closes."
+    },
+    {
+      "id": "CAP-262",
+      "name": "View, edit or delete an item inside a claim",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "From a claim, the employee opens a receipt, mileage or allowance. It is read-only when the claim cannot be changed, and can be edited, saved or deleted through the claim's links when it can."
+    },
+    {
+      "id": "CAP-263",
+      "name": "Assign cost units to an expense or claim",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee picks cost-allocation dimension values for a receipt, mileage, allowance or claim from searchable, paged lists (for eHRM companies, organization unit and position with defaults), optional"
+    },
+    {
+      "id": "CAP-264",
+      "name": "Assign project accounting to an expense or claim",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee at a project-accounting company"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "In a company that uses project accounting, the employee picks a project, a dependent task and a reinvoice-on-project choice for a receipt, mileage, allowance or claim, using searchable paged pickers."
+    },
+    {
+      "id": "CAP-265",
+      "name": "Log a business-trip mileage and save it as a draft",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee fills in or edits a mileage from the company mileage template (date, vehicle and fuel type, trip type, purpose, distance, passengers, cost units, project) and saves it as a draft. When of"
+    },
+    {
+      "id": "CAP-266",
+      "name": "Plan a mileage route and calculate its distance",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee sets a start point, destinations and waypoints by address search, map tap, current location or recent places. They can reorder stops and add a return trip, and the app fetches driving dir"
+    },
+    {
+      "id": "CAP-267",
+      "name": "Calculate road tolls automatically for a mileage trip",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "With automatic road-toll calculation on, the app sends the route with fuel type, rush-hour and AutoPASS settings and fills in the road toll amount, which the employee can edit or delete. Saving waits "
+    },
+    {
+      "id": "CAP-268",
+      "name": "Remember my mileage defaults",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "New mileages start with the employee's last fuel type, vehicle or trip type, rush-hour, AutoPASS and automatic road-toll choices, saved locally and on the server."
+    },
+    {
+      "id": "CAP-269",
+      "name": "Register or edit a travel allowance (per diem)",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee enters purpose, regular-day travel and one or more travel segments (start and end date-time, destination country, allowance type), continues to the per-day step, and saves a new allowance"
+    },
+    {
+      "id": "CAP-270",
+      "name": "Set meals and lodging per travel day and see the calculated allowance",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "On the second allowance step the employee sets breakfast, lunch, dinner or meal, lodging type and night allowance, either for all days or per day, and sees the server-calculated total, meal deduction "
+    },
+    {
+      "id": "CAP-271",
+      "name": "Record hotel stays for an allowance and find the hotel",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee adds hotel stays to the allowance, which must be continuous and inside the server's lodging periods. They fill in each hotel by search or pick from recently used hotels, which they can re"
+    },
+    {
+      "id": "CAP-272",
+      "name": "Read what allowances are and the company policy",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee opens a help sheet from an allowance field label that explains the allowance and period definitions, with a link to more documentation."
+    },
+    {
+      "id": "CAP-273",
+      "name": "View my travel emissions summary",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The employee sees this year's CO2 emissions from their expenses as a donut chart of top expense types with the change from the previous period, and can read how emissions are calculated and their limi"
+    },
+    {
+      "id": "CAP-274",
+      "name": "See the CO2e emissions of an expense or claim",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "On a receipt, mileage or claim, the employee sees the calculated CO2e emissions, when the company has emission details turned on."
+    },
+    {
+      "id": "CAP-275",
+      "name": "Keep expenses in sync and upload offline drafts automatically",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-android",
+        "me-ios"
+      ],
+      "description": "The app downloads the inbox, currencies and templates and uploads receipts and mileages saved locally while offline. It runs in the background when the connection returns, shows each item's upload sta"
     }
   ]
 }

@@ -26,7 +26,7 @@ from fusionlib.common import (check_name, die, load_json, md_table, now_iso, one
                               write_json, write_text)
 
 STACKS = {"react-native", "native", "swiftui", "compose", "flutter", "kmp"}
-RULES = r"(?:RULE-\d+(?:\+RULE-\d+)+|conflict-[0-9a-f]{8})"
+RULES = r"(?:RULE-\d+(?:\+RULE-\d+)+(?::[0-9a-f]{8})?|conflict-[0-9a-f]{8})"
 EVENT_OR_KEY = r"(?:CAP-\d+:)?[A-Za-z0-9_.-]+:\S.*"
 KINDS = {
     "conflict": (rf"^(?:CAP-\d+|CAP-\d+:{RULES}|rules:{RULES})$",
@@ -83,6 +83,22 @@ def find(decisions, about, kind):
 def rule_conflict_about(capability, rule_ids):
     ids = "+".join(sorted(set(rule_ids), key=lambda r: int(r.split("-")[1])))
     return f"{capability}:{ids}" if capability else f"rules:{ids}"
+
+
+def conflict_keys(conflicts):
+    """Give every rule conflict its own key. When two conflicts name the same rules (the same pair of cards can differ
+    in two ways), each gets its difference's hash as a suffix, whatever their order, so one answer never answers
+    both."""
+    for c in conflicts:
+        c.pop("key", None)
+        c["key"] = conflict_key(c)
+    counts = {}
+    for c in conflicts:
+        counts[c["key"]] = counts.get(c["key"], 0) + 1
+    for c in conflicts:
+        if counts[c["key"]] > 1 and ":conflict-" not in c["key"]:
+            c["key"] = f"{c['key']}:{hashlib.sha1(one_line(c.get('difference'), 400).encode('utf-8')).hexdigest()[:8]}"
+    return conflicts
 
 
 def conflict_key(conf):
@@ -199,9 +215,12 @@ def open_questions(ws, program):
                         "question": f"{r['id']} {r['name']} ({r['app']}, {r['source']}) is a P0 rule no capability owns, so no "
                                     "proof checks it. Which capability does it belong to?",
                         "options": near[:3] + ["none"]})
-    for conf in rules.get("conflicts", []):
+    conflicts = rules.get("conflicts", [])
+    if any(not c.get("key") for c in conflicts):  # rules.json from an older version
+        conflicts = conflict_keys([dict(c) for c in conflicts])
+    for conf in conflicts:
         ids = conf.get("rules") or []
-        about = conflict_key(conf)
+        about = conf["key"]
         if (about, "conflict") not in decided:
             owners = sorted({r["app"] for r in rules.get("rules", []) if r["id"] in ids})
             owners = owners if len(owners) >= 2 else apps

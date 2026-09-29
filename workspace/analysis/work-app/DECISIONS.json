@@ -1,0 +1,326 @@
+{
+  "program": "work-app",
+  "version": 1,
+  "decisions": {
+    "DEC-001": {
+      "about": "continuity:store-identity",
+      "kind": "continuity",
+      "question": "Which store listings should the new app ship under, so existing users get it as an update?",
+      "choice": "new-listing",
+      "note": "A new listing on both: a fresh app in both stores; users of both old apps move to it, with a notice and a link in the old apps.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-002": {
+      "about": "continuity:minimum-os",
+      "kind": "continuity",
+      "question": "Minimum OS: what should the new app require?",
+      "choice": "iOS 18, Android 8 (API 26)",
+      "note": "iOS 18, Android 8 (API 26): Employee's iOS floor.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-003": {
+      "about": "analytics:taxonomy",
+      "kind": "analytics",
+      "question": "Analytics: what happens to the 311 (Manager) and 185 (Employee) event names?",
+      "choice": "new-taxonomy",
+      "note": "New event taxonomy: rename events for the new app; each rename is listed in a map, and dashboard owners remap.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-004": {
+      "about": "CAP-001",
+      "kind": "conflict",
+      "question": "Month view (CAP-001): which app's behavior does the new app keep?",
+      "choice": "take:me-ios",
+      "note": "Employee's, for both roles: one month view with me-ios's behavior. Employees see their own calendar; managers open a team member's calendar in the same view.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-005": {
+      "about": "CAP-002",
+      "kind": "conflict",
+      "question": "Scrolling list (CAP-002): which app's behavior does the new app keep?",
+      "choice": "take:me-ios",
+      "note": "Employee's: me-ios's list, both directions, jump to date, formatted durations.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-006": {
+      "about": "CAP-003",
+      "kind": "conflict",
+      "question": "Switching list/month (CAP-003): which app's behavior does the new app keep?",
+      "choice": "take:me-ios",
+      "note": "Employee's: one toolbar toggle, list view first, saved on the device.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-007": {
+      "about": "CAP-004",
+      "kind": "conflict",
+      "question": "Day details (CAP-004): which app's behavior does the new app keep?",
+      "choice": "take:me-ios",
+      "note": "Employee's: me-ios's richer sheet. For a manager viewing a team member, actions follow that manager's rights.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-008": {
+      "about": "CAP-005",
+      "kind": "conflict",
+      "question": "Customizing the calendar (CAP-005): which app's behavior does the new app keep?",
+      "choice": "take:me-ios",
+      "note": "Employee's: me-ios's filter set, including roster and hide weekends.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-009": {
+      "about": "CAP-001:RULE-010+RULE-147",
+      "kind": "conflict",
+      "question": "A rule difference inside CAP-001: which app's rule wins?",
+      "choice": "take:me-ios",
+      "note": "Follow each capability's answer: CAP-001 keeps Employee's (me-ios) behavior, so Employee's rule wins here.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-010": {
+      "about": "CAP-001:RULE-018+RULE-101",
+      "kind": "conflict",
+      "question": "A rule difference inside CAP-001: which app's rule wins?",
+      "choice": "take:me-ios",
+      "note": "Follow each capability's answer: CAP-001 keeps Employee's (me-ios) behavior, so Employee's rule wins here.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-011": {
+      "about": "CAP-001:RULE-038+RULE-067",
+      "kind": "conflict",
+      "question": "A rule difference inside CAP-001: which app's rule wins?",
+      "choice": "take:me-ios",
+      "note": "Follow each capability's answer: CAP-001 keeps Employee's (me-ios) behavior, so Employee's rule wins here.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-012": {
+      "about": "CAP-001:RULE-045+RULE-047",
+      "kind": "conflict",
+      "question": "A rule difference inside CAP-001: which app's rule wins?",
+      "choice": "take:me-ios",
+      "note": "Follow each capability's answer: CAP-001 keeps Employee's (me-ios) behavior, so Employee's rule wins here.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-013": {
+      "about": "CAP-001:RULE-045+RULE-147",
+      "kind": "conflict",
+      "question": "A rule difference inside CAP-001: which app's rule wins?",
+      "choice": "take:me-ios",
+      "note": "Follow each capability's answer: CAP-001 keeps Employee's (me-ios) behavior, so Employee's rule wins here.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-014": {
+      "about": "CAP-002:RULE-012+RULE-149",
+      "kind": "conflict",
+      "question": "A rule difference inside CAP-002: which app's rule wins?",
+      "choice": "take:me-ios",
+      "note": "Follow each capability's answer: CAP-002 keeps Employee's (me-ios) behavior, so Employee's rule wins here.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-015": {
+      "about": "CAP-002:RULE-142+RULE-149",
+      "kind": "conflict",
+      "question": "A rule difference inside CAP-002: which app's rule wins?",
+      "choice": "take:me-ios",
+      "note": "Follow each capability's answer: CAP-002 keeps Employee's (me-ios) behavior, so Employee's rule wins here.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-016": {
+      "about": "CAP-003:RULE-091+RULE-108",
+      "kind": "conflict",
+      "question": "A rule difference inside CAP-003: which app's rule wins?",
+      "choice": "take:me-ios",
+      "note": "Follow each capability's answer: CAP-003 keeps Employee's (me-ios) behavior, so Employee's rule wins here.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-017": {
+      "about": "CAP-004:RULE-080+RULE-092:59c3eef8",
+      "kind": "conflict",
+      "question": "A rule difference inside CAP-004: which app's rule wins?",
+      "choice": "take:me-ios",
+      "note": "Follow each capability's answer: CAP-004 keeps Employee's (me-ios) behavior, so Employee's rule wins here.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-018": {
+      "about": "CAP-004:RULE-080+RULE-092:7197b4ab",
+      "kind": "conflict",
+      "question": "A rule difference inside CAP-004: which app's rule wins?",
+      "choice": "take:me-ios",
+      "note": "Follow each capability's answer: CAP-004 keeps Employee's (me-ios) behavior, so Employee's rule wins here.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-019": {
+      "about": "CAP-005:RULE-070+RULE-073:1b1db38e",
+      "kind": "conflict",
+      "question": "A rule difference inside CAP-005: which app's rule wins?",
+      "choice": "take:me-ios",
+      "note": "Follow each capability's answer: CAP-005 keeps Employee's (me-ios) behavior, so Employee's rule wins here.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-020": {
+      "about": "CAP-005:RULE-070+RULE-073:80eda97e",
+      "kind": "conflict",
+      "question": "A rule difference inside CAP-005: which app's rule wins?",
+      "choice": "take:me-ios",
+      "note": "Follow each capability's answer: CAP-005 keeps Employee's (me-ios) behavior, so Employee's rule wins here.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-021": {
+      "about": "CAP-005:RULE-073+RULE-110",
+      "kind": "conflict",
+      "question": "A rule difference inside CAP-005: which app's rule wins?",
+      "choice": "take:me-ios",
+      "note": "Follow each capability's answer: CAP-005 keeps Employee's (me-ios) behavior, so Employee's rule wins here.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-022": {
+      "about": "CAP-005:RULE-110+RULE-146",
+      "kind": "conflict",
+      "question": "A rule difference inside CAP-005: which app's rule wins?",
+      "choice": "take:me-ios",
+      "note": "Follow each capability's answer: CAP-005 keeps Employee's (me-ios) behavior, so Employee's rule wins here.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-023": {
+      "about": "PLT-001",
+      "kind": "platform",
+      "question": "PLT-001 Bundle / application ids: keep it in the new app?",
+      "choice": "drop",
+      "note": "A new listing on both: the new app gets its own bundle and application ids (follows the store-listing answer).",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-024": {
+      "about": "PLT-002",
+      "kind": "platform",
+      "question": "PLT-002 Minimum OS: keep it in the new app?",
+      "choice": "keep",
+      "note": "iOS 18, Android 8 (API 26).",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-025": {
+      "about": "PLT-006",
+      "kind": "platform",
+      "question": "PLT-006 Notification content extension (vmm): keep it in the new app?",
+      "choice": "keep",
+      "note": "Keep: users keep the rich push views (approval and anniversary pushes).",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-026": {
+      "about": "PLT-007",
+      "kind": "platform",
+      "question": "PLT-007 Notification service extension (vmm): keep it in the new app?",
+      "choice": "keep",
+      "note": "Keep: pushes keep their action buttons.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-027": {
+      "about": "PLT-008",
+      "kind": "platform",
+      "question": "PLT-008 Share extension (me-ios): keep it in the new app?",
+      "choice": "keep",
+      "note": "Keep, and fix the lock: receipt sharing stays; the new extension requires the app lock.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-028": {
+      "about": "PLT-033",
+      "kind": "platform",
+      "question": "PLT-033 App groups: keep it in the new app?",
+      "choice": "drop",
+      "note": "New groups only: the old ids are not carried over; the new app gets its own group for its extensions.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-029": {
+      "about": "PLT-042",
+      "kind": "platform",
+      "question": "PLT-042 Local storage: keep it in the new app?",
+      "choice": "drop",
+      "note": "Start clean: users sign in again and data is re-fetched from the server; unsent drafts are lost unless sent first.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-030": {
+      "about": "PLT-050",
+      "kind": "platform",
+      "question": "PLT-050 Firebase Cloud Messaging: keep it in the new app?",
+      "choice": "keep",
+      "note": "Keep: one push path for iOS and Android; the backends register the new app's tokens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-031": {
+      "about": "PLT-051",
+      "kind": "platform",
+      "question": "PLT-051 MMKV: keep it in the new app?",
+      "choice": "decide-later",
+      "note": "Decide with the stack: the plan picks storage together with the stack.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    },
+    "DEC-032": {
+      "about": "PLT-057",
+      "kind": "platform",
+      "question": "PLT-057 Realm: keep it in the new app?",
+      "choice": "decide-later",
+      "note": "Decide with the stack: the plan picks storage together with the stack.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-09-29T06:25:42+00:00",
+      "replaces": null
+    }
+  }
+}

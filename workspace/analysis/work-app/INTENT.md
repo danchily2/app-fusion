@@ -36,3 +36,22 @@ Twins: none (Manager and Employee are different products).
 - Confirm the personas, and whether one person can be both a manager and an employee.
 - Choose the store listing: update vmm's, update me-ios's, a new listing, or decide in the plan.
 - me-ios is a shallow clone: history-based signals (churn, ownership) are unavailable for it.
+
+## Answers given in the terminal, 2026-09-29 (Dan-Mihai Cuc)
+
+Recorded as DEC-001 to DEC-032 in DECISIONS.json; the words below are the options chosen or typed.
+
+- **Design:** "https://www.figma.com/proto/J4jjulaLJ4QNzqZ1INWydq/manployee-design … here is the proposed design, but
+  plugin should work with other design as well". The file sits in the Visma plan, on a View seat (6 MCP reads a
+  month), so the design step reads it through the REST API with a FIGMA_TOKEN.
+- **Stack:** "Decide in the plan".
+- **Store listing:** "A new listing on both".
+- **Next step:** "Map all of both apps first", with me-android added: "Yes, clone it from GitHub".
+- **Calendar (CAP-001 to CAP-005):** Employee's behavior every time ("Employee's, for both roles" for the month view).
+- **The 14 rule differences inside them:** "Follow each capability's answer".
+- **Analytics:** "New event taxonomy".
+- **Data on the device:** "Start clean".
+- **Notification service and content extensions:** "Keep". **Share extension:** "Keep, and fix the lock".
+- **App groups:** "New groups only". **Firebase Cloud Messaging:** "Keep". **MMKV and Realm:** "Decide with the stack".
+- **Minimum OS:** "iOS 18, Android 8 (API 26)". **The 60 minor platform items:** "Leave them to the plan".
+- **Push the answers to GitHub:** "Yes, push them".

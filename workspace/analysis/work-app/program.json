@@ -17,7 +17,8 @@
       "branch": "develop",
       "commit": "342cb745f66b70d9c715244d6d5a937d4e18e6fc",
       "role": "source",
-      "twinOf": null
+      "twinOf": null,
+      "snapshotOf": null
     },
     {
       "name": "me-ios",
@@ -31,10 +32,35 @@
       "branch": "development",
       "commit": "a3600e7d6d899ee40044f04fb07bcb5a9e07006f",
       "role": "source",
-      "twinOf": null
+      "twinOf": null,
+      "snapshotOf": null
+    },
+    {
+      "name": "me-android",
+      "product": "Employee",
+      "stack": "android-native",
+      "platforms": [
+        "android"
+      ],
+      "path": "legacy/me-android",
+      "repo": "https://github.com/Visma-Mobile-Employee/me-android.git",
+      "branch": "development",
+      "commit": "bdc1335e0f55200eea93cd701dd473a3abbcbfd3",
+      "role": "twin",
+      "twinOf": "me-ios",
+      "snapshotOf": null
     }
   ],
-  "figma": [],
+  "figma": [
+    {
+      "url": "https://www.figma.com/proto/J4jjulaLJ4QNzqZ1INWydq/manployee-design",
+      "fileKey": "J4jjulaLJ4QNzqZ1INWydq",
+      "kind": "proto",
+      "name": "manployee design",
+      "nodeId": "3317:2",
+      "pages": []
+    }
+  ],
   "target": {
     "path": "new-app/work-app",
     "stack": "undecided",
@@ -50,5 +76,5 @@
   ],
   "locales": [],
   "mustStayTrue": [],
-  "storeIdentity": "undecided"
+  "storeIdentity": "new-listing"
 }

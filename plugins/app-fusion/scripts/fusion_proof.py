@@ -116,34 +116,40 @@ class Evidence:
 def decision_effects(decisions, cid, cap, cap_rules, rules_by_id, conflicts):
     """What the person's decisions do to the rules check: ({rule: why left out}, [DEC ids a test must name], [gaps]).
     A decision about a rule conflict is the more specific answer: for the rules it names it wins over the capability's
-    `take:<app>`."""
+    `take:<app>`. When two decisions about the same rules keep different apps' behavior (the same pair of cards can
+    differ in two ways), the result is a mix no legacy rule states: both rules are left out, and each decision needs a
+    passing test named after it."""
     excluded, required, gaps = {}, [], []
     mine = {r["id"] for r in cap_rules}
-    by_rule, decided_keys = {}, set()
+    choices, decided_keys = {}, set()
     for k, dd in decisions.items():
         about = dd.get("about") or ""
         if dd.get("kind") != "conflict":
             continue
         decided_keys.add(about)
-        m = re.match(r"^(?:CAP-\d+|rules):((?:RULE-\d+\+?)+)$", about)
+        m = re.match(r"^(?:CAP-\d+|rules):((?:RULE-\d+\+?)+)(?::[0-9a-f]{8})?$", about)
         if not m:
             continue
         ids = set(m.group(1).split("+"))
         if not ids & mine:
             continue
-        if dd["choice"].startswith("take:"):
-            keep = dd["choice"][5:]
-            for rid in ids & mine:
-                by_rule[rid] = f"{k} keeps {keep}'s rule" if (rules_by_id.get(rid) or {}).get("app") != keep else None
-        elif dd["choice"] in ("design", "new-spec"):
-            for rid in ids & mine:
-                by_rule[rid] = f"{k} replaces it with a new behavior"
-            required.append(k)
-        elif dd["choice"] == "defer":
+        if dd["choice"] == "defer":
             gaps.append(f"{k} defers the rule conflict {'+'.join(sorted(ids))}")
+            continue
+        for rid in ids & mine:
+            choices.setdefault(rid, []).append((k, dd["choice"], ids))
+    by_rule = {}
+    for rid, picks in choices.items():
+        takes = {c[5:] for _, c, _ in picks if c.startswith("take:")}
+        redesign = [k for k, c, _ in picks if c in ("design", "new-spec")]
+        if redesign or len(takes) > 1:
+            by_rule[rid] = f"{', '.join(k for k, _, _ in picks)} replace it with a new behavior"
+            required += [k for k, c, _ in picks if c in ("design", "new-spec")] or [k for k, _, _ in picks]
+        elif takes:
+            keep = next(iter(takes))
+            by_rule[rid] = None if (rules_by_id.get(rid) or {}).get("app") == keep else f"{picks[0][0]} keeps {keep}'s rule"
         else:  # both-by-role: every rule of the set stays
-            for rid in ids & mine:
-                by_rule[rid] = None
+            by_rule[rid] = None
     cap_dec = next(((k, d) for k, d in decisions.items() if d.get("kind") == "conflict" and d.get("about") == cid), (None, None))
     if cap.get("fusion") == "shared-diverged" and not cap_dec[0]:
         gaps.append("no decision yet on which app's behavior the new app keeps (fuse-review conflicts)")
@@ -190,7 +196,9 @@ def judge(ws, program, only=None):  # noqa: ARG001  (every built capability is j
     platforms = (prog.get("target") or {}).get("platforms") or []
     halves = newapp.halves(ws, program)
     pair = [p for p, _ in halves if p] if sum(1 for p, _ in halves if p) > 1 else [None]
-    conflicts = [dict(c, key=decmod.conflict_key(c)) for c in rules_doc.get("conflicts") or []]
+    conflicts = rules_doc.get("conflicts") or []
+    if any(not c.get("key") for c in conflicts):  # rules.json from an older version
+        conflicts = decmod.conflict_keys([dict(c) for c in conflicts])
     built = proofkit.built(ws, program)
     by_id = {c["id"]: c for c in caps.get("capabilities", [])}
     hashes = {cid: proofkit.code_hash(ws, program, cid) for cid in built}

@@ -21,7 +21,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from decisions import conflict_key  # noqa: E402
+from decisions import conflict_keys  # noqa: E402
 from fusionlib.common import (check_name, die, load_json, load_program, md_table, normalize_endpoint, now_iso,  # noqa: E402
                               one_line, program_dir, workspace, write_json, write_text)
 
@@ -394,9 +394,8 @@ def render_rules(ws, program, result_path=None):
                 ids.append(rid)
             elif not rid:
                 unresolved.append(one_line(f"{ref.get('app')}: {ref.get('name')}" if isinstance(ref, dict) else ref, 160))
-        conf = {"capability": capability, "rules": ids, "unresolved": unresolved, "difference": one_line(c.get("difference"), 400)}
-        conf["key"] = conflict_key(conf)
-        conflicts.append(conf)
+        conflicts.append({"capability": capability, "rules": ids, "unresolved": unresolved, "difference": one_line(c.get("difference"), 400)})
+    conflict_keys(conflicts)
     decisions_all = (load_json(os.path.join(pdir, "DECISIONS.json")) or {}).get("decisions") or {}
     retired = []
     for old in previous.get("rules", []):

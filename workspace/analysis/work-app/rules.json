@@ -1,7 +1,7 @@
 {
   "program": "work-app",
   "version": 1,
-  "generated": "2026-09-28T19:32:43+00:00",
+  "generated": "2026-09-29T06:05:56+00:00",
   "rules": [
     {
       "id": "RULE-001",
@@ -2847,7 +2847,7 @@
       ],
       "unresolved": [],
       "difference": "The calendar shows different things. vmm shows every entry type that is not filtered out (attendance, absence, supplement) in the day cell and in the detail sheet. me-ios month cells show only absence and roster events and always leave out confirmed-time entries.",
-      "key": "CAP-005:RULE-070+RULE-073"
+      "key": "CAP-005:RULE-070+RULE-073:1b1db38e"
     },
     {
       "capability": "CAP-005",
@@ -2867,7 +2867,7 @@
       ],
       "unresolved": [],
       "difference": "The apps may group the same entry under different filters. In me-ios an absence event can have the filterable type 'attendance', so hiding attendance hides it. In vmm the 'absence' entry type is controlled only by the Show absence filter. This needs checking: the same absence may disappear under a different toggle in each app.",
-      "key": "CAP-005:RULE-070+RULE-073"
+      "key": "CAP-005:RULE-070+RULE-073:80eda97e"
     },
     {
       "capability": "CAP-003",
@@ -2887,7 +2887,7 @@
       ],
       "unresolved": [],
       "difference": "Which request statuses get a tag in the calendar day view: vmm knows only 'none' and 'pending' and tags only pending, while me-ios also tags approved (green) and rejected (red). So an approved or rejected absence has a tag in me-ios and none in vmm.",
-      "key": "CAP-004:RULE-080+RULE-092"
+      "key": "CAP-004:RULE-080+RULE-092:7197b4ab"
     },
     {
       "capability": "CAP-004",
@@ -2897,7 +2897,7 @@
       ],
       "unresolved": [],
       "difference": "The colour of the pending tag: orange in vmm, blue in me-ios.",
-      "key": "CAP-004:RULE-080+RULE-092"
+      "key": "CAP-004:RULE-080+RULE-092:59c3eef8"
     }
   ],
   "retired": [],

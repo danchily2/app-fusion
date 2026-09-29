@@ -133,6 +133,22 @@ class Decisions(unittest.TestCase):
         self.assertIn(("conflict", conf["key"]), qs)
         self.w.run("decisions.py", "add", "p", "--about", conf["key"], "--kind", "conflict", "--choice", "take:mgr")
 
+    def test_two_conflicts_on_the_same_rules_are_two_questions(self):
+        self.render_map([cap("See a day")])
+        self.w.put_json("analysis/p/rules_result.json", {"rules": [rule("Tags pending only"), rule("Tags every status", app="emp")],
+                                                         "conflicts": [{"capability": "CAP-001", "difference": "which statuses get a tag",
+                                                                        "rules": [{"app": "mgr", "name": "Tags pending only"}, {"app": "emp", "name": "Tags every status"}]},
+                                                                       {"capability": "CAP-001", "difference": "the colour of the pending tag",
+                                                                        "rules": [{"app": "mgr", "name": "Tags pending only"}, {"app": "emp", "name": "Tags every status"}]}]})
+        self.w.run("render.py", "rules", "p")
+        keys = [c["key"] for c in self.w.json("analysis", "p", "rules.json")["conflicts"]]
+        self.assertEqual(len(set(keys)), 2, keys)
+        asked = [q["about"] for q in self.open() if q["kind"] == "conflict" and q["about"].startswith("CAP-001:")]
+        self.assertEqual(sorted(asked), sorted(keys))
+        for key, app in zip(keys, ("emp", "mgr")):
+            self.w.run("decisions.py", "add", "p", "--about", key, "--kind", "conflict", "--choice", f"take:{app}")
+        self.assertEqual([q for q in self.open() if q["kind"] == "conflict" and q["about"].startswith("CAP-001:")], [])
+
     def test_native_api_questions_use_keys_a_person_can_answer(self):
         self.render_map([cap("Approve a request")])
         self.w.put_json("analysis/p/evidence/api-parity.json", {"capabilities": {"CAP-001": {"missing": ["GET /x/{} (android)", "GET /x/{} (ios)"]}}})

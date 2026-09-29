@@ -1,6 +1,6 @@
 # Business rules: work-app
 
-153 rules mined from the source apps, generated 2026-09-28T19:32:43+00:00. Each card cites the code it comes from (`file:line` under `legacy/<app>`), and a second agent checked every citation. 7 candidates were rejected by that check.
+153 rules mined from the source apps, generated 2026-09-29T06:05:56+00:00. Each card cites the code it comes from (`file:line` under `legacy/<app>`), and a second agent checked every citation. 7 candidates were rejected by that check.
 
 | Id | Rule | App | Capability | Category | Priority | Confidence | Source |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -172,12 +172,12 @@ The same decision is made differently by two apps. A person picks the behavior t
 | CAP-002:RULE-012+RULE-149 | CAP-002 | RULE-149, RULE-012 | How hours are shown: vmm prints the raw Hours property plus 'h' (Hours='7.5' gives '7.5h') and has no fallback. me-ios parses hours in the device locale, shows a compact duration ('7,5' gives '7 h 30 min'), and when there is no hours property it uses end minus start (09:00-11:30 gives '2 h 30 min'). |
 | CAP-002:RULE-142+RULE-149 | CAP-002 | RULE-149, RULE-142 | Which properties drive the list description: vmm matches 'Hours' and 'Quantity' with exact case and has no percent case. me-ios matches 'hours', 'percent' and 'quantity' in any case, shows Percent absences as '50% <period>', formats time ranges in UTC ('08:00 - 12:00'), and gives a single-day Full Day absence no description. |
 | CAP-005:RULE-110+RULE-146 | CAP-005 | RULE-146, RULE-110 | Week numbers are on by default in vmm (calendarShowWeekNumbers=true) but off by default in me-ios (showWeekNumbers=false), so a new user sees week 40 on 2026-09-28 in vmm and no week number in me-ios. |
-| CAP-005:RULE-070+RULE-073 | CAP-005 | RULE-073, RULE-070 | The calendar shows different things. vmm shows every entry type that is not filtered out (attendance, absence, supplement) in the day cell and in the detail sheet. me-ios month cells show only absence and roster events and always leave out confirmed-time entries. |
+| CAP-005:RULE-070+RULE-073:1b1db38e | CAP-005 | RULE-073, RULE-070 | The calendar shows different things. vmm shows every entry type that is not filtered out (attendance, absence, supplement) in the day cell and in the detail sheet. me-ios month cells show only absence and roster events and always leave out confirmed-time entries. |
 | CAP-005:RULE-073+RULE-110 | CAP-005 | RULE-073, RULE-110 | The filters differ. vmm has three filters (attendance, absence, supplement). me-ios also has a roster filter (showRoster=true), treats 'unknown' as a filterable type, and has a showLabels toggle (default false). vmm has no roster filter, no 'unknown' type and no labels toggle. |
-| CAP-005:RULE-070+RULE-073 | CAP-005 | RULE-073, RULE-070 | The apps may group the same entry under different filters. In me-ios an absence event can have the filterable type 'attendance', so hiding attendance hides it. In vmm the 'absence' entry type is controlled only by the Show absence filter. This needs checking: the same absence may disappear under a different toggle in each app. |
+| CAP-005:RULE-070+RULE-073:80eda97e | CAP-005 | RULE-073, RULE-070 | The apps may group the same entry under different filters. In me-ios an absence event can have the filterable type 'attendance', so hiding attendance hides it. In vmm the 'absence' entry type is controlled only by the Show absence filter. This needs checking: the same absence may disappear under a different toggle in each app. |
 | CAP-003:RULE-091+RULE-108 | CAP-003 | RULE-091, RULE-108 | The default calendar view differs: vmm opens in 'grid' (month) view (settingsReducer.ts:119), but me-ios opens in list view (UserPreferences.calendarViewMode default .list, CalendarContainerViewController.swift:52). So a first-time user sees the month grid in vmm and the list in me-ios. |
-| CAP-004:RULE-080+RULE-092 | CAP-004 | RULE-092, RULE-080 | Which request statuses get a tag in the calendar day view: vmm knows only 'none' and 'pending' and tags only pending, while me-ios also tags approved (green) and rejected (red). So an approved or rejected absence has a tag in me-ios and none in vmm. |
-| CAP-004:RULE-080+RULE-092 | CAP-004 | RULE-092, RULE-080 | The colour of the pending tag: orange in vmm, blue in me-ios. |
+| CAP-004:RULE-080+RULE-092:7197b4ab | CAP-004 | RULE-092, RULE-080 | Which request statuses get a tag in the calendar day view: vmm knows only 'none' and 'pending' and tags only pending, while me-ios also tags approved (green) and rejected (red). So an approved or rejected absence has a tag in me-ios and none in vmm. |
+| CAP-004:RULE-080+RULE-092:59c3eef8 | CAP-004 | RULE-092, RULE-080 | The colour of the pending tag: orange in vmm, blue in me-ios. |
 
 ## Calculation
 

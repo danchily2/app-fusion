@@ -1,0 +1,62 @@
+{
+  "program": "work-app",
+  "version": 1,
+  "generated": "2026-09-28T17:17:34+00:00",
+  "pairs": [
+    {
+      "apps": [
+        "vmm",
+        "me-ios"
+      ],
+      "sharedEndpoints": [
+        {
+          "vmm": "GET /api/v1/authorization/currentsession",
+          "me-ios": "GET /employee/api/v1/authorization/currentsession"
+        },
+        {
+          "vmm": "GET /api/v2/configuration/third-party-keys",
+          "me-ios": "GET /employee/api/v2/configuration/third-party-keys"
+        },
+        {
+          "vmm": "GET /api/v2/dottie/employee/{}",
+          "me-ios": "GET /employee/api/v2/dottie/employee/me"
+        },
+        {
+          "vmm": "GET /api/v2/dottie/employees/possible-quick-filters",
+          "me-ios": "GET /employee/api/v2/dottie/employees/possible-quick-filters"
+        },
+        {
+          "vmm": "POST /employee/api/v1/feedback",
+          "me-ios": "POST /employee/api/v1/feedback"
+        }
+      ],
+      "endpointCounts": {
+        "vmm": 52,
+        "me-ios": 85
+      },
+      "sharedCopy": 122,
+      "copyCounts": {
+        "vmm": 1836,
+        "me-ios": 839
+      },
+      "locales": {
+        "both": [
+          "da",
+          "en",
+          "fi",
+          "nb",
+          "sv"
+        ],
+        "only vmm": [
+          "nl"
+        ],
+        "only me-ios": []
+      }
+    }
+  ],
+  "rules": {
+    "sharedEndpoints": "endpoint pairs whose normalized paths match by segment suffix ({} matches any segment) and whose methods agree",
+    "sharedCopy": "distinct source-locale string values (normalized, at least 4 characters) present in both apps",
+    "locales": "compared by language (nb-NO, nb and no are one)"
+  }
+}

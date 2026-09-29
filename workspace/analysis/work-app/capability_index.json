@@ -1,0 +1,393 @@
+{
+  "program": "work-app",
+  "version": 1,
+  "capabilities": [
+    {
+      "id": "CAP-001",
+      "name": "View a calendar month by month",
+      "domain": "Calendar",
+      "fusion": "shared-diverged",
+      "personas": [
+        "Manager",
+        "Employee"
+      ],
+      "apps": [
+        "me-ios",
+        "vmm"
+      ],
+      "description": "Open a month grid of calendar entries (attendance, absence, supplement and, in Employee, roster shifts and special days) and move between months with arrows, swipes or a month/year picker. The Manager"
+    },
+    {
+      "id": "CAP-002",
+      "name": "Browse the calendar as a scrolling list",
+      "domain": "Calendar",
+      "fusion": "shared-diverged",
+      "personas": [
+        "Manager",
+        "Employee"
+      ],
+      "apps": [
+        "me-ios",
+        "vmm"
+      ],
+      "description": "Scroll a chronological list of calendar entries that loads more entries while scrolling. In Employee the list also lets you jump to a date and open an item."
+    },
+    {
+      "id": "CAP-003",
+      "name": "Switch between list and month view of the calendar",
+      "domain": "Calendar",
+      "fusion": "shared-diverged",
+      "personas": [
+        "Manager",
+        "Employee"
+      ],
+      "apps": [
+        "me-ios",
+        "vmm"
+      ],
+      "description": "Switch the calendar between a list/agenda view and a month grid. The app remembers the chosen view."
+    },
+    {
+      "id": "CAP-004",
+      "name": "See the details of a calendar day",
+      "domain": "Calendar",
+      "fusion": "shared-diverged",
+      "personas": [
+        "Manager",
+        "Employee"
+      ],
+      "apps": [
+        "me-ios",
+        "vmm"
+      ],
+      "description": "Tap a day to open a sheet listing that day's entries with time or full-day label, title and status. In Employee the sheet also shows the special day and the scheduled roster hours, and entries can be "
+    },
+    {
+      "id": "CAP-005",
+      "name": "Customize what the calendar shows",
+      "domain": "Calendar",
+      "fusion": "shared-diverged",
+      "personas": [
+        "Manager",
+        "Employee"
+      ],
+      "apps": [
+        "me-ios",
+        "vmm"
+      ],
+      "description": "Hide weekends, show week numbers, filter entry types and choose icon or text style for events. The choices are saved across sessions."
+    },
+    {
+      "id": "CAP-006",
+      "name": "Start a time or absence registration from the calendar",
+      "domain": "Calendar",
+      "fusion": "unique",
+      "personas": [
+        "Employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "From the calendar list or a day detail, start registering new time or absence for yourself."
+    },
+    {
+      "id": "CAP-007",
+      "name": "Sync team birthdays and work anniversaries to my calendar",
+      "domain": "Team overview",
+      "fusion": "unique",
+      "personas": [
+        "Manager with HRM access"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager with HRM access turns calendar sync on or off. When sync is on, the app creates 'Manager App - Birthdays' and 'Manager App - Anniversaries' device calendars. Each employee gets a yearly all-"
+    },
+    {
+      "id": "CAP-008",
+      "name": "See how many team members are absent today",
+      "domain": "Team overview",
+      "fusion": "unique",
+      "personas": [
+        "Manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "On the Start screen, the manager sees how many managed employees are absent today. The count comes from the month's calendar feed for all managed employees. If the feed fails, the signal is not shown."
+    },
+    {
+      "id": "CAP-009",
+      "name": "View an employee's absence balances",
+      "domain": "Balances",
+      "fusion": "unique",
+      "personas": [
+        "Manager"
+      ],
+      "apps": [
+        "vmm"
+      ],
+      "description": "A manager sees one employee's absence balances: total vacation balance, sick-child days for the current year and self-certified sickness over the last 12 months. A balance hook combines them for displ"
+    },
+    {
+      "id": "CAP-010",
+      "name": "See my time and absence balances for a month",
+      "domain": "Balances",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "From the calendar toolbar, an employee opens a summary of time and absence balances for the month on screen. They can expand a balance group for details and switch control options, which the app remem"
+    },
+    {
+      "id": "CAP-011",
+      "name": "See my vacation balances on the start page",
+      "domain": "Balances",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "An employee sees their combined vacation and leave balances as cards on the start page."
+    },
+    {
+      "id": "CAP-012",
+      "name": "Register an absence or time event",
+      "domain": "Absence registration",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "The employee picks a day, a dragged range or the add button in the calendar, chooses an absence or time type from grouped calendar templates, fills the dynamic form (dates, times, hours or percent, co"
+    },
+    {
+      "id": "CAP-013",
+      "name": "Pick cost-unit dimension values for a registration",
+      "domain": "Absence registration",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "While registering or editing an absence, the employee picks dimension (cost unit) values from a paged, searchable list. Recently used values appear first."
+    },
+    {
+      "id": "CAP-014",
+      "name": "View details of a registered absence",
+      "domain": "Absence registration",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "The employee opens a registered absence to see its type, fields, comment and approval status."
+    },
+    {
+      "id": "CAP-015",
+      "name": "Edit a registered absence",
+      "domain": "Absence registration",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "From the absence detail, the employee edits a registered absence, including its type, and saves it through the entry's update link. The employee confirms a future-registration warning when the server "
+    },
+    {
+      "id": "CAP-016",
+      "name": "Delete a registered absence",
+      "domain": "Absence registration",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "From the absence detail or editor, the employee deletes a registered absence after a confirmation prompt, using the entry's delete link."
+    },
+    {
+      "id": "CAP-017",
+      "name": "See upcoming and ongoing vacation and parental leave on the start page",
+      "domain": "Absence registration",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "The start page shows cards for declined, upcoming, ongoing and approved vacations and for parental leave, from one week ago to one month ahead."
+    },
+    {
+      "id": "CAP-018",
+      "name": "Check in and check out for the workday",
+      "domain": "Time tracking",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "The employee checks in from the start page, which sends the current local time, sees the current check-in status, and later checks out. The checkout template is fetched to register the worked time."
+    },
+    {
+      "id": "CAP-019",
+      "name": "Edit or delete a check-in/check-out registration",
+      "domain": "Time tracking",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "The employee corrects the fields of a check-in/check-out time registration, or deletes it, through the shared registration form or the calendar event editor."
+    },
+    {
+      "id": "CAP-020",
+      "name": "Confirm worked time up to a date",
+      "domain": "Time tracking",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "The employee sends the timesheet for confirmation up to a date: a day from the calendar or day detail, the suggested date, or a chosen date from the type selector. The app loads the confirmation statu"
+    },
+    {
+      "id": "CAP-021",
+      "name": "Register time or absence by chatting with the Employee Agent",
+      "domain": "Employee Agent",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "The employee opens the Employee Agent from the calendar toolbar. They type or dictate a sentence such as 'I was sick yesterday', or pick an example prompt. The agent predicts one or more absence or ti"
+    },
+    {
+      "id": "CAP-022",
+      "name": "Confirm the time sheet through the Employee Agent",
+      "domain": "Employee Agent",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "When the agent reads the prompt as a time-confirmation request, it shows a confirm-time event. On confirm, the time sheet for that date is sent for approval."
+    },
+    {
+      "id": "CAP-023",
+      "name": "Ask the Employee Agent about leave balances",
+      "domain": "Employee Agent",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "The employee asks the agent about balances. The agent replies with the balance text that the prediction service returns."
+    },
+    {
+      "id": "CAP-024",
+      "name": "Edit a predicted registration before saving it",
+      "domain": "Employee Agent",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "From the agent's suggestion, the employee opens the registration form pre-filled with the prediction, for example to add a medical certificate for sickness. They adjust it and save, and the agent then"
+    },
+    {
+      "id": "CAP-025",
+      "name": "View, edit or delete an absence created in the agent chat",
+      "domain": "Employee Agent",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "The employee taps an event the agent has just registered to open its detail. There they can edit or delete it, and a deletion shows in the chat."
+    },
+    {
+      "id": "CAP-026",
+      "name": "Learn how to use the Employee Agent and try example prompts",
+      "domain": "Employee Agent",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "The employee opens the info page to read about the agent and see example prompts from the server. Tapping an example puts it in the chat input."
+    },
+    {
+      "id": "CAP-027",
+      "name": "Send feedback about the Employee Agent",
+      "domain": "Employee Agent",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "From the Learn More page, the employee opens an external feedback form about the agent."
+    },
+    {
+      "id": "CAP-028",
+      "name": "Browse my expense claims by year and filter by status",
+      "domain": "Expenses",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "An employee sees their expense claims grouped by year, newest first. Claims without a date sit in their own section. Quick filters narrow the list by claim status."
+    },
+    {
+      "id": "CAP-029",
+      "name": "Browse my payslips by payment date, filtered by employer",
+      "domain": "Pay",
+      "fusion": "unique",
+      "personas": [
+        "employee"
+      ],
+      "apps": [
+        "me-ios"
+      ],
+      "description": "An employee pages through past and upcoming payslips in a calendar ordered by payment date. They can narrow the list to one or more employers (tenants)."
+    }
+  ]
+}

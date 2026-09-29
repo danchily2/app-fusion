@@ -1,0 +1,54 @@
+{
+  "id": "vmm:[components..types]",
+  "app": "vmm",
+  "stack": "react-native",
+  "name": "[components..types]",
+  "files": [
+    "src/components/common/CalendarSyncPicker/CalendarSyncPicker.tsx",
+    "src/hooks/useSyncCalendar.ts",
+    "src/screens/EmployeeCalendarScreen/EmployeeCalendarScreen.tsx",
+    "src/screens/EmployeeCalendarScreen/calendarEventStyles.ts",
+    "src/screens/EmployeeCalendarScreen/components/CalendarMonthYearPicker/CalendarMonthYearPicker.tsx",
+    "src/screens/EmployeeCalendarScreen/components/CalendarMonthYearPicker/style.ts",
+    "src/screens/EmployeeCalendarScreen/components/CalendarOptionsMenu/CalendarOptionsMenu.tsx",
+    "src/screens/EmployeeCalendarScreen/components/CalendarOptionsMenu/style.ts",
+    "src/screens/EmployeeCalendarScreen/components/EmployeeCalendarAgendaView/EmployeeCalendarAgendaView.tsx",
+    "src/screens/EmployeeCalendarScreen/components/EmployeeCalendarAgendaView/style.ts",
+    "src/screens/EmployeeCalendarScreen/components/EmployeeCalendarDayCell.tsx",
+    "src/screens/EmployeeCalendarScreen/components/EmployeeCalendarDayDetail.tsx",
+    "src/screens/EmployeeCalendarScreen/components/WeekdayCalendarGrid/WeekdayCalendarGrid.tsx",
+    "src/screens/EmployeeCalendarScreen/components/WeekdayCalendarGrid/style.ts",
+    "src/screens/EmployeeCalendarScreen/style.ts",
+    "src/services/apiCalendar/apiCalendar.ts",
+    "src/services/queryApi/queryEndpointsCalendar/mockData.ts",
+    "src/services/queryApi/queryEndpointsCalendar/queryEndpointsCalendar.ts",
+    "src/services/queryApi/queryEndpointsCalendar/types.ts",
+    "src/types/calendar.ts"
+  ],
+  "hints": {
+    "routes": [
+      "SCREEN_NAME_EMPLOYEE_CALENDAR"
+    ],
+    "screens": [
+      "EmployeeCalendarScreen"
+    ],
+    "endpoints": [
+      "GET /employee/api/v2/calendar/my-employees/feed",
+      "GET /org/{}/balances/employee/{}/endofyear/{}",
+      "GET /org/{}/balances/employee/{}/total",
+      "GET /org/{}/balances/employee/{}/year/{}",
+      "GET /org/{}/balances/employee/{}/{}/{}",
+      "GET /org/{}/balances/search",
+      "GET /org/{}/balances/search/template",
+      "GET /org/{}/calendarapi/fetchperiodaggregation",
+      "GET /org/{}/employee/{}/summary/template/sickchildcurrentyear",
+      "GET /org/{}/employee/{}/summary/template/sickness12months",
+      "POST /org/{}/balances/search"
+    ],
+    "events": [
+      "create_calendar_failed",
+      "sync_anniversary_failed",
+      "sync_birthday_failed"
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "program": "work-app",
+  "version": 1,
+  "created": "2026-09-28",
+  "goal": "build",
+  "apps": [
+    {
+      "name": "vmm",
+      "product": "Manager",
+      "stack": "react-native",
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "path": "legacy/vmm",
+      "repo": "https://github.com/Visma-Manager/vmm.git",
+      "branch": "develop",
+      "commit": "342cb745f66b70d9c715244d6d5a937d4e18e6fc",
+      "role": "source",
+      "twinOf": null
+    },
+    {
+      "name": "me-ios",
+      "product": "Employee",
+      "stack": "ios-native",
+      "platforms": [
+        "ios"
+      ],
+      "path": "legacy/me-ios",
+      "repo": "https://github.com/Visma-Mobile-Employee/me-ios.git",
+      "branch": "development",
+      "commit": "a3600e7d6d899ee40044f04fb07bcb5a9e07006f",
+      "role": "source",
+      "twinOf": null
+    }
+  ],
+  "figma": [],
+  "target": {
+    "path": "new-app/work-app",
+    "stack": "undecided",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "linked": false
+  },
+  "personas": [
+    "People who use Manager today",
+    "People who use Employee today"
+  ],
+  "locales": [],
+  "mustStayTrue": [],
+  "storeIdentity": "undecided"
+}

@@ -1,0 +1,2116 @@
+{
+  "program": "work-app",
+  "capabilities": [
+    {
+      "name": "View a calendar month by month",
+      "domain": "Calendar",
+      "description": "Open a month grid of calendar entries (attendance, absence, supplement and, in Employee, roster shifts and special days) and move between months with arrows, swipes or a month/year picker. The Manager product shows an employee's calendar. The Employee product shows the user's own calendar.",
+      "personas": [
+        "Manager",
+        "Employee"
+      ],
+      "implementations": {
+        "vmm": {
+          "evidence": "src/screens/EmployeeCalendarScreen/EmployeeCalendarScreen.tsx:128-149",
+          "screens": [
+            "EmployeeCalendarScreen (SCREEN_NAME_EMPLOYEE_CALENDAR = 'EmployeeCalendarScreen', registered in the HRM and Approval stacks)",
+            "CalendarMonthYearPicker",
+            "WeekdayCalendarGrid",
+            "EmployeeCalendarDayCell"
+          ],
+          "files": [
+            "src/screens/EmployeeCalendarScreen/EmployeeCalendarScreen.tsx",
+            "src/screens/EmployeeCalendarScreen/components/CalendarMonthYearPicker/CalendarMonthYearPicker.tsx",
+            "src/screens/EmployeeCalendarScreen/components/WeekdayCalendarGrid/WeekdayCalendarGrid.tsx",
+            "src/screens/EmployeeCalendarScreen/components/EmployeeCalendarDayCell.tsx",
+            "src/services/queryApi/queryEndpointsCalendar/queryEndpointsCalendar.ts",
+            "src/services/queryApi/queryEndpointsCalendar/mockData.ts",
+            "src/configs/navConfig/hrm/HrmNavConfig.tsx",
+            "src/configs/navConfig/approval/ApprovalNavConfig.tsx"
+          ],
+          "endpoints": [
+            "GET https://mobileemployee.visma.net/employee/api/v2/calendar/my-employees/feed?From={monthStart}&Offset=100&Direction=1 (live queryFn commented out; serves createMockCalendarFeedResponse, queryEndpointsCalendar.ts:72-75)"
+          ],
+          "strings": [
+            "employee_calendar_title",
+            "employee_calendar_load_error"
+          ],
+          "storage": [
+            "redux settings.calendarViewMode",
+            "settings.calendarHideWeekends",
+            "settings.calendarShowWeekNumbers",
+            "settings.calendarShowAttendance",
+            "settings.calendarShowAbsence",
+            "settings.calendarShowSupplement",
+            "settings.calendarDisplayMode"
+          ],
+          "platform": [
+            "react-native"
+          ]
+        },
+        "me-ios": {
+          "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/CalendarGridFeature.swift:185-491; EmployeeServices/Calendar/Sources/Calendar/Service/CalendarService.swift:76-101",
+          "screens": [
+            "CalendarGridFeature",
+            "CalendarMonthYearNavigationFeature",
+            "DayDetailFeature (destination)",
+            "CalendarGridRepository (CalendarFeature)"
+          ],
+          "files": [
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/CalendarGridFeature.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/CalendarGridView.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/Components/CalendarMonthYearNavigationFeature.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/Components/CalendarMonthYearNavigationView.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Configuration/CalendarGridConfiguration.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Repository/CalendarGridRepository.calendarViewModel.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Request/GetWorkshifts.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Request/GetSpecialDays.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Mapper/WorkshiftMapper.swift"
+          ],
+          "endpoints": [
+            "GET /employee/api/v2/Calendar/specialdays",
+            "GET /employee/api/v1/employees/{odpUserId}/calendar/workshift"
+          ],
+          "strings": [
+            "S.Calendar.selectMonthAndYear",
+            "S.done",
+            "S.calendarOfflineText"
+          ],
+          "platform": [
+            "ios-native"
+          ]
+        }
+      },
+      "divergence": [
+        "Subject: vmm shows the calendar of an employee chosen from the manager's HRM or Approval stack (route.params companyId/employeeId, EmployeeCalendarScreen.tsx:105; HrmNavConfig.tsx:141; ApprovalNavConfig.tsx:115). me-ios shows the signed-in user's own calendar (userService.getCurrentUserId, CalendarService.swift:77).",
+        "Endpoint: vmm is wired to the aggregate v2 calendar/my-employees/feed, but it currently serves mock data (queryEndpointsCalendar.ts:72-75). me-ios calls /employee/api/v1/employees/{odpUserId}/calendar/feed (CalendarService.swift:103-110), /employee/api/v1/employees/{odpUserId}/calendar/workshift (GetWorkshifts.swift:26) and /employee/api/v2/Calendar/specialdays (GetSpecialDays.swift:48).",
+        "Content: me-ios adds roster shifts, special days and a confirm-time capability (CalendarGridFeature.swift:81, CalendarService.swift:76-101), plus a roster filter (showRoster, CalendarGridFeature.swift:196). vmm filters only attendance, absence and supplement (EmployeeCalendarScreen.tsx:139-147).",
+        "Week start and row count: vmm fixes Monday as the week start (WeekdayCalendarGrid.tsx:37-38) and sizes day height from the number of weeks in the month (EmployeeCalendarScreen.tsx:250-256). me-ios starts on the locale's calendar.firstWeekday and also uses a variable number of weeks (CalendarViewUtils.swift:37-57). It does not use a fixed 42-cell grid.",
+        "Year picker range: vmm offers the current year -2 to +5 (CalendarMonthYearPicker.tsx:20-21,55-63). me-ios offers +/-20 years (CalendarGridConfiguration.swift:25, CalendarMonthYearNavigationFeature.swift:39).",
+        "Navigation: me-ios supports swiping between months (CalendarGridView.swift:117-132, CalendarGridFeature.swift:204-208) and reloads the current month when the app returns to the foreground (CalendarContainerViewController.swift:444-447). vmm offers only the arrow buttons and the month/year picker (EmployeeCalendarScreen.tsx:222-235).",
+        "Loading and offline: vmm skips the feed while companyTenantId is unresolved from the cached employees list (EmployeeCalendarScreen.tsx:116-136). me-ios delays its progress indicator by 0.1 s (CalendarGridFeature.swift:170) and shows an offline empty state with S.calendarOfflineText (CalendarGridView.swift:170).",
+        "Day tap (missed by the claim): in vmm, tapping a day opens a bottom sheet for that day (EmployeeCalendarScreen.tsx:188-194). In me-ios, tapping an empty day starts creating a new event when write access is available, and tapping a day with events opens DayDetailFeature (CalendarGridFeature.swift:210-229). me-ios also supports selecting a date range by dragging.",
+        "Agenda mode (missed by the claim): vmm has a grid/agenda view-mode toggle with an infinite-scroll agenda feed (EmployeeCalendarScreen.tsx:152-181). me-ios has view modes too (currentViewMode == .month, CalendarContainerViewController.swift:445). This may belong to a separate capability."
+      ],
+      "confidence": "Medium",
+      "notes": "The two products are classed as one capability because the month grid is the same outcome. The subject differs: a manager sees a report's calendar, an employee sees their own. A person should confirm whether the new app treats these as one screen used with two scopes. referee could not confirm: Divergence claim 'me-ios always uses a fixed 6x7 grid of 42 cells' is false: CalendarGridConfiguration.swift:23 calendarGridSize = 42 is not referenced by any other Swift source. CalendarViewUtils.swift:37-57 numberOfWeeksNeededForMonth works out 4-6 weeks per month, starting on calendar.firstWeekday. Only the README (README.md:166,223) says 42.; vmm endpoint GET .../calendar/my-employees/feed is not called at runtime: the live queryFn is commented out and createMockCalendarFeedResponse is served instead (queryEndpointsCalendar.ts:72-75); Divergence claim that me-ios uses 'the per-user v1 calendar/feed': the URL is built by CalendarService.absenceUrl (CalendarService.swift:103-110), outside the cited range 76-101, and it is not listed in the implementation's endpoints",
+      "fusion": "shared-diverged"
+    },
+    {
+      "name": "Browse the calendar as a scrolling list",
+      "domain": "Calendar",
+      "description": "Scroll a chronological list of calendar entries that loads more entries while scrolling. In Employee the list also lets you jump to a date and open an item.",
+      "personas": [
+        "Manager",
+        "Employee"
+      ],
+      "implementations": {
+        "vmm": {
+          "evidence": "src/screens/EmployeeCalendarScreen/EmployeeCalendarScreen.tsx:160-218",
+          "screens": [
+            "EmployeeCalendarScreen",
+            "EmployeeCalendarAgendaView"
+          ],
+          "files": [
+            "src/screens/EmployeeCalendarScreen/components/EmployeeCalendarAgendaView/EmployeeCalendarAgendaView.tsx",
+            "src/services/queryApi/queryEndpointsCalendar/queryEndpointsCalendar.ts"
+          ],
+          "endpoints": [
+            "GET https://mobileemployee.visma.net/employee/api/v2/calendar/my-employees/feed?From={pageMonth}&Direction=0 (intended; infinite query currently returns mock data, queryEndpointsCalendar.ts:158-164)"
+          ],
+          "strings": [
+            "employee_calendar_load_error"
+          ],
+          "storage": [
+            "redux settings.calendarViewMode"
+          ],
+          "platform": [
+            "react-native"
+          ]
+        },
+        "me-ios": {
+          "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarViewController.swift:322-545; EmployeeServices/Calendar/Sources/Calendar/Service/CalendarService.swift:43-111",
+          "screens": [
+            "CalendarViewController",
+            "CalendarHeaderView",
+            "CalendarFeedPagingControllerDataSource",
+            "CalendarViewControllerRepresentable"
+          ],
+          "files": [
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarViewController.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarHeaderView.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/ViewControllerModels/CalendarFeedViewModel.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/DataSource/CalendarFeedPagingControllerDataSource.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarTableViewScrollHandler.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Service/CalendarService.swift",
+            "Employee/Expenses/Views/CalendarViewControllerRepresentable.swift"
+          ],
+          "endpoints": [
+            "GET /employee/api/v1/employees/{odpUserId}/calendar/feed?From={date}&Offset={offset}&Direction={direction}"
+          ],
+          "events": [
+            "log: Calendar item tapped",
+            "log: Date header tapped",
+            "log: Date selected / Done button tapped"
+          ],
+          "strings": [
+            "CONFIRM_TIME",
+            "NO_ACTIVITY_VIEW_CALENDAR",
+            "OFFLINE_VIEW_CALENDAR",
+            "CALENDAR_CANNOT_LOAD_MORE_CONTENT_TEXT"
+          ],
+          "platform": [
+            "ios-native",
+            "reachability/offline handling",
+            "NotificationCenter AppMessage.resetCalendar / resetCalendarBackground"
+          ]
+        }
+      },
+      "divergence": [
+        "Paging direction: vmm only pages into the past, one month per page, and stops after 24 pages (queryEndpointsCalendar.ts:17, 152-155). me-ios loads older entries when you scroll down and newer ones when you scroll up, using FetchType .past/.future (CalendarViewController.swift:370-398). I found no cap.",
+        "Endpoint: vmm is meant to use GET employee/api/v2/calendar/my-employees/feed, but the infinite query currently returns mock data (queryEndpointsCalendar.ts:96, 158-164). me-ios uses GET employee/api/v1/employees/{odpUserId}/calendar/feed?From&Offset&Direction (CalendarService.swift:103-111).",
+        "Paging key: vmm uses the start of each month as the page key. me-ios pages by Offset from a From date.",
+        "Jump to date: in me-ios, tapping a section header (CalendarHeaderView) opens a date picker, and loadFeed(from:) reloads the list from the chosen date (CalendarViewController.swift:308-335). vmm has no jump control; it only carries the visible month back to the grid when you switch views (EmployeeCalendarScreen.tsx:151-158, 212-216).",
+        "Errors and offline: vmm shows employee_calendar_load_error only if the first page fails. If a later page fails, the loaded months stay and it stops retrying on scroll (EmployeeCalendarScreen.tsx:185, 208-210). me-ios shows an offline view based on reachability and a CALENDAR_CANNOT_LOAD_MORE_CONTENT_TEXT footer (CalendarViewController.swift:220-240). It also collects provider error messages into an error alert (715-745).",
+        "Item tap: me-ios passes the tapped item to its delegate (didSelectItem), which opens the item. vmm rows set selectedDay, which opens the day-detail bottom sheet (EmployeeCalendarAgendaView.tsx:97).",
+        "View mode: vmm puts the agenda behind a grid/agenda toggle stored in settings.calendarViewMode. me-ios's list is the main calendar view and also has confirm-time and new-event buttons (CalendarViewController.swift:491-540).",
+        "Analytics: me-ios logs 'Calendar item tapped' and 'Date header tapped'. I found no equivalent events in the vmm agenda code."
+      ],
+      "confidence": "High",
+      "notes": "me-ios reuses CalendarViewController for expense claims (possibleFeatures .expenseClaims). referee could not confirm: vmm endpoint: the claimed URL uses a hard-coded host (https://mobileemployee.visma.net/...). The code builds it as ${base}employee/api/v2/calendar/my-employees/feed (queryEndpointsCalendar.ts:96). The agenda query itself only calls createMockCalendarFeedResponse, so this endpoint is intended, not implemented.",
+      "fusion": "shared-diverged"
+    },
+    {
+      "name": "Switch between list and month view of the calendar",
+      "domain": "Calendar",
+      "description": "Switch the calendar between a list/agenda view and a month grid. The app remembers the chosen view.",
+      "personas": [
+        "Manager",
+        "Employee"
+      ],
+      "implementations": {
+        "vmm": {
+          "evidence": "src/screens/EmployeeCalendarScreen/components/CalendarOptionsMenu/CalendarOptionsMenu.tsx:53-131; src/screens/EmployeeCalendarScreen/EmployeeCalendarScreen.tsx:160-218",
+          "screens": [
+            "CalendarOptionsMenu (headerRight of EmployeeCalendarScreen)",
+            "EmployeeCalendarAgendaView"
+          ],
+          "files": [
+            "src/screens/EmployeeCalendarScreen/components/CalendarOptionsMenu/CalendarOptionsMenu.tsx"
+          ],
+          "strings": [
+            "calendar_view_mode",
+            "calendar_view_grid",
+            "calendar_view_agenda"
+          ],
+          "storage": [
+            "settings.calendarViewMode"
+          ],
+          "platform": [
+            "react-native"
+          ]
+        },
+        "me-ios": {
+          "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarContainerViewController.swift:57-173",
+          "screens": [
+            "CalendarContainerViewController",
+            "CalendarViewController (list)",
+            "CalendarGridView / CalendarGridFeature (month)"
+          ],
+          "files": [
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarCoordinator.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarContainerViewController.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Coordinator/CalendarGridCoordinator.swift"
+          ],
+          "events": [
+            "calendarViewMode(list|month)"
+          ],
+          "strings": [
+            "S.Tabs.calendar",
+            "S.Tabs.claims",
+            "S.Calendar.switchToMonthView",
+            "S.Calendar.switchToListView"
+          ],
+          "storage": [
+            "UserPreferences com.employee.vme.calendar.viewMode"
+          ],
+          "platform": [
+            "ios-native",
+            "CoordinatorAction.showCalendarFeed(initialDate) / showCalendarMonthView handled by the root coordinator",
+            "reload of the month grid on appWillEnterForeground"
+          ]
+        }
+      },
+      "divergence": [
+        "Entry point: in me-ios the tab title and icon depend on absence/time permissions, or on expenseClaims when those are missing. vmm opens the calendar from the employee detail screen.",
+        "Control: vmm uses a 'View mode' section with Grid/Agenda radio rows inside the header options modal, next to the filter and style options (CalendarOptionsMenu.tsx:94-102). me-ios uses a single nav-bar icon button that toggles between the two views. Its icon and accessibility label change between S.Calendar.switchToMonthView and S.Calendar.switchToListView (CalendarContainerViewController.swift:138-148, 317-323).",
+        "Default view: vmm starts in 'grid' (month) view (settingsReducer.ts:119). me-ios starts in '.list' view (CalendarContainerViewController.swift:52).",
+        "Persistence and sync: vmm keeps the view in redux settings.calendarViewMode and sends it to the backend with the other user settings via PUT users/{id}/settings, falling back to AsyncStorage (apiUserSetting.ts:81, 96-118; validator userSettingsValidator.ts:77). This contradicts the reducer comment 'local-only' at settingsReducer.ts:81. me-ios stores it only on the device, in UserPreferences under com.employee.vme.calendar.viewMode (AppUserPreferences.swift:185-190, UserPreferencesKeys.swift:13).",
+        "Restore gating: me-ios restores the saved view only when possibleFeatures.hasCalendarPermissions() is true (CalendarContainerViewController.swift:70-76). The claim cites 325-370, which is wrong. vmm always uses the stored value.",
+        "Whose calendar: vmm switches the view of another employee's calendar (EmployeeCalendarScreen, reached from the HRM and Approval stacks, feed queried by employeeId, EmployeeCalendarScreen.tsx:169-175). me-ios switches the user's own calendar tab, whose title and icon depend on absence/time/expenseClaims permissions (CalendarContainerViewController.swift:325-370).",
+        "Keeping the date when switching: vmm moves the grid to the month last visible in the agenda when switching back (EmployeeCalendarScreen.tsx:152-158). me-ios scrolls the list to the grid's selected month and reloads the grid from the list's current section date (CalendarContainerViewController.swift:218-237, 256-257). Both keep the position, but the code paths differ.",
+        "Analytics: me-ios logs calendarViewMode(list|month) when the screen opens and a log line on every switch (lines 89-95, 161). No equivalent was seen in the vmm menu."
+      ],
+      "confidence": "Medium",
+      "notes": "referee could not confirm: me-ios CalendarContainerViewController.swift:325-370 is cited for the permission-gated restore, but those lines are setTitle and setTabbarItem. The restore is at lines 70-76.; vmm settings.calendarViewMode is described as redux-persist local storage only, but it is also sent to the backend through saveUserSettings (apiUserSetting.ts:81).",
+      "fusion": "shared-diverged"
+    },
+    {
+      "name": "See the details of a calendar day",
+      "domain": "Calendar",
+      "description": "Tap a day to open a sheet listing that day's entries with time or full-day label, title and status. In Employee the sheet also shows the special day and the scheduled roster hours, and entries can be opened.",
+      "personas": [
+        "Manager",
+        "Employee"
+      ],
+      "implementations": {
+        "vmm": {
+          "evidence": "src/screens/EmployeeCalendarScreen/components/EmployeeCalendarDayDetail.tsx:40-100",
+          "screens": [
+            "EmployeeCalendarScreen",
+            "EmployeeCalendarDayDetail (BottomSheet)"
+          ],
+          "files": [
+            "src/screens/EmployeeCalendarScreen/components/EmployeeCalendarDayDetail.tsx",
+            "src/screens/EmployeeCalendarScreen/EmployeeCalendarScreen.tsx"
+          ],
+          "strings": [
+            "employee_calendar_empty_day_message",
+            "employee_calendar_full_day",
+            "employee_calendar_status_{requestStatus}"
+          ],
+          "platform": [
+            "react-native"
+          ]
+        },
+        "me-ios": {
+          "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/DayDetailView.swift:54-135",
+          "screens": [
+            "DayDetailView",
+            "DayDetailFeature",
+            "CalendarGridView"
+          ],
+          "files": [
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/DayDetailFeature.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/DayDetailView.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Repository/CalendarFeedRepositoryAdapter.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Repository/CalendarGridRepository.calendarViewModel.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Mapper/CalendarEventUIModel.Mapper.swift"
+          ],
+          "endpoints": [
+            "GET /employee/api/v1/employees/{odpUserId}/calendar/feed?From={date}&Offset={offset}&Direction={direction}",
+            "GET /employee/api/v1/employees/{odpUserId}/calendar/workshift",
+            "GET /employee/api/v2/Calendar/specialdays"
+          ],
+          "strings": [
+            "calendar.specialDay.name",
+            "calendar.roster.scheduledHours",
+            "NO_ACTIVITY_VIEW_CALENDAR"
+          ],
+          "platform": [
+            "ios-native"
+          ]
+        }
+      },
+      "divergence": [
+        "Content: me-ios shows the special day as a red line and roster events as 'Scheduled hours' items, with roster events sorted first (DayDetailFeature.swift:30-31, DayDetailView.swift:55-76). vmm shows only title, subtitle and an HH:mm range or the employee_calendar_full_day label (EmployeeCalendarDayDetail.tsx:38-44, 85-90).",
+        "Status tags: vmm shows a tag only when requestStatus is 'pending' (EmployeeCalendarDayDetail.tsx:76-79). me-ios shows green, red and blue tags for approved, rejected and pending (DayDetailView.swift:18-34). The claim missed this.",
+        "Interaction: in me-ios a non-roster event can be tapped and opens it (DayDetailView.swift:81-83, handled at CalendarGridFeature.swift:318). In vmm the EventCard has no onPress, so entries are read-only.",
+        "Actions in the sheet: me-ios shows a 'Register time or absence' button when write is allowed and a 'Confirm time' button with a warning alert flow (DayDetailView.swift:115-128, DayDetailFeature.swift:70-120). vmm has only a close button. The claim missed this.",
+        "Empty day: vmm opens the sheet and shows employee_calendar_empty_day_message (EmployeeCalendarDayDetail.tsx:70-71). In me-ios an empty grid day never opens the sheet. It starts adding a new event if write is allowed, otherwise nothing happens (CalendarGridFeature.swift:217-220), so the NoContentView overlay is effectively never reached from the grid.",
+        "Entry points: vmm opens the sheet from a grid day and from an agenda day (EmployeeCalendarScreen.tsx:186-187 and :329). me-ios opens it from a grid dayTapped, which is ignored while dragging (CalendarGridFeature.swift:210-213).",
+        "Data source: vmm reads eventsByDate[selectedDay], which is built from the loaded calendar data (EmployeeCalendarScreen.tsx:137, :452). me-ios builds the day from the feed, workshift and specialdays endpoints (CalendarService.swift:108, GetWorkshifts.swift:26, GetSpecialDays.swift:16)."
+      ],
+      "confidence": "High",
+      "notes": "referee could not confirm: The cited range vmm EmployeeCalendarDayDetail.tsx:40-100 is slightly off. The component itself spans lines 46-112 and the time-range helper is at lines 38-44.; The me-ios endpoint paths are defined in EmployeeServices/Calendar (Request/GetWorkshifts.swift:26, Request/GetSpecialDays.swift:16, Service/CalendarService.swift:108), not in the cited CalendarFeature repository files.",
+      "fusion": "shared-diverged"
+    },
+    {
+      "name": "Customize what the calendar shows",
+      "domain": "Calendar",
+      "description": "Hide weekends, show week numbers, filter entry types and choose icon or text style for events. The choices are saved across sessions.",
+      "personas": [
+        "Manager",
+        "Employee"
+      ],
+      "implementations": {
+        "vmm": {
+          "evidence": "src/screens/EmployeeCalendarScreen/components/CalendarOptionsMenu/CalendarOptionsMenu.tsx:53-131",
+          "screens": [
+            "CalendarOptionsMenu (headerRight of EmployeeCalendarScreen)"
+          ],
+          "files": [
+            "src/screens/EmployeeCalendarScreen/components/CalendarOptionsMenu/CalendarOptionsMenu.tsx",
+            "src/configs/navConfig/hrm/HrmNavConfig.tsx",
+            "src/configs/navConfig/approval/ApprovalNavConfig.tsx"
+          ],
+          "strings": [
+            "calendar_view_mode",
+            "calendar_view_grid",
+            "calendar_view_agenda",
+            "calendar_filter_view",
+            "calendar_hide_weekends",
+            "calendar_show_week_numbers",
+            "calendar_filter_attendance",
+            "calendar_filter_absence",
+            "calendar_filter_supplement",
+            "calendar_events_style",
+            "calendar_style_icons",
+            "calendar_style_text"
+          ],
+          "storage": [
+            "settings.calendarViewMode",
+            "settings.calendarHideWeekends",
+            "settings.calendarShowWeekNumbers",
+            "settings.calendarShowAttendance",
+            "settings.calendarShowAbsence",
+            "settings.calendarShowSupplement",
+            "settings.calendarDisplayMode"
+          ],
+          "platform": [
+            "react-native"
+          ]
+        },
+        "me-ios": {
+          "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/Components/CalendarViewFilterFeature.swift:6-180; Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/CalendarGridFeature.swift:284-310",
+          "screens": [
+            "CalendarViewFilterView",
+            "CalendarViewFilterFeature (filter popover)",
+            "CalendarMonthYearNavigationView",
+            "CalendarGridView"
+          ],
+          "files": [
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/Components/CalendarViewFilterFeature.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/Components/CalendarViewFilterView.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/Components/CalendarViewFilterItem.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/CalendarFilterPreferences.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/CalendarGridFeature.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/Components/CalendarMonthYearNavigationView.swift"
+          ],
+          "strings": [
+            "S.Calendar.filterView",
+            "calendar.filter.filterView",
+            "calendar.filter.hideWeekends",
+            "calendar.filter.showWeekNumbers",
+            "calendar.filter.attendance",
+            "calendar.filter.absence",
+            "calendar.filter.supplement",
+            "calendar.filter.roster",
+            "calendar.filter.eventsStyle",
+            "calendar.filter.eventStyleIcons",
+            "calendar.filter.eventStyleText"
+          ],
+          "storage": [
+            "com.employee.vme.calendar.hideWeekends",
+            "com.employee.vme.calendar.showLabels",
+            "com.employee.vme.calendar.hideAbsence",
+            "com.employee.vme.calendar.hideAttendance",
+            "com.employee.vme.calendar.hideSupplement",
+            "com.employee.vme.calendar.hideRoster",
+            "com.employee.vme.calendar.showWeekNumbers",
+            "userPreferences.calendarHideWeekends",
+            "userPreferences.calendarShowLabels",
+            "userPreferences.calendarHideAbsence",
+            "userPreferences.calendarHideAttendance",
+            "userPreferences.calendarHideSupplement",
+            "userPreferences.calendarHideRoster",
+            "userPreferences.calendarShowWeekNumbers"
+          ],
+          "platform": [
+            "ios-native"
+          ]
+        }
+      },
+      "divergence": [
+        "Filter types: me-ios adds a Roster checkbox (ItemID.showRoster, S.Calendar.roster, CalendarViewFilterFeature.swift:162-166), stored as hideRoster (CalendarGridFeature.swift:306-308). vmm has only attendance, absence and supplement (CalendarOptionsMenu.tsx:66-83).",
+        "Roster is not in me-ios hiddenEventTypes (CalendarFilterPreferences.swift:45-63 covers only absence, attendance and supplement), so roster is filtered separately.",
+        "Stored polarity: vmm stores show* booleans (calendarShowAttendance, calendarShowAbsence, calendarShowSupplement). me-ios stores hide* booleans and inverts them in the UI (CalendarViewFilterFeature.swift:95-100 and 147-160). Its roster box is show in the UI but hide in storage (CalendarGridFeature.swift:76 and 307). Migrating the settings needs a mapping.",
+        "Style setting: vmm stores calendarDisplayMode as 'icons' or 'labels' (CalendarOptionsMenu.tsx:111-126). me-ios stores a showLabels boolean (CalendarViewFilterFeature.swift:101-104).",
+        "Hide weekends: me-ios drops weekend days and then removes week rows that belong entirely to another month (CalendarViewUtils.filterOtherMonthWeekRows, CalendarGridFeature.swift:385-388). vmm has no such rule: getWeekdayRange (WeekdayCalendarGrid.tsx:33-42) extends to the Monday before the 1st and the Friday after month end. A month that starts on a Saturday or ends on a Sunday therefore gets a weekday row made only of days from the neighbouring month.",
+        "Menu scope: the vmm options menu also holds the grid/agenda view-mode radio (settings.calendarViewMode, CalendarOptionsMenu.tsx:95-103). The me-ios filter popover has only a 'filterView' section and an 'eventsStyle' section.",
+        "Persistence: vmm persists the whole settings slice through the redux-persist whitelist (reduxState.ts:107-108), and settingsReadTransform backfills missing keys from their defaults (persistTransforms.ts:139-146). me-ios writes @Shared UserPreferences keys with the prefix com.employee.vme.calendar.* (UserPreferencesKeys.swift:15-20).",
+        "Where it appears: in vmm the menu is mounted in both the HRM and the Approval navigation stacks (HrmNavConfig.tsx:146, ApprovalNavConfig.tsx:120). In me-ios it sits inside CalendarMonthYearNavigationView of the calendar grid."
+      ],
+      "confidence": "High",
+      "notes": "referee could not confirm: me-ios Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/CalendarFilterPreferences.swift:45-63 is cited for the rule that removes other-month week rows. Those lines are the hiddenEventTypes computation. The rule is in CalendarGridFeature.swift:385-388 (CalendarViewUtils.filterOtherMonthWeekRows).; The divergence line says 'no such rule is reported for vmm'. The code shows vmm has no such rule: WeekdayCalendarGrid.tsx:33-42 keeps the other-month rows, so this difference is confirmed rather than unknown.",
+      "fusion": "shared-diverged"
+    },
+    {
+      "name": "Start a time or absence registration from the calendar",
+      "domain": "Calendar",
+      "description": "From the calendar list or a day detail, start registering new time or absence for yourself.",
+      "personas": [
+        "Employee"
+      ],
+      "implementations": {
+        "me-ios": {
+          "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarViewController.swift:322-545; Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/DayDetailView.swift:54-135",
+          "screens": [
+            "CalendarViewController",
+            "DayDetailView"
+          ],
+          "files": [
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarViewController.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/DayDetailView.swift"
+          ],
+          "strings": [
+            "EVENT_REGISTRATION_TITLE",
+            "START_PAGE_REGISTER_TIME_OR_ABSENCE_BUTTON"
+          ],
+          "platform": [
+            "ios-native"
+          ]
+        }
+      },
+      "divergence": [
+        "Inside me-ios (not a fusion difference): the calendar-list button pre-fills today's date through AddAbsenceCoordinator.prepare(onDateFrom: today) at CalendarViewController.swift:749-756, while the day-detail button passes the selected day through CalendarGridFeature .addNewEvent(dateFrom: date, dateTo: date) at CalendarGridFeature.swift:326-328.",
+        "Inside me-ios: the two entry points use different flows. The list uses the UIKit AddAbsenceCoordinator with source .list, and the day detail uses the TCA grid feature's addNewEvent / addAbsence destination.",
+        "vmm EmployeeCalendarScreen.tsx and EmployeeCalendarDayDetail.tsx have no register action (only month arrows and SheetCloseButton), so there is no second product."
+      ],
+      "confidence": "High",
+      "notes": "This action requires calendar write permission (isWriteAvailable). It hands off to AddAbsenceCoordinator (source .list), and the day-detail button action is handled by the parent grid feature. The registration flow itself belongs to another domain. referee could not confirm: CalendarViewController.swift:322-545 misses prepareAddAbsenceCoordinatorIfNeeded and addAbsence (lines 749-761), where the hand-off to AddAbsenceCoordinator with source .list actually happens.; The claim says the day-detail action goes to AddAbsenceCoordinator (source .list). It does not: CalendarGridFeature.swift:326-328 handles it with .addNewEvent, and that file is not cited.",
+      "fusion": "unique"
+    },
+    {
+      "name": "Sync team birthdays and work anniversaries to my calendar",
+      "domain": "Team overview",
+      "description": "A manager with HRM access turns calendar sync on or off. When sync is on, the app creates 'Manager App - Birthdays' and 'Manager App - Anniversaries' device calendars. Each employee gets a yearly all-day event with a reminder one day ahead. When sync is off, both calendars are removed.",
+      "personas": [
+        "Manager with HRM access"
+      ],
+      "implementations": {
+        "vmm": {
+          "evidence": "src/hooks/useSyncCalendar.ts:38-258",
+          "screens": [
+            "CalendarSyncPicker (Settings item; not currently rendered)"
+          ],
+          "files": [
+            "src/hooks/useSyncCalendar.ts",
+            "src/components/common/CalendarSyncPicker/CalendarSyncPicker.tsx",
+            "src/consts/constants.ts"
+          ],
+          "endpoints": [],
+          "events": [
+            "create_calendar_failed",
+            "sync_birthday_failed",
+            "sync_anniversary_failed",
+            "calendar_sync_switch",
+            "check-calendar-permissions-failed",
+            "request-calendar-permissions-failed"
+          ],
+          "strings": [
+            "calendar_events",
+            "on",
+            "off",
+            "missing-calendar-permissions",
+            "hrm_birthday",
+            "hrm_anniversary",
+            "sync_all",
+            "sync_off",
+            "successful",
+            "failed"
+          ],
+          "storage": [
+            "redux settings.calendarSync (SYNC_OFF default)",
+            "hrm sync list via hrmAddToSync/hrmClearSync"
+          ],
+          "platform": [
+            "calendar (react-native-calendar-events)",
+            "iOS NSCalendarsFullAccessUsageDescription",
+            "Android READ_CALENDAR/WRITE_CALENDAR"
+          ]
+        }
+      },
+      "divergence": [
+        "(platform parity) Within vmm, iOS events set an endDate and Android events do not (src/hooks/useSyncCalendar.ts)",
+        "(platform parity) Confirmed: in vmm, iOS events set endDate equal to startDate and Android events leave endDate out (useSyncCalendar.ts:111-128 for birthdays, 184-201 for anniversaries).",
+        "Missed by the claim: the hook also supports birthdays-only (SYNC_BIRTHDAYS) and anniversaries-only (SYNC_ANNIVERSARIES) modes and removes the other calendar (useSyncCalendar.ts:236-240). The picker only offers all or off, so a user cannot choose these modes.",
+        "Missed by the claim: events are saved inside async forEach callbacks that nothing waits for. hrmAddToSync is dispatched even if saveEvent fails, so the success/failure toast after 2 s may not be accurate.",
+        "Missed by the claim: the first event date is the employee's birth date or employment date moved to the current year, even when that date has already passed; after that it repeats yearly."
+      ],
+      "confidence": "Medium",
+      "notes": "The feature looks dormant. CalendarSyncPicker is not mounted, and SettingsScreen.tsx:404-405 says it is gated on a dev flag. Rules: the app checks calendar permission, then requests it, and shows a toast if it is denied. It skips an employee whose event already exists (matched by event url = employee id). Events recur yearly with a -1440 min alarm. Turning sync off clears the hrm sync list. A result toast appears after 2 s. Someone should decide whether the new app keeps this feature. referee could not confirm: CalendarSyncPicker as a Settings item: it is not mounted anywhere. SettingsScreen.tsx:404-405 has only a comment about the dev flag, and no code reads isCalendarSyncEnabled.",
+      "fusion": "unique"
+    },
+    {
+      "name": "See how many team members are absent today",
+      "domain": "Team overview",
+      "description": "On the Start screen, the manager sees how many managed employees are absent today. The count comes from the month's calendar feed for all managed employees. If the feed fails, the signal is not shown.",
+      "personas": [
+        "Manager"
+      ],
+      "implementations": {
+        "vmm": {
+          "evidence": "src/services/queryApi/queryEndpointsCalendar/queryEndpointsCalendar.ts:35-69",
+          "screens": [
+            "StartScreen (consumer, src/screens/StartScreen/hooks/useStartScreenData.ts:354)"
+          ],
+          "files": [
+            "src/services/queryApi/queryEndpointsCalendar/queryEndpointsCalendar.ts",
+            "src/services/apiEmployee/meBaseUrls.ts"
+          ],
+          "endpoints": [
+            "GET https://mobileemployee.visma.net/employee/api/v2/calendar/my-employees/feed?From={from}&Offset=100&Direction=1 (staging: mobileemployee.stag.visma.net)"
+          ],
+          "events": [],
+          "strings": [],
+          "storage": [],
+          "platform": []
+        }
+      },
+      "divergence": [
+        "Missed in claim: the query is skipped unless loginManager.hasAccessHRM and features.isEmployeeCalendarEnabled are both true (vmm useStartScreenData.ts:349-357)",
+        "Missed in claim: 'absent today' means a day entry whose date matches today and has an item with filterableType FILTERABLE_TYPE_ABSENCE. Each employee counts once, however many bookings they have (useStartScreenData.ts:359-365)",
+        "Missed in claim: the count is shown in three places: the 'startHrmAbsences' ticket (useStartScreenData.ts:498-499), a list of absent employees with subtitle 'startItemAbsentToday' (useStartScreenData.ts:519-523), and the 'startStatAbsentToday' stat tile plus the awayToday value (StartHub.tsx:374-375, 472)"
+      ],
+      "confidence": "Medium",
+      "notes": "vmm calls the Employee-product backend (mobileemployee.visma.net) with a Bearer token and X-Visma-Employee-Version 12.0. No me-ios fragment reports a client for this route. Any error resolves to an empty list, and the fragment says the route currently returns 403 for most manager tokens, so the signal may be missing in practice. The response is flattened from companies to employees to days, with cache tag CALENDAR.",
+      "fusion": "unique"
+    },
+    {
+      "name": "View an employee's absence balances",
+      "domain": "Balances",
+      "description": "A manager sees one employee's absence balances: total vacation balance, sick-child days for the current year and self-certified sickness over the last 12 months. A balance hook combines them for display.",
+      "personas": [
+        "Manager"
+      ],
+      "implementations": {
+        "vmm": {
+          "evidence": "src/services/apiCalendar/apiCalendar.ts:211-381",
+          "files": [
+            "src/services/apiCalendar/apiCalendar.ts",
+            "src/types/calendar.ts",
+            "src/hooks/useEmployeeBalanceDataClean.ts"
+          ],
+          "screens": [
+            "consumer hook useEmployeeBalanceData (src/hooks/useEmployeeBalanceDataClean.ts:81-88); screen outside this area"
+          ],
+          "endpoints": [
+            "GET {calendarBase}/org/{orgId}/balances/employee/{employeeId}/total",
+            "GET {calendarBase}/org/{orgId}/employee/{employeeId}/summary/template/sickchildcurrentyear?targetisodate={endOfYear}&expand=constrain.to.range,items&details=sickness12months",
+            "GET {calendarBase}/org/{orgId}/employee/{employeeId}/summary/template/sickness12months?targetisodate={endOfYear}&expand=constrain.to.range,items&details=sickness12months"
+          ],
+          "events": [],
+          "strings": [],
+          "storage": [],
+          "platform": [
+            "react-native"
+          ]
+        }
+      },
+      "divergence": [
+        "The screen is more specific than the claim says: the vmm hook is used by HrmEmployeeBalances (src/components/hrm/HrmEmployeeBalances/HrmEmployeeBalances.tsx:27), and HrmEmployeeDetailAccordion.tsx:282 renders that component. The screen also shows vacationDetails (normal, additional, transferred, transferredAdditional) and the string keys hrm_vacation_balance, hrm_vacation_days_year and hrm_no_balance_data.",
+        "Not a fusion difference: me-ios has a related but separate capability for employees to see their own vacation balance, CalendarService.getVacationBalances (CalendarService.swift:56-63, GetCalendarBalances for the current user's odpUserId). It has no manager view of another employee and no sick-child or self-certified sickness figures."
+      ],
+      "confidence": "High",
+      "notes": "calendarBase is CALENDAR_API_BASE_PROD or the staging/sandbox value (src/services/apiBase.ts:48-53). The target date is 31 Dec of the current year. Vacation comes from the 'vacationbalances' family and shows '0 days' when missing. The other apiCalendar methods (year, endofyear, date range, balances/search GET/POST, search/template, calendarapi/FetchPeriodAggregation) are called only from tests.",
+      "fusion": "unique"
+    },
+    {
+      "name": "See my time and absence balances for a month",
+      "domain": "Balances",
+      "description": "From the calendar toolbar, an employee opens a summary of time and absence balances for the month on screen. They can expand a balance group for details and switch control options, which the app remembers.",
+      "personas": [
+        "employee"
+      ],
+      "implementations": {
+        "me-ios": {
+          "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/BalancesOverview/Features/BalancesOverviewFeature.swift:47-115; EmployeeServices/Calendar/Sources/Calendar/Service/CalendarService.swift:66-74",
+          "files": [
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/BalancesOverview/Features/BalancesOverviewFeature.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/BalancesOverview/Features/BalancesOverviewView.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/BalancesOverview/Coordinator/BalancesOverviewCoordinator.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/BalancesOverview/UseCase/LoadBalancesOverviewUseCase.repository.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/BalancesOverview/UseCase/ResolveBalancesControlsUseCase.preferences.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/BalancesOverview/Repository/BalancesOverviewRepository.calendarService.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarContainerViewController.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Request/GetTimeBalanceOverview.swift",
+            "Modules/SnowplowAnalytics/Sources/SnowplowAnalytics/Events/Structured/Calendar/ShowCalendarSummaryDetailEvent.swift"
+          ],
+          "screens": [
+            "BalancesOverviewHostingController",
+            "BalancesOverviewModalView",
+            "BalancesOverview (CalendarFeature)"
+          ],
+          "endpoints": [
+            "GET /employee/api/v2/calendar/time-balance-summary?fromDate&toDate"
+          ],
+          "events": [
+            "showCalendarSummary",
+            "showCalendarSummaryDetail(groupName)",
+            "show summary show more"
+          ],
+          "storage": [
+            "UserPreferences com.employee.vme.calendar.balances.control (per control id)"
+          ],
+          "strings": [
+            "S.showSummary",
+            "S.close",
+            "S.connectAndRetry",
+            "S.tryAgainLater"
+          ],
+          "platform": [
+            "ios-native"
+          ]
+        }
+      },
+      "divergence": [],
+      "confidence": "High",
+      "notes": "The range runs from the first to the last day of the month, and fromDate/toDate are sent as ISO dates. A saved option is used only if the control still offers it. Otherwise the default option applies. showCalendarSummary is logged only when the user has the addAbsence permission.",
+      "fusion": "unique"
+    },
+    {
+      "name": "See my vacation balances on the start page",
+      "domain": "Balances",
+      "description": "An employee sees their combined vacation and leave balances as cards on the start page.",
+      "personas": [
+        "employee"
+      ],
+      "implementations": {
+        "me-ios": {
+          "evidence": "EmployeeServices/Calendar/Sources/Calendar/Service/CalendarService.swift:57-64",
+          "files": [
+            "EmployeeServices/Calendar/Sources/Calendar/Request/GetCalendarBalances.swift"
+          ],
+          "screens": [
+            "StartPage (GetVacationBalancesTask)"
+          ],
+          "endpoints": [
+            "GET /employee/api/v1/employees/{odpUserId}/calendar/balances/combined"
+          ],
+          "events": [],
+          "strings": [],
+          "storage": [],
+          "platform": [
+            "ios-native"
+          ]
+        }
+      },
+      "divergence": [
+        "The card only appears for users with absence or time permissions (addAbsence, addTime, absenceReadOnly, timeReadOnly, absenceWrite, timeWrite), per StartPageViewModel.swift:237-247. The claim does not mention this condition.",
+        "vmm HrmEmployeeBalances (useEmployeeBalanceDataClean.ts:62-163) lets a manager view an employee's vacation, flexitime, sick-child and self-certification balances in HRM employee detail. This is a separate capability, not a twin of this one."
+      ],
+      "confidence": "High",
+      "notes": "referee could not confirm: Description overstates: GetVacationBalancesTask.swift:27-33 shows only the category == .vacation group as a single RemainingVacationCardViewModel card; other leave balances from the combined response are not shown on the start page",
+      "fusion": "unique"
+    },
+    {
+      "name": "Register an absence or time event",
+      "domain": "Absence registration",
+      "description": "The employee picks a day, a dragged range or the add button in the calendar, chooses an absence or time type from grouped calendar templates, fills the dynamic form (dates, times, hours or percent, comment, cost-unit dimensions, medical certificate) and saves it. If the server asks, the employee confirms a warning for future registrations.",
+      "personas": [
+        "employee"
+      ],
+      "implementations": {
+        "me-ios": {
+          "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AddAbsenceCoordinator/AddAbsenceCoordinator.swift:52-113; EmployeeServices/Calendar/Sources/Calendar/Service/AbsenceRegistrationService.swift:31-80",
+          "files": [
+            "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AddAbsenceCoordinator/AddAbsenceCoordinator.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AbsenceRegistrationCoordinator/CreateAbsenceRegistrationCoordinator.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AbsenceRegistrationTableViewController.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/ViewModel/AbsenceRegistrationViewModel.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/ViewModel/RegisterAbsenceTypeItemSelectorViewModel.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/CalendarEventEditing/AbsenceEventEditor.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/AddAbsenceFeature.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/AddAbsenceView.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/AnalyticsFeature.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Service/AbsenceRegistrationService.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Request/Absence/RegisterAbsence.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Request/Absence/GetCalendarTemplates.swift",
+            "Modules/SnowplowAnalytics/Sources/SnowplowAnalytics/Events/Structured/Calendar/CalendarNewEventCreatedEvent.swift",
+            "Modules/SnowplowAnalytics/Sources/SnowplowAnalytics/Events/Structured/Calendar/CalendarNewEventCreatedWithInputTypeEvent.swift",
+            "Modules/SnowplowAnalytics/Sources/SnowplowAnalytics/Events/Structured/Calendar/CalendarNewEventCreatedWithCommentEvent.swift"
+          ],
+          "screens": [
+            "ItemSelectorView (select type)",
+            "AbsenceRegistrationTableViewController",
+            "PostScreenViewController",
+            "AddAbsenceFeature",
+            "AbsenceRegistrationViewModel (CalendarFeature)",
+            "AbsenceEventEditor",
+            "RegisterAbsenceTypeItemSelectorViewModel"
+          ],
+          "endpoints": [
+            "GET /employee/api/v1/employees/{odpUserId}/calendar/templates",
+            "GET /employee/api/v1/employees/{odpUserId}/calendar/confirm/template",
+            "GET {template details link href}",
+            "GET {absenceType details href from API links}",
+            "POST /employee/api/v1/employees/{odpUserId}/absenceregistration"
+          ],
+          "events": [
+            "addAbsence (absence_type, inputType, hasComment, source list|month|chatbot)",
+            "calendarMonthViewSingleDayRegistration",
+            "calendarMonthViewPeriodRegistration",
+            "calendarCostUnitsEdited",
+            "new event created",
+            "new event created input type",
+            "new event created with comment"
+          ],
+          "storage": [],
+          "strings": [
+            "S.Absence.selectType",
+            "S.absenceRegistrationTitle",
+            "S.save",
+            "S.pleaseWait",
+            "S.fieldRequiredText",
+            "S.Calendar.Time.futureRegistration",
+            "S.startTime",
+            "S.endTime",
+            "S.date",
+            "S.selectDate",
+            "S.Absence.Sickness.medicalCertificateToggle",
+            "S.Absence.Sickness.medicalCertificatePercentage",
+            "S.error",
+            "S.unexpectedError",
+            "S.youHaveNoInternetConnection",
+            "S.cancel"
+          ],
+          "platform": [
+            "ios-native",
+            "Survicate survey with thank-you toast after save",
+            "NotificationCenter AppMessage.reloadStartPage"
+          ]
+        }
+      },
+      "divergence": [],
+      "confidence": "High",
+      "notes": "Rules: the form is valid only when every required field is filled (AbsenceRegistrationViewModel.swift:428-431). Changing the from-date resets the to-date and the dimension values, and reloads the types. The app fetches templates for the fromDate/toDate window. A confirmationRequired status becomes a warning the user must confirm. An error status code in the response body maps to a validation error. Registering from the grid needs calendar write permission. The three create events share one Snowplow SequenceContext (SnowplowEventFactory.swift:38-51). The Manager app (vmm) reported no fragment for this capability. referee could not confirm: GET /employee/api/v1/employees/{odpUserId}/calendar/confirm/template exists (GetConfirmTimeTemplate.swift:30), but it belongs to the confirm-timesheet path (ConfirmTimeUseCase, which runs when the user picks timesheetItem in AddAbsenceCoordinator). It is not part of absence registration, so it overstates this capability.",
+      "fusion": "unique"
+    },
+    {
+      "name": "Pick cost-unit dimension values for a registration",
+      "domain": "Absence registration",
+      "description": "While registering or editing an absence, the employee picks dimension (cost unit) values from a paged, searchable list. Recently used values appear first.",
+      "personas": [
+        "employee"
+      ],
+      "implementations": {
+        "me-ios": {
+          "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/ViewModel/DimensionValueItemSelectorViewModel.swift:105-213",
+          "files": [
+            "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/ViewModel/DimensionValueItemSelectorViewModel.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/SectionViewModels/DimensionFieldsSectionViewModel.swift"
+          ],
+          "screens": [
+            "Dimension value selector",
+            "DimensionValueItemSelectorViewModel"
+          ],
+          "endpoints": [
+            "GET {dimension values link href} (optional search query param)"
+          ],
+          "events": [
+            "calendarCostUnitsEdited"
+          ],
+          "storage": [],
+          "strings": [
+            "S.eventRegistrationRecentlyUsedDimensionsSectionTitle",
+            "S.eventRegistrationAllDimensionsSectionTitle",
+            "S.eventRegistrationNoDimensionValuesMessage",
+            "S.noMatchResultsMessage"
+          ],
+          "platform": [
+            "ios-native"
+          ]
+        }
+      },
+      "divergence": [
+        "The selected value is shown as 'id - name' (DimensionFieldsSectionViewModel.swift:85-89). The currently selected value is added to the recently used list if it is missing (lines 41-47). The claim does not mention either.",
+        "Tapping the selected row again deselects it (selectValueAtIndexPath, DimensionValueItemSelectorViewModel.swift:285-288). The claim misses this."
+      ],
+      "confidence": "High",
+      "notes": "The server runs the search only when the link advertises a search parameter. Otherwise the app filters the list locally. Pages default to count 50 and offset 0 (fragment 29). This could be folded into the register and edit capabilities as a sub-step. referee could not confirm: notes: 'Otherwise the app filters the list locally' is wrong. In searchDimensionValue (DimensionValueItemSelectorViewModel.swift:165-169), when supportsSearching is false it calls handleNewDimensionsSearchResults([]), which shows S.noMatchResultsMessage. No local filtering happens.; notes: 'Pages default to count 50 and offset 0' has no support in the cited files or in AbsenceRegistrationService.swift:115-139. Paging follows the server's rel=next link (nextPageAction, line 150).",
+      "fusion": "unique"
+    },
+    {
+      "name": "View details of a registered absence",
+      "domain": "Absence registration",
+      "description": "The employee opens a registered absence to see its type, fields, comment and approval status.",
+      "personas": [
+        "employee"
+      ],
+      "implementations": {
+        "me-ios": {
+          "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Absence/AbsenceViewTableViewController.swift:157-280",
+          "files": [
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Absence/AbsenceViewTableViewController.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Absence/AbsenceCoordinator.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Absence/PresentAbsenceCoordinator.swift"
+          ],
+          "screens": [
+            "AbsenceViewTableViewController"
+          ],
+          "endpoints": [
+            "GET {absence detail link href}"
+          ],
+          "events": [],
+          "storage": [],
+          "strings": [
+            "S.approvalStatusAwaitingApproval",
+            "S.edit",
+            "S.error",
+            "S.unexpectedError",
+            "S.youHaveNoInternetConnection",
+            "S.pleaseWait"
+          ],
+          "platform": [
+            "ios-native"
+          ]
+        }
+      },
+      "divergence": [
+        "Nearby but not the same: vmm src/screens/EmployeeCalendarScreen/components/EmployeeCalendarDayDetail.tsx lists a day's feed items (title, subtitle, time range, and a status tag only when requestStatus === 'pending'). It fetches no detail record and shows no fields, comment or Edit. me-ios loads the full detail through GET on the link href and shows the type, comment, non-empty grouped fields, the server's fullStatusText, and an Edit button when edit links are returned.",
+        "me-ios hides the inputType=FullDay field and fields with empty values (AbsenceViewTableViewController.swift:233, 255-259)."
+      ],
+      "confidence": "High",
+      "notes": "Empty field values are hidden. The Edit button appears only when the server returns edit links. referee could not confirm: S.approvalStatusAwaitingApproval: not referenced in AbsenceViewTableViewController.swift. The status shown comes from requestStatus.fullStatusText (lines 238 and 468). The string key is used in CalendarUtils.swift:338 and AbsenceRegistrationUtils.swift:85 instead.",
+      "fusion": "unique"
+    },
+    {
+      "name": "Edit a registered absence",
+      "domain": "Absence registration",
+      "description": "From the absence detail, the employee edits a registered absence, including its type, and saves it through the entry's update link. The employee confirms a future-registration warning when the server asks.",
+      "personas": [
+        "employee"
+      ],
+      "implementations": {
+        "me-ios": {
+          "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AbsenceRegistrationCoordinator/EditAbsenceRegistrationCoordinator.swift:44-130; EmployeeServices/Calendar/Sources/Calendar/Service/AbsenceRegistrationService.swift:82-91",
+          "files": [
+            "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AbsenceRegistrationCoordinator/EditAbsenceRegistrationCoordinator.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Absence/AbsenceViewTableViewController.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AbsenceRegistrationTableViewController.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/CalendarEventEditing/AbsenceEventEditor.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/ViewModel/EditAbsenceTypeItemSelectorViewModel.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Request/Absence/UpdateAbsence.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Service/AbsenceRegistrationService.swift",
+            "Modules/SnowplowAnalytics/Sources/SnowplowAnalytics/Events/Structured/Calendar/CalendarEventEditedEvent.swift"
+          ],
+          "screens": [
+            "AbsenceRegistrationTableViewController (edit)",
+            "PostScreenViewController",
+            "AbsenceEventEditor",
+            "AbsenceViewTableViewController"
+          ],
+          "endpoints": [
+            "GET /employee/api/v1/employees/{odpUserId}/calendar/templates",
+            "GET {absence details href from API links}",
+            "PUT {update link href}",
+            "PUT {update href from absence links (rel=update)}"
+          ],
+          "events": [
+            "editAbsence (absence_type)",
+            "calendarCostUnitsEdited",
+            "event edited"
+          ],
+          "storage": [],
+          "strings": [
+            "S.absenceEditTitle",
+            "S.save",
+            "S.Calendar.Time.futureRegistration",
+            "S.cancel",
+            "S.pleaseWait"
+          ],
+          "platform": [
+            "ios-native",
+            "Survicate survey after save",
+            "Chatbot entry points (editFromChatbot / editPredictionFromChatbot initializers)"
+          ]
+        }
+      },
+      "divergence": [],
+      "confidence": "High",
+      "notes": "Editing needs calendar write permission to load templates. An update is possible only when the item carries a rel=update link. Otherwise the app shows unexpectedError. An update that returns confirmationRequired shows a warning and sends the PUT to the updateUrl again (AbsenceEventEditor.swift:73-89). Fragment 13 mixed edit and delete, so it is split here. referee could not confirm: The endpoints list the PUT twice ('PUT {update link href}' and 'PUT {update href from absence links (rel=update)}'). Both are the same UpdateAbsence request (UpdateAbsence.swift:41-42), and the confirmation re-send goes to updateUrl from the same code path.; The 'platform' field lists 'Survicate survey after save' and 'Chatbot entry points', which are not platforms. They are real behaviour (EditAbsenceRegistrationCoordinator.swift:75-96, 125-127) and belong in the notes.",
+      "fusion": "unique"
+    },
+    {
+      "name": "Delete a registered absence",
+      "domain": "Absence registration",
+      "description": "From the absence detail or editor, the employee deletes a registered absence after a confirmation prompt, using the entry's delete link.",
+      "personas": [
+        "employee"
+      ],
+      "implementations": {
+        "me-ios": {
+          "evidence": "EmployeeServices/Calendar/Sources/Calendar/Service/AbsenceRegistrationService.swift:93-103; Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AbsenceRegistrationCoordinator/EditAbsenceRegistrationCoordinator.swift:44-130",
+          "files": [
+            "EmployeeServices/Calendar/Sources/Calendar/Request/Absence/DeleteAbsence.swift",
+            "Modules/SnowplowAnalytics/Sources/SnowplowAnalytics/Events/Structured/Calendar/CalendarEventDeletedEvent.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AbsenceRegistrationCoordinator/EditAbsenceRegistrationCoordinator.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/CalendarEventEditing/AbsenceEventEditor.swift"
+          ],
+          "screens": [
+            "AbsenceEventEditor",
+            "AbsenceRegistrationTableViewController (edit)"
+          ],
+          "endpoints": [
+            "DELETE {delete link href}",
+            "DELETE {delete href from absence links (rel=delete)}"
+          ],
+          "events": [
+            "deleteAbsence (absence_type)",
+            "event deleted"
+          ],
+          "storage": [],
+          "strings": [
+            "S.delete",
+            "S.Calendar.deleteRegistrationEventWarning",
+            "S.cancel",
+            "S.pleaseWait"
+          ],
+          "platform": [
+            "ios-native"
+          ]
+        }
+      },
+      "divergence": [
+        "Only me-ios has this capability. vmm has no endpoint, screen or event for deleting an absence (vmm/src/services/apiCalendar/apiCalendar.ts has GET/POST only; the only DELETE, at vmm/src/services/apiApproval/apiApproval.ts:367, is for device unregistration)."
+      ],
+      "confidence": "High",
+      "notes": "Deleting is possible only when a rel=delete link is present. referee could not confirm: AbsenceEventEditor is listed as a screen, but it is a service-layer class with no UI (CalendarEventEditing/AbsenceEventEditor.swift:56-58). The real screen is AbsenceRegistrationTableViewController in edit mode.; The two endpoints listed ('DELETE {delete link href}' and 'DELETE {delete href from absence links (rel=delete)}') are the same call; there is one DELETE, to the rel=delete href (AbsenceRegistrationService.swift:93-103).; The cited range EditAbsenceRegistrationCoordinator.swift:44-130 does not delete anything. It only opens the edit screen and shows the post-screen for the isDeleted result. The delete logic is in AbsenceRegistrationTableViewController.swift:348-465, which the claim does not cite.; The note says deleting is possible only when a rel=delete link is present. That overstates it: the Delete button appears whenever isEditMode is true (AbsenceRegistrationTableViewController.swift:323). If no rel=delete link exists, the delete fails with AbsenceRegistrationError.unexpectedError (AbsenceRegistrationService.swift:94-99) instead of the button being hidden.",
+      "fusion": "unique"
+    },
+    {
+      "name": "See upcoming and ongoing vacation and parental leave on the start page",
+      "domain": "Absence registration",
+      "description": "The start page shows cards for declined, upcoming, ongoing and approved vacations and for parental leave, from one week ago to one month ahead.",
+      "personas": [
+        "employee"
+      ],
+      "implementations": {
+        "me-ios": {
+          "evidence": "Employee/StartPage/Tasks/GetCalendarItemsTask.swift:13-76",
+          "files": [
+            "Employee/StartPage/Tasks/GetCalendarItemsTask.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Service/CalendarService.swift"
+          ],
+          "screens": [
+            "StartPage"
+          ],
+          "endpoints": [
+            "GET /employee/api/v1/employees/{odpUserId}/calendar"
+          ],
+          "events": [],
+          "storage": [],
+          "strings": [],
+          "platform": [
+            "ios-native"
+          ]
+        }
+      },
+      "divergence": [
+        "Missed nuance: upcoming parental leave has no 2-week limit; any future approved parental leave in the one-month window gives an upcoming card, and parental leave never gets an 'approved' card (GetCalendarItemsTask.swift:62-65)",
+        "Missed nuance: parental leave cards are never grouped; only ApprovedVacation, DeclinedVacation and UpcomingVacation cards are merged into a GroupedCardViewModel (GetCalendarItemsTask.swift:34-38)",
+        "Missed nuance: pending vacations and denied parental leave give no card (GetCalendarItemsTask.swift:72-73)",
+        "Edge case: the 2-week boundary uses a strict isBefore/isAfter, so a vacation starting exactly at twoWeeksInFuture may get no card (GetCalendarItemsTask.swift:68-71)"
+      ],
+      "confidence": "High",
+      "notes": "Card rules: a denied vacation that starts today or later gives a declined card. An approved vacation that starts within 2 weeks is upcoming, a later one is approved, and one in progress is ongoing. Parental leave is shown as upcoming or ongoing. Several cards of the same approved, declined or upcoming type are grouped.",
+      "fusion": "unique"
+    },
+    {
+      "name": "Check in and check out for the workday",
+      "domain": "Time tracking",
+      "description": "The employee checks in from the start page, which sends the current local time, sees the current check-in status, and later checks out. The checkout template is fetched to register the worked time.",
+      "personas": [
+        "employee"
+      ],
+      "implementations": {
+        "me-ios": {
+          "evidence": "EmployeeServices/Calendar/Sources/Calendar/Service/TimeService.swift:128-202",
+          "files": [
+            "EmployeeServices/Calendar/Sources/Calendar/Service/TimeService.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Request/Checkin/GetCheckin.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Request/Checkin/PutCheckin.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Request/Checkin/PutCheckout.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Request/Checkin/GetCheckoutTemplate.swift"
+          ],
+          "screens": [
+            "StartPage",
+            "CheckinHandler",
+            "ViewControllerCheckinWrapper",
+            "GetCheckinStatusTask"
+          ],
+          "endpoints": [
+            "GET /employee/api/v1/employees/{odpUserId}/calendar/checkin",
+            "PUT /employee/api/v1/employees/{odpUserId}/calendar/checkin",
+            "PUT {checkout href from checkin links (rel=update)}",
+            "GET {checkoutTemplate href from checkin links, fromDate/toDate query params upserted}"
+          ],
+          "events": [],
+          "storage": [],
+          "strings": [],
+          "platform": [
+            "ios-native"
+          ]
+        }
+      },
+      "divergence": [
+        "No counterpart in vmm: no check-in or check-out endpoint, screen or service in vmm/src, so the capability is unique",
+        "Rule the claim missed: checking out less than one minute after check-in throws CheckinError.checkedInForLessThanOneMinute (CheckinHandler.swift:83-85)",
+        "Rule the claim missed: checking out on a different day, or getting status .error, fetches the checkout template and throws checkedOutOnDifferentDay/checkedOutWithError so the user can correct the time (CheckinHandler.swift:87-100)",
+        "Checkout fails with CheckinError.failedToCheckout when the check-in response has no update link (CheckinHandler.swift:74-76)",
+        "Related actions the claim missed: deleting a check-in via its delete link and updating a checkout as an AbsenceType (TimeService.swift:204-228)"
+      ],
+      "confidence": "High",
+      "notes": "localTime is sent as ISO8601 in the current time zone. No fragment from vmm (Manager) covers this. referee could not confirm: GET {checkoutTemplate href ...} with fromDate/toDate upserted: that variant (TimeService.swift:148-167) is called only from Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/ViewModel/AbsenceRegistrationViewModel.swift:304, not from the check-in/check-out flow. The start page uses getCheckoutTemplate(url:) with the plain link (CheckinHandler.swift:106-110); Description 'The checkout template is fetched to register the worked time' is inaccurate: it is fetched only after a checkout with status .error or on a different day than the check-in (CheckinHandler.swift:88-100); Cited range TimeService.swift:128-202 leaves out the link parsing at 117-126 that provides the update and checkoutTemplate URLs",
+      "fusion": "unique"
+    },
+    {
+      "name": "Edit or delete a check-in/check-out registration",
+      "domain": "Time tracking",
+      "description": "The employee corrects the fields of a check-in/check-out time registration, or deletes it, through the shared registration form or the calendar event editor.",
+      "personas": [
+        "employee"
+      ],
+      "implementations": {
+        "me-ios": {
+          "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AbsenceRegistrationCoordinator/EditCheckoutRegistrationCoordinator.swift:46-120; EmployeeServices/Calendar/Sources/Calendar/Service/TimeService.swift:204-229",
+          "files": [
+            "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AbsenceRegistrationCoordinator/EditCheckoutRegistrationCoordinator.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/CalendarEventEditing/CheckinEventEditor.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/ViewModel/Repository/AbsenceRegistrationTypeRepository/AbsenceRegistrationTypeRepository.editCheckout.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/ViewModel/Repository/AbsenceRegistrationTemplatesRepository/AbsenceRegistrationTemplatesRepository.editCheckout.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Request/Checkin/UpdateCheckout.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Service/TimeService.swift"
+          ],
+          "screens": [
+            "AbsenceRegistrationTableViewController (checkin mode)",
+            "PostScreenViewController",
+            "CheckinEventEditor"
+          ],
+          "endpoints": [
+            "GET {checkout template link href}?fromDate&toDate",
+            "POST {checkout update link href}",
+            "{link method} {checkin delete link href}",
+            "POST {update href from checkin action} (body fieldInfo)",
+            "{method from delete action} {delete href from checkin action}"
+          ],
+          "events": [
+            "checkinEdited",
+            "checkinDeleted",
+            "checkin edited",
+            "checkin deleted"
+          ],
+          "storage": [],
+          "strings": [
+            "S.Calendar.Time.editCheckin",
+            "S.save",
+            "S.delete",
+            "S.Calendar.deleteRegistrationEventWarning"
+          ],
+          "platform": [
+            "ios-native",
+            "Launched from the start page CheckinHandler (Employee/StartPage/Time/CheckinHandler.swift)"
+          ]
+        }
+      },
+      "divergence": [],
+      "confidence": "High",
+      "notes": "Both the update link and the delete link are required, otherwise the result is invalidInputData (EditCheckoutRegistrationCoordinator.swift:57-64). The server action supplies the HTTP method for delete. The two fragments describe the coordinator/UI layer and the service layer of the same flow. referee could not confirm: Notes cite EditCheckoutRegistrationCoordinator.swift:57-64 as enforcing both links (invalidInputData). verifyInputData() is never called, so the check is dead code.; platform cites Employee/StartPage/Time/CheckinHandler.swift as the launch point. The coordinator is actually built in Employee/StartPage/ViewControllerCheckinWrapper.swift:130, from the check-in error alert action (lines 114-136).; The description says 'or the calendar event editor'. The only non-test place CheckinEventEditor is resolved is EditCheckoutRegistrationCoordinator.swift:75. No separate calendar-screen entry point was found.",
+      "fusion": "unique"
+    },
+    {
+      "name": "Confirm worked time up to a date",
+      "domain": "Time tracking",
+      "description": "The employee sends the timesheet for confirmation up to a date: a day from the calendar or day detail, the suggested date, or a chosen date from the type selector. The app loads the confirmation status and template. Error-level validations block the confirmation; Warning-level ones need consent before a forced confirm.",
+      "personas": [
+        "employee"
+      ],
+      "implementations": {
+        "me-ios": {
+          "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AddAbsenceCoordinator/AddAbsenceCoordinator.swift:131-237; Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/UseCase/ConfirmTimeUseCase.timeService.swift:14-60; EmployeeServices/Calendar/Sources/Calendar/Service/TimeService.swift:28-111",
+          "files": [
+            "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AddAbsenceCoordinator/AddAbsenceCoordinator.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/UseCase/ConfirmTimeUseCase.timeService.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/UseCase/ConfirmTimeUseCase.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarFeature/Features/DayDetailFeature.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarViewController.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Request/GetConfirmTimeDetails.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Request/GetConfirmTimeTemplate.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Request/ConfirmTimeToDate.swift"
+          ],
+          "screens": [
+            "Confirm period action sheet",
+            "DatePicker",
+            "PostScreenViewController (period sent)",
+            "DayDetailView",
+            "DayDetailFeature",
+            "CalendarViewController",
+            "CalendarFeedViewModel",
+            "ConfirmTimeUseCase",
+            "RegisterAbsenceTypeItemSelectorViewModel"
+          ],
+          "endpoints": [
+            "GET /employee/api/v1/employees/{odpUserId}/calendar/confirm",
+            "GET /employee/api/v1/employees/{odpUserId}/calendar/confirm/template",
+            "PUT {confirm template update link href}",
+            "PUT {confirm template _links rel=update href}",
+            "PUT {confirm href from confirm details} (body date)"
+          ],
+          "events": [
+            "confirmTime",
+            "confirm time clicked"
+          ],
+          "storage": [],
+          "strings": [
+            "S.confirmDatePeriod",
+            "S.confirm",
+            "S.chooseAnotherDate",
+            "S.chooseDate",
+            "S.warning",
+            "S.error",
+            "S.periodSent",
+            "S.timeSheetSentPostScreenText",
+            "S.pleaseWait",
+            "S.cancel",
+            "CONFIRM_TIME"
+          ],
+          "platform": [
+            "ios-native"
+          ]
+        }
+      },
+      "divergence": [
+        "No divergence: vmm has only the unused i18n key employee_calendar_confirm_time (vmm/src/assets/i18n/en.json:1806) and no executable confirm-time flow or calendar/confirm endpoint under vmm/src.",
+        "Not in the claim: the chatbot quick response also confirms time, sending registerTimeConfirmation with a predicted event href (QuickResponseAction.confirmPredictedConfirmTimeEvent.swift:42). It skips the template validation checks, so it may be a separate entry point to consider."
+      ],
+      "confidence": "High",
+      "notes": "Needs the meapi:absence:confirm-time / confirmTime permission, and the button is hidden without it (CalendarViewController.swift:508-524). HTTP 403 maps to featureDisabled. The optional targetDate query param is supported. The day-level and period-level entry points are one outcome (a date is sent), so they are merged. referee could not confirm: Endpoint 'PUT {confirm href from confirm details} (body date)' is not supported. The only PUT callers of registerTimeConfirmation are ConfirmTimeUseCase.timeService.swift:34, which uses the confirm template's rel=update link, and the chatbot quick response QuickResponseAction.confirmPredictedConfirmTimeEvent.swift:42, which uses a predicted event's updateAction.href. The GET /calendar/confirm details response is not used for the PUT.; 'PUT {confirm template update link href}' and 'PUT {confirm template _links rel=update href}' describe the same single call and should be one entry.; The listed event 'confirm time clicked' did not appear in the code I read. Only analyticsService.logEvent(name: .confirmTime) is confirmed, at ConfirmTimeUseCase.timeService.swift:35.",
+      "fusion": "unique"
+    },
+    {
+      "name": "Register time or absence by chatting with the Employee Agent",
+      "domain": "Employee Agent",
+      "description": "The employee opens the Employee Agent from the calendar toolbar. They type or dictate a sentence such as 'I was sick yesterday', or pick an example prompt. The agent predicts one or more absence or time registrations and shows a summary. The employee confirms to save them all or cancels.",
+      "personas": [
+        "employee"
+      ],
+      "implementations": {
+        "me-ios": {
+          "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/Chatbot/CalendarChatBotViewModel.swift:231-325; entry point Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarContainerViewController.swift:410-422; service EmployeeServices/Calendar/Sources/Calendar/Service/EmployeeCalendarBotService.swift:26-66",
+          "screens": [
+            "CalendarChatBotView",
+            "CalendarChatBotFeature",
+            "ChatFeature",
+            "CalendarChatBotMessageView",
+            "QuickResponseButton",
+            "CalendarChatBotCoordinator",
+            "CalendarChatBotViewModel",
+            "CalendarChatBotRepository"
+          ],
+          "files": [
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarContainerViewController.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/AppEvents/AppEventPublisher.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/AppEvents/AppEventsFeature.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Coordinator/CalendarChatBotCoordinator.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/Chatbot/CalendarChatBotViewModel.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/Chatbot/CalendarChatBotView.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Message/QuickResponseAction/QuickResponseAction.confirmPredictedCalendarEvents.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Message/QuickResponseAction/QuickResponseAction.confirmFutureAbsenceRegistration.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Message/QuickResponseAction/QuickResponseAction.cancelPrediction.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/UseCase/RegisterAbsenceEventsUseCase.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Repository/CalendarChatBotRepository/CalendarChatBotRepository.Service.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Events/ChatbotEventsFeature.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Service/EmployeeCalendarBotService.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Request/Chatbot/PostPredictCalendarRegistration.swift",
+            "EmployeeServices/Calendar/Sources/Calendar/Request/Chatbot/GetExamplePrompts.swift"
+          ],
+          "endpoints": [
+            "POST /employee/api/v1/employees/{odpUserId}/chatbot/predictCalendarRegistration",
+            "POST /employee/api/v1/employees/{odpUserId}/absenceregistration",
+            "GET /employee/api/v1/employees/{odpUserId}/chatbot/examplePrompts"
+          ],
+          "events": [
+            "calendarBotPredictionRequest(successful:)",
+            "calendarBotEventCreated(type:code:)",
+            "calendarBotEventsCreated(count:)",
+            "calendarBotVoiceInputUsedInMessage"
+          ],
+          "strings": [
+            "S.Calendar.ChatBot.openEmployeeAgent",
+            "calendar.chatBot.calendarBotTitle",
+            "calendar.chatBot.writeOrRecordText",
+            "calendar.chatBot.openEmployeeAgent",
+            "calendar.chatBot.message.initial",
+            "calendar.chatBot.message.howCanIHelp",
+            "calendar.chatBot.message.registerEventsQuestion",
+            "calendar.chatBot.message.confirmRegistration",
+            "calendar.chatBot.message.registrationSuccess",
+            "calendar.chatBot.message.anythingElseQuestion",
+            "calendar.chatBot.message.multipleEventsRequireExtraHandling",
+            "calendar.chatBot.button.confirmRegistration",
+            "calendar.chatBot.button.cancelRegistration"
+          ],
+          "platform": [
+            "ios-native",
+            "speech recognition / microphone (voice-to-text input)",
+            "modal presentation (isModalInPresentation)",
+            "open app Settings on speech permission error"
+          ],
+          "storage": []
+        }
+      },
+      "divergence": [
+        "No cross-app divergence: vmm has a Gaia AG-UI chatbot (src/services/aguiService.ts:270), but its tools only open approvals, employees or screens (src/utils/gaiaFrontendTools.ts:27-67) and it cannot create time or absence registrations.",
+        "Scope note: the me-ios agent also handles confirm-time template predictions and balance answers (CalendarChatBotViewModel.processPredictions). The claim describes only absence and time registration predictions."
+      ],
+      "confidence": "High",
+      "notes": "The entry point (fragment 17) appears only with calendar permissions. Absence-view events (absenceViewAppeared, editButtonTappedInAbsenceView) reach the chatbot through AppEventsFeature. Empty or whitespace-only prompts are ignored on the client. localTime is sent as ISO8601 in the current time zone. On confirm, the predictions that pass isReadyToBeConfirmed are saved in parallel. The rest need editing, shown as 'register one by one' when there are several. A server 'confirmationRequired' warning adds a second confirm/cancel step. Closing the agent posts reloadStartPage and resetCalendar.",
+      "fusion": "unique"
+    },
+    {
+      "name": "Confirm the time sheet through the Employee Agent",
+      "domain": "Employee Agent",
+      "description": "When the agent reads the prompt as a time-confirmation request, it shows a confirm-time event. On confirm, the time sheet for that date is sent for approval.",
+      "personas": [
+        "employee"
+      ],
+      "implementations": {
+        "me-ios": {
+          "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Message/QuickResponseAction/QuickResponseAction.confirmPredictedConfirmTimeEvent.swift:24-52",
+          "screens": [
+            "CalendarChatBotView"
+          ],
+          "files": [
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Message/QuickResponseAction/QuickResponseAction.confirmPredictedConfirmTimeEvent.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/Chatbot/CalendarChatBotViewModel.swift"
+          ],
+          "endpoints": [
+            "POST /employee/api/v1/employees/{odpUserId}/chatbot/predictCalendarRegistration",
+            "PUT {confirmTime template _links rel=update href}"
+          ],
+          "events": [
+            "calendarBotEventCreated(type:code:)",
+            "calendarBotEventsCreated(count:)"
+          ],
+          "strings": [
+            "calendar.chatBot.message.timeSheetSentForApproval",
+            "calendar.chatBot.button.confirmRegistration",
+            "calendar.chatBot.button.cancelRegistration"
+          ],
+          "platform": [
+            "ios-native"
+          ],
+          "storage": []
+        }
+      },
+      "divergence": [
+        "Analytics events are sent indirectly: the action sends ChatbotEventPublisher .eventConfirmed/.eventsConfirmed (QuickResponseAction.confirmPredictedConfirmTimeEvent.swift:48-50), which ChatbotEventsFeature.swift:87-97 maps to calendarBotEventCreated/calendarBotEventsCreated. They are sent after both success and failure.",
+        "The confirm-time call is a PUT to the confirmTime template's update link with body {date} (ConfirmTimeToDate.swift:38-44, TimeService.swift:103-111).",
+        "calendar.chatBot.button.cancelRegistration comes from the cancelPrediction action (QuickResponseAction.cancelPrediction.swift:15), not from the confirm-time action."
+      ],
+      "confidence": "High",
+      "notes": "The template must have a date item that parses with Constants.dateFormatter and an update link. If either is missing, the action fails with an unexpected error.",
+      "fusion": "unique"
+    },
+    {
+      "name": "Ask the Employee Agent about leave balances",
+      "domain": "Employee Agent",
+      "description": "The employee asks the agent about balances. The agent replies with the balance text that the prediction service returns.",
+      "personas": [
+        "employee"
+      ],
+      "implementations": {
+        "me-ios": {
+          "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/Chatbot/CalendarChatBotViewModel.swift:275-352",
+          "screens": [
+            "CalendarChatBotView"
+          ],
+          "files": [
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/Chatbot/CalendarChatBotViewModel.swift"
+          ],
+          "endpoints": [
+            "POST /employee/api/v1/employees/{odpUserId}/chatbot/predictCalendarRegistration"
+          ],
+          "events": [
+            "calendarBotPredictionRequest(successful:)"
+          ],
+          "strings": [],
+          "platform": [
+            "ios-native"
+          ],
+          "storage": []
+        }
+      },
+      "divergence": [],
+      "confidence": "High",
+      "notes": "The balance answer (balancesQueryResult) is shown only when the response has no calendarRegistrations and no confirmTime. referee could not confirm: The endpoint POST /employee/api/v1/employees/{odpUserId}/chatbot/predictCalendarRegistration is not in the cited view model file. It is defined in me-ios/EmployeeServices/Calendar/Sources/Calendar/Request/Chatbot/PostPredictCalendarRegistration.swift:22.",
+      "fusion": "unique"
+    },
+    {
+      "name": "Edit a predicted registration before saving it",
+      "domain": "Employee Agent",
+      "description": "From the agent's suggestion, the employee opens the registration form pre-filled with the prediction, for example to add a medical certificate for sickness. They adjust it and save, and the agent then shows the saved event.",
+      "personas": [
+        "employee"
+      ],
+      "implementations": {
+        "me-ios": {
+          "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/EditAbsenceRegistration/EditPredictedAbsenceRegistrationView.swift:17-90",
+          "screens": [
+            "EditPredictedAbsenceRegistrationView",
+            "EditPredictedAbsenceRegistrationFeature",
+            "EditAbsenceRegistrationCoordinator"
+          ],
+          "files": [
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/EditAbsenceRegistration/EditPredictedAbsenceRegistrationView.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/EditAbsenceRegistration/EditPredictedAbsenceRegistrationFeature.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/EditAbsenceRegistration/Repository/AbsenceRegistrationTypeRepository.editPredictionFromChatbot.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/EditAbsenceRegistration/Repository/AbsenceRegistrationTemplatesRepository.editChatbot.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Message/QuickResponseAction/QuickResponseAction.editCalendarEventPrediction.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Extensions/AbsenceType+MedicalCertificate.swift"
+          ],
+          "endpoints": [
+            "GET /employee/api/v1/employees/{odpUserId}/calendar/templates",
+            "POST /employee/api/v1/employees/{odpUserId}/absenceregistration"
+          ],
+          "events": [
+            "calendarBotEditRegistrationButtonClicked",
+            "calendarBotEditRegistrationEventCreated(type:code:)"
+          ],
+          "strings": [
+            "calendar.chatBot.button.editRegistration",
+            "calendar.chatBot.message.medicalCertificateRequired"
+          ],
+          "platform": [
+            "ios-native"
+          ],
+          "storage": []
+        }
+      },
+      "divergence": [],
+      "confidence": "High",
+      "notes": "The Edit button appears only when the prediction contains exactly one event. The form opens in editMode .newFromPrediction(source: .chatbot) on a clone of the prediction. referee could not confirm: Minor: 'EditAbsenceRegistrationCoordinator' is listed as a screen, but none of the cited files contain it. It is at Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AbsenceRegistrationCoordinator/EditAbsenceRegistrationCoordinator.swift:29 (prediction init at :75-76). It should be added to the files list.; Minor: the wiring that decides when Edit is shown and routes the tap is in Calendar/Chatbot/Views/Chatbot/CalendarChatBotViewModel.swift:308-310,708-734 and CalendarChatBotView.swift:161-173, neither of which is cited.",
+      "fusion": "unique"
+    },
+    {
+      "name": "View, edit or delete an absence created in the agent chat",
+      "domain": "Employee Agent",
+      "description": "The employee taps an event the agent has just registered to open its detail. There they can edit or delete it, and a deletion shows in the chat.",
+      "personas": [
+        "employee"
+      ],
+      "implementations": {
+        "me-ios": {
+          "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/AbsenceRegistration/AbsenceRegistrationView.swift:16-86",
+          "screens": [
+            "AbsenceRegistrationView",
+            "ViewAbsenceRegistrationFeature",
+            "AbsenceCoordinator"
+          ],
+          "files": [
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/AbsenceRegistration/AbsenceRegistrationView.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/AbsenceRegistration/ViewAbsenceRegistrationFeature.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/Chatbot/CalendarChatBotViewModel.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Events/CalendarEventsFeature.swift"
+          ],
+          "endpoints": [
+            "GET {registration retrievalLink href}",
+            "PUT {absence _links rel=update href}",
+            "DELETE {absence _links rel=delete href}"
+          ],
+          "events": [
+            "calendarBotCreatedEventLinkClicked",
+            "calendarBotEditRegistrationFromPreview"
+          ],
+          "strings": [
+            "calendar.chatBot.message.eventHasBeenDeleted"
+          ],
+          "platform": [
+            "ios-native"
+          ],
+          "storage": []
+        }
+      },
+      "divergence": [],
+      "confidence": "High",
+      "notes": "After a delete, the matching registeredEventsSummary message is replaced by a 'deleted' variant (CalendarChatBotViewModel.swift:568-589). The edit and delete requests are in AbsenceCoordinator and resolve through AbsenceEventEditor HATEOAS links. This likely overlaps with the general absence edit/delete capability in the calendar domain. referee could not confirm: The notes say the edit and delete requests are in AbsenceCoordinator. AbsenceCoordinator.swift:25-48 only presents AbsenceViewTableViewController and passes on the resulting action. The PUT update link is in AbsenceEventEditor.swift:49,76-84, and delete goes through EditAbsenceRegistrationCoordinator.swift:107.; The endpoints are placeholders for HATEOAS links, not literal paths. The GET retrieval link comes from EventDataType.swift:15,49-51, not from AbsenceRegistrationView.swift.",
+      "fusion": "unique"
+    },
+    {
+      "name": "Learn how to use the Employee Agent and try example prompts",
+      "domain": "Employee Agent",
+      "description": "The employee opens the info page to read about the agent and see example prompts from the server. Tapping an example puts it in the chat input.",
+      "personas": [
+        "employee"
+      ],
+      "implementations": {
+        "me-ios": {
+          "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/LearnMore/LearnMoreReducer.swift:14-67",
+          "screens": [
+            "LearnMoreView",
+            "LearnMoreFeature"
+          ],
+          "files": [
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/LearnMore/LearnMoreReducer.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/LearnMore/LearnMoreView.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Repository/ExamplePrompts/CalendarChatBotPromptsRepository.Service.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Environment/CalendarChatBotEnvironment.swift"
+          ],
+          "endpoints": [
+            "GET /employee/api/v1/employees/{odpUserId}/chatbot/examplePrompts"
+          ],
+          "events": [],
+          "strings": [
+            "calendar.chatBot.learnMoreText",
+            "calendar.chatBot.learnMore.aboutEmployeeAgentTitle",
+            "calendar.chatBot.learnMore.examplesTitle",
+            "S.Calendar.ChatBot.LearnMore.title",
+            "S.Calendar.ChatBot.LearnMore.howToUseEmployeeAgentTitle"
+          ],
+          "platform": [
+            "ios-native"
+          ],
+          "storage": []
+        }
+      },
+      "divergence": [],
+      "confidence": "High",
+      "notes": "Examples load once and are cached in state. A load failure gives an empty list. The DependencyKey liveValue returns no prompts, but CalendarChatBotEnvironment.swift:34 injects the service-backed repository. The request itself is defined in EmployeeServices GetExamplePrompts.swift (fragment 40). referee could not confirm: The string list names the same key twice: S.Calendar.ChatBot.LearnMore.title resolves to \"calendar.chatBot.learnMoreText\" (Strings.swift:807), the key already listed as calendar.chatBot.learnMoreText.; The screen really uses S.Calendar.ChatBot.LearnMore.aboutEmployeeAgentBody and howToUseEmployeeAgentBody (LearnMoreView.swift:32,37), which the claim does not list.",
+      "fusion": "unique"
+    },
+    {
+      "name": "Send feedback about the Employee Agent",
+      "domain": "Employee Agent",
+      "description": "From the Learn More page, the employee opens an external feedback form about the agent.",
+      "personas": [
+        "employee"
+      ],
+      "implementations": {
+        "me-ios": {
+          "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/LearnMore/LearnMoreReducer.swift:58-63",
+          "screens": [
+            "LearnMoreView"
+          ],
+          "files": [
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/LearnMore/LearnMoreConstants.swift",
+            "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/LearnMore/LearnMoreReducer.swift"
+          ],
+          "endpoints": [
+            "GET https://forms.gle/hD3FxxN4igj7R47k6 (external web form)"
+          ],
+          "events": [],
+          "strings": [
+            "SEND_FEEDBACK"
+          ],
+          "platform": [
+            "ios-native",
+            "in-app web presentation of external URL"
+          ],
+          "storage": []
+        }
+      },
+      "divergence": [
+        "Not a divergence, only a note: vmm has per-answer thumbs-up/down feedback on Gaia chat replies (vmm/src/utils/types.ts:438, vmm/src/utils/eventLogging/events/gaiaEvents.ts:139). That is a different capability from the me-ios external feedback form, so it is not a fusion counterpart.",
+        "me-ios opens the form in the app, in a sheet with SFSafariView (LearnMoreView.swift:62-68), not in an external browser."
+      ],
+      "confidence": "High",
+      "notes": "The URL is hard-coded to a Google Form in LearnMoreConstants.swift:12. referee could not confirm: The string key SEND_FEEDBACK is a generic shared key (Strings.swift:984 S.Settings.sendFeedback, also used at Employee/Information/FAQv2/Models/FAQTopic.swift:49). It is not specific to the agent.; 'GET https://forms.gle/...' is not an app endpoint. It is a hard-coded external URL loaded in SFSafariView.",
+      "fusion": "unique"
+    },
+    {
+      "name": "Browse my expense claims by year and filter by status",
+      "domain": "Expenses",
+      "description": "An employee sees their expense claims grouped by year, newest first. Claims without a date sit in their own section. Quick filters narrow the list by claim status.",
+      "personas": [
+        "employee"
+      ],
+      "implementations": {
+        "me-ios": {
+          "platform": [
+            "ios-native"
+          ],
+          "evidence": "Employee/CalendarLeftover/ClaimsCalendarViewModel.swift:30-272",
+          "screens": [
+            "ClaimsCalendarViewModel",
+            "ClaimsQuickFilterBar",
+            "CalendarExpenseCellView"
+          ],
+          "files": [
+            "Employee/CalendarLeftover/ClaimsCalendarViewModel.swift",
+            "Employee/CalendarLeftover/ClaimsQuickFilterBar.swift",
+            "Employee/CalendarLeftover/ClaimsCalendarViewModel+UIKit.swift",
+            "Employee/CalendarLeftover/CalendarViewModelClaim.swift",
+            "Employee/CalendarLeftover/CalendarExpenseCellView.swift",
+            "Employee/CalendarLeftover/Claims/Repository/EmptyClaimsRepository.expense.swift"
+          ],
+          "endpoints": [
+            "expense claims feed via ExpenseService.getClaims (claim status empty) and ClaimsPagingControllerDataSource URLs - not resolved in this shard"
+          ],
+          "events": [],
+          "strings": [
+            "S.Expense.Claims.claimsWithoutDate",
+            "S.claimsNoPastEventsText"
+          ],
+          "storage": []
+        }
+      },
+      "divergence": [],
+      "confidence": "High",
+      "notes": "Rules: year sections are sorted newest first, and claims within a section are sorted by date, newest first. Duplicate claims are removed by claim id. Changing the filter resets paging to the selected statuses. The exact endpoint URLs were not resolved in this shard. No vmm (Manager) fragment was provided for this capability.",
+      "fusion": "unique"
+    },
+    {
+      "name": "Browse my payslips by payment date, filtered by employer",
+      "domain": "Pay",
+      "description": "An employee pages through past and upcoming payslips in a calendar ordered by payment date. They can narrow the list to one or more employers (tenants).",
+      "personas": [
+        "employee"
+      ],
+      "implementations": {
+        "me-ios": {
+          "platform": [
+            "ios-native"
+          ],
+          "evidence": "Employee/Payslips/PayslipsCalendarViewModel.swift:18-81",
+          "screens": [
+            "PayslipsCalendarViewModel",
+            "PayslipsFeature"
+          ],
+          "files": [
+            "Employee/Payslips/PayslipsCalendarViewModel.swift",
+            "Employee/Payslips/Repository/PayslipsRepository.calendarViewModel.swift",
+            "Employee/CalendarLeftover/CalendarViewModelPayslip.swift"
+          ],
+          "endpoints": [
+            "payslips feed via PayslipsPagingControllerDataSource.getUrl - not resolved in this shard"
+          ],
+          "events": [],
+          "strings": [
+            "S.payslipsNoPastEventsText",
+            "S.Payslips.payslipTitle"
+          ],
+          "storage": []
+        }
+      },
+      "divergence": [],
+      "confidence": "High",
+      "notes": "Rule: changing the employer filter resets the list and rebuilds two cursors, one for past payslips (from today) and one for future payslips (from tomorrow). The endpoint was not resolved in this shard. No Manager (vmm) fragment covers payslips. referee could not confirm: endpoints: 'payslips feed via PayslipsPagingControllerDataSource.getUrl - not resolved in this shard' is not unresolved. It resolves to GET /employees/{odpUserId}/allpayslips?From&Offset&Direction&tenantIds (me-ios/EmployeeServices/Payslips/Sources/Payslips/Service/PayslipService.swift:161-170).; PayslipsFeature is a module, not a screen. The entry point that uses the employer filter is MainPayslipFeature (me-ios/Modules/PayslipsFeature/Sources/PayslipFeature/Features/Main/MainPayslipFeature.swift:166,220).; S.Payslips.payslipTitle was not found in the cited PayslipsCalendarViewModel.swift. That file only uses S.payslipsNoPastEventsText (line 59).",
+      "fusion": "unique"
+    }
+  ],
+  "journeys": [
+    {
+      "name": "An employee registers a sick day and checks what is left",
+      "persona": "Employee",
+      "description": "An employee who wakes up ill logs the absence from the calendar and then checks how their balances are affected.",
+      "steps": [
+        {
+          "label": "Open the calendar and pick today",
+          "capabilities": [
+            "View a calendar month by month",
+            "See the details of a calendar day"
+          ]
+        },
+        {
+          "label": "Start a sick-leave registration from that day",
+          "capabilities": [
+            "Start a time or absence registration from the calendar",
+            "Register an absence or time event"
+          ]
+        },
+        {
+          "label": "Charge the absence to the right cost unit",
+          "capabilities": [
+            "Pick cost-unit dimension values for a registration"
+          ]
+        },
+        {
+          "label": "Check the month's time and absence balances",
+          "capabilities": [
+            "See my time and absence balances for a month"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "An employee plans, corrects and cancels a vacation",
+      "persona": "Employee",
+      "description": "An employee books a vacation, sees it on the start page, changes the dates and later cancels part of it.",
+      "steps": [
+        {
+          "label": "Check vacation days left on the start page",
+          "capabilities": [
+            "See my vacation balances on the start page"
+          ]
+        },
+        {
+          "label": "Register the vacation",
+          "capabilities": [
+            "Register an absence or time event"
+          ]
+        },
+        {
+          "label": "See the coming vacation on the start page",
+          "capabilities": [
+            "See upcoming and ongoing vacation and parental leave on the start page"
+          ]
+        },
+        {
+          "label": "Open the vacation and move its dates",
+          "capabilities": [
+            "View details of a registered absence",
+            "Edit a registered absence"
+          ]
+        },
+        {
+          "label": "Delete a vacation day that is no longer needed",
+          "capabilities": [
+            "Delete a registered absence"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "An employee tracks the workday and closes the time sheet",
+      "persona": "Employee",
+      "description": "An employee checks in and out each day, fixes a forgotten check-out and confirms the worked time at the end of the period.",
+      "steps": [
+        {
+          "label": "Check in in the morning and check out at the end of the day",
+          "capabilities": [
+            "Check in and check out for the workday"
+          ]
+        },
+        {
+          "label": "Fix a check-out that was forgotten",
+          "capabilities": [
+            "Edit or delete a check-in/check-out registration"
+          ]
+        },
+        {
+          "label": "Look over the period as a scrolling list",
+          "capabilities": [
+            "Browse the calendar as a scrolling list",
+            "Switch between list and month view of the calendar"
+          ]
+        },
+        {
+          "label": "Confirm worked time up to the last day",
+          "capabilities": [
+            "Confirm worked time up to a date"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "An employee handles time and absence by chatting with the Employee Agent",
+      "persona": "Employee",
+      "description": "An employee new to the Employee Agent learns what it can do, registers leave in a chat, corrects it and confirms the time sheet without opening any forms.",
+      "steps": [
+        {
+          "label": "Read the introduction and try an example prompt",
+          "capabilities": [
+            "Learn how to use the Employee Agent and try example prompts"
+          ]
+        },
+        {
+          "label": "Ask how much leave is left",
+          "capabilities": [
+            "Ask the Employee Agent about leave balances"
+          ]
+        },
+        {
+          "label": "Ask the agent to register a day off and adjust its suggestion",
+          "capabilities": [
+            "Register time or absence by chatting with the Employee Agent",
+            "Edit a predicted registration before saving it"
+          ]
+        },
+        {
+          "label": "Open the created absence from the chat and correct it",
+          "capabilities": [
+            "View, edit or delete an absence created in the agent chat"
+          ]
+        },
+        {
+          "label": "Confirm the time sheet through the agent",
+          "capabilities": [
+            "Confirm the time sheet through the Employee Agent"
+          ]
+        },
+        {
+          "label": "Rate the conversation",
+          "capabilities": [
+            "Send feedback about the Employee Agent"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "An employee checks pay and expense claims",
+      "persona": "Employee",
+      "description": "At month end an employee finds the latest payslip and checks whether submitted expense claims have been paid.",
+      "steps": [
+        {
+          "label": "Find the latest payslip for the current employer",
+          "capabilities": [
+            "Browse my payslips by payment date, filtered by employer"
+          ]
+        },
+        {
+          "label": "List this year's expense claims and filter for the ones still open",
+          "capabilities": [
+            "Browse my expense claims by year and filter by status"
+          ]
+        },
+        {
+          "label": "Check the month's balances against the payslip",
+          "capabilities": [
+            "See my time and absence balances for a month"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "A manager starts the day with team attendance",
+      "persona": "Manager",
+      "description": "A manager sees who is absent today, looks at the team calendar and checks an employee's remaining leave before agreeing to a request.",
+      "steps": [
+        {
+          "label": "See how many team members are absent today",
+          "capabilities": [
+            "See how many team members are absent today"
+          ]
+        },
+        {
+          "label": "Open the team calendar in month view and inspect a busy day",
+          "capabilities": [
+            "View a calendar month by month",
+            "See the details of a calendar day"
+          ]
+        },
+        {
+          "label": "Limit the calendar to the relevant absence types",
+          "capabilities": [
+            "Customize what the calendar shows"
+          ]
+        },
+        {
+          "label": "Check an employee's absence balances",
+          "capabilities": [
+            "View an employee's absence balances"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "A manager keeps track of team birthdays and work anniversaries",
+      "persona": "Manager with HRM access",
+      "description": "A manager with HRM access puts team birthdays and work anniversaries in their own calendar so none of them are missed.",
+      "steps": [
+        {
+          "label": "Sync team birthdays and anniversaries to the personal calendar",
+          "capabilities": [
+            "Sync team birthdays and work anniversaries to my calendar"
+          ]
+        },
+        {
+          "label": "Scroll through upcoming events in list view",
+          "capabilities": [
+            "Browse the calendar as a scrolling list",
+            "Switch between list and month view of the calendar"
+          ]
+        },
+        {
+          "label": "Choose which event types the calendar shows",
+          "capabilities": [
+            "Customize what the calendar shows"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "A team lead manages the team and their own time in one app",
+      "persona": "Person who is both a manager and an employee",
+      "description": "A team lead checks who is absent, confirms that their own leave fits the team plan, registers it and closes their own time sheet, all in one app.",
+      "steps": [
+        {
+          "label": "See who on the team is absent today",
+          "capabilities": [
+            "See how many team members are absent today"
+          ]
+        },
+        {
+          "label": "Look at the team calendar for the planned leave week",
+          "capabilities": [
+            "View a calendar month by month",
+            "Customize what the calendar shows"
+          ]
+        },
+        {
+          "label": "Check their own vacation balance",
+          "capabilities": [
+            "See my vacation balances on the start page"
+          ]
+        },
+        {
+          "label": "Register their own vacation from the calendar",
+          "capabilities": [
+            "Start a time or absence registration from the calendar",
+            "Register an absence or time event"
+          ]
+        },
+        {
+          "label": "Confirm their own worked time before leaving",
+          "capabilities": [
+            "Confirm worked time up to a date"
+          ]
+        }
+      ]
+    }
+  ],
+  "domains": [
+    {
+      "name": "Calendar",
+      "description": "Browse, navigate and customize calendars of work, absence, roster and special days (own or an employee's)."
+    },
+    {
+      "name": "Absence registration",
+      "description": "Register, view, edit and delete absences and time events."
+    },
+    {
+      "name": "Time tracking",
+      "description": "Check in/out, correct time registrations and confirm worked time."
+    },
+    {
+      "name": "Balances",
+      "description": "See absence, vacation and time balances."
+    },
+    {
+      "name": "Team overview",
+      "description": "Manager signals about team presence, birthdays and anniversaries."
+    },
+    {
+      "name": "Employee Agent",
+      "description": "Register, confirm and ask questions by chatting with the AI assistant."
+    },
+    {
+      "name": "Expenses",
+      "description": "Browse and track expense claims."
+    },
+    {
+      "name": "Pay",
+      "description": "Browse payslips."
+    }
+  ],
+  "observations": [
+    "The vmm employee calendar currently runs on mock data because the live my-employees/feed aggregate endpoint returns 403 (queryEndpointsCalendar.ts:72-75, 158-164).",
+    "In me-ios, CalendarViewController is reused for expense claims, and the Calendar tab title can change to Claims depending on permissions (CalendarContainerViewController.swift:325-370).",
+    "Fragment 33 (roster shifts and special days) was merged into the month-view capability. me-ios shows these alongside the grid and vmm lacks them, so this is recorded as a divergence.",
+    "Fragment 28 mixed browsing with starting a registration, so it was split. Fragment 7 was given its own view-switching capability. The vmm view-mode evidence for that capability comes from fragments 1 and 3.",
+    "Only vmm (Manager) fragments were provided for the Team overview domain. No me-ios fragment was reported, so both capabilities are unique.",
+    "The absent-today signal depends on an Employee-backend endpoint that reportedly returns 403 for most manager tokens. It needs backend verification before it is carried into the merged app.",
+    "Calendar sync of birthdays and anniversaries is behind a dev flag and is not rendered. A person should decide whether to keep or drop it.",
+    "The manager view of an employee's balances (vmm, fragment 6) and the employee's own vacation balances on the start page (me-ios, fragment 35) are kept apart. They have different personas and different subjects (someone else's balances versus my own), and they use different backends: calendarBase org/employee balances/total versus /employee/api/v1/employees/{odpUserId}/calendar/balances/combined. If the new app treats 'see absence balances' as one capability scoped by role, a person should decide. Known differences: vmm adds sick-child and 12-month sickness summaries, and the fragments do not report which balance types me-ios shows.",
+    "Fragments 16 and 34 describe the same me-ios monthly balance summary (the same time-balance-summary endpoint and the same BalancesOverview screen), so they were merged.",
+    "me-ios uses two separate balance endpoints: v2 time-balance-summary for the calendar summary and v1 calendar/balances/combined for start page cards. The new app may want to settle on one source.",
+    "Many vmm apiCalendar methods are called only from tests. They are candidates to drop, not capabilities.",
+    "All 8 fragments come from me-ios (Employee product). No fragment from vmm (Manager, react-native) covers this domain, so every capability is unique. There is no shared-same or shared-diverged pair to reconcile.",
+    "Fragment 13 combined edit and delete. It was split into two capabilities and merged with fragments 30 and 31 respectively.",
+    "Fragments 10 and 29 describe the same registration outcome at the UI layer and the service layer. They were merged, and their analytics events (legacy addAbsence and the Snowplow 'new event created' family) were both kept.",
+    "Edit and delete depend on HATEOAS links (rel=update, rel=delete). A unified app needs the same server-driven permission model.",
+    "Missing from the fragments: a Manager-side capability to approve or decline absence requests. If vmm has one, it was not reported in this domain.",
+    "Every fragment in this batch comes from me-ios (Employee). No vmm (Manager) fragment was provided for Time tracking, so every capability is unique.",
+    "Fragments 15, 26 and 39 describe one confirm-time flow from different entry points (the type selector period sheet, the calendar/day detail and the service layer). They share the template endpoint and the confirmTime event.",
+    "Fragments 14 and 38 are the UI layer and the service layer of the same edit/delete check-in flow. Event names differ in form (checkinEdited vs 'checkin edited'), probably an enum case vs its analytics string.",
+    "Every fragment in the Employee Agent domain comes from me-ios (Employee). vmm (Manager, react-native) has no Employee Agent fragments, so every capability is unique.",
+    "Fragment 17 (opening the agent from the calendar toolbar) is an entry point, not a separate outcome. It is merged into the chat registration capability.",
+    "Fragment 40 (EmployeeServices service layer) covers the same outcome as fragment 18, so it is merged there. Its example-prompts request also backs the Learn More capability.",
+    "One predictCalendarRegistration endpoint serves absence/time registration, time-sheet confirmation and balance queries. Which one runs depends on the response shape: calendarRegistrations, then confirmTime, then balancesQueryResult.",
+    "Only one fragment was supplied for the Expenses domain. It comes from me-ios (Employee), so nothing could be reconciled against vmm (Manager).",
+    "The fragment lives under 'CalendarLeftover', which suggests legacy code that was reused from the calendar feature.",
+    "The Pay domain has only one fragment, and it comes from me-ios (Employee). No vmm (Manager) fragment covers pay, so there is nothing to merge across products.",
+    "The actual payslips feed URL is still unknown: the fragment names only PayslipsPagingControllerDataSource.getUrl."
+  ],
+  "rejected": [],
+  "unverified": [],
+  "platformItems": [
+    {
+      "area": "calendar",
+      "name": "Device calendar write access (react-native-calendar-events) to create or remove the birthday and anniversary calendars; dormant because CalendarSyncPicker is not mounted",
+      "evidence": "src/hooks/useSyncCalendar.ts:41-77; ios/vmm/Info.plist:61-64; android/app/src/main/AndroidManifest.xml:11-12",
+      "apps": {
+        "vmm": "src/hooks/useSyncCalendar.ts:41-77; ios/vmm/Info.plist:61-64; android/app/src/main/AndroidManifest.xml:11-12"
+      }
+    },
+    {
+      "area": "feature flag",
+      "name": "Calendar sync gated on dev flag VMM-7635-calendar-sync-dev-flag (isCalendarSyncEnabled), mentioned only in a comment",
+      "evidence": "src/screens/common/SettingsScreen/SettingsScreen.tsx:404-405",
+      "apps": {
+        "vmm": "src/screens/common/SettingsScreen/SettingsScreen.tsx:404-405"
+      }
+    },
+    {
+      "area": "navigation",
+      "name": "EmployeeCalendarScreen registered in the HRM and Approval stacks, with CalendarOptionsMenu as headerRight; opened from the HrmEmployeeDetailAccordion with {employeeId, companyId, employeeName}",
+      "evidence": "src/configs/navConfig/hrm/HrmNavConfig.tsx:139-147; src/configs/navConfig/approval/ApprovalNavConfig.tsx:113-121; src/components/hrm/HrmEmployeeDetailAccordeon/HrmEmployeeDetailAccordion.tsx:272",
+      "apps": {
+        "vmm": "src/configs/navConfig/hrm/HrmNavConfig.tsx:139-147; src/configs/navConfig/approval/ApprovalNavConfig.tsx:113-121; src/components/hrm/HrmEmployeeDetailAccordeon/HrmEmployeeDetailAccordion.tsx:272"
+      }
+    },
+    {
+      "area": "persistence",
+      "name": "Calendar display preferences and calendarSync live in the settings slice, which is on the redux-persist whitelist",
+      "evidence": "src/configs/reduxState.ts:107-108; src/reducers/common/settingsReducer/settingsReducer.ts:73,111",
+      "apps": {
+        "vmm": "src/configs/reduxState.ts:107-108; src/reducers/common/settingsReducer/settingsReducer.ts:73,111"
+      }
+    },
+    {
+      "area": "navigation",
+      "name": "Root coordinator actions showCalendarFeed(initialDate) / showCalendarMonthView / appWillEnterForeground routed into the calendar (likely targets for deep links or push)",
+      "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarCoordinator.swift:77-94",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarCoordinator.swift:77-94"
+      }
+    },
+    {
+      "area": "lifecycle",
+      "name": "Month grid reloads the current month when the app returns to the foreground",
+      "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarContainerViewController.swift:444-448",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarContainerViewController.swift:444-448"
+      }
+    },
+    {
+      "area": "in-app messaging",
+      "name": "NotificationCenter AppMessage.reloadStartPage posted after a registration or time confirmation",
+      "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AddAbsenceCoordinator/AddAbsenceCoordinator.swift:240",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AddAbsenceCoordinator/AddAbsenceCoordinator.swift:240"
+      }
+    },
+    {
+      "area": "third-party SDK",
+      "name": "Survicate survey (requestSurveyShowingThankYouToast) after saving a registration",
+      "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AbsenceRegistrationCoordinator/CreateAbsenceRegistrationCoordinator.swift:86",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AbsenceRegistrationCoordinator/CreateAbsenceRegistrationCoordinator.swift:86"
+      }
+    },
+    {
+      "area": "local storage",
+      "name": "UserDefaults-backed calendar preferences (view mode, filter toggles, balances control options)",
+      "evidence": "Modules/EmployeeAppCoreInterface/Sources/EmployeeAppCoreInterface/Preferences/UserPreferencesKeys.swift:13-21",
+      "apps": {
+        "me-ios": "Modules/EmployeeAppCoreInterface/Sources/EmployeeAppCoreInterface/Preferences/UserPreferencesKeys.swift:13-21"
+      }
+    },
+    {
+      "area": "permissions",
+      "name": "Microphone and speech recognition for agent voice input (SFSpeechRecognizer)",
+      "evidence": "Employee/Info.plist:50-57; Employee/AppDependencies.swift:1182-1184",
+      "apps": {
+        "me-ios": "Employee/Info.plist:50-57; Employee/AppDependencies.swift:1182-1184"
+      }
+    },
+    {
+      "area": "deep link / system URL",
+      "name": "Opens the app Settings page when speech permission is denied",
+      "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/Chatbot/CalendarChatBotView.swift:40-44",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/Chatbot/CalendarChatBotView.swift:40-44"
+      }
+    },
+    {
+      "area": "external URL",
+      "name": "Agent feedback Google Form URL, hard-coded",
+      "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/LearnMore/LearnMoreConstants.swift:12",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/LearnMore/LearnMoreConstants.swift:12"
+      }
+    },
+    {
+      "area": "app messaging",
+      "name": "Closing the agent posts AppMessage.reloadStartPage and AppMessage.resetCalendar",
+      "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Coordinator/CalendarChatBotCoordinator.swift:79-82",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Coordinator/CalendarChatBotCoordinator.swift:79-82"
+      }
+    },
+    {
+      "area": "lifecycle",
+      "name": "Calendar list resets after the app returns from background (AppMessage.resetCalendarBackground)",
+      "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarViewController.swift:138-139",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarViewController.swift:138-139"
+      }
+    },
+    {
+      "area": "navigation entry",
+      "name": "Employee Agent opened from a calendar navigation bar button, presented modally",
+      "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarContainerViewController.swift:125-135,417-421",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarContainerViewController.swift:125-135,417-421"
+      }
+    },
+    {
+      "area": "dead code",
+      "name": "EditAbsenceRegistrationView and EditAbsenceRegistrationFeature are declared but never instantiated or scoped (not in CalendarChatBotFeature)",
+      "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/EditAbsenceRegistration/EditAbsenceRegistrationView.swift:43",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/EditAbsenceRegistration/EditAbsenceRegistrationView.swift:43"
+      }
+    },
+    {
+      "area": "dead code",
+      "name": "AbsenceRegistrationEventsFeature logs nothing itself. Only the parent CalendarEventsFeature logs calendarBotEditRegistrationFromPreview, and only while the agent is open",
+      "evidence": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Events/CalendarEventsFeature.swift:43-51",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Events/CalendarEventsFeature.swift:43-51"
+      }
+    },
+    {
+      "area": "dead code",
+      "name": "GetAbsenceRegistration, GetDimensionValues and TimeService.getTimeTemplates are never called by production code (only mocks/stubs)",
+      "evidence": "EmployeeServices/Calendar/Sources/Calendar/Request/Absence/GetAbsenceRegistration.swift:19; EmployeeServices/Calendar/Sources/Calendar/Request/Absence/GetDimensionValues.swift:20; EmployeeServices/Calendar/Sources/Calendar/Service/TimeService.swift:79",
+      "apps": {
+        "me-ios": "EmployeeServices/Calendar/Sources/Calendar/Request/Absence/GetAbsenceRegistration.swift:19; EmployeeServices/Calendar/Sources/Calendar/Request/Absence/GetDimensionValues.swift:20; EmployeeServices/Calendar/Sources/Calendar/Service/TimeService.swift:79"
+      }
+    },
+    {
+      "area": "networking",
+      "name": "HATEOAS-driven endpoints: update/delete/checkout/confirm/dimension URLs come from server links, not constants",
+      "evidence": "EmployeeServices/Calendar/Sources/Calendar/Service/TimeService.swift:113-126",
+      "apps": {
+        "me-ios": "EmployeeServices/Calendar/Sources/Calendar/Service/TimeService.swift:113-126"
+      }
+    },
+    {
+      "area": "analytics",
+      "name": "Snowplow structured calendar events built in SnowplowEventFactory",
+      "evidence": "Modules/SnowplowAnalytics/Sources/SnowplowAnalytics/Events/Factory/SnowplowEventFactory.swift:38-59",
+      "apps": {
+        "me-ios": "Modules/SnowplowAnalytics/Sources/SnowplowAnalytics/Events/Factory/SnowplowEventFactory.swift:38-59"
+      }
+    },
+    {
+      "area": "dead code",
+      "name": "CalendarViewModelPayslip.getCellInstance asserts; migrated to PayslipsFeature",
+      "evidence": "Employee/CalendarLeftover/CalendarViewModelPayslip.swift:33-36",
+      "apps": {
+        "me-ios": "Employee/CalendarLeftover/CalendarViewModelPayslip.swift:33-36"
+      }
+    }
+  ],
+  "injectionFlags": [
+    "Fragment 38 notes that it did not verify where the checkin edited/deleted analytics events fire (Events.swift:172-175).",
+    "The feedback URL is hard-coded to an external Google Form (https://forms.gle/hD3FxxN4igj7R47k6). A person should check whether the consolidated app keeps it."
+  ],
+  "rerunShards": [],
+  "stats": {
+    "shards": 4,
+    "shardsMapped": 4,
+    "fragments": 43,
+    "domains": 8,
+    "capabilities": 29,
+    "rejected": 0,
+    "unverified": 0,
+    "byFusion": {
+      "shared-diverged": 5,
+      "unique": 24
+    }
+  }
+}

@@ -1,0 +1,7417 @@
+{
+  "app": "me-ios",
+  "version": 1,
+  "format": "xcstrings",
+  "files": [
+    "Employee/InfoPlist.xcstrings",
+    "Employee/Localizable.xcstrings"
+  ],
+  "locales": [
+    "en",
+    "da-DK",
+    "fi-FI",
+    "nb-NO",
+    "sv-SE"
+  ],
+  "source": "en",
+  "keys": {
+    "ABSENCE_EDIT_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ABSENCE_POST_SCREEN_HEADLINE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ABSENCE_REGISTRATION_DELETED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ABSENCE_REGISTRATION_DELETE_WARNING": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ABSENCE_REGISTRATION_SAVED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ABSENCE_REGISTRATION_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ABSENCE_SELECTOR_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ABSENCE_VACATION_DAYS_REMAINING": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ABSENCE_VACATION_DAYS_REMAINING_PLURAL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ABSENCE_VACATION_DAYS_REMAINING_ZERO": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ACCESSIBILITY_STATEMENT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ACCESS_TO": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ACCESS_TO_ABSENCE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ACCESS_TO_EXPENSE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ACCESS_TO_PAYSLIPS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ACCESS_TO_TIME": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ACCESS_TO_TIME_AND_ABSENCE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ADD_MILEAGE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "AN_ERROR_OCCURRED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "APPROVAL_STATUS_APPROVED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "APPROVAL_STATUS_AWAITING_APPROVAL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "APPROVAL_STATUS_AWAITING_CLEARANCE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "APPROVAL_STATUS_CANCELLED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "APPROVAL_STATUS_DECLINED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "APPROVAL_STATUS_NOT_SENT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "APPROVAL_STATUS_PAID": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "APP_INFORMATION_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ATTACHMENT_CORRUPTED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ATTACHMENT_DATA_MISSING": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ATTACHMENT_ENCRYPTED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ATTACHMENT_SIZE_TOO_LARGE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "AUTOSCAN_AUTO": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "AUTOSCAN_MANUAL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "BACK": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "BROWSE_DOCUMENTS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "BUILD": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CALEMDAR_NO_ACTIVITY_DESCRIPTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CALENDAR_ABSENCE_UNTIL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CALENDAR_CANNOT_LOAD_MORE_CONTENT_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CALENDAR_CANT_LOAD": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CALENDAR_LIST_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CALENDAR_NO_ACTIVITY_HEADING": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CALENDAR_NO_FUTURE_EVENTS_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CALENDAR_NO_PAST_EVENTS_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CALENDAR_SWITCH_TO_LIST_VIEW": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CALENDAR_SWITCH_TO_MONTH_VIEW": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CANCEL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CFBundleDisplayName": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CFBundleName": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CHOOSE_ANOTHER_DATE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CHOOSE_CODE_LABEL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CHOOSE_COMPANY": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CHOOSE_COMPANY_DESCRIPTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CHOOSE_DATE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CHOOSE_EMPLOYER": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CHOOSE_FROM_IMAGE_GALLERY": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CLAIMS_NO_PAST_EVENTS_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CLEAR": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CLOSE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "COMMENT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "COMMON_CAMERA_IS_NOT_AVAILABLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "COMMON_CONNECT_AND_RETRY": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "COMMON_DATA_LOADING_ERROR": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "COMPANIES": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "COMPANY": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CONFIRM": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CONFIRM_DATE_PERIOD": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CONFIRM_TIME": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CONFIRM_TIME_TO": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "COPY": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "COPYRIGHT_VISMA": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "COULD_NOT_LOAD_PDF_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "COULD_NOT_LOAD_PDF_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "CURRENCY": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "DATE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "DELETE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "DELETE_CLAIM": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "DELETE_RECEIPT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "DELETE_RECEIPT_CONFIRMATION_MESSAGE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "DESELECT_ALL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "DETAILS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "DISMISS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "DONE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "DOWNLOAD_IMAGE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "DOWNLOAD_PDF": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "DRAFT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EACH_DAY": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EDIT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EDITING_MILEAGE_DETAILS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EDITING_RECEIPT_DETAILS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EDIT_CROP": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EDIT_MILEAGE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ENABLE_IN_SETTINGS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "END_TIME": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ENTER_CODE_LABEL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ERROR": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EVENT_REGISTRATION_ALL_DIMENSIONS_SECTION_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EVENT_REGISTRATION_NO_DIMENSION_VALUES_MESSAGE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EVENT_REGISTRATION_NO_SEARCH_RESULTS_MESSAGE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EVENT_REGISTRATION_RECENTLY_USED_DIMENSIONS_SECTION_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EVENT_REGISTRATION_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_CANCEL_APPROVAL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_CLAIMS_SCREEN_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_CLAIM_CANCEL_APPROVAL_FLOW": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_CLAIM_CANCEL_APPROVAL_WARNING": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_CLAIM_COST_UNIT_WARNING": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_CLAIM_HANDLE_BUTTON": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_CLAIM_LIST_CLAIMS_WITHOUT_DATE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_CREATE_NEW_CLAIM": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_CREATE_NEW_CLAIM_DESCRIPTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_CREATE_NEW_CLAIM_ERROR": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_DELETE_CLAIM_CONFIRMATION_MESSAGE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_DELETING_RECEIPT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_MISSING_CAMERA_PERMISSIONS_MESSAGE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_MISSING_CAMERA_PERMISSIONS_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_NEW_CLAIM": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_RECEIPTS_ADD_OR_REMOVE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_RECEIPTS_DETAILS_MISSING": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_RECEIPTS_DETAILS_MISSING_ZERO": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_RECEIPTS_EMPTY_NEED_INFO": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_RECEIPTS_EMPTY_NO_RECEIPTS_MISSING": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_RECEIPTS_READY": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_RECEIPTS_READY_ZERO": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_RECEIPTS_RECEIPT_SAVED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_RECEIPTS_SAVE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_RECEIPTS_SEND": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_RECEIPTS_SEND_PLURAL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_RECEIPTS_WITHOUT_DATE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_RECEIPT_ADD_NEW_PICTURE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_RECEIPT_DETAILS_FAILED_TO_DELETE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_RECEIPT_DETAILS_FAILED_TO_SAVE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_RECEIPT_DETAILS_FIX_IN_EXPENSE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_SAVING_RECEIPT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_SEND_CLAIM_ERROR": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_SEND_CLAIM_ERROR_HAS_BEEN_FOUND": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_SEND_CLAIM_ERROR_WRONG_RECEIPTS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_SEND_CLAIM_PREVIOUSLY_ADDED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_SEND_CLAIM_RECEIPTS_INCORRECT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_SEND_CLAIM_SAVED_HEADLINE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_SEND_CLAIM_SAVED_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_SEND_CLAIM_SAVE_FOR_LATER": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_SEND_CLAIM_SEND_FOR_APPROVAL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_SEND_CLAIM_SENT_HEADLINE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_SEND_CLAIM_SENT_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_SEND_CLAIM_TO_BE_ADDED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_TOTAL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPENSE_TYPE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPORT_PAYSLIPS_BUTTON": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "EXPORT_PAYSLIPS_HEADER": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_ABSENCE_ANSWER_2": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_ABSENCE_ANSWER_3": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_ABSENCE_QUESTION_2": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_ABSENCE_QUESTION_3": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_ACCESS_AND_QUESTIONS_INFO": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_APPROVED_RECEIPTS_ANSWER": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_APPROVED_RECEIPTS_QUESTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_CANT_SEE_EMPLOYERS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_CLOSED_MONTH_ANSWER": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_CLOSED_MONTH_QUESTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_DEFAULT_ANSWER_2": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_DEFAULT_ANSWER_3": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_DEFAULT_ANSWER_NO_LICENSE_1": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_DEFAULT_ANSWER_NO_LICENSE_2": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_DEFAULT_ANSWER_NO_ROLE_1": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_DEFAULT_OTHER_ANSWER_3": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_DEFAULT_QUESTION_1": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_DEFAULT_QUESTION_2": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_DEFAULT_QUESTION_3": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_DOWNLOAD_PAYSLIPS_ANSWER": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_DOWNLOAD_PAYSLIPS_QUESTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_ERROR_ANSWER": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_EXPENSE_ANSWER_1": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_EXPENSE_QUESTION_1": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_FEEDBACK_GENERAL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_FEEDBACK_NOTE_V2_PART_1": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_FEEDBACK_NOTE_V2_PART_2": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_FEEDBACK_SUMMARY_V2": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_MY_PROFILE_ADD_ACCOUNT_ANSWER": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_MY_PROFILE_ADD_ACCOUNT_QUESTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_MY_PROFILE_EMISSIONS_CALCULATION_ANSWER": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_MY_PROFILE_EMISSIONS_CALCULATION_QUESTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_MY_PROFILE_EMISSIONS_SUMMARY_ANSWER": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_MY_PROFILE_EMISSIONS_SUMMARY_QUESTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_MY_PROFILE_MARK_DOCUMENT_READ_ANSWER": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_MY_PROFILE_MARK_DOCUMENT_READ_QUESTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_MY_PROFILE_SWITCH_ACCOUNTS_ANSWER": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_MY_PROFILE_SWITCH_ACCOUNTS_QUESTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_MY_PROFILE_UPDATE_PERSONAL_INFO_ANSWER": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_MY_PROFILE_UPDATE_PERSONAL_INFO_QUESTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_OTHER_ANSWER_1": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_OTHER_ANSWER_2": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_OTHER_ANSWER_3": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_OTHER_QUESTION_1": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_OTHER_QUESTION_2": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_OTHER_QUESTION_3": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_OTHER_RELATED_ABSENCE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_OTHER_RELATED_EXPENSE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_OTHER_RELATED_OTHER": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_OTHER_RELATED_PAYSLIP": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_PAGE_INFO": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_PAYSLIPS_ANSWER_1": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_PAYSLIPS_ANSWER_2": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_PAYSLIPS_ANSWER_3": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_PAYSLIPS_QUESTION_1": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_PAYSLIPS_QUESTION_2": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_PAYSLIPS_QUESTION_3": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_SELECT_COMPANIES_FILTER_PAYSLIPS_ANSWER": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_SELECT_COMPANIES_FILTER_PAYSLIPS_QUESTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQ_V2_HEADER_QUESTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQv2.expense.answer.1": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQv2.expense.cannot.add.mileage": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQv2.expense.question.1": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FAQv2.expense.update.ios": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FEEDBACK_ACCESS_SUMMARY": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FEEDBACK_DISCLAIMER": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FEEDBACK_PLACEHOLDER": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FEEDBACK_SENT_MESSAGE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FEEDBACK_SUMMARY": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FIELD_REQUIRED_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FORGOT_PASSWORD_BUTTON": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "FREQUENT_QUESTIONS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "GET_STARTED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "GOT_IT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "HOURS_PLURAL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "HOUR_SINGULAR": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "INFORMATION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "KEEP": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "LANGUAGE_LABEL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "LICENSES_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "LIMITED_FUNCTIONALITY_WHEN_OFFLINE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "LOGGED_IN_AS_LABEL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "LOGGED_OUT_NO_FEATURES_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "LOGGED_OUT_NO_FEATURES_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "LOGGED_OUT_SECURITY_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "LOGGED_OUT_SECURITY_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "LOGGING_IN_BUTTON": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "LOGIN_BUTTON": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "LOGIN_FAILED_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "LOGIN_TYPE_LABEL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "LOGIN_TYPE_NONE_OPTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "LOGIN_TYPE_SECURITY_CODE_OPTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "LOGOUT_BUTTON": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "LOGOUT_REASON_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "MAX_SELECTED_RECEIPTS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "MESSAGE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "MORE_ACTIONS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "MULTIPLE_ACCESS_TO_ABSENCE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "MULTIPLE_ACCESS_TO_EXPENSE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "MULTIPLE_ACCESS_TO_PAYSLIPS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "MULTIPLE_ACCESS_TO_TIME": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "MULTIPLE_ACCESS_TO_TIME_AND_ABSENCE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "MULTIPLE_RECEIPTS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "MY_PAGE_PDF_EXPORT_NO_PAYSLIPS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "MY_PAGE_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "MY_PROFILE_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NO": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NOT_REIMBURSED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NO_ACCESS_TO_ABSENCE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NO_ACCESS_TO_EXPENSE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NO_ACCESS_TO_PAYSLIPS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NO_ACCESS_TO_TIME": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NO_ACCESS_TO_TIME_AND_ABSENCE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NO_ACTIVITY_VIEW_CALENDAR": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NO_ACTIVITY_VIEW_CLAIMS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NO_ACTIVITY_VIEW_EXPENSES": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NO_ACTIVITY_VIEW_PAYSLIPS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NO_ACTIVITY_VIEW_RECEIPTS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NO_FEATURES_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NO_INTERNET_CONNECTION_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NSCameraUsageDescription": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NSFaceIDUsageDescription": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NSLocationWhenInUseUsageDescription": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NSMicrophoneUsageDescription": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NSPhotoLibraryAddUsageDescription": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NSPhotoLibraryUsageDescription": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "NSSpeechRecognitionUsageDescription": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "OFFLINE_RECEIPTS_MISSING_TEMPLATES": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "OFFLINE_VIEW_CALENDAR": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "OFFLINE_VIEW_CLAIMS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "OFFLINE_VIEW_PAYSLIPS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "OFFLINE_VIEW_RECEIPTS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "OK": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ONE_RECEIPT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "OPTIONAL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ORDER_RECEIVED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "OTHER": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "PARENTAL_LEAVE_POST_SCREEN_HEADLINE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "PARENTAL_LEAVE_POST_SCREEN_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "PASSWORD_LABEL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "PAYSLIP": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "PAYSLIPS_NO_PAST_EVENTS_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "PAYSLIP_NET_AMOUNT_LABEL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "PAYSLIP_PAYMENT_DATE_LABEL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "PAYSLIP_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "PERIOD_SENT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "PLEASE_TRY_AGAIN_LATER": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "PLEASE_WAIT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "POPOVER_ADD_ABSENCE_BUTTON": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "PREVIEW_ALLOWANCE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "PREVIEW_MILEAGE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "PREVIEW_RECEIPT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "QUANTITY": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "QUICK_SELECTIONS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "RECEIPT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "RECEIPTS_FAILED_TO_LOAD": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "RECEIPTS_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "RECEIPT_DETAILS_FAILED_TO_LOAD": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "RECEIPT_DETAIL_PHOTO_HAS_BEEN_INTERPRETED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "RECEIPT_DETAIL_PROCESSING_RECEIPT_IMAGE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "RECEIPT_INVALID_ATTACHMENT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "RECEIPT_IS_SAVED_OFFLINE_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "RECEIPT_IS_SAVED_OFFLINE_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "RECEIPT_UPLOAD_FAILED_MESSAGE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "RECEIPT_UPLOAD_FAILED_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "RECEIPT_UPLOAD_PENDING": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "REPEAT_CODE_LABEL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "REVOKE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ROLE_ABSENCE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ROLE_EXPENSE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ROLE_PAYSLIP": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "ROLE_TIME": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SAVE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SCAN_FINGERPRINT_LABEL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SEARCH": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SELECT_ALL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SELECT_COMPANY": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SELECT_DATE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SELECT_TIME": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SEND": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SEND_FEEDBACK": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SERVER_ERROR_HEADLINE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SERVER_ERROR_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SERVER_ERROR_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SERVICE_UNAVAILABLE_ACTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SERVICE_UNAVAILABLE_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SERVICE_UNAVAILABLE_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SETTINGS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SICKNESS_REGISTRATION_HEADER": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SICKNESS_REGISTRATION_TOGGLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SICK_CHILD_POST_SCREEN_HEADLINE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SICK_CHILD_POST_SCREEN_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SICK_POST_SCREEN_HEADLINE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SICK_POST_SCREEN_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SKIP": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_ALLOWANCES_TO_SEND": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_APPROVED_VACATION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_APPROVED_VACATIONS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_CLAIMS_APPROVED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_CLAIMS_BUTTON": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_CLAIMS_CANCELED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_CLAIMS_DECLINED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_CLAIMS_SALARY_BUTTON": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_CLAIMS_SENT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_CLAIMS_UNSENT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_CLAIM_APPROVED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_CLAIM_CANCELED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_CLAIM_DECLINED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_CLAIM_SENT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_CLAIM_UNSENT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_COULD_NOT_LOAD_DATA": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_DECLINED_VACATION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_DECLINED_VACATIONS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_ERROR_TEXT_ABSENCE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_ERROR_TEXT_CHECKIN": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_ERROR_TEXT_EXPENSE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_ERROR_TEXT_PAYSLIP": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_ERROR_TEXT_RECEIPTS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_ERROR_TEXT_VACATION_BALANCES": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_EXPENSES_TO_SEND": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_FAILED_TO_LOAD": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_MILEAGES_TO_SEND": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_NO_PAYSLIPS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_NO_RECENT_EVENTS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_NO_VACATION_DAYS_REMAINING": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_ONGOING_PARENTAL_LEAVE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_ONGOING_VACATION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_PAYSLIP_FUTURE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_PAYSLIP_PAST": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_RECEIPTS_CLAIMS_SENT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_RECEIPTS_TO_SEND": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_REGISTER_ABSENCE_BUTTON": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_REGISTER_TIME_OR_ABSENCE_BUTTON": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_REPORT_TIME_BUTTON": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_TAP_TO_RETRY": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_UPCOMING_PARENTAL_LEAVE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_UPCOMING_VACATION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_UPCOMING_VACATIONS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_PAGE_VACATION_DAYS_REMAINING": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "START_TIME": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "STATUS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "STEP_OF_STEPS_LABEL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SUMMARY": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SUPPLEMENT_POST_SCREEN_HEADLINE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "SUPPORT_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "TAB_CALENDAR": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "TAB_PAYSLIP": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "TIMESHEET_APPROVED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "TIMESHEET_CONFIRMED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "TIME_AND_ABSENCE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "TIME_AND_ABSENCE_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "TIME_SHEET_SENT_POST_SCREEN_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "UNEXPECTED_ERROR": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "UNEXPECTED_ERROR_LOG": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "UPLOADING_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "UPLOAD_IMAGE_OR_PDF": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "USERNAME_LABEL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "USE_FACE_ID": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "USE_TOUCH_ID": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "VACATION_BALANCES_SCREEN_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "VACATION_POST_SCREEN_HEADLINE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "VACATION_POST_SCREEN_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "VIEW_LATEST_PAYSLIP": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "VIEW_LICENSES": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "VIEW_THIRD_PARTY_LICENSE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "WARNING": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "WELCOME": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "WELCOME_DIRECT_ACCESS_DESCRIPTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "WELCOME_DIRECT_ACCESS_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "WELCOME_FACE_ID_DESCRIPTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "WELCOME_HOW_DO_YOU_WANT_TO_LOG_IN": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "WELCOME_LOGIN_SETTINGS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "WELCOME_NEW_FEATURE_DESCRIPTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "WELCOME_NEW_FEATURE_HEADING": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "WELCOME_SECURITY_CODE_DESCRIPTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "WELCOME_SECURITY_CODE_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "WELCOME_THANK_YOU": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "WELCOME_THIS_CAN_BE_CHANGED": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "WELCOME_TOUCH_ID_DESCRIPTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "WRONG_CREDENTIALS_ACTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "WRONG_CREDENTIALS_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "WRONG_CREDENTIALS_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "WRONG_PASSCODE_TEXT": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "WRONG_PASSCODE_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "YEARLY_DATA_LABEL": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "YES": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "YOUR_EMPLOYERS": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "YOU_ARE_OFFLINE_MESSAGE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "YOU_ARE_OFFLINE_TITLE": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "YOU_HAVE_NO_INTERNET_CONNECTION": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "absence.sickness.medicalCertificatePercentage": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "absence.sickness.medicalCertificateToggle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "absence.startPage.ongoingParentalLeave": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "absence.startPage.ongoingVacation": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "absence.startPage.upcomingParentalLeave": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "absence.startPage.upcomingVacation": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "absence.startPage.vacationApproved": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "absence.startPage.vacationDays": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "absence.startPage.vacationRejected": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "accountManager.account.addAccount": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "accountManager.account.loggedIn": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "accountManager.account.remove": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "accountManager.account.removeAccount": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "accountManager.account.removeAccountDescription": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "accountManager.account.sessionExpired": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "accountManager.account.sessionExpiredUserLoggedOut": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "accountManager.account.switchUserFailed": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "accountManager.accountList.useAnotherAccount": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "accountManager.accountManager": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "add.new.button.title": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "add.new.expense.alert.title": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "button.title.dontShowAgain": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "button.title.showLater": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.button.cancelRegistration": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.button.confirmRegistration": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.button.editRegistration": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.calendarBotTitle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.learnMore.aboutEmployeeAgentBody": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.learnMore.aboutEmployeeAgentTitle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.learnMore.examplesTitle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.learnMore.howToUseEmployeeAgentBody": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.learnMore.howToUseEmployeeAgentTitle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.learnMoreText": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.message.anythingElseQuestion": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.message.confirmRegistration": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.message.eventHasBeenDeleted": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.message.howCanIHelp": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.message.initial": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.message.medicalCertificateRequired": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.message.multipleEventsRequireExtraHandling": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.message.registerEventsQuestion": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.message.registrationSuccess": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.message.timeSheetSentForApproval": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.message.to": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.openEmployeeAgent": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.chatBot.writeOrRecordText": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.filter.absence": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.filter.attendance": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.filter.eventStyleIcons": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.filter.eventStyleText": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.filter.eventsStyle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.filter.filterView": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.filter.hideWeekends": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.filter.roster": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.filter.showWeekNumbers": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.filter.supplement": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.roster.scheduledHours": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.selectMonthAndYear": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.specialDay.name": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.time.checkin": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.time.checkin.eventNotSaved": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.time.checkin.savedEventThatSpansMultipleDays": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.time.checkin.savedLessThanOneMinuteCheckinDuration": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.time.checkin.unableToCheckin": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.time.checkin.unableToCheckout": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.time.checkin.unableToSaveEvent": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.time.checkout": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.time.editCheckin": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.time.futureRegistration": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.time.startPage.checkedIn": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.time.startPage.checkedInAt": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.time.startPage.checkinErrorChangeTimeSettings": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.time.startPage.checkinErrorEditEvent": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.time.startPage.checkinErrorEditTimestamps": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.time.startPage.startShift": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "calendar.time.startPage.startShiftTitle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "claims.expenses.claimID": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "claims.expenses.claimIDCopied": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "claims.expenses.header.allowances": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "claims.expenses.header.mileages": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "claims.expenses.header.receipts": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "claims.expenses.paidByCompany": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "copied.intoYour.clipboardText": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "create.new.allowance.button.title": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "create.new.mileage.button.title": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "create.new.receipt.button.title": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "deactivate": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "deactivate.message": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "documentsAndBenefits.benefitsTab": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "documentsAndBenefits.commonTab": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "documentsAndBenefits.emptyBenefitGroup": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "documentsAndBenefits.emptyCommonDocumentGroup": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "documentsAndBenefits.emptyPersonalDocumentGroup": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "documentsAndBenefits.emptyTitle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "documentsAndBenefits.linkToMoreInformation": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "documentsAndBenefits.markAsRead": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "documentsAndBenefits.markAsReadConfirmation": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "documentsAndBenefits.markAsReadError": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "documentsAndBenefits.maybeLater": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "documentsAndBenefits.mustRead": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "documentsAndBenefits.newBadge": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "documentsAndBenefits.open": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "documentsAndBenefits.personalDocumentDownloadError": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "documentsAndBenefits.personalTab": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "documentsAndBenefits.readStatus": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "documentsAndBenefits.shouldRead": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "documentsAndBenefits.unreadStatus": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "dottie.personalInformation.discardChanges": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "dottie.personalInformation.unsavedChanges": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "dottieNotifications.markAsRead": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "dottieNotifications.providerName": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "dynamicForms.repeatableInstance.deleteConfirmation": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "employeeList.emptyTitle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "employeeList.quickFilter.showAll": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "employeeList.searchPlaceholder": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "employeeList.title": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.addToClaim.error.message.failedToSaveMileage": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.addToClaim.error.message.failedToSaveReceipt": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.addToClaim.error.message.invalidFields": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.addToClaim.error.message.missingRequiredFields": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.addToClaim.error.title.unableToSaveMileage": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.addToClaim.error.title.unableToSaveReceipt": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.addToClaim.message.allowanceAddedToClaim": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.addToClaim.message.mileageAddedToClaim": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.addToClaim.message.receiptAddedToClaim": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.accommodationType.mixed": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.addAllowance": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.allowance": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.deleteAllowance": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.deleteAllowanceConfirmationMessage": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.deletingAllowance": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.editTravels": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.explanation.accessibilityHint": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.explanation.accessibilityLabel": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.explanation.companyPolicyBody": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.explanation.companyPolicyHeader": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.explanation.readMore": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.explanation.regularDayTravelAccessibilityHint": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.explanation.regularDayTravelAccessibilityLabel": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.explanation.regularDayTravelBody": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.explanation.regularDayTravelTitle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.explanation.title": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.explanation.whatIsAllowanceBody": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.explanation.whatIsAllowanceHeader": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.hotelSearch": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.hotelStayBeforeMinimumDate": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.hotelStayOutsideLodgingPeriods": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.invalidSegment": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.invalidTemplate": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.meal.breakfast": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.meal.dinner": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.meal.lunch": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.mealBenefitAmount": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.mealDeduction": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.mealMoney": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.regularDayTravel": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.saveAndNext": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.savingAllowance": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.selectText": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.send.one.allowance": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.send.plural.allowances": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.totalAllowance": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.travelPeriodsGaps": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.travelPeriodsOverlapping": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.travelStartAfterEndDate": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.allowance.travels": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.attachments.addMore": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.attachments.attachment": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.attachments.closeSheet": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.attachments.downloadAttachment": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.attachments.removeAttachment": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.attachments.title": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.button.addToClaim": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.button.saveChanges": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.button.saveTo": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.button.sendForApproval": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.claim.registeredBy": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.claims.transactionChanged": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.claims.transactionChanged.confirmation": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.climateReports.aboutEmissionsSummary": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.climateReports.emissionsThisYear": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.climateReports.emptyReportsPlaceholder": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.climateReports.howDoWeCalculateEmissions": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.climateReports.limitations": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.climateReports.limitationsDescription": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.climateReports.topEmissionsPerExpenseType": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.closedForRegistration": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.closedForRegistrationWarning": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.creditCard.awaitingClearance": [
+      "en"
+    ],
+    "expense.creditCard.creditCard": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.creditCard.creditCardTransaction": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.creditCard.creditCardTransactionAuthorized": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.creditCard.send.one.transaction": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.creditCard.send.plural.transactions": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.creditcard.details.unavailable": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenseType.description.accessibilityLabel": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenses.co2Emissions.co2eEmissions": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenses.costUnits.allCostUnits": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenses.costUnits.assignCostUnits": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenses.costUnits.costAllocation": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenses.costUnits.emptyCostUnit": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenses.costUnits.selectCostUnit": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenses.costUnits.splitCost": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenses.costUnits.splitCostMessage": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenses.discardChanges": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenses.discardChangesQuestion": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenses.discardNewMileage": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenses.discardNewMileageQuestion": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenses.discardNewReceipt": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenses.discardNewReceiptQuestion": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenses.failedToAddExpensesToClaim": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenses.projectAccounting.assignProjectAndTask": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenses.projectAccounting.projectAccounting": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenses.projectAccounting.reinvoiceOnProject.no": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenses.projectAccounting.reinvoiceOnProject.yes": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenses.projectAccounting.selectProject": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.expenses.projectAccounting.selectTask": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.calculatingRoadTollAmount": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.cell.subtitle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.confirmReorderingMessage": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.deleteFailed": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.deleteMileage": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.deleteMileageConfirmationMessage": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.deletingMileage": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.loadFailed": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.noActiveMileageTypesMessage": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.places.addDestination": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.places.addDestinationLimitReached": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.places.address": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.places.approximateAddress": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.places.calculateDistance": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.places.couldNotFindRoute": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.places.ferryDistanceNotIncluded": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.places.frequently.used": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.places.recent": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.places.searchResults": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.places.selectAnotherDestination": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.places.selectDestination": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.places.selectOnMapOrSearch": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.places.selectStartPoint": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.places.unnamedRoad": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.places.useDestination": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.places.useStartPoint": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.places.viewMap": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.returnTrip": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.route.overview": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.saveFailed": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.savingMileage": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.selectFuel": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.selectVehicle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.send.one.mileage": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.send.plural.mileages": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.unableToCalculateRoadToll": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.mileage.units.abbreviatedKilometer": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.allCurrencies": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.allExpenseTypes": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.bulkSend.deviationError.message": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.bulkSend.deviationError.title": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.claimsFailedToLoad": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.delete.creditCardRowConfirmationMessage": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.delete.deletingCreditCardTransaction": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.failedToDeleteAttachment": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.failedToSaveReceiptToFiles": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.failedToSaveReceiptToPhotos": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.failedToSaveReceiptToPhotosMessage": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.frequentlyUsedCurrencies": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.kilometers.from": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.kilometers.fromToPlaceholder": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.kilometers.returnTrip": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.kilometers.to": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.merge.confirmationAlert.mergeButton": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.merge.confirmationAlert.message": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.merge.confirmationAlert.title": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.merge.creditCardTransactionLinked": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.merge.failed": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.merge.infoAlert.message": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.merge.merging": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.merge.noCandidates": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.merge.similarity.exact": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.merge.similarity.possible": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.merge.withCreditCardTransactionTitle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.merge.withReceiptTitle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.quickFilter.mail": [
+      "en"
+    ],
+    "expense.receipts.quickFilter.mileage": [
+      "en"
+    ],
+    "expense.receipts.receiptSavedToFiles": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.receiptSavedToPhotos": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.requiresAttention": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.selectCurrency": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.selectExpenseType": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.selectFlightDuration": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.selectFuelType": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.receipts.uploadFailedGeneric": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.segment.claims": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.segment.expenses": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.startPage.claimApproved": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.startPage.claimPending": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.startPage.claimRejected": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.startPage.claimsApproved": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.startPage.claimsPending": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.startPage.claimsRejected": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.startPage.expenseCard": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.startPage.unsentExpenses": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.submitForApproval.confirmationMessage": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.submitForApproval.confirmationTitle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.submitForApproval.error": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.submitForApproval.sendAndDontShowAgain": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.submitForApproval.submitting": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expense.templates.unavailable": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expenses.add.items": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expenses.add.to.claim.title": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expenses.amount.to.be.calculated": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expenses.select.existing.items": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expenses.send.plural.items": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "expenses.without.date.title": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "extension.share.alert.message.loggedOut": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "extension.share.alert.message.missingTemplates": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "extension.share.alert.message.receiptSent": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "extension.share.alert.message.roleMissing": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "extension.share.alert.message.selectEmployer": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "extension.share.alert.title.loggedOut": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "extension.share.alert.title.missingTemplates": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "extension.share.alert.title.receiptSent": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "extension.share.alert.title.roleMissing": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "extension.share.alert.title.selectEmployer": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "extension.share.title.shareToEmployee": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "inboxMessages.noActivityInbox": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "inboxMessages.offlineText": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "inboxMessages.providerLoadFailed": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "inboxMessages.title": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "loading": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "newFeatures.button.title.dontShowAgain": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "newFeatures.button.title.learnMore": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "newFeatures.button.title.openEmployeeAgent": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "newFeatures.button.title.tryNewFeature": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "newFeatures.calendarbot.title": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "newFeatures.calendarbot.verboseSubtitle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "open.with.app": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslip.accessibilityLabel.notSelected": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslip.accessibilityLabel.selected": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslip.button.applyFilter": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslip.button.selectCompanies": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslip.startPage.salary": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslips.chatbot.disclaimer": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslips.chatbot.feedback.detailsPlaceholder": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslips.chatbot.feedback.disclaimer": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslips.chatbot.feedback.issueIncomplete": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslips.chatbot.feedback.issueIncorrect": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslips.chatbot.feedback.issueLabel": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslips.chatbot.feedback.issueNone": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslips.chatbot.feedback.issueNotWhatIAskedFor": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslips.chatbot.feedback.subtitle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslips.chatbot.feedback.thankYou": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslips.chatbot.feedback.title": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslips.chatbot.hereAreCoupleSuggestions": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslips.chatbot.openChatbot.accessibilityLabel": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslips.chatbot.openSummary.accessibilityLabel": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslips.chatbot.title": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslips.whyNoPayslips": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslips.yearEndReport": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "payslips.yearEndReports.noReports": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "pincode.page.backupPin": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "pincode.page.backupPinInfo": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "pincode.page.repeatBackupPin": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "pincode.page.retry.biometric.or.pin": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "remoteControl.openAppStore": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "remoteControl.openSettings": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "security.greeting.goodafternoon": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "security.greeting.goodevening": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "security.greeting.goodmorning": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "security.information.label": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.allowances": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.appVersion": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.appearance.appearanceLabel": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.appearance.apperanceStyleDark": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.appearance.apperanceStyleLight": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.appearance.apperanceStyleSystem": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.application": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.emissionsSummary": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.language.leaveAppAndOpenSettingsDescription": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.language.leaveAppAndOpenSettingsTitle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.language.openSettings": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.osVersion": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.addContactPersonOrChild": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.address": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.address.city": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.address.country": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.address.selectCountry": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.address.street": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.address.zipCode": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.bankAccount": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.bankAccountAndTaxes": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.bankAndTaxesInfoTooltipText": [
+      "en"
+    ],
+    "settings.personalInformation.business": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.button.cancel": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.button.saveChanges": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.contactDetails.chronicallyIllFromDate": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.contactDetails.chronicallyIllOrDisabledChild": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.contactDetails.chronicallyIllValidToDate": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.contactDetails.contactPersonAndChildren": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.contactDetails.dateOfBirth": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.contactDetails.firstName": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.contactDetails.lastName": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.contactDetails.mainContact": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.contactDetails.soleCustody": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.contactDetails.typeOfRelative": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.emailInfoTooltipText": [
+      "en"
+    ],
+    "settings.personalInformation.emergencyContactsAndChildren": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.employeeInformation": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.error.updatePendingMessage": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.error.updatePendingTitle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.payslipLanguagePDF": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.personalInformation": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.phoneNumber": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.privateText": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.taxPercentage": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personalInformation.taxTable": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personal_information.dottie.choose_from_library": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personal_information.dottie.crop_image": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personal_information.dottie.delete_profile_picture": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personal_information.dottie.delete_profile_picture_confirmation": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personal_information.dottie.profile_image_invalid": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personal_information.dottie.profile_picture": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personal_information.dottie.select_image": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personal_information.dottie.select_image_source": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.personal_information.dottie.take_photo": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.termsOfService": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.termsOfService.dataUsageDescription": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.termsOfService.dataUsageLink": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.termsOfService.termsOfServiceLink": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.termsOfService.userTermsDescription": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.termsOfService.userTermsTitle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.termsOfService.welcomeTitle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.testlab": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "settings.userEmail": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "show.pdf": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "show.summary": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "speechRecognizer.error.initializationFailed": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "speechRecognizer.error.notAuthorizedToRecognize": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "speechRecognizer.error.notPermittedToRecord": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "speechRecognizer.error.recognizerIsUnavailable": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "startpage.cards.allExpensesSentTitle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "startpage.cards.claims.attentionRequired": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "startpage.cards.claims.attentionRequiredTitle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "startpage.cards.claims.claimAutomaticallyReturned": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "startpage.cards.claims.errorSendingToApproval": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "startpage.cards.claims.expenseAmountChanged": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "startpage.cards.combinedExpenses.allowance": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "startpage.cards.combinedExpenses.allowances": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "startpage.cards.combinedExpenses.creditCardTransaction": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "startpage.cards.combinedExpenses.creditCardTransactions": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "startpage.cards.combinedExpenses.mileage": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "startpage.cards.combinedExpenses.mileages": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "startpage.cards.combinedExpenses.receipt": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "startpage.cards.combinedExpenses.receipts": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "startpage.cards.creditCardTransactionsToSend": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "startpage.cards.importantInformation": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "startpage.cards.noEventsTitle": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "survey.feedback.thankYou": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "surveys.button.dismissCard": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "surveys.button.openSurvey": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "textfield.with.voiceInput.isNotRecording": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "textfield.with.voiceInput.isRecording": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "userProfile.documentsAndBenefits": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "userProfile.emissionsSummary": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "userProfile.employeeList": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "userProfile.myProfile": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "userProfile.signOut": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "userProfile.switchAccount": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "welcome.page.biometrics.activated": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "welcome.page.biometrics.activatedInfo": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "welcome.page.biometrics.activation": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "welcome.page.biometrics.activationInfo": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "welcome.page.biometrics.faceID": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "welcome.page.biometrics.pinCode": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "welcome.page.biometrics.touchID": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "welcome.page.button.continue": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "welcome.page.button.later": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "wescan.edit.button.next": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "wescan.edit.title": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "wescan.review.title": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "wescan.scanning.auto": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "wescan.scanning.cancel": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ],
+    "wescan.scanning.manual": [
+      "en",
+      "da-DK",
+      "fi-FI",
+      "nb-NO",
+      "sv-SE"
+    ]
+  },
+  "values": {
+    "ABSENCE_EDIT_TITLE": "Edit absence",
+    "ABSENCE_POST_SCREEN_HEADLINE": "%@ registered",
+    "ABSENCE_REGISTRATION_DELETED": "Registration was deleted successfully",
+    "ABSENCE_REGISTRATION_DELETE_WARNING": "You're about to delete this event. This can't be undone.",
+    "ABSENCE_REGISTRATION_SAVED": "Registration was changed successfully",
+    "ABSENCE_REGISTRATION_TITLE": "Add absence",
+    "ABSENCE_SELECTOR_TITLE": "Select type",
+    "ABSENCE_VACATION_DAYS_REMAINING": "You have |%@ vacation day| available",
+    "ABSENCE_VACATION_DAYS_REMAINING_PLURAL": "You have |%@ vacation days| available",
+    "ABSENCE_VACATION_DAYS_REMAINING_ZERO": "You have |%@ vacation days| available",
+    "ACCESSIBILITY_STATEMENT": "Accessibility statement",
+    "ACCESS_TO": "You have access to",
+    "ACCESS_TO_ABSENCE": "You can report absence",
+    "ACCESS_TO_EXPENSE": "You can handle expense claims",
+    "ACCESS_TO_PAYSLIPS": "You can see payslips",
+    "ACCESS_TO_TIME": "You can report time",
+    "ACCESS_TO_TIME_AND_ABSENCE": "You can report time or absence",
+    "ADD_MILEAGE": "Add mileage",
+    "AN_ERROR_OCCURRED": "An error occurred",
+    "APPROVAL_STATUS_APPROVED": "Approved",
+    "APPROVAL_STATUS_AWAITING_APPROVAL": "Awaiting approval",
+    "APPROVAL_STATUS_AWAITING_CLEARANCE": "Waiting for credit card clearance",
+    "APPROVAL_STATUS_CANCELLED": "Cancelled",
+    "APPROVAL_STATUS_DECLINED": "Declined",
+    "APPROVAL_STATUS_NOT_SENT": "Not sent",
+    "APPROVAL_STATUS_PAID": "Paid",
+    "APP_INFORMATION_TITLE": "App information",
+    "ATTACHMENT_CORRUPTED": "Attachment is corrupted.",
+    "ATTACHMENT_DATA_MISSING": "Unable to process attachment data.",
+    "ATTACHMENT_ENCRYPTED": "Attachment is password protected.",
+    "ATTACHMENT_SIZE_TOO_LARGE": "Attachment size is too large.",
+    "AUTOSCAN_AUTO": "Auto",
+    "AUTOSCAN_MANUAL": "Manual",
+    "BACK": "Back",
+    "BROWSE_DOCUMENTS": "Browse documents",
+    "BUILD": "Build",
+    "CALEMDAR_NO_ACTIVITY_DESCRIPTION": "But the list will be filled as soon as there is something new",
+    "CALENDAR_ABSENCE_UNTIL": "until %@",
+    "CALENDAR_CANNOT_LOAD_MORE_CONTENT_TEXT": "You are offline. More content can't be loaded.",
+    "CALENDAR_CANT_LOAD": "Can't load calendar items",
+    "CALENDAR_LIST_TITLE": "Calendar",
+    "CALENDAR_NO_ACTIVITY_HEADING": "No activity to show",
+    "CALENDAR_NO_FUTURE_EVENTS_TEXT": "You have no future events in your calendar",
+    "CALENDAR_NO_PAST_EVENTS_TEXT": "You have no past events in your calendar",
+    "CALENDAR_SWITCH_TO_LIST_VIEW": "Switch to list view",
+    "CALENDAR_SWITCH_TO_MONTH_VIEW": "Switch to month view",
+    "CANCEL": "Cancel",
+    "CFBundleDisplayName": "Employee",
+    "CFBundleName": "Employee",
+    "CHOOSE_ANOTHER_DATE": "Choose another date",
+    "CHOOSE_CODE_LABEL": "Choose code",
+    "CHOOSE_COMPANY": "Choose company",
+    "CHOOSE_COMPANY_DESCRIPTION": "This app now supports multiple companies. Choose the company you want to use.",
+    "CHOOSE_DATE": "Choose date",
+    "CHOOSE_EMPLOYER": "Choose employer",
+    "CHOOSE_FROM_IMAGE_GALLERY": "Choose from Image Gallery",
+    "CLAIMS_NO_PAST_EVENTS_TEXT": "You have no past claims",
+    "CLEAR": "Clear",
+    "CLOSE": "Close",
+    "COMMENT": "Comment",
+    "COMMON_CAMERA_IS_NOT_AVAILABLE": "Camera is not available",
+    "COMMON_CONNECT_AND_RETRY": "Internet connection is offline. Please connect to the internet and try again.",
+    "COMMON_DATA_LOADING_ERROR": "Please check your internet connection or try again later.",
+    "COMPANIES": "COMPANIES",
+    "COMPANY": "Company",
+    "CONFIRM": "Confirm to %@",
+    "CONFIRM_DATE_PERIOD": "Confirm date period",
+    "CONFIRM_TIME": "Confirm time",
+    "CONFIRM_TIME_TO": "Confirm time to",
+    "COPY": "Copy",
+    "COPYRIGHT_VISMA": "Copyright © Visma 2014",
+    "COULD_NOT_LOAD_PDF_TEXT": "Try again later.",
+    "COULD_NOT_LOAD_PDF_TITLE": "Could not load PDF",
+    "CURRENCY": "Currency",
+    "DATE": "Date",
+    "DELETE": "Delete",
+    "DELETE_CLAIM": "Delete claim",
+    "DELETE_RECEIPT": "Delete receipt",
+    "DELETE_RECEIPT_CONFIRMATION_MESSAGE": "This will permanently remove the receipt from being used in any claim.",
+    "DESELECT_ALL": "Deselect all",
+    "DETAILS": "Details",
+    "DISMISS": "Dismiss",
+    "DONE": "Done",
+    "DOWNLOAD_IMAGE": "Download image",
+    "DOWNLOAD_PDF": "Download pdf",
+    "DRAFT": "Draft",
+    "EACH_DAY": "each day",
+    "EDIT": "Edit",
+    "EDITING_MILEAGE_DETAILS": "Editing mileage details",
+    "EDITING_RECEIPT_DETAILS": "Editing receipt details",
+    "EDIT_CROP": "Edit Crop",
+    "EDIT_MILEAGE": "Edit mileage",
+    "ENABLE_IN_SETTINGS": "Enable in Settings",
+    "END_TIME": "End time",
+    "ENTER_CODE_LABEL": "Enter code",
+    "ERROR": "Error",
+    "EVENT_REGISTRATION_ALL_DIMENSIONS_SECTION_TITLE": "All",
+    "EVENT_REGISTRATION_NO_DIMENSION_VALUES_MESSAGE": "No values found",
+    "EVENT_REGISTRATION_NO_SEARCH_RESULTS_MESSAGE": "No match",
+    "EVENT_REGISTRATION_RECENTLY_USED_DIMENSIONS_SECTION_TITLE": "Recently used",
+    "EVENT_REGISTRATION_TITLE": "Add event",
+    "EXPENSE": "Expense:",
+    "EXPENSE_CANCEL_APPROVAL": "Cancel approval flow",
+    "EXPENSE_CLAIMS_SCREEN_TITLE": "Add receipts to",
+    "EXPENSE_CLAIM_CANCEL_APPROVAL_FLOW": "Cancel approval flow",
+    "EXPENSE_CLAIM_CANCEL_APPROVAL_WARNING": "Do you want to cancel the approval flow? This will set the status to Cancelled and allow changes to be made",
+    "EXPENSE_CLAIM_COST_UNIT_WARNING": "Cost units can be changed in Visma.net Expense.",
+    "EXPENSE_CLAIM_HANDLE_BUTTON": "Edit",
+    "EXPENSE_CLAIM_LIST_CLAIMS_WITHOUT_DATE": "Claims without date",
+    "EXPENSE_CREATE_NEW_CLAIM": "Create new claim",
+    "EXPENSE_CREATE_NEW_CLAIM_DESCRIPTION": "Claim description",
+    "EXPENSE_CREATE_NEW_CLAIM_ERROR": "Error while creating a new claim",
+    "EXPENSE_DELETE_CLAIM_CONFIRMATION_MESSAGE": "Do you want to permanently delete? This will also be reflected in Visma.net Expense.",
+    "EXPENSE_DELETING_RECEIPT": "Deleting receipt...",
+    "EXPENSE_MISSING_CAMERA_PERMISSIONS_MESSAGE": "To take pictures of receipts the app needs to access the camera. This can be granted in Settings.",
+    "EXPENSE_MISSING_CAMERA_PERMISSIONS_TITLE": "Missing camera permissions",
+    "EXPENSE_NEW_CLAIM": "New claim",
+    "EXPENSE_RECEIPTS_ADD_OR_REMOVE": "Add receipts",
+    "EXPENSE_RECEIPTS_DETAILS_MISSING": "Details missing (%@)",
+    "EXPENSE_RECEIPTS_DETAILS_MISSING_ZERO": "Details missing",
+    "EXPENSE_RECEIPTS_EMPTY_NEED_INFO": "Receipts that are ready to send will be shown here.",
+    "EXPENSE_RECEIPTS_EMPTY_NO_RECEIPTS_MISSING": "Receipts that needs details will be shown here when you add them.",
+    "EXPENSE_RECEIPTS_READY": "Ready to send (%@)",
+    "EXPENSE_RECEIPTS_READY_ZERO": "Ready to send",
+    "EXPENSE_RECEIPTS_RECEIPT_SAVED": "Receipt has been saved",
+    "EXPENSE_RECEIPTS_SAVE": "Save to",
+    "EXPENSE_RECEIPTS_SEND": "Send 1 receipt",
+    "EXPENSE_RECEIPTS_SEND_PLURAL": "Send %@ receipts",
+    "EXPENSE_RECEIPTS_WITHOUT_DATE": "Receipts without date",
+    "EXPENSE_RECEIPT_ADD_NEW_PICTURE": "Add new picture of receipt",
+    "EXPENSE_RECEIPT_DETAILS_FAILED_TO_DELETE": "It is not possible to remove this receipt at the moment. Please try again later.",
+    "EXPENSE_RECEIPT_DETAILS_FAILED_TO_SAVE": "Receipt failed to save.",
+    "EXPENSE_RECEIPT_DETAILS_FIX_IN_EXPENSE": "This receipt must be handled in Visma.net Expense",
+    "EXPENSE_SAVING_RECEIPT": "Saving receipt...",
+    "EXPENSE_SEND_CLAIM_ERROR": "Your claim has not been sent. Changes made before sending have been saved.",
+    "EXPENSE_SEND_CLAIM_ERROR_HAS_BEEN_FOUND": "An error has been found for:",
+    "EXPENSE_SEND_CLAIM_ERROR_WRONG_RECEIPTS": "An error has been found for: %@",
+    "EXPENSE_SEND_CLAIM_PREVIOUSLY_ADDED": "Previously added",
+    "EXPENSE_SEND_CLAIM_RECEIPTS_INCORRECT": "Receipts incorrect",
+    "EXPENSE_SEND_CLAIM_SAVED_HEADLINE": "Claim saved",
+    "EXPENSE_SEND_CLAIM_SAVED_TEXT": "Your claim has been updated with the latest changes and is also accesible from Visma.net",
+    "EXPENSE_SEND_CLAIM_SAVE_FOR_LATER": "Save for later",
+    "EXPENSE_SEND_CLAIM_SEND_FOR_APPROVAL": "Send for approval",
+    "EXPENSE_SEND_CLAIM_SENT_HEADLINE": "Claim sent",
+    "EXPENSE_SEND_CLAIM_SENT_TEXT": "Your claim has been sent for approval. Your manager will be notified",
+    "EXPENSE_SEND_CLAIM_TO_BE_ADDED": "To be added",
+    "EXPENSE_TITLE": "Expense",
+    "EXPENSE_TOTAL": "Total",
+    "EXPENSE_TYPE": "Expense type",
+    "EXPORT_PAYSLIPS_BUTTON": "Export all payslips",
+    "EXPORT_PAYSLIPS_HEADER": "Export all payslips as a single document",
+    "FAQ": "FAQ",
+    "FAQ_ABSENCE_ANSWER_2": "To access this specific event code, your child must be registered in the system.",
+    "FAQ_ABSENCE_ANSWER_3": "Your user is not fully set up with your employee data. Please contact your payroll admin.",
+    "FAQ_ABSENCE_QUESTION_2": "I can not report \"Care of sick child\".",
+    "FAQ_ABSENCE_QUESTION_3": "I got the message \"Your user setup is incorrect\".",
+    "FAQ_ACCESS_AND_QUESTIONS_INFO": "Access to the different roles and questions about content is handled by your local administrator.",
+    "FAQ_APPROVED_RECEIPTS_ANSWER": "All expenses must be sent as claims to get approved. From the expense overview page, mark all expenses you wish to send as a claim and choose to Send with the button at the bottom of the screen. Once sent as a claim, the claim will always show the current status of the claim and who is the approver.",
+    "FAQ_APPROVED_RECEIPTS_QUESTION": "How can I see the status of a sent expense?",
+    "FAQ_CANT_SEE_EMPLOYERS": "Why can I not see all of my employers?",
+    "FAQ_CLOSED_MONTH_ANSWER": "For this particular issue, please contact your employer directly.",
+    "FAQ_CLOSED_MONTH_QUESTION": "I forgot to add an expense for a closed month.",
+    "FAQ_DEFAULT_ANSWER_2": "If you can not find an employer in the list, you can add it to the app. Click on the account icon on top of the Start page and select \"Add account\". We now allow multiple accounts, which means that you can add more employers with different email addresses (as long as the company you add to the app is using our Visma services).",
+    "FAQ_DEFAULT_ANSWER_3": "Please check the \"Other\" section to see if you can find the answer there.",
+    "FAQ_DEFAULT_ANSWER_NO_LICENSE_1": "|%@ company| has no license for |%@ license|. For more information, please contact your local payroll administrator directly.",
+    "FAQ_DEFAULT_ANSWER_NO_LICENSE_2": "|%@ company| is no longer using license for |%@ license|. For more information, please contact your local payroll administrator directly.",
+    "FAQ_DEFAULT_ANSWER_NO_ROLE_1": "|%@ company| has not granted you access to |%@ license|. Please ask your local payroll administrator to give you access.",
+    "FAQ_DEFAULT_OTHER_ANSWER_3": "For any questions related to Payslip, Expense or Time/Absence not answered here please contact your payroll administrator. For issues or requests regarding app functionality you can message the app team via the \"Send feedback\" form.",
+    "FAQ_DEFAULT_QUESTION_1": "Why do I not have access to %@?",
+    "FAQ_DEFAULT_QUESTION_2": "I can not find my employer in the list above.",
+    "FAQ_DEFAULT_QUESTION_3": "The answer to my question is not here.",
+    "FAQ_DOWNLOAD_PAYSLIPS_ANSWER": "To download the pdf version of a single payslip, select the document icon in the top right corner of the payslip screen.\n\nTo download all the payslips as a single document, go to the Salary overview screen and select the summary button in the top right corner of the screen.",
+    "FAQ_DOWNLOAD_PAYSLIPS_QUESTION": "How do I download my payslips?",
+    "FAQ_ERROR_ANSWER": "Check with your payroll administrator if |%@ company| has a license for |%@ license|. If there is a license, but you are lacking access, this should also be handled by the payroll administrator",
+    "FAQ_EXPENSE_ANSWER_1": "At the moment, it is only possible to add/edit expenses on the Employee application.",
+    "FAQ_EXPENSE_QUESTION_1": "I can not add any travel or milages.",
+    "FAQ_FEEDBACK_GENERAL": "Do you have feedback to the general feel and function of the app? We would love to hear that!",
+    "FAQ_FEEDBACK_NOTE_V2_PART_1": "Note: This message does not reach your employer.",
+    "FAQ_FEEDBACK_NOTE_V2_PART_2": "%@ For questions regarding content or access, please contact your payroll administrator directly.\n",
+    "FAQ_FEEDBACK_SUMMARY_V2": "Comments or requests regarding the app functionality? Tell us how we can improve! Write a message to the app team in Visma that is developing the app.\n",
+    "FAQ_MY_PROFILE_ADD_ACCOUNT_ANSWER": "Open the Account manager and tap + Add account at the bottom. You can keep several accounts signed in at the same time — useful if you work for more than one employer or have both a private and a work account.",
+    "FAQ_MY_PROFILE_ADD_ACCOUNT_QUESTION": "How do I add another account?",
+    "FAQ_MY_PROFILE_EMISSIONS_CALCULATION_ANSWER": "Emissions are estimated from the expense type and the amount or distance reported, using standard CO₂e conversion factors. Tap How do we calculate emissions at the bottom of the screen for the full methodology.",
+    "FAQ_MY_PROFILE_EMISSIONS_CALCULATION_QUESTION": "How are emissions calculated?",
+    "FAQ_MY_PROFILE_EMISSIONS_SUMMARY_ANSWER": "It estimates the CO₂ equivalent (CO₂e) generated by the expenses you've reported this year — mainly travel-related items such as car mileage, road tolls and accommodation. The percentage at the top compares your current year against the same period last year.",
+    "FAQ_MY_PROFILE_EMISSIONS_SUMMARY_QUESTION": "What does the Emissions summary show?",
+    "FAQ_MY_PROFILE_MARK_DOCUMENT_READ_ANSWER": "Simply open the document. Once closed, a separate \"mark as read\" action will prompt. If selected, the document will be tagged as Read in the list.",
+    "FAQ_MY_PROFILE_MARK_DOCUMENT_READ_QUESTION": "How do I mark a document as read?",
+    "FAQ_MY_PROFILE_SWITCH_ACCOUNTS_ANSWER": "Tap the person icon in the top-right corner to open the Account manager. You'll see all accounts you've added to the app. Tap the one you want to use. If an account shows \"Session expired\", you'll be asked to sign in again before it becomes active.",
+    "FAQ_MY_PROFILE_SWITCH_ACCOUNTS_QUESTION": "How do I switch between accounts?",
+    "FAQ_MY_PROFILE_UPDATE_PERSONAL_INFO_ANSWER": "Personal information is managed by your employer's payroll system, not directly in the app. Open My profile to see your current details. To request a change, contact your HR or payroll administrator — once they update your record, the new information will sync to the app.",
+    "FAQ_MY_PROFILE_UPDATE_PERSONAL_INFO_QUESTION": "Where do I update personal information such as address or bank accounts?",
+    "FAQ_OTHER_ANSWER_1": "If your employer uses Visma.net Payroll you can change some of your personal information yourself. Go to Settings and Personal information. If you do not have that option, please contact your payroll admin so that they can change it for you.",
+    "FAQ_OTHER_ANSWER_2": "Go to the Start page and click on the account icon on top of the page. Click on \"Add account\". You can add multiple accounts with different email addresses. For this to work, the company you add needs to use our Visma.net Services. Please contact your payroll admin for further assistance.",
+    "FAQ_OTHER_ANSWER_3": "To ensure security and privacy, we advise users against entering text with sensitive data in the free texts fields",
+    "FAQ_OTHER_QUESTION_1": "Where do I update personal information such as email or bank accounts?",
+    "FAQ_OTHER_QUESTION_2": "How can I add another employer to this app?",
+    "FAQ_OTHER_QUESTION_3": "Avoid entering text with sensitive data.",
+    "FAQ_OTHER_RELATED_ABSENCE": "Other Time & Absence related questions",
+    "FAQ_OTHER_RELATED_EXPENSE": "Other Expense related questions",
+    "FAQ_OTHER_RELATED_OTHER": "Other general questions",
+    "FAQ_OTHER_RELATED_PAYSLIP": "Other Payslip related questions",
+    "FAQ_PAGE_INFO": "Here are some general questions and answers about the Employee application for version %@.",
+    "FAQ_PAYSLIPS_ANSWER_1": "Ask your payroll administrator if they have properly set up your user, if you are using the correct user and if they have published any payslips to you yet.",
+    "FAQ_PAYSLIPS_ANSWER_2": "Check with payroll admin if they have properly published the payslip.",
+    "FAQ_PAYSLIPS_ANSWER_3": "We can only publish payslips related to your current account. If your company has made organisation changes, older payslips may be connected to your old account and not possible to show.",
+    "FAQ_PAYSLIPS_QUESTION_1": "I can not see any payslips at all.",
+    "FAQ_PAYSLIPS_QUESTION_2": "My newest payslip is missing.",
+    "FAQ_PAYSLIPS_QUESTION_3": "Old payslips are missing.",
+    "FAQ_SELECT_COMPANIES_FILTER_PAYSLIPS_ANSWER": "If you have more than one company under the same account, you can filter out the companies for which you want to see the payslips.\n\nWhen a company is marked in the filter, its payslips will be displayed in the list regardless if it is the selected company or not.",
+    "FAQ_SELECT_COMPANIES_FILTER_PAYSLIPS_QUESTION": "Select companies filter",
+    "FAQ_V2_HEADER_QUESTION": "What issue do you need help with?",
+    "FAQv2.expense.answer.1": "We are currently working on this feature and we expect it to make it available in the foreseeable future",
+    "FAQv2.expense.cannot.add.mileage": "I can not register a mileage.",
+    "FAQv2.expense.question.1": "It is not possible to enter toll road costs.",
+    "FAQv2.expense.update.ios": "Please contact your payroll admin to see if they have given you the correct access in Visma.net Expense settings.",
+    "FEEDBACK_ACCESS_SUMMARY": "Access to different roles is handled by your administrator.",
+    "FEEDBACK_DISCLAIMER": "Feedback will be sent as %@",
+    "FEEDBACK_PLACEHOLDER": "Your feedback",
+    "FEEDBACK_SENT_MESSAGE": "Thanks for your feedback!",
+    "FEEDBACK_SUMMARY": "For opinions and questions about the general flow and function of the app, we would love to hear your opinion.",
+    "FIELD_REQUIRED_TEXT": "required",
+    "FORGOT_PASSWORD_BUTTON": "Forgot password?",
+    "FREQUENT_QUESTIONS": "Frequent questions",
+    "GET_STARTED": "Get started",
+    "GOT_IT": "Got it!",
+    "HOURS_PLURAL": "hours",
+    "HOUR_SINGULAR": "hour",
+    "INFORMATION": "Information",
+    "KEEP": "Keep",
+    "LANGUAGE_LABEL": "Language",
+    "LICENSES_TITLE": "Licenses",
+    "LIMITED_FUNCTIONALITY_WHEN_OFFLINE": "Limited functionality when offline",
+    "LOGGED_IN_AS_LABEL": "LOGGED IN AS",
+    "LOGGED_OUT_NO_FEATURES_TEXT": "Log in OK, but your user lacks the needed roles to use the app.",
+    "LOGGED_OUT_NO_FEATURES_TITLE": "Logged out",
+    "LOGGED_OUT_SECURITY_TEXT": "You have been logged out of Visma.net for security reasons. Enter your password to log in again.",
+    "LOGGED_OUT_SECURITY_TITLE": "Logged out",
+    "LOGGING_IN_BUTTON": "Logging in",
+    "LOGIN_BUTTON": "Log in",
+    "LOGIN_FAILED_TEXT": "Failed to login.",
+    "LOGIN_TYPE_LABEL": "Security",
+    "LOGIN_TYPE_NONE_OPTION": "Password, after log out",
+    "LOGIN_TYPE_SECURITY_CODE_OPTION": "Security code",
+    "LOGOUT_BUTTON": "Log out",
+    "LOGOUT_REASON_TITLE": "Logged out",
+    "MAX_SELECTED_RECEIPTS": "(max)",
+    "MESSAGE": "Message",
+    "MORE_ACTIONS": "More actions",
+    "MULTIPLE_ACCESS_TO_ABSENCE": "You can report absence for",
+    "MULTIPLE_ACCESS_TO_EXPENSE": "You can handle expense claims for",
+    "MULTIPLE_ACCESS_TO_PAYSLIPS": "You can see payslips for",
+    "MULTIPLE_ACCESS_TO_TIME": "You can report time for",
+    "MULTIPLE_ACCESS_TO_TIME_AND_ABSENCE": "You can report time or absence for",
+    "MULTIPLE_RECEIPTS": "%d receipts to send",
+    "MY_PAGE_PDF_EXPORT_NO_PAYSLIPS": "You have no payslips to export",
+    "MY_PAGE_TITLE": "My page",
+    "MY_PROFILE_TITLE": "My Profile",
+    "NEXT": "Next",
+    "NO": "No",
+    "NOT_REIMBURSED": "(Not reimbursed)",
+    "NO_ACCESS_TO_ABSENCE": "You do not have access to absence reporting",
+    "NO_ACCESS_TO_EXPENSE": "You do not have access to expense claims",
+    "NO_ACCESS_TO_PAYSLIPS": "You do not have access to payslips",
+    "NO_ACCESS_TO_TIME": "You do not have access to time reporting",
+    "NO_ACCESS_TO_TIME_AND_ABSENCE": "You do not have access to time or absence reporting",
+    "NO_ACTIVITY_VIEW_CALENDAR": "Your calendar events will be shown here.",
+    "NO_ACTIVITY_VIEW_CLAIMS": "The claims you create will appear here.",
+    "NO_ACTIVITY_VIEW_EXPENSES": "The receipts and mileages you add\nwill appear here.",
+    "NO_ACTIVITY_VIEW_PAYSLIPS": "Your payslips will be shown here.",
+    "NO_ACTIVITY_VIEW_RECEIPTS": "The receipts you add will appear here.",
+    "NO_FEATURES_TEXT": "Your user lacks the needed roles to use the app.",
+    "NO_INTERNET_CONNECTION_TITLE": "No internet connection",
+    "NSCameraUsageDescription": "The camera is used for taking photos of receipts",
+    "NSFaceIDUsageDescription": "Employee app will unlock using Face ID.",
+    "NSLocationWhenInUseUsageDescription": "Your location may be used when adding new mileages.",
+    "NSMicrophoneUsageDescription": "Audio is recorded to transcribe employee agent input. Audio recordings are discarded after transcription.",
+    "NSPhotoLibraryAddUsageDescription": "Download files to photo library",
+    "NSPhotoLibraryUsageDescription": "Upload and download files to/from photo library",
+    "NSSpeechRecognitionUsageDescription": "You can view a text transcription of your employee agent input in the app.",
+    "OFFLINE_RECEIPTS_MISSING_TEMPLATES": "Offline receipts are possible to use once the app has stored some data from this company. The next time you are online for this company, we will fetch this data. Then you can add receipts while offline.",
+    "OFFLINE_VIEW_CALENDAR": "Calendar events will be shown when you are online",
+    "OFFLINE_VIEW_CLAIMS": "Claims will be shown when you are online",
+    "OFFLINE_VIEW_PAYSLIPS": "Payslips will be shown when you are online",
+    "OFFLINE_VIEW_RECEIPTS": "Receipts will be shown when you are online",
+    "OK": "OK",
+    "ONE_RECEIPT": "%d receipt to send",
+    "OPTIONAL": "optional",
+    "ORDER_RECEIVED": "Order received",
+    "OTHER": "Other",
+    "PARENTAL_LEAVE_POST_SCREEN_HEADLINE": "%@ request sent",
+    "PARENTAL_LEAVE_POST_SCREEN_TEXT": "",
+    "PASSWORD_LABEL": "Password",
+    "PAYSLIP": "Payslip:",
+    "PAYSLIPS_NO_PAST_EVENTS_TEXT": "You have no past payslips",
+    "PAYSLIP_NET_AMOUNT_LABEL": "Net Amount",
+    "PAYSLIP_PAYMENT_DATE_LABEL": "Payment Date",
+    "PAYSLIP_TITLE": "Payslip",
+    "PERIOD_SENT": "Period sent",
+    "PLEASE_TRY_AGAIN_LATER": "Please try again later.",
+    "PLEASE_WAIT": "Please wait...",
+    "POPOVER_ADD_ABSENCE_BUTTON": "Add absence",
+    "PREVIEW_ALLOWANCE": "Viewing allowance details",
+    "PREVIEW_MILEAGE": "Viewing mileage details",
+    "PREVIEW_RECEIPT": "Viewing receipt details",
+    "QUANTITY": "quantity",
+    "QUICK_SELECTIONS": "Quick selections",
+    "RECEIPT": "Receipt",
+    "RECEIPTS_FAILED_TO_LOAD": "It is not possible to load receipts at the moment. Please try again later.",
+    "RECEIPTS_TITLE": "Receipts",
+    "RECEIPT_DETAILS_FAILED_TO_LOAD": "It is not possible to load this receipt at the moment. Please try again later.",
+    "RECEIPT_DETAIL_PHOTO_HAS_BEEN_INTERPRETED": "The photo has been interpreted, verify the information",
+    "RECEIPT_DETAIL_PROCESSING_RECEIPT_IMAGE": "Please wait while we are scanning ...",
+    "RECEIPT_INVALID_ATTACHMENT": "Invalid attachment",
+    "RECEIPT_IS_SAVED_OFFLINE_TEXT": "The expense will be available to send once the app is online.",
+    "RECEIPT_IS_SAVED_OFFLINE_TITLE": "The expense is saved offline",
+    "RECEIPT_UPLOAD_FAILED_MESSAGE": "We will automatically upload your expenses when connection is restored. If the problem persists, please contact your network administrator",
+    "RECEIPT_UPLOAD_FAILED_TITLE": "Connection failed",
+    "RECEIPT_UPLOAD_PENDING": "Upload pending",
+    "REPEAT_CODE_LABEL": "Repeat code",
+    "REVOKE": "Revoke",
+    "ROLE_ABSENCE": "absence",
+    "ROLE_EXPENSE": "expense",
+    "ROLE_PAYSLIP": "payslip",
+    "ROLE_TIME": "time",
+    "SAVE": "Save",
+    "SCAN_FINGERPRINT_LABEL": "Scan your fingerprint",
+    "SEARCH": "Search",
+    "SELECT_ALL": "Select all",
+    "SELECT_COMPANY": "Select company",
+    "SELECT_DATE": "Select date",
+    "SELECT_TIME": "Select time",
+    "SEND": "Send",
+    "SEND_FEEDBACK": "Send feedback",
+    "SERVER_ERROR_HEADLINE": "Server out of order",
+    "SERVER_ERROR_TEXT": "Server error. Please try again later.",
+    "SERVER_ERROR_TITLE": "Error",
+    "SERVICE_UNAVAILABLE_ACTION": "Retry",
+    "SERVICE_UNAVAILABLE_TEXT": "We could not log you in since the service is temporarily unavailable. Check http://status.visma.net/ for latest status.",
+    "SERVICE_UNAVAILABLE_TITLE": "Login failed",
+    "SETTINGS": "Settings",
+    "SICKNESS_REGISTRATION_HEADER": "One more question...",
+    "SICKNESS_REGISTRATION_TOGGLE": "I have a medical certificate",
+    "SICK_CHILD_POST_SCREEN_HEADLINE": "%@ registered",
+    "SICK_CHILD_POST_SCREEN_TEXT": "",
+    "SICK_POST_SCREEN_HEADLINE": "Sickness registered",
+    "SICK_POST_SCREEN_TEXT": "Get better!",
+    "SKIP": "Skip",
+    "START_PAGE_ALLOWANCES_TO_SEND": "You have unsent allowances",
+    "START_PAGE_APPROVED_VACATION": "Vacation has been approved for\n%@",
+    "START_PAGE_APPROVED_VACATIONS": "%@ vacations have been approved",
+    "START_PAGE_CLAIMS_APPROVED": "%@ claims have been approved",
+    "START_PAGE_CLAIMS_BUTTON": "Claims",
+    "START_PAGE_CLAIMS_CANCELED": "%@ claims have been canceled",
+    "START_PAGE_CLAIMS_DECLINED": "%@ claims have been declined",
+    "START_PAGE_CLAIMS_SALARY_BUTTON": "Claims & Salary",
+    "START_PAGE_CLAIMS_SENT": "%@ claims have been sent for approval",
+    "START_PAGE_CLAIMS_UNSENT": "You have %@ unsent claims",
+    "START_PAGE_CLAIM_APPROVED": "%@\nhas been approved",
+    "START_PAGE_CLAIM_CANCELED": "%@\nhas been canceled",
+    "START_PAGE_CLAIM_DECLINED": "%@\nhas been declined",
+    "START_PAGE_CLAIM_SENT": "%@\nis sent for approval",
+    "START_PAGE_CLAIM_UNSENT": "You have an unsent claim\n%@",
+    "START_PAGE_COULD_NOT_LOAD_DATA": "Could not load data about",
+    "START_PAGE_DECLINED_VACATION": "Vacation has been declined for\n%@",
+    "START_PAGE_DECLINED_VACATIONS": "%@ vacations have been declined",
+    "START_PAGE_ERROR_TEXT_ABSENCE": "absence",
+    "START_PAGE_ERROR_TEXT_CHECKIN": "check-in",
+    "START_PAGE_ERROR_TEXT_EXPENSE": "expense",
+    "START_PAGE_ERROR_TEXT_PAYSLIP": "payslip",
+    "START_PAGE_ERROR_TEXT_RECEIPTS": "receipts",
+    "START_PAGE_ERROR_TEXT_VACATION_BALANCES": "balances",
+    "START_PAGE_EXPENSES_TO_SEND": "You have unsent expenses",
+    "START_PAGE_FAILED_TO_LOAD": "Failed to load",
+    "START_PAGE_MILEAGES_TO_SEND": "You have unsent mileages",
+    "START_PAGE_NO_PAYSLIPS": "There are no payslips \npublished yet",
+    "START_PAGE_NO_RECENT_EVENTS": "No recent events",
+    "START_PAGE_NO_VACATION_DAYS_REMAINING": "No vacation days remaining",
+    "START_PAGE_ONGOING_PARENTAL_LEAVE": "Ongoing parental leave\n%@",
+    "START_PAGE_ONGOING_VACATION": "Ongoing vacation\n%@",
+    "START_PAGE_PAYSLIP_FUTURE": "Your next salary will be paid \n%@",
+    "START_PAGE_PAYSLIP_PAST": "Latest salary was paid \n%@",
+    "START_PAGE_RECEIPTS_CLAIMS_SENT": "All expenses and claims\n are sent!",
+    "START_PAGE_RECEIPTS_TO_SEND": "You have receipts to send",
+    "START_PAGE_REGISTER_ABSENCE_BUTTON": "Register absence",
+    "START_PAGE_REGISTER_TIME_OR_ABSENCE_BUTTON": "Register time or absence",
+    "START_PAGE_REPORT_TIME_BUTTON": "Report time",
+    "START_PAGE_TAP_TO_RETRY": "Tap to retry",
+    "START_PAGE_TITLE": "Start",
+    "START_PAGE_UPCOMING_PARENTAL_LEAVE": "Upcoming parental leave\n%@",
+    "START_PAGE_UPCOMING_VACATION": "Upcoming vacation\n%@",
+    "START_PAGE_UPCOMING_VACATIONS": "%@ vacations upcoming",
+    "START_PAGE_VACATION_DAYS_REMAINING": "You have %@\nvacation days remaining",
+    "START_TIME": "Start time",
+    "STATUS": "Status",
+    "STEP_OF_STEPS_LABEL": "Step %@ of %@",
+    "SUMMARY": "Summary",
+    "SUPPLEMENT_POST_SCREEN_HEADLINE": "%@ registered",
+    "SUPPORT_TITLE": "Support",
+    "TAB_CALENDAR": "Calendar",
+    "TAB_PAYSLIP": "Payslip",
+    "TIMESHEET_APPROVED": "Timesheet approved",
+    "TIMESHEET_CONFIRMED": "Timesheet confirmed",
+    "TIME_AND_ABSENCE": "Time & Absence:",
+    "TIME_AND_ABSENCE_TITLE": "Time & Absence",
+    "TIME_SHEET_SENT_POST_SCREEN_TEXT": "Your time sheet has been sent and will be reviewed by your manager.",
+    "UNEXPECTED_ERROR": "An unexpected error occurred",
+    "UNEXPECTED_ERROR_LOG": "%@ identifies this in our logs.",
+    "UPLOADING_TEXT": "Uploading",
+    "UPLOAD_IMAGE_OR_PDF": "Do you want to upload a receipt?",
+    "USERNAME_LABEL": "user.name@example.com",
+    "USE_FACE_ID": "Use Face ID",
+    "USE_TOUCH_ID": "Use Touch ID",
+    "VACATION_BALANCES_SCREEN_TITLE": "Vacation",
+    "VACATION_POST_SCREEN_HEADLINE": "Vacation request sent",
+    "VACATION_POST_SCREEN_TEXT": "",
+    "VIEW_LATEST_PAYSLIP": "View latest payslip",
+    "VIEW_LICENSES": "View third party licenses",
+    "VIEW_THIRD_PARTY_LICENSE": "View third party license",
+    "WARNING": "Warning",
+    "WELCOME": "Welcome",
+    "WELCOME_DIRECT_ACCESS_DESCRIPTION": "Always open without requiring password.",
+    "WELCOME_DIRECT_ACCESS_TITLE": "Direct access",
+    "WELCOME_FACE_ID_DESCRIPTION": "Use Face ID to open the app.",
+    "WELCOME_HOW_DO_YOU_WANT_TO_LOG_IN": "How do you want to log in to this app in the future?",
+    "WELCOME_LOGIN_SETTINGS": "Login settings",
+    "WELCOME_NEW_FEATURE_DESCRIPTION": "You can now upload receipts in PDF format.\n\nWhen adding a new receipt, simply click the gallery button and select to browse documents.",
+    "WELCOME_NEW_FEATURE_HEADING": "New: Upload of PDF files",
+    "WELCOME_SECURITY_CODE_DESCRIPTION": "Use Security code to open the app.",
+    "WELCOME_SECURITY_CODE_TITLE": "Security code",
+    "WELCOME_THANK_YOU": "Thank you for downloading this app. Before we get started, we need to ask you some quick questions about how you want the app set up.",
+    "WELCOME_THIS_CAN_BE_CHANGED": "This can be changed later, in settings.",
+    "WELCOME_TOUCH_ID_DESCRIPTION": "Use Touch ID to open the app.",
+    "WRONG_CREDENTIALS_ACTION": "Retry",
+    "WRONG_CREDENTIALS_TEXT": "Wrong user name or password. Your user may also lack the correct roles in Visma.net.",
+    "WRONG_CREDENTIALS_TITLE": "Login failed",
+    "WRONG_PASSCODE_TEXT": "Wrong passcode has been entered. We have reverted to using your Visma.net password for login. Enter it to continue.",
+    "WRONG_PASSCODE_TITLE": "Warning",
+    "YEARLY_DATA_LABEL": "Year-end reports",
+    "YES": "Yes",
+    "YOUR_EMPLOYERS": "Your employers",
+    "YOU_ARE_OFFLINE_MESSAGE": "Content can't be loaded.",
+    "YOU_ARE_OFFLINE_TITLE": "You are offline",
+    "YOU_HAVE_NO_INTERNET_CONNECTION": "You have no internet connection",
+    "absence.sickness.medicalCertificatePercentage": "Percent",
+    "absence.sickness.medicalCertificateToggle": "Medical certificate",
+    "absence.startPage.ongoingParentalLeave": "Ongoing parental leave",
+    "absence.startPage.ongoingVacation": "Ongoing vacation",
+    "absence.startPage.upcomingParentalLeave": "Upcoming parental leave",
+    "absence.startPage.upcomingVacation": "Upcoming vacation",
+    "absence.startPage.vacationApproved": "Vacation approved",
+    "absence.startPage.vacationDays": "Vacation days",
+    "absence.startPage.vacationRejected": "Vacation rejected",
+    "accountManager.account.addAccount": "Add account",
+    "accountManager.account.loggedIn": "Logged in",
+    "accountManager.account.remove": "Remove",
+    "accountManager.account.removeAccount": "Remove account",
+    "accountManager.account.removeAccountDescription": "Are you sure you want to remove the account?\n\nThis action will not delete the account but only remove it from the app's accounts list.",
+    "accountManager.account.sessionExpired": "Session expired",
+    "accountManager.account.sessionExpiredUserLoggedOut": "Your session has expired and you have been logged out. Please log in again.",
+    "accountManager.account.switchUserFailed": "Failed to switch user. Please log in again.",
+    "accountManager.accountList.useAnotherAccount": "Use another account",
+    "accountManager.accountManager": "Account manager",
+    "add.new.button.title": "Add new ...",
+    "add.new.expense.alert.title": "What do you want to add?",
+    "button.title.dontShowAgain": "Don't show again",
+    "button.title.showLater": "Show later",
+    "calendar.chatBot.button.cancelRegistration": "Cancel",
+    "calendar.chatBot.button.confirmRegistration": "Confirm registration",
+    "calendar.chatBot.button.editRegistration": "Edit registration",
+    "calendar.chatBot.calendarBotTitle": "Employee agent",
+    "calendar.chatBot.learnMore.aboutEmployeeAgentBody": "The Employee agent simplifies reporting your working hours and absences. Simply tell the bot what you want to report and confirm your entry. This feature is work-in-progress and as we continue to improve it, your feedback is invaluable to us. Use the feedback form below to send us your thoughts.",
+    "calendar.chatBot.learnMore.aboutEmployeeAgentTitle": "About Employee agent",
+    "calendar.chatBot.learnMore.examplesTitle": "Examples",
+    "calendar.chatBot.learnMore.howToUseEmployeeAgentBody": "To ensure accurate reporting, include all necessary details such as the event type and date in each entry. Here are a few examples to guide you:",
+    "calendar.chatBot.learnMore.howToUseEmployeeAgentTitle": "How to use Employee agent",
+    "calendar.chatBot.learnMoreText": "Learn more",
+    "calendar.chatBot.message.anythingElseQuestion": "Anything else I can do for you?",
+    "calendar.chatBot.message.confirmRegistration": "Confirm registration",
+    "calendar.chatBot.message.eventHasBeenDeleted": "The following event has been deleted:",
+    "calendar.chatBot.message.howCanIHelp": "How can I help you?",
+    "calendar.chatBot.message.initial": "I can help you with reporting your hours and absences. Simply write what it is you want me to report, which day and hours",
+    "calendar.chatBot.message.medicalCertificateRequired": "According to legislation you need to have a doctors certificate from %@\nYou can add a certificate by editing registration",
+    "calendar.chatBot.message.multipleEventsRequireExtraHandling": "Error: Several events require extra handling. Please try submitting one event at a time",
+    "calendar.chatBot.message.registerEventsQuestion": "Do you want me to register the following events for you?",
+    "calendar.chatBot.message.registrationSuccess": "I have successfully registered the following events:",
+    "calendar.chatBot.message.timeSheetSentForApproval": "Timesheet successfully sent for approval",
+    "calendar.chatBot.message.to": "to",
+    "calendar.chatBot.openEmployeeAgent": "Open Employee agent",
+    "calendar.chatBot.writeOrRecordText": "Write or record your message",
+    "calendar.filter.absence": "Absence",
+    "calendar.filter.attendance": "Attendance",
+    "calendar.filter.eventStyleIcons": "Icons",
+    "calendar.filter.eventStyleText": "Text",
+    "calendar.filter.eventsStyle": "Events style",
+    "calendar.filter.filterView": "Filter view",
+    "calendar.filter.hideWeekends": "Hide weekends",
+    "calendar.filter.roster": "Roster",
+    "calendar.filter.showWeekNumbers": "Show week numbers",
+    "calendar.filter.supplement": "Supplement",
+    "calendar.roster.scheduledHours": "Scheduled hours",
+    "calendar.selectMonthAndYear": "Select month and year",
+    "calendar.specialDay.name": "Holiday",
+    "calendar.time.checkin": "Check in",
+    "calendar.time.checkin.eventNotSaved": "Event not saved",
+    "calendar.time.checkin.savedEventThatSpansMultipleDays": "It is not allowed to save check in workshifts that span multiple days. Please edit timestamps before saving the event.",
+    "calendar.time.checkin.savedLessThanOneMinuteCheckinDuration": "Registrations that are less than 1 minute will not be saved.",
+    "calendar.time.checkin.unableToCheckin": "Unable to check in",
+    "calendar.time.checkin.unableToCheckout": "Unable to check out",
+    "calendar.time.checkin.unableToSaveEvent": "Unable to save event",
+    "calendar.time.checkout": "Check out",
+    "calendar.time.editCheckin": "Edit check in",
+    "calendar.time.futureRegistration": "Future registration",
+    "calendar.time.startPage.checkedIn": "Checked in",
+    "calendar.time.startPage.checkedInAt": "Checked in at: %@",
+    "calendar.time.startPage.checkinErrorChangeTimeSettings": "Please change back the time settings before checking out",
+    "calendar.time.startPage.checkinErrorEditEvent": "Edit event",
+    "calendar.time.startPage.checkinErrorEditTimestamps": "Unable to save event, please edit timestamps",
+    "calendar.time.startPage.startShift": "Check in to start a shift",
+    "calendar.time.startPage.startShiftTitle": "Start new shift",
+    "claims.expenses.claimID": "Claim ID: %@",
+    "claims.expenses.claimIDCopied": "Claim ID copied into your clipboard!",
+    "claims.expenses.header.allowances": "allowances",
+    "claims.expenses.header.mileages": "mileages",
+    "claims.expenses.header.receipts": "receipts",
+    "claims.expenses.paidByCompany": "Paid by company",
+    "copied.intoYour.clipboardText": "copied into your clipboard!",
+    "create.new.allowance.button.title": "Add new allowance",
+    "create.new.mileage.button.title": "Add new mileage",
+    "create.new.receipt.button.title": "Add new receipt",
+    "deactivate": "Deactivate",
+    "deactivate.message": "Turning off |%@ securityType| may make it easier for unwanted people to access your data.",
+    "documentsAndBenefits.benefitsTab": "Benefits",
+    "documentsAndBenefits.commonTab": "Common",
+    "documentsAndBenefits.emptyBenefitGroup": "The group does not contain any benefits",
+    "documentsAndBenefits.emptyCommonDocumentGroup": "The folder does not contain any documents",
+    "documentsAndBenefits.emptyPersonalDocumentGroup": "The folder does not contain any documents",
+    "documentsAndBenefits.emptyTitle": "You have no documents",
+    "documentsAndBenefits.linkToMoreInformation": "Link to more information",
+    "documentsAndBenefits.markAsRead": "Mark as read",
+    "documentsAndBenefits.markAsReadConfirmation": "Would you like to mark this document as read?",
+    "documentsAndBenefits.markAsReadError": "Unable to mark document as read.",
+    "documentsAndBenefits.maybeLater": "Maybe later",
+    "documentsAndBenefits.mustRead": "Must Read",
+    "documentsAndBenefits.newBadge": "New",
+    "documentsAndBenefits.open": "Open",
+    "documentsAndBenefits.personalDocumentDownloadError": "Failed to download document. Please try again.",
+    "documentsAndBenefits.personalTab": "Personal",
+    "documentsAndBenefits.readStatus": "Read",
+    "documentsAndBenefits.shouldRead": "Should Read",
+    "documentsAndBenefits.unreadStatus": "Unread",
+    "dottie.personalInformation.discardChanges": "Discard changes",
+    "dottie.personalInformation.unsavedChanges": "Unsaved changes",
+    "dottieNotifications.markAsRead": "Mark as read",
+    "dottieNotifications.providerName": "Dottie",
+    "dynamicForms.repeatableInstance.deleteConfirmation": "Are you sure you want to delete this item?",
+    "employeeList.emptyTitle": "No employees found",
+    "employeeList.quickFilter.showAll": "Show all",
+    "employeeList.searchPlaceholder": "Search employees",
+    "employeeList.title": "Employees",
+    "expense.addToClaim.error.message.failedToSaveMileage": "Mileage couldn't be saved before adding to claim, please try again later",
+    "expense.addToClaim.error.message.failedToSaveReceipt": "Receipt couldn't be saved before adding to claim, please try again later",
+    "expense.addToClaim.error.message.invalidFields": "Please review and correct the highlighted fields before continuing.",
+    "expense.addToClaim.error.message.missingRequiredFields": "All required fields have to be filled in before adding to claim",
+    "expense.addToClaim.error.title.unableToSaveMileage": "Unable to save mileage",
+    "expense.addToClaim.error.title.unableToSaveReceipt": "Unable to save receipt",
+    "expense.addToClaim.message.allowanceAddedToClaim": "Allowance added to claim",
+    "expense.addToClaim.message.mileageAddedToClaim": "Mileage added to claim",
+    "expense.addToClaim.message.receiptAddedToClaim": "Receipt added to claim",
+    "expense.allowance.accommodationType.mixed": "Mixed",
+    "expense.allowance.addAllowance": "Add allowance",
+    "expense.allowance.allowance": "Allowance",
+    "expense.allowance.deleteAllowance": "Delete allowance",
+    "expense.allowance.deleteAllowanceConfirmationMessage": "This will permanently remove the allowance from being used in any claim.",
+    "expense.allowance.deletingAllowance": "Deleting allowance...",
+    "expense.allowance.editTravels": "Edit travels",
+    "expense.allowance.explanation.accessibilityHint": "Opens information about travel allowances",
+    "expense.allowance.explanation.accessibilityLabel": "Select allowance group, tap for explanation",
+    "expense.allowance.explanation.companyPolicyBody": "Understanding your company's travel policy is important, so you know what expenses are covered and the limits for claims. Contact your admin to learn more about your company's travel policies.",
+    "expense.allowance.explanation.companyPolicyHeader": "Company policy",
+    "expense.allowance.explanation.readMore": "Read more about allowances",
+    "expense.allowance.explanation.regularDayTravelAccessibilityHint": "Opens information about regular day travel",
+    "expense.allowance.explanation.regularDayTravelAccessibilityLabel": "Select regular day travel, tap for explanation",
+    "expense.allowance.explanation.regularDayTravelBody": "For people who travel on a regular basis for their job, the \"regular day travel\" rule applies. This means fully taxable allowance will be calculated for you.\n\nIf the travel period changes to less than a day trip (6 hours) or becomes an overnight stay, the checkbox is removed and the allowance is calculated as tax-free.",
+    "expense.allowance.explanation.regularDayTravelTitle": "Regular day travel",
+    "expense.allowance.explanation.title": "Allowances",
+    "expense.allowance.explanation.whatIsAllowanceBody": "A travel allowance is money given by an employer to cover costs when an employee travels for work. This can include expenses like transportation, meals, and accommodation. Employees can claim a travel allowance when they need to travel away from their usual workplace to attend things like meetings, conferences, or training.",
+    "expense.allowance.explanation.whatIsAllowanceHeader": "What is allowance",
+    "expense.allowance.hotelSearch": "Hotel search",
+    "expense.allowance.hotelStayBeforeMinimumDate": "It is not allowed to select a date before %@.",
+    "expense.allowance.hotelStayOutsideLodgingPeriods": "This stay isn't on a night that requires lodging information. Change its start date or remove the stay.",
+    "expense.allowance.invalidSegment": "Segment start date and time the same or after segment end date and time.",
+    "expense.allowance.invalidTemplate": "It is not possible to load allowance at the moment. Please try again later.",
+    "expense.allowance.meal.breakfast": "Breakfast",
+    "expense.allowance.meal.dinner": "Dinner",
+    "expense.allowance.meal.lunch": "Lunch",
+    "expense.allowance.mealBenefitAmount": "Meal benefit",
+    "expense.allowance.mealDeduction": "Meal deduction",
+    "expense.allowance.mealMoney": "Meal money",
+    "expense.allowance.regularDayTravel": "Regular day travel",
+    "expense.allowance.saveAndNext": "Save and next",
+    "expense.allowance.savingAllowance": "Saving allowance...",
+    "expense.allowance.selectText": "Select",
+    "expense.allowance.send.one.allowance": "Send 1 allowance",
+    "expense.allowance.send.plural.allowances": "Send %@ allowances",
+    "expense.allowance.totalAllowance": "Total allowance",
+    "expense.allowance.travelPeriodsGaps": "Trip has gaps. They are not allowed for your country.",
+    "expense.allowance.travelPeriodsOverlapping": "Travel periods are overlapping. Please adjust your travel periods.",
+    "expense.allowance.travelStartAfterEndDate": "Segment start date and time the same or after segment end date and time.",
+    "expense.allowance.travels": "Travels",
+    "expense.attachments.addMore": "Add more",
+    "expense.attachments.attachment": "Attachment",
+    "expense.attachments.closeSheet": "Close attachments sheet",
+    "expense.attachments.downloadAttachment": "Download attachment",
+    "expense.attachments.removeAttachment": "Remove attached file",
+    "expense.attachments.title": "Attachments",
+    "expense.button.addToClaim": "Add to claim",
+    "expense.button.saveChanges": "Save changes",
+    "expense.button.saveTo": "Save to",
+    "expense.button.sendForApproval": "Send for approval",
+    "expense.claim.registeredBy": "Registered by",
+    "expense.claims.transactionChanged": "Transaction changed",
+    "expense.claims.transactionChanged.confirmation": "Got it",
+    "expense.climateReports.aboutEmissionsSummary": "\n**About emissions summary**\n   \nIn this chart we're showing you this years amount of kilograms that are related to your expenses, mileages and travels.\n    \nThe numbers are based on all of your approved claims.\n    \nWe also show you the increase or decrease percentage compared to the same period last year.\n    \nWhy do we show this? In some cases, your company might want to reduce its amount of emissions. Information like this might give valuable insight to help with this reduction.\n    \n**How do we calculate these emissions?**\n    \nOur emissions calculator uses a large database of emissions data from our partners to estimate your emissions by using the type and amount.\nIf you're interested you can read more about our partners by following these links.",
+    "expense.climateReports.emissionsThisYear": "Your emissions this year",
+    "expense.climateReports.emptyReportsPlaceholder": "Your emissions summary will appear here when a claim has been approved",
+    "expense.climateReports.howDoWeCalculateEmissions": "How do we calculate emissions",
+    "expense.climateReports.limitations": "Limitations",
+    "expense.climateReports.limitationsDescription": "The emissions report represents a significant step towards promoting sustainability and eco-conscious decision-making. However, it's important to acknowledge that this feature does come with certain limitations.\n\nWe do not support calculating emissions for custom mileage types, snowmobiles or ATVs.\n\nWe do not calculate emissions for special allowances (e.g. compensation abroad), tax deductions (e.g. fuel benefits), or custom allowances.",
+    "expense.climateReports.topEmissionsPerExpenseType": "Top emissions per expense type",
+    "expense.closedForRegistration": "The company has been closed for claim registration.",
+    "expense.closedForRegistrationWarning": "Please Note! The company has been closed for claim registration - contact company admin for details.",
+    "expense.creditCard.awaitingClearance": "Awaiting clearance",
+    "expense.creditCard.creditCard": "Credit card",
+    "expense.creditCard.creditCardTransaction": "Credit card transaction",
+    "expense.creditCard.creditCardTransactionAuthorized": "Credit card transaction - authorized",
+    "expense.creditCard.send.one.transaction": "Send 1 transaction",
+    "expense.creditCard.send.plural.transactions": "Send %@ transactions",
+    "expense.creditcard.details.unavailable": "We couldn't load the latest credit card details. Please connect to the internet and try again.",
+    "expense.expenseType.description.accessibilityLabel": "Show description",
+    "expense.expenses.co2Emissions.co2eEmissions": "Emissions",
+    "expense.expenses.costUnits.allCostUnits": "All cost units",
+    "expense.expenses.costUnits.assignCostUnits": "Assign cost units",
+    "expense.expenses.costUnits.costAllocation": "Cost allocation",
+    "expense.expenses.costUnits.emptyCostUnit": "(empty)",
+    "expense.expenses.costUnits.selectCostUnit": "Select unit",
+    "expense.expenses.costUnits.splitCost": "Split cost",
+    "expense.expenses.costUnits.splitCostMessage": "Splitting cost units is not supported in the Employee app, please visit Visma.net Expense to change cost units",
+    "expense.expenses.discardChanges": "Discard changes",
+    "expense.expenses.discardChangesQuestion": "Are you sure you want to discard all changes?",
+    "expense.expenses.discardNewMileage": "Discard mileage",
+    "expense.expenses.discardNewMileageQuestion": "Are you sure you want to discard this new mileage?",
+    "expense.expenses.discardNewReceipt": "Discard receipt",
+    "expense.expenses.discardNewReceiptQuestion": "Are you sure you want to discard this new receipt?",
+    "expense.expenses.failedToAddExpensesToClaim": "There are some issues with your expenses. Click on them to see the details.",
+    "expense.expenses.projectAccounting.assignProjectAndTask": "Assign project and task",
+    "expense.expenses.projectAccounting.projectAccounting": "Project accounting",
+    "expense.expenses.projectAccounting.reinvoiceOnProject.no": "No",
+    "expense.expenses.projectAccounting.reinvoiceOnProject.yes": "Yes",
+    "expense.expenses.projectAccounting.selectProject": "Select project",
+    "expense.expenses.projectAccounting.selectTask": "Select task",
+    "expense.mileage.calculatingRoadTollAmount": "Calculating road toll amount",
+    "expense.mileage.cell.subtitle": "Mileage %@",
+    "expense.mileage.confirmReorderingMessage": "Please confirm reordering of the route by pressing \"Done\" before proceeding.",
+    "expense.mileage.deleteFailed": "Failed to delete mileage.",
+    "expense.mileage.deleteMileage": "Delete mileage",
+    "expense.mileage.deleteMileageConfirmationMessage": "This will permanently remove the mileage from being used in any claim.",
+    "expense.mileage.deletingMileage": "Deleting mileage...",
+    "expense.mileage.loadFailed": "Failed to load mileage.",
+    "expense.mileage.noActiveMileageTypesMessage": "You can't create a new mileage expense since no mileage types are active for your user.\n\nIn order to be able to use this function, please contact your system administrator.",
+    "expense.mileage.places.addDestination": "add destination",
+    "expense.mileage.places.addDestinationLimitReached": "Maximum amount of destinations reached",
+    "expense.mileage.places.address": "Address",
+    "expense.mileage.places.approximateAddress": "Address is approximate",
+    "expense.mileage.places.calculateDistance": "Calculate distance",
+    "expense.mileage.places.couldNotFindRoute": "Could not find a route, please select another destination.",
+    "expense.mileage.places.ferryDistanceNotIncluded": "Ferry kilometers removed from total distance",
+    "expense.mileage.places.frequently.used": "Frequently Used",
+    "expense.mileage.places.recent": "Recent",
+    "expense.mileage.places.searchResults": "Search Results",
+    "expense.mileage.places.selectAnotherDestination": "Select another destination",
+    "expense.mileage.places.selectDestination": "Select destination",
+    "expense.mileage.places.selectOnMapOrSearch": "Select on map or search for location",
+    "expense.mileage.places.selectStartPoint": "Select starting point",
+    "expense.mileage.places.unnamedRoad": "Unnamed Road",
+    "expense.mileage.places.useDestination": "Use destination",
+    "expense.mileage.places.useStartPoint": "Use starting point",
+    "expense.mileage.places.viewMap": "View map",
+    "expense.mileage.returnTrip": "Return trip",
+    "expense.mileage.route.overview": "Route overview",
+    "expense.mileage.saveFailed": "Failed to save mileage.",
+    "expense.mileage.savingMileage": "Saving mileage...",
+    "expense.mileage.selectFuel": "Select fuel",
+    "expense.mileage.selectVehicle": "Select vehicle",
+    "expense.mileage.send.one.mileage": "Send 1 mileage",
+    "expense.mileage.send.plural.mileages": "Send %@ mileages",
+    "expense.mileage.unableToCalculateRoadToll": "Unable to calculate road toll",
+    "expense.mileage.units.abbreviatedKilometer": "km",
+    "expense.receipts.allCurrencies": "All currencies",
+    "expense.receipts.allExpenseTypes": "All expense types",
+    "expense.receipts.bulkSend.deviationError.message": "Some receipts have validation errors and cannot be sent. Please review and correct them before sending.",
+    "expense.receipts.bulkSend.deviationError.title": "Cannot send receipts",
+    "expense.receipts.claimsFailedToLoad": "We couldn't load your claims. Please try again.",
+    "expense.receipts.delete.creditCardRowConfirmationMessage": "This will permanently remove the credit card transaction from being used in any claim.",
+    "expense.receipts.delete.deletingCreditCardTransaction": "Deleting credit card transaction...",
+    "expense.receipts.failedToDeleteAttachment": "Failed to delete attachment. Please try again.",
+    "expense.receipts.failedToSaveReceiptToFiles": "Failed to save receipt to Files.",
+    "expense.receipts.failedToSaveReceiptToPhotos": "Failed to save receipt image to Photos.",
+    "expense.receipts.failedToSaveReceiptToPhotosMessage": "Make sure the app has access to add photos in device settings.",
+    "expense.receipts.frequentlyUsedCurrencies": "Frequently used",
+    "expense.receipts.kilometers.from": "From",
+    "expense.receipts.kilometers.fromToPlaceholder": "Enter a location",
+    "expense.receipts.kilometers.returnTrip": "Return trip",
+    "expense.receipts.kilometers.to": "To",
+    "expense.receipts.merge.confirmationAlert.mergeButton": "Merge",
+    "expense.receipts.merge.confirmationAlert.message": "You are about to merge two items into one. After merging, you will not be able to undo these changes.",
+    "expense.receipts.merge.confirmationAlert.title": "Merge items",
+    "expense.receipts.merge.creditCardTransactionLinked": "Credit card transaction linked",
+    "expense.receipts.merge.failed": "Failed to merge the expenses.",
+    "expense.receipts.merge.infoAlert.message": "Select one credit card transaction and one receipt to merge them.",
+    "expense.receipts.merge.merging": "Merging…",
+    "expense.receipts.merge.noCandidates": "There are no items to merge with.",
+    "expense.receipts.merge.similarity.exact": "Exact match",
+    "expense.receipts.merge.similarity.possible": "Possible match",
+    "expense.receipts.merge.withCreditCardTransactionTitle": "Merge with credit card transaction",
+    "expense.receipts.merge.withReceiptTitle": "Merge with receipt",
+    "expense.receipts.quickFilter.mail": "Mail",
+    "expense.receipts.quickFilter.mileage": "Mileage",
+    "expense.receipts.receiptSavedToFiles": "Receipt has been saved to Files.",
+    "expense.receipts.receiptSavedToPhotos": "Receipt image has been saved to Photos.",
+    "expense.receipts.requiresAttention": "Requires your attention",
+    "expense.receipts.selectCurrency": "Select currency",
+    "expense.receipts.selectExpenseType": "Select expense type",
+    "expense.receipts.selectFlightDuration": "Select flight duration (HH:MM)",
+    "expense.receipts.selectFuelType": "Select fuel type",
+    "expense.receipts.uploadFailedGeneric": "Upload failed",
+    "expense.segment.claims": "Claims",
+    "expense.segment.expenses": "Expenses",
+    "expense.startPage.claimApproved": "Claim approved",
+    "expense.startPage.claimPending": "Claim pending",
+    "expense.startPage.claimRejected": "Claim rejected",
+    "expense.startPage.claimsApproved": "Claims approved",
+    "expense.startPage.claimsPending": "Claims pending",
+    "expense.startPage.claimsRejected": "Claims rejected",
+    "expense.startPage.expenseCard": "Expense card",
+    "expense.startPage.unsentExpenses": "Unsent expenses",
+    "expense.submitForApproval.confirmationMessage": "Are you sure you want to send a single expense for approval?\n\nIt's recommended to send \"related\" expenses together in the same claim.",
+    "expense.submitForApproval.confirmationTitle": "Send single expense",
+    "expense.submitForApproval.error": "Something went wrong when trying to submit your expense for approval. Please try again later.",
+    "expense.submitForApproval.sendAndDontShowAgain": "Send & don't show again",
+    "expense.submitForApproval.submitting": "Adding to new claim and sending for approval",
+    "expense.templates.unavailable": "This option isn't available right now.\n\nPlease try again later.",
+    "expenses.add.items": "Add receipts and mileages",
+    "expenses.add.to.claim.title": "Add expenses to",
+    "expenses.amount.to.be.calculated": "The total amount will be calculated once the expenses have been added to a claim",
+    "expenses.select.existing.items": "Select existing expenses",
+    "expenses.send.plural.items": "Send %@ items",
+    "expenses.without.date.title": "Expenses without date",
+    "extension.share.alert.message.loggedOut": "Please open the Employee app and ensure that you're logged in to use this feature.",
+    "extension.share.alert.message.missingTemplates": "Receipts can be shared once the app has stored some data from this company. The next time you open the app for this company, we will fetch this data.",
+    "extension.share.alert.message.receiptSent": "Please open the app to view the receipt and complete the claim.",
+    "extension.share.alert.message.roleMissing": "You are lacking the correct role in Employee app to share a receipt.",
+    "extension.share.alert.message.selectEmployer": "It seems like you have multiple employers. Please select which one you want to send this receipt to.",
+    "extension.share.alert.title.loggedOut": "Are you logged in?",
+    "extension.share.alert.title.missingTemplates": "Data missing",
+    "extension.share.alert.title.receiptSent": "Receipt shared to Employee app",
+    "extension.share.alert.title.roleMissing": "Role missing",
+    "extension.share.alert.title.selectEmployer": "Select employer",
+    "extension.share.title.shareToEmployee": "Share to Employee",
+    "inboxMessages.noActivityInbox": "No messages received in the last 90 days",
+    "inboxMessages.offlineText": "Inbox messages will be shown when you are online",
+    "inboxMessages.providerLoadFailed": "Failed to load messages from %@",
+    "inboxMessages.title": "Messages",
+    "loading": "Loading",
+    "newFeatures.button.title.dontShowAgain": "Don't show again",
+    "newFeatures.button.title.learnMore": "Learn more",
+    "newFeatures.button.title.openEmployeeAgent": "Open Employee agent",
+    "newFeatures.button.title.tryNewFeature": "Try new feature",
+    "newFeatures.calendarbot.title": "Introducing our new Employee agent!",
+    "newFeatures.calendarbot.verboseSubtitle": "Exciting News! We're thrilled to introduce our new Employee agent! This new feature is designed to make reporting working hours and absences quicker and easier than ever. Simply tell the Employee agent what to report and let it handle your entries. It is time-saving and straightforward.\n\nTry it out today to see how it can streamline your workflow and enhance your productivity!",
+    "open.with.app": "Open app with %@",
+    "payslip.accessibilityLabel.notSelected": "not selected",
+    "payslip.accessibilityLabel.selected": "selected",
+    "payslip.button.applyFilter": "Apply filter",
+    "payslip.button.selectCompanies": "Select companies",
+    "payslip.startPage.salary": "Salary",
+    "payslips.chatbot.disclaimer": "AI responses may be inaccurate. Always verify important information.",
+    "payslips.chatbot.feedback.detailsPlaceholder": "Share details (optional)",
+    "payslips.chatbot.feedback.disclaimer": "Submitting this report will send your conversation to Visma Employee to help improve our models.",
+    "payslips.chatbot.feedback.issueIncomplete": "Incomplete",
+    "payslips.chatbot.feedback.issueIncorrect": "Incorrect",
+    "payslips.chatbot.feedback.issueLabel": "Issue",
+    "payslips.chatbot.feedback.issueNone": "None",
+    "payslips.chatbot.feedback.issueNotWhatIAskedFor": "Not what I asked for",
+    "payslips.chatbot.feedback.subtitle": "What could have been better?",
+    "payslips.chatbot.feedback.thankYou": "Thank you for your feedback!",
+    "payslips.chatbot.feedback.title": "Feedback",
+    "payslips.chatbot.hereAreCoupleSuggestions": "Here are a couple of suggestions:",
+    "payslips.chatbot.openChatbot.accessibilityLabel": "Open payslip agent",
+    "payslips.chatbot.openSummary.accessibilityLabel": "Show payslips summary",
+    "payslips.chatbot.title": "Payslip agent",
+    "payslips.whyNoPayslips": "Why can't I see any payslips?",
+    "payslips.yearEndReport": "Year-end report",
+    "payslips.yearEndReports.noReports": "You have no year-end reports",
+    "pincode.page.backupPin": "Choose a backup PIN",
+    "pincode.page.backupPinInfo": "If %@ fails",
+    "pincode.page.repeatBackupPin": "Repeat backup PIN",
+    "pincode.page.retry.biometric.or.pin": "Retry biometrics or PIN",
+    "remoteControl.openAppStore": "Open App Store",
+    "remoteControl.openSettings": "Software update can be found under Settings > General > Software Update",
+    "security.greeting.goodafternoon": "Good afternoon",
+    "security.greeting.goodevening": "Good evening",
+    "security.greeting.goodmorning": "Good morning",
+    "security.information.label": "Having %@ activated keeps your information safe without having to log out.",
+    "settings.allowances": "Allowances",
+    "settings.appVersion": "App version",
+    "settings.appearance.appearanceLabel": "Appearance",
+    "settings.appearance.apperanceStyleDark": "Dark",
+    "settings.appearance.apperanceStyleLight": "Light",
+    "settings.appearance.apperanceStyleSystem": "System",
+    "settings.application": "Application",
+    "settings.emissionsSummary": "Emissions summary",
+    "settings.language.leaveAppAndOpenSettingsDescription": "To change the language, please update preferred language settings for this app.",
+    "settings.language.leaveAppAndOpenSettingsTitle": "Change language",
+    "settings.language.openSettings": "Open settings",
+    "settings.osVersion": "OS version",
+    "settings.personalInformation.addContactPersonOrChild": "Add contact person or a child",
+    "settings.personalInformation.address": "Address",
+    "settings.personalInformation.address.city": "City",
+    "settings.personalInformation.address.country": "Country",
+    "settings.personalInformation.address.selectCountry": "Select country",
+    "settings.personalInformation.address.street": "Street",
+    "settings.personalInformation.address.zipCode": "Zipcode",
+    "settings.personalInformation.bankAccount": "Bank account",
+    "settings.personalInformation.bankAccountAndTaxes": "Bank account and taxes",
+    "settings.personalInformation.bankAndTaxesInfoTooltipText": "For changes in your tax deductions, please contact your local Payroll administrator.",
+    "settings.personalInformation.business": "Business",
+    "settings.personalInformation.button.cancel": "Cancel",
+    "settings.personalInformation.button.saveChanges": "Save changes",
+    "settings.personalInformation.contactDetails.chronicallyIllFromDate": "Chronically ill from date",
+    "settings.personalInformation.contactDetails.chronicallyIllOrDisabledChild": "Chronically, long-term ill or disabled child",
+    "settings.personalInformation.contactDetails.chronicallyIllValidToDate": "Chronically ill valid to date",
+    "settings.personalInformation.contactDetails.contactPersonAndChildren": "Contact person and children",
+    "settings.personalInformation.contactDetails.dateOfBirth": "Date of birth",
+    "settings.personalInformation.contactDetails.firstName": "First name",
+    "settings.personalInformation.contactDetails.lastName": "Last name",
+    "settings.personalInformation.contactDetails.mainContact": "Main contact",
+    "settings.personalInformation.contactDetails.soleCustody": "Sole custody",
+    "settings.personalInformation.contactDetails.typeOfRelative": "Type of relative",
+    "settings.personalInformation.emailInfoTooltipText": "To change your email, please go to home.visma.net or contact your local Payroll administrator.",
+    "settings.personalInformation.emergencyContactsAndChildren": "EMERGENCY CONTACTS AND CHILDREN",
+    "settings.personalInformation.employeeInformation": "Employee information",
+    "settings.personalInformation.error.updatePendingMessage": "Updating your information is taking a bit longer than usual. Update is still pending and you can close this page.",
+    "settings.personalInformation.error.updatePendingTitle": "Update pending",
+    "settings.personalInformation.payslipLanguagePDF": "Payslip Language (PDF)",
+    "settings.personalInformation.personalInformation": "Personal information",
+    "settings.personalInformation.phoneNumber": "Phone number",
+    "settings.personalInformation.privateText": "Private",
+    "settings.personalInformation.taxPercentage": "Tax percentage",
+    "settings.personalInformation.taxTable": "Tax table",
+    "settings.personal_information.dottie.choose_from_library": "Choose from Library",
+    "settings.personal_information.dottie.crop_image": "Crop",
+    "settings.personal_information.dottie.delete_profile_picture": "Delete",
+    "settings.personal_information.dottie.delete_profile_picture_confirmation": "Delete profile picture?",
+    "settings.personal_information.dottie.profile_image_invalid": "The selected image could not be processed",
+    "settings.personal_information.dottie.profile_picture": "Profile Picture",
+    "settings.personal_information.dottie.select_image": "Select Image",
+    "settings.personal_information.dottie.select_image_source": "Select Image Source",
+    "settings.personal_information.dottie.take_photo": "Take Photo",
+    "settings.termsOfService": "Terms of Service",
+    "settings.termsOfService.dataUsageDescription": "Note that using services from Visma may involve the processing of your personal data. For more information:",
+    "settings.termsOfService.dataUsageLink": "Read more about Data Usage",
+    "settings.termsOfService.termsOfServiceLink": "Read more about Terms of Service",
+    "settings.termsOfService.userTermsDescription": "Please note that you are responsible for your account information, including your device, its location and connection of any other devices you use. Keep your password or other login and security credentials confidential, do not share your user account with others or use it in a manner inconsistent with the Terms of Service:",
+    "settings.termsOfService.userTermsTitle": "User terms",
+    "settings.termsOfService.welcomeTitle": "Welcome to Visma",
+    "settings.testlab": "TestLab",
+    "settings.userEmail": "Email",
+    "show.pdf": "Show PDF",
+    "show.summary": "Show summary",
+    "speechRecognizer.error.initializationFailed": "Can't initialize speech recognition",
+    "speechRecognizer.error.notAuthorizedToRecognize": "Not authorized to recognize speech",
+    "speechRecognizer.error.notPermittedToRecord": "Not permitted to record audio",
+    "speechRecognizer.error.recognizerIsUnavailable": "Speech recognition services not available",
+    "startpage.cards.allExpensesSentTitle": "All expenses sent",
+    "startpage.cards.claims.attentionRequired": "%@ claims require your attention",
+    "startpage.cards.claims.attentionRequiredTitle": "Attention required",
+    "startpage.cards.claims.claimAutomaticallyReturned": "Claim automatically returned",
+    "startpage.cards.claims.errorSendingToApproval": "Error occurred when sending for approval",
+    "startpage.cards.claims.expenseAmountChanged": "Expense amount changed",
+    "startpage.cards.combinedExpenses.allowance": "allowance",
+    "startpage.cards.combinedExpenses.allowances": "allowances",
+    "startpage.cards.combinedExpenses.creditCardTransaction": "credit card transaction",
+    "startpage.cards.combinedExpenses.creditCardTransactions": "credit card transactions",
+    "startpage.cards.combinedExpenses.mileage": "mileage",
+    "startpage.cards.combinedExpenses.mileages": "mileages",
+    "startpage.cards.combinedExpenses.receipt": "receipt",
+    "startpage.cards.combinedExpenses.receipts": "receipts",
+    "startpage.cards.creditCardTransactionsToSend": "You have credit card transactions to send",
+    "startpage.cards.importantInformation": "Important information",
+    "startpage.cards.noEventsTitle": "No events",
+    "survey.feedback.thankYou": "Thank you for your feedback!",
+    "surveys.button.dismissCard": "Dismiss card",
+    "surveys.button.openSurvey": "Open survey",
+    "textfield.with.voiceInput.isNotRecording": "without transcription",
+    "textfield.with.voiceInput.isRecording": "with transcription",
+    "userProfile.documentsAndBenefits": "Documents and benefits",
+    "userProfile.emissionsSummary": "Emissions summary",
+    "userProfile.employeeList": "Employee list",
+    "userProfile.myProfile": "My profile",
+    "userProfile.signOut": "Sign out",
+    "userProfile.switchAccount": "Switch account",
+    "welcome.page.biometrics.activated": "%@ activated",
+    "welcome.page.biometrics.activatedInfo": "%@ was successfully activated!\n\nAlthough we highly recommend keeping it active, you may change its state in settings.",
+    "welcome.page.biometrics.activation": "%@ activation",
+    "welcome.page.biometrics.activationInfo": "%@ keeps your information secure and accessible without having to provide your login credentials all the time.\n\nActivation only takes a moment.",
+    "welcome.page.biometrics.faceID": "Face ID",
+    "welcome.page.biometrics.pinCode": "PIN code",
+    "welcome.page.biometrics.touchID": "Touch ID",
+    "welcome.page.button.continue": "Continue",
+    "welcome.page.button.later": "Later",
+    "wescan.edit.button.next": "Next",
+    "wescan.edit.title": "Edit Crop",
+    "wescan.review.title": "Review",
+    "wescan.scanning.auto": "Auto",
+    "wescan.scanning.cancel": "Cancel",
+    "wescan.scanning.manual": "Manual"
+  }
+}

@@ -1,0 +1,883 @@
+{
+  "program": "work-app",
+  "version": 1,
+  "generated": "2026-09-28T18:42:35+00:00",
+  "items": [
+    {
+      "id": "PLT-001",
+      "area": "identity",
+      "name": "Bundle / application ids",
+      "apps": {
+        "vmm": "com.visma.vmm, com.visma.vmm.VmmNotificationContent, com.visma.vmm.VmmNotificationService",
+        "me-ios": "com.visma.Employee, com.visma.Employee.expense-share-extension, com.visma.vme.payslip, com.visma.vme.payslip.expense-share-extension"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-002",
+      "area": "identity",
+      "name": "Minimum OS",
+      "apps": {
+        "vmm": "ios 15.1, android 24",
+        "me-ios": "ios 18.0"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-003",
+      "area": "push",
+      "name": "Push notifications",
+      "apps": {
+        "vmm": "yes",
+        "me-ios": "yes"
+      },
+      "newApp": "required",
+      "decision": null
+    },
+    {
+      "id": "PLT-079",
+      "area": "push",
+      "name": "Notification categories and channels",
+      "apps": {
+        "vmm": "channel:high-priority, category:ANNIVERSARY_CATEGORY, category:DIALOGUE_CATEGORY, category:APPROVAL_INFO_CATEGORY, category:APPROVAL_ACTIONS_APPROVE_REJECT_CATEGORY, category:APPROVAL_ACTIONS_APPROVE_ONLY_CATEGORY, category:APPROVAL_ACTIONS_REJECT_ONLY_CATEGORY, channel:fcm_fallback_notification_channel"
+      },
+      "newApp": "required",
+      "decision": null
+    },
+    {
+      "id": "PLT-004",
+      "area": "links",
+      "name": "Universal / app links",
+      "apps": {
+        "vmm": "applinks:visma-manager.web.app, webcredentials:visma-manager.web.app, visma-manager.web.app",
+        "me-ios": "applinks:static.mobileemployee.visma.net, webcredentials:static.mobileemployee.visma.net, applinks:static.mobileemployee.stag.visma.net, webcredentials:static.mobileemployee.stag.visma.net"
+      },
+      "newApp": "required",
+      "decision": null
+    },
+    {
+      "id": "PLT-005",
+      "area": "links",
+      "name": "Custom URL schemes",
+      "apps": {
+        "vmm": "vismamanager",
+        "me-ios": "vismame, vismamedev"
+      },
+      "newApp": "required",
+      "decision": null
+    },
+    {
+      "id": "PLT-006",
+      "area": "extensions",
+      "name": "App extension: notification-content",
+      "apps": {
+        "vmm": "ios/VmmNotificationContent/Info.plist"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-007",
+      "area": "extensions",
+      "name": "App extension: notification-service",
+      "apps": {
+        "vmm": "ios/VmmNotificationService/Info.plist"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-008",
+      "area": "extensions",
+      "name": "App extension: share",
+      "apps": {
+        "me-ios": "ExpenseShareExtension/Info.plist"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-009",
+      "area": "background",
+      "name": "Background modes",
+      "apps": {
+        "vmm": "fetch, processing, remote-notification"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-010",
+      "area": "permissions",
+      "name": "Permission: NSCalendarsFullAccessUsageDescription",
+      "apps": {
+        "vmm": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-011",
+      "area": "permissions",
+      "name": "Permission: NSCalendarsUsageDescription",
+      "apps": {
+        "vmm": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-012",
+      "area": "permissions",
+      "name": "Permission: NSCameraUsageDescription",
+      "apps": {
+        "me-ios": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-013",
+      "area": "permissions",
+      "name": "Permission: NSFaceIDUsageDescription",
+      "apps": {
+        "me-ios": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-014",
+      "area": "permissions",
+      "name": "Permission: NSLocationWhenInUseUsageDescription",
+      "apps": {
+        "me-ios": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-015",
+      "area": "permissions",
+      "name": "Permission: NSMicrophoneUsageDescription",
+      "apps": {
+        "vmm": "yes",
+        "me-ios": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-016",
+      "area": "permissions",
+      "name": "Permission: NSPhotoLibraryAddUsageDescription",
+      "apps": {
+        "me-ios": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-017",
+      "area": "permissions",
+      "name": "Permission: NSPhotoLibraryUsageDescription",
+      "apps": {
+        "vmm": "yes",
+        "me-ios": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-018",
+      "area": "permissions",
+      "name": "Permission: NSSpeechRecognitionUsageDescription",
+      "apps": {
+        "vmm": "yes",
+        "me-ios": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-019",
+      "area": "permissions",
+      "name": "Permission: android.permission.ACCESS_NETWORK_STATE",
+      "apps": {
+        "vmm": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-020",
+      "area": "permissions",
+      "name": "Permission: android.permission.BROADCAST_CLOSE_SYSTEM_DIALOGS",
+      "apps": {
+        "vmm": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-021",
+      "area": "permissions",
+      "name": "Permission: android.permission.INTERNET",
+      "apps": {
+        "vmm": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-022",
+      "area": "permissions",
+      "name": "Permission: android.permission.NEARBY_WIFI_DEVICES",
+      "apps": {
+        "vmm": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-023",
+      "area": "permissions",
+      "name": "Permission: android.permission.POST_NOTIFICATIONS",
+      "apps": {
+        "vmm": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-024",
+      "area": "permissions",
+      "name": "Permission: android.permission.QUERY_ALL_PACKAGES",
+      "apps": {
+        "vmm": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-025",
+      "area": "permissions",
+      "name": "Permission: android.permission.READ_CALENDAR",
+      "apps": {
+        "vmm": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-026",
+      "area": "permissions",
+      "name": "Permission: android.permission.RECORD_AUDIO",
+      "apps": {
+        "vmm": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-027",
+      "area": "permissions",
+      "name": "Permission: android.permission.USE_FINGERPRINT",
+      "apps": {
+        "vmm": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-028",
+      "area": "permissions",
+      "name": "Permission: android.permission.VIBRATE",
+      "apps": {
+        "vmm": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-029",
+      "area": "permissions",
+      "name": "Permission: android.permission.WAKE_LOCK",
+      "apps": {
+        "vmm": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-030",
+      "area": "permissions",
+      "name": "Permission: android.permission.WRITE_CALENDAR",
+      "apps": {
+        "vmm": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-031",
+      "area": "permissions",
+      "name": "Permission: android.permission.WRITE_EXTERNAL_STORAGE",
+      "apps": {
+        "vmm": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-032",
+      "area": "permissions",
+      "name": "Permission: com.google.android.c2dm.permission.RECEIVE",
+      "apps": {
+        "vmm": "yes"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-033",
+      "area": "sharing",
+      "name": "App groups",
+      "apps": {
+        "vmm": "group.com.visma.vmm",
+        "me-ios": "group.com.visma.vme.payslip.shared, group.com.visma.Employee.shared"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-034",
+      "area": "security",
+      "name": "ATS exceptions / cleartext traffic",
+      "apps": {
+        "vmm": "NSAllowsLocalNetworking (ios/vmm/Info.plist)"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-035",
+      "area": "privacy",
+      "name": "Privacy manifest",
+      "apps": {
+        "vmm": "ios/PrivacyInfo.xcprivacy",
+        "me-ios": "Employee/PrivacyInfo.xcprivacy, ExpenseShareExtension/PrivacyInfo.xcprivacy"
+      },
+      "newApp": "required",
+      "decision": null
+    },
+    {
+      "id": "PLT-036",
+      "area": "flags",
+      "name": "Remote-config flags",
+      "apps": {
+        "vmm": "15 keys"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-037",
+      "area": "analytics",
+      "name": "Firebase Analytics",
+      "apps": {
+        "vmm": "@react-native-firebase/analytics ^25.1.0"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-038",
+      "area": "analytics",
+      "name": "Snowplow",
+      "apps": {
+        "vmm": "@snowplow/react-native-tracker ^4.10.0",
+        "me-ios": "snowplow-ios-tracker 6.2.3"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-045",
+      "area": "crash",
+      "name": "Sentry",
+      "apps": {
+        "vmm": "@sentry/react-native ^8.22.0"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-046",
+      "area": "crash",
+      "name": "Crashlytics",
+      "apps": {
+        "vmm": "@react-native-firebase/crashlytics ^25.1.0"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-047",
+      "area": "flags",
+      "name": "Firebase Remote Config",
+      "apps": {
+        "vmm": "@react-native-firebase/remote-config ^25.1.0"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-048",
+      "area": "surveys",
+      "name": "Survicate",
+      "apps": {
+        "vmm": "@survicate/react-native-survicate ^8.3.2",
+        "me-ios": "survicate-ios-sdk 8.2.0"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-049",
+      "area": "messaging",
+      "name": "Firebase In-App Messaging",
+      "apps": {
+        "vmm": "@react-native-firebase/in-app-messaging ^25.1.0"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-050",
+      "area": "push",
+      "name": "Firebase Cloud Messaging",
+      "apps": {
+        "vmm": "@react-native-firebase/messaging ^25.1.0"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-041",
+      "area": "auth",
+      "name": "OAuth (AppAuth)",
+      "apps": {
+        "vmm": "react-native-app-auth patch:react-native-app-auth@npm%3A8.4.1#~/.yarn/patches/react-native-app-auth-npm-8.4.1-6859698b6b.patch"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-051",
+      "area": "storage",
+      "name": "MMKV",
+      "apps": {
+        "vmm": "react-native-mmkv ^4"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-052",
+      "area": "graphql",
+      "name": "Apollo GraphQL",
+      "apps": {
+        "vmm": "@apollo/client ^3.13.8"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-053",
+      "area": "ui",
+      "name": "Lottie",
+      "apps": {
+        "vmm": "lottie-ios 4.5.0, lottie-react-native ^7.3.5"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-042",
+      "area": "storage",
+      "name": "Local storage",
+      "apps": {
+        "vmm": "asyncstorage, keychain",
+        "me-ios": "keychain, realm-model"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-043",
+      "area": "i18n",
+      "name": "Locales",
+      "apps": {
+        "vmm": "da, en, fi, nl, no, sv",
+        "me-ios": "en, da-DK, fi-FI, nb-NO, sv-SE"
+      },
+      "newApp": "required",
+      "decision": null
+    },
+    {
+      "id": "PLT-054",
+      "area": "analytics",
+      "name": "Firebase iOS SDK (which products are used is not visible in Package.resolved)",
+      "apps": {
+        "me-ios": "firebase-ios-sdk 12.8.0"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-055",
+      "area": "flags",
+      "name": "LaunchDarkly",
+      "apps": {
+        "me-ios": "ios-client-sdk 11.1.0, swift-eventsource 3.3.0"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-056",
+      "area": "maps",
+      "name": "Google Maps",
+      "apps": {
+        "me-ios": "ios-maps-sdk 10.7.0, ios-places-sdk 10.6.0"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-057",
+      "area": "storage",
+      "name": "Realm",
+      "apps": {
+        "me-ios": "realm-core 20.1.5, realm-swift 20.0.5"
+      },
+      "newApp": "decide",
+      "decision": null
+    },
+    {
+      "id": "PLT-058",
+      "area": "calendar",
+      "name": "Device calendar write access (react-native-calendar-events) to create or remove the birthday and anniversary calendars;…",
+      "apps": {
+        "vmm": "src/hooks/useSyncCalendar.ts:41-77; ios/vmm/Info.plist:61-64; android/app/src/main/AndroidManifest.xml:11-12"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-059",
+      "area": "feature flag",
+      "name": "Calendar sync gated on dev flag VMM-7635-calendar-sync-dev-flag (isCalendarSyncEnabled), mentioned only in a comment",
+      "apps": {
+        "vmm": "src/screens/common/SettingsScreen/SettingsScreen.tsx:404-405"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-060",
+      "area": "navigation",
+      "name": "EmployeeCalendarScreen registered in the HRM and Approval stacks, with CalendarOptionsMenu as headerRight; opened from…",
+      "apps": {
+        "vmm": "src/configs/navConfig/hrm/HrmNavConfig.tsx:139-147; src/configs/navConfig/approval/ApprovalNavConfig.tsx:113-121; src/components/hrm/HrmEmployeeDetailAccordeon/HrmEmployeeDetailAccordion.tsx:272"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-061",
+      "area": "persistence",
+      "name": "Calendar display preferences and calendarSync live in the settings slice, which is on the redux-persist whitelist",
+      "apps": {
+        "vmm": "src/configs/reduxState.ts:107-108; src/reducers/common/settingsReducer/settingsReducer.ts:73,111"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-062",
+      "area": "navigation",
+      "name": "Root coordinator actions showCalendarFeed(initialDate) / showCalendarMonthView / appWillEnterForeground routed into the…",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarCoordinator.swift:77-94"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-063",
+      "area": "lifecycle",
+      "name": "Month grid reloads the current month when the app returns to the foreground",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarContainerViewController.swift:444-448"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-064",
+      "area": "in-app messaging",
+      "name": "NotificationCenter AppMessage.reloadStartPage posted after a registration or time confirmation",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AddAbsenceCoordinator/AddAbsenceCoordinator.swift:240"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-065",
+      "area": "third-party SDK",
+      "name": "Survicate survey (requestSurveyShowingThankYouToast) after saving a registration",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/AbsenceRegistration/AbsenceRegistrationCoordinator/CreateAbsenceRegistrationCoordinator.swift:86"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-066",
+      "area": "local storage",
+      "name": "UserDefaults-backed calendar preferences (view mode, filter toggles, balances control options)",
+      "apps": {
+        "me-ios": "Modules/EmployeeAppCoreInterface/Sources/EmployeeAppCoreInterface/Preferences/UserPreferencesKeys.swift:13-21"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-067",
+      "area": "permissions",
+      "name": "Microphone and speech recognition for agent voice input (SFSpeechRecognizer)",
+      "apps": {
+        "me-ios": "Employee/Info.plist:50-57; Employee/AppDependencies.swift:1182-1184"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-068",
+      "area": "deep link / system URL",
+      "name": "Opens the app Settings page when speech permission is denied",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/Chatbot/CalendarChatBotView.swift:40-44"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-069",
+      "area": "external URL",
+      "name": "Agent feedback Google Form URL, hard-coded",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/LearnMore/LearnMoreConstants.swift:12"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-070",
+      "area": "app messaging",
+      "name": "Closing the agent posts AppMessage.reloadStartPage and AppMessage.resetCalendar",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Coordinator/CalendarChatBotCoordinator.swift:79-82"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-071",
+      "area": "lifecycle",
+      "name": "Calendar list resets after the app returns from background (AppMessage.resetCalendarBackground)",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarViewController.swift:138-139"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-072",
+      "area": "navigation entry",
+      "name": "Employee Agent opened from a calendar navigation bar button, presented modally",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/CalendarContainerViewController.swift:125-135,417-421"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-073",
+      "area": "dead code",
+      "name": "EditAbsenceRegistrationView and EditAbsenceRegistrationFeature are declared but never instantiated or scoped (not in Ca…",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Chatbot/Views/EditAbsenceRegistration/EditAbsenceRegistrationView.swift:43"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-074",
+      "area": "dead code",
+      "name": "AbsenceRegistrationEventsFeature logs nothing itself. Only the parent CalendarEventsFeature logs calendarBotEditRegistr…",
+      "apps": {
+        "me-ios": "Modules/CalendarFeature/Sources/CalendarFeature/Calendar/Events/CalendarEventsFeature.swift:43-51"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-075",
+      "area": "dead code",
+      "name": "GetAbsenceRegistration, GetDimensionValues and TimeService.getTimeTemplates are never called by production code (only m…",
+      "apps": {
+        "me-ios": "EmployeeServices/Calendar/Sources/Calendar/Request/Absence/GetAbsenceRegistration.swift:19; EmployeeServices/Calendar/Sources/Calendar/Request/Absence/GetDimensionValues.swift:20; EmployeeServices/Ca…"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-076",
+      "area": "networking",
+      "name": "HATEOAS-driven endpoints: update/delete/checkout/confirm/dimension URLs come from server links, not constants",
+      "apps": {
+        "me-ios": "EmployeeServices/Calendar/Sources/Calendar/Service/TimeService.swift:113-126"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-077",
+      "area": "analytics",
+      "name": "Snowplow structured calendar events built in SnowplowEventFactory",
+      "apps": {
+        "me-ios": "Modules/SnowplowAnalytics/Sources/SnowplowAnalytics/Events/Factory/SnowplowEventFactory.swift:38-59"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    },
+    {
+      "id": "PLT-078",
+      "area": "dead code",
+      "name": "CalendarViewModelPayslip.getCellInstance asserts; migrated to PayslipsFeature",
+      "apps": {
+        "me-ios": "Employee/CalendarLeftover/CalendarViewModelPayslip.swift:33-36"
+      },
+      "newApp": "decide",
+      "note": "",
+      "decision": null
+    }
+  ],
+  "issuedIds": [
+    "PLT-001",
+    "PLT-002",
+    "PLT-003",
+    "PLT-004",
+    "PLT-005",
+    "PLT-006",
+    "PLT-007",
+    "PLT-008",
+    "PLT-009",
+    "PLT-010",
+    "PLT-011",
+    "PLT-012",
+    "PLT-013",
+    "PLT-014",
+    "PLT-015",
+    "PLT-016",
+    "PLT-017",
+    "PLT-018",
+    "PLT-019",
+    "PLT-020",
+    "PLT-021",
+    "PLT-022",
+    "PLT-023",
+    "PLT-024",
+    "PLT-025",
+    "PLT-026",
+    "PLT-027",
+    "PLT-028",
+    "PLT-029",
+    "PLT-030",
+    "PLT-031",
+    "PLT-032",
+    "PLT-033",
+    "PLT-034",
+    "PLT-035",
+    "PLT-036",
+    "PLT-037",
+    "PLT-038",
+    "PLT-039",
+    "PLT-040",
+    "PLT-041",
+    "PLT-042",
+    "PLT-043",
+    "PLT-044",
+    "PLT-045",
+    "PLT-046",
+    "PLT-047",
+    "PLT-048",
+    "PLT-049",
+    "PLT-050",
+    "PLT-051",
+    "PLT-052",
+    "PLT-053",
+    "PLT-054",
+    "PLT-055",
+    "PLT-056",
+    "PLT-057",
+    "PLT-058",
+    "PLT-059",
+    "PLT-060",
+    "PLT-061",
+    "PLT-062",
+    "PLT-063",
+    "PLT-064",
+    "PLT-065",
+    "PLT-066",
+    "PLT-067",
+    "PLT-068",
+    "PLT-069",
+    "PLT-070",
+    "PLT-071",
+    "PLT-072",
+    "PLT-073",
+    "PLT-074",
+    "PLT-075",
+    "PLT-076",
+    "PLT-077",
+    "PLT-078",
+    "PLT-079"
+  ]
+}

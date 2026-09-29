@@ -1,0 +1,61 @@
+{
+  "program": "work-app",
+  "apps": [
+    {
+      "name": "vmm",
+      "product": "Manager",
+      "stack": "react-native",
+      "role": "source",
+      "twinOf": null
+    },
+    {
+      "name": "me-ios",
+      "product": "Employee",
+      "stack": "ios-native",
+      "role": "source",
+      "twinOf": null
+    }
+  ],
+  "personas": [
+    "People who use Manager today",
+    "People who use Employee today"
+  ],
+  "shards": [
+    {
+      "id": "vmm:[components..types]",
+      "app": "vmm",
+      "stack": "react-native",
+      "kind": "screens",
+      "name": "[components..types]",
+      "loc": 3201,
+      "file": "analysis/work-app/shards/vmm_components..types.json"
+    },
+    {
+      "id": "me-ios:CalendarFeature#1",
+      "app": "me-ios",
+      "stack": "ios-native",
+      "kind": "screens",
+      "name": "CalendarFeature#1",
+      "loc": 8846,
+      "file": "analysis/work-app/shards/me-ios_CalendarFeature_1.json"
+    },
+    {
+      "id": "me-ios:CalendarFeature#2",
+      "app": "me-ios",
+      "stack": "ios-native",
+      "kind": "screens",
+      "name": "CalendarFeature#2",
+      "loc": 7662,
+      "file": "analysis/work-app/shards/me-ios_CalendarFeature_2.json"
+    },
+    {
+      "id": "me-ios:[Calendar..SnowplowAnalytics]",
+      "app": "me-ios",
+      "stack": "ios-native",
+      "kind": "screens",
+      "name": "[Calendar..SnowplowAnalytics]",
+      "loc": 4450,
+      "file": "analysis/work-app/shards/me-ios_Calendar..SnowplowAnalytics.json"
+    }
+  ]
+}

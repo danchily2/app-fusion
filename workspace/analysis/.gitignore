@@ -1,0 +1,5 @@
+SECRETS.local.md
+*.local.patch
+**/*.token*
+**/*.har
+!**/*.sanitized.har

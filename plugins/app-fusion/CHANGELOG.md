@@ -3,6 +3,54 @@
 A release gets a new number in `.claude-plugin/plugin.json`. Claude Code only offers an update when that number
 changes.
 
+## 0.3.0
+
+From a third review, of the proof and the guard, and from the work-app run with three apps.
+
+- **The scripts run the tests.** The proof trusted any JUnit file inside the workspace, so a result file written by
+  hand yielded PROVEN. `evidence.py run` now executes the test command itself (no shell: the runner and its
+  arguments; `{run}` and `FUSION_RUN_DIR` name the fresh run folder; `--env` for the runner's environment;
+  `--collect` for runners that write elsewhere, taking only files the run created or changed, an `.xcresult`
+  converted) and records the exit code, stdout, stderr and the JUnit XML the command produced. Shells, file copiers,
+  archivers, `sleep`, `git` and inline code are refused as the test command. `canary.py run` does the same for the
+  canary's tests, in a `tests/` folder below the run so a runner that empties its output folder never reaches the
+  saved copy, and remembers the hash of the file they ran on, so `finish` knows whether they saw the break. The proof
+  counts only executed suites, journeys and canaries; a result recorded by hand (`evidence.py suite`, `journey`) is
+  kept but listed as a gap with the command that fixes it. Every skill and stack profile gives the `run` commands.
+- **The canary cannot destroy the file it protects.** The saved copy is read-only, verified when made, and its hash
+  is checked before any restore; on a mismatch the file is left as it is and the message says how to restore it.
+- **A guard that reads the shell like a shell.** Operators and new lines split commands, shell keywords are stepped
+  over so loop bodies are read, `cd` and `pushd` move the folder for what follows, every redirect form counts (`>|`,
+  `2>`, `&>` too), `sh -c`, `bash -lc` and `eval` are read inside, a script a shell or an interpreter runs is read when
+  it lies outside the plugin, a script piped into a shell is asked about, heredocs and inline code are scanned for
+  the paths they open and whether they write or spawn a process (reads pass), `xargs` follows the pipe, `find -exec`
+  is read for its command, and `dd`, `curl`, `tar`, `find -delete`, `sed -i`, `perl -pi`, package managers (a bare
+  `yarn` too), build tools, formatters with `--fix` or `--write`, `patch` and git name their targets through their
+  options. The folders that hold the proof's inputs (`analysis/<program>`, `evidence/`, `design/`) and any folder above
+  them are denied to removing and moving commands, and test-result run folders are no longer shell-writable
+  (`evidence.py run` writes them). A write whose target the guard cannot resolve is asked, never silently allowed,
+  when the command names a judged file, `analysis/`, `legacy/` or a source app's real path. Git commands that can
+  rewrite decisions, sign-offs or evidence are asked in the repository that holds the analysis folder, and pass in
+  the new app's own repository; reads, commits and `switch -c` pass. Zipping the analysis folder into `/tmp`,
+  `find -exec wc` and `json.dump` to standard output pass. Paths fold case on macOS and Windows. `hooks/guard.sh`
+  runs the script on every matched call, so the workspace is found when Claude was started above or inside it, and a
+  malformed `program.json` leaves the `legacy/` links protected.
+- **A signature carries a person's name.** `signoff.py` and `decisions.py` refuse a `--by` that is empty, a
+  placeholder, or the name of a model or an assistant, and accept a person's name in any script; the guard also asks
+  when the recording scripts run as a module, from inline code, or with a variable for the subcommand.
+- **Twins are one product in the rules.** The conflict judge runs only for capabilities with rules from two or more
+  products, so a twin's platform-parity differences no longer land in the questions a person must settle.
+- **The design analyst sees the official Figma plugin.** Its read tools (`mcp__plugin_figma_figma__*`) are listed, so
+  the analyst no longer launches blind under the usual setup.
+- **Arguments read right.** `fuse --source ...` without a name and `fuse-build <program> --batch <n>` no longer hand
+  a flag to the skill as the program or capability name.
+- **A headless first run no longer locks the intent.** Its documented defaults are marked `OPEN:` in INTENT.md, the
+  next visit with pop-ups asks exactly those, and `fuse-status` points at `fuse <program>` until a person has
+  answered, before the brief is written.
+
+Earlier runs' suites, journeys and canaries were recorded by hand: record them again with `evidence.py run` and
+`canary.py run`, or the proof lists them as gaps.
+
 ## 0.2.0
 
 From an adversarial review of 0.1.0 and a trial on two production apps.

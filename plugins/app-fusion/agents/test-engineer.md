@@ -35,11 +35,13 @@ did where it must, and changes only what a person decided to change.
   backends only, never production.
 - **A comparison that cannot run is a failure, never a skip.** Missing fixtures or an unreachable test backend fail
   loudly. A suite that is green because everything was skipped proves nothing.
-- **Machine-readable results.** Write JUnit XML into the run folder the caller gives (`scripts/evidence.py dir`
-  makes a fresh one per run), following the stack profile. The tools
-  are jest-junit, `swift test --parallel --xunit-output`, `xcodebuild -resultBundlePath` plus
-  `scripts/xcresult_junit.py`, Gradle's test reports, and `maestro test --format junit --output`. A count typed by
-  hand counts for nothing.
+- **Machine-readable results.** Tests run through `scripts/evidence.py run` (the canary's through
+  `scripts/canary.py run`), which makes the run folder, executes the runner itself and records the exit code, the output
+  and the JUnit XML written there (`{run}` and `FUSION_RUN_DIR` name the folder; `--collect` copies what a runner writes
+  elsewhere). Follow the stack profile for the command. The tools are jest-junit, `swift test --parallel
+  --xunit-output`, `xcodebuild -resultBundlePath` (converted by `scripts/xcresult_junit.py`), Gradle's test reports,
+  and `maestro test --format junit --output`. A result file written by hand, and a count typed by hand, count for
+  nothing.
 - **The canary is not yours to run.** It breaks production code, which is outside your write scope. The calling
   session runs it with `scripts/canary.py`, which saves and restores the file itself. When asked, suggest the break:
   a file from the capability's `## Files`, and one line a rule depends on (a threshold by one, a rounding mode, a

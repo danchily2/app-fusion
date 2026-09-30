@@ -45,19 +45,19 @@ Tests use Swift Testing (`import Testing`). XCTest is fine where it already exis
 
 Xcode's result bundle keeps display names, but `swift test`'s xUnit file keeps only function and type names.
 
-Choose the route by what you are testing:
-Take a fresh run folder first, from the workspace root, and pass it as an absolute path:
-`RUN=$(python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" dir <program> suite <CAP>); OUT="$PWD/$RUN"`.
-- **Packages** (fast; use it for a capability's module): `swift test --package-path Modules/<Feature> --parallel
-  --xunit-output "$OUT/unit.xml"`.
+Choose the route by what you are testing. Every route runs through `evidence.py run`, from the workspace root: it makes
+the run folder, executes the command itself inside the new app (no shell) and records what the command wrote; `{run}`
+in an argument names the folder.
+- **Packages** (fast; use it for a capability's module):
+  `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" run <program> --capability <CAP> --name unit -- swift test
+  --package-path Modules/<Feature> --parallel --xunit-output {run}/unit.xml`.
   - XCTest results go to `unit.xml`. The `--parallel` flag is required, or no XCTest file is written.
-  - Swift Testing results go to `unit-swift-testing.xml`, with no display names.
-  - Record the run folder (`evidence.py suite ... --junit "$RUN"`): it holds both files and nothing from other runs.
-- **The app scheme:** `xcodebuild test -project <App>.xcodeproj -scheme <App> -destination 'platform=iOS
-  Simulator,name=iPhone 17' -resultBundlePath <out>.xcresult`, then
-  `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/xcresult_junit.py" <out>.xcresult "$OUT/app.xml"`.
-  The converter keeps display names and node identifiers.
-- `xcodebuild` returns 65 when a test fails. That is expected, and the result bundle is still written.
+  - Swift Testing results go to `unit-swift-testing.xml`, with no display names. Both land in the run folder and both count.
+- **The app scheme:** `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" run <program> --capability <CAP> --name app
+  --collect 'build/*.xcresult' -- xcodebuild test -project <App>.xcodeproj -scheme <App> -destination 'platform=iOS
+  Simulator,name=iPhone 17' -resultBundlePath build/<CAP>.xcresult`. The bundle written during the run is converted
+  with `scripts/xcresult_junit.py` into the run folder; the converter keeps display names and node identifiers.
+- `xcodebuild` returns 65 when a test fails. That is expected, and the result bundle is still written and collected.
 
 **Clean for verify:** delete the derived data you use (`-derivedDataPath <dir>`, then `rm -rf <dir>`) and every
 `.build/` folder of the packages, then run the full test plan.

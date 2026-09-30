@@ -22,7 +22,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from fusionlib.common import (check_name, die, load_json, md_table, now_iso, one_line, program_dir, workspace,  # noqa: E402
+from fusionlib.common import (check_name, die, load_json, md_table, now_iso, one_line, person_name, program_dir, workspace,  # noqa: E402
                               write_json, write_text)
 
 STACKS = {"react-native", "native", "swiftui", "compose", "flutter", "kmp"}
@@ -129,10 +129,13 @@ def add(ws, program, items):
             die(f"about {about!r} does not fit kind {kind!r} ({CHOICES_HELP[kind]})")
         if not valid(choice, apps):
             die(f"choice {choice!r} is not valid for kind {kind!r} (valid: {CHOICES_HELP[kind]})")
+        by = one_line(item.get("by"), 80)
+        if by and not person_name(by):
+            die(f"by {by!r} is not a person's name: a decision carries the name of the person who made it, or none")
         existing, old = find(decisions, about, kind)
         did = existing or _next_id(decisions)
         decisions[did] = {"about": about, "kind": kind, "question": one_line(item.get("question") or (old or {}).get("question"), 400),
-                          "choice": choice, "note": str(item.get("note") or "").strip()[:2000], "by": one_line(item.get("by"), 80),
+                          "choice": choice, "note": str(item.get("note") or "").strip()[:2000], "by": by,
                           "at": item.get("at") or now_iso(), "replaces": old.get("choice") if old else None}
         changed.append(did)
     data["decisions"] = dict(sorted(decisions.items(), key=lambda kv: int(kv[0].split("-")[1])))

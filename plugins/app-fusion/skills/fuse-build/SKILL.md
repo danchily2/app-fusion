@@ -6,11 +6,13 @@ arguments: program capability
 disable-model-invocation: true
 ---
 
-Build capability `$capability` of `$program` into the new app (`program.json` → `target.path`, default
-`new-app/$program`). With `--batch <n>` in `$ARGUMENTS`, go to **Batch mode** at the end. Never touch `legacy/`. Run
-every subagent in the foreground and wait for it. Stop any simulator, Metro server or process you started before you
-finish, and say so. Scripts are in `${CLAUDE_PLUGIN_ROOT}/scripts/`; the guard hook asks the person before any
-command that records a decision, and denies direct edits to what the proof reads.
+Build one capability of `$program` into the new app (`program.json` → `target.path`, default `new-app/$program`).
+`$capability` is the second word of `$ARGUMENTS`: a `CAP-NNN`, or `--batch`. When it is `--batch`, there is no single
+capability: this is **Batch mode** for the phase number that follows `--batch` in `$ARGUMENTS`, so skip the steps
+below and go to Batch mode at the end. Never touch `legacy/`. Run every subagent in the foreground and wait for it.
+Stop any simulator, Metro server or process you started before you finish, and say so. Scripts are in
+`${CLAUDE_PLUGIN_ROOT}/scripts/`; the guard hook asks the person before any command that records a decision, and
+denies direct edits to what the proof reads.
 
 If `$capability` is empty, take the first capability of the earliest brief phase with `Command: /app-fusion:fuse-build`
 that has no `docs/fusion/CAP-NNN.md` in the new app, and say which you picked.
@@ -88,27 +90,30 @@ Iterate on this capability's tests only. Then, in this order:
    whitespace, and one canary at a time in the whole program. Then:
    - `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/canary.py" start $program $capability --file <that file> --change "<what you will break>"`.
      It saves the file and prints a run folder.
-   - Make the break with Edit, run the tests that cover it with JUnit output into that run folder, then
-     `canary.py finish $program $capability`. It restores the file byte for byte (never with git, so uncommitted work
-     is safe), checks the hash, and records which tests of the capability failed.
+   - Make the break with Edit, then run the covering tests **through the canary script**, which executes them itself
+     on the broken file and records their result in that run folder:
+     `canary.py run $program $capability -- <the profile's test command>` (with `{run}`, `--env` or `--collect` as the
+     profile says). Then `canary.py finish $program $capability`. It restores the file byte for byte (never with git,
+     so uncommitted work is safe), checks the hash, and records which tests of the capability failed. Tests run any
+     other way, or before the break, count for nothing.
    - If the tests could not run, `canary.py abort $program $capability` restores the file without recording.
    - If no test of the capability failed, the tests do not pin the behavior: strengthen them and run a new canary.
-2. **The whole suite, last.** `RUN=$(python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" dir $program suite $capability)`,
-   run the full unit suite with JUnit output into `$RUN` (the profile's command), then
-   `evidence.py suite $program --capability $capability --name unit --command "<cmd>" --junit $RUN`. For a native pair
-   (`ios/` and `android/` in the new app), run and record each half's suite on its own, with `--platform ios` and
-   `--platform android` and names such as `unit-ios`: the proof checks each half on its own results.
-   Report `tests executed: N`. Zero executed, or only skipped, is not green. A canary counts only for tests that pass
-   in this recorded suite.
+2. **The whole suite, last.** Run it through the evidence script, which makes the run folder, executes the profile's
+   command itself (no shell) and records the exit code, the output and the JUnit XML it wrote:
+   `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" run $program --capability $capability --name unit -- <the
+   profile's test command>`. For a native pair (`ios/` and `android/` in the new app), run each half's suite on its
+   own, with `--platform ios` and `--platform android` and names such as `unit-ios`: the proof checks each half on its
+   own results. Report `tests executed: N` from its output. Zero executed, or only skipped, is not green. A canary
+   counts only for tests that pass in this recorded suite. A result recorded by hand (`evidence.py suite`) is a gap,
+   never a pass.
 3. **Parity checks.** Run them, and fix or take to a person anything they report:
    - `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/api_parity.py" $program --capability $capability`. A missing legacy
      endpoint is fixed, mapped in `api-map.json` for a backend move, or recorded by a person as an `api` decision.
      Never record it yourself.
    - `i18n_parity.py`, `events_parity.py` and `design_text.py`, each with `$program --capability $capability`.
 4. **Journeys**, when a simulator is available and the app builds. Install the app and, for each flow and each target
-   platform, `RUN=$(evidence.py dir $program journey <JRN> --platform <ios|android>)`, then
-   `maestro test <flow> --format junit --output $RUN/maestro.xml`, then
-   `evidence.py journey $program --journey <JRN> --platform <ios|android> --flow <flow> --junit $RUN --device "<device>"`.
+   platform, run Maestro through the evidence script:
+   `evidence.py run $program --journey <JRN> --platform <ios|android> --flow <flow> --device "<device>" -- maestro test <flow, relative to the new app> --format junit --output {run}/maestro.xml`.
    Capture one screenshot per designed screen into `analysis/$program/evidence/shots/$capability/` (Maestro
    `takeScreenshot`, or `xcrun simctl io booted screenshot`) and record each with
    `evidence.py shot $program --screen <fileKey>:<nodeId> --capability $capability --app <png>`.

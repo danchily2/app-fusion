@@ -41,20 +41,22 @@ env:
 
 ## Run with a JUnit result
 
-From the workspace root, once per target platform (`ios`, `android`):
+From the workspace root, once per target platform (`ios`, `android`), through `evidence.py run`: it makes the run
+folder, executes Maestro itself inside the new app (no shell) and records the exit code, the output and the JUnit
+result Maestro wrote where `{run}` says:
 
 ```bash
-RUN=$(python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" dir <program> journey JRN-003 --platform ios)
-maestro test new-app/<program>/.maestro/JRN-003-approve-absence.yaml \
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" run <program> --journey JRN-003 --platform ios \
+  --flow new-app/<program>/.maestro/JRN-003-approve-absence.yaml --device "iPhone 17 (iOS 26)" -- \
+  maestro test .maestro/JRN-003-approve-absence.yaml \
   -e APP_ID=<bundle or application id> -e MANAGER_USER=... -e MANAGER_PASSWORD=... \
-  -e SHOTS="$PWD/analysis/<program>/evidence/shots" --format junit --output "$RUN/maestro.xml"
-python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" journey <program> --journey JRN-003 --platform ios \
-  --flow new-app/<program>/.maestro/JRN-003-approve-absence.yaml --junit "$RUN" --device "iPhone 17 (iOS 26)"
+  -e SHOTS="$PWD/analysis/<program>/evidence/shots" --format junit --output {run}/maestro.xml
 ```
 
-The flow's file name starts with its journey id (`JRN-003-...`), so the JUnit result names it: the proof counts a
-run only for the journey it names. `SHOTS` is an absolute path, so screenshots land in the workspace whatever folder
-Maestro runs from.
+`--flow` is relative to the workspace, the Maestro argument to the new app, where the command runs. The flow's file
+name starts with its journey id (`JRN-003-...`), so the JUnit result names it: the proof counts a run only for the
+journey it names, and only when `evidence.py run` produced it. `SHOTS` is an absolute path, so screenshots land in the
+workspace whatever folder Maestro runs from.
 
 Boot the device first (`xcrun simctl boot "iPhone 17"`, or `emulator -avd <name>`) and install the app. Stop the
 simulator or emulator you started when the run ends.

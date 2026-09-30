@@ -266,9 +266,11 @@ class Workspace:
             git_init(self.ios)
 
     def run(self, script, *args, check=True, env=None, stdin=None):
-        out = subprocess.run([sys.executable, os.path.join(SCRIPTS, script), *args, "--workspace", self.ws]
-                             if script not in ("guard.py",) else [sys.executable, os.path.join(SCRIPTS, script), *args],
-                             capture_output=True, text=True, cwd=self.ws, env={**os.environ, **(env or {})}, input=stdin)
+        argv = [sys.executable, os.path.join(SCRIPTS, script), *args]
+        if script not in ("guard.py",):  # --workspace goes before a `--`: what follows it is the test command itself
+            at = argv.index("--") if "--" in argv else len(argv)
+            argv[at:at] = ["--workspace", self.ws]
+        out = subprocess.run(argv, capture_output=True, text=True, cwd=self.ws, env={**os.environ, **(env or {})}, input=stdin)
         if check and out.returncode != 0:
             raise AssertionError(f"{script} {' '.join(args)} failed ({out.returncode}):\n{out.stdout}\n{out.stderr}")
         return out

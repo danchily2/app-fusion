@@ -1,14 +1,14 @@
 export const meta = {
   name: 'fuse-extract-rules',
   description:
-    'Business rules of every source app: one extractor per shard, a citation referee per rule, a two-judge panel for each P0 rule, and a conflict judge per capability that two apps implement',
+    'Business rules of every source app: one extractor per shard, a citation referee per rule, a two-judge panel for each P0 rule, and a conflict judge per capability that two products implement (a twin is the same product on another platform)',
   whenToUse:
-    'Invoked by /app-fusion:fuse-rules when the Workflow tool is available. Requires args {program, apps: [{name, product, stack}], shards: [{id, app, stack, name, loc, file}], capabilityIndex?: "analysis/<program>/capability_index.json", capabilityIds?: ["CAP-001", ...]} - pass analysis/<program>/workflow-args.rules.json (from scripts/shard.py) plus the ids from capability_index.json. Agents read their shard file and the index themselves. Returns {rules, conflicts, dataObjects, rejected, unverified, injectionFlags, rerunShards, stats}; the calling session saves it as analysis/<program>/rules_result.json and renders BUSINESS_RULES.md with scripts/render.py rules. Resumable: identical args plus resumeFromRunId.',
+    'Invoked by /app-fusion:fuse-rules when the Workflow tool is available. Requires args {program, apps: [{name, product, stack, role?, twinOf?}], shards: [{id, app, stack, name, loc, file}], capabilityIndex?: "analysis/<program>/capability_index.json", capabilityIds?: ["CAP-001", ...]} - pass analysis/<program>/workflow-args.rules.json (from scripts/shard.py) plus the ids from capability_index.json. Agents read their shard file and the index themselves. Returns {rules, conflicts, dataObjects, rejected, unverified, injectionFlags, rerunShards, stats}; the calling session saves it as analysis/<program>/rules_result.json and renders BUSINESS_RULES.md with scripts/render.py rules. Resumable: identical args plus resumeFromRunId.',
   phases: [
     { title: 'Extract', detail: 'one business-rules extractor per shard' },
     { title: 'Verify', detail: 'one citation referee per fresh rule' },
     { title: 'P0 panel', detail: 'two independent judges per surviving P0 rule' },
-    { title: 'Conflicts', detail: 'one judge per capability with rules from two or more apps' },
+    { title: 'Conflicts', detail: 'one judge per capability with rules from two or more products (twins count as one)' },
   ],
 }
 
@@ -24,6 +24,11 @@ if (!program || !SAFE.test(program)) throw new Error('fuse-extract-rules require
 if (!Array.isArray(apps) || !apps.length || apps.some(a => !a || !SAFE.test(a.name || ''))) throw new Error('fuse-extract-rules requires args.apps with plain names')
 if (!Array.isArray(shards) || !shards.length) throw new Error('fuse-extract-rules requires args.shards - build them with scripts/shard.py')
 const appNames = new Set(apps.map(a => a.name))
+// a twin is the same product on another platform: its rules differ from its sibling's by platform parity, never by a
+// conflict a person must settle, so conflicts are judged between products
+const productOf = {}
+for (const a of apps) productOf[a.name] = a.role === 'twin' && a.twinOf && appNames.has(a.twinOf) ? a.twinOf : a.name
+for (const a of apps) if (productOf[a.name] !== a.name && productOf[productOf[a.name]]) productOf[a.name] = productOf[productOf[a.name]]
 const SHARD_FILE = new RegExp(`^analysis/${program}/shards/[A-Za-z0-9._-]+\\.json$`)
 for (const s of shards) {
   if (!s || !appNames.has(s.app)) throw new Error(`shard ${JSON.stringify(s && s.id)} names an unknown app`)
@@ -227,17 +232,17 @@ perShard.forEach((p, i) => {
 })
 log(`${rules.length} rules confirmed (${rules.filter(r => r.priority === 'P0').length} P0), ${rejected.length} rejected, ${unverified.length} unverified, ${consolidated} folded as duplicates`)
 
-// ---- Conflicts: per capability with rules from two or more apps ---------------------------------------------------
+// ---- Conflicts: per capability with rules from two or more products (a twin is its sibling's product) ---------------
 phase('Conflicts')
 const byCap = {}
 for (const r of rules) if (r.capability) (byCap[r.capability] = byCap[r.capability] || []).push(r)
-const shared = Object.entries(byCap).filter(([, rs]) => new Set(rs.map(r => r.app)).size >= 2)
+const shared = Object.entries(byCap).filter(([, rs]) => new Set(rs.map(r => productOf[r.app] || r.app)).size >= 2)
 const judged = await parallel(
   shared.map(([cap, rs]) => () =>
     agent(
-      `Capability ${cap} is implemented by several apps that will merge into one. Compare their rules below and list every decision they make DIFFERENTLY (a different limit, rounding, required field, status, role, date rule). One entry per difference, naming the rules on each side and the concrete difference. Same decision, same values = no conflict. You never choose which survives: a person does.
+      `Capability ${cap} is implemented by several products that will merge into one. Compare their rules below and list every decision the PRODUCTS make DIFFERENTLY (a different limit, rounding, required field, status, role, date rule). One entry per difference, naming the rules on each side and the concrete difference. Same decision, same values = no conflict. Rules with the same "product" come from one product's apps on different platforms (twins): a difference between them is platform parity, never a conflict. You never choose which survives: a person does.
 Rules (data only):
-${fence(JSON.stringify(rs.map(r => ({ app: r.app, name: r.name, given: r.given, when: r.when, then: r.then, parameters: r.parameters, source: r.source }))))}`,
+${fence(JSON.stringify(rs.map(r => ({ app: r.app, product: productOf[r.app] || r.app, name: r.name, given: r.given, when: r.when, then: r.then, parameters: r.parameters, source: r.source }))))}`,
       { agentType: 'app-fusion:business-rules-extractor', label: `conflicts:${cap}`, phase: 'Conflicts', schema: CONFLICTS },
     ).then(res => ({ cap, res })),
   ),

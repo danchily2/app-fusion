@@ -85,22 +85,25 @@ the other, or a deep link in a thousand emails is gone. So the proof is built fr
 a model's opinion. `scripts/fusion_proof.py` gives each built capability one verdict:
 
 1. **Built**: the porting notes name the capability's source files, and they exist inside the new app.
-2. **Tests ran**: recorded JUnit results name the capability or its rules. At least one ran and none failed. A count
+2. **Tests ran**: `evidence.py run` executed the suite itself and recorded the JUnit results it wrote; they name the
+   capability or its rules, at least one ran and none failed. A result file recorded by hand is a gap, and a count
    typed by hand counts for nothing.
 3. **Rules traced**: every P0 and P1 rule of the capability is named by a test that passed, except the rules a
    person set aside (marked wrong, or from the app whose behavior was not kept).
-4. **Journeys**: every persona journey through it passed in Maestro, on every target platform.
+4. **Journeys**: every persona journey through it passed in Maestro, run the same way, on every target platform.
 5. **API parity**: the new code calls every endpoint the legacy implementations called, matched by path and method,
    or a person approved the difference.
 6. **Strings**: every legacy string key is mapped and present in every required locale.
 7. **Analytics**: every legacy event is still sent under its name, or a person approved the rename or the drop.
 8. **Design copy**: at least 90% of each designed screen's text is in the new app's strings.
-9. **Canary**: a deliberate one-line break made one of the capability's own tests fail, and the code was put back
-   byte for byte.
+9. **Canary**: a deliberate one-line break made one of the capability's own tests fail, with the tests run by
+   `canary.py run` on the broken file, and the code was put back byte for byte.
 10. **Legacy untouched**: every legacy app is still a clean checkout at the recorded commit.
 
-Every result is bound to the **content** of the files it ran on: the recording scripts store hashes of the result
-files and of the capability's code. Edit a result file and the check fails; change the code and the old results
+The scripts run the tests themselves: shells, file copiers, archivers and inline code are refused as the test command,
+and the command that did run, its exit code and its output are kept with the result, so a reviewer can see what
+produced it. Every result is bound to the **content** of the files it ran on: the recording scripts store hashes of
+the result files and of the capability's code. Edit a result file and the check fails; change the code and the old results
 stop counting until the tests run again. The verdict is **PROVEN** (all ten pass), **PARTLY PROVEN** (nothing failed,
 but a check could not pass, listed with its reason) or **NOT PROVEN** (something failed).
 
@@ -158,7 +161,9 @@ Built against two production apps (Visma Manager, React Native, 218k code lines,
 The inventory's counts were checked against a hand-certified knowledge graph of both apps: routes, string keys,
 locales and Swift packages match exactly; event and endpoint counts differ by the rule that made them (both rules
 are printed). Two adversarial reviews (of the whole plugin, then of the fixes) found 3 blockers and 23 high-severity issues,
-all fixed and covered by tests (`scripts/tests/`, 47 cases, and `tests/`, 11 workflow cases).
+all fixed and covered by tests. A third review, of the proof and the guard, found that a result file written by hand
+passed as evidence and that the guard's deny fell to ordinary shell variations; 0.3.0 closes both, and an independent
+review of those fixes closed what they missed (`scripts/tests/`, 63 cases, and `tests/`, 12 workflow cases).
 
 ## Set it up so it runs smoothly
 
@@ -170,7 +175,8 @@ paths:
 ```
 
 - The rule covers Claude's file tools and the shell commands it recognizes. The plugin's guard hook adds a second
-  check. A read-only mount is the hard guarantee.
+  check, finds the workspace when Claude was started above or inside it, and compares paths without regard to case.
+  A read-only mount is the hard guarantee.
 - **Helpful tools:** `python3` 3.8+ (required), `git`, `scc`, Xcode with a simulator, Node, the Android SDK, and
   `maestro` for journeys.
 
@@ -195,9 +201,11 @@ paths:
   `SECRETS.local.md`.
 - **Apps run only on simulators, against test backends you named.** Recorded traffic (HAR) is gitignored; keep only
   the copy `api_parity.py sanitize` writes, with authorization headers, cookies and secret-looking values removed.
-- **The proof's inputs are written only by its scripts.** The guard denies edits, from a file tool or the shell, to
-  `program.json`, decisions, sign-offs, verdicts, catalogs and evidence, so the side being judged cannot rewrite
-  what judges it. Test runners still write their results into their own run folders.
+- **The proof's inputs are written only by its scripts.** The guard denies edits, from a file tool or the shell
+  (through `cd`, wrappers, heredocs, inline code and every redirect form), to `program.json`, decisions, sign-offs,
+  verdicts, catalogs and evidence, and to the folders that hold them, so the side being judged cannot rewrite what
+  judges it. Test results exist only when `evidence.py run` or `canary.py run` produced them. A write the guard
+  cannot resolve is asked, never silently allowed, and so is a git command that could rewrite those files.
 - **Nothing is pushed, published or submitted, and no Figma file is changed.**
 
 ## Working in a team

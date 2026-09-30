@@ -331,25 +331,35 @@ storage, locales, privacy) are 2, the others 4. The stack and the store listing 
 
 ```json
 { "version": 2, "date": "YYYY-MM-DD",
-  "suites":   [ { "capability": "CAP-001 | all", "name": "unit", "platform": "ios | android | null", "command": "",
-                  "junit": ["<files>"], "hashes": {"<file>": "<sha256>"}, "named": ["CAP-001", "RULE-003"],
-                  "codeHashes": {"CAP-001": "<code hash>"}, "log": [], "note": "", "recordedAt": "" } ],
-  "journeys": [ { "journey": "JRN-001", "platform": "ios", "flow": "", "flowHash": "", "junit": [], "hashes": {}, "named": [],
-                  "codeHashes": {}, "device": "", "recordedAt": "" } ],
-  "canaries": [ { "capability": "CAP-001", "change": "", "file": "", "diff": "", "linesChanged": 1, "junit": [], "hashes": {},
-                  "failedCases": ["<classname>::<name>"], "failedOther": 0, "codeHash": "", "recordedAt": "" } ],
+  "suites":   [ { "capability": "CAP-001 | all", "name": "unit", "platform": "ios | android | null", "executed": true,
+                  "command": "", "argv": [], "cwd": "", "exitCode": 0, "timedOut": false, "runner": "", "startedAt": "",
+                  "durationMs": 0, "run": "<run folder>", "junit": ["<files>"], "hashes": {"<file>": "<sha256>"},
+                  "named": ["CAP-001", "RULE-003"], "codeHashes": {"CAP-001": "<code hash>"}, "output": ["<stdout>", "<stderr>"],
+                  "outputHashes": {}, "collected": [], "leftOut": [], "note": "", "recordedAt": "" } ],
+  "journeys": [ { "journey": "JRN-001", "platform": "ios", "flow": "", "flowHash": "", "executed": true, "junit": [], "hashes": {},
+                  "named": [], "codeHashes": {}, "device": "", "recordedAt": "" } ],
+  "canaries": [ { "capability": "CAP-001", "change": "", "file": "", "diff": "", "linesChanged": 1, "executed": true,
+                  "executions": [ { "command": "", "exitCode": 0, "fileSha256": "", "onBrokenFile": true, "junit": [] } ],
+                  "junit": [], "hashes": {}, "failedCases": ["<classname>::<name>"], "failedOther": 0, "codeHash": "", "recordedAt": "" } ],
   "screenshots": [ { "screen": "<fileKey>:<nodeId>", "capability": "CAP-001", "app": "evidence/shots/...png", "hash": "" } ] }
 ```
 
-`evidence.py` writes suites, journeys and screenshots; `canary.py` writes canaries. A `--junit` folder is expanded to
-its XML files when the run is recorded, and `evidence.py dir` makes a fresh run folder, so files of other runs never
-count. `codeHashes` holds the code hash of every built capability at recording time, and `named` the ids its tests
-named, so a result file that is later edited or removed counts as tampering for exactly those capabilities. A native
-pair records each half's suites with `platform`.
+`evidence.py run` writes suites and journeys: it makes a fresh run folder, executes the test command itself (no shell;
+`{run}` and `FUSION_RUN_DIR` name the folder, `--collect` copies what a runner wrote elsewhere during the run, an
+`.xcresult` converted), and records the exit code, the output and the JUnit XML found in the folder, with
+`executed: true`. `evidence.py suite` and `journey` still record a result file by hand, with `executed: false`: the
+proof lists such a result as a gap, never a pass, because nothing shows its tests ran. `evidence.py shot` records
+screenshots. `canary.py` writes canaries, and `canary.py run` executes the canary's tests the same way, remembering
+the hash of the file they ran on, so `finish` knows whether they saw the break. `codeHashes` holds the code hash of
+every built capability at recording time, and `named` the ids its tests named, so a result file that is later edited
+or removed counts as tampering for exactly those capabilities. A native pair records each half's suites with
+`platform`.
 
 `canary.py`: one canary at a time in the whole program; the break goes into a file of the capability's own `## Files`;
-results are read only from the canary's run folder; the break changes at most six lines and more than whitespace;
-the file is restored byte for byte, with its hash checked, whatever happens.
+its tests run through `canary.py run` on the broken bytes, or the canary is a gap; results are read only from the
+canary's run folder; the break changes at most six lines and more than whitespace;
+the file is restored byte for byte from a read-only saved copy whose hash is checked first, then the file's; a damaged
+saved copy leaves the file exactly as it is and the canary pending, so nothing is ever overwritten with garbage.
 
 ### SIGNOFF.json
 
@@ -368,18 +378,20 @@ and a signed, accepted PARTLY PROVEN capability no longer holds up `fuse-status`
 
 1. **Built**: the porting notes' `## Files` name at least one source file inside the new app (one per half of a
    native pair).
-2. **Tests ran**: a fresh recorded suite has tests naming the capability or one of its rules; at least one executed
-   and none failed; for a native pair, each half on its own suites. A result file edited or removed after it was
-   recorded is a failure; a result older than the code is a gap.
+2. **Tests ran**: a fresh recorded suite that `evidence.py run` executed has tests naming the capability or one of its
+   rules; at least one executed and none failed; for a native pair, each half on its own suites. A result file edited
+   or removed after it was recorded is a failure; a result older than the code, or recorded by hand (`evidence.py
+   suite`), is a gap.
 3. **Rules traced**: every P0 and P1 rule of the capability is named by a test that passed in a fresh suite. Left
    out: rules marked `wrong`, and rules of an app a `take:<app>` decision did not keep; a rule-conflict decision is
    the more specific answer and wins over the capability's for the rules it names. For a native pair, each rule passes
    in each half. A gap: a `discuss` rule; a rule with a suspected defect (or a doubtful P0 rule) no person decided; an
    undecided conflict; a `design` or `new-spec` decision without a passing test named after its DEC id.
 4. **Journeys**: every journey through the capability passed on every target platform, in a result that names the
-   journey, recorded after the current code of every capability on it, with the flow unchanged. A capability a
-   person parked (dropped, out of scope, deferred) is left out of its journeys. A journey through a capability not
-   built yet is a gap, and `fuse-status` moves on to build that capability instead of looping.
+   journey, run by `evidence.py run`, recorded after the current code of every capability on it, with the flow
+   unchanged. A capability a person parked (dropped, out of scope, deferred) is left out of its journeys. A journey
+   through a capability not built yet is a gap, and `fuse-status` moves on to build that capability instead of
+   looping; a result recorded by hand is a gap too.
 5. **API parity**: `api_parity.py` finds every legacy endpoint of the capability in its own files or listed call
    sites, mapped through `api-map.json`, or covered by an `api` decision.
 6. **Strings**: `i18n_parity.py` finds every legacy key mapped and present in every required locale, in each half; a
@@ -389,8 +401,9 @@ and a signed, accepted PARTLY PROVEN capability no longer holds up `fuse-status`
 8. **Design text**: `design_text.py` finds at least 90% of each linked screen's text in the new app's strings,
    leaving out patterns and the recorded placeholders. No design by intent (no Figma file), `carry-as-is` and
    `dropped` are n/a; an undecided missing design is a gap.
-9. **Canary**: `canary.py` broke the capability's own code and restored it byte for byte; a test naming the
-   capability or one of its rules failed under the break and passed in a fresh suite, on unchanged code.
+9. **Canary**: `canary.py` broke the capability's own code and restored it byte for byte; `canary.py run` executed
+   the tests on the broken file, and a test naming the capability or one of its rules failed there and passed in a
+   fresh suite, on unchanged code. Tests run any other way, or before the break, make the canary a gap.
 10. **Legacy untouched**: every `legacy/<app>` has a clean working tree (untracked files count) at the commit
     recorded in `program.json`. A change fails; a moved commit is a gap.
 
@@ -459,9 +472,10 @@ is unavailable.
 - **REST path.** `scripts/figma_rest.py` reads `FIGMA_TOKEN` from the environment only and never writes it. It pulls
   the file tree, texts, frame images and variables in a handful of requests and writes the same cache and
   `design.json`.
-- **Read only.** The design analyst's tools are Read, Glob, Grep and the Figma read tools of the servers named
-  `claude_ai_Figma`, `figma` and `figma-desktop`: no write tool, shell, web or other connector. A session calls a
-  Figma write tool only when a person asks for that in so many words; the plugin never does.
+- **Read only.** The design analyst's tools are Read, Glob, Grep and the Figma read tools of the official Figma
+  plugin (`plugin_figma_figma`) and of the servers named `claude_ai_Figma`, `figma` and `figma-desktop`: no write
+  tool, shell, web or other connector. A session calls a Figma write tool only when a person asks for that in so many
+  words; the plugin never does.
 - **Texts.** A screen's texts are the characters of its cached design context when there is one, else its text-layer
   names (inside component instances those are often the component's own names, so the build fetches design context
   for every screen it builds).
@@ -477,7 +491,7 @@ is unavailable.
 | `figma_index.py`, `figma_rest.py` | Figma cache, budget, plan and index (MCP path), and the REST snapshot path |
 | `trace.py` | traceability, gaps and coverage |
 | `decisions.py` | record a person's decisions; list open questions |
-| `evidence.py`, `canary.py` | record test, journey and screenshot evidence with hashes; the safe canary |
+| `evidence.py`, `canary.py` | `run` executes the tests and records their results and journeys with hashes, `shot` the screenshots; the safe canary, whose tests run through `canary.py run` |
 | `api_parity.py`, `i18n_parity.py`, `events_parity.py`, `design_text.py` | the per-capability parity checks the proof reads (`api_parity.py` also compares and sanitizes HAR recordings) |
 | `platform_parity.py` | the app-level continuity check |
 | `fusion_proof.py` | the verdicts |
@@ -487,27 +501,61 @@ is unavailable.
 
 ## Hooks
 
-`hooks/hooks.json` registers one `PreToolUse` hook on `Edit|Write|NotebookEdit|MultiEdit|Bash`. It is a no-op outside
-a workspace with `analysis/*/program.json`. Inside one:
-- It denies a file write whose path resolves under `legacy/` or under a source app's real path.
-- It denies a write to what the proof reads, by a file tool or from the shell (a redirect, `cp`/`mv`/`tee`/`sed -i`,
-  or inline `python -c` / `node -e` code naming it): `program.json`, `DECISIONS.*`, `SIGNOFF.json`,
-  `VERIFICATION.*`, `capabilities.json`, `capability_index.json`, `rules.json`, `traceability.json`,
-  `platform.json`, `design/placeholders.json` and everything under `evidence/`. Their scripts write them. From the
-  shell, test runners still write their results into run folders, screenshots and logs.
+`hooks/hooks.json` registers one `PreToolUse` hook on `Edit|Write|NotebookEdit|MultiEdit|Bash`. `hooks/guard.sh` runs
+`scripts/guard.py` on every matched call (about 30 ms). The script finds every workspace with
+`analysis/*/program.json` above the project folder, the shell's folder and the paths the call names, and one level
+below, so Claude may be started above or inside the workspace. Outside every workspace it does nothing. Inside one:
+- It denies a file write whose path resolves under `legacy/` or under a source app's real path. Paths are compared
+  without regard to case on macOS and Windows.
+- It denies a write to what the proof reads, by a file tool or from the shell: `program.json`, `DECISIONS.*`,
+  `SIGNOFF.json`, `VERIFICATION.*`, `capabilities.json`, `capability_index.json`, `rules.json`, `traceability.json`,
+  `platform.json`, `design/placeholders.json`, everything under `evidence/` except `evidence/shots/` and
+  `evidence/logs/` (simulators, Maestro and `tee` write those), the folders that hold them (`analysis/<program>`,
+  `evidence/`, `design/`) and, for a removing or moving command, any folder above them (`rm -rf .` at the workspace
+  root). Their scripts write them; test results exist only when `evidence.py run` or `canary.py run` produced them.
+- It reads the shell the way a shell does: `;`, `&&`, `||`, `|` and new lines split commands, shell keywords (`do`,
+  `then`, `if`, `while`) are stepped over so a loop body is read, `cd` and `pushd` move the folder for what follows
+  (`cd -` or a folder that does not exist leaves it unknown), every redirect form (`>`, `>>`, `>|`, `2>`, `&>`) names
+  a target, `sh -c`, `bash -lc` and `eval` are read inside, a script file a shell or an interpreter runs is read when
+  it lies outside this plugin (`sh helper.sh`, `python3 helper.py`, `source x`, `bash -c "$(cat x)"`), a script piped
+  into a shell is unsure, heredocs and inline code (`python -c`, `python -`, `node -e`) are scanned for the paths
+  they open and whether they write or spawn a process (a read passes), `xargs` takes the paths of the command before
+  the pipe, `find -exec` is read for the command it runs, and `dd of=`, `curl -o`, `tar -C`, `find -delete`,
+  `sed -i`, `perl -pi`, package managers (a bare `yarn`, `npm run build`, also with `--prefix` or `--cwd`), build
+  tools (`gradlew`, `xcodebuild`, `swift build`, `flutter pub`), formatters with `--fix` or `--write`, `patch`, and
+  git (also with `-C`, `--git-dir`, `--work-tree`) name their targets.
 - It asks the person before a shell command that records their decision or sign-off (`decisions.py add|add-json`,
   `signoff.py brief|proof|visual`, `workspace.py intent`) or the design's sample data (`figma_index.py
-  placeholders`), wherever the subcommand stands in the command.
-- A `--snapshot` source repository is protected like a link's target.
-- It asks for a shell command that names a legacy path together with a writing verb: `>`, `tee`, `sed -i`, `rm`,
-  `mv`, `cp`, `git commit|checkout|reset|clean|stash|apply`, or a package install.
+  placeholders`), wherever the subcommand stands, also as `python -m <module>` or code that imports the module, and
+  when an argument of those scripts is a variable the guard cannot read. `signoff.py` and `decisions.py` refuse a
+  `--by` that is empty, a placeholder, or names a model or an assistant.
+- It asks before a git command that can rewrite the proof's inputs (`checkout` or `restore` of them or of the whole
+  tree, `stash`, `reset`, `clean`, `switch`, `pull`, `merge`, `rebase`, `revert`, `cherry-pick`, `apply`) when it
+  runs in the repository that holds the analysis folder; the same commands in another repository, such as the new
+  app's, pass, and so do `status`, `log`, `diff`, `add`, `commit`, `switch -c` and the read-only forms of `branch`,
+  `tag`, `stash list`, `config` and `fetch --dry-run`.
+- A `--snapshot` source repository is protected like a link's target. A malformed `program.json` still leaves the
+  `legacy/` links protected.
+- It asks for a shell command that writes into a legacy path: a redirect, `tee`, `sed -i`, `rm`, `mv`, `cp`,
+  `find -delete`, `xargs rm`, `git commit|checkout|reset|clean|stash|apply|fetch|config`, a package manager, build
+  tool, formatter or `patch` run inside it, or inline code that writes relative paths while the shell stands in it,
+  also through `cd`, a wrapper or a shell.
+- A write whose target it cannot resolve (a variable, `$(...)`, a brace expansion, a `cd` into an unknown folder) is
+  asked, never silently allowed, when the command also names a judged file, `analysis/`, `legacy/` or a source app's
+  real path. Everything else it cannot read passes to the normal permission rules.
 
-The skills that record a person's answers (`fuse-review`, `fuse-brief`, `fuse-build`, `fuse-verify`) can only be
-started by a person (`disable-model-invocation`), and they ask in pop-ups. `userConfig.guard=false` turns the hook
-off.
+The skills that record a person's answers or build from them (`fuse-review`, `fuse-brief`, `fuse-scaffold`,
+`fuse-build`, `fuse-verify`, `fuse-harden`) can only be started by a person (`disable-model-invocation`), and they
+ask in pop-ups. `userConfig.guard=false` turns the hook off.
 
 ## Safety
 
+- **What the guard and the proof guarantee, and what they do not.** They deter, and they make tampering auditable: every
+  recorded result carries the command that ran, its exit code, its output and the hashes of what it produced, and the
+  guard stops the shell forms a model plausibly writes and asks about the ones it cannot read. A determined operator
+  with a shell can still write a script the new app keeps and call it a test runner; that is why the command line of
+  every suite is kept in `evidence/test-runs.json` for a reviewer to read, why a read-only mount of the legacy apps
+  is the hard guarantee, and why a named person signs.
 - Credentials found in code are masked in every shareable artifact, as a `file:line` plus a 2–4 character preview.
   The full inventory goes to the gitignored `SECRETS.local.md`.
 - Apps run only on simulators or emulators against test backends a person named. A token in a recorded response is

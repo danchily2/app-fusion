@@ -122,6 +122,34 @@ test('extract-rules: per-shard verify, P0 panel votes, conflicts across apps', a
   assert.ok(result.stats.consolidated >= 1)
 })
 
+test('extract-rules: a twin is the same product, so its rules never bring a conflict judge on their own', async () => {
+  const twinApps = [...apps, { name: 'me-android', product: 'Employee', stack: 'android-native', role: 'twin', twinOf: 'me-ios' }]
+  const twinShards = [
+    { id: 'me-ios:Cal', app: 'me-ios', stack: 'ios-native', kind: 'screens', name: 'Cal', files: ['a.swift'], loc: 10, hints: {} },
+    { id: 'me-android:Cal', app: 'me-android', stack: 'android-native', kind: 'screens', name: 'Cal', files: ['a.kt'], loc: 10, hints: {} },
+    { id: 'vmm:Cal', app: 'vmm', stack: 'react-native', kind: 'screens', name: 'Cal', files: ['a.tsx'], loc: 10, hints: {} },
+  ]
+  const caps = [{ id: 'CAP-001', name: 'Employee only', domain: 'Cal', apps: ['me-ios', 'me-android'] },
+                { id: 'CAP-002', name: 'Both products', domain: 'Cal', apps: ['vmm', 'me-ios'] }]
+  const rule = (app, cap) => ({ name: `Rule of ${cap}`, category: 'Validation', priority: 'P1', capability: cap, source: `${app}/x:1`,
+                                 plainEnglish: 'p', given: 'g', when: 'w', then: 't', confidence: 'High' })
+  const respond = (label) => {
+    if (label.startsWith('extract:me-ios')) return { rules: [rule('me-ios', 'CAP-001'), rule('me-ios', 'CAP-002')] }
+    if (label.startsWith('extract:me-android')) return { rules: [rule('me-android', 'CAP-001')] }
+    if (label.startsWith('extract:vmm')) return { rules: [rule('vmm', 'CAP-002')] }
+    if (label.startsWith('verify:')) return { real: true, reason: 'ok' }
+    if (label.startsWith('conflicts:')) return { conflicts: [] }
+    return undefined
+  }
+  const { result, calls } = await run(wf('extract-rules.js'), { program: 'trial', apps: twinApps, shards: twinShards, capabilities: caps }, respond)
+  const judged = calls.filter(c => c.opts.label.startsWith('conflicts:')).map(c => c.opts.label)
+  assert.deepEqual(judged, ['conflicts:CAP-002'], 'only the capability two products implement gets a conflict judge')
+  assert.ok(calls.find(c => c.opts.label === 'conflicts:CAP-002').prompt.includes('"product":"Employee"') === false, 'products are named by their source app')
+  assert.ok(calls.find(c => c.opts.label === 'conflicts:CAP-002').prompt.includes('"product":"me-ios"'))
+  assert.equal(result.stats.capabilitiesCompared, 1)
+  assert.equal(result.rules.filter(r => r.capability === 'CAP-001').length, 2, 'both twins keep their rules')
+})
+
 test('trace-design: file handoff with batches and a capability index', async () => {
   const key = 'D'.repeat(22)
   const args = { program: 'p', capabilityIndex: 'analysis/p/capability_index.json', capabilityIds: ['CAP-001'],

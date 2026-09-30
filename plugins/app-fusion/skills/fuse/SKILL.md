@@ -9,14 +9,22 @@ You are the front door of App Fusion. The person may know nothing about consolid
 words, and always end on one exact command to run next. Scripts live in `${CLAUDE_PLUGIN_ROOT}/scripts/`; run every
 command from the workspace root (the folder the person opened).
 
+**Arguments.** `$program` is the first word of `$ARGUMENTS`, and it is a program name only when it does not start
+with `--`. When `$program` is empty or starts with `--` (as in `/app-fusion:fuse --source vmm=~/code/vmm ...`), no
+name was given: every word of `$ARGUMENTS` is a flag, and the name is chosen in step 1.
+
 ## 1: Where things stand
 
-- Run `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/status.py" --list`. The program name is `$program` if given.
+- Run `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/status.py" --list`. The program name is `$program` if one was given.
   Otherwise, with one program, use it. With several, ask which one (pop-up). With none, this is a new program.
-- **Return visit.** If `analysis/$program/INTENT.md` exists, run
-  `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/status.py" $program`, say where things stand in at most five lines, give its
-  exact next command, and stop. If `program.json` exists but `INTENT.md` does not, the apps are linked but nobody
-  said what they want yet: skip to step 3. New `--source` or `--figma` arguments are still added through step 2.
+- **Return visit.** If `analysis/$program/INTENT.md` exists and holds no line starting with `OPEN:`, every answer in
+  it is a person's: run `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/status.py" $program`, say where things stand in at
+  most five lines, give its exact next command, and stop. If it holds `OPEN:` lines, a headless run wrote documented
+  defaults there, not a person's words: with AskUserQuestion available, say so, ask only those items (step 3), record
+  them (step 4) and go on to step 5; without it (a headless run), list the open items and stop, saying that a person
+  must run `/app-fusion:fuse $program` in a session with pop-ups, since no headless run can answer them. If
+  `program.json` exists but `INTENT.md` does not, the apps are linked but nobody said what they want yet: skip to
+  step 3. New `--source` or `--figma` arguments are still added through step 2.
 - A new program needs a short name: letters, digits, `-` and `_`. Take it from `$program`, or propose one from the
   apps (the new app's working name, e.g. `work-app`) and let the person change it.
 
@@ -48,9 +56,11 @@ plugin never edits it (a hook denies writes there).
 
 Use AskUserQuestion, never chat text. A pop-up has at most four questions, each with at most four options, and the
 person can always type their own answer. In a headless run (no pop-up tool), take the defaults marked below and
-record each as an open item in INTENT.md, but do not run `workspace.py intent`: it records a person's answers, the
-guard asks that person to confirm it, and nobody is there to. `program.json` keeps its `undecided` values until a
-person answers (this command again in a session with pop-ups, or `fuse-review` and `fuse-brief approve`).
+record each in INTENT.md under `## Open items` as a line starting with `OPEN:` (the marker this command and
+`fuse-status` look for), but do not run `workspace.py intent`: it records a person's answers, the guard asks that
+person to confirm it, and nobody is there to. `program.json` keeps its `undecided` values until a person answers:
+this command again in a session with pop-ups asks exactly the `OPEN:` items, and `fuse-review` and `fuse-brief
+approve` settle the stack and the store listing.
 
 **Pop-up 1**
 
@@ -86,8 +96,9 @@ person answers (this command again in a session with pop-ups, or `fuse-review` a
 
 Write `analysis/$program/INTENT.md`. It holds the goal, the apps and their products, the design links, the
 platforms, the stack choice, the personas, what must stay true and the store listing, each answer **word for word**,
-plus today's date. Then record the machine-readable part (the guard asks the person to confirm the command; skip it
-in a headless run):
+plus today's date. On a return visit, replace each `OPEN:` line with the person's answer and the date it was given,
+so no `OPEN:` line is left once a person has answered. Then record the machine-readable part (the guard asks the
+person to confirm the command; skip it in a headless run):
 
 ```bash
 python3 "${CLAUDE_PLUGIN_ROOT}/scripts/workspace.py" intent $program --goal build|understand \

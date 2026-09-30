@@ -29,11 +29,11 @@ the next step is `/app-fusion:fuse-build $program`.
 
 Follow the stack profile `${CLAUDE_PLUGIN_ROOT}/references/targets/<stack>.md`:
 1. Delete build output and test caches (its "clean" commands).
-2. `RUN=$(python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" dir $program suite verify)`. Run the **full** unit suite
-   with JUnit output into `$RUN`, and keep the raw output with `2>&1 | tee $RUN/output.txt`.
-3. Record it:
-   `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" suite $program --capability all --name verify-unit --command "<cmd>" --junit $RUN --log $RUN/output.txt`.
-   For a native pair, run and record each half: `--platform ios --name verify-ios`, then `--platform android --name verify-android`.
+2. `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" run $program --capability all --name verify-unit -- <the profile's full test command>`.
+   The script runs the **full** unit suite itself (no shell), keeps its exit code, stdout and stderr next to the JUnit
+   results, and records them. For a native pair, run each half: `--platform ios --name verify-ios`, then
+   `--platform android --name verify-android`.
+3. Read its output: the executed count and the failures. A result recorded any other way is a gap in the proof.
 
 A failure caused by this machine is still a failure: say why in `--note`.
 
@@ -43,8 +43,9 @@ For each capability:
 1. Read the build's canary in `evidence/test-runs.json` (`change` and `diff`), and pick a **different** break on a
    line that matters, in a file of the capability's `## Files`.
 2. `canary.py start $program <CAP> --file <file> --change "<what you will break>"`, make the break, run the covering
-   tests with JUnit output into the run folder it printed, then `canary.py finish $program <CAP>`. It restores the
-   file byte for byte and records the result. If the tests cannot run, `canary.py abort`.
+   tests with `canary.py run $program <CAP> -- <the profile's test command>` (it executes them on the broken file and
+   records the result in the run folder), then `canary.py finish $program <CAP>`. It restores the file byte for byte
+   and records the result. If the tests cannot run, `canary.py abort`.
 
 The suite from step 2 stays valid: the restore gives back exactly the code it ran on.
 
@@ -53,9 +54,8 @@ The suite from step 2 stays valid: the restore gives back exactly the code it ra
 On a booted simulator for iOS and an emulator for Android, for every platform in `program.json` → `target.platforms`,
 with test accounts only:
 1. Build and install the app.
-2. Run every Maestro flow of the journeys through the capabilities being verified:
-   `RUN=$(evidence.py dir $program journey <JRN> --platform <p>)`, `maestro test <flow> --format junit --output $RUN/maestro.xml`,
-   then `evidence.py journey $program --journey <JRN> --platform <p> --flow <flow> --junit $RUN --device "<device>"`.
+2. Run every Maestro flow of the journeys through the capabilities being verified, through the evidence script:
+   `evidence.py run $program --journey <JRN> --platform <p> --flow <flow> --device "<device>" -- maestro test <flow, relative to the new app> --format junit --output {run}/maestro.xml`.
 3. Capture a screenshot of each designed screen and record each with `evidence.py shot ...`.
 
 With no simulator or emulator for a platform, say so. The journeys check is then a gap for it, not a pass.

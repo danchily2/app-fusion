@@ -6,9 +6,16 @@ changes a Figma file.
 ## Which server
 
 Any connected Figma MCP server works:
+- the official Figma plugin from the Claude plugin marketplace (`/plugin install figma@claude-plugins-official`; its
+  tools are named `mcp__plugin_figma_figma__*`), the usual setup
 - the claude.ai Figma connector (`mcp__claude_ai_Figma__*`)
-- Figma's remote server (`https://mcp.figma.com/mcp`, added with `claude mcp add --transport http figma https://mcp.figma.com/mcp`)
-- the Figma desktop app's local server (`http://127.0.0.1:3845/mcp`), which only sees the file open in the app
+- Figma's remote server (`https://mcp.figma.com/mcp`, added with `claude mcp add --transport http figma https://mcp.figma.com/mcp`;
+  tools `mcp__figma__*`)
+- the Figma desktop app's local server (`http://127.0.0.1:3845/mcp`, tools `mcp__figma-desktop__*`), which only sees the
+  file open in the app
+
+The design analyst lists the read tools of all four by name. A server under any other name gives it no Figma tool: it
+says so and works from the cache, and the calling session fetches what it names.
 
 The tools the plugin uses are the same everywhere:
 

@@ -55,6 +55,21 @@ def check_name(value, what="name"):
     return value
 
 
+NOT_A_PERSON = re.compile(r"^(?:_+|\.+|-+|<[^>]*>|tbd|todo|n/?a|none|nobody|unknown|user|me|you|test|anonymous)$"
+                          r"|claude|assistant|anthropic|openai|copilot|gpt|\bai\b|\bmodel\b|\bagent\b|\bbot\b|\bllm\b", re.I)
+
+
+def person_name(value):
+    """A person's name as they gave it, or None. Empty values, placeholders, anything that names a model or an
+    assistant, and control or shell punctuation are refused: a sign-off or a decision carries a person's own name."""
+    who = one_line(value, 80)
+    if not who or len(re.sub(r"[^A-Za-zÀ-ɏЀ-ӿ]", "", who)) < 2:
+        return None
+    if re.search(r"[;&|<>`$\x00-\x1f]", who) or NOT_A_PERSON.search(who):
+        return None
+    return who
+
+
 def now_iso():
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 

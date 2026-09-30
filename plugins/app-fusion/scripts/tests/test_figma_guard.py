@@ -196,15 +196,151 @@ class Guard(unittest.TestCase):
         self.assertEqual(self.decide("Bash", command="python3 scripts/signoff.py p --by X proof --caps CAP-001"), "ask")
         self.assertEqual(self.decide("Bash", command="python3 scripts/workspace.py intent p --platforms ios"), "ask")
         self.assertEqual(self.decide("Write", file_path="analysis/p/program.json"), "deny")
-        # the shell cannot write the judge's inputs either, but test runners still write their run folders
+        # the shell cannot write the judge's inputs either; test results come from evidence.py run, never from a copy
         for cmd in ("echo '{}' > analysis/p/VERIFICATION.json", "cat x.json | tee analysis/p/SIGNOFF.json",
                     "cp /tmp/v.json analysis/p/evidence/test-runs.json",
-                    "python3 -c \"open('analysis/p/SIGNOFF.json','w').write('{}')\""):
-            self.assertEqual(self.decide("Bash", command=cmd), "deny", cmd)
-        for cmd in ("cat analysis/p/VERIFICATION.json", "jq . analysis/p/DECISIONS.json",
+                    "python3 -c \"open('analysis/p/SIGNOFF.json','w').write('{}')\"",
                     "npx jest 2>&1 | tee analysis/p/evidence/junit/verify/run-1/output.txt",
                     "cp build/test-results/TEST-a.xml analysis/p/evidence/junit/CAP-001/run-2/"):
+            self.assertEqual(self.decide("Bash", command=cmd), "deny", cmd)
+        for cmd in ("cat analysis/p/VERIFICATION.json", "jq . analysis/p/DECISIONS.json",
+                    "python3 scripts/evidence.py run p --capability CAP-001 --name unit -- npx jest --ci",
+                    "xcrun simctl io booted screenshot analysis/p/evidence/shots/CAP-001/list.png",
+                    "npx jest 2>&1 | tee analysis/p/evidence/logs/jest.txt"):
             self.assertEqual(self.decide("Bash", command=cmd), "allow", cmd)
+        self.assertEqual(self.decide("Write", file_path="analysis/p/evidence/logs/build.txt"), "allow", "logs and shots are not judged")
+
+    def test_the_bypasses_the_review_found_are_closed(self):
+        deny = lambda cmd: self.assertEqual(self.decide("Bash", command=cmd), "deny", cmd)
+        ask = lambda cmd: self.assertEqual(self.decide("Bash", command=cmd), "ask", cmd)
+        allow = lambda cmd: self.assertEqual(self.decide("Bash", command=cmd), "allow", cmd)
+        # every redirect form, cd chains, wrappers, heredocs, other writers, and the folders that hold judged files
+        deny("echo '{}' >| analysis/p/SIGNOFF.json")
+        deny("echo x 2> analysis/p/DECISIONS.json")
+        deny("echo x &> analysis/p/VERIFICATION.json")
+        deny("cd analysis/p && echo '{}' > SIGNOFF.json")
+        deny("cd analysis/p; echo '{}' > SIGNOFF.json")
+        deny("sh -c 'cp /tmp/x analysis/p/SIGNOFF.json'")
+        deny("bash -c \"echo x > analysis/p/rules.json\"")
+        deny("python3 - <<'EOF'\nopen('analysis/p/SIGNOFF.json', 'w').write('{}')\nEOF")
+        deny("cat > analysis/p/evidence/junit/CAP-001/run-1/unit.xml <<'EOF'\n<testsuite/>\nEOF")
+        deny("rm -r analysis/p/evidence")
+        deny("rm -rf analysis/p")
+        deny("mv analysis/p analysis/q")
+        deny("dd if=/tmp/x of=analysis/p/program.json")
+        deny("curl -o analysis/p/DECISIONS.json https://example.com/x")
+        deny("tar -C analysis/p -xf /tmp/x.tar")
+        deny("perl -pi -e 's/a/b/' analysis/p/rules.json")
+        deny("find analysis/p/evidence -name '*.xml' -delete")
+        deny("sudo tee analysis/p/platform.json < /tmp/x")
+        # a write whose target the guard cannot resolve, naming a judged file: asked, never silently allowed
+        ask("F=analysis/p/SIGNOFF.json; echo '{}' > $F")
+        ask("echo x > $(pwd)/analysis/p/DECISIONS.json")
+        # git in the workspace can rewrite the judge's inputs; reading and committing cannot
+        ask("git checkout -- analysis/p/DECISIONS.json")
+        ask("git restore analysis/p/SIGNOFF.json")
+        ask("git stash")
+        ask("git reset --hard")
+        allow("git status")
+        allow("git add analysis/p && git commit -m x")
+        allow("git log --oneline analysis/p/DECISIONS.json")
+        allow("git diff analysis/p/rules.json")
+        # the sign-off and decision gate
+        ask("K=proof; python3 scripts/signoff.py p $K --by Dan --all-proven")
+        ask("cd scripts && python3 -m decisions add p --about CAP-001 --kind gap --choice drop")
+        ask("python3 -c \"import sys; sys.argv=['signoff.py','p','proof','--by','X']; import signoff; signoff.main()\"")
+        # reads stay silent
+        allow("python3 -c \"import json; print(json.load(open('analysis/p/DECISIONS.json')))\"")
+        allow("node -e \"console.log(require('./analysis/p/rules.json').rules.length)\"")
+        allow("cat analysis/p/SIGNOFF.json | jq .")
+        allow("cp analysis/p/DECISIONS.json /tmp/backup.json")
+        allow("ls -la analysis/p/evidence")
+        allow("python3 scripts/decisions.py open p --json > /tmp/open.json")
+        self.assertEqual(self.decide("Write", file_path="analysis/p/evidence/junit/CAP-001/run-1/unit.xml"), "deny")
+        if sys.platform == "darwin":
+            self.assertEqual(self.decide("Write", file_path="ANALYSIS/p/SIGNOFF.json"), "deny", "the file system ignores case")
+            self.assertEqual(self.decide("Write", file_path="Legacy/mgr/x.ts"), "deny")
+            deny("echo x > Analysis/p/DECISIONS.json")
+
+    def test_legacy_writes_the_review_found_are_asked(self):
+        ask = lambda cmd: self.assertEqual(self.decide("Bash", command=cmd), "ask", cmd)
+        allow = lambda cmd: self.assertEqual(self.decide("Bash", command=cmd), "allow", cmd)
+        ask("echo x >| legacy/mgr/a.ts")
+        ask("python3 -c \"open('legacy/mgr/a.ts','w').write('x')\"")
+        ask("node -e \"require('fs').writeFileSync('legacy/mgr/a.ts','x')\"")
+        ask("cd legacy/mgr; rm package.json")
+        ask("(cd legacy/mgr && echo x > a.ts)")
+        ask("find legacy/mgr -name '*.ts' -delete")
+        ask("ls legacy/mgr/src | xargs rm")
+        ask("sh -c 'rm legacy/mgr/package.json'")
+        ask("dd if=/dev/zero of=legacy/mgr/a.bin")
+        ask("curl -o legacy/mgr/x.zip https://example.com/x.zip")
+        ask("tar -C legacy/mgr -xf /tmp/x.tar")
+        ask("git --git-dir=legacy/mgr/.git --work-tree=legacy/mgr reset --hard")
+        ask("npm --prefix legacy/mgr install")
+        ask("yarn --cwd legacy/mgr add x")
+        ask("L=legacy/mgr; echo x > $L/a.ts")
+        ask("echo x > $(pwd)/legacy/mgr/a.ts")
+        ask("python3 - <<'EOF'\nopen('legacy/mgr/a.ts','w')\nEOF")
+        ask("env FOO=1 cp /tmp/x legacy/mgr/x")
+        # reads and writes elsewhere stay silent
+        allow("git -C legacy/mgr branch --show-current")
+        allow("git -C legacy/mgr tag -l")
+        allow("git -C legacy/mgr stash list")
+        allow("git -C legacy/mgr fetch --dry-run")
+        allow("cd legacy/mgr && mkdir -p /tmp/x && rm /tmp/x/junk")
+        allow("cd legacy/mgr && git log -3")
+        allow("grep -rn foo legacy/mgr/src")
+        allow("python3 -c \"print(open('legacy/mgr/package.json').read())\"")
+        allow("cd new-app/p && yarn add left-pad")
+        allow("npx jest --ci")
+
+    def test_the_workspace_is_found_from_above_below_and_inside(self):
+        w = self.w
+        plugin_root = os.path.dirname(helpers.SCRIPTS)
+
+        def run(payload, project, script="guard.py"):
+            argv = [sys.executable, os.path.join(helpers.SCRIPTS, "guard.py")] if script == "guard.py" else ["sh", os.path.join(plugin_root, "hooks", "guard.sh")]
+            out = subprocess.run(argv, input=json.dumps(payload), capture_output=True, text=True,
+                                 env={**os.environ, "CLAUDE_PROJECT_DIR": project, "CLAUDE_PLUGIN_ROOT": plugin_root})
+            self.assertEqual(out.returncode, 0, out.stderr)
+            return json.loads(out.stdout)["hookSpecificOutput"]["permissionDecision"] if out.stdout.strip() else "allow"
+
+        # Claude started one folder above the workspace
+        above = {"tool_name": "Write", "tool_input": {"file_path": os.path.join(w.ws, "legacy", "mgr", "x.ts")}, "cwd": w.root}
+        self.assertEqual(run(above, w.root), "deny")
+        self.assertEqual(run({"tool_name": "Bash", "tool_input": {"command": f"echo x > {w.ws}/legacy/mgr/a.ts"}, "cwd": w.root}, w.root), "ask")
+        self.assertEqual(run({"tool_name": "Bash", "tool_input": {"command": f"echo x > {w.ws}/analysis/p/SIGNOFF.json"}, "cwd": w.root}, w.root), "deny")
+        # Claude started inside a subfolder of the workspace
+        sub = os.path.join(w.ws, "new-app", "p")
+        os.makedirs(sub, exist_ok=True)
+        self.assertEqual(run({"tool_name": "Write", "tool_input": {"file_path": "../../legacy/mgr/x.ts"}, "cwd": sub}, sub), "deny")
+        self.assertEqual(run({"tool_name": "Bash", "tool_input": {"command": "cp x ../../analysis/p/rules.json"}, "cwd": sub}, sub), "deny")
+        # the shell gate runs python in those cases too, and stays out of the way elsewhere
+        self.assertEqual(run(above, w.root, script="guard.sh"), "deny")
+        self.assertEqual(run({"tool_name": "Write", "tool_input": {"file_path": "../../legacy/mgr/x.ts"}, "cwd": sub}, sub, script="guard.sh"), "deny")
+        elsewhere = os.path.join(w.root, "elsewhere", "project")
+        os.makedirs(elsewhere)
+        self.assertEqual(run({"tool_name": "Bash", "tool_input": {"command": "rm -rf build"}, "cwd": elsewhere}, elsewhere, script="guard.sh"), "allow")
+
+    def test_a_malformed_program_json_still_protects_the_legacy_links(self):
+        self.w.put_json("analysis/p/program.json", {"program": "p", "apps": "not-a-list"})
+        self.assertEqual(self.decide("Write", file_path="legacy/mgr/x.ts"), "deny")
+        self.w.put_json("analysis/p/program.json", {"program": "p", "apps": [{"name": None, "path": 5}, "x"]})
+        self.assertEqual(self.decide("Write", file_path="legacy/mgr/x.ts"), "deny")
+        self.assertEqual(self.decide("Bash", command="echo x > analysis/p/DECISIONS.json"), "deny")
+
+    def test_a_signature_needs_a_persons_name(self):
+        w = self.w
+        with open(w.path("analysis", "p", "FUSION_BRIEF.md"), "w", encoding="utf-8") as fh:
+            fh.write("# brief\n")
+        for bad in ("claude", "Claude Fable", "the assistant", "AI agent", "Dan; rm -rf x", "x", "", "gpt-5", "Copilot User"):
+            out = w.run("signoff.py", "p", "brief", "--by", bad, check=False)
+            self.assertNotEqual(out.returncode, 0, bad)
+        w.run("signoff.py", "p", "brief", "--by", "Kari Nordmann")
+        out = w.run("decisions.py", "add", "p", "--about", "CAP-001", "--kind", "gap", "--choice", "drop", "--by", "Claude", check=False)
+        self.assertNotEqual(out.returncode, 0, "a decision is never recorded in a model's name")
+        w.run("decisions.py", "add", "p", "--about", "CAP-001", "--kind", "gap", "--choice", "drop", "--by", "Kari Nordmann")
 
     def test_a_snapshots_source_is_protected_too(self):
         w = Workspace()
@@ -222,9 +358,12 @@ class Guard(unittest.TestCase):
         out = subprocess.run([sys.executable, os.path.join(helpers.SCRIPTS, "guard.py")], input=payload, capture_output=True, text=True,
                              env={**os.environ, "CLAUDE_PROJECT_DIR": self.w.ws, "CLAUDE_PLUGIN_OPTION_GUARD": "false"})
         self.assertEqual(out.stdout.strip(), "")
+        elsewhere = os.path.join(self.w.root, "elsewhere")
+        os.makedirs(elsewhere)
+        payload = json.dumps({"tool_name": "Write", "tool_input": {"file_path": "legacy/mgr/x"}, "cwd": elsewhere})
         out = subprocess.run([sys.executable, os.path.join(helpers.SCRIPTS, "guard.py")], input=payload, capture_output=True, text=True,
-                             env={**os.environ, "CLAUDE_PROJECT_DIR": self.w.root})
-        self.assertEqual(out.stdout.strip(), "", "no analysis/ here: no-op")
+                             env={**os.environ, "CLAUDE_PROJECT_DIR": elsewhere})
+        self.assertEqual(out.stdout.strip(), "", "no workspace anywhere near: no-op")
         out = subprocess.run([sys.executable, os.path.join(helpers.SCRIPTS, "guard.py")], input="not json", capture_output=True, text=True)
         self.assertEqual((out.returncode, out.stdout.strip()), (0, ""), "garbage in: allow, never crash the session")
 

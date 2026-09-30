@@ -22,10 +22,8 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from fusionlib import proofkit  # noqa: E402
-from fusionlib.common import check_name, die, load_json, now_iso, one_line, program_dir, workspace, write_json  # noqa: E402
+from fusionlib.common import check_name, die, load_json, now_iso, one_line, person_name, program_dir, workspace, write_json  # noqa: E402
 from fusionlib.signatures import brief_approval, brief_hash, load, path_of, signed_state  # noqa: E402,F401
-
-PLACEHOLDER_NAME = re.compile(r"^(?:_+|\.+|-+|<[^>]*>|tbd|todo|n/?a|none|claude|assistant|ai|model|agent)$", re.I)
 
 
 def main():
@@ -56,9 +54,10 @@ def main():
             print(f"{cap}: proof {'signed' if s['proof'] else 'not signed'}" +
                   ("" if s["visual"] is None else f", visual {'signed' if s['visual'] else 'not signed'}"))
         return
-    who = one_line(args.by, 80)
-    if not who or PLACEHOLDER_NAME.match(who):
-        die("--by must be the name of the person signing, as they gave it")
+    who = person_name(args.by)
+    if not who:
+        die("--by must be the name of the person signing, as they gave it: not empty, not a placeholder, not a model or an "
+            "assistant, and without shell punctuation")
     entry = {"by": who, "at": now_iso(), "note": one_line(args.note, 400)}
     if args.kind == "brief":
         h = brief_hash(ws, args.program)

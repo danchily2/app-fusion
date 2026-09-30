@@ -500,24 +500,46 @@ is unavailable.
 
 ## Hooks
 
-`hooks/hooks.json` registers one `PreToolUse` hook on `Edit|Write|NotebookEdit|MultiEdit|Bash`. It is a no-op outside
-a workspace with `analysis/*/program.json`. Inside one:
-- It denies a file write whose path resolves under `legacy/` or under a source app's real path.
-- It denies a write to what the proof reads, by a file tool or from the shell (a redirect, `cp`/`mv`/`tee`/`sed -i`,
-  or inline `python -c` / `node -e` code naming it): `program.json`, `DECISIONS.*`, `SIGNOFF.json`,
-  `VERIFICATION.*`, `capabilities.json`, `capability_index.json`, `rules.json`, `traceability.json`,
-  `platform.json`, `design/placeholders.json` and everything under `evidence/`. Their scripts write them. From the
-  shell, test runners still write their results into run folders, screenshots and logs.
+`hooks/hooks.json` registers one `PreToolUse` hook on `Edit|Write|NotebookEdit|MultiEdit|Bash`. `hooks/guard.sh` runs
+`scripts/guard.py` when a fusion workspace may be involved: `analysis/` in the project folder or above it, one level
+below it, or a `legacy/` or `analysis/` path in the tool call. The script then finds every workspace with
+`analysis/*/program.json` above the project folder, the shell's folder and the paths the call names, and one level
+below, so Claude may be started above or inside the workspace. Outside every workspace it does nothing. Inside one:
+- It denies a file write whose path resolves under `legacy/` or under a source app's real path. Paths are compared
+  without regard to case on macOS and Windows.
+- It denies a write to what the proof reads, by a file tool or from the shell: `program.json`, `DECISIONS.*`,
+  `SIGNOFF.json`, `VERIFICATION.*`, `capabilities.json`, `capability_index.json`, `rules.json`, `traceability.json`,
+  `platform.json`, `design/placeholders.json`, everything under `evidence/` except `evidence/shots/` and
+  `evidence/logs/` (simulators, Maestro and `tee` write those), and the folders that hold them (`analysis/<program>`,
+  `evidence/`, `design/`: no `rm -r`, `mv` or `tar -C` of them). Their scripts write them; test results exist only
+  when `evidence.py run` or `canary.py run` produced them.
+- It reads the shell the way a shell does: `;`, `&&`, `||`, `|` and new lines split commands, `cd` moves the folder
+  for what follows, every redirect form (`>`, `>>`, `>|`, `2>`, `&>`) names a target, `sh -c`, `bash -c` and `eval`
+  are read inside, heredocs and inline code (`python -c`, `python -`, `node -e`) are scanned for the paths they open
+  and whether they write (a read passes), `xargs` takes the paths of the command before the pipe, and `dd of=`,
+  `curl -o`, `tar -C`, `find -delete`, `sed -i`, `perl -pi`, package managers (also with `--prefix` or `--cwd`) and
+  git (also with `-C`, `--git-dir`, `--work-tree`) name their targets.
 - It asks the person before a shell command that records their decision or sign-off (`decisions.py add|add-json`,
   `signoff.py brief|proof|visual`, `workspace.py intent`) or the design's sample data (`figma_index.py
-  placeholders`), wherever the subcommand stands in the command.
-- A `--snapshot` source repository is protected like a link's target.
-- It asks for a shell command that names a legacy path together with a writing verb: `>`, `tee`, `sed -i`, `rm`,
-  `mv`, `cp`, `git commit|checkout|reset|clean|stash|apply`, or a package install.
+  placeholders`), wherever the subcommand stands, also as `python -m <module>` or code that imports the module, and
+  when an argument of those scripts is a variable the guard cannot read. `signoff.py` and `decisions.py` refuse a
+  `--by` that is empty, a placeholder, or names a model or an assistant.
+- It asks before a git command in the workspace that can rewrite the proof's inputs (`checkout` or `restore` of them
+  or of the whole tree, `stash`, `reset`, `clean`, `switch`, `pull`, `merge`, `rebase`, `revert`, `cherry-pick`,
+  `apply`); `status`, `log`, `diff`, `add`, `commit` and the read-only forms of `branch`, `tag`, `stash list` and
+  `fetch --dry-run` pass.
+- A `--snapshot` source repository is protected like a link's target. A malformed `program.json` still leaves the
+  `legacy/` links protected.
+- It asks for a shell command that writes into a legacy path: a redirect, `tee`, `sed -i`, `rm`, `mv`, `cp`,
+  `find -delete`, `xargs rm`, `git commit|checkout|reset|clean|stash|apply|fetch`, or a package install, also
+  through `cd`, a wrapper or a shell.
+- A write whose target it cannot resolve (a variable, `$(...)`, a brace expansion, a `cd` into an unknown folder) is
+  asked, never silently allowed, when the command also names a judged file, `analysis/`, `legacy/` or a source app's
+  real path. Everything else it cannot read passes to the normal permission rules.
 
-The skills that record a person's answers (`fuse-review`, `fuse-brief`, `fuse-build`, `fuse-verify`) can only be
-started by a person (`disable-model-invocation`), and they ask in pop-ups. `userConfig.guard=false` turns the hook
-off.
+The skills that record a person's answers or build from them (`fuse-review`, `fuse-brief`, `fuse-scaffold`,
+`fuse-build`, `fuse-verify`, `fuse-harden`) can only be started by a person (`disable-model-invocation`), and they
+ask in pop-ups. `userConfig.guard=false` turns the hook off.
 
 ## Safety
 

@@ -172,7 +172,8 @@ paths:
 ```
 
 - The rule covers Claude's file tools and the shell commands it recognizes. The plugin's guard hook adds a second
-  check. A read-only mount is the hard guarantee.
+  check, finds the workspace when Claude was started above or inside it, and compares paths without regard to case.
+  A read-only mount is the hard guarantee.
 - **Helpful tools:** `python3` 3.8+ (required), `git`, `scc`, Xcode with a simulator, Node, the Android SDK, and
   `maestro` for journeys.
 
@@ -197,9 +198,11 @@ paths:
   `SECRETS.local.md`.
 - **Apps run only on simulators, against test backends you named.** Recorded traffic (HAR) is gitignored; keep only
   the copy `api_parity.py sanitize` writes, with authorization headers, cookies and secret-looking values removed.
-- **The proof's inputs are written only by its scripts.** The guard denies edits, from a file tool or the shell, to
-  `program.json`, decisions, sign-offs, verdicts, catalogs and evidence, so the side being judged cannot rewrite
-  what judges it. Test runners still write their results into their own run folders.
+- **The proof's inputs are written only by its scripts.** The guard denies edits, from a file tool or the shell
+  (through `cd`, wrappers, heredocs, inline code and every redirect form), to `program.json`, decisions, sign-offs,
+  verdicts, catalogs and evidence, and to the folders that hold them, so the side being judged cannot rewrite what
+  judges it. Test results exist only when `evidence.py run` or `canary.py run` produced them. A write the guard
+  cannot resolve is asked, never silently allowed, and so is a git command that could rewrite those files.
 - **Nothing is pushed, published or submitted, and no Figma file is changed.**
 
 ## Working in a team

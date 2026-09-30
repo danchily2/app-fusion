@@ -21,7 +21,8 @@ name was given: every word of `$ARGUMENTS` is a flag, and the name is chosen in 
   it is a person's: run `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/status.py" $program`, say where things stand in at
   most five lines, give its exact next command, and stop. If it holds `OPEN:` lines, a headless run wrote documented
   defaults there, not a person's words: with AskUserQuestion available, say so, ask only those items (step 3), record
-  them (step 4) and go on to step 5; without it, list the open items and stop with the status' next command. If
+  them (step 4) and go on to step 5; without it (a headless run), list the open items and stop, saying that a person
+  must run `/app-fusion:fuse $program` in a session with pop-ups, since no headless run can answer them. If
   `program.json` exists but `INTENT.md` does not, the apps are linked but nobody said what they want yet: skip to
   step 3. New `--source` or `--figma` arguments are still added through step 2.
 - A new program needs a short name: letters, digits, `-` and `_`. Take it from `$program`, or propose one from the

@@ -100,9 +100,10 @@ a model's opinion. `scripts/fusion_proof.py` gives each built capability one ver
    `canary.py run` on the broken file, and the code was put back byte for byte.
 10. **Legacy untouched**: every legacy app is still a clean checkout at the recorded commit.
 
-The scripts run the tests themselves, so a result is only ever what a runner produced, and every result is bound to
-the **content** of the files it ran on: the recording scripts store hashes of the result files and of the capability's
-code. Edit a result file and the check fails; change the code and the old results
+The scripts run the tests themselves: shells, file copiers, archivers and inline code are refused as the test command,
+and the command that did run, its exit code and its output are kept with the result, so a reviewer can see what
+produced it. Every result is bound to the **content** of the files it ran on: the recording scripts store hashes of
+the result files and of the capability's code. Edit a result file and the check fails; change the code and the old results
 stop counting until the tests run again. The verdict is **PROVEN** (all ten pass), **PARTLY PROVEN** (nothing failed,
 but a check could not pass, listed with its reason) or **NOT PROVEN** (something failed).
 

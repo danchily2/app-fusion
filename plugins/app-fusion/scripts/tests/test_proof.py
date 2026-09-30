@@ -368,6 +368,70 @@ class Proof(Base):
         self.assertTrue(not os.path.exists(runs) or self.w.json("analysis", "p", "evidence", "test-runs.json")["suites"] == [],
                         "a refused command records nothing")
 
+    def test_collect_takes_only_what_the_run_wrote_or_changed(self):
+        helpers.write(self.app, "tools/noop.py", "import sys\nsys.exit(0)\n")
+        helpers.write(self.app, "tools/rewrite.py", """
+            import shutil, sys
+            shutil.copyfile(sys.argv[1], "build/test-results/TEST-same-name.xml")
+        """)
+        # a result written a moment before the run, with a fresh modification time, is not this run's
+        pre = junit(os.path.join(self.app, "build", "test-results", "TEST-pre.xml"), GREEN)
+        same = junit(os.path.join(self.app, "build", "test-results", "TEST-same-name.xml"), [("old", "stale", "passed")])
+        out = self.w.run("evidence.py", "run", "p", "--capability", "CAP-001", "--name", "unit", "--collect", "build/test-results/*.xml",
+                         "--", sys.executable, "tools/noop.py", check=False)
+        entry = self.w.json("analysis", "p", "evidence", "test-runs.json")["suites"][-1]
+        self.assertEqual(entry["collected"], [])
+        self.assertEqual(sorted(entry["leftOut"]), ["build/test-results/TEST-pre.xml", "build/test-results/TEST-same-name.xml"])
+        self.assertEqual(entry["junit"], [])
+        self.assertNotEqual(out.returncode, 0, "a run that produced nothing is not green")
+        # a file the run rewrote with new content is collected, an untouched neighbour is not
+        src = junit(self.results_file(), GREEN)
+        self.w.run("evidence.py", "run", "p", "--capability", "CAP-001", "--name", "unit", "--collect", "build/test-results/*.xml",
+                   "--", sys.executable, "tools/rewrite.py", src, check=False)
+        entry = self.w.json("analysis", "p", "evidence", "test-runs.json")["suites"][-1]
+        self.assertEqual([c["from"] for c in entry["collected"]], ["build/test-results/TEST-same-name.xml"])
+        self.assertEqual(entry["leftOut"], ["build/test-results/TEST-pre.xml"])
+        self.assertEqual(entry["named"], ["CAP-001", "RULE-001", "RULE-002"])
+        os.utime(pre, None)  # a touch is not a change either
+        v, _ = self.verdict()
+        self.assertEqual(v["CAP-001"]["checks"]["Tests ran"]["status"], "pass", v["CAP-001"]["checks"]["Tests ran"])
+
+    def test_copiers_archivers_and_idle_commands_are_not_runners(self):
+        src = junit(self.results_file(), GREEN)
+        base = ["evidence.py", "run", "p", "--capability", "CAP-001", "--name", "unit"]
+        for argv in (["sleep", "0"], ["ditto", src, "{run}/unit.xml"], ["unzip", "-o", "x.zip", "-d", "{run}"], ["git", "clone", "x", "{run}/r"],
+                     [sys.executable, "-m", "zipfile", "-e", "x.zip", "{run}"], ["tar", "-xf", "x.tar", "-C", "{run}"]):
+            out = self.w.run(*base, "--", *argv, check=False)
+            self.assertNotEqual(out.returncode, 0, argv)
+            self.assertIn("not a test runner", out.stderr, argv)
+
+    def test_a_runner_that_empties_its_folder_cannot_take_the_saved_copy(self):
+        helpers.write(self.app, "tools/clean_then_test.py", """
+            import os, shutil, sys
+            out = os.environ["FUSION_RUN_DIR"]
+            for name in os.listdir(out):
+                path = os.path.join(out, name)
+                os.chmod(path, 0o644)
+                (shutil.rmtree if os.path.isdir(path) else os.remove)(path)
+            shutil.copyfile(sys.argv[1], os.path.join(out, "unit.xml"))
+        """)
+        self.suite(GREEN)
+        self.w.run("canary.py", "start", "p", "CAP-001", "--file", LOGIC, "--change", "flip the check")
+        pending = self.w.json("analysis", "p", "evidence", "canary", "CAP-001", "pending.json")
+        path = os.path.join(self.app, LOGIC)
+        original = helpers.read(path)
+        with open(path, "a", encoding="utf-8") as fh:
+            fh.write("export const broken = true\n")
+        src = junit(self.results_file(), [("CAP-001 approvals", "RULE-001 reject needs a comment", "failed")])
+        out = self.w.run("canary.py", "run", "p", "CAP-001", "--", sys.executable, "tools/clean_then_test.py", src, check=False)
+        self.assertEqual(out.returncode, 0, out.stderr)
+        self.assertTrue(os.path.isfile(self.w.path(pending["run"], "original.bin")), "the saved copy is out of the runner's reach")
+        self.assertTrue(pending["tests"].startswith(pending["run"]))
+        self.w.run("canary.py", "finish", "p", "CAP-001")
+        self.assertEqual(helpers.read(path), original)
+        v, _ = self.verdict()
+        self.assertEqual(v["CAP-001"]["checks"]["Canary"]["status"], "pass", v["CAP-001"]["checks"]["Canary"])
+
     def test_run_keeps_the_exit_code_and_collects_results_written_elsewhere(self):
         helpers.write(self.app, "tools/fake_gradle.py", """
             import os, shutil, sys
@@ -375,9 +439,7 @@ class Proof(Base):
             shutil.copyfile(sys.argv[1], "build/test-results/TEST-new.xml")
             sys.exit(int(sys.argv[2]))
         """)
-        old = junit(os.path.join(self.app, "build", "test-results", "TEST-old.xml"), [("old", "a result of an earlier run", "passed")])
-        past = time.time() - 600
-        os.utime(old, (past, past))
+        junit(os.path.join(self.app, "build", "test-results", "TEST-old.xml"), [("old", "a result of an earlier run", "passed")])
         src = junit(self.results_file(), [("CAP-001 approvals", "RULE-001 reject needs a comment", "failed")])
         out = self.w.run("evidence.py", "run", "p", "--capability", "CAP-001", "--name", "gradle", "--collect", "build/test-results/*.xml",
                          "--", sys.executable, "tools/fake_gradle.py", src, "1", check=False)
@@ -386,7 +448,7 @@ class Proof(Base):
         self.assertTrue(entry["executed"])
         self.assertEqual(entry["exitCode"], 1)
         self.assertEqual([c["from"] for c in entry["collected"]], ["build/test-results/TEST-new.xml"])
-        self.assertEqual(entry["leftOut"], ["build/test-results/TEST-old.xml"], "a file written before the run is never credited")
+        self.assertEqual(entry["leftOut"], ["build/test-results/TEST-old.xml"], "a file the run did not write is never credited")
         self.assertEqual(len(entry["junit"]), 1)
         self.assertEqual(entry["named"], ["CAP-001", "RULE-001"])
         v, _ = self.verdict()

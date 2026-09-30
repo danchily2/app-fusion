@@ -502,8 +502,7 @@ is unavailable.
 ## Hooks
 
 `hooks/hooks.json` registers one `PreToolUse` hook on `Edit|Write|NotebookEdit|MultiEdit|Bash`. `hooks/guard.sh` runs
-`scripts/guard.py` when a fusion workspace may be involved: `analysis/` in the project folder or above it, one level
-below it, or a `legacy/` or `analysis/` path in the tool call. The script then finds every workspace with
+`scripts/guard.py` on every matched call (about 30 ms). The script finds every workspace with
 `analysis/*/program.json` above the project folder, the shell's folder and the paths the call names, and one level
 below, so Claude may be started above or inside the workspace. Outside every workspace it does nothing. Inside one:
 - It denies a file write whose path resolves under `legacy/` or under a source app's real path. Paths are compared
@@ -511,29 +510,36 @@ below, so Claude may be started above or inside the workspace. Outside every wor
 - It denies a write to what the proof reads, by a file tool or from the shell: `program.json`, `DECISIONS.*`,
   `SIGNOFF.json`, `VERIFICATION.*`, `capabilities.json`, `capability_index.json`, `rules.json`, `traceability.json`,
   `platform.json`, `design/placeholders.json`, everything under `evidence/` except `evidence/shots/` and
-  `evidence/logs/` (simulators, Maestro and `tee` write those), and the folders that hold them (`analysis/<program>`,
-  `evidence/`, `design/`: no `rm -r`, `mv` or `tar -C` of them). Their scripts write them; test results exist only
-  when `evidence.py run` or `canary.py run` produced them.
-- It reads the shell the way a shell does: `;`, `&&`, `||`, `|` and new lines split commands, `cd` moves the folder
-  for what follows, every redirect form (`>`, `>>`, `>|`, `2>`, `&>`) names a target, `sh -c`, `bash -c` and `eval`
-  are read inside, heredocs and inline code (`python -c`, `python -`, `node -e`) are scanned for the paths they open
-  and whether they write (a read passes), `xargs` takes the paths of the command before the pipe, and `dd of=`,
-  `curl -o`, `tar -C`, `find -delete`, `sed -i`, `perl -pi`, package managers (also with `--prefix` or `--cwd`) and
+  `evidence/logs/` (simulators, Maestro and `tee` write those), the folders that hold them (`analysis/<program>`,
+  `evidence/`, `design/`) and, for a removing or moving command, any folder above them (`rm -rf .` at the workspace
+  root). Their scripts write them; test results exist only when `evidence.py run` or `canary.py run` produced them.
+- It reads the shell the way a shell does: `;`, `&&`, `||`, `|` and new lines split commands, shell keywords (`do`,
+  `then`, `if`, `while`) are stepped over so a loop body is read, `cd` and `pushd` move the folder for what follows
+  (`cd -` or a folder that does not exist leaves it unknown), every redirect form (`>`, `>>`, `>|`, `2>`, `&>`) names
+  a target, `sh -c`, `bash -lc` and `eval` are read inside, a script file a shell or an interpreter runs is read when
+  it lies outside this plugin (`sh helper.sh`, `python3 helper.py`, `source x`, `bash -c "$(cat x)"`), a script piped
+  into a shell is unsure, heredocs and inline code (`python -c`, `python -`, `node -e`) are scanned for the paths
+  they open and whether they write or spawn a process (a read passes), `xargs` takes the paths of the command before
+  the pipe, `find -exec` is read for the command it runs, and `dd of=`, `curl -o`, `tar -C`, `find -delete`,
+  `sed -i`, `perl -pi`, package managers (a bare `yarn`, `npm run build`, also with `--prefix` or `--cwd`), build
+  tools (`gradlew`, `xcodebuild`, `swift build`, `flutter pub`), formatters with `--fix` or `--write`, `patch`, and
   git (also with `-C`, `--git-dir`, `--work-tree`) name their targets.
 - It asks the person before a shell command that records their decision or sign-off (`decisions.py add|add-json`,
   `signoff.py brief|proof|visual`, `workspace.py intent`) or the design's sample data (`figma_index.py
   placeholders`), wherever the subcommand stands, also as `python -m <module>` or code that imports the module, and
   when an argument of those scripts is a variable the guard cannot read. `signoff.py` and `decisions.py` refuse a
   `--by` that is empty, a placeholder, or names a model or an assistant.
-- It asks before a git command in the workspace that can rewrite the proof's inputs (`checkout` or `restore` of them
-  or of the whole tree, `stash`, `reset`, `clean`, `switch`, `pull`, `merge`, `rebase`, `revert`, `cherry-pick`,
-  `apply`); `status`, `log`, `diff`, `add`, `commit` and the read-only forms of `branch`, `tag`, `stash list` and
-  `fetch --dry-run` pass.
+- It asks before a git command that can rewrite the proof's inputs (`checkout` or `restore` of them or of the whole
+  tree, `stash`, `reset`, `clean`, `switch`, `pull`, `merge`, `rebase`, `revert`, `cherry-pick`, `apply`) when it
+  runs in the repository that holds the analysis folder; the same commands in another repository, such as the new
+  app's, pass, and so do `status`, `log`, `diff`, `add`, `commit`, `switch -c` and the read-only forms of `branch`,
+  `tag`, `stash list`, `config` and `fetch --dry-run`.
 - A `--snapshot` source repository is protected like a link's target. A malformed `program.json` still leaves the
   `legacy/` links protected.
 - It asks for a shell command that writes into a legacy path: a redirect, `tee`, `sed -i`, `rm`, `mv`, `cp`,
-  `find -delete`, `xargs rm`, `git commit|checkout|reset|clean|stash|apply|fetch`, or a package install, also
-  through `cd`, a wrapper or a shell.
+  `find -delete`, `xargs rm`, `git commit|checkout|reset|clean|stash|apply|fetch|config`, a package manager, build
+  tool, formatter or `patch` run inside it, or inline code that writes relative paths while the shell stands in it,
+  also through `cd`, a wrapper or a shell.
 - A write whose target it cannot resolve (a variable, `$(...)`, a brace expansion, a `cd` into an unknown folder) is
   asked, never silently allowed, when the command also names a judged file, `analysis/`, `legacy/` or a source app's
   real path. Everything else it cannot read passes to the normal permission rules.
@@ -544,6 +550,12 @@ ask in pop-ups. `userConfig.guard=false` turns the hook off.
 
 ## Safety
 
+- **What the guard and the proof guarantee, and what they do not.** They deter, and they make tampering auditable: every
+  recorded result carries the command that ran, its exit code, its output and the hashes of what it produced, and the
+  guard stops the shell forms a model plausibly writes and asks about the ones it cannot read. A determined operator
+  with a shell can still write a script the new app keeps and call it a test runner; that is why the command line of
+  every suite is kept in `evidence/test-runs.json` for a reviewer to read, why a read-only mount of the legacy apps
+  is the hard guarantee, and why a named person signs.
 - Credentials found in code are masked in every shareable artifact, as a `file:line` plus a 2–4 character preview.
   The full inventory goes to the gitignored `SECRETS.local.md`.
 - Apps run only on simulators or emulators against test backends a person named. A token in a recorded response is

@@ -17,10 +17,13 @@
 the runner and its arguments only), with `{run}` in any argument or --env value replaced by that folder and
 FUSION_RUN_DIR set to it, keeps the command's exit code, stdout and stderr, and records the JUnit XML the command left
 in the folder. Runners that write elsewhere (Gradle, Xcode) are covered by --collect: files matching the glob (relative
-to --cwd, the new app by default) and written during the run are copied into the folder, an .xcresult bundle converted
-with scripts/xcresult_junit.py. The proof counts only suites, journeys and canaries recorded this way: a result file
-typed by hand and recorded with `suite` or `journey` is kept, but listed as a gap. Canaries are recorded by
-scripts/canary.py, which runs the tests the same way and restores the code they break.
+to --cwd, the new app by default) that are new since the run started, or whose content changed during it, are copied
+into the folder, an .xcresult bundle converted with scripts/xcresult_junit.py; a match that is exactly what it was
+before the run is left out. The proof counts only suites, journeys and canaries recorded this way: a result file typed
+by hand and recorded with `suite` or `journey` is kept, but listed as a gap. The command is the caller's: shells, file
+copiers, archivers and inline code are refused, and the command line, its exit code and its output are recorded, so a
+reviewer can see what produced every result. Canaries are recorded by scripts/canary.py, which runs the tests the same
+way and restores the code they break.
 
 Each entry keeps the SHA-256 of every result file and, for every built capability, the hash of the files its porting
 notes name. The proof accepts a result only while both still match: an edited or removed result file is rejected (each
@@ -51,13 +54,18 @@ VERSION = 2
 OUTPUT_LIMIT = 2_000_000
 DEFAULT_TIMEOUT = 3600
 
-# what a test command is not: a shell, a file writer or a wrapper that hides the real command
+# what a test command is not: a shell, a file writer or copier, an archiver, a wrapper that hides the real command, or
+# a command that does nothing while --collect picks up files written before it
 NOT_RUNNERS = {"sh", "bash", "zsh", "dash", "ksh", "fish", "csh", "tcsh", "cat", "echo", "printf", "tee", "cp", "mv", "dd", "touch",
                "ln", "eval", "exec", "xargs", "find", "sed", "awk", "tar", "curl", "wget", "install", "rsync", "env", "sudo",
-               "nohup", "time", "nice", "script", "expect", "true", "false"}
+               "nohup", "time", "nice", "script", "expect", "true", "false", "sleep", "ditto", "unzip", "zip", "git", "pax", "cpio",
+               "busybox", "scp", "sftp", "gzip", "gunzip", "xz", "bzip2", "base64", "hdiutil", "ar", "jar", "7z", "7za"}
 # interpreters that are test runners only when they run a script or a module, never inline code or stdin
 INTERPRETERS = {"python", "python2", "python3", "node", "nodejs", "perl", "ruby", "osascript", "deno", "bun"}
 INLINE_FLAGS = {"-c", "-e", "-E", "--eval", "-p", "--print", "-"}
+# standard-library modules that copy, unpack or fetch files: not test runners either
+NOT_RUNNER_MODULES = {"zipfile", "tarfile", "shutil", "base64", "gzip", "lzma", "bz2", "http.server", "ftplib", "urllib", "urllib.request",
+                      "webbrowser", "py_compile", "compileall"}
 SHELL_SYNTAX = re.compile(r"[<>|;&`]|\$\(|\$\{")
 
 
@@ -151,6 +159,8 @@ def check_runner(argv):
         if any(a in INLINE_FLAGS for a in argv[1:4]):
             die(f"inline code is not a test runner (`{verb} {argv[1]}`): call the runner directly, or run a script the "
                 "new app keeps in its repository")
+        if "-m" in argv[1:3] and argv[argv.index("-m") + 1:] and argv[argv.index("-m") + 1] in NOT_RUNNER_MODULES:
+            die(f"`{verb} -m {argv[argv.index('-m') + 1]}` copies or unpacks files; it is not a test runner")
     for a in argv:
         if SHELL_SYNTAX.search(a):
             die(f"{a!r} holds shell syntax. The command runs without a shell, so a redirect, pipe or substitution would "
@@ -183,6 +193,7 @@ def execute(ws, program, run_rel, argv, cwd, env_pairs, collect, timeout):
             die(f"--env expects NAME=value, got {kv!r}")
         env[key] = subst(value)
     env["FUSION_RUN_DIR"] = run_abs
+    before = {real: signature(real) for real in collect_matches(cwd_abs, collect or [], run_abs)}
     out_path, err_path = os.path.join(run_abs, "stdout.txt"), os.path.join(run_abs, "stderr.txt")
     started = time.time()
     t0 = time.monotonic()
@@ -199,54 +210,81 @@ def execute(ws, program, run_rel, argv, cwd, env_pairs, collect, timeout):
         die(f"{command[0]} is not executable")
     duration = int((time.monotonic() - t0) * 1000)
     for path in (out_path, err_path):
-        if os.path.getsize(path) > OUTPUT_LIMIT:
-            with open(path, "rb+") as fh:
-                head = fh.read(OUTPUT_LIMIT)
-                fh.seek(0)
-                fh.truncate()
-                fh.write(head + b"\n[cut here by evidence.py: the runner wrote more]\n")
-    collected, left_out = collect_results(ws, cwd_abs, collect or [], run_abs, started)
+        try:  # a runner that empties its output folder takes these with it; the run is still recorded
+            if os.path.getsize(path) > OUTPUT_LIMIT:
+                with open(path, "rb+") as fh:
+                    head = fh.read(OUTPUT_LIMIT)
+                    fh.seek(0)
+                    fh.truncate()
+                    fh.write(head + b"\n[cut here by evidence.py: the runner wrote more]\n")
+        except OSError:
+            pass
+    collected, left_out = collect_results(ws, cwd_abs, collect or [], run_abs, before)
     junit = proofkit.xml_files([run_rel], ws)
     _, bad = proofkit.junit_cases(junit, ws)
     junit = [r for r in junit if r not in bad]
-    output = [os.path.relpath(out_path, real_ws), os.path.relpath(err_path, real_ws)]
+    output = [os.path.relpath(p, real_ws) for p in (out_path, err_path) if os.path.isfile(p)]
     return {"command": shlex.join(command), "argv": argv, "cwd": os.path.relpath(cwd_abs, real_ws), "exitCode": code,
             "timedOut": timed_out, "startedAt": datetime.fromtimestamp(started, timezone.utc).replace(microsecond=0).isoformat(),
             "durationMs": duration, "output": output, "outputHashes": {o: proofkit.sha256_file(os.path.join(ws, o)) for o in output},
             "collected": collected, "leftOut": left_out, "unreadable": bad, "junit": junit}
 
 
-def collect_results(ws, cwd_abs, patterns, run_abs, started):
-    """Copy result files the runner wrote elsewhere into the run folder: only files matching a --collect glob (relative
-    to cwd, inside it) whose modification time is not before the run started. Older matches are reported, never
-    copied. An .xcresult bundle is converted to JUnit XML."""
-    collected, left_out = [], []
-    dest_dir = os.path.join(run_abs, "collected")
+def collect_matches(cwd_abs, patterns, run_abs):
+    """The real paths a --collect glob names, inside cwd and outside the run folder."""
     real_run = os.path.realpath(run_abs)
+    out = []
     for pattern in patterns:
         if os.path.isabs(pattern) or re.search(r"(^|/)\.\.(/|$)", pattern):
             die(f"--collect {pattern!r} must be a relative glob without '..'")
         for match in sorted(glob.glob(os.path.join(cwd_abs, pattern), recursive=True)):
             real = os.path.realpath(match)
-            if not real.startswith(cwd_abs + os.sep) or real.startswith(real_run + os.sep):
-                continue
-            rel = os.path.relpath(real, cwd_abs)
-            if os.path.getmtime(real) < started - 2:
-                left_out.append(rel)
-                continue
-            os.makedirs(dest_dir, exist_ok=True)
-            flat = rel.replace(os.sep, "__")
-            if real.endswith(".xcresult") and os.path.isdir(real):
-                import xcresult_junit  # the converter script, next to this one
-                root, total = xcresult_junit.convert(xcresult_junit.load(real))
-                dest = os.path.join(dest_dir, flat + ".xml")
-                ET.ElementTree(root).write(dest, encoding="utf-8", xml_declaration=True)
-                collected.append({"from": rel, "to": os.path.relpath(dest, ws), "converted": True, "cases": total})
-            elif os.path.isfile(real):
-                dest = os.path.join(dest_dir, flat)
-                with open(real, "rb") as src, open(dest, "wb") as out:
-                    out.write(src.read())
-                collected.append({"from": rel, "to": os.path.relpath(dest, ws), "converted": False})
+            if real.startswith(cwd_abs + os.sep) and not real.startswith(real_run + os.sep) and real not in out:
+                out.append(real)
+    return out
+
+
+def signature(path):
+    """What a result file (or an .xcresult bundle) is before and after the run: size, modification time and content."""
+    try:
+        if os.path.isdir(path):
+            newest, count = 0, 0
+            for dirpath, _, files in os.walk(path):
+                for f in files:
+                    count += 1
+                    newest = max(newest, os.stat(os.path.join(dirpath, f)).st_mtime_ns)
+            return ("dir", count, newest)
+        st = os.stat(path)
+        return ("file", st.st_size, st.st_mtime_ns, proofkit.sha256_file(path) if st.st_size <= 50_000_000 else None)
+    except OSError:
+        return None
+
+
+def collect_results(ws, cwd_abs, patterns, run_abs, before):
+    """Copy result files the runner wrote elsewhere into the run folder: only files matching a --collect glob (relative
+    to cwd, inside it) that are new since the run started or whose content changed during it. A match that is exactly
+    what it was before the run is reported, never copied: nothing this run did produced it. An .xcresult bundle is
+    converted to JUnit XML."""
+    collected, left_out = [], []
+    dest_dir = os.path.join(run_abs, "collected")
+    for real in collect_matches(cwd_abs, patterns, run_abs):
+        rel = os.path.relpath(real, cwd_abs)
+        if real in before and before[real] is not None and signature(real) == before[real]:
+            left_out.append(rel)
+            continue
+        os.makedirs(dest_dir, exist_ok=True)
+        flat = rel.replace(os.sep, "__")
+        if real.endswith(".xcresult") and os.path.isdir(real):
+            import xcresult_junit  # the converter script, next to this one
+            root, total = xcresult_junit.convert(xcresult_junit.load(real))
+            dest = os.path.join(dest_dir, flat + ".xml")
+            ET.ElementTree(root).write(dest, encoding="utf-8", xml_declaration=True)
+            collected.append({"from": rel, "to": os.path.relpath(dest, ws), "converted": True, "cases": total})
+        elif os.path.isfile(real):
+            dest = os.path.join(dest_dir, flat)
+            with open(real, "rb") as src, open(dest, "wb") as out:
+                out.write(src.read())
+            collected.append({"from": rel, "to": os.path.relpath(dest, ws), "converted": False})
     return collected, left_out
 
 
@@ -380,14 +418,14 @@ def main():
         if result["collected"]:
             print(f"  collected {len(result['collected'])} result file(s) into {run_rel}/collected/")
         if result["leftOut"]:
-            print(f"  left out {len(result['leftOut'])} older file(s) matching --collect (written before this run): "
+            print(f"  left out {len(result['leftOut'])} file(s) matching --collect that this run did not write or change: "
                   + ", ".join(result["leftOut"][:5]))
         if result["unreadable"]:
             print(f"  not JUnit XML, ignored: {', '.join(result['unreadable'][:5])}")
         if not result["junit"]:
             print("  WARNING: the command left no JUnit XML in the run folder ({run} / FUSION_RUN_DIR) and --collect found "
                   "nothing written during the run: the proof counts nothing from this run")
-        if result["exitCode"] != 0:
+        if result["exitCode"] != 0 and len(result["output"]) == 2:  # non-zero, or timed out (exitCode None)
             with open(os.path.join(ws, result["output"][1]), encoding="utf-8", errors="replace") as fh:
                 tail = fh.read().splitlines()[-15:]
             if tail:

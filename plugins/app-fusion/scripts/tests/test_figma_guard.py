@@ -295,6 +295,68 @@ class Guard(unittest.TestCase):
         allow("cd new-app/p && yarn add left-pad")
         allow("npx jest --ci")
 
+    def test_the_second_reviews_findings_are_closed(self):
+        w = self.w
+        deny = lambda cmd: self.assertEqual(self.decide("Bash", command=cmd), "deny", cmd)
+        ask = lambda cmd: self.assertEqual(self.decide("Bash", command=cmd), "ask", cmd)
+        allow = lambda cmd: self.assertEqual(self.decide("Bash", command=cmd), "allow", cmd)
+        # a shell's -c in any flag combination, scripts piped into a shell, scripts read from a file
+        deny("bash -lc \"echo x > analysis/p/DECISIONS.json\"")
+        ask("echo \"echo x > analysis/p/DECISIONS.json\" | sh")
+        ask("printf 'echo x > analysis/p/DECISIONS.json' | bash -s")
+        helpers.write(w.ws, "tmp/helper.sh", "echo x > analysis/p/DECISIONS.json\n")
+        helpers.write(w.ws, "tmp/helper.py", "open('analysis/p/SIGNOFF.json', 'w').write('{}')\n")
+        helpers.write(w.ws, "tmp/other.sh", "cp x analysis/p/SIGNOFF.json\n")
+        deny("sh tmp/helper.sh")
+        deny("bash tmp/helper.sh")
+        deny("source tmp/helper.sh")
+        deny("python3 tmp/helper.py")
+        deny("bash -c \"$(cat tmp/other.sh)\"")
+        deny("sh < tmp/helper.sh")
+        # shell keywords are stepped over, so the loop body is read
+        ask("for f in analysis/p/*.json; do rm \"$f\"; done")
+        ask("find analysis/p -name '*.json' | while read f; do rm \"$f\"; done")
+        # a folder above the protected ones
+        deny("rm -rf .")
+        deny("rm -rf ./")
+        deny("find . -delete")
+        deny(f"mv {w.ws} /tmp/elsewhere")
+        ask("cp -r /tmp/x legacy/")
+        # inline code that spawns a process
+        deny("python3 -c \"import subprocess; subprocess.run(['cp','x','analysis/p/DECISIONS.json'])\"")
+        deny("node -e \"require('child_process').execSync('cp x analysis/p/DECISIONS.json')\"")
+        # reads and ordinary developer commands that must stay silent
+        allow("python3 -c \"import json, sys; json.dump(json.load(open('analysis/p/rules.json')), sys.stdout, indent=2)\"")
+        allow("zip -r /tmp/analysis.zip analysis/p")
+        allow("zip -r /tmp/x.zip legacy/mgr")
+        allow("find legacy/mgr -name '*.ts' -exec wc -l {} +")
+        app = w.path("new-app", "p")
+        helpers.write(app, "README.md", "x\n")
+        helpers.git_init(app)
+        allow("cd new-app/p && git stash")
+        allow("git -C new-app/p reset --hard")
+        allow("cd new-app/p && git switch main")
+        allow("cd new-app/p && git clean -fdx")
+        allow("git switch -c feature")
+        allow("git config user.name")
+        ask("git switch main")
+        ask("git -C analysis checkout -- p/DECISIONS.json")
+        # writes into a legacy app through build tools, package managers, formatters and inline code
+        for cmd in ("cd legacy/mgr && yarn", "cd legacy/mgr && npm run build", "cd legacy/mgr && npx prettier --write .",
+                    "cd legacy/mgr && eslint --fix src", "cd legacy/mgr && swiftformat .", "cd legacy/mgr && ./gradlew assembleDebug",
+                    "cd legacy/mgr && xcodebuild build -scheme X", "cd legacy/mgr && swift build", "cd legacy/mgr && flutter pub get",
+                    "cd legacy/mgr && patch -p1 < /tmp/x.diff", "ditto /tmp/x legacy/mgr/x", "cd legacy/mgr && python3 -c \"open('a.ts','w')\"",
+                    "cd legacy/mgr && git config user.name Someone"):
+            ask(cmd)
+        for cmd in ("cd legacy/mgr && yarn test", "cd legacy/mgr && npm ls", "cd legacy/mgr && xcodebuild -list", "cd new-app/p && yarn",
+                    "cd new-app/p && ./gradlew assembleDebug", "cd legacy/mgr && git config --get user.name"):
+            allow(cmd)
+        # the smaller misses
+        deny("sed --in-place=.bak s/a/b/ analysis/p/rules.json")
+        deny("pushd analysis/p && echo x > DECISIONS.json")
+        deny("curl --output-dir analysis/p -o x.json https://example.com/x")
+        ask("cd analysis/p; cd -; echo x > $HOME/x")  # `cd -` leaves the folder unknown, and the command names analysis/
+
     def test_the_workspace_is_found_from_above_below_and_inside(self):
         w = self.w
         plugin_root = os.path.dirname(helpers.SCRIPTS)
@@ -322,6 +384,13 @@ class Guard(unittest.TestCase):
         elsewhere = os.path.join(w.root, "elsewhere", "project")
         os.makedirs(elsewhere)
         self.assertEqual(run({"tool_name": "Bash", "tool_input": {"command": "rm -rf build"}, "cwd": elsewhere}, elsewhere, script="guard.sh"), "allow")
+        # the workspace two levels below the project folder, with the shell inside it: the gate must not skip it
+        grand = os.path.dirname(w.root)
+        self.assertEqual(run({"tool_name": "Bash", "tool_input": {"command": "git stash"}, "cwd": w.ws}, grand, script="guard.sh"), "ask")
+        self.assertEqual(run({"tool_name": "Bash", "tool_input": {"command": "python3 scripts/signoff.py p proof --by Kari"}, "cwd": w.ws},
+                             grand, script="guard.sh"), "ask")
+        self.assertEqual(run({"tool_name": "Write", "tool_input": {"file_path": os.path.join(w.rn, "src", "x.ts")}, "cwd": w.ws},
+                             grand, script="guard.sh"), "deny", "the legacy repo's real path")
 
     def test_a_malformed_program_json_still_protects_the_legacy_links(self):
         self.w.put_json("analysis/p/program.json", {"program": "p", "apps": "not-a-list"})
@@ -334,9 +403,11 @@ class Guard(unittest.TestCase):
         w = self.w
         with open(w.path("analysis", "p", "FUSION_BRIEF.md"), "w", encoding="utf-8") as fh:
             fh.write("# brief\n")
-        for bad in ("claude", "Claude Fable", "the assistant", "AI agent", "Dan; rm -rf x", "x", "", "gpt-5", "Copilot User"):
+        for bad in ("claude", "Claude Fable", "the assistant", "AI agent", "Dan; rm -rf x", "x", "", "gpt-5", "Copilot User", "Claude Code"):
             out = w.run("signoff.py", "p", "brief", "--by", bad, check=False)
             self.assertNotEqual(out.returncode, 0, bad)
+        for good in ("Γιώργος Παπαδόπουλος", "田中 太郎", "محمد علي", "Claude Dubois", "Ai Tanaka", "Agent Smith"):
+            w.run("signoff.py", "p", "brief", "--by", good)
         w.run("signoff.py", "p", "brief", "--by", "Kari Nordmann")
         out = w.run("decisions.py", "add", "p", "--about", "CAP-001", "--kind", "gap", "--choice", "drop", "--by", "Claude", check=False)
         self.assertNotEqual(out.returncode, 0, "a decision is never recorded in a model's name")

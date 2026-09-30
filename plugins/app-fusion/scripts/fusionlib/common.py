@@ -55,17 +55,25 @@ def check_name(value, what="name"):
     return value
 
 
-NOT_A_PERSON = re.compile(r"^(?:_+|\.+|-+|<[^>]*>|tbd|todo|n/?a|none|nobody|unknown|user|me|you|test|anonymous)$"
-                          r"|claude|assistant|anthropic|openai|copilot|gpt|\bai\b|\bmodel\b|\bagent\b|\bbot\b|\bllm\b", re.I)
+PLACEHOLDER = re.compile(r"^(?:_+|\.+|-+|<[^>]*>|tbd|todo|n/?a|none|nobody|unknown|user|me|you|test|anonymous|x+)$", re.I)
+# words that make up the name of a model or an assistant; a name is refused only when EVERY word is one of these (or
+# a version), so "Claude Dubois", "Ai Tanaka" and "Agent Smith" are people, while "Claude", "Claude Fable", "the
+# assistant", "AI agent" and "gpt-5" are not
+MODEL_WORDS = {"claude", "fable", "opus", "sonnet", "haiku", "mythos", "gpt", "chatgpt", "copilot", "gemini", "llama", "mistral",
+               "assistant", "model", "agent", "bot", "ai", "llm", "anthropic", "openai", "code", "the", "an", "a", "user", "system",
+               "coding", "language", "large"}
 
 
 def person_name(value):
-    """A person's name as they gave it, or None. Empty values, placeholders, anything that names a model or an
-    assistant, and control or shell punctuation are refused: a sign-off or a decision carries a person's own name."""
+    """A person's name as they gave it, or None. Empty values, placeholders, the name of a model or an assistant, and
+    control or shell punctuation are refused: a sign-off or a decision carries a person's own name, in any script."""
     who = one_line(value, 80)
-    if not who or len(re.sub(r"[^A-Za-zÀ-ɏЀ-ӿ]", "", who)) < 2:
+    if not who or sum(1 for ch in who if ch.isalpha()) < 2:
         return None
-    if re.search(r"[;&|<>`$\x00-\x1f]", who) or NOT_A_PERSON.search(who):
+    if re.search(r"[;&|<>`$\x00-\x1f]", who) or PLACEHOLDER.match(who):
+        return None
+    words = [w for w in re.split(r"[^\w]+", who.lower()) if w]
+    if words and all(w in MODEL_WORDS or re.match(r"^v?\d[\w.]*$", w) for w in words):
         return None
     return who
 

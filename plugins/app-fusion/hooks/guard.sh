@@ -1,27 +1,7 @@
 #!/bin/sh
-# App Fusion legacy guard. Cheap checks here; python3 does the real work when a fusion workspace may be involved:
-# analysis/ in the project folder or any folder above it, in a folder one level below it, or a legacy/ or analysis/
-# path named in the tool call (Claude may have been started above or inside the workspace).
-dir="${CLAUDE_PROJECT_DIR:-$PWD}"
+# App Fusion legacy guard. The real check is scripts/guard.py, which finds the fusion workspace(s) from the project
+# folder, the shell's folder and the paths the tool call names, above and one level below, and does nothing outside
+# one. It runs on every matched tool call (about 30 ms); a cheaper gate here would have to repeat that discovery, and
+# an earlier one that only looked at the project folder skipped cases the script catches.
 command -v python3 >/dev/null 2>&1 || exit 0
-input=$(cat)
-run=0
-d="$dir"
-while [ -n "$d" ]; do
-  if [ -d "$d/analysis" ]; then run=1; break; fi
-  p=$(dirname "$d")
-  [ "$p" = "$d" ] && break
-  d="$p"
-done
-if [ "$run" = 0 ]; then
-  for c in "$dir"/*/; do
-    if [ -d "${c}analysis" ]; then run=1; break; fi
-  done
-fi
-if [ "$run" = 0 ]; then
-  case "$input" in
-    *[Ll][Ee][Gg][Aa][Cc][Yy]/*|*[Aa][Nn][Aa][Ll][Yy][Ss][Ii][Ss]/*) run=1 ;;
-  esac
-fi
-[ "$run" = 1 ] || exit 0
-printf '%s' "$input" | python3 "$CLAUDE_PLUGIN_ROOT/scripts/guard.py"
+exec python3 "$CLAUDE_PLUGIN_ROOT/scripts/guard.py"

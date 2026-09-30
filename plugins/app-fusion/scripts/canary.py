@@ -99,13 +99,17 @@ def start(ws, program, cap, file, change):
         os.remove(saved)
         die(f"could not save an exact copy of {rel}: nothing was changed, try again")
     os.chmod(saved, 0o444)  # the restore reads it; nothing should write it
+    # the test runner gets its own folder below the run: a runner that empties its output folder first (a common
+    # wrapper habit) must never be able to take the saved copy with it
+    tests = os.path.join(run, "tests")
+    os.makedirs(tests)
     write_json(pending_path(ws, program, cap), {
         "capability": cap, "file": rel, "sha256": digest, "mode": os.stat(full).st_mode & 0o7777,
         "codeHash": proofkit.code_hash(ws, program, cap, info), "change": change[:200],
-        "run": os.path.relpath(run, ws), "startedAt": now_iso(), "executions": []})
+        "run": os.path.relpath(run, ws), "tests": os.path.relpath(tests, ws), "startedAt": now_iso(), "executions": []})
     print(f"saved {rel}. Now make the one break in it, run the tests that cover {cap} with\n"
           f"  canary.py run {program} {cap} -- <the test command>\n"
-          f"(their JUnit output goes into {os.path.relpath(run, ws)}/), then run: canary.py finish {program} {cap}")
+          f"(their JUnit output goes into {os.path.relpath(tests, ws)}/), then run: canary.py finish {program} {cap}")
 
 
 def run_tests(ws, program, cap, argv, cwd, env, collect, timeout):
@@ -118,7 +122,9 @@ def run_tests(ws, program, cap, argv, cwd, env, collect, timeout):
     full = os.path.join(proofkit.target_root(ws, program), p["file"])
     file_sha = proofkit.sha256_file(full) if os.path.isfile(full) else None
     cwd = cwd or os.path.relpath(proofkit.target_root(ws, program), ws)
-    result = ev.execute(ws, program, p["run"], argv, cwd, env, collect, timeout)
+    tests = p.get("tests") or os.path.join(p["run"], "tests")  # never the folder that holds the saved copy
+    os.makedirs(os.path.join(ws, tests), exist_ok=True)
+    result = ev.execute(ws, program, tests, argv, cwd, env, collect, timeout)
     cases, _ = proofkit.junit_cases(result["junit"], ws)
     execution = {"command": result["command"][:400], "cwd": result["cwd"], "exitCode": result["exitCode"], "timedOut": result["timedOut"],
                  "startedAt": result["startedAt"], "durationMs": result["durationMs"], "fileSha256": file_sha,
@@ -128,7 +134,7 @@ def run_tests(ws, program, cap, argv, cwd, env, collect, timeout):
     write_json(pending_path(ws, program, cap), p)
     exit_word = "timed out" if result["timedOut"] else f"exit {result['exitCode']}"
     print(f"ran: {result['command']}  ({exit_word}, {result['durationMs'] / 1000:.1f} s)")
-    print(f"  {ev.summarize(cases)} in {len(result['junit'])} file(s) -> {p['run']}")
+    print(f"  {ev.summarize(cases)} in {len(result['junit'])} file(s) -> {tests}")
     if not execution["onBrokenFile"]:
         print(f"  NOTE: {p['file']} still holds its original bytes: make the break, then run the tests again, or the "
               "canary proves nothing")
@@ -215,7 +221,7 @@ def finish(ws, program, cap):
         print(f"  the tests did not run on the broken file (they ran before the break, or on other bytes): the canary proves "
               "nothing; start a new one and run the tests after making the break")
     elif not rels:
-        print(f"  no JUnit result in {p['run']}: the canary proves nothing until its tests write results there")
+        print(f"  no JUnit result in {p.get('tests') or p['run']}: the canary proves nothing until its tests write results there")
     elif failed_mine:
         print(f"  {len(failed_mine)} test(s) naming {cap} or its rules failed: the tests catch this break")
     else:

@@ -2,12 +2,14 @@
 """PreToolUse guard: the legacy apps are never edited, the judge's inputs are written only by the scripts, and a
 person's decisions and sign-offs are recorded only with that person's yes.
 
-Reads the hook input (JSON on stdin). It finds the fusion workspace(s) from the project folder, the shell's folder,
-the path a file tool writes and the paths a shell command names, walking up and one level down, so it works when
-Claude was started above or inside the workspace. Outside every workspace with analysis/*/program.json it does
-nothing. Inside one:
-  - a file write (Edit, Write, MultiEdit, NotebookEdit) whose path resolves under legacy/<app>, or under the real
+Reads the hook input (JSON on stdin), from Claude Code or from Devin, which names its tools differently. It finds the
+fusion workspace(s) from the project folder, the shell's folder, the path a file tool writes and the paths a shell
+command names, walking up and one level down, so it works when the agent was started above or inside the workspace.
+Outside every workspace with analysis/*/program.json it does nothing. Inside one:
+  - a file write (Claude Code's Edit, Write, MultiEdit, NotebookEdit; Devin's edit, write, notebook_edit and every file
+    an apply_patch adds, updates, deletes or moves to) whose path resolves under legacy/<app>, or under the real
     directory a legacy link points to, is denied; paths are compared without regard to case on macOS and Windows;
+  - the shell is Claude Code's Bash, Devin's exec (in its workdir) and the text Devin's write_to_process types;
   - a write to what the proof reads is denied, by a file tool or from the shell: analysis/<program>/program.json,
     DECISIONS.*, SIGNOFF.json, VERIFICATION.*, capabilities.json, capability_index.json, rules.json,
     traceability.json, platform.json, design/placeholders.json and everything under evidence/ except screenshots and
@@ -34,7 +36,8 @@ nothing. Inside one:
     unknown folder, a script piped into a shell) is sent to the person when the command also names a judged file, a
     legacy path or the analysis folder: unsure is asked, never silently allowed. Reads (cat, jq, grep, git
     status/log/diff, copies out of legacy, zipping analysis into /tmp) pass silently.
-Set the plugin option guard=false to turn it off. Standard library only.
+Set the plugin option guard=false (or APP_FUSION_GUARD=false where plugin options do not exist) to turn it off.
+Standard library only.
 """
 
 import glob
@@ -44,7 +47,10 @@ import re
 import shlex
 import sys
 
-WRITE_TOOLS = {"Edit", "Write", "MultiEdit", "NotebookEdit"}
+WRITE_TOOLS = {"Edit", "Write", "MultiEdit", "NotebookEdit", "edit", "write", "notebook_edit"}  # Claude Code, Devin
+PATCH_TOOLS = {"apply_patch"}
+SHELL_TOOLS = {"Bash", "exec", "write_to_process"}
+PATCH_FILE = re.compile(r"^\*\*\* (?:(?:Add|Update|Delete) File|Move to): (.+?)\s*$", re.M)
 WRITE_VERBS = {"rm", "rmdir", "mv", "cp", "tee", "touch", "truncate", "chmod", "chown", "ln", "mkdir", "install", "rsync",
                "unzip", "patch", "dd", "shred", "tar", "curl", "wget", "zip", "gunzip", "gzip", "ditto", "xattr", "bzip2", "xz"}
 DEST_LAST = {"cp", "rsync", "install", "ln", "ditto"}
@@ -114,7 +120,8 @@ CASE_FOLD = sys.platform in ("darwin", "win32")
 MAX_DEPTH = 3
 MAX_GLOB = 200
 MAX_SCRIPT = 262_144
-PLUGIN_ROOT = os.path.realpath(os.environ.get("CLAUDE_PLUGIN_ROOT") or os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+PLUGIN_ROOT = os.path.realpath(os.environ.get("CLAUDE_PLUGIN_ROOT") or os.environ.get("DEVIN_PLUGIN_ROOT")
+                               or os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 def fold(path):
@@ -775,8 +782,18 @@ def check_command(command, cwd, prot, f, depth=0):
 
 # ---------------------------------------------------------------- main
 
+def shell_input(tool, args):
+    """The shell text of a call: Bash's and exec's command, or what write_to_process types (its keys as new lines)."""
+    if tool == "write_to_process":
+        text = args.get("text_input") or args.get("bytes_input")
+        return re.sub(r"<(?:CR|LF)>", "\n", text) if isinstance(text, str) else None
+    command = args.get("command")
+    return command if isinstance(command, str) else None
+
+
 def main():
-    if (os.environ.get("CLAUDE_PLUGIN_OPTION_GUARD") or "true").strip().lower() in ("false", "0", "off", "no"):
+    guard = os.environ.get("CLAUDE_PLUGIN_OPTION_GUARD") or os.environ.get("APP_FUSION_GUARD") or "true"
+    if guard.strip().lower() in ("false", "0", "off", "no"):
         return
     try:
         data = json.load(sys.stdin)
@@ -786,19 +803,23 @@ def main():
         return
     tool = data.get("tool_name")
     args = data.get("tool_input") if isinstance(data.get("tool_input"), dict) else {}
-    project = os.environ.get("CLAUDE_PROJECT_DIR") or ""
+    project = os.environ.get("CLAUDE_PROJECT_DIR") or os.environ.get("DEVIN_PROJECT_DIR") or ""
     cwd = data.get("cwd") if isinstance(data.get("cwd"), str) and data.get("cwd") else (project or os.getcwd())
+    if tool == "exec" and isinstance(args.get("workdir"), str) and args["workdir"]:
+        cwd = os.path.join(cwd, os.path.expanduser(args["workdir"]))  # Devin's exec runs where workdir says
     candidates = [project or cwd, cwd]
     lexical = lambda p: os.path.normpath(os.path.join(cwd, os.path.expanduser(p)))
-    target = None
+    targets, command = [], None
     if tool in WRITE_TOOLS:
         target = args.get("file_path") or args.get("notebook_path") or args.get("path")
-        if not isinstance(target, str) or not target:
-            return
-        candidates.append(lexical(target))
-    command = args.get("command") if tool == "Bash" else None
-    if tool == "Bash" and not isinstance(command, str):
+        targets = [target] if isinstance(target, str) and target else []
+    elif tool in PATCH_TOOLS:
+        targets = PATCH_FILE.findall("\n".join(v for v in args.values() if isinstance(v, str)))
+    elif tool in SHELL_TOOLS:
+        command = shell_input(tool, args)
+    if not targets and command is None:
         return
+    candidates += [lexical(t) for t in targets]
     if command:
         for t in tokenize(command)[:60]:
             if "/" in t and literal(t) and not re.search(r"[*?\[]", t):
@@ -807,20 +828,20 @@ def main():
     if not workspaces:
         return
     prot = Protected(workspaces)
-    if tool in WRITE_TOOLS:
+    for target in targets:
         full = resolve(target, cwd)
         app = prot.legacy_app(full)
         if app:
             decide("deny", f"App Fusion never edits a legacy app: {target} is inside legacy/{app}. Write analysis output "
                            "under analysis/<program>/ and new code under new-app/<program>/. (To change the legacy app "
-                           "on purpose, do it outside this workspace or set the plugin option guard=false.)")
+                           "on purpose, do it outside this workspace or set the plugin option guard=false, "
+                           "APP_FUSION_GUARD=false outside Claude Code.)")
         j = prot.judged(full)
         if j and j[0] == "file":
             decide("deny", f"App Fusion: {j[1]} is an input of the proof, written only by its script (decisions.py, signoff.py, "
                            "evidence.py run, canary.py, the parity scripts, render.py, trace.py). Edit the workflow result it is "
                            "rendered from (map_result.json, rules_result.json, trace_result.json) and render again, or run the script.")
-        return
-    if tool != "Bash":
+    if command is None:
         return
     f = Findings()
     check_command(command, cwd, prot, f)

@@ -20,6 +20,22 @@ You need [Claude Code](https://code.claude.com). From a clone of this repository
 /plugin install app-fusion@app-fusion
 ```
 
+It runs in Devin (the CLI and Devin Desktop) too, which loads the same Claude Code layout:
+
+```
+devin plugins install danchily2/app-fusion#plugins/app-fusion      # or --local /path/to/app-fusion/plugins/app-fusion
+```
+
+The commands are the same (`/app-fusion:fuse` and so on). What differs in Devin:
+- The guard hook matches Devin's tools as well (`edit`, `write`, `notebook_edit`, `apply_patch`, `exec`,
+  `write_to_process`). Devin has no plugin options: start it with `APP_FUSION_GUARD=false` to turn the guard off.
+- At session start a short note tells the agent the plugin's folder (Devin does not expand `${CLAUDE_PLUGIN_ROOT}` in
+  a skill), the Devin names of the tools the skills mention, and to take each skill's "Without the Workflow tool" path.
+- Permission deny rules live in the workspace's `.devin/config.json` as `Write(...)`: `workspace.py guard <program>
+  --agent devin` prints them.
+- Plugin hooks run in local sessions only (the CLI and Devin Desktop), so neither the guard nor the note is active in a
+  Devin cloud session.
+
 Some steps start many agents at once, so expect real usage on large apps (see *What to expect*). Start with one
 journey as the pilot, not the whole app.
 

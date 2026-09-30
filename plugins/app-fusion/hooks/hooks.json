@@ -1,13 +1,24 @@
 {
-  "description": "App Fusion legacy guard: denies file writes into legacy/<app> (and the real directories the links point to) and asks before shell commands that would write there. A no-op outside a workspace with analysis/<program>/program.json. Turn it off with the plugin option guard=false.",
+  "description": "App Fusion legacy guard: denies file writes into legacy/<app> (and the real directories the links point to) and asks before shell commands that would write there. A no-op outside a workspace with analysis/<program>/program.json. Turn it off with the plugin option guard=false (APP_FUSION_GUARD=false in Devin). Matches Claude Code's tool names and Devin's. Under Devin only, a session-start note says how to read the skills there.",
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Edit|Write|MultiEdit|NotebookEdit|Bash",
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit|Bash|^(edit|write|notebook_edit|apply_patch|exec|write_to_process)$",
         "hooks": [
           {
             "type": "command",
             "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/guard.sh\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/devin-context.sh\"",
             "timeout": 10
           }
         ]

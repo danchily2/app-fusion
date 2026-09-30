@@ -424,6 +424,76 @@ class Guard(unittest.TestCase):
         finally:
             w.close()
 
+    def test_devins_tools_are_guarded_the_same_way(self):
+        w = self.w
+        self.assertEqual(self.decide("write", file_path="legacy/mgr/src/x.ts", content="x"), "deny")
+        self.assertEqual(self.decide("edit", file_path=os.path.join(w.ios, "Emp", "Info.plist"), old_string="a", new_string="b"), "deny")
+        self.assertEqual(self.decide("notebook_edit", notebook_path="legacy/emp/x.ipynb", cell_number=0, new_source="x"), "deny")
+        self.assertEqual(self.decide("write", file_path="analysis/p/SIGNOFF.json", content="{}"), "deny")
+        self.assertEqual(self.decide("write", file_path="new-app/p/src/a.ts", content="x"), "allow")
+        # apply_patch: every file it adds, updates, deletes or moves to
+        patch = lambda *lines: "\n".join(["*** Begin Patch", *lines, "*** End Patch"])
+        self.assertEqual(self.decide("apply_patch", input=patch("*** Add File: new-app/p/a.ts", "+x",
+                                                                "*** Update File: legacy/mgr/package.json", "@@", "-a", "+b")), "deny")
+        self.assertEqual(self.decide("apply_patch", input=patch("*** Update File: new-app/p/a.ts", "*** Move to: analysis/p/rules.json")), "deny")
+        self.assertEqual(self.decide("apply_patch", input=patch("*** Delete File: analysis/p/DECISIONS.json")), "deny")
+        self.assertEqual(self.decide("apply_patch", input=patch("*** Add File: analysis/p/map_result.json", "+{}")), "allow")
+        # exec is read like Bash, in its workdir; write_to_process types into a shell
+        self.assertEqual(self.decide("exec", command="echo x > legacy/mgr/README.md"), "ask")
+        self.assertEqual(self.decide("exec", command="echo '{}' > SIGNOFF.json", workdir=w.path("analysis", "p")), "deny")
+        self.assertEqual(self.decide("exec", command="yarn install", workdir=w.path("legacy", "mgr")), "ask")
+        self.assertEqual(self.decide("exec", command="python3 scripts/signoff.py p proof --by X"), "ask")
+        self.assertEqual(self.decide("exec", command="grep -rn x legacy/mgr/src"), "allow")
+        self.assertEqual(self.decide("write_to_process", shell_id="s1", text_input="python3 scripts/signoff.py p brief --by X\n"), "ask")
+        self.assertEqual(self.decide("write_to_process", shell_id="s1", bytes_input="rm -rf analysis/p<CR>"), "deny")
+        self.assertEqual(self.decide("read", file_path="legacy/mgr/package.json"), "allow")
+        self.assertEqual(self.decide("mcp_call_tool", server_name="x", tool_name="write", arguments={"path": "legacy/mgr/x"}), "allow")
+
+    def test_under_devin_the_hooks_find_their_way_from_its_variables(self):
+        w = self.w
+        plugin_root = os.path.dirname(helpers.SCRIPTS)
+        env = {k: v for k, v in os.environ.items() if not k.startswith(("CLAUDE_", "DEVIN_"))}
+        devin = {**env, "DEVIN_PROJECT_DIR": w.ws, "DEVIN_PLUGIN_ROOT": plugin_root}
+
+        def hook(name, payload, environ):
+            out = subprocess.run(["sh", os.path.join(plugin_root, "hooks", name)], input=json.dumps(payload), capture_output=True,
+                                 text=True, env=environ, cwd=w.root)
+            self.assertEqual(out.returncode, 0, out.stderr)
+            return json.loads(out.stdout)["hookSpecificOutput"] if out.stdout.strip() else None
+
+        # Devin sends no cwd: the project folder comes from DEVIN_PROJECT_DIR, the plugin from DEVIN_PLUGIN_ROOT
+        self.assertEqual(hook("guard.sh", {"tool_name": "write", "tool_input": {"file_path": "legacy/mgr/x.ts"}}, devin)["permissionDecision"], "deny")
+        self.assertEqual(hook("guard.sh", {"tool_name": "exec", "tool_input": {"command": "cp x analysis/p/rules.json"}}, devin)["permissionDecision"], "deny")
+        self.assertEqual(hook("guard.sh", {"tool_name": "write", "tool_input": {"file_path": "legacy/mgr/x.ts"}},
+                              {**devin, "APP_FUSION_GUARD": "false"}), None, "the off switch where plugin options do not exist")
+        context = hook("devin-context.sh", {"hook_event_name": "SessionStart", "source": "startup"}, devin)
+        self.assertEqual(context["hookEventName"], "SessionStart")
+        self.assertIn(os.path.realpath(plugin_root), context["additionalContext"])
+        self.assertIn("ask_user_question", context["additionalContext"])
+        self.assertIn("--agent devin", context["additionalContext"])
+        claude = {**env, "CLAUDE_PROJECT_DIR": w.ws, "CLAUDE_PLUGIN_ROOT": plugin_root}
+        self.assertIsNone(hook("devin-context.sh", {"hook_event_name": "SessionStart", "source": "startup"}, claude),
+                          "Claude Code gets no Devin note")
+
+    def test_the_permission_rules_are_read_for_the_agent_in_use(self):
+        w = self.w
+        real = [os.path.realpath(w.path("legacy", a)) for a in ("mgr", "emp")]
+        out = w.run("workspace.py", "guard", "p").stdout
+        self.assertIn("status: warn", out)
+        self.assertIn(".claude/settings.json", out)
+        self.assertIn("Edit(/legacy/**)", out)
+        out = w.run("workspace.py", "guard", "p", "--agent", "devin").stdout
+        self.assertIn("status: warn", out)
+        self.assertIn(".devin/config.json", out)
+        for rule in ["Write(legacy/**)"] + [f"Write({p}/**)" for p in real]:
+            self.assertIn(rule, out)
+        # Claude Code's rules do not protect a Devin session, and Devin's are read from the workspace's .devin/
+        w.put_json(".claude/settings.json", {"permissions": {"deny": ["Edit(/legacy/**)"] + [f"Edit(//{p.lstrip('/')}/**)" for p in real]}})
+        self.assertIn("status: ok", w.run("workspace.py", "guard", "p").stdout)
+        self.assertIn("status: warn", w.run("workspace.py", "guard", "p", "--agent", "devin").stdout)
+        w.put_json(".devin/config.json", {"permissions": {"deny": ["Write(legacy/**)"] + [f"Write({p}/**)" for p in real]}})
+        self.assertIn("status: ok", w.run("workspace.py", "guard", "p", "--agent", "devin").stdout)
+
     def test_off_switch_and_outside_a_workspace(self):
         payload = json.dumps({"tool_name": "Write", "tool_input": {"file_path": "legacy/mgr/x"}, "cwd": self.w.ws})
         out = subprocess.run([sys.executable, os.path.join(helpers.SCRIPTS, "guard.py")], input=payload, capture_output=True, text=True,

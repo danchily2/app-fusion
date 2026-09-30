@@ -349,7 +349,8 @@ pair records each half's suites with `platform`.
 
 `canary.py`: one canary at a time in the whole program; the break goes into a file of the capability's own `## Files`;
 results are read only from the canary's run folder; the break changes at most six lines and more than whitespace;
-the file is restored byte for byte, with its hash checked, whatever happens.
+the file is restored byte for byte from a read-only saved copy whose hash is checked first, then the file's; a damaged
+saved copy leaves the file exactly as it is and the canary pending, so nothing is ever overwritten with garbage.
 
 ### SIGNOFF.json
 

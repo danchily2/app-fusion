@@ -291,6 +291,33 @@ class Proof(Base):
         self.assertNotEqual(v["CAP-001"]["verdict"], "PROVEN")
         self.assertIn("changed since it ran", v["CAP-001"]["checks"]["Strings"]["detail"])
 
+    def test_a_damaged_saved_copy_never_overwrites_the_code(self):
+        self.suite(GREEN)
+        self.w.run("canary.py", "start", "p", "CAP-001", "--file", LOGIC, "--change", "flip the check")
+        pending_file = self.w.path("analysis", "p", "evidence", "canary", "CAP-001", "pending.json")
+        pending = self.w.json("analysis", "p", "evidence", "canary", "CAP-001", "pending.json")
+        path = os.path.join(self.app, LOGIC)
+        original = helpers.read(path)
+        with open(path, "a", encoding="utf-8") as fh:
+            fh.write("export const broken = true\n")
+        broken = helpers.read(path)
+        saved = self.w.path(pending["run"], "original.bin")
+        self.assertEqual(oct(os.stat(saved).st_mode & 0o777), oct(0o444), "the saved copy is read-only")
+        os.chmod(saved, 0o644)
+        with open(saved, "w", encoding="utf-8") as fh:
+            fh.write("garbage\n")
+        for cmd in ("finish", "abort"):
+            out = self.w.run("canary.py", cmd, "p", "CAP-001", check=False)
+            self.assertNotEqual(out.returncode, 0, cmd)
+            self.assertIn("no longer holds the original bytes", out.stderr)
+            self.assertEqual(helpers.read(path), broken, "the file is left as it is, never overwritten with the damaged copy")
+            self.assertTrue(os.path.exists(pending_file), "the canary stays pending until a person restores the file")
+        with open(saved, "w", encoding="utf-8") as fh:
+            fh.write(original)
+        self.w.run("canary.py", "abort", "p", "CAP-001")
+        self.assertEqual(helpers.read(path), original)
+        self.assertFalse(os.path.exists(pending_file))
+
     def test_the_canary_must_be_a_small_real_break(self):
         self.suite(GREEN)
         self.w.run("canary.py", "start", "p", "CAP-001", "--file", LOGIC, "--change", "spaces")

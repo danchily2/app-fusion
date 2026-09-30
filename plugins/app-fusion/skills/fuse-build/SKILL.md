@@ -6,11 +6,13 @@ arguments: program capability
 disable-model-invocation: true
 ---
 
-Build capability `$capability` of `$program` into the new app (`program.json` → `target.path`, default
-`new-app/$program`). With `--batch <n>` in `$ARGUMENTS`, go to **Batch mode** at the end. Never touch `legacy/`. Run
-every subagent in the foreground and wait for it. Stop any simulator, Metro server or process you started before you
-finish, and say so. Scripts are in `${CLAUDE_PLUGIN_ROOT}/scripts/`; the guard hook asks the person before any
-command that records a decision, and denies direct edits to what the proof reads.
+Build one capability of `$program` into the new app (`program.json` → `target.path`, default `new-app/$program`).
+`$capability` is the second word of `$ARGUMENTS`: a `CAP-NNN`, or `--batch`. When it is `--batch`, there is no single
+capability: this is **Batch mode** for the phase number that follows `--batch` in `$ARGUMENTS`, so skip the steps
+below and go to Batch mode at the end. Never touch `legacy/`. Run every subagent in the foreground and wait for it.
+Stop any simulator, Metro server or process you started before you finish, and say so. Scripts are in
+`${CLAUDE_PLUGIN_ROOT}/scripts/`; the guard hook asks the person before any command that records a decision, and
+denies direct edits to what the proof reads.
 
 If `$capability` is empty, take the first capability of the earliest brief phase with `Command: /app-fusion:fuse-build`
 that has no `docs/fusion/CAP-NNN.md` in the new app, and say which you picked.

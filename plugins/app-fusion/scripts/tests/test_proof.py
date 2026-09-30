@@ -411,6 +411,20 @@ class Proof(Base):
         v, _ = self.verdict()
         self.assertEqual(v["CAP-001"]["checks"]["Canary"]["status"], "pass", v["CAP-001"]["checks"]["Canary"])
 
+    def test_open_intent_items_from_a_headless_run_come_before_the_brief(self):
+        from fusionlib import status as st
+        pdir = self.w.path("analysis", "p")
+        for name in ("PREFLIGHT.md", "ASSESSMENT.md"):
+            helpers.write(pdir, name, "# done\n")
+        self.w.run("render.py", "platform", "p")
+        helpers.write(pdir, "INTENT.md", "# p: intent\n\n## Open items\n\nOPEN: confirm the platforms (iOS and Android)\nOPEN: confirm the goal\n")
+        command, reason = st.next_step(self.w.ws, "p", open_count=0)
+        self.assertEqual(command, "/app-fusion:fuse p")
+        self.assertIn("2 intent answer(s) are documented defaults", reason)
+        helpers.write(pdir, "INTENT.md", "# p: intent\n\n1. **Which platforms?** iOS and Android (Kari Nordmann, 2026-09-30)\n")
+        command, _ = st.next_step(self.w.ws, "p", open_count=0)
+        self.assertEqual(command, "/app-fusion:fuse-brief p", "with every answer a person's, the plan comes next")
+
     def test_a_damaged_saved_copy_never_overwrites_the_code(self):
         self.suite(GREEN)
         self.w.run("canary.py", "start", "p", "CAP-001", "--file", LOGIC, "--change", "flip the check")

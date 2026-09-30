@@ -15,6 +15,8 @@ refreshes `analysis/$program/REPORT.html`.
    links, capabilities, design coverage, built and proven counts, open questions, the brief's approval and what it
    covers, anything stale, and the next command. The next command can also be:
    - a canary still in place (`canary.py finish` or `abort`): a deliberate break is still in the code
+   - `/app-fusion:fuse <program>` again: INTENT.md still holds `OPEN:` lines, documented defaults a headless first run
+     wrote instead of a person's answers; the front door asks exactly those before the brief is written
    - retired capability ids still in use: a re-map renamed a capability; name it in `map_aliases.json`
    - a new approval: the brief changed after it was approved, or the next phase is outside the approval
    - a person's sign-off (`fuse-verify <program> sign`) for proven capabilities

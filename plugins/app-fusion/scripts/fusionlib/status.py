@@ -119,6 +119,15 @@ def _waiting_only(r, built):
         and "stale" not in open_checks["Journeys"]["detail"]
 
 
+def intent_open_items(ws, program):
+    """The `OPEN:` lines of INTENT.md: answers a headless run of the front door recorded as documented defaults."""
+    path = os.path.join(program_dir(ws, program), "INTENT.md")
+    if not os.path.isfile(path):
+        return []
+    with open(path, encoding="utf-8", errors="replace") as fh:
+        return [line.strip()[5:].strip() for line in fh if line.strip().startswith("OPEN:")]
+
+
 def next_step(ws, program, open_count=None):
     """(command, reason): the single most useful next step, in the order docs/DESIGN.md gives."""
     stages, prog, target = artifacts(ws, program)
@@ -157,6 +166,12 @@ def next_step(ws, program, open_count=None):
     if open_count:
         return f"{PREFIX}fuse-review {p}", f"{open_count} question(s) only a person can answer"
     brief = parse_brief(os.path.join(pdir, "FUSION_BRIEF.md"), ws, p)
+    open_intent = intent_open_items(ws, p)
+    if open_intent and not brief["approved"]:
+        # a headless first run wrote documented defaults into INTENT.md; the plan is bound by a person's words, so they
+        # are asked before the brief is written or approved
+        return f"{PREFIX}fuse {p}", (f"{len(open_intent)} intent answer(s) are documented defaults from a headless run, not a "
+                                     f"person's words: the front door asks exactly those ({open_intent[0][:80]})")
     if not brief["exists"]:
         return f"{PREFIX}fuse-brief {p}", "write the phased plan"
     if not brief["approved"]:

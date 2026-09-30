@@ -15,7 +15,9 @@ apps. The porting notes list all of them.
 
 ## Tests with JUnit output
 
-- **Business rules** live in `commonTest` (kotlin.test). They run on the JVM with `./gradlew :shared:allTests`, which
-  writes JUnit XML under `shared/build/test-results/`.
+- **Business rules** live in `commonTest` (kotlin.test). They run on the JVM through
+  `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" run <program> --capability <CAP> --name unit
+  --collect 'shared/build/test-results/**/*.xml' -- ./gradlew :shared:allTests`, which collects the JUnit XML Gradle
+  writes under `shared/build/test-results/` during the run.
 - **Rule ids** go in the test names: ``fun `RULE-017 rounds to cents`()``.
 - **UI tests** follow the per-platform profiles, and Maestro covers the journeys on both apps.

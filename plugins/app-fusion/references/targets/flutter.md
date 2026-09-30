@@ -19,9 +19,14 @@ Native extensions (notification service, share) are still Swift and Kotlin targe
 
 ## Tests with JUnit output
 
-Take a fresh run folder (`RUN=$(python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" dir <program> suite <CAP>); OUT="$PWD/$RUN"`),
-then run `flutter test --machine test/features/<domain>/<capability> | tojunit > "$OUT/unit.xml"` inside the app.
-`tojunit` comes from the junitreport package: `dart pub global activate junitreport`.
+`flutter test --machine` writes JSON, and `tojunit` (from the junitreport package: `dart pub global activate
+junitreport`) turns it into JUnit. `evidence.py run` executes one command without a shell, so keep the two in a small
+executable script in the app, for example `tool/test_junit.sh`
+(`flutter test --machine "$@" | tojunit > "$FUSION_RUN_DIR/unit.xml"`), and run that script:
+
+```bash
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" run <program> --capability <CAP> --name unit -- tool/test_junit.sh test/features/<domain>/<capability>
+```
 
 Put ids in the group and test names: `group('CAP-012 mileage', ...)` and `test('RULE-017 rounds to cents', ...)`.
 

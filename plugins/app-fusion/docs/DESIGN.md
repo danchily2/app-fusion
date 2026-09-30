@@ -331,24 +331,33 @@ storage, locales, privacy) are 2, the others 4. The stack and the store listing 
 
 ```json
 { "version": 2, "date": "YYYY-MM-DD",
-  "suites":   [ { "capability": "CAP-001 | all", "name": "unit", "platform": "ios | android | null", "command": "",
-                  "junit": ["<files>"], "hashes": {"<file>": "<sha256>"}, "named": ["CAP-001", "RULE-003"],
-                  "codeHashes": {"CAP-001": "<code hash>"}, "log": [], "note": "", "recordedAt": "" } ],
-  "journeys": [ { "journey": "JRN-001", "platform": "ios", "flow": "", "flowHash": "", "junit": [], "hashes": {}, "named": [],
-                  "codeHashes": {}, "device": "", "recordedAt": "" } ],
-  "canaries": [ { "capability": "CAP-001", "change": "", "file": "", "diff": "", "linesChanged": 1, "junit": [], "hashes": {},
-                  "failedCases": ["<classname>::<name>"], "failedOther": 0, "codeHash": "", "recordedAt": "" } ],
+  "suites":   [ { "capability": "CAP-001 | all", "name": "unit", "platform": "ios | android | null", "executed": true,
+                  "command": "", "argv": [], "cwd": "", "exitCode": 0, "timedOut": false, "runner": "", "startedAt": "",
+                  "durationMs": 0, "run": "<run folder>", "junit": ["<files>"], "hashes": {"<file>": "<sha256>"},
+                  "named": ["CAP-001", "RULE-003"], "codeHashes": {"CAP-001": "<code hash>"}, "output": ["<stdout>", "<stderr>"],
+                  "outputHashes": {}, "collected": [], "leftOut": [], "note": "", "recordedAt": "" } ],
+  "journeys": [ { "journey": "JRN-001", "platform": "ios", "flow": "", "flowHash": "", "executed": true, "junit": [], "hashes": {},
+                  "named": [], "codeHashes": {}, "device": "", "recordedAt": "" } ],
+  "canaries": [ { "capability": "CAP-001", "change": "", "file": "", "diff": "", "linesChanged": 1, "executed": true,
+                  "executions": [ { "command": "", "exitCode": 0, "fileSha256": "", "onBrokenFile": true, "junit": [] } ],
+                  "junit": [], "hashes": {}, "failedCases": ["<classname>::<name>"], "failedOther": 0, "codeHash": "", "recordedAt": "" } ],
   "screenshots": [ { "screen": "<fileKey>:<nodeId>", "capability": "CAP-001", "app": "evidence/shots/...png", "hash": "" } ] }
 ```
 
-`evidence.py` writes suites, journeys and screenshots; `canary.py` writes canaries. A `--junit` folder is expanded to
-its XML files when the run is recorded, and `evidence.py dir` makes a fresh run folder, so files of other runs never
-count. `codeHashes` holds the code hash of every built capability at recording time, and `named` the ids its tests
-named, so a result file that is later edited or removed counts as tampering for exactly those capabilities. A native
-pair records each half's suites with `platform`.
+`evidence.py run` writes suites and journeys: it makes a fresh run folder, executes the test command itself (no shell;
+`{run}` and `FUSION_RUN_DIR` name the folder, `--collect` copies what a runner wrote elsewhere during the run, an
+`.xcresult` converted), and records the exit code, the output and the JUnit XML found in the folder, with
+`executed: true`. `evidence.py suite` and `journey` still record a result file by hand, with `executed: false`: the
+proof lists such a result as a gap, never a pass, because nothing shows its tests ran. `evidence.py shot` records
+screenshots. `canary.py` writes canaries, and `canary.py run` executes the canary's tests the same way, remembering
+the hash of the file they ran on, so `finish` knows whether they saw the break. `codeHashes` holds the code hash of
+every built capability at recording time, and `named` the ids its tests named, so a result file that is later edited
+or removed counts as tampering for exactly those capabilities. A native pair records each half's suites with
+`platform`.
 
 `canary.py`: one canary at a time in the whole program; the break goes into a file of the capability's own `## Files`;
-results are read only from the canary's run folder; the break changes at most six lines and more than whitespace;
+its tests run through `canary.py run` on the broken bytes, or the canary is a gap; results are read only from the
+canary's run folder; the break changes at most six lines and more than whitespace;
 the file is restored byte for byte from a read-only saved copy whose hash is checked first, then the file's; a damaged
 saved copy leaves the file exactly as it is and the canary pending, so nothing is ever overwritten with garbage.
 
@@ -369,18 +378,20 @@ and a signed, accepted PARTLY PROVEN capability no longer holds up `fuse-status`
 
 1. **Built**: the porting notes' `## Files` name at least one source file inside the new app (one per half of a
    native pair).
-2. **Tests ran**: a fresh recorded suite has tests naming the capability or one of its rules; at least one executed
-   and none failed; for a native pair, each half on its own suites. A result file edited or removed after it was
-   recorded is a failure; a result older than the code is a gap.
+2. **Tests ran**: a fresh recorded suite that `evidence.py run` executed has tests naming the capability or one of its
+   rules; at least one executed and none failed; for a native pair, each half on its own suites. A result file edited
+   or removed after it was recorded is a failure; a result older than the code, or recorded by hand (`evidence.py
+   suite`), is a gap.
 3. **Rules traced**: every P0 and P1 rule of the capability is named by a test that passed in a fresh suite. Left
    out: rules marked `wrong`, and rules of an app a `take:<app>` decision did not keep; a rule-conflict decision is
    the more specific answer and wins over the capability's for the rules it names. For a native pair, each rule passes
    in each half. A gap: a `discuss` rule; a rule with a suspected defect (or a doubtful P0 rule) no person decided; an
    undecided conflict; a `design` or `new-spec` decision without a passing test named after its DEC id.
 4. **Journeys**: every journey through the capability passed on every target platform, in a result that names the
-   journey, recorded after the current code of every capability on it, with the flow unchanged. A capability a
-   person parked (dropped, out of scope, deferred) is left out of its journeys. A journey through a capability not
-   built yet is a gap, and `fuse-status` moves on to build that capability instead of looping.
+   journey, run by `evidence.py run`, recorded after the current code of every capability on it, with the flow
+   unchanged. A capability a person parked (dropped, out of scope, deferred) is left out of its journeys. A journey
+   through a capability not built yet is a gap, and `fuse-status` moves on to build that capability instead of
+   looping; a result recorded by hand is a gap too.
 5. **API parity**: `api_parity.py` finds every legacy endpoint of the capability in its own files or listed call
    sites, mapped through `api-map.json`, or covered by an `api` decision.
 6. **Strings**: `i18n_parity.py` finds every legacy key mapped and present in every required locale, in each half; a
@@ -390,8 +401,9 @@ and a signed, accepted PARTLY PROVEN capability no longer holds up `fuse-status`
 8. **Design text**: `design_text.py` finds at least 90% of each linked screen's text in the new app's strings,
    leaving out patterns and the recorded placeholders. No design by intent (no Figma file), `carry-as-is` and
    `dropped` are n/a; an undecided missing design is a gap.
-9. **Canary**: `canary.py` broke the capability's own code and restored it byte for byte; a test naming the
-   capability or one of its rules failed under the break and passed in a fresh suite, on unchanged code.
+9. **Canary**: `canary.py` broke the capability's own code and restored it byte for byte; `canary.py run` executed
+   the tests on the broken file, and a test naming the capability or one of its rules failed there and passed in a
+   fresh suite, on unchanged code. Tests run any other way, or before the break, make the canary a gap.
 10. **Legacy untouched**: every `legacy/<app>` has a clean working tree (untracked files count) at the commit
     recorded in `program.json`. A change fails; a moved commit is a gap.
 
@@ -478,7 +490,7 @@ is unavailable.
 | `figma_index.py`, `figma_rest.py` | Figma cache, budget, plan and index (MCP path), and the REST snapshot path |
 | `trace.py` | traceability, gaps and coverage |
 | `decisions.py` | record a person's decisions; list open questions |
-| `evidence.py`, `canary.py` | record test, journey and screenshot evidence with hashes; the safe canary |
+| `evidence.py`, `canary.py` | `run` executes the tests and records their results and journeys with hashes, `shot` the screenshots; the safe canary, whose tests run through `canary.py run` |
 | `api_parity.py`, `i18n_parity.py`, `events_parity.py`, `design_text.py` | the per-capability parity checks the proof reads (`api_parity.py` also compares and sanitizes HAR recordings) |
 | `platform_parity.py` | the app-level continuity check |
 | `fusion_proof.py` | the verdicts |

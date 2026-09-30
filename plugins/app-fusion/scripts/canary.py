@@ -3,6 +3,7 @@
 exactly as it was.
 
     python3 canary.py start <program> <CAP-NNN> --file <path in the new app> --change "what you will break"
+    python3 canary.py run <program> <CAP-NNN> [--cwd DIR] [--env K=V ...] [--collect GLOB ...] [--timeout SECONDS] -- <test command>
     python3 canary.py finish <program> <CAP-NNN>
     python3 canary.py abort <program> <CAP-NNN>
     python3 canary.py status <program>
@@ -10,8 +11,10 @@ exactly as it was.
 `start` checks that no other canary is in place (one break at a time, whatever the capability), that the file is
 the capability's own production code (its notes' `## Files`, never a test), copies its bytes to
 analysis/<program>/evidence/canary/<CAP>/run-N/, and prints that folder. Then make the break (one small change that
-matters: a threshold by one, a rounding mode, a flipped condition) and run the covering tests with their JUnit output
-into the run folder with `canary.py run` (it executes the test command itself, so the proof knows the tests ran).
+matters: a threshold by one, a rounding mode, a flipped condition) and run the covering tests with `canary.py run`:
+it executes the test command itself, the way `evidence.py run` does (no shell, `{run}` and FUSION_RUN_DIR name the
+run folder, --collect for runners that write elsewhere), and records which bytes of the file the tests ran on. The
+proof credits a canary only when its tests ran through `run` on the broken file.
 `finish` checks the saved copy's hash first, then restores the saved bytes and checks the file's hash; a damaged
 saved copy leaves the file exactly as it is and says so. It records the canary only when the break changed at most six
 lines, and more than whitespace, and it reads results only from the run folder, so a result from another run can never
@@ -99,9 +102,40 @@ def start(ws, program, cap, file, change):
     write_json(pending_path(ws, program, cap), {
         "capability": cap, "file": rel, "sha256": digest, "mode": os.stat(full).st_mode & 0o7777,
         "codeHash": proofkit.code_hash(ws, program, cap, info), "change": change[:200],
-        "run": os.path.relpath(run, ws), "startedAt": now_iso()})
-    print(f"saved {rel}. Now make the one break in it, run the tests that cover {cap} with JUnit output into "
-          f"{os.path.relpath(run, ws)}/, then run: canary.py finish {program} {cap}")
+        "run": os.path.relpath(run, ws), "startedAt": now_iso(), "executions": []})
+    print(f"saved {rel}. Now make the one break in it, run the tests that cover {cap} with\n"
+          f"  canary.py run {program} {cap} -- <the test command>\n"
+          f"(their JUnit output goes into {os.path.relpath(run, ws)}/), then run: canary.py finish {program} {cap}")
+
+
+def run_tests(ws, program, cap, argv, cwd, env, collect, timeout):
+    """Run the covering tests on the file as it is now (broken, if the break was made) and remember which bytes they
+    ran on, so `finish` can tell whether the tests saw the break."""
+    p = load_json(pending_path(ws, program, cap))
+    if not p:
+        die(f"no canary in place for {cap}: start one with `canary.py start`")
+    ev.check_runner(argv)
+    full = os.path.join(proofkit.target_root(ws, program), p["file"])
+    file_sha = proofkit.sha256_file(full) if os.path.isfile(full) else None
+    cwd = cwd or os.path.relpath(proofkit.target_root(ws, program), ws)
+    result = ev.execute(ws, program, p["run"], argv, cwd, env, collect, timeout)
+    cases, _ = proofkit.junit_cases(result["junit"], ws)
+    execution = {"command": result["command"][:400], "cwd": result["cwd"], "exitCode": result["exitCode"], "timedOut": result["timedOut"],
+                 "startedAt": result["startedAt"], "durationMs": result["durationMs"], "fileSha256": file_sha,
+                 "onBrokenFile": file_sha is not None and file_sha != p["sha256"], "junit": result["junit"],
+                 "output": result["output"], "collected": result["collected"], "leftOut": result["leftOut"]}
+    p["executions"] = (p.get("executions") or []) + [execution]
+    write_json(pending_path(ws, program, cap), p)
+    exit_word = "timed out" if result["timedOut"] else f"exit {result['exitCode']}"
+    print(f"ran: {result['command']}  ({exit_word}, {result['durationMs'] / 1000:.1f} s)")
+    print(f"  {ev.summarize(cases)} in {len(result['junit'])} file(s) -> {p['run']}")
+    if not execution["onBrokenFile"]:
+        print(f"  NOTE: {p['file']} still holds its original bytes: make the break, then run the tests again, or the "
+              "canary proves nothing")
+    if not result["junit"]:
+        print("  WARNING: no JUnit XML in the run folder ({run} / FUSION_RUN_DIR): the canary proves nothing until the tests "
+              "write their result there")
+    print(f"then: canary.py finish {program} {cap}")
 
 
 def _restore(ws, program, cap, p):
@@ -140,9 +174,10 @@ def finish(ws, program, cap):
     base = proofkit.target_root(ws, program)
     full = os.path.join(base, p["file"])
     broken = _lines(full)
+    broken_sha = proofkit.sha256_file(full) if broken is not None else None
     original = _lines(os.path.join(ws, p["run"], "original.bin")) or []
-    if broken is not None and proofkit.sha256_file(full) == p["sha256"]:
-        die(f"{p['file']} is unchanged: make the break first, run the tests, then finish (or abort)")
+    if broken is not None and broken_sha == p["sha256"]:
+        die(f"{p['file']} is unchanged: make the break first, run the tests with canary.py run, then finish (or abort)")
     diff = [l for l in difflib.unified_diff(original, broken or [], "before", "canary", n=0, lineterm="")][2:]
     changed = sum(1 for l in diff if l[:1] in "+-")
     only_space = [re.sub(r"\s+", "", l[1:]) for l in diff if l[:1] == "-"] == [re.sub(r"\s+", "", l[1:]) for l in diff if l[:1] == "+"]
@@ -153,14 +188,17 @@ def finish(ws, program, cap):
     if refusal:
         os.remove(pending_path(ws, program, cap))
         die(f"restored {p['file']} (hash checked), but recorded nothing: {refusal}. Start a new canary.")
-    rels = proofkit.xml_files([p["run"]], ws)
+    executions = p.get("executions") or []
+    # the tests count only when canary.py run executed them on exactly the bytes finish found broken
+    on_break = [e for e in executions if e.get("fileSha256") and e["fileSha256"] == broken_sha and e["fileSha256"] != p["sha256"]]
+    rels = sorted({r for e in on_break for r in e.get("junit") or []}) if on_break else []
     cases, bad = proofkit.junit_cases(rels, ws)
     mine = {cap} | rule_ids(ws, program, cap)
     failed_mine = sorted({tc["key"] for tc in cases if tc["status"] == "failed" and proofkit.case_ids(tc) & mine})
     failed_other = sum(1 for tc in cases if tc["status"] == "failed" and not proofkit.case_ids(tc) & mine)
     data = ev.load(ws, program)
     entry = {"capability": cap, "change": p["change"], "file": p["file"], "linesChanged": changed,
-             "diff": "\n".join(diff)[:2000], "junit": rels,
+             "diff": "\n".join(diff)[:2000], "executed": bool(on_break), "executions": executions, "junit": rels,
              "hashes": {r: proofkit.sha256_file(os.path.join(ws, r)) for r in rels}, "unreadable": bad,
              "cases": len(cases), "failedCases": failed_mine, "failedOther": failed_other,
              "codeHash": proofkit.code_hash(ws, program, cap), "codeChangedDuringCanary":
@@ -170,7 +208,13 @@ def finish(ws, program, cap):
     ev.save(ws, program, data)
     os.remove(pending_path(ws, program, cap))
     print(f"restored {p['file']} (hash checked). {len(cases)} test case(s) ran under the break ({changed} line(s) changed).")
-    if not rels:
+    if not executions:
+        print(f"  the tests were not run with canary.py run: the canary proves nothing (start a new one and run them with "
+              f"`canary.py run {program} {cap} -- <test command>` after the break)")
+    elif not on_break:
+        print(f"  the tests did not run on the broken file (they ran before the break, or on other bytes): the canary proves "
+              "nothing; start a new one and run the tests after making the break")
+    elif not rels:
         print(f"  no JUnit result in {p['run']}: the canary proves nothing until its tests write results there")
     elif failed_mine:
         print(f"  {len(failed_mine)} test(s) naming {cap} or its rules failed: the tests catch this break")
@@ -193,7 +237,7 @@ def abort(ws, program, cap):
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     sub = ap.add_subparsers(dest="cmd", required=True)
-    for name in ("start", "finish", "abort", "status"):
+    for name in ("start", "run", "finish", "abort", "status"):
         p = sub.add_parser(name)
         p.add_argument("program")
         if name != "status":
@@ -201,8 +245,15 @@ def main():
         if name == "start":
             p.add_argument("--file", required=True)
             p.add_argument("--change", required=True)
+        if name == "run":
+            p.add_argument("--cwd", help="where the command runs: the new app by default")
+            p.add_argument("--env", action="append", default=[], metavar="K=V")
+            p.add_argument("--collect", action="append", default=[], metavar="GLOB")
+            p.add_argument("--timeout", type=int, default=ev.DEFAULT_TIMEOUT)
         p.add_argument("--workspace")
-    args = ap.parse_args()
+        if name == "run":
+            p.epilog = "After the options, `--` and then the test runner with its arguments."
+    args, command = ev.parse_with_command(ap, sys.argv[1:])
     ws = workspace(args.workspace)
     check_name(args.program, "program")
     cap = getattr(args, "capability", None)
@@ -210,6 +261,8 @@ def main():
         die(f"{cap!r} is not a capability id (CAP-NNN)")
     if args.cmd == "start":
         start(ws, args.program, cap, args.file, args.change)
+    elif args.cmd == "run":
+        run_tests(ws, args.program, cap, command or [], args.cwd, args.env, args.collect, args.timeout)
     elif args.cmd == "finish":
         finish(ws, args.program, cap)
     elif args.cmd == "abort":

@@ -11,10 +11,11 @@ hash to the value recorded with the result; file times never count.
 
   1 Built           new-app/<program>/docs/fusion/CAP-NNN.md names at least one source file inside the new app (for a
                     native pair, one in each half: ios/ and android/).
-  2 Tests ran       a recorded suite whose result files are unchanged since they were recorded, run on the
-                    capability's current code, has tests naming the capability (CAP-012, cap012) or its rules; at least
-                    one executed and none failed. A result recorded before the code changed is a gap; a result file
-                    edited after it was recorded is a failure. A count typed anywhere counts for nothing.
+  2 Tests ran       a suite that scripts/evidence.py run executed itself, whose result files are unchanged since they
+                    were recorded, run on the capability's current code, has tests naming the capability (CAP-012,
+                    cap012) or its rules; at least one executed and none failed. A result recorded before the code
+                    changed is a gap; a result file edited after it was recorded is a failure. A result file recorded
+                    by hand (evidence.py suite) is a gap, and a count typed anywhere counts for nothing.
   3 Rules traced    every P0 and P1 rule of the capability is named by a test that passed in such a fresh suite. Left
                     out: a rule a person marked `wrong`, and the rules of an app a person did not keep (`take:<app>` for
                     the capability or for a rule conflict). A gap: a rule under `discuss`; a rule with a suspected legacy
@@ -22,15 +23,17 @@ hash to the value recorded with the result; file times never count.
                     undecided conflict; a behavior a person chose to redesign (`design`, `new-spec`) without a passing
                     test naming that DEC id.
   4 Journeys        every journey through the capability passed on every target platform, in a Maestro (or other UI)
-                    result that names the journey (JRN-NNN), recorded after the current code of every capability on
-                    it and with the flow unchanged. A journey through a capability that is not built yet is a gap.
+                    result that names the journey (JRN-NNN), run by evidence.py run, recorded after the current code
+                    of every capability on it and with the flow unchanged. A journey through a capability that is not
+                    built yet is a gap; so is a result recorded by hand.
   5 API parity      evidence/api-parity.json passes (or is n/a) for the capability, and nothing it read changed since.
   6 Strings         evidence/i18n-parity.json likewise.
   7 Analytics       evidence/events-parity.json likewise.
   8 Design text     evidence/design-text.json likewise.
-  9 Canary          scripts/canary.py broke the capability's code on purpose and restored it; a test naming the
-                    capability or one of its rules failed under the break and passed in a fresh suite, and the code is
-                    unchanged since. A break nothing caught is a failure; a canary still in place is a gap.
+  9 Canary          scripts/canary.py broke the capability's code on purpose and restored it; canary.py run executed
+                    the tests on the broken file, and a test naming the capability or one of its rules failed there and
+                    passed in a fresh suite, and the code is unchanged since. A break nothing caught is a failure; a
+                    canary still in place, or one whose tests did not run through canary.py run, is a gap.
  10 Legacy          every legacy/<app> is still a clean git checkout (untracked files count) at the commit recorded in
                     program.json. A change is a failure; a moved commit is a gap (the analysis describes the old one).
 
@@ -90,10 +93,12 @@ class Evidence:
         self.pending = {}
 
     def fresh_cases(self, cid, current, wanted, platform=None):
-        """(cases naming `wanted` in fresh valid suites, stale count, tampered suite names, old-format count). With a
-        platform, only suites recorded for that half of a native pair count. A suite whose result files changed or
-        are gone is tampered when it named `wanted` at recording time, so deleting a failing file never hides it."""
-        fresh, stale, tampered, old = [], 0, [], 0
+        """(cases naming `wanted` in fresh valid suites, stale count, tampered suite names, old-format count, count of
+        suites recorded by hand). With a platform, only suites recorded for that half of a native pair count. A suite
+        whose result files changed or are gone is tampered when it named `wanted` at recording time, so deleting a
+        failing file never hides it. A suite evidence.py did not execute itself (`suite`, not `run`) never counts as
+        fresh: nothing shows its tests ran."""
+        fresh, stale, tampered, old, by_hand = [], 0, [], 0, 0
         for e, state, cases in self.suites:
             if platform is not None and e.get("platform") != platform:
                 continue
@@ -106,11 +111,13 @@ class Evidence:
                 continue
             if state == "old":
                 old += 1
+            elif not e.get("executed"):
+                by_hand += 1
             elif not fresh_for(e, cid, current):
                 stale += 1
             else:
                 fresh += named
-        return fresh, stale, tampered, old
+        return fresh, stale, tampered, old, by_hand
 
 
 def decision_effects(decisions, cid, cap, cap_rules, rules_by_id, conflicts):
@@ -233,13 +240,13 @@ def judge(ws, program, only=None):  # noqa: ARG001  (every built capability is j
         wanted = {cid} | {r["id"] for r in cap_rules}
         per_half = {p: ev.fresh_cases(cid, current, wanted, platform=p) for p in pair}
         states, details = [], []
-        for p, (fresh, stale, tampered, old) in per_half.items():
+        for p, (fresh, stale, tampered, old, by_hand) in per_half.items():
             where = f"{p}: " if p else ""
             ran = [tc for tc in fresh if tc["status"] != "skipped"]
             failed = [tc for tc in fresh if tc["status"] == "failed"]
             if tampered:
                 st, dt = "fail", f"result file(s) of suite {', '.join(tampered)} changed or were removed after they were recorded"
-            elif not fresh and not (stale or old):
+            elif not fresh and not (stale or old or by_hand):
                 if p and ev.fresh_cases(cid, current, wanted, platform=None)[0] and any(
                         not e.get("platform") and any(proofkit.case_ids(tc) & wanted for tc in cases) for e, _, cases in ev.suites):
                     st, dt = "gap", f"a suite was recorded without --platform: record this half's suite with --platform {p}"
@@ -249,7 +256,9 @@ def judge(ws, program, only=None):  # noqa: ARG001  (every built capability is j
                     st, dt = "fail", ("no recorded result has a test naming the capability or its rules" if ev.suites
                                       else "evidence/test-runs.json lists no suite")
             elif not fresh:
-                st, dt = "gap", ("the recorded results predate the capability's current code" if stale else
+                st, dt = "gap", ("the only results naming the capability were recorded by hand (evidence.py suite): run the "
+                                 "suite with evidence.py run, so the proof knows the tests executed" if by_hand else
+                                 "the recorded results predate the capability's current code" if stale else
                                  "the results were recorded by an older version of the plugin: record them again")
             elif failed:
                 st, dt = "fail", f"{len(failed)} failing: " + ", ".join(one_line(t['name'], 60) for t in failed[:5])
@@ -340,6 +349,8 @@ def judge(ws, program, only=None):  # noqa: ARG001  (every built capability is j
                         failing.append(f"{label}: result changed after it was recorded")
                     elif state == "old":
                         stale_j.append(f"{label} (recorded by an older version)")
+                    elif not e.get("executed"):
+                        stale_j.append(f"{label} (recorded by hand: run it with evidence.py run --journey {j['id']})")
                     elif not named:
                         failing.append(f"{label}: the result names no {j['id']} test")
                     elif any(tc["status"] == "failed" for tc in named) or not any(tc["status"] == "passed" for tc in named):
@@ -391,6 +402,9 @@ def judge(ws, program, only=None):  # noqa: ARG001  (every built capability is j
             checks["Canary"] = ("fail", "the canary's result file changed after it was recorded")
         elif entry.get("codeHash") != current:
             checks["Canary"] = ("gap", "the capability's code changed since the canary: run a new one")
+        elif not entry.get("executed"):
+            checks["Canary"] = ("gap", "the canary's tests were not run by canary.py run on the broken file: start a new canary and "
+                                       "run its tests with canary.py run after making the break")
         elif not entry.get("failedCases"):
             checks["Canary"] = ("fail", f"{entry.get('change', 'the deliberate break')} made no test naming the capability or "
                                         "its rules fail: the tests do not pin the behavior")

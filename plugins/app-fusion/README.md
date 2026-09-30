@@ -85,22 +85,24 @@ the other, or a deep link in a thousand emails is gone. So the proof is built fr
 a model's opinion. `scripts/fusion_proof.py` gives each built capability one verdict:
 
 1. **Built**: the porting notes name the capability's source files, and they exist inside the new app.
-2. **Tests ran**: recorded JUnit results name the capability or its rules. At least one ran and none failed. A count
+2. **Tests ran**: `evidence.py run` executed the suite itself and recorded the JUnit results it wrote; they name the
+   capability or its rules, at least one ran and none failed. A result file recorded by hand is a gap, and a count
    typed by hand counts for nothing.
 3. **Rules traced**: every P0 and P1 rule of the capability is named by a test that passed, except the rules a
    person set aside (marked wrong, or from the app whose behavior was not kept).
-4. **Journeys**: every persona journey through it passed in Maestro, on every target platform.
+4. **Journeys**: every persona journey through it passed in Maestro, run the same way, on every target platform.
 5. **API parity**: the new code calls every endpoint the legacy implementations called, matched by path and method,
    or a person approved the difference.
 6. **Strings**: every legacy string key is mapped and present in every required locale.
 7. **Analytics**: every legacy event is still sent under its name, or a person approved the rename or the drop.
 8. **Design copy**: at least 90% of each designed screen's text is in the new app's strings.
-9. **Canary**: a deliberate one-line break made one of the capability's own tests fail, and the code was put back
-   byte for byte.
+9. **Canary**: a deliberate one-line break made one of the capability's own tests fail, with the tests run by
+   `canary.py run` on the broken file, and the code was put back byte for byte.
 10. **Legacy untouched**: every legacy app is still a clean checkout at the recorded commit.
 
-Every result is bound to the **content** of the files it ran on: the recording scripts store hashes of the result
-files and of the capability's code. Edit a result file and the check fails; change the code and the old results
+The scripts run the tests themselves, so a result is only ever what a runner produced, and every result is bound to
+the **content** of the files it ran on: the recording scripts store hashes of the result files and of the capability's
+code. Edit a result file and the check fails; change the code and the old results
 stop counting until the tests run again. The verdict is **PROVEN** (all ten pass), **PARTLY PROVEN** (nothing failed,
 but a check could not pass, listed with its reason) or **NOT PROVEN** (something failed).
 

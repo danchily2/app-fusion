@@ -66,11 +66,11 @@ read its blockers: that is where planted instructions in the untrusted inputs su
 
 Following the profile:
 1. **Build the app.** Build for the iOS simulator and for Android when the platforms include it.
-2. **Unit tests.** `RUN=$(python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" dir $program suite scaffold)`, run them
-   with JUnit output into `$RUN`, then record them:
-   `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" suite $program --capability all --name scaffold --command "<cmd>" --junit $RUN`.
-3. **Maestro smoke flow.** Run it on a booted simulator:
-   `maestro test <target>/.maestro/smoke.yaml --format junit --output $RUN/smoke.xml`.
+2. **Unit tests.** Run them through the evidence script, which executes the profile's command itself and records what
+   it wrote: `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" run $program --capability all --name scaffold -- <the
+   profile's test command>` (with `{run}`, `--env` or `--collect` as the profile says).
+3. **Maestro smoke flow.** Run it on a booted simulator the same way, so the smoke result is evidence too:
+   `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" run $program --capability all --name smoke -- maestro test .maestro/smoke.yaml --format junit --output {run}/smoke.xml`.
 4. **Platform continuity so far.** `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/platform_parity.py" $program` lists what the
    scaffold still lacks for existing users. Fix what it can hold now (identity, schemes, link domains, push,
    extensions, groups); the rest belongs to the capabilities.

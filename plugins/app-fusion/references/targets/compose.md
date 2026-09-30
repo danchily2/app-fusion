@@ -32,10 +32,14 @@ legacy keys mapped in `docs/fusion/i18n-map.json`.
 
 ## Tests with JUnit output
 
-Gradle writes JUnit XML natively, to `<module>/build/test-results/test<Variant>UnitTest/TEST-*.xml`. Run
-`./gradlew :feature:<domain>:testDebugUnitTest`, then copy that run's XML files into a fresh run folder
-(`RUN=$(python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" dir <program> suite <CAP>)`) and record the folder. Never
-point `evidence.py` at Gradle's own folder: it keeps results from earlier runs.
+Gradle writes JUnit XML natively, to `<module>/build/test-results/test<Variant>UnitTest/TEST-*.xml`. Run it through
+`evidence.py run` and let `--collect` copy the files this run wrote into the run folder (a file older than the run is
+left out and named, so results of earlier runs never count):
+
+```bash
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" run <program> --capability <CAP> --name unit \
+  --collect 'feature/<domain>/build/test-results/**/*.xml' -- ./gradlew :feature:<domain>:testDebugUnitTest
+```
 
 **Ids in names:** Kotlin backtick names keep them: ``@Test fun `RULE-017 rounds to cents`()`` in a class
 `CAP012MileageTest`.

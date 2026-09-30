@@ -46,14 +46,16 @@ Configure jest-junit once in `package.json`:
   "classNameTemplate": "{classname}", "titleTemplate": "{title}", "addFileAttribute": "true" }]] }
 ```
 
-Per run, from the workspace root, take a fresh run folder and pass it as an absolute path (jest runs inside the new
-app, so a relative path would land there):
+Per run, from the workspace root, let `evidence.py run` execute jest: it makes a fresh run folder, sets `FUSION_RUN_DIR`
+to it and replaces `{run}` in the arguments and in `--env` values, runs the command inside the new app (no shell), and
+records the exit code, the output and the XML jest wrote there:
 
 ```bash
-RUN=$(python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" dir <program> suite <CAP>); OUT="$PWD/$RUN"
-(cd new-app/<program> && JEST_JUNIT_OUTPUT_DIR="$OUT" JEST_JUNIT_OUTPUT_NAME=unit.xml npx jest src/features/<domain>/<slug> --ci)
-python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" suite <program> --capability <CAP> --name unit --command "npx jest ..." --junit "$RUN"
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/evidence.py" run <program> --capability <CAP> --name unit \
+  --env JEST_JUNIT_OUTPUT_DIR={run} --env JEST_JUNIT_OUTPUT_NAME=unit.xml -- npx jest src/features/<domain>/<slug> --ci
 ```
+
+A result copied into a run folder by hand, or recorded with `evidence.py suite`, is a gap in the proof, never a pass.
 
 **Ids in names.** `describe('CAP-012 mileage', ...)` and `it('RULE-017 rounds the allowance to cents', ...)`. jest-junit
 keeps both, so the proof finds them.

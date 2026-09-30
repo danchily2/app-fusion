@@ -1,6 +1,8 @@
 import json
 import os
 import subprocess
+import sys
+import time
 import unittest
 
 import helpers
@@ -75,7 +77,18 @@ class Base(unittest.TestCase):
         helpers.write(app, "docs/fusion/CAP-001.md", "# CAP-001\n## Files\n- `src/features/approvals/approve/api.ts`\n"
                                                      f"- `{LOGIC}`\n- `src/missing.ts`\n- `../../legacy/mgr/package.json`\n"
                                                      "## Tests\n- `src/features/approvals/approve/logic.test.ts`\n")
+        self.fake_runner()
         helpers.git_init(app)
+        self._results = 0
+
+    def fake_runner(self):
+        """A stand-in for a test runner: copies a prepared JUnit result into the run folder evidence.py made."""
+        helpers.write(self.app, "tools/fake_tests.py", """
+            import os, shutil, sys
+            dest = os.path.join(os.environ["FUSION_RUN_DIR"], sys.argv[2] if len(sys.argv) > 2 else "unit.xml")
+            shutil.copyfile(sys.argv[1], dest)
+            sys.exit(int(sys.argv[3]) if len(sys.argv) > 3 else 0)
+        """)
 
     def tearDown(self):
         self.w.close()
@@ -88,28 +101,48 @@ class Base(unittest.TestCase):
                   "plainEnglish": "p", "given": "g", "when": "w", "then": "t", "confidence": "High"}
         return [dict(common, name="Reject needs a comment", priority="P0"), dict(common, name="Approve shows a toast", priority="P1")]
 
-    # ---- recording helpers, the way the skills do it
-    def suite(self, cases, name="unit", cap="CAP-001", platform=None):
-        run = self.w.run("evidence.py", "dir", "p", "suite", cap).stdout.strip()
-        junit(self.w.path(run, "unit.xml"), cases)
-        self.w.run("evidence.py", "suite", "p", "--capability", cap, "--name", name, "--command", "jest", "--junit", run,
-                   *(["--platform", platform] if platform else []))
-        return self.w.path(run, "unit.xml")
+    # ---- recording helpers, the way the skills do it: evidence.py runs the (stand-in) runner itself
+    def results_file(self):
+        self._results += 1
+        return self.w.path("results", f"r{self._results}.xml")
 
-    def canary(self, cases, file=LOGIC, mutate=True, check=True):
+    def suite(self, cases, name="unit", cap="CAP-001", platform=None, by_hand=False):
+        plat = ["--platform", platform] if platform else []
+        if by_hand:  # the old way: a result file recorded with `suite`, which the proof lists as a gap
+            run = self.w.run("evidence.py", "dir", "p", "suite", cap).stdout.strip()
+            junit(self.w.path(run, "unit.xml"), cases)
+            self.w.run("evidence.py", "suite", "p", "--capability", cap, "--name", name, "--command", "jest", "--junit", run, *plat)
+            return self.w.path(run, "unit.xml")
+        src = junit(self.results_file(), cases)
+        self.w.run("evidence.py", "run", "p", "--capability", cap, "--name", name, *plat, "--", sys.executable, "tools/fake_tests.py", src,
+                   check=False)
+        entry = [s for s in self.w.json("analysis", "p", "evidence", "test-runs.json")["suites"]
+                 if s["capability"] == cap and s["name"] == name and s.get("platform") == platform][-1]
+        return self.w.path(entry["junit"][0])
+
+    def canary(self, cases, file=LOGIC, mutate=True, check=True, by_hand=False):
         self.w.run("canary.py", "start", "p", "CAP-001", "--file", file, "--change", "flip the reject check")
         pending = self.w.json("analysis", "p", "evidence", "canary", "CAP-001", "pending.json")
         if mutate:
             with open(os.path.join(self.app, file), "a", encoding="utf-8") as fh:
                 fh.write("export const broken = true\n")
-        junit(self.w.path(pending["run"], "unit.xml"), cases)
+        if by_hand:
+            junit(self.w.path(pending["run"], "unit.xml"), cases)
+        else:
+            src = junit(self.results_file(), cases)
+            self.w.run("canary.py", "run", "p", "CAP-001", "--", sys.executable, "tools/fake_tests.py", src, check=False)
         return self.w.run("canary.py", "finish", "p", "CAP-001", check=check)
 
-    def journey(self, cases, jid="JRN-001"):
+    def journey(self, cases, jid="JRN-001", by_hand=False):
         flow = helpers.write(self.app, f".maestro/{jid}-approve.yaml", "appId: x\n---\n- launchApp\n")
-        run = self.w.run("evidence.py", "dir", "p", "journey", jid, "--platform", "ios").stdout.strip()
-        junit(self.w.path(run, "maestro.xml"), cases)
-        self.w.run("evidence.py", "journey", "p", "--journey", jid, "--platform", "ios", "--flow", flow, "--junit", run)
+        if by_hand:
+            run = self.w.run("evidence.py", "dir", "p", "journey", jid, "--platform", "ios").stdout.strip()
+            junit(self.w.path(run, "maestro.xml"), cases)
+            self.w.run("evidence.py", "journey", "p", "--journey", jid, "--platform", "ios", "--flow", flow, "--junit", run)
+            return
+        src = junit(self.results_file(), cases)
+        self.w.run("evidence.py", "run", "p", "--journey", jid, "--platform", "ios", "--flow", flow, "--",
+                   sys.executable, "tools/fake_tests.py", src, "maestro.xml", check=False)
 
     def parity(self):
         for script in ("api_parity.py", "i18n_parity.py", "events_parity.py", "design_text.py"):
@@ -290,6 +323,93 @@ class Proof(Base):
         v, _ = self.verdict("CAP-002")
         self.assertNotEqual(v["CAP-001"]["verdict"], "PROVEN")
         self.assertIn("changed since it ran", v["CAP-001"]["checks"]["Strings"]["detail"])
+
+    def test_results_recorded_by_hand_are_a_gap_never_a_pass(self):
+        self.translate()
+        self.parity()
+        self.suite(GREEN, by_hand=True)
+        self.canary([("CAP-001 approvals", "RULE-001 reject needs a comment", "failed")], by_hand=True)
+        self.journey([("JRN-001", "JRN-001-approve", "passed")], by_hand=True)
+        v, out = self.verdict()
+        c = v["CAP-001"]["checks"]
+        self.assertEqual(v["CAP-001"]["verdict"], "PARTLY PROVEN", v["CAP-001"])
+        self.assertEqual(c["Tests ran"]["status"], "gap")
+        self.assertIn("recorded by hand", c["Tests ran"]["detail"])
+        self.assertEqual(c["Journeys"]["status"], "gap")
+        self.assertIn("recorded by hand", c["Journeys"]["detail"])
+        self.assertEqual(c["Canary"]["status"], "gap")
+        self.assertIn("canary.py run", c["Canary"]["detail"])
+        self.assertEqual(out.returncode, 1)
+        # the same results, produced by the runner evidence.py executed, count
+        self.suite(GREEN)
+        self.canary([("CAP-001 approvals", "RULE-001 reject needs a comment", "failed")])
+        self.journey([("JRN-001", "JRN-001-approve", "passed")])
+        v, _ = self.verdict()
+        self.assertEqual(v["CAP-001"]["verdict"], "PROVEN", v["CAP-001"])
+        entry = self.w.json("analysis", "p", "evidence", "test-runs.json")["suites"][-1]
+        self.assertTrue(entry["executed"])
+        self.assertEqual(entry["exitCode"], 0)
+        self.assertEqual(entry["runner"], os.path.basename(sys.executable))
+        self.assertTrue(all(os.path.exists(self.w.path(o)) for o in entry["output"]), "stdout and stderr are kept")
+
+    def test_run_refuses_what_is_not_a_test_runner(self):
+        src = junit(self.results_file(), GREEN)
+        base = ["evidence.py", "run", "p", "--capability", "CAP-001", "--name", "unit"]
+        for argv, why in (((["sh", "-c", "echo x"]), "a shell"), ([sys.executable, "-c", "print(1)"], "inline code"),
+                          (["cp", src, "{run}/unit.xml"], "a file writer"), ([sys.executable, "tools/fake_tests.py", src, ">", "x"], "shell syntax"),
+                          (["env", "X=1", sys.executable, "tools/fake_tests.py", src], "a wrapper")):
+            out = self.w.run(*base, "--", *argv, check=False)
+            self.assertNotEqual(out.returncode, 0, why)
+            self.assertIn("error:", out.stderr, why)
+        out = self.w.run(*base, "--cwd", "legacy/mgr", "--", sys.executable, "tools/fake_tests.py", src, check=False)
+        self.assertNotEqual(out.returncode, 0)
+        self.assertIn("legacy", out.stderr)
+        runs = self.w.path("analysis", "p", "evidence", "test-runs.json")
+        self.assertTrue(not os.path.exists(runs) or self.w.json("analysis", "p", "evidence", "test-runs.json")["suites"] == [],
+                        "a refused command records nothing")
+
+    def test_run_keeps_the_exit_code_and_collects_results_written_elsewhere(self):
+        helpers.write(self.app, "tools/fake_gradle.py", """
+            import os, shutil, sys
+            os.makedirs("build/test-results", exist_ok=True)
+            shutil.copyfile(sys.argv[1], "build/test-results/TEST-new.xml")
+            sys.exit(int(sys.argv[2]))
+        """)
+        old = junit(os.path.join(self.app, "build", "test-results", "TEST-old.xml"), [("old", "a result of an earlier run", "passed")])
+        past = time.time() - 600
+        os.utime(old, (past, past))
+        src = junit(self.results_file(), [("CAP-001 approvals", "RULE-001 reject needs a comment", "failed")])
+        out = self.w.run("evidence.py", "run", "p", "--capability", "CAP-001", "--name", "gradle", "--collect", "build/test-results/*.xml",
+                         "--", sys.executable, "tools/fake_gradle.py", src, "1", check=False)
+        self.assertEqual(out.returncode, 1, "a failing run is recorded, and reported through the exit code")
+        entry = self.w.json("analysis", "p", "evidence", "test-runs.json")["suites"][-1]
+        self.assertTrue(entry["executed"])
+        self.assertEqual(entry["exitCode"], 1)
+        self.assertEqual([c["from"] for c in entry["collected"]], ["build/test-results/TEST-new.xml"])
+        self.assertEqual(entry["leftOut"], ["build/test-results/TEST-old.xml"], "a file written before the run is never credited")
+        self.assertEqual(len(entry["junit"]), 1)
+        self.assertEqual(entry["named"], ["CAP-001", "RULE-001"])
+        v, _ = self.verdict()
+        self.assertEqual(v["CAP-001"]["checks"]["Tests ran"]["status"], "fail")
+
+    def test_the_canary_tests_must_run_on_the_broken_file(self):
+        self.suite(GREEN)
+        self.w.run("canary.py", "start", "p", "CAP-001", "--file", LOGIC, "--change", "flip the check")
+        src = junit(self.results_file(), [("CAP-001 approvals", "RULE-001 reject needs a comment", "failed")])
+        # the tests run before the break is made, so they never saw the broken code
+        out = self.w.run("canary.py", "run", "p", "CAP-001", "--", sys.executable, "tools/fake_tests.py", src, check=False)
+        self.assertIn("still holds its original bytes", out.stdout)
+        with open(os.path.join(self.app, LOGIC), "a", encoding="utf-8") as fh:
+            fh.write("export const broken = true\n")
+        out = self.w.run("canary.py", "finish", "p", "CAP-001")
+        self.assertIn("did not run on the broken file", out.stdout)
+        v, _ = self.verdict()
+        self.assertEqual(v["CAP-001"]["checks"]["Canary"]["status"], "gap")
+        self.assertIn("canary.py run", v["CAP-001"]["checks"]["Canary"]["detail"])
+        # run after the break: credited
+        self.canary([("CAP-001 approvals", "RULE-001 reject needs a comment", "failed")])
+        v, _ = self.verdict()
+        self.assertEqual(v["CAP-001"]["checks"]["Canary"]["status"], "pass", v["CAP-001"]["checks"]["Canary"])
 
     def test_a_damaged_saved_copy_never_overwrites_the_code(self):
         self.suite(GREEN)
@@ -499,6 +619,7 @@ class NativePair(Base):
         helpers.write(self.app, "ios/App/Approve.swift", "struct Approve { func needsComment(_ a: String) -> Bool { a == \"reject\" } }\n")
         helpers.write(self.app, "android/app/src/main/java/x/Approve.kt", "fun needsComment(a: String) = a == \"reject\"\n")
         helpers.write(self.app, "docs/fusion/CAP-001.md", "## Files\n- `ios/App/Approve.swift`\n- `android/app/src/main/java/x/Approve.kt`\n")
+        self.fake_runner()
         self.w.run("workspace.py", "intent", "p", "--platforms", "ios,android")
 
     def test_each_half_needs_its_own_tests(self):

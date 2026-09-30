@@ -472,9 +472,10 @@ is unavailable.
 - **REST path.** `scripts/figma_rest.py` reads `FIGMA_TOKEN` from the environment only and never writes it. It pulls
   the file tree, texts, frame images and variables in a handful of requests and writes the same cache and
   `design.json`.
-- **Read only.** The design analyst's tools are Read, Glob, Grep and the Figma read tools of the servers named
-  `claude_ai_Figma`, `figma` and `figma-desktop`: no write tool, shell, web or other connector. A session calls a
-  Figma write tool only when a person asks for that in so many words; the plugin never does.
+- **Read only.** The design analyst's tools are Read, Glob, Grep and the Figma read tools of the official Figma
+  plugin (`plugin_figma_figma`) and of the servers named `claude_ai_Figma`, `figma` and `figma-desktop`: no write
+  tool, shell, web or other connector. A session calls a Figma write tool only when a person asks for that in so many
+  words; the plugin never does.
 - **Texts.** A screen's texts are the characters of its cached design context when there is one, else its text-layer
   names (inside component instances those are often the component's own names, so the build fetches design context
   for every screen it builds).

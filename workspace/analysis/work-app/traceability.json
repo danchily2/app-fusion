@@ -1,0 +1,4610 @@
+{
+  "program": "work-app",
+  "version": 1,
+  "generated": "2026-10-01T13:47:20+00:00",
+  "links": [
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3530:11704",
+      "capabilities": [
+        "CAP-130"
+      ],
+      "confidence": "Low",
+      "evidence": "'Workspace / Prototype / Toast overlay': a blank frame with only a dark toast reading 'Call Jonas'. It may be the feedback shown when calling an employee, but nothing else on the frame supports that, so this is a guess. (re-checked: I opened the screenshot. The frame is blank white apart from one d…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:2051",
+      "capabilities": [
+        "CAP-096",
+        "CAP-097"
+      ],
+      "confidence": "High",
+      "evidence": "Help topic titled 'Expense' in Account & tools. A list of companies with check marks (ME Expense SE, Test ME PROD Company 1, ...) shows where Expense is available. Below is a 'Frequent questions' accordion with the first answer open ('I can not register a mileage.') and 'Why do I not have access to…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:2543",
+      "capabilities": [
+        "CAP-096"
+      ],
+      "confidence": "High",
+      "evidence": "FAQ topic 'Other': 'You can report time or absence for' over a list of checked companies, plus frequent questions ('How can I add another employer...', 'I can not find my employer...'). 'The answer to my question is not here' points to sending feedback, and 'Avoid entering text with sensitive data'…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:1789",
+      "capabilities": [
+        "CAP-096",
+        "CAP-097",
+        "CAP-231"
+      ],
+      "confidence": "High",
+      "evidence": "FAQ topic 'Payslip': a filter of employer companies, then 'I can not see any payslips at all.', 'My newest payslip is missing.', 'Why do I not have access to Payslip?', 'How do I download my payslips?'. This is topic help that explains missing payslips and module access."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:2300",
+      "capabilities": [
+        "CAP-096",
+        "CAP-097"
+      ],
+      "confidence": "High",
+      "evidence": "FAQ topic 'Time & Absence': 'You can report time for' over a list of companies, then frequent questions ('I can not report \"Care of sick child\".', '\"Your user setup is incorrect\"', 'Why do I not have access to Time & Absence?', 'I can not find my employer in the list above.')."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:17297",
+      "capabilities": [
+        "CAP-047",
+        "CAP-051",
+        "CAP-023"
+      ],
+      "confidence": "High",
+      "evidence": "'GAiA / conversation answer': the Home search field 'Search or ask a question' turns into a chat. The user asks 'How many vacation days do I have left?' and the assistant answers 'You have 47 vacation days remaining. Vacation on 23–24 April is awaiting approval.' The general ask (CAP-047) and the a…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:16928",
+      "capabilities": [
+        "CAP-071",
+        "CAP-051"
+      ],
+      "confidence": "High",
+      "evidence": "'GAiA / no matches': Home search for 'zzzzzz' shows 'No matches' and 'Ask GAiA instead — it can answer questions about your approvals, payments, employees, orders...', with an 'Ask GAiA' button. This is the empty state of cross-module search that hands off to the assistant."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:13945",
+      "capabilities": [
+        "CAP-071",
+        "CAP-051"
+      ],
+      "confidence": "High",
+      "evidence": "'GAiA / search results': a search for 'Bergen' returns results grouped by module. Under Approval: 'Bergen Kontorforsyning AS INV-2041'. Under BNXT: orders SO-2184 (Pending) and PO-4471 (Partial). An 'Ask GAiA' button sits at the bottom. This is search across approvals, invoices and orders, with an…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:13525",
+      "capabilities": [
+        "CAP-053",
+        "CAP-051",
+        "CAP-071"
+      ],
+      "confidence": "High",
+      "evidence": "'GAiA / suggested questions': a search field 'Search or ask a question' opened over the Start (Home) page, with a 'Try asking' list of six suggested questions (overdue approvals, AutoPay due, salary dialogues, uninvoiced orders, vacation days). The footer says search covers approvals, payments, emp…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:17755",
+      "capabilities": [
+        "CAP-047",
+        "CAP-023",
+        "CAP-066",
+        "CAP-055"
+      ],
+      "confidence": "High",
+      "evidence": "'GAiA Agent / answer': the assistant chat. The user asks 'How many vacation days do I have left?' and gets '47 vacation days remaining... awaiting approval', which is a leave-balance question (CAP-023). There is a mic icon in the 'Type here..' field (voice dictation) and a 'Clear' button that reset…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:17658",
+      "capabilities": [
+        "CAP-047",
+        "CAP-053",
+        "CAP-066",
+        "CAP-055"
+      ],
+      "confidence": "High",
+      "evidence": "'GAiA Agent / welcome': the assistant greets the user ('Hello Anna! I'm GAiA...') and shows three suggested questions as chips (rules for tool allowance, foreign travel subsistence allowance, Sunday work in construction). It also has a 'Type here..' input with a mic and a 'Clear' button. CAP-026 (E…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:13216",
+      "capabilities": [
+        "CAP-098"
+      ],
+      "confidence": "High",
+      "evidence": "'Leave feedback': the title, the text 'Leave your feedback on what to improve in the app', a required comment field and Cancel/Send buttons. The purpose is unmistakably to send feedback about the app."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:9848",
+      "capabilities": [
+        "CAP-180"
+      ],
+      "confidence": "High",
+      "evidence": "'Messages / empty': a Messages sheet with a close button shows 'No messages'. This is the empty state of the message inbox."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:9447",
+      "capabilities": [
+        "CAP-180",
+        "CAP-181"
+      ],
+      "confidence": "High",
+      "evidence": "'Messages / populated': a Messages sheet listing 'Approved timesheet' and 'Approved leave request' notices with timestamps. Each card has an X to dismiss it from the inbox."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:13355",
+      "capabilities": [
+        "CAP-069",
+        "CAP-068",
+        "CAP-067"
+      ],
+      "confidence": "High",
+      "evidence": "'More / edit pinned modules': the text 'Drag modules above the line to put them in the tab bar. Up to 4 fit next to Start and More', drag handles, a 'Tab bar 4/4 · below: More' divider and a Done button make tab-bar customization (CAP-069) unmistakable. The same list shows every module (Expense, Ap…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:11543",
+      "capabilities": [
+        "CAP-238",
+        "CAP-226"
+      ],
+      "confidence": "High",
+      "evidence": "'Payslip / PDF preview': an in-app PDF viewer with a file name 'payslipd67018779...', a page indicator '1 av 1' and a close button. It renders a Norwegian Lønnsslipp (gross pay, tax deduction, net pay). This is clearly an in-app preview of a payslip PDF (CAP-238). Whether it serves downloading the…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:11055",
+      "capabilities": [
+        "CAP-225",
+        "CAP-226"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'Payslip / detail'. Employer header 'Test ME Company 1' with sections Lønn (Fastlønn 5 900,00), Skatt og trekk (Skatt −1 475,00), Totalt i år (Akkumulerte balanser), and a footer showing Utbetalingsdato and Nettobeløp. The header download icon fits CAP-226; that link is less certain than CAP-…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:11280",
+      "capabilities": [
+        "CAP-225"
+      ],
+      "confidence": "High",
+      "evidence": "Expanded state of the payslip detail. It shows Prosenttrekk and year-to-date balances (Bruttolønn, Forskuddstrekk, Balanse negativ lønn, Fagforeningstrekk, Feriepengegrunnlag), plus payment date and net amount."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:17855",
+      "capabilities": [
+        "CAP-228"
+      ],
+      "confidence": "High",
+      "evidence": "'Lønnsslipp' screen with the 'Årsoppgaver' segment selected. Lists year-end reports by year and employer ('2024 - Test ME Company 1' and others), and each row has a chevron that opens it."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:17855",
+      "capabilities": [
+        "CAP-228",
+        "CAP-229",
+        "CAP-052",
+        "CAP-227"
+      ],
+      "confidence": "Medium",
+      "evidence": "The same screen has a 'Lønnsslipp' segment, which is the payslip list (CAP-029). The header sparkle icon points to the payslip assistant (CAP-052). The header download icon likely exports all payslips or reports (CAP-227), but it could instead download year-end reports (CAP-230). (re-checked: The c…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:13271",
+      "capabilities": [
+        "CAP-112",
+        "CAP-114"
+      ],
+      "confidence": "High",
+      "evidence": "'Privacy & terms' screen. It has an 'Anonymous data collection' toggle with the text about aggregated usage data, and a 'Terms Of Service' row."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:13271",
+      "capabilities": [
+        "CAP-112",
+        "CAP-114",
+        "CAP-113",
+        "CAP-107",
+        "CAP-115",
+        "CAP-098"
+      ],
+      "confidence": "High",
+      "evidence": "Link rows on this screen: 'Accessibility Statement', 'View Third-Party Licenses' and 'Customer Feedback'. They are entry points rather than the content itself. There is also an 'InMoment Statement' row. (re-checked: The link is right but the list leaves out what the screen mainly does. The screensh…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:10195",
+      "capabilities": [
+        "CAP-086",
+        "CAP-201",
+        "CAP-087",
+        "CAP-108"
+      ],
+      "confidence": "High",
+      "evidence": "A bottom sheet opened from the avatar on the start page. It shows 'Logged in as anna.larsen@nordvik.no' and rows for Settings, Leave feedback, Privacy & terms and Log out."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:10195",
+      "capabilities": [
+        "CAP-086",
+        "CAP-087",
+        "CAP-201",
+        "CAP-098",
+        "CAP-116"
+      ],
+      "confidence": "Medium",
+      "evidence": "A 'Leave feedback' row, the signed-in account email, and the app version 'v7.1.9 (1648327851)' shown in the sheet rather than in Settings. (re-checked: I kept the link but changed the list. The screenshot shows a bottom sheet that opens from the profile/avatar icon in the Home header. It contains t…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:3186",
+      "capabilities": [
+        "CAP-113",
+        "CAP-107"
+      ],
+      "confidence": "High",
+      "evidence": "'Accessibility statement' screen with the full text: 'Accessibility Statement for Visma Employee app', measures taken, conformance status and a feedback section."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:3186",
+      "capabilities": [
+        "CAP-113",
+        "CAP-107",
+        "CAP-098"
+      ],
+      "confidence": "High",
+      "evidence": "A 'Send feedback' button for reporting accessibility barriers. (re-checked: The claim gets the screen's purpose wrong. The frame is named \"Settings / Accessibility statement\". The title, the text and the screenshot all show the accessibility statement itself: its measures, its WCAG 2.1 conformance…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:1529",
+      "capabilities": [
+        "CAP-096"
+      ],
+      "confidence": "High",
+      "evidence": "'FAQ: What issue do you need help with?' with topic cards for Payslip, Expense, Time & Absence and Other, each with sample questions."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:1529",
+      "capabilities": [
+        "CAP-096",
+        "CAP-098"
+      ],
+      "confidence": "High",
+      "evidence": "A 'Send feedback' card ('Do you have feedback to the general feel and function of the app?'). The Payslip topic includes 'I can not see any payslips at all.', which fits CAP-231 (learn why I have no payslips). (re-checked: The screen is titled 'FAQ' and asks 'What issue do you need help with?'. Bel…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:6504",
+      "capabilities": [
+        "CAP-120"
+      ],
+      "confidence": "High",
+      "evidence": "'Feature flags' screen: 'For internal testing. Toggling a flag changes app behaviour locally on this device.' Toggles include New onboarding flow, Mileage live map preview, Allowance v2, Dark mode (beta), Biometric lock and Daily push digest."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:2982",
+      "capabilities": [
+        "CAP-115",
+        "CAP-107"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'Licenses'. Shows 'Copyright © Visma 2014', app version '12.0 (Build 8419)' and the Lucide ISC/MIT open-source license texts. Reached from Settings under More."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:2786",
+      "capabilities": [
+        "CAP-098"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'Send feedback'. Has a 'Your feedback' text area, a 'Send feedback' button, the note 'This message does not reach your employer' and the line 'Feedback will be sent as <email>'. The message goes to the Visma app team, so this is app feedback, not Employee Agent feedback."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:1011",
+      "capabilities": [
+        "CAP-110",
+        "CAP-108",
+        "CAP-116",
+        "CAP-109",
+        "CAP-206",
+        "CAP-096",
+        "CAP-113",
+        "CAP-115",
+        "CAP-120"
+      ],
+      "confidence": "High",
+      "evidence": "Settings screen with the Appearance dropdown open (System / Light / Dark, Light checked), so CAP-110 is the main purpose. It also lists Email, OS version and App version (account and device info), Language, 'Open app with Face ID', FAQ, App information, Accessibility statement, and a Development se…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:1270",
+      "capabilities": [
+        "CAP-109"
+      ],
+      "confidence": "High",
+      "evidence": "Alert 'Change language: To change the language, please update preferred language settings for this app.' with Cancel and 'Open settings' buttons, shown over Settings. The app language is chosen through the OS per-app language setting."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:8421",
+      "capabilities": [
+        "CAP-082",
+        "CAP-241",
+        "CAP-011",
+        "CAP-211",
+        "CAP-012",
+        "CAP-017",
+        "CAP-080",
+        "CAP-231",
+        "CAP-008",
+        "CAP-073",
+        "CAP-074",
+        "CAP-077",
+        "CAP-079"
+      ],
+      "confidence": "High",
+      "evidence": "Start page with expanded 'For you' cards. Unsent expenses card ('5 receipts · 1 mileage · 2 allowances') with Add new receipt, mileage and allowance, and Open Expense. Vacation days card ('47 vacation days remaining') with 'Register time or absence', 'Vacation 23–24 Apr / Awaiting approval' and Ope…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:9083",
+      "capabilities": [
+        "CAP-205",
+        "CAP-030"
+      ],
+      "confidence": "Medium",
+      "evidence": "The company dropdown opened from the header building icon lists companies (Blomster Butikk AS (Dottie), Expense Demo Company, ME Expense NO/SE, Test ME PROD Company 1 checked, Visma Software AS ...). It could be the ME employer switch (CAP-205) or the VMM Business NXT company switch (CAP-030). The…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:12065",
+      "capabilities": [
+        "CAP-229",
+        "CAP-238"
+      ],
+      "confidence": "High",
+      "evidence": "Full-screen PDF preview of 'Sammenstilling til inntektsmottaker 2024' (Norwegian year-end report) for Test ME Company 1, with a page indicator '1 av 1' and a close button. The header dropdown '2024 - Test ME Company 1' suggests choosing which report to show."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:11825",
+      "capabilities": [
+        "CAP-229",
+        "CAP-230"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'Årsoppgaver' (year-end reports) with the subtitle '2024 - Test ME Company 1'. Lists reported income lines (Feriepengegrunnlag, Lønn - fastloenn ...) with amounts, and has a download icon in the header."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3389:5502",
+      "capabilities": [
+        "CAP-154"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / Approve sheet': a bottom sheet titled 'Approve' over a voucher task (Telenor Norge AS, 1,900.00 NOK), with 'Comment - optional. Draft is saved.', 'Add comment...', and Dismiss/Approve buttons. The new design adds an optional comment and saves a draft of it."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3389:5229",
+      "capabilities": [
+        "CAP-167",
+        "CAP-168",
+        "CAP-170",
+        "CAP-163",
+        "CAP-164"
+      ],
+      "confidence": "Medium",
+      "evidence": "'Approval / Completed task': voucher detail (Fjordkraft AS, -9,879.00 NOK) with no Approve/Reject buttons. It has a 'Voucher lines - 2 lines available to edit' row, a Comment field, 'Workflow history' (Activated by Anna Larsen, Approved 29.06.2026) and 'Workflow details' (Current step, Pending appr…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:6241",
+      "capabilities": [
+        "CAP-164",
+        "CAP-165"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / Document': full-screen viewer titled 'Document' that renders an attached invoice (Acme Cloud, invoice number, line items, VAT, total), with a download icon in the header and 'Page 1 of 1' / Done at the bottom. Viewing the document is unmistakable. The download icon covers share or downl…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3389:6236",
+      "capabilities": [
+        "CAP-158"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / Forward sheet': a bottom sheet titled 'Forward' with a 'Recipient / Enter recipient' field, 'Comment - required. Draft is saved.', and Dismiss/Forward buttons. Forward stays disabled until both are filled."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3357:2346",
+      "capabilities": [
+        "CAP-150",
+        "CAP-151",
+        "CAP-160",
+        "CAP-152"
+      ],
+      "confidence": "Medium",
+      "evidence": "'Approval / Grouped by company': Approval tab with Tasks (11), Overdue (10) and History segments. Task cards are grouped under company headers (Nordvik Eiendom AS, Nordvik Group AS) and show invoice number, due date, amount, an Invoice tag and an Overdue badge. Each card has a checkbox, which sugge…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3357:1477",
+      "capabilities": [
+        "CAP-166",
+        "CAP-152"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / History': the History segment is selected. Past items are grouped by month (July 2026, June 2026) with supplier, reference and company, a status (Awaiting approval / Approved), 'Received <date>', and amounts in USD/NOK. A search icon sits in the header."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3357:3488",
+      "capabilities": [
+        "CAP-153",
+        "CAP-154",
+        "CAP-155",
+        "CAP-170",
+        "CAP-163",
+        "CAP-168",
+        "CAP-164"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / Invoice task': invoice task detail (Bergen Kontorforsyning AS, approving for Nordvik Group AS, 10,000.00 NOK). It shows description, task/document due dates, a 'Voucher lines - 3 lines' row, Approve and Reject buttons, a Comment field and Workflow history/details. The texts also include…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3357:3350",
+      "capabilities": [
+        "CAP-150",
+        "CAP-067"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / No tasks': empty state of the Approval Tasks list, 'No tasks to show / Every approval task is cleared.', with Tasks/Overdue/History segments and filter/search icons. The bottom tab bar (Start, Expense, HRM, BNXT, More) is visible with Approval active, which shows switching between main…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3357:1011",
+      "capabilities": [
+        "CAP-150"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / Overdue' frame: Approval tab with Tasks 11 / Overdue 10 / History segments, Overdue tab active, 'Overdue tasks' list of invoice and voucher cards with amounts, 'Task was due' dates and Overdue badges, plus the empty state 'Nothing is overdue'. This is the pending-task inbox filtered to…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3389:5745",
+      "capabilities": [
+        "CAP-155",
+        "CAP-153"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / Reject sheet': a bottom sheet titled 'Reject' with 'Comment - required. Draft is saved.', a comment field and Dismiss/Reject buttons, laid over the task detail (Voucher, Approving for Nordvik Retail AS, Amount NOK 1,900.00, task and document due dates). This matches rejecting with a man…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3389:5988",
+      "capabilities": [
+        "CAP-157"
+      ],
+      "confidence": "Medium",
+      "evidence": "'Approval / Request review sheet': a bottom sheet titled 'Request review' with a Recipient field ('Enter recipient') and 'Comment - required. Draft is saved.', over the task detail. This matches sending a task for review with a mandatory comment. It is Medium because the confirm button is labelled…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3357:2855",
+      "capabilities": [
+        "CAP-150",
+        "CAP-160"
+      ],
+      "confidence": "Medium",
+      "evidence": "'Approval / Selected tasks': Tasks tab list 'By task due date' where every card has a selection checkbox. The frame name points to multi-select for bulk approval (CAP-160), but the screenshot shows no box checked and no totals or bulk-approve bar, so only the task list (CAP-150) is clearly visible.…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3357:1840",
+      "capabilities": [
+        "CAP-151"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / Sort tasks': a 'Sort tasks by' sheet with Company, Document due date and Task due date (checked) over the task list. This matches the catalog's sort options exactly."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:6089",
+      "capabilities": [
+        "CAP-174",
+        "CAP-170"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / Voucher custom view': the Voucher lines screen with the 'Custom' toggle on. The line shows fewer fields than the default view (no Value Date or Invoice No.), which matches choosing which line fields to show in Custom mode."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:5761",
+      "capabilities": [
+        "CAP-170",
+        "CAP-171",
+        "CAP-174",
+        "CAP-175"
+      ],
+      "confidence": "Medium",
+      "evidence": "'Approval / Voucher line 1': the Voucher lines screen with Custom off and Line 1 / Line 2 tabs. It shows Line No., Voucher No., Value Date, Voucher Type, Voucher Date, Invoice No. and Debit Account. 'Text - Custom Name' and 'Debit Account' have chevrons that suggest editable coding (CAP-171). The l…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:5925",
+      "capabilities": [
+        "CAP-170",
+        "CAP-171",
+        "CAP-175",
+        "CAP-174"
+      ],
+      "confidence": "Medium",
+      "evidence": "'Approval / Voucher line 2': the same Voucher lines screen with the Line 2 tab selected, showing Line No. 2, 'MVA innkjøp' and Credit Account '2400 - Leverandørgjeld' (with chevron), amount 9,879.00. This is moving between a voucher's accounting lines; the chevrons suggest the fields can be edited.…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3357:4079",
+      "capabilities": [
+        "CAP-153",
+        "CAP-154",
+        "CAP-155",
+        "CAP-157",
+        "CAP-158",
+        "CAP-163",
+        "CAP-168",
+        "CAP-170",
+        "CAP-171"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / Voucher task' detail: Voucher tag, 'Approving for Nordvik Retail AS', Amount NOK, task and document due dates. Has Approve, Reject, Send for review and Forward buttons, a Comment field ('Draft is saved'), and Workflow history/details with Current step, Pending approval, reasons and 'Vie…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3357:4079",
+      "capabilities": [
+        "CAP-153",
+        "CAP-154",
+        "CAP-155",
+        "CAP-157",
+        "CAP-158",
+        "CAP-163",
+        "CAP-168",
+        "CAP-170",
+        "CAP-164"
+      ],
+      "confidence": "High",
+      "evidence": "A document thumbnail with a paperclip count of 1 suggests it opens the attached document. No viewer is shown. (re-checked: The claim is too narrow. CAP-164 alone misses what the screen is for. The frame is called \"Approval / Voucher task\" and shows one pending approval task, which is CAP-153 (Revie…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:6410",
+      "capabilities": [
+        "CAP-095"
+      ],
+      "confidence": "High",
+      "evidence": "An info modal titled 'Approval' over the task list explains the screen: tap a task for details, tick checkboxes to approve, switch between Tasks and History, search or sort by company and due dates, tap Overdue. It is opened from the header's (i) icon and closes with Ok. This is how-to help for the…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:6410",
+      "capabilities": [
+        "CAP-095"
+      ],
+      "confidence": "High",
+      "evidence": "Behind the modal is the dimmed Approval task list (Tasks 11, Overdue 10, History, 'By task due date'). It is context, not the frame's purpose. (re-checked: The claim is wrong. CAP-150 is only the dimmed list in the background, and the claim's own evidence says so. The frame is named \"Manager / Abou…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3364:1416",
+      "capabilities": [
+        "CAP-150",
+        "CAP-152",
+        "CAP-051",
+        "CAP-053"
+      ],
+      "confidence": "High",
+      "evidence": "The Approval list shows a 'Search tasks or ask a question' field with an 'Ask GAiA' button, suggested prompts ('Check for anomalies', 'How many tasks have been approved per supplier this month?'), Tasks/Overdue/History tabs and task cards with due dates, amounts and Overdue tags."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3364:1416",
+      "capabilities": [
+        "CAP-152",
+        "CAP-051",
+        "CAP-049",
+        "CAP-053",
+        "CAP-150"
+      ],
+      "confidence": "Medium",
+      "evidence": "There is a filter/sort icon and a 'By task due date' header, plus a checkbox on each task card for multi-select approval. The suggested prompts ask the assistant about approvals. (re-checked: The frame is named 'Manager / Inline GAiA search'. Its main element is a combined search band, 'Search task…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3531:11710",
+      "capabilities": [
+        "CAP-153",
+        "CAP-154",
+        "CAP-155",
+        "CAP-163",
+        "CAP-168",
+        "CAP-170"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / Komplett Bedrift task' (Primary interactions) is an invoice task detail: Approving for Nordvik Logistics AB, 240.00 NOK, due dates, a 'Voucher lines 1 lines' row, Approve and Reject, a Comment field (optional or 'Comment - required. Draft is saved.') and a Workflow history accordion."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3531:11710",
+      "capabilities": [
+        "CAP-153",
+        "CAP-154",
+        "CAP-155",
+        "CAP-163",
+        "CAP-168",
+        "CAP-170",
+        "CAP-164"
+      ],
+      "confidence": "High",
+      "evidence": "An invoice document thumbnail with a paperclip count of 1. (re-checked: The claim gets the main purpose wrong. This screen is not mainly a document viewer. It is the detail screen of one approval task, which is CAP-153. The screenshot shows the company title \"Komplett Bedrift\", an Invoice badge, \"A…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3550:13993",
+      "capabilities": [
+        "CAP-153",
+        "CAP-154",
+        "CAP-155",
+        "CAP-163",
+        "CAP-168",
+        "CAP-170"
+      ],
+      "confidence": "High",
+      "evidence": "KLP Pensjon INV-6605 invoice task detail: 264,974.91 NOK for Nordvik Holding AS, 'Voucher lines 2 lines', Approve and Reject, a Comment field and Workflow history. Same template as the other task details."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3550:14309",
+      "capabilities": [
+        "CAP-153",
+        "CAP-154",
+        "CAP-155",
+        "CAP-163",
+        "CAP-168",
+        "CAP-170"
+      ],
+      "confidence": "High",
+      "evidence": "Oslo Kommune INV-4417 invoice task detail: 120,485.31 NOK for Nordvik Group AS, 'Voucher lines 7 lines', Approve and Reject, a Comment field and Workflow history."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3550:11720",
+      "capabilities": [
+        "CAP-153",
+        "CAP-154",
+        "CAP-155",
+        "CAP-163",
+        "CAP-168",
+        "CAP-170"
+      ],
+      "confidence": "High",
+      "evidence": "Aspekta Regnskap AS 12345 invoice task detail: 1,000.00 NOK for Nordvik Logistics AB, 'Voucher lines 1 lines', Approve and Reject, a Comment field and Workflow history."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3550:12872",
+      "capabilities": [
+        "CAP-153",
+        "CAP-154",
+        "CAP-155",
+        "CAP-163",
+        "CAP-168",
+        "CAP-170"
+      ],
+      "confidence": "High",
+      "evidence": "Atea Norge AS INV-9042 invoice task detail: 15,780.00 NOK for Nordvik Retail AS, 'Voucher lines 3 lines', Approve and Reject, a Comment field and Workflow history."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3525:11556",
+      "capabilities": [
+        "CAP-012"
+      ],
+      "confidence": "High",
+      "evidence": "'Sickness Self certification' form with From-to / Full day / Hours / Percent tabs. Full day is selected and shows From/To dates, a total of 7h 30m, a Medical certificate toggle, an optional comment and Save. This is registering an absence."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3525:12088",
+      "capabilities": [
+        "CAP-012"
+      ],
+      "confidence": "High",
+      "evidence": "The same Sickness Self certification registration form with the Hours tab selected. It adds an Hours field (7.5), a total of 7.5 h, the Medical certificate toggle, a comment and Save."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:25512",
+      "capabilities": [
+        "CAP-020"
+      ],
+      "confidence": "High",
+      "evidence": "An action sheet over the Calendar month view reads 'Confirm working hours for today.' and offers Confirm today, Choose another date and Cancel. This is confirming worked time up to a date."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:5902",
+      "capabilities": [
+        "CAP-005"
+      ],
+      "confidence": "High",
+      "evidence": "A popover from the calendar's more (...) menu offers Period (Month/Week), Filter view (Hide weekends, Attendance, Absence, Supplement, Roster) and Events style (Icons/Text). This is customizing what the calendar shows."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:24908",
+      "capabilities": [
+        "CAP-001"
+      ],
+      "confidence": "High",
+      "evidence": "A 'Select month' dialog with month and year pickers, Cancel and Done, opened from the 'Apr 2026' dropdown over the Calendar month grid. This is navigating the calendar month by month."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:15799",
+      "capabilities": [
+        "CAP-006",
+        "CAP-012"
+      ],
+      "confidence": "High",
+      "evidence": "A 'Select type' bottom sheet over the Calendar, with a type search, Recently used types (Working hours, Flexitime -/+) and All types (Overtime variants, Care of sick child, Sickness Self certification, Vacation). This is the type-picking step for starting a time or absence registration from the cal…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:26073",
+      "capabilities": [
+        "CAP-010"
+      ],
+      "confidence": "High",
+      "evidence": "Summary screen reached from the Calendar. It reads 'As of 30/04/26' and has cards for Vacation balance 187 days, Flexitime +4h 9m, Saved overtime 12h 30m, Sickness this year 1 day and Care of sick child 0 days. That is the employee's balances summary opened from the calendar."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:10582",
+      "capabilities": [
+        "CAP-001"
+      ],
+      "confidence": "High",
+      "evidence": "Calendar with the Team tab active and the employee selector set to 'Jonas Berg, Nordvik Group AS'. It shows a Jul 2026 month grid with time, absence and vacation icons and month arrows, so a manager is viewing an employee's calendar month by month (CAP-001 includes VMM). The Team tab, which merges…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:11075",
+      "capabilities": [
+        "CAP-001"
+      ],
+      "confidence": "High",
+      "evidence": "Team calendar with the employee dropdown open. It lists employees with avatars, grouped by company (Nordvik Group AS, Nordvik Logistics AB), so the manager can pick whose month grid to see. Picking an employee from a list overlaps only partly with browsing the employee directory. CAP-124 is the wea…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:24245",
+      "capabilities": [
+        "CAP-001"
+      ],
+      "confidence": "Medium",
+      "evidence": "Me calendar with a modal date picker (April 2026, 30 selected, Cancel/Done) opened from the 'Apr 2026' header dropdown. It most plausibly jumps to a month or date in the grid. The alternative is choosing the 'confirm up to' date (CAP-020), because a sibling frame with the same picker is named 'Conf…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3525:12621",
+      "capabilities": [
+        "CAP-020"
+      ],
+      "confidence": "Medium",
+      "evidence": "The frame name 'Calendar / date picker / Confirm time' points to picking the date up to which worked time is confirmed. The screenshot looks identical to the plain date picker (April 2026, 30 selected, Cancel/Done) and shows no confirm-specific text, so the purpose comes from the name alone. (re-ch…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:15216",
+      "capabilities": [
+        "CAP-004",
+        "CAP-006"
+      ],
+      "confidence": "High",
+      "evidence": "Bottom sheet for the selected range 23/04/26 - 24/04/26. It lists the entries (Vacation, Awaiting approval; Working hours, 8h) and has a 'Register event for range' button. This matches the dragged-day-range start for a registration and the day-detail entries list."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:14075",
+      "capabilities": [
+        "CAP-004",
+        "CAP-006"
+      ],
+      "confidence": "High",
+      "evidence": "Day sheet for 'Thu, 23 Apr' over the month grid. It lists that day's entries with title and status (Vacation, Awaiting approval; Working hours, 8h) and has a 'Register event' button that starts a registration from the day detail."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:14658",
+      "capabilities": [
+        "CAP-006",
+        "CAP-004"
+      ],
+      "confidence": "High",
+      "evidence": "Tapping the empty day Thu, 2 Apr (highlighted in the grid) opens a sheet with no entries and a 'Register event' button. This is starting a registration from a tapped empty day, shown as the empty state of the day-detail sheet."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:11635",
+      "capabilities": [
+        "CAP-002",
+        "CAP-003",
+        "CAP-006",
+        "CAP-067"
+      ],
+      "confidence": "High",
+      "evidence": "'Calendar / list view': a chronological list grouped by month (April 2026, February 2026) of entries such as Working hours 7h 30m, Flexitime +, Sickness Self certification, and Vacation 'Awaiting approval' with dates. The header has a list/grid view toggle (CAP-003). A '+' FAB starts a registration…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:12635",
+      "capabilities": [
+        "CAP-004",
+        "CAP-020",
+        "CAP-006",
+        "CAP-001"
+      ],
+      "confidence": "High",
+      "evidence": "'Calendar / today / time confirmation': a month grid (Apr 2026) with a day sheet 'Thu, 30 Apr'. The sheet shows the warning 'You haven't registered any working hours.', a Working hours 8h entry, and the buttons 'Confirm time' (CAP-020) and 'Register event' (CAP-006). The day-details sheet is CAP-00…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:12339",
+      "capabilities": [
+        "CAP-001",
+        "CAP-003",
+        "CAP-006",
+        "CAP-067"
+      ],
+      "confidence": "Medium",
+      "evidence": "'Calendar / week grid': a period grid for '27 Apr – 3 May, Week 18' with prev/next arrows and a period picker chevron, showing a time-entry icon on each day. Legacy has only month and list views (CAP-001/CAP-003), so this week granularity looks like a new view variant. It has a '+' FAB (CAP-006) an…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:21858",
+      "capabilities": [
+        "CAP-012"
+      ],
+      "confidence": "High",
+      "evidence": "'Sickness / From-to': a 'Sickness Self certification' registration form with tabs From-to / Full day / Hours / Percent, From/To dates, From/To time 08:00–16:00, Total 8h 0m, a Medical certificate toggle, an optional comment, and Save. This matches the CAP-012 form with dates and full/partial day or…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:22470",
+      "capabilities": [
+        "CAP-012"
+      ],
+      "confidence": "High",
+      "evidence": "'Sickness / Percent': the same Sickness Self certification form with the Percent tab selected. It has From/To dates, Percent 100, Total 100 %, a Medical certificate toggle, a comment, and Save."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:23077",
+      "capabilities": [
+        "CAP-012"
+      ],
+      "confidence": "High",
+      "evidence": "'Vacation / registration': a Vacation form with From/To dates 30/04/26, an optional comment, and Save. It shows an inline balance hint 'You have 187 vacation days available', which is related to CAP-010 balances but is not the balances summary itself."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:16472",
+      "capabilities": [
+        "CAP-012",
+        "CAP-013"
+      ],
+      "confidence": "High",
+      "evidence": "'Working hours / From-to': a Working hours registration form with tabs From-to / Full day / Hours, From/To dates and times 08:00–16:00, Total 8h 0m, dimension rows Test1/Test2/test3 with 'Select unit' (cost-unit picking, CAP-013), a comment, and Save."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:20629",
+      "capabilities": [
+        "CAP-012",
+        "CAP-013"
+      ],
+      "confidence": "High",
+      "evidence": "'Working hours / Full day': the Working hours form with the Full day tab selected. It has a From date, Total 7h 30m, dimension rows Test1/Test2/test3 with 'Select unit' (CAP-013), a comment, and Save."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:21241",
+      "capabilities": [
+        "CAP-012",
+        "CAP-013"
+      ],
+      "confidence": "High",
+      "evidence": "Screenshot titled 'Working hours' with From-to / Full day / Hours segments, From date 30/04/26, Hours 7.5, Total 7.5 h, three dimension rows (Test1/Test2/test3, 'Select unit'), optional comment and Save. This is a time registration form with cost-unit dimension pickers. The frame's texts list only…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:23660",
+      "capabilities": [
+        "CAP-013"
+      ],
+      "confidence": "High",
+      "evidence": "Screenshot titled 'Test1' with a search field and dimension values ((empty), Sales, Engineering, Marketing, Finance, Operations). The frame name is 'Working hours / Test1 unit picker', so this is where the user picks a cost-unit dimension value for a registration."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:5400",
+      "capabilities": [
+        "CAP-271",
+        "CAP-270",
+        "CAP-256",
+        "CAP-257"
+      ],
+      "confidence": "High",
+      "evidence": "'Add allowance (2/2)' with Hotel name and address (search icon, Scandic Oslo City), Hotel stay from dates, 'Remove hotel', '+ Add more hotels'. It also shows the meal and lodging allowances with the calculated total (1,409.00 NOK minus a 202.00 NOK meal deduction gives 1,207.00 NOK), plus 'Add to c…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:5131",
+      "capabilities": [
+        "CAP-269"
+      ],
+      "confidence": "High",
+      "evidence": "'Add allowance (1/2)' with two travel legs (Travel start/end, Country Norge, Allowance type Diettgodtgjørelse / Privat opphold), 'Remove travel', '+ Travel to more places' and Next. This is the first step of registering a per diem with several legs."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:19917",
+      "capabilities": [
+        "CAP-269"
+      ],
+      "confidence": "High",
+      "evidence": "An 'All countries' search sheet (Afghanistan, Albania and so on) over 'Add allowance (1/2)'. The user picks the travel country for the allowance."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:2208",
+      "capabilities": [
+        "CAP-270",
+        "CAP-256",
+        "CAP-257"
+      ],
+      "confidence": "High",
+      "evidence": "'Add allowance (2/2)', 'Select allowances' with All days / Single days, Breakfast/Lunch/Dinner checkboxes with meals deducted, a Lodging picker (Hybel med kokemuligheter), Night allowance and the calculated total. 'Add to claim' and 'Send for approval' buttons sit below."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:19033",
+      "capabilities": [
+        "CAP-269",
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "'Add allowance (1/2)' with an Allowance type dropdown open (Ingen diett, Privat opphold, Diettgodtgjørelse checked). The form also shows Purpose of travel and 'Cost allocation · Assign cost units'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:19642",
+      "capabilities": [
+        "CAP-269"
+      ],
+      "confidence": "High",
+      "evidence": "A 'Select Country' sheet with search, 'Frequently used' (Norge checked), All and Other over 'Add allowance (1/2)'. The user picks the travel country for the allowance leg."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:3020",
+      "capabilities": [
+        "CAP-271"
+      ],
+      "confidence": "High",
+      "evidence": "'Allowance · Hotel details' at step 2 of 'Add allowance (2/2)'. Each hotel card has 'Hotel name and address' with a search icon and 'Hotel stay from' dates (20/04/26, 21/04/26). There are 'Remove hotel' and '+ Add more hotels' actions, so this is the hotel-stay recording part of the allowance."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:3020",
+      "capabilities": [
+        "CAP-271",
+        "CAP-270",
+        "CAP-256",
+        "CAP-257"
+      ],
+      "confidence": "High",
+      "evidence": "The same step-2 screen shows the calculated allowance summary (Allowance 1,409.00 NOK, Meal deduction (x1) -202.00 NOK, Total allowance 1,207.00 NOK). It also has the buttons 'Add to claim' and 'Send for approval', which are the save-to-claim and send-a-single-item actions on the allowance form. (r…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:3331",
+      "capabilities": [
+        "CAP-271"
+      ],
+      "confidence": "High",
+      "evidence": "A 'Hotel search' bottom sheet over Add allowance (2/2), with a search field and a 'Recently used' list (Scandic Oslo City, Radisson Blu Plaza Hotel, The Thief). Each recent hotel has a remove (x) icon, which matches 'pick from recently used hotels, which they can remove'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:3705",
+      "capabilities": [
+        "CAP-271"
+      ],
+      "confidence": "High",
+      "evidence": "The 'Hotel search' sheet with the query 'Scandic' and 'Search results for \"Scandic\"' listing hotels with addresses and location pins. This is finding the hotel for a hotel stay by search."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:4070",
+      "capabilities": [
+        "CAP-272"
+      ],
+      "confidence": "High",
+      "evidence": "An 'Allowances' help sheet over the allowance step 2, with the sections 'What is allowance' and 'Company policy' (\"Understanding your company's travel policy... Contact your admin\"). This is the allowance explanation and policy help sheet."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:2740",
+      "capabilities": [
+        "CAP-270"
+      ],
+      "confidence": "High",
+      "evidence": "'Allowance · Lodging menu': step 2 with 'All days' selected, Breakfast/Lunch/Dinner checkboxes with meal-deduction counts, and an open Lodging dropdown (Brakke eller pensjonat/hybel, Hotell, Hybel (med kokemuligheter) checked, Privat innlosjering, Reise om natten). It sits above the calculated allo…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:2740",
+      "capabilities": [
+        "CAP-270",
+        "CAP-256",
+        "CAP-257"
+      ],
+      "confidence": "High",
+      "evidence": "The 'Add to claim' and 'Send for approval' buttons are visible below the dropdown on the allowance form. (re-checked: The claim misses the screen's main purpose. The frame is called 'Allowance · Lodging menu' and shows step 2 of 2 of adding an allowance. It has the All days / Single days toggle, me…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:18765",
+      "capabilities": [
+        "CAP-269"
+      ],
+      "confidence": "High",
+      "evidence": "'Add allowance (1/2)' with Purpose of travel and several travel segments. Each segment has Travel start/end date-times, Country (Norge) and Allowance type (Diettgodtgjørelse, Privat opphold), plus 'Remove travel', '+ Travel to more places' and 'Next'. This is the first step of registering an allowa…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:18765",
+      "capabilities": [
+        "CAP-269",
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "There is a 'Cost allocation · Assign cost units' row on the allowance form. It is an entry point only; the picker is not shown. (re-checked: The claim is incomplete. The frame is called \"Allowance · Multiple travel legs\" and its title is \"Add allowance (1/2)\". It is step 1 of the per-diem form: pur…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:1945",
+      "capabilities": [
+        "CAP-269"
+      ],
+      "confidence": "High",
+      "evidence": "An 'Other' country picker sheet over 'Add allowance (1/2)', with Search and the options 'No country (default rates)', 'International waters' and 'In transit'. This is choosing the destination country of an allowance travel segment."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:2465",
+      "capabilities": [
+        "CAP-270"
+      ],
+      "confidence": "High",
+      "evidence": "'Allowance · Single days': step 2 with the 'Single days' tab active, a per-day timeline (07:00 29 Apr to 07:00 30 Apr), Breakfast/Lunch/Dinner toggles and Lodging (Hybel). The calculated Allowance is 1,861.00 NOK, Meal deduction -202.00, Total 1,659.00 NOK, so this is setting meals and lodging per…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:2465",
+      "capabilities": [
+        "CAP-270",
+        "CAP-256",
+        "CAP-257"
+      ],
+      "confidence": "High",
+      "evidence": "The 'Add to claim' and 'Send for approval' buttons are on the allowance form. (re-checked: This is step 2 of 2 of \"Add allowance\", with the \"Single days\" tab selected. On the 29 Apr 07:00 to 30 Apr 07:00 day you can switch Breakfast, Lunch and Dinner on or off and pick a Lodging type (\"Hybel (med k…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:19276",
+      "capabilities": [
+        "CAP-269",
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "'Add allowance (1/2)' form showing Purpose of travel, Travel start/end, Country Norge, Allowance type Diettgodtgjørelse, 'Travel to more places'. A 'Travel start' date-and-time picker sheet is open (April 2026, Time 07:00, 'Select Travel start'). The Cost allocation row reads 'Assign cost units'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:16701",
+      "capabilities": [
+        "CAP-269",
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "Step 1 of 2 of the 'Add allowance' per diem form: purpose, travel start/end, country, allowance type (Diettgodtgjørelse), 'Travel to more places' and 'Next'. Its Cost allocation row reads 'Assign cost units'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:15431",
+      "capabilities": [
+        "CAP-258",
+        "CAP-028"
+      ],
+      "confidence": "High",
+      "evidence": "Detail of the 'Team workshop Bergen' claim: 'Approved by Gediminas Montrimas', Claim ID 4723862, description and comment, 'INCLUDED IN THIS CLAIM' items and Total 8 905,00 NOK. This is the approved state of the claim detail, reached from the claims list that shows each claim's status."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:15187",
+      "capabilities": [
+        "CAP-258",
+        "CAP-081"
+      ],
+      "confidence": "High",
+      "evidence": "Detail of the 'Conference Stockholm' claim showing 'Awaiting approval' and 'Pending approver review', with the included items and Total 12 480,00 NOK. It is read-only, and the screenshot shows no withdraw action."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:1960",
+      "capabilities": [
+        "CAP-258",
+        "CAP-261"
+      ],
+      "confidence": "High",
+      "evidence": "Detail of the 'Cancelled trip Lillehammer' claim showing a 'Canceled' badge and 'Approval flow was cancelled', one airline-ticket item ('Refund pending') and its total. There is a trash icon in the header."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:16188",
+      "capabilities": [
+        "CAP-253",
+        "CAP-254",
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "'Create new claim' form with 'Description of the travel claim', 'Comment (optional)', Cost allocation 'Assign cost units' and a MILEAGES section holding a 457.05 KM mileage. The note reads 'The total amount will be calculated once the expenses have been added to a claim'. Buttons are 'Save for late…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:1720",
+      "capabilities": [
+        "CAP-258",
+        "CAP-261"
+      ],
+      "confidence": "High",
+      "evidence": "Detail of the 'Client visit Tromsø' claim with a red banner 'Declined by Gediminas Montrimas' and the reason 'Receipt for hotel is missing. Please attach it and resubmit.', a 'Declined' badge, the items and Total 3 200,00 NOK. There is a trash icon in the header."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:2174",
+      "capabilities": [
+        "CAP-259",
+        "CAP-255",
+        "CAP-262"
+      ],
+      "confidence": "High",
+      "evidence": "'Editing claim' in the 'Not sent' state ('Draft — not yet submitted'), with an editable Claim description ('Q1 customer visits') and 'Add a comment'. It lists the included items (mileage 'Drive to Stavanger', Taxi, Meal) and has a '+ Add expense or mileage' button and a confirm checkmark."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:14927",
+      "capabilities": [
+        "CAP-258",
+        "CAP-254",
+        "CAP-259",
+        "CAP-261",
+        "CAP-262"
+      ],
+      "confidence": "High",
+      "evidence": "'Claim · Not-Sent' claim detail: 'Not sent' status with 'Draft — not yet submitted', 'Claim description' and 'Comment (optional)' fields, an 'INCLUDED IN THIS CLAIM' list (mileage, taxi, meal) with a total of 4 250,00 NOK, and a 'Send for approval' button. The header has a delete (trash) and an edi…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:14670",
+      "capabilities": [
+        "CAP-028",
+        "CAP-241",
+        "CAP-252"
+      ],
+      "confidence": "High",
+      "evidence": "'Claims · List' with the Claims segment selected, grouped under year '2026', showing claims with Not sent, Awaiting approval, Approved, Declined and Canceled status chips. No filter chips are visible. The 'Add new…' button and the 'Send 6 expenses' button are carried over from the shared inbox foot…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:9144",
+      "capabilities": [
+        "CAP-241",
+        "CAP-240"
+      ],
+      "confidence": "High",
+      "evidence": "'Expense · Add new menu' is an action sheet over the Expense inbox titled 'What do you want to add?' with 'Add new receipt', 'Add new mileage' and 'Add new allowance', which matches CAP-241's add menu exactly. Behind it is the blurred inbox list of unsent expenses with checkboxes and 'Unselect all'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:3323",
+      "capabilities": [
+        "CAP-266",
+        "CAP-265",
+        "CAP-256",
+        "CAP-257"
+      ],
+      "confidence": "High",
+      "evidence": "'Mileage · Calculated route' is the 'Add mileage' form with a map showing a drawn route to Bergen, 'Distance (km) 457.05' filled in and 'Route Karenslyst Allé 56, Høvik - Bergen, Norway'. Below are the mileage fields and the 'Add to claim' and 'Send for approval' actions."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:15681",
+      "capabilities": [
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "'Mileage · Cost allocation' screen titled 'Cost allocation' that lists dimensions (Test1, Test2, test3), each with 'Select unit' and a chevron, plus a 'Done' text. It is reached from the mileage form's 'Assign cost units' row."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:3896",
+      "capabilities": [
+        "CAP-265",
+        "CAP-267"
+      ],
+      "confidence": "Medium",
+      "evidence": "'Mileage · Fuel menu' is the 'Add mileage' form with the Fuel dropdown open (Bensin, Diesel, Elektrisk checked, Ladbar hybrid, Hydrogen). The fuel choice sits in the same group as Toll, Rush hour and Auto pass, which feed the road-toll calculation. A preselected fuel suggests remembered defaults, b…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:2429",
+      "capabilities": [
+        "CAP-265",
+        "CAP-266",
+        "CAP-256",
+        "CAP-257"
+      ],
+      "confidence": "High",
+      "evidence": "'Mileage · New mileage' is an empty 'Add mileage' form with an entry point 'Calculate distance (optional)', the fields Date, Type (Bil), Distance (km), Route, Purpose / event, Purpose with detour and Toll, and the 'Add to claim' and 'Send for approval' buttons."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:3595",
+      "capabilities": [
+        "CAP-265",
+        "CAP-267",
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "'Mileage · Other details expanded' is the 'Add mileage' form scrolled to Fuel (Elektrisk), the Rush hour and Auto pass toggles, 'Cost allocation · Assign cost units', and the expanded 'Other' section with Passenger name, Forest / construction road (km), Trailer (km) and Heavy load (km). These are t…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:3102",
+      "capabilities": [
+        "CAP-266"
+      ],
+      "confidence": "High",
+      "evidence": "'Add mileage' form shows a 'Route overview' with a map and the driven route, start 'Karenslyst Allé 56, Høvik', destination 'Bergen, Norway', 'Add destination', 'Edit' and a 'Return trip' toggle. This is route planning with stops and a return trip."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:3102",
+      "capabilities": [
+        "CAP-256",
+        "CAP-257"
+      ],
+      "confidence": "High",
+      "evidence": "The mileage form's footer has the actions 'Add to claim' and 'Send for approval'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:2916",
+      "capabilities": [
+        "CAP-266"
+      ],
+      "confidence": "High",
+      "evidence": "'Select starting point' with a search bar and a full map with a pin. This is picking the mileage start point by tapping the map, part of route planning."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:2705",
+      "capabilities": [
+        "CAP-266"
+      ],
+      "confidence": "High",
+      "evidence": "'Select starting point' with Search, 'View map' and a 'Frequently Used' list of recent places (Karenslyst Allé 56, Høvik; Bergen, Norway). This is setting the start point by address search or recent places."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:2705",
+      "capabilities": [
+        "CAP-266"
+      ],
+      "confidence": "High",
+      "evidence": "The texts contain 'Automatically calculate road t…' (road tolls), which is not visible in the screenshot. It may be a hidden toggle on this picker. (re-checked: The frame is \"Mileage · Starting point\". The screenshot shows a \"Select starting point\" picker with a Search field, a \"View map\" option an…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:4662",
+      "capabilities": [
+        "CAP-265"
+      ],
+      "confidence": "High",
+      "evidence": "'Add mileage' form with Date, Type 'Bil', Distance (km), Route, 'Purpose / event' and 'Purpose with detour'. These are the fields of the mileage template."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:4662",
+      "capabilities": [
+        "CAP-267"
+      ],
+      "confidence": "High",
+      "evidence": "A Toll section with Toll, Fuel 'Elektrisk', and 'Rush hour' and 'Auto pass' toggles. These are the inputs to the automatic road-toll calculation. The frame name is 'Toll and reimbursement options'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:4662",
+      "capabilities": [
+        "CAP-263",
+        "CAP-256",
+        "CAP-257"
+      ],
+      "confidence": "High",
+      "evidence": "A 'Cost allocation - Assign cost units' row, plus the 'Add to claim' and 'Send for approval' buttons."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:4662",
+      "capabilities": [
+        "CAP-267",
+        "CAP-265",
+        "CAP-256",
+        "CAP-257",
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "The texts contain 'Calculate distance (optional)' next to Distance (km). Distance calculation is mainly CAP-266, but it may also match the iOS kilometre-receipt distance calculation. (re-checked: CAP-247 is the wrong link. CAP-247 covers the distance calculator on an iOS kilometre *receipt*, but th…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:4662",
+      "capabilities": [
+        "CAP-267",
+        "CAP-265"
+      ],
+      "confidence": "Medium",
+      "evidence": "Fuel, Rush hour and Auto pass are already filled in and switched on. This could be the remembered mileage defaults, but nothing on screen says so. (re-checked: The frame is called 'Mileage · Toll and reimbursement options'. It shows the Add mileage form scrolled to a Toll group with Fuel (Elektrisk…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:7361",
+      "capabilities": [
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "'Cost allocation' screen listing dimensions (Third dimension, Mountains, Second dimension, SEK), each with 'Select unit', plus a Done button. The section is Receipt within Expense."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:7805",
+      "capabilities": [
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "A 'Select cost unit' bottom sheet over Cost allocation, with Search, 'Frequently used' and 'All cost units' ((blank), '123 - 3D'). This is the searchable dimension-value picker for an expense."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:8047",
+      "capabilities": [
+        "CAP-248",
+        "CAP-249"
+      ],
+      "confidence": "High",
+      "evidence": "An 'Attachments' sheet over the Receipt form, showing 'Attachment 1' with download and delete icons and an 'Add more' button."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:8047",
+      "capabilities": [
+        "CAP-248",
+        "CAP-249"
+      ],
+      "confidence": "High",
+      "evidence": "Behind the sheet is the receipt form: Expense type, 'Amount (valgfritt)' 0,00 DKK, 'Local amount (NOK)' at rate 1 DKK = 1,575427, Date, Purpose, Cost allocation, 'Expense abroad', 'Paid by company' and 'Save expense'. The frame's focus is the attachments sheet. (re-checked: The claimed link is wron…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:9478",
+      "capabilities": [
+        "CAP-242"
+      ],
+      "confidence": "High",
+      "evidence": "A camera viewfinder framing a 'CAFÉ AURORA' receipt, with Cancel, an 'Automatic' (auto-capture) toggle, a shutter button, a gallery/import icon and a flash icon."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:9478",
+      "capabilities": [
+        "CAP-242"
+      ],
+      "confidence": "High",
+      "evidence": "The 'Automatic' mode could mean automatic detection or auto-fill. Auto-filling the receipt happens after capture, so this frame does not show it. (re-checked: The claimed link to CAP-244 (auto-fill from the receipt image) is wrong. Auto-fill happens after the photo is taken, and this frame shows no…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:13419",
+      "capabilities": [
+        "CAP-242"
+      ],
+      "confidence": "High",
+      "evidence": "Frame 'Receipt · Crop document' shows an 'Edit Crop' screen with Back, a confirm check, and four corner handles over a captured document. This is the cropping step of receipt capture. The underlying texts belong to the receipt form layer, which is not visible here."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:13080",
+      "capabilities": [
+        "CAP-242"
+      ],
+      "confidence": "High",
+      "evidence": "Frame 'Receipt · Crop photo' shows the same 'Edit Crop' screen with corner handles over a camera photo. This is the photo-crop step of receipt capture."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:14353",
+      "capabilities": [
+        "CAP-248"
+      ],
+      "confidence": "Medium",
+      "evidence": "Frame 'Receipt · Delete attachment' shows the receipt form dimmed behind a 'Delete' action sheet. The name points to removing an attachment (CAP-248). The one alternative is deleting the whole unsent expense (CAP-251), because the sheet shows no wording about attachments. (re-checked: The screensho…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:7565",
+      "capabilities": [
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "'Cost allocation' screen listing dimensions (Third dimension, Mountains, Second dimension, SEK), each with 'Select unit'. Over it is a 'Select cost unit' bottom sheet with Search, a 'Frequently used' section (123 - 3D) and 'All cost units'. The Expense tab is active."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:12338",
+      "capabilities": [
+        "CAP-248",
+        "CAP-249"
+      ],
+      "confidence": "High",
+      "evidence": "An 'Attachments' bottom sheet over the Receipt form lists Attachment 1-3 (two images and one document). Each has a download icon and a trash icon, and there is an 'Add more' button. Adding and removing is CAP-248; downloading is CAP-249."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:9863",
+      "capabilities": [
+        "CAP-245",
+        "CAP-246"
+      ],
+      "confidence": "High",
+      "evidence": "'Receipt' form with the receipt image at the top, an attachment icon and a confirm check. Fields: Expense type, Amount (valgfritt) 0,00 DKK, Local amount (NOK) at rate 1 DKK = 1,575427, Date, Purpose and Cost allocation, plus a 'Save expense' button. The foreign-currency amount with a converted loc…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:4348",
+      "capabilities": [
+        "CAP-245",
+        "CAP-263",
+        "CAP-246"
+      ],
+      "confidence": "High",
+      "evidence": "The receipt form scrolled down to show Local amount (NOK) at rate 1,575427, Date, Purpose, a 'Cost allocation - Sett kostnadsbærere' row, the toggles 'Expense abroad' and 'Paid by company', and 'Save expense'. The cost allocation row is the entry point to CAP-263."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:13755",
+      "capabilities": [
+        "CAP-249"
+      ],
+      "confidence": "High",
+      "evidence": "An alert over the Receipt form reads 'Receipt image has been saved to Photos.' with a Close button. This is the confirmation after saving a receipt attachment to the device."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:10631",
+      "capabilities": [
+        "CAP-246"
+      ],
+      "confidence": "High",
+      "evidence": "'Select currency' bottom sheet over the Receipt form, with search and an ISO currency list (DKK ticked). The form texts show 'Amount ... DKK', 'Local amount (NOK)' and the rate '1 DKK = 1,575427', which is the foreign-currency and exchange-rate flow."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:10176",
+      "capabilities": [
+        "CAP-245"
+      ],
+      "confidence": "High",
+      "evidence": "'Select expense type' bottom sheet over the Receipt form, with search and 'All expense types' (Accommodation, Airline tickets, Bus, Car rental, Fuel...). Picking the expense type is part of filling in a receipt from its template."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:12755",
+      "capabilities": [
+        "CAP-242",
+        "CAP-248"
+      ],
+      "confidence": "Medium",
+      "evidence": "Action sheet 'Do you want to upload a receipt?' with 'Choose from Image Gallery' and 'Browse documents' over the Receipt form, which has an attachment (paperclip) icon. This is importing an image or PDF (CAP-242). It may instead be adding an attachment to an existing receipt (CAP-248). (re-checked:…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:15878",
+      "capabilities": [
+        "CAP-256",
+        "CAP-253"
+      ],
+      "confidence": "High",
+      "evidence": "'Add expenses to' sheet opened from the 'Add mileage' form. It lists existing claims by year ('Claim October 4 217,00', 'November claim 4 255,80') and has a 'New claim' button. This is saving the item to a picked claim from its form. The 'New claim' button points to creating a new claim."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:6950",
+      "capabilities": [
+        "CAP-245"
+      ],
+      "confidence": "High",
+      "evidence": "Calendar date picker (April 2026, 29 selected, Cancel/Done) over the Receipt form with 'Save expense'. This sets the receipt's date field. The section calls it a shared component, so it may also serve the mileage and allowance forms. (re-checked: The screenshot shows a calendar sheet (April 2026, 2…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:16412",
+      "capabilities": [
+        "CAP-257"
+      ],
+      "confidence": "High",
+      "evidence": "'Send single expense' dialog on the Add mileage form: 'Are you sure you want to send a single expense for approval?', with 'Send', \"Send & don't show again\" and 'Cancel'. This matches the confirmation in CAP-257 that can be turned off with 'don't show again'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:1953",
+      "capabilities": [
+        "CAP-186",
+        "CAP-188"
+      ],
+      "confidence": "High",
+      "evidence": "Autopay Payments tab: payments grouped by company and bank account (Nordvik Group AS, 'Awaiting approval', Total due 413 108.12), payee rows with reference and pay date, per-row selection, 'Select all', '0 of 12 selected', and a banner 'Tap here to select all salary transactions'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:1365",
+      "capabilities": [
+        "CAP-186",
+        "CAP-188"
+      ],
+      "confidence": "High",
+      "evidence": "Autopay Invoices tab: collapsed per-company bank-account cards (Nordvik Group AS, Handelsbanken) showing a status ('Awaiting approval' or 'Ready to pay'), Balance, Total due, 'x of y selected', a 'Select all' with a warning marker, and 'View'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:17099",
+      "capabilities": [
+        "CAP-186"
+      ],
+      "confidence": "High",
+      "evidence": "'Autopay / No payments': the empty state of the AutoPay approval list ('No payments to approve', 'Every payment for your accounts has been sent to the bank') on the Payments tab. The header has filter, assistant and info icons."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:1707",
+      "capabilities": [
+        "CAP-186",
+        "CAP-188"
+      ],
+      "confidence": "High",
+      "evidence": "'Autopay / Salary' tab: a banner says 'Salary transactions are available for approval. Tap here to select all salary transactions'. Payments are grouped by company and account (Nordvik Norge AS, NO1060750574605 NOK, 'Ready to pay', Total due 13 214.00). The screen shows '0 of 3 selected', 'Select a…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:2450",
+      "capabilities": [
+        "CAP-188",
+        "CAP-186",
+        "CAP-189"
+      ],
+      "confidence": "High",
+      "evidence": "'Autopay / Selected payment': an account card is expanded to its single payments (creditor, 'Ref VB 685 · Pay date 20 Apr', amount). Fjellheim Bygg AS is ticked, the screen shows '1 of 12 selected' and '-800.00', and a bottom bar offers 'Approve 1' / 'Cancel'. That is ticking payments, seeing the s…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:2954",
+      "capabilities": [
+        "CAP-070",
+        "CAP-186"
+      ],
+      "confidence": "Medium",
+      "evidence": "'Autopay / Sort payments': a bottom sheet 'Sort payments by' (Recipient, Amount, Payment date) opens over the AutoPay list. CAP-070 covers the sort panel opened from a work list's header, autopay included. The catalog does not list the legacy AutoPay sort keys, so these three options may diverge fr…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:18422",
+      "capabilities": [
+        "CAP-045",
+        "CAP-031"
+      ],
+      "confidence": "High",
+      "evidence": "'BNXT / Customers': the BNXT tabbed workspace (Sales, Purchase, Products, Inventory, Customers, Suppliers) shows the customer register grouped by segment (Retail, Public sector, Enterprise) with email addresses. This matches looking up customers in the registers. Tapping an entry would likely open…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:18057",
+      "capabilities": [
+        "CAP-045",
+        "CAP-046"
+      ],
+      "confidence": "Medium",
+      "evidence": "'BNXT / Inventory': a 'Stock levels' list per product and warehouse showing unit counts, Low stock / In stock / Awaiting delivery / On order chips and '+240 incoming'. This matches looking up the inventory register and checking stock (physical, incoming). In legacy, stock is checked per product on…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:17630",
+      "capabilities": [
+        "CAP-045",
+        "CAP-031"
+      ],
+      "confidence": "High",
+      "evidence": "'BNXT / Products': the 'All products' register showing code, supplier, unit price, category, 'in stock' count and a stock status chip. This matches looking up the product register in the BNXT work area. The stock chips also touch CAP-046, which in legacy lives on a product detail screen. (re-checke…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:17302",
+      "capabilities": [
+        "CAP-032",
+        "CAP-031"
+      ],
+      "confidence": "High",
+      "evidence": "'BNXT / Purchase': a 'Purchase orders' list showing supplier, PO number (PO-4475...), company, order date, amount, line count and invoiced state (Not invoiced / Partial / Pending), with a filter icon in the header. This matches browsing BXN purchase orders filtered by invoiced state, opened from th…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3364:3571",
+      "capabilities": [
+        "CAP-070",
+        "CAP-045"
+      ],
+      "confidence": "High",
+      "evidence": "BNXT 'Sort contacts by' bottom sheet with Name (checked) and Reference, shown over a grouped customer list (Retail, Public sector, Enterprise) with names and emails. Sorting a work list, applied to customer lookup."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3364:3186",
+      "capabilities": [
+        "CAP-070",
+        "CAP-046",
+        "CAP-045"
+      ],
+      "confidence": "High",
+      "evidence": "Inventory tab selected. The 'Stock levels' list has units, warehouse, Low stock / In stock and '+240 incoming' chips. The 'Sort items by' sheet offers Name, Stock and Location."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3364:2366",
+      "capabilities": [
+        "CAP-070",
+        "CAP-032"
+      ],
+      "confidence": "High",
+      "evidence": "Sales tab selected. The 'Sales orders' list shows SO numbers, customer, order date, NOK amount, line count and Pending / Not invoiced / Invoiced statuses. The 'Sort orders by' sheet offers Name, Amount and Order date."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3364:2739",
+      "capabilities": [
+        "CAP-070",
+        "CAP-045"
+      ],
+      "confidence": "High",
+      "evidence": "Products tab selected. The 'All products' list shows SKU, supplier, price per unit, category and stock chips. The 'Sort products by' sheet offers Name, Price and Stock."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3364:2036",
+      "capabilities": [
+        "CAP-045",
+        "CAP-031"
+      ],
+      "confidence": "High",
+      "evidence": "BNXT Suppliers list grouped by category (Office and facilities, IT and telecom, Logistics and services) with supplier names and emails. Work-area chips (Sales, Purchase, Products, Inventory) appear at the top and the BNXT tab is active in the tab bar. This is supplier lookup. A tapped row would lea…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:13582",
+      "capabilities": [
+        "CAP-134"
+      ],
+      "confidence": "High",
+      "evidence": "'Child' form in the HRM / Daniel Moe detail flow. Fields: First name, Last name and Year of birth (all required), a Sole custody checkbox, and Save/Cancel. This adds a child to another employee's record, which is the manager-side HRM flow and not the self-service CAP-144."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:13505",
+      "capabilities": [
+        "CAP-133"
+      ],
+      "confidence": "High",
+      "evidence": "'Post address' edit form in the HRM / Daniel Moe detail flow. Fields: Address, Postal code, City and Country (required, a dropdown), with Save/Cancel."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:13372",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009",
+        "CAP-050"
+      ],
+      "confidence": "High",
+      "evidence": "'Employee detail' for Daniel Moe with Call/SMS/Email buttons. It has a Balances section (vacation balance, self certification, sick child, time registered) and Personal details, Post address, Employment and salary, Children and Emergency contact sections. An 'On vacation today' banner links to Cale…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3520:11341",
+      "capabilities": [
+        "CAP-134"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'Child' with First name, Last name, Year of birth (all required), Sole custody checkbox, Save/Cancel; sits in 'HRM / Eli Hovland / Detail flow', so this is adding a child to another employee's record, not my own profile (CAP-144)."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3520:11264",
+      "capabilities": [
+        "CAP-133"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'Post address' with editable Address, Postal code, City and a required Country dropdown, Save/Cancel; in the HRM employee detail flow for Eli Hovland."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3520:11131",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009"
+      ],
+      "confidence": "High",
+      "evidence": "'Employee detail' header for Eli Hovland (Nordvik Group AS). It has Call/SMS/Email buttons and collapsible sections for Balances (Vacation balance 2026, Self certification, Sick child, Time registered this month), Personal details, Post address, Employment and salary, Children and Emergency contact."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3520:11131",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009",
+        "CAP-050"
+      ],
+      "confidence": "High",
+      "evidence": "A sparkle (AI) icon in the header of the employee detail screen suggests asking the assistant about this employee. It is only an icon; it could also be the generic header assistant (CAP-048). (re-checked: The claim is too narrow. The frame \"HRM / Eli Hovland / Employee details\" is the HRM employee…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3520:11131",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009",
+        "CAP-050"
+      ],
+      "confidence": "High",
+      "evidence": "The 'On vacation today 4 - 22 Aug' banner has a 'Calendar' button that likely opens a calendar view of the employee's absence. Where it leads is not shown. (re-checked: The CAP-001 link is weak. This frame is the manager's HRM 'Employee detail' screen for Eli Hovland (Nordvik Group AS), not a calen…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:12480",
+      "capabilities": [
+        "CAP-134"
+      ],
+      "confidence": "High",
+      "evidence": "Same 'Child' form (first name, last name, year of birth, sole custody, Save/Cancel) in 'HRM / Elin Rike / Detail flow'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:12403",
+      "capabilities": [
+        "CAP-133"
+      ],
+      "confidence": "High",
+      "evidence": "Same 'Post address' edit form (Address, Postal code, City, Country required, Save/Cancel) in the HRM employee detail flow for Elin Rike."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:12270",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009"
+      ],
+      "confidence": "High",
+      "evidence": "'Employee detail' for Elin Rike with Call/SMS/Email, a 'No events today' banner with Calendar, and sections for Balances (vacation 126 days, self certification 0 occasions, sick child 0 days, 150 of 150 h), Personal details, Post address, Employment and salary, Children and Emergency contact."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:12270",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009",
+        "CAP-050"
+      ],
+      "confidence": "High",
+      "evidence": "Sparkle (AI) icon in the employee detail header; it could be the employee-specific assistant or the generic header assistant (CAP-048). (re-checked: The link to CAP-050 holds, but the claimed list leaves out what the screen is mainly for. The frame is \"HRM / Elin Rike / Employee details\" in the Det…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:14134",
+      "capabilities": [
+        "CAP-134"
+      ],
+      "confidence": "High",
+      "evidence": "Same 'Child' add form in 'HRM / Harald Skogland / Detail flow'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:14057",
+      "capabilities": [
+        "CAP-133"
+      ],
+      "confidence": "High",
+      "evidence": "Same 'Post address' edit form in the HRM employee detail flow for Harald Skogland."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:13924",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Harald Skogland / Employee details', titled 'Employee detail'. Screenshot shows a header with avatar and company (Nordvik Logistics AB), Call/SMS/Email buttons, and collapsible sections Balances, Personal details, Post address, Employment and salary, Children and Emergency contact. The texts…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:12821",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Jan Sølve / Employee details', same Employee detail layout. Call/SMS/Email contact actions, absence balances (Self certification 2 occasions, 96 of 150 h registered), and personal details and post address fields."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:11718",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Matilda Johansson / Employee details'. Same Employee detail layout with Call/SMS/Email, a 'Sick leave today, from 19 Aug' banner with a Calendar link, and Balances (Self certification 5 occasions, Sick child 4 days), Personal details and Post address sections."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:13031",
+      "capabilities": [
+        "CAP-134"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Jan Sølve / Add child' in the HRM employee detail flow. A 'Child' form with First name, Last name and Year of birth (all required), a Sole custody checkbox, and Save (disabled while empty) and Cancel. A manager adds a child for an employee. A similar form exists in the self-service flow (CAP…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:14745",
+      "capabilities": [
+        "CAP-134"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Jonas Berg / Edit Oliver Berg'. The Child form is pre-filled (Oliver, Berg, 2015), with a Sole custody checkbox and Save/Cancel. A manager edits an employee's child inside the HRM detail flow."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:11928",
+      "capabilities": [
+        "CAP-134"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Matilda Johansson / Add child'. Empty Child form (First name, Last name and Year of birth, all required, plus Sole custody) with Save/Cancel, in the HRM employee detail flow."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:12954",
+      "capabilities": [
+        "CAP-133"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Jan Sølve / Edit post address'. A 'Post address' form with Address, Postal code, City and Country (required, a Norway dropdown) plus Save/Cancel, in the HRM employee detail flow, so it is editing an employee's postal address. The self-service address update (CAP-142) is the alternative, but…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:11851",
+      "capabilities": [
+        "CAP-133"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Matilda Johansson / Edit post address'. Post address edit form (Address, Postal code, City, Country required) with Save/Cancel, in the HRM detail flow."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:11377",
+      "capabilities": [
+        "CAP-134"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Mona Hovland / Add child' in the manager's employee detail flow. The Child form has First name, Last name and Year of birth (all required), a Sole custody checkbox, and Save/Cancel. This matches registering a new child for an employee."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:11300",
+      "capabilities": [
+        "CAP-133"
+      ],
+      "confidence": "High",
+      "evidence": "'Edit post address' in the HRM employee detail flow. The Post address form has Address, Postal code, City and Country (required, a dropdown set to Norway) with Save/Cancel. This matches a manager editing an employee's postal address."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:11167",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009",
+        "CAP-134",
+        "CAP-136",
+        "CAP-048"
+      ],
+      "confidence": "High",
+      "evidence": "The 'Employee detail' header for Mona Hovland / Nordvik Group AS has Call, SMS and Email buttons (CAP-130). Below are accordions for Personal details, Post address and Employment and salary (CAP-128), and a Balances accordion with Vacation balance 2026, Self certification and Sick child (CAP-009).…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3358:2844",
+      "capabilities": [
+        "CAP-134"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Add child' in People & HRM. The empty Child form has First name, Last name and Year of birth (required), Sole custody, and Save/Cancel. These are the same texts as the manager's Add child screen. It sits in the manager HRM section, not the employee's own profile (CAP-144)."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:3103",
+      "capabilities": [
+        "CAP-216",
+        "CAP-218",
+        "CAP-224"
+      ],
+      "confidence": "High",
+      "evidence": "'Department approval dialogue' is titled '3 - Salg' with a 'For approval' status chip. It shows a message thread (anna larsen, matilda johansson) with names and dates, which is reading a dialogue split (CAP-216). An 'Add a message..' field with a send button covers CAP-218. An 'Approve wagerun?' ca…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3389:1112",
+      "capabilities": [
+        "CAP-216",
+        "CAP-218"
+      ],
+      "confidence": "High",
+      "evidence": "'Department completed dialogue' is titled '5 - Logistikk' with a 'Rejected' status chip. It shows the thread, including a rejection reason ('Tallene for overtid stemmer ikke. Avviser denne.'), and an 'Add a message..' composer. No approve/reject card is shown because the split has already been deci…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:1978",
+      "capabilities": [
+        "CAP-214",
+        "CAP-217",
+        "CAP-067"
+      ],
+      "confidence": "High",
+      "evidence": "The HRM screen has the Dialogue segment selected (badge 4) next to Employees and Calendar. Payroll dialogues are grouped by company (Nordvik Retail AS, Nordvik Group AS), and each row shows title, creator, date, payment date, comment count and a status chip ('Linked to wagerun', 'For approval', 'Ap…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3358:3136",
+      "capabilities": [
+        "CAP-134"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Edit child' shows the Child form pre-filled with Emma / Berg / 2015, a Sole custody checkbox, and Save/Cancel. This matches editing an existing child of an employee in the manager HRM area."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3358:2545",
+      "capabilities": [
+        "CAP-133"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Edit post address' form titled Post address with Address, Postal code, City and Country (required) dropdown plus Save/Cancel. This matches the manager editing street, postal code, city and country from a picker."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3389:1367",
+      "capabilities": [
+        "CAP-009",
+        "CAP-130"
+      ],
+      "confidence": "High",
+      "evidence": "Employee detail with the Balances accordion expanded: Vacation balance 2026 (126 days), Self certification (3 occasions), Sick child (2 days) and Time registered this month. This is the manager's view of an employee's absence balances. The header has Call/SMS/Email buttons."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3358:1813",
+      "capabilities": [
+        "CAP-134",
+        "CAP-130"
+      ],
+      "confidence": "High",
+      "evidence": "Children accordion expanded on Employee detail, listing Emma Berg and Oliver Berg with chevrons to open each one, plus an 'Add child' button. The header has Call/SMS/Email."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3389:1211",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009"
+      ],
+      "confidence": "High",
+      "evidence": "Overview of the HRM Employee detail: header with Call/SMS/Email, then collapsed accordions for Balances, Personal details, Post address, Employment and salary, Children and Emergency contact. The texts include the personal, address and balance contents. The sparkle icon in the top bar may lead to t…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3358:2175",
+      "capabilities": [
+        "CAP-136",
+        "CAP-130"
+      ],
+      "confidence": "High",
+      "evidence": "Emergency contact accordion expanded, listing Kari, Ole, Nina and Per Berg with an 'Add emergency contact' button. This matches the manager adding or opening an employee's emergency contacts."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3358:1417",
+      "capabilities": [
+        "CAP-128"
+      ],
+      "confidence": "High",
+      "evidence": "Employment and salary accordion expanded: Employee Id 27, Type of position, Date of employment, Position start date, Employment form, Type of work, Work time agreement and Salary type. These are the current-position fields of the HRM employee detail."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3389:1564",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130"
+      ],
+      "confidence": "High",
+      "evidence": "Personal details accordion expanded: First/Last name, Date of birth, Phone business, Phone private and Email business. These are read-only personal details, and the phone and email fields are contactable. No edit control appears in the texts, so CAP-132 is not linked."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3389:1791",
+      "capabilities": [
+        "CAP-128",
+        "CAP-131",
+        "CAP-133"
+      ],
+      "confidence": "High",
+      "evidence": "Post address accordion expanded (Address, Postal code, City, Country) with Copy and Edit buttons. Copy is copying the post address. Edit is the entry point to editing the postal address."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:2273",
+      "capabilities": [
+        "CAP-070",
+        "CAP-124"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Sort employees': a bottom sheet titled 'Sort employees by' with Name (ticked), Email and Company, shown over the HRM Employees list grouped by company (Nordvik Group AS, Nordvik Logistics AB). This is the sort panel from the list's header bar."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:2605",
+      "capabilities": [
+        "CAP-214",
+        "CAP-070"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Sort wage runs': a 'Sort wage runs by' sheet (Wage run, Requester, Payment date) over the Dialogue tab (badge 4). The list shows wage-run dialogues grouped by company, each with creator, created date, unread count, payment date and a status (For approval, Approved, Linked to wagerun). Note:…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:2920",
+      "capabilities": [
+        "CAP-217"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Wage run': the detail of 'Månedslønn - 1 Oct 2025'. Its splits (5 - Logistikk, 3 - Salg, 4 - Økonomi, 1 - Administrasjon, 2 - Drift) are grouped under Rejected and For approval, each with requester, date, approver count, approver names and a status chip. Each split has a chevron to open it.…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3317:2",
+      "capabilities": [
+        "CAP-008",
+        "CAP-079",
+        "CAP-082",
+        "CAP-011",
+        "CAP-080",
+        "CAP-067",
+        "CAP-205",
+        "CAP-071",
+        "CAP-078"
+      ],
+      "confidence": "Medium",
+      "evidence": "'01 · Start': greeting 'Good morning, Anna'. A 'For you' section has cards for Unsent expenses (5 receipts · 1 mileage · 2 allowances, 8), Vacation days (47 remaining) and Salary (no payslips published yet). A 'Needs your attention' section has cards for Approval (11 pending · 10 overdue), Autopay…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3318:2",
+      "capabilities": [
+        "CAP-240",
+        "CAP-252",
+        "CAP-241",
+        "CAP-028"
+      ],
+      "confidence": "High",
+      "evidence": "'02 · Expense': Expense and Claims tabs, a 2026 list of unsent items (Taxi, Airline tickets, a 106 km mileage) all ticked, 'Unselect all', 'Add new…' and 'Send 6 expenses'. These are the unsent-expenses inbox with multi-select send and new expense creation. The Claims tab points to browsing claims,…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3319:2",
+      "capabilities": [
+        "CAP-150",
+        "CAP-151",
+        "CAP-166",
+        "CAP-152",
+        "CAP-160"
+      ],
+      "confidence": "High",
+      "evidence": "'03 · Approval': tabs Tasks (11), Overdue (10) and History. The list is labelled 'By task due date' (a sort order). Task cards show supplier, document number, company, due date, amount, type (Invoice/Voucher), Overdue badges and a comment count. Each card has a checkbox for multi-select, and the he…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3320:2",
+      "capabilities": [
+        "CAP-124",
+        "CAP-070",
+        "CAP-067"
+      ],
+      "confidence": "High",
+      "evidence": "'04 · HRM': the Employees tab of HRM (beside Dialogue (4) and Calendar). It lists employees grouped by collapsible company sections, with avatar, name, email, absence/vacation status icons and a chevron to open the profile. The header has filter/sort and search icons."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3322:2",
+      "capabilities": [
+        "CAP-031",
+        "CAP-032"
+      ],
+      "confidence": "High",
+      "evidence": "'05 · BNXT': work-area chips (Sales, Purchase, Products, Inventory, Customers, Suppliers) and a 'Sales orders' list. Each card shows customer, SO number, company, order date, amount, line count and status (Pending, Not invoiced, Invoiced). The header has filter and search."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3323:2",
+      "capabilities": [
+        "CAP-186",
+        "CAP-188"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'Autopay' with Payments/Invoices/Salary tabs. Bank-account cards show 'Awaiting approval' / 'Ready to pay', 'Total due', '0 of 12 selected', 'Select all' and a salary-transactions banner 'Tap here to select all salary transactions'. This is the queue of payments waiting for approval, with sel…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3323:2",
+      "capabilities": [
+        "CAP-186",
+        "CAP-188",
+        "CAP-187"
+      ],
+      "confidence": "High",
+      "evidence": "The header has search and filter icons, so search over payments is plausible. No search field is shown in the frame. (re-checked: The claim treats a header icon as the screen's purpose and leaves out what the frame mainly shows. This frame is the Autopay home. Under the Payments tab it lists bank p…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3324:2",
+      "capabilities": [
+        "CAP-029",
+        "CAP-228"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'Lønnsslipp' with tabs 'Lønnsslipp' / 'Årsoppgaver' (payslips / year-end reports). Payslips are listed by payment date under year 2025, each showing the employer 'Test ME Company 1' and an amount."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3324:2",
+      "capabilities": [
+        "CAP-029",
+        "CAP-228",
+        "CAP-052",
+        "CAP-227",
+        "CAP-225"
+      ],
+      "confidence": "High",
+      "evidence": "Header icons: a sparkle (AI assistant, likely the payslip assistant) and a download icon (likely 'export all payslips to one PDF'). The icons are not labelled. (re-checked: I kept this link, but the claimed list leaves out the screen's main purpose. Frame \"07 · Payslips\" (title \"Lønnsslipp\") is mai…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3325:2",
+      "capabilities": [
+        "CAP-001",
+        "CAP-006"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'Calendar' with an 'Apr 2026' month grid (Mon-Sun), next/previous month arrows, registration icons on each day (timer, sick, vacation) and a floating '+' button to start a registration."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3325:2",
+      "capabilities": [
+        "CAP-001",
+        "CAP-003",
+        "CAP-006",
+        "CAP-010",
+        "CAP-005"
+      ],
+      "confidence": "Medium",
+      "evidence": "Header icons: a list icon (switch to list view), a pie-chart icon (likely balances) and a '...' menu (likely calendar display options). There is also a Me/Team toggle; a team view has no clear legacy match in the catalog. (re-checked: The claimed list leaves out the screen's main purpose. The frame…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3326:2",
+      "capabilities": [
+        "CAP-068",
+        "CAP-069",
+        "CAP-067"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'More' with an 'In your tab bar' section (pinned Expense, Approval, HRM, BNXT) and a 'More modules' section (Payslip, Calendar, Autopay, Settings). An 'Edit' button comes with the hint 'Tap Edit to choose which 4 modules sit next to Start in the tab bar.'"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3327:2",
+      "capabilities": [
+        "CAP-108",
+        "CAP-110",
+        "CAP-109",
+        "CAP-206",
+        "CAP-116",
+        "CAP-115",
+        "CAP-096",
+        "CAP-113"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'Settings'. It shows Email, OS version and App version (12.0 (8419)), Appearance 'Light', Language 'English', an 'Open app with Face ID' toggle, and FAQ, App information and Accessibility statement rows."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3327:2",
+      "capabilities": [
+        "CAP-108",
+        "CAP-116",
+        "CAP-106",
+        "CAP-110",
+        "CAP-109",
+        "CAP-206",
+        "CAP-208",
+        "CAP-096",
+        "CAP-115",
+        "CAP-107",
+        "CAP-120"
+      ],
+      "confidence": "High",
+      "evidence": "A 'Development' section with 'Feature flags' appears in the texts; it is cut off in the screenshot. (re-checked: CAP-120 is correct but covers only a small part of this screen. The frame is the whole Settings screen (\"10 · Settings\": \"Settings\" title, opened from the More tab), so the list should h…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3327:2",
+      "capabilities": [
+        "CAP-108",
+        "CAP-116",
+        "CAP-110",
+        "CAP-109",
+        "CAP-206",
+        "CAP-208",
+        "CAP-096",
+        "CAP-115",
+        "CAP-113",
+        "CAP-120"
+      ],
+      "confidence": "High",
+      "evidence": "The account and device details block could support copying them for support, but no copy action is visible. (re-checked: This frame is the app's main Settings screen (\"10 · Settings\", reached from the More tab), so the link stays, but the claimed list was wrong. The block at the top shows the email…"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3519:11031",
+      "capabilities": [
+        "CAP-225"
+      ],
+      "confidence": "High",
+      "evidence": "Prototype component 'Payslip details' with expandable payslip sections: Fastlønn 5 900,00, Skatt −1 475,00, Akkumulerte balanser (Bruttolønn, Forskuddstrekk, Feriepengegrunnlag)."
+    }
+  ],
+  "capabilities": {
+    "CAP-001": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3325:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:10582",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:11075",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:12339",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:12635",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:24245",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:24908"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-002": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:11635"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-003": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3325:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:11635",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:12339"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-004": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:12635",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:14075",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:14658",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:15216"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-005": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3325:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:5902"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-006": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3325:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:11635",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:12339",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:12635",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:14075",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:14658",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:15216",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:15799"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-008": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3317:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:8421"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-009": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3389:1211",
+        "J4jjulaLJ4QNzqZ1INWydq:3389:1367",
+        "J4jjulaLJ4QNzqZ1INWydq:3520:11131",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:11167",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:11718",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:12270",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:12821",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:13372",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:13924"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-010": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3325:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:26073"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-011": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3317:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:8421"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-012": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:8421",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:15799",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:16472",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:20629",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:21241",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:21858",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:22470",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:23077",
+        "J4jjulaLJ4QNzqZ1INWydq:3525:11556",
+        "J4jjulaLJ4QNzqZ1INWydq:3525:12088"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-013": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3414:16472",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:20629",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:21241",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:23660"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-014": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-015": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-016": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-017": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:8421"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-018": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-019": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-020": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:12635",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:25512",
+        "J4jjulaLJ4QNzqZ1INWydq:3525:12621"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-021": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-022": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-023": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:17297",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:17755"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-024": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-025": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-026": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-027": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-028": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3318:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:14670",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:15431"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-029": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3324:2"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-030": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:9083"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-031": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3322:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3364:2036",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:17302",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:17630",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:18422"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-032": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3322:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3364:2366",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:17302"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-033": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-034": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-035": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-036": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-037": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-038": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-039": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-040": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-041": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-042": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-043": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-044": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-045": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3364:2036",
+        "J4jjulaLJ4QNzqZ1INWydq:3364:2739",
+        "J4jjulaLJ4QNzqZ1INWydq:3364:3186",
+        "J4jjulaLJ4QNzqZ1INWydq:3364:3571",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:17630",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:18057",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:18422"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-046": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3364:3186",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:18057"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-047": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:17297",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:17658",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:17755"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-048": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3524:11167"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-049": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3364:1416"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-050": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3520:11131",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:12270",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:13372"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-051": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3364:1416",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:13525",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:13945",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:16928",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:17297"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-052": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3324:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:17855"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-053": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3364:1416",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:13525",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:17658"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-054": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-055": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:17658",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:17755"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-056": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-057": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-058": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-059": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-060": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-061": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-062": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-063": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-064": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-065": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-066": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:17658",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:17755"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-067": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3317:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3320:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3326:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3357:3350",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:11635",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:12339",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:13355",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:1978"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-068": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3326:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:13355"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-069": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3326:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:13355"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-070": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3320:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3364:2366",
+        "J4jjulaLJ4QNzqZ1INWydq:3364:2739",
+        "J4jjulaLJ4QNzqZ1INWydq:3364:3186",
+        "J4jjulaLJ4QNzqZ1INWydq:3364:3571",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:2273",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:2605",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:2954"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-071": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3317:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:13525",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:13945",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:16928"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-073": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:8421"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-074": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:8421"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-075": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-076": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-077": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:8421"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-078": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3317:2"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-079": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3317:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:8421"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-080": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3317:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:8421"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-081": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:15187"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-082": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3317:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:8421"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-083": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-084": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-085": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-086": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:10195"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-087": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:10195"
+      ],
+      "status": "dropped",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-088": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-089": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-090": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-091": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-092": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-093": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-094": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-095": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:6410"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-096": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3327:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:1011",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:1529",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:1789",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:2051",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:2300",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:2543"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-097": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3379:1789",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:2051",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:2300"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-098": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3379:1529",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:2786",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:3186",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:10195",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:13216",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:13271"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-099": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-100": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-101": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-102": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-103": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-104": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-105": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-106": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3327:2"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-107": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3327:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:2982",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:3186",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:13271"
+      ],
+      "status": "dropped",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-108": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3327:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:1011",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:10195"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-109": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3327:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:1011",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:1270"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-110": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3327:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:1011"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-111": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-112": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:13271"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-113": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3327:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:1011",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:3186",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:13271"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-114": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:13271"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-115": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3327:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:1011",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:2982",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:13271"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-116": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3327:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:1011",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:10195"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-117": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-118": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-119": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-120": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3327:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:1011",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:6504"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-121": {
+      "screens": [],
+      "status": "dropped",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-122": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-123": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-124": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3320:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:2273"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-125": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-126": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-127": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-128": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3358:1417",
+        "J4jjulaLJ4QNzqZ1INWydq:3389:1211",
+        "J4jjulaLJ4QNzqZ1INWydq:3389:1564",
+        "J4jjulaLJ4QNzqZ1INWydq:3389:1791",
+        "J4jjulaLJ4QNzqZ1INWydq:3520:11131",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:11167",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:11718",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:12270",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:12821",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:13372",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:13924"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-129": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-130": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3358:1813",
+        "J4jjulaLJ4QNzqZ1INWydq:3358:2175",
+        "J4jjulaLJ4QNzqZ1INWydq:3389:1211",
+        "J4jjulaLJ4QNzqZ1INWydq:3389:1367",
+        "J4jjulaLJ4QNzqZ1INWydq:3389:1564",
+        "J4jjulaLJ4QNzqZ1INWydq:3520:11131",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:11167",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:11718",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:12270",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:12821",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:13372",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:13924",
+        "J4jjulaLJ4QNzqZ1INWydq:3530:11704"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-131": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3389:1791"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-132": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-133": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3358:2545",
+        "J4jjulaLJ4QNzqZ1INWydq:3389:1791",
+        "J4jjulaLJ4QNzqZ1INWydq:3520:11264",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:11300",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:11851",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:12403",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:12954",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:13505",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:14057"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-134": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3358:1813",
+        "J4jjulaLJ4QNzqZ1INWydq:3358:2844",
+        "J4jjulaLJ4QNzqZ1INWydq:3358:3136",
+        "J4jjulaLJ4QNzqZ1INWydq:3520:11341",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:11167",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:11377",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:11928",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:12480",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:13031",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:13582",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:14134",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:14745"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-135": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-136": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3358:2175",
+        "J4jjulaLJ4QNzqZ1INWydq:3524:11167"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-137": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-138": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-139": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-140": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-141": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-142": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-143": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-144": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-145": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-146": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-147": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-148": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-149": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-150": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3319:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3357:1011",
+        "J4jjulaLJ4QNzqZ1INWydq:3357:2346",
+        "J4jjulaLJ4QNzqZ1INWydq:3357:2855",
+        "J4jjulaLJ4QNzqZ1INWydq:3357:3350",
+        "J4jjulaLJ4QNzqZ1INWydq:3364:1416"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-151": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3319:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3357:1840",
+        "J4jjulaLJ4QNzqZ1INWydq:3357:2346"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-152": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3319:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3357:1477",
+        "J4jjulaLJ4QNzqZ1INWydq:3357:2346",
+        "J4jjulaLJ4QNzqZ1INWydq:3364:1416"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-153": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3357:3488",
+        "J4jjulaLJ4QNzqZ1INWydq:3357:4079",
+        "J4jjulaLJ4QNzqZ1INWydq:3389:5745",
+        "J4jjulaLJ4QNzqZ1INWydq:3531:11710",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:11720",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:12872",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:13993",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:14309"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-154": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3357:3488",
+        "J4jjulaLJ4QNzqZ1INWydq:3357:4079",
+        "J4jjulaLJ4QNzqZ1INWydq:3389:5502",
+        "J4jjulaLJ4QNzqZ1INWydq:3531:11710",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:11720",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:12872",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:13993",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:14309"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-155": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3357:3488",
+        "J4jjulaLJ4QNzqZ1INWydq:3357:4079",
+        "J4jjulaLJ4QNzqZ1INWydq:3389:5745",
+        "J4jjulaLJ4QNzqZ1INWydq:3531:11710",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:11720",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:12872",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:13993",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:14309"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-156": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-157": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3357:4079",
+        "J4jjulaLJ4QNzqZ1INWydq:3389:5988"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-158": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3357:4079",
+        "J4jjulaLJ4QNzqZ1INWydq:3389:6236"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-159": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-160": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3319:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3357:2346",
+        "J4jjulaLJ4QNzqZ1INWydq:3357:2855"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-161": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-162": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-163": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3357:3488",
+        "J4jjulaLJ4QNzqZ1INWydq:3357:4079",
+        "J4jjulaLJ4QNzqZ1INWydq:3389:5229",
+        "J4jjulaLJ4QNzqZ1INWydq:3531:11710",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:11720",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:12872",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:13993",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:14309"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-164": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3357:3488",
+        "J4jjulaLJ4QNzqZ1INWydq:3357:4079",
+        "J4jjulaLJ4QNzqZ1INWydq:3389:5229",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:6241",
+        "J4jjulaLJ4QNzqZ1INWydq:3531:11710"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-165": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:6241"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-166": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3319:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3357:1477"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-167": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3389:5229"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-168": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3357:3488",
+        "J4jjulaLJ4QNzqZ1INWydq:3357:4079",
+        "J4jjulaLJ4QNzqZ1INWydq:3389:5229",
+        "J4jjulaLJ4QNzqZ1INWydq:3531:11710",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:11720",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:12872",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:13993",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:14309"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-169": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-170": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3357:3488",
+        "J4jjulaLJ4QNzqZ1INWydq:3357:4079",
+        "J4jjulaLJ4QNzqZ1INWydq:3389:5229",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:5761",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:5925",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:6089",
+        "J4jjulaLJ4QNzqZ1INWydq:3531:11710",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:11720",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:12872",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:13993",
+        "J4jjulaLJ4QNzqZ1INWydq:3550:14309"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-171": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3357:4079",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:5761",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:5925"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-172": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-173": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-174": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:5761",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:5925",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:6089"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-175": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:5761",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:5925"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-176": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-177": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-178": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-179": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-180": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:9447",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:9848"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-181": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:9447"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-182": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-183": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-184": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-185": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-186": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3323:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:1365",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:1707",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:17099",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:1953",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:2450",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:2954"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-187": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3323:2"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-188": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3323:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:1365",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:1707",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:1953",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:2450"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-189": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3414:2450"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-190": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-191": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-192": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-193": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-194": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-195": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-196": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-197": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-198": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-199": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-200": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-201": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:10195"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-202": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-203": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-204": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-205": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3317:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:9083"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-206": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3327:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3379:1011"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-207": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-208": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3327:2"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-209": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-210": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-211": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:8421"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-212": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-213": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-214": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:1978",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:2605"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-215": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-216": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3389:1112",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:3103"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-217": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:1978",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:2920"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-218": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3389:1112",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:3103"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-219": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-220": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-221": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-222": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-223": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-224": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:3103"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-225": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3324:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:11055",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:11280",
+        "J4jjulaLJ4QNzqZ1INWydq:3519:11031"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-226": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3414:11055",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:11543"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-227": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3324:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:17855"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-228": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3324:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:17855"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-229": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:17855",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:11825",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:12065"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-230": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3414:11825"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-231": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3379:1789",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:8421"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-232": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-233": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-234": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-235": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-236": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-237": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-238": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3414:11543",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:12065"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-239": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-240": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3318:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:9144"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-241": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3318:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:14670",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:8421",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:9144"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-242": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3414:12755",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:13080",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:13419",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:9478"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-243": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-244": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-245": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3377:4348",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:6950",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:10176",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:9863"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-246": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3377:4348",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:10631",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:9863"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-247": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-248": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:14353",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:8047",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:12338",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:12755"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-249": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:8047",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:12338",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:13755"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-250": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-251": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-252": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3318:2",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:14670"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-253": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:15878",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:16188"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-254": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3400:14927",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:16188"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-255": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3378:2174"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-256": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3377:2208",
+        "J4jjulaLJ4QNzqZ1INWydq:3377:2465",
+        "J4jjulaLJ4QNzqZ1INWydq:3377:2740",
+        "J4jjulaLJ4QNzqZ1INWydq:3377:3020",
+        "J4jjulaLJ4QNzqZ1INWydq:3377:4662",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:2429",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:3102",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:3323",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:5400",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:15878"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-257": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3377:2208",
+        "J4jjulaLJ4QNzqZ1INWydq:3377:2465",
+        "J4jjulaLJ4QNzqZ1INWydq:3377:2740",
+        "J4jjulaLJ4QNzqZ1INWydq:3377:3020",
+        "J4jjulaLJ4QNzqZ1INWydq:3377:4662",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:2429",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:3102",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:3323",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:5400",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:16412"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-258": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3378:1720",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:1960",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:14927",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:15187",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:15431"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-259": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3378:2174",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:14927"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-260": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-261": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3378:1720",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:1960",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:14927"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-262": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3378:2174",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:14927"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-263": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3377:4348",
+        "J4jjulaLJ4QNzqZ1INWydq:3377:4662",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:3595",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:15681",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:16188",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:16701",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:7361",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:7565",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:7805",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:18765",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:19033",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:19276"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-264": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-265": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3377:4662",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:2429",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:3323",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:3595",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:3896"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-266": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3378:2429",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:2705",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:2916",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:3102",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:3323"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-267": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3377:4662",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:3595",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:3896"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-268": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-269": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3377:1945",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:5131",
+        "J4jjulaLJ4QNzqZ1INWydq:3400:16701",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:18765",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:19033",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:19276",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:19642",
+        "J4jjulaLJ4QNzqZ1INWydq:3414:19917"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-270": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3377:2208",
+        "J4jjulaLJ4QNzqZ1INWydq:3377:2465",
+        "J4jjulaLJ4QNzqZ1INWydq:3377:2740",
+        "J4jjulaLJ4QNzqZ1INWydq:3377:3020",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:5400"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-271": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3377:3020",
+        "J4jjulaLJ4QNzqZ1INWydq:3377:3331",
+        "J4jjulaLJ4QNzqZ1INWydq:3377:3705",
+        "J4jjulaLJ4QNzqZ1INWydq:3378:5400"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-272": {
+      "screens": [
+        "J4jjulaLJ4QNzqZ1INWydq:3377:4070"
+      ],
+      "status": "designed",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-273": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-274": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    },
+    "CAP-275": {
+      "screens": [],
+      "status": "no-design",
+      "module": null,
+      "gapDecision": null
+    }
+  },
+  "gaps": {
+    "capabilitiesWithoutDesign": [
+      "CAP-014",
+      "CAP-015",
+      "CAP-016",
+      "CAP-018",
+      "CAP-019",
+      "CAP-021",
+      "CAP-022",
+      "CAP-024",
+      "CAP-025",
+      "CAP-026",
+      "CAP-027",
+      "CAP-033",
+      "CAP-034",
+      "CAP-035",
+      "CAP-036",
+      "CAP-037",
+      "CAP-038",
+      "CAP-039",
+      "CAP-040",
+      "CAP-041",
+      "CAP-042",
+      "CAP-043",
+      "CAP-044",
+      "CAP-054",
+      "CAP-056",
+      "CAP-057",
+      "CAP-058",
+      "CAP-059",
+      "CAP-060",
+      "CAP-061",
+      "CAP-062",
+      "CAP-063",
+      "CAP-064",
+      "CAP-065",
+      "CAP-075",
+      "CAP-076",
+      "CAP-083",
+      "CAP-084",
+      "CAP-085",
+      "CAP-088",
+      "CAP-089",
+      "CAP-090",
+      "CAP-091",
+      "CAP-092",
+      "CAP-093",
+      "CAP-094",
+      "CAP-099",
+      "CAP-100",
+      "CAP-101",
+      "CAP-102",
+      "CAP-103",
+      "CAP-104",
+      "CAP-105",
+      "CAP-111",
+      "CAP-117",
+      "CAP-118",
+      "CAP-119",
+      "CAP-122",
+      "CAP-123",
+      "CAP-125",
+      "CAP-126",
+      "CAP-127",
+      "CAP-129",
+      "CAP-132",
+      "CAP-135",
+      "CAP-137",
+      "CAP-138",
+      "CAP-139",
+      "CAP-140",
+      "CAP-141",
+      "CAP-142",
+      "CAP-143",
+      "CAP-144",
+      "CAP-145",
+      "CAP-146",
+      "CAP-147",
+      "CAP-148",
+      "CAP-149",
+      "CAP-156",
+      "CAP-159",
+      "CAP-161",
+      "CAP-162",
+      "CAP-169",
+      "CAP-172",
+      "CAP-173",
+      "CAP-176",
+      "CAP-177",
+      "CAP-178",
+      "CAP-179",
+      "CAP-182",
+      "CAP-183",
+      "CAP-184",
+      "CAP-185",
+      "CAP-190",
+      "CAP-191",
+      "CAP-192",
+      "CAP-193",
+      "CAP-194",
+      "CAP-195",
+      "CAP-196",
+      "CAP-197",
+      "CAP-198",
+      "CAP-199",
+      "CAP-200",
+      "CAP-202",
+      "CAP-203",
+      "CAP-204",
+      "CAP-207",
+      "CAP-209",
+      "CAP-210",
+      "CAP-212",
+      "CAP-213",
+      "CAP-215",
+      "CAP-219",
+      "CAP-220",
+      "CAP-221",
+      "CAP-222",
+      "CAP-223",
+      "CAP-232",
+      "CAP-233",
+      "CAP-234",
+      "CAP-235",
+      "CAP-236",
+      "CAP-237",
+      "CAP-239",
+      "CAP-243",
+      "CAP-244",
+      "CAP-247",
+      "CAP-250",
+      "CAP-251",
+      "CAP-260",
+      "CAP-264",
+      "CAP-268",
+      "CAP-273",
+      "CAP-274",
+      "CAP-275"
+    ],
+    "screensWithoutCapability": [
+      "J4jjulaLJ4QNzqZ1INWydq:3550:12036",
+      "J4jjulaLJ4QNzqZ1INWydq:3550:12556",
+      "J4jjulaLJ4QNzqZ1INWydq:3550:13266",
+      "J4jjulaLJ4QNzqZ1INWydq:3550:13582",
+      "J4jjulaLJ4QNzqZ1INWydq:3561:11848",
+      "J4jjulaLJ4QNzqZ1INWydq:3561:11851",
+      "J4jjulaLJ4QNzqZ1INWydq:3561:11854",
+      "J4jjulaLJ4QNzqZ1INWydq:3561:11857",
+      "J4jjulaLJ4QNzqZ1INWydq:3561:11860",
+      "J4jjulaLJ4QNzqZ1INWydq:3561:11863",
+      "J4jjulaLJ4QNzqZ1INWydq:3561:11866",
+      "J4jjulaLJ4QNzqZ1INWydq:3561:11869",
+      "J4jjulaLJ4QNzqZ1INWydq:3561:11872",
+      "J4jjulaLJ4QNzqZ1INWydq:3561:11875",
+      "J4jjulaLJ4QNzqZ1INWydq:3561:11878",
+      "J4jjulaLJ4QNzqZ1INWydq:3561:11881",
+      "J4jjulaLJ4QNzqZ1INWydq:3561:11884",
+      "J4jjulaLJ4QNzqZ1INWydq:3561:11887"
+    ],
+    "divergedWithoutDecision": []
+  },
+  "coverage": {
+    "capabilities": 270,
+    "designed": 134,
+    "percent": 50,
+    "built": 0,
+    "screens": 214,
+    "screensLinked": 196
+  },
+  "droppedLinks": [],
+  "unmapped": [
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3561:11860",
+      "seems": "Update payment state / 05 of 14 (Autopay / Prototype update steps). The screenshot is blank white and the frame has no texts. It looks like an intermediate frame in a prototype animation. The name suggests an AutoPay payment changing status after approval (possibly CAP-189 / CAP-190), but nothing on the frame backs that up, so no link is made. A person should decide whether it is a placeholder or a transition step."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3561:11863",
+      "seems": "Update payment state / 06 of 14 (Autopay / Prototype update steps). Blank white screenshot, no texts. It looks like an empty prototype transition step for an AutoPay payment state update (possibly CAP-189 / CAP-190). Not linked."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3561:11866",
+      "seems": "Update payment state / 07 of 14 (Autopay / Prototype update steps). Blank white screenshot, no texts. It looks like an empty prototype transition step for an AutoPay payment state update (possibly CAP-189 / CAP-190). Not linked."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3561:11869",
+      "seems": "Update payment state / 08 of 14 (Autopay / Prototype update steps). Blank white screenshot, no texts. It looks like an empty prototype transition step for an AutoPay payment state update (possibly CAP-189 / CAP-190). Not linked."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3561:11872",
+      "seems": "Update payment state / 09 of 14 (Autopay / Prototype update steps). Blank white screenshot, no texts. It looks like an empty prototype transition step for an AutoPay payment state update (possibly CAP-189 / CAP-190). Not linked."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3561:11875",
+      "seems": "Update payment state / 10 of 14 (Autopay / Prototype update steps). Blank white screenshot, no texts. It looks like an empty prototype transition step for an AutoPay payment state update (possibly CAP-189 / CAP-190). Not linked."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3561:11878",
+      "seems": "Update payment state / 11 of 14 (Autopay / Prototype update steps). Blank white screenshot, no texts. It looks like an empty prototype transition step for an AutoPay payment state update (possibly CAP-189 / CAP-190). Not linked."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3561:11881",
+      "seems": "Update payment state / 12 of 14 (Autopay / Prototype update steps). Blank white screenshot, no texts. It looks like an empty prototype transition step for an AutoPay payment state update (possibly CAP-189 / CAP-190). Not linked."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3561:11884",
+      "seems": "A blank white frame, step 13 of 14 in the 'Autopay / Prototype update steps' flow 'Update payment state'. It may be a prototype transition or loading placeholder for updating the state of an Autopay payment, possibly related to CAP-190, but nothing is visible to confirm that."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3561:11887",
+      "seems": "A blank white frame, the last step (14 of 14) of the Autopay 'Update payment state' prototype. It looks like a placeholder or transition frame with no visible content."
+    }
+  ]
+}

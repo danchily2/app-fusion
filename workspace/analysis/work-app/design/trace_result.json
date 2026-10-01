@@ -1,0 +1,2232 @@
+{
+  "program": "work-app",
+  "links": [
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3530:11704",
+      "capabilities": [
+        "CAP-130"
+      ],
+      "confidence": "Low",
+      "evidence": "'Workspace / Prototype / Toast overlay': a blank frame with only a dark toast reading 'Call Jonas'. It may be the feedback shown when calling an employee, but nothing else on the frame supports that, so this is a guess. (re-checked: I opened the screenshot. The frame is blank white apart from one dark bar near the bottom that reads 'Call Jonas'. The name 'Workspace / Prototype / Toast overlay' says it is a prototype overlay, not a full screen. 'Jonas' is a person's first name, and the only catalog capability about calling a person is CAP-130 (a manager calls, texts, emails or shares an employee's contact value). CAP-044 also has tap-to-call, but it is for BXN customer and supplier cards, so it is a weaker fit for a person's first name. CAP-136, CAP-139 and CAP-142 cover phone fields or SMS, but none of them is about starting a call. The bar could be confirmation feedback after a call, or a single-option action sheet for calling. Either reading points to CAP-130, but the frame has no other context to confirm it, so the link stays Low. The texts contain no instruction-shaped content.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:2051",
+      "capabilities": [
+        "CAP-096",
+        "CAP-097"
+      ],
+      "confidence": "High",
+      "evidence": "Help topic titled 'Expense' in Account & tools. A list of companies with check marks (ME Expense SE, Test ME PROD Company 1, ...) shows where Expense is available. Below is a 'Frequent questions' accordion with the first answer open ('I can not register a mileage.') and 'Why do I not have access to Expense?' / 'I can not find my employer in the list above.'"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:2543",
+      "capabilities": [
+        "CAP-096"
+      ],
+      "confidence": "High",
+      "evidence": "FAQ topic 'Other': 'You can report time or absence for' over a list of checked companies, plus frequent questions ('How can I add another employer...', 'I can not find my employer...'). 'The answer to my question is not here' points to sending feedback, and 'Avoid entering text with sensitive data' warns about the feedback channel. The FAQ purpose is clear. The feedback link is inferred from the answer texts only, which is why this is Medium. (re-checked: The screenshot is the FAQ topic page 'Other' (back arrow, title 'Other'). It lists the companies the user can report time or absence for, each with a check mark, and below that 'Frequent questions' as expandable rows. This is exactly CAP-096 (Browse help (FAQ) by topic), which lists 'Other' as a topic and shows which companies have the module. I removed CAP-098 (Send feedback about the app). The screen has no free-text field, no send action and no sent/failed confirmation. Feedback only comes up inside one FAQ answer ('Send feedback to the app team...'), and the 'Avoid entering text with sensitive data' row is also just a static FAQ item. The feedback form would be a separate screen. I also removed CAP-097 (Check why a module is not available for my company). The screen shows only companies that have the module, all checked. The answer to 'I can not find my employer' is a generic 'might not have activated the relevant module yet'. Nothing shows the per-company license lookup that CAP-097 describes (never activated, activated, or terminated). Another frame showing unlicensed companies with their status would be a better fit for CAP-097. The texts contain no instruction-shaped content.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:1789",
+      "capabilities": [
+        "CAP-096",
+        "CAP-097",
+        "CAP-231"
+      ],
+      "confidence": "High",
+      "evidence": "FAQ topic 'Payslip': a filter of employer companies, then 'I can not see any payslips at all.', 'My newest payslip is missing.', 'Why do I not have access to Payslip?', 'How do I download my payslips?'. This is topic help that explains missing payslips and module access."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:2300",
+      "capabilities": [
+        "CAP-096",
+        "CAP-097"
+      ],
+      "confidence": "High",
+      "evidence": "FAQ topic 'Time & Absence': 'You can report time for' over a list of companies, then frequent questions ('I can not report \"Care of sick child\".', '\"Your user setup is incorrect\"', 'Why do I not have access to Time & Absence?', 'I can not find my employer in the list above.')."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:17297",
+      "capabilities": [
+        "CAP-047",
+        "CAP-051",
+        "CAP-023"
+      ],
+      "confidence": "High",
+      "evidence": "'GAiA / conversation answer': the Home search field 'Search or ask a question' turns into a chat. The user asks 'How many vacation days do I have left?' and the assistant answers 'You have 47 vacation days remaining. Vacation on 23–24 April is awaiting approval.' The general ask (CAP-047) and the ask from Home search (CAP-051) are unmistakable. The leave-balance question (CAP-023) is the example content."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:16928",
+      "capabilities": [
+        "CAP-071",
+        "CAP-051"
+      ],
+      "confidence": "High",
+      "evidence": "'GAiA / no matches': Home search for 'zzzzzz' shows 'No matches' and 'Ask GAiA instead — it can answer questions about your approvals, payments, employees, orders...', with an 'Ask GAiA' button. This is the empty state of cross-module search that hands off to the assistant."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:13945",
+      "capabilities": [
+        "CAP-071",
+        "CAP-051"
+      ],
+      "confidence": "High",
+      "evidence": "'GAiA / search results': a search for 'Bergen' returns results grouped by module. Under Approval: 'Bergen Kontorforsyning AS INV-2041'. Under BNXT: orders SO-2184 (Pending) and PO-4471 (Partial). An 'Ask GAiA' button sits at the bottom. This is search across approvals, invoices and orders, with an assistant fallback."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:13525",
+      "capabilities": [
+        "CAP-053",
+        "CAP-051",
+        "CAP-071"
+      ],
+      "confidence": "High",
+      "evidence": "'GAiA / suggested questions': a search field 'Search or ask a question' opened over the Start (Home) page, with a 'Try asking' list of six suggested questions (overdue approvals, AutoPay due, salary dialogues, uninvoiced orders, vacation days). The footer says search covers approvals, payments, employees and orders across companies, so CAP-071 is part of it too."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:17755",
+      "capabilities": [
+        "CAP-047",
+        "CAP-023",
+        "CAP-066",
+        "CAP-055"
+      ],
+      "confidence": "High",
+      "evidence": "'GAiA Agent / answer': the assistant chat. The user asks 'How many vacation days do I have left?' and gets '47 vacation days remaining... awaiting approval', which is a leave-balance question (CAP-023). There is a mic icon in the 'Type here..' field (voice dictation) and a 'Clear' button that resets the chat (likely a new conversation, Medium for CAP-055). The disclaimer says AI responses may be inaccurate."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:17658",
+      "capabilities": [
+        "CAP-047",
+        "CAP-053",
+        "CAP-066",
+        "CAP-055"
+      ],
+      "confidence": "High",
+      "evidence": "'GAiA Agent / welcome': the assistant greets the user ('Hello Anna! I'm GAiA...') and shows three suggested questions as chips (rules for tool allowance, foreign travel subsistence allowance, Sunday work in construction). It also has a 'Type here..' input with a mic and a 'Clear' button. CAP-026 (Employee Agent example prompts) could also apply, but these are policy questions rather than registration prompts."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:13216",
+      "capabilities": [
+        "CAP-098"
+      ],
+      "confidence": "High",
+      "evidence": "'Leave feedback': the title, the text 'Leave your feedback on what to improve in the app', a required comment field and Cancel/Send buttons. The purpose is unmistakably to send feedback about the app."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:9848",
+      "capabilities": [
+        "CAP-180"
+      ],
+      "confidence": "High",
+      "evidence": "'Messages / empty': a Messages sheet with a close button shows 'No messages'. This is the empty state of the message inbox."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:9447",
+      "capabilities": [
+        "CAP-180",
+        "CAP-181"
+      ],
+      "confidence": "High",
+      "evidence": "'Messages / populated': a Messages sheet listing 'Approved timesheet' and 'Approved leave request' notices with timestamps. Each card has an X to dismiss it from the inbox."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:13355",
+      "capabilities": [
+        "CAP-069",
+        "CAP-068",
+        "CAP-067"
+      ],
+      "confidence": "High",
+      "evidence": "'More / edit pinned modules': the text 'Drag modules above the line to put them in the tab bar. Up to 4 fit next to Start and More', drag handles, a 'Tab bar 4/4 · below: More' divider and a Done button make tab-bar customization (CAP-069) unmistakable. The same list shows every module (Expense, Approval, HRM, BNXT, Payslip, Calendar, Autopay, Settings), which is the More sheet (CAP-068), and the tab bar itself is CAP-067."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:11543",
+      "capabilities": [
+        "CAP-238",
+        "CAP-226"
+      ],
+      "confidence": "High",
+      "evidence": "'Payslip / PDF preview': an in-app PDF viewer with a file name 'payslipd67018779...', a page indicator '1 av 1' and a close button. It renders a Norwegian Lønnsslipp (gross pay, tax deduction, net pay). This is clearly an in-app preview of a payslip PDF (CAP-238). Whether it serves downloading the PDF (CAP-226) or viewing the payslip details (CAP-225) depends on the flow, hence Medium. (re-checked: The screenshot is a full-screen in-app document viewer. It has a file-name header 'payslipd67018779fbe4578b5ebc...' with a dropdown, a close (X) button and a '1 av 1' page chip. It renders a one-page Norwegian Lønnsslipp PDF for a single pay run (2025-11, paid 19.11.2025, Fastlønn, Bruttolønn, Prosenttrekk, Nettolønn, 'Copyright © Visma · Side:1/1'). Two capabilities fit. CAP-238 (preview a downloaded PDF full screen in the app, then close it) is the viewer itself. CAP-226 (download a payslip PDF from the details to preview or share it) is the outcome this viewer completes, because the file is one payslip's PDF. I dropped CAP-225 (view a payslip's details). That capability is the native details screen with payment date, net total, line items and employer message, and this frame comes after it rather than serving it. Showing the same numbers inside a PDF does not make this the details screen. I rejected CAP-227 (export all payslips to one PDF): the file name points to a single payslip and the document has one pay run on one page. I rejected CAP-239 too: it hands the file to an external app, and this viewer is in-app. The texts contain no instruction-shaped content.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:11055",
+      "capabilities": [
+        "CAP-225",
+        "CAP-226"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'Payslip / detail'. Employer header 'Test ME Company 1' with sections Lønn (Fastlønn 5 900,00), Skatt og trekk (Skatt −1 475,00), Totalt i år (Akkumulerte balanser), and a footer showing Utbetalingsdato and Nettobeløp. The header download icon fits CAP-226; that link is less certain than CAP-225."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:11280",
+      "capabilities": [
+        "CAP-225"
+      ],
+      "confidence": "High",
+      "evidence": "Expanded state of the payslip detail. It shows Prosenttrekk and year-to-date balances (Bruttolønn, Forskuddstrekk, Balanse negativ lønn, Fagforeningstrekk, Feriepengegrunnlag), plus payment date and net amount."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:17855",
+      "capabilities": [
+        "CAP-228"
+      ],
+      "confidence": "High",
+      "evidence": "'Lønnsslipp' screen with the 'Årsoppgaver' segment selected. Lists year-end reports by year and employer ('2024 - Test ME Company 1' and others), and each row has a chevron that opens it."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:17855",
+      "capabilities": [
+        "CAP-228",
+        "CAP-229",
+        "CAP-052",
+        "CAP-227"
+      ],
+      "confidence": "Medium",
+      "evidence": "The same screen has a 'Lønnsslipp' segment, which is the payslip list (CAP-029). The header sparkle icon points to the payslip assistant (CAP-052). The header download icon likely exports all payslips or reports (CAP-227), but it could instead download year-end reports (CAP-230). (re-checked: The claim gets the main purpose wrong. In the screenshot (3400-17855.png) the 'Årsoppgaver' segment is selected, under an 'Årsoppgaver' section heading. The list rows are year-end reports named by year and company ('2024 - Test ME Company 1', '2017 - Test company - 879879789'), each with a chevron. So the screen serves CAP-228 (browse my year-end reports), and tapping a row serves CAP-229 (view a year-end report). The 'Lønnsslipp' segment is only the inactive toggle in this state, so I dropped CAP-029 (browse payslips), which belongs to the sibling payslip-list frame. The sparkle icon in the header fits CAP-052, the payslip assistant, which can be opened from the payslips screen or a year-end report. The header download icon most likely exports all payslips to one PDF (CAP-227), since it sits in the shared Lønnsslipp header. But it could mean CAP-230 (download a year-end report PDF) while this segment is active, so a person should check that. Confidence is Medium for that reason. The Figma texts contain no instruction-shaped content.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:13271",
+      "capabilities": [
+        "CAP-112",
+        "CAP-114"
+      ],
+      "confidence": "High",
+      "evidence": "'Privacy & terms' screen. It has an 'Anonymous data collection' toggle with the text about aggregated usage data, and a 'Terms Of Service' row."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:13271",
+      "capabilities": [
+        "CAP-112",
+        "CAP-114",
+        "CAP-113",
+        "CAP-107",
+        "CAP-115",
+        "CAP-098"
+      ],
+      "confidence": "High",
+      "evidence": "Link rows on this screen: 'Accessibility Statement', 'View Third-Party Licenses' and 'Customer Feedback'. They are entry points rather than the content itself. There is also an 'InMoment Statement' row. (re-checked: The link is right but the list leaves out what the screen mainly does. The screenshot is a settings screen titled 'Privacy & terms'. Its main control is an 'Anonymous data collection' toggle, with the note 'gathering and analysing aggregated usage data'. That is exactly CAP-112 (turn anonymous analytics collection on or off in Privacy settings), and the claim does not include it. The first row, 'Terms Of Service', is the entry point for CAP-114 (read the terms of service and privacy information), which is also missing. The rows the claim did cite are valid entry points. 'Accessibility Statement' serves CAP-113 and CAP-107. 'View Third-Party Licenses' serves CAP-115 and CAP-107. 'Customer Feedback' serves CAP-098, but only plausibly, since it may link to an external survey rather than the in-app free-text form. 'InMoment Statement' looks like a privacy notice for a survey vendor. No capability in the catalog covers it, so I did not force it onto the NPS survey capabilities (CAP-101/102). It may be a new item for a person to decide on. The footer warning about personal information in approvals is static text and serves no capability. The Figma texts contain no instruction-shaped content.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:10195",
+      "capabilities": [
+        "CAP-086",
+        "CAP-201",
+        "CAP-087",
+        "CAP-108"
+      ],
+      "confidence": "High",
+      "evidence": "A bottom sheet opened from the avatar on the start page. It shows 'Logged in as anna.larsen@nordvik.no' and rows for Settings, Leave feedback, Privacy & terms and Log out."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:10195",
+      "capabilities": [
+        "CAP-086",
+        "CAP-087",
+        "CAP-201",
+        "CAP-098",
+        "CAP-116"
+      ],
+      "confidence": "Medium",
+      "evidence": "A 'Leave feedback' row, the signed-in account email, and the app version 'v7.1.9 (1648327851)' shown in the sheet rather than in Settings. (re-checked: I kept the link but changed the list. The screenshot shows a bottom sheet that opens from the profile/avatar icon in the Home header. It contains the initials avatar \"AL\", \"Logged in as anna.larsen@nordvik.no\", and rows for Settings, Leave feedback, Privacy & terms and Log out, with \"v7.1.9 (1648327851)\" at the bottom. This is the user menu, so the claim missed the main capabilities.\n- Added CAP-086 (open my user menu, which shows name and email): this is the closest fit.\n- Added CAP-087 (sign out from the user menu) and CAP-201 (log out): the \"Log out\" row is right in the sheet.\n- Kept CAP-098 (send feedback about the app): the sheet has a \"Leave feedback\" entry point. The feedback form itself is not on this screen.\n- Kept CAP-116 at lower certainty: the legacy capability puts the login email and app version/build in Settings. Here they sit in the sheet instead, so this is a relocation of that block, not an exact match.\n- Dropped CAP-115: it covers the app version plus browsing open-source licenses, and there are no licenses here. The version string is already covered by CAP-116.\n- Not linked: \"Privacy & terms\" may lead to legal content, but it does not clearly match any capability. CAP-107 (open-source licenses and the accessibility statement) is only a weak alternative.\n- The menu here has no account switching, My profile, Documents and benefits or Employee list. That is a design difference from CAP-086, not a reason to drop the link.\n- The screen's texts contain no text aimed at AI tools.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:3186",
+      "capabilities": [
+        "CAP-113",
+        "CAP-107"
+      ],
+      "confidence": "High",
+      "evidence": "'Accessibility statement' screen with the full text: 'Accessibility Statement for Visma Employee app', measures taken, conformance status and a feedback section."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:3186",
+      "capabilities": [
+        "CAP-113",
+        "CAP-107",
+        "CAP-098"
+      ],
+      "confidence": "High",
+      "evidence": "A 'Send feedback' button for reporting accessibility barriers. (re-checked: The claim gets the screen's purpose wrong. The frame is named \"Settings / Accessibility statement\". The title, the text and the screenshot all show the accessibility statement itself: its measures, its WCAG 2.1 conformance status and a feedback section. So the main capability is CAP-113 (Read the accessibility statement). CAP-107 (Read open-source licenses and the accessibility statement) also fits. It says outright that feedback can be sent from the statement opened from Settings, which matches this screen's sticky \"Send feedback\" button. CAP-098 (Send feedback about the app) is kept only as a secondary link: the button starts that flow, but this screen has no free-text form and no sent/failed confirmation. The link stays, with the list corrected to put the statement capabilities first. Confidence is High because the purpose is unmistakable. No instruction-shaped text found in the design content.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:1529",
+      "capabilities": [
+        "CAP-096"
+      ],
+      "confidence": "High",
+      "evidence": "'FAQ: What issue do you need help with?' with topic cards for Payslip, Expense, Time & Absence and Other, each with sample questions."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:1529",
+      "capabilities": [
+        "CAP-096",
+        "CAP-098"
+      ],
+      "confidence": "High",
+      "evidence": "A 'Send feedback' card ('Do you have feedback to the general feel and function of the app?'). The Payslip topic includes 'I can not see any payslips at all.', which fits CAP-231 (learn why I have no payslips). (re-checked: The screen is titled 'FAQ' and asks 'What issue do you need help with?'. Below that are topic cards for Payslip, Expense, Time & Absence and Other. This is what CAP-096 (Browse help (FAQ) by topic) describes, but the claim left CAP-096 out. The 'Send feedback' card at the bottom ('Do you have feedback to the general feel and function of the app?') is the way into CAP-098, so CAP-098 stays. I removed CAP-231. That capability is about the empty payslip list linking to the payslips FAQ. 'I can not see any payslips at all.' is only a FAQ entry shown inside the browse list, not the empty-list link. This screen does not show that trigger. I found no instruction-shaped text in the design texts.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:6504",
+      "capabilities": [
+        "CAP-120"
+      ],
+      "confidence": "High",
+      "evidence": "'Feature flags' screen: 'For internal testing. Toggling a flag changes app behaviour locally on this device.' Toggles include New onboarding flow, Mileage live map preview, Allowance v2, Dark mode (beta), Biometric lock and Daily push digest."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:2982",
+      "capabilities": [
+        "CAP-115",
+        "CAP-107"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'Licenses'. Shows 'Copyright © Visma 2014', app version '12.0 (Build 8419)' and the Lucide ISC/MIT open-source license texts. Reached from Settings under More."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:2786",
+      "capabilities": [
+        "CAP-098"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'Send feedback'. Has a 'Your feedback' text area, a 'Send feedback' button, the note 'This message does not reach your employer' and the line 'Feedback will be sent as <email>'. The message goes to the Visma app team, so this is app feedback, not Employee Agent feedback."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:1011",
+      "capabilities": [
+        "CAP-110",
+        "CAP-108",
+        "CAP-116",
+        "CAP-109",
+        "CAP-206",
+        "CAP-096",
+        "CAP-113",
+        "CAP-115",
+        "CAP-120"
+      ],
+      "confidence": "High",
+      "evidence": "Settings screen with the Appearance dropdown open (System / Light / Dark, Light checked), so CAP-110 is the main purpose. It also lists Email, OS version and App version (account and device info), Language, 'Open app with Face ID', FAQ, App information, Accessibility statement, and a Development section with 'Feature flags'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:1270",
+      "capabilities": [
+        "CAP-109"
+      ],
+      "confidence": "High",
+      "evidence": "Alert 'Change language: To change the language, please update preferred language settings for this app.' with Cancel and 'Open settings' buttons, shown over Settings. The app language is chosen through the OS per-app language setting."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:8421",
+      "capabilities": [
+        "CAP-082",
+        "CAP-241",
+        "CAP-011",
+        "CAP-211",
+        "CAP-012",
+        "CAP-017",
+        "CAP-080",
+        "CAP-231",
+        "CAP-008",
+        "CAP-073",
+        "CAP-074",
+        "CAP-077",
+        "CAP-079"
+      ],
+      "confidence": "High",
+      "evidence": "Start page with expanded 'For you' cards. Unsent expenses card ('5 receipts · 1 mileage · 2 allowances') with Add new receipt, mileage and allowance, and Open Expense. Vacation days card ('47 vacation days remaining') with 'Register time or absence', 'Vacation 23–24 Apr / Awaiting approval' and Open Calendar. Salary card ('There are no payslips published yet', Open Payslip). 'Needs your attention: 11 pending · 10 overdue' lists overdue invoices with Open Approval. Autopay card ('kr 3 193 892,55 due', next payment date). Each card has a link that opens its module."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:9083",
+      "capabilities": [
+        "CAP-205",
+        "CAP-030"
+      ],
+      "confidence": "Medium",
+      "evidence": "The company dropdown opened from the header building icon lists companies (Blomster Butikk AS (Dottie), Expense Demo Company, ME Expense NO/SE, Test ME PROD Company 1 checked, Visma Software AS ...). It could be the ME employer switch (CAP-205) or the VMM Business NXT company switch (CAP-030). The unified header suggests one switch for both, so a person should confirm. Behind the dropdown, collapsed Home cards show Approval, Autopay and HRM summaries. (re-checked: The link holds. The frame is called \"Switch company\". The screenshot shows a dropdown opened from the building icon in the Start page header, with one company checked (\"Test ME PROD Company 1\"). That matches CAP-205 (Switch between my employers, ME), which the employee does from the start or home page. The company names are mostly Employee/Expense tenants (ME Expense NO, ME Expense SE, Expense Demo Company, Expense DK Kajsa, Expense Finnish VAT test, Blomster Butikk AS (Dottie)), so CAP-205 is the stronger fit.\n\nCAP-030 (Switch the active Business NXT company, VMM) fits only in part. It is still plausible because this is one header switch in a unified app that also has a BNXT tab and BNXT cards, so the same selection may scope the BNXT screens. But in VMM that switch is an initials-avatar dropdown scoped to BNXT screens, not a building icon on Home. Whether one switch should serve both apps' company scopes is a fusion choice for a person to confirm, so the confidence stays Medium.\n\nNo other capability fits better. CAP-092 is a reporting tenant picker and CAP-127 hides companies in the employee list. The collapsed Approval, Autopay and HRM cards are background context, not what this frame is for. No instruction-shaped text was found in the frame.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:12065",
+      "capabilities": [
+        "CAP-229",
+        "CAP-238"
+      ],
+      "confidence": "High",
+      "evidence": "Full-screen PDF preview of 'Sammenstilling til inntektsmottaker 2024' (Norwegian year-end report) for Test ME Company 1, with a page indicator '1 av 1' and a close button. The header dropdown '2024 - Test ME Company 1' suggests choosing which report to show."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:11825",
+      "capabilities": [
+        "CAP-229",
+        "CAP-230"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'Årsoppgaver' (year-end reports) with the subtitle '2024 - Test ME Company 1'. Lists reported income lines (Feriepengegrunnlag, Lønn - fastloenn ...) with amounts, and has a download icon in the header."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3389:5502",
+      "capabilities": [
+        "CAP-154"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / Approve sheet': a bottom sheet titled 'Approve' over a voucher task (Telenor Norge AS, 1,900.00 NOK), with 'Comment - optional. Draft is saved.', 'Add comment...', and Dismiss/Approve buttons. The new design adds an optional comment and saves a draft of it."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3389:5229",
+      "capabilities": [
+        "CAP-167",
+        "CAP-168",
+        "CAP-170",
+        "CAP-163",
+        "CAP-164"
+      ],
+      "confidence": "Medium",
+      "evidence": "'Approval / Completed task': voucher detail (Fjordkraft AS, -9,879.00 NOK) with no Approve/Reject buttons. It has a 'Voucher lines - 2 lines available to edit' row, a Comment field, 'Workflow history' (Activated by Anna Larsen, Approved 29.06.2026) and 'Workflow details' (Current step, Pending approval, View skipped steps). There is also a document thumbnail with 1 attachment. Medium because 'lines available to edit' and 'Pending approval' sit oddly with a completed task, so this may be a placeholder state. (re-checked: I checked the screenshot and the texts. The claim holds and I don't think any capability needs to be added or removed. The screen is a read-only voucher detail with no Approve/Reject footer, titled 'Completed task'. It shows the document, company ('Approving for Nordvik Retail AS'), amount (-9,879.00 NOK), description, due dates and workflow history, and has a sparkle (Gaia) icon in the header. That matches CAP-167 (View a handled approval process). The 'Workflow history' list (Activated, Approved) and 'Workflow details' (Line Workflow Step, Current step, Pending approval with approver reasons, View skipped steps) match CAP-168. The 'Voucher lines - 2 lines available to edit' row matches CAP-170. The 'Comment / Add a comment..' field matches CAP-163. The document thumbnail with its '1' attachment badge matches CAP-164. CAP-169 (approve or reject individual lines) and CAP-171 (edit lines) do not fit: the screen only links to the lines. I kept Medium confidence, not High, because the frame mixes completed and in-progress details: 'lines available to edit', a comment input and 'Current step: Pending approval' are odd on a completed task. So it may be a copied placeholder state, or it may show a task that is completed for this approver while other lines are still pending. No instruction-shaped text found.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:6241",
+      "capabilities": [
+        "CAP-164",
+        "CAP-165"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / Document': full-screen viewer titled 'Document' that renders an attached invoice (Acme Cloud, invoice number, line items, VAT, total), with a download icon in the header and 'Page 1 of 1' / Done at the bottom. Viewing the document is unmistakable. The download icon covers share or download."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3389:6236",
+      "capabilities": [
+        "CAP-158"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / Forward sheet': a bottom sheet titled 'Forward' with a 'Recipient / Enter recipient' field, 'Comment - required. Draft is saved.', and Dismiss/Forward buttons. Forward stays disabled until both are filled."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3357:2346",
+      "capabilities": [
+        "CAP-150",
+        "CAP-151",
+        "CAP-160",
+        "CAP-152"
+      ],
+      "confidence": "Medium",
+      "evidence": "'Approval / Grouped by company': Approval tab with Tasks (11), Overdue (10) and History segments. Task cards are grouped under company headers (Nordvik Eiendom AS, Nordvik Group AS) and show invoice number, due date, amount, an Invoice tag and an Overdue badge. Each card has a checkbox, which suggests selecting several tasks at once (CAP-160). The header has filter/sort and search icons (CAP-151, CAP-152). The pending task list (CAP-150) is High. Medium overall because the checkbox and filter-icon readings are inferred, and the grouping by company and the Overdue segment look new. (re-checked: The link holds, with corrections to the claim's reasoning. The screenshot shows the Approval tab with segments Tasks (11), Overdue (10) and History. Pending task cards sit under company headers (Nordvik Eiendom AS, Nordvik Group AS), and each header has a collapse chevron. Each card shows the supplier, invoice number, owning company, \"Task was due ...\" text, the amount in NOK, an Invoice tag and an Overdue badge.\n\n- CAP-150 (High): this is clearly the pending task list. The claim calls company grouping new, but it is not. CAP-150's catalog description already covers \"optional company grouping with collapsible groups\", and the chevrons match that.\n- CAP-151 (Medium): the screen's title, \"Grouped by company\", is the state CAP-151 produces when the manager sorts by company, and the header has a filter/sort icon. That makes CAP-151 a stronger fit than the claim suggested.\n- CAP-160 (Medium): every card has a checkbox, which points to a multi-select state. But there is no selection bar, no totals and no select-all, so the screen may only be the entry point for multi-select.\n- CAP-152 (Low): the only sign is the search icon in the header. No search field, query or results are shown, so this capability is only an entry point here and could be dropped.\n\nThe Overdue segment with its own count is not in any catalog description and looks like a new list filter, possibly a divergence from CAP-150. A person should decide that. The \"No tasks to show / Every approval task is cleared.\" texts belong to a hidden empty state of the same list, which is still CAP-150. No instruction-shaped text was found in the screen texts.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3357:1477",
+      "capabilities": [
+        "CAP-166",
+        "CAP-152"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / History': the History segment is selected. Past items are grouped by month (July 2026, June 2026) with supplier, reference and company, a status (Awaiting approval / Approved), 'Received <date>', and amounts in USD/NOK. A search icon sits in the header."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3357:3488",
+      "capabilities": [
+        "CAP-153",
+        "CAP-154",
+        "CAP-155",
+        "CAP-170",
+        "CAP-163",
+        "CAP-168",
+        "CAP-164"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / Invoice task': invoice task detail (Bergen Kontorforsyning AS, approving for Nordvik Group AS, 10,000.00 NOK). It shows description, task/document due dates, a 'Voucher lines - 3 lines' row, Approve and Reject buttons, a Comment field and Workflow history/details. The texts also include 'Comment - optional' and 'Comment - required' sheet states for approve and reject. A document thumbnail has 1 attachment."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3357:3350",
+      "capabilities": [
+        "CAP-150",
+        "CAP-067"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / No tasks': empty state of the Approval Tasks list, 'No tasks to show / Every approval task is cleared.', with Tasks/Overdue/History segments and filter/search icons. The bottom tab bar (Start, Expense, HRM, BNXT, More) is visible with Approval active, which shows switching between main areas."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3357:1011",
+      "capabilities": [
+        "CAP-150"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / Overdue' frame: Approval tab with Tasks 11 / Overdue 10 / History segments, Overdue tab active, 'Overdue tasks' list of invoice and voucher cards with amounts, 'Task was due' dates and Overdue badges, plus the empty state 'Nothing is overdue'. This is the pending-task inbox filtered to overdue items."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3389:5745",
+      "capabilities": [
+        "CAP-155",
+        "CAP-153"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / Reject sheet': a bottom sheet titled 'Reject' with 'Comment - required. Draft is saved.', a comment field and Dismiss/Reject buttons, laid over the task detail (Voucher, Approving for Nordvik Retail AS, Amount NOK 1,900.00, task and document due dates). This matches rejecting with a mandatory comment."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3389:5988",
+      "capabilities": [
+        "CAP-157"
+      ],
+      "confidence": "Medium",
+      "evidence": "'Approval / Request review sheet': a bottom sheet titled 'Request review' with a Recipient field ('Enter recipient') and 'Comment - required. Draft is saved.', over the task detail. This matches sending a task for review with a mandatory comment. It is Medium because the confirm button is labelled 'Forward', which also fits CAP-158 (forward to another approver). (re-checked: The screenshot shows a bottom sheet titled 'Request review' over a voucher task (Telenor Norge AS, NOK 1,900.00). It has a 'Recipient' field ('Enter recipient'), a comment box marked 'Comment - required. Draft is saved.', and Dismiss and Forward buttons. That matches CAP-157 (pick a colleague and send the task to them for review with a mandatory comment). The sheet itself does not do the work of CAP-153 (Review an approval task). The task detail is only the dimmed background, and its texts (Approve/Reject/Send for review/Forward, workflow history) come from the underlying detail frame, which should map to CAP-153 on its own. So I dropped CAP-153 here. Confidence is Medium because the confirm button says 'Forward', which also fits CAP-158 (forward to another approver). The title 'Request review' and the 'Send for review' entry point make CAP-157 the better fit. The 'Forward' label is probably copy reused from the forward sheet, and a designer should confirm it. CAP-156 (complete a review) does not fit: it has no recipient. The screen contains no instruction-shaped text.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3357:2855",
+      "capabilities": [
+        "CAP-150",
+        "CAP-160"
+      ],
+      "confidence": "Medium",
+      "evidence": "'Approval / Selected tasks': Tasks tab list 'By task due date' where every card has a selection checkbox. The frame name points to multi-select for bulk approval (CAP-160), but the screenshot shows no box checked and no totals or bulk-approve bar, so only the task list (CAP-150) is clearly visible. (re-checked: The screenshot shows the Approval tab inbox: Tasks 11, Overdue 10 and History segments, and cards with supplier, document number, company, amount, 'Task was due' dates, an Invoice or Voucher type chip, Overdue badges and a comment count. That is CAP-150, and that link is clear. Every card also has an empty selection checkbox, which plain list rows do not have, and the frame is named 'Approval / Selected tasks'. That points to the multi-select mode of CAP-160, before any task is ticked. No selected count, per-currency totals or bulk-approve bar is visible, so CAP-160 is likely but not proven; that is why confidence stays Medium. The 'By task due date' header shows the current sort order (CAP-151) but has no sort control, so I did not add CAP-151. The texts contain no instruction-shaped content.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3357:1840",
+      "capabilities": [
+        "CAP-151"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / Sort tasks': a 'Sort tasks by' sheet with Company, Document due date and Task due date (checked) over the task list. This matches the catalog's sort options exactly."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:6089",
+      "capabilities": [
+        "CAP-174",
+        "CAP-170"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / Voucher custom view': the Voucher lines screen with the 'Custom' toggle on. The line shows fewer fields than the default view (no Value Date or Invoice No.), which matches choosing which line fields to show in Custom mode."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:5761",
+      "capabilities": [
+        "CAP-170",
+        "CAP-171",
+        "CAP-174",
+        "CAP-175"
+      ],
+      "confidence": "Medium",
+      "evidence": "'Approval / Voucher line 1': the Voucher lines screen with Custom off and Line 1 / Line 2 tabs. It shows Line No., Voucher No., Value Date, Voucher Type, Voucher Date, Invoice No. and Debit Account. 'Text - Custom Name' and 'Debit Account' have chevrons that suggest editable coding (CAP-171). The line tabs may serve jumping between lines (CAP-175). Opening the lines (CAP-170) is clear; editing is inferred from the chevrons. (re-checked: The screenshot shows a 'Voucher lines' view of one task's accounting lines: Line No., Voucher No., Value Date, Voucher Type 25 - 25, Voucher Date, Text - Custom Name, Invoice No. and Debit Account '50000 - Fjordkraft AS', with an attachment thumbnail. That makes CAP-170 (open a task's accounting lines) clear. 'Text - Custom Name' and 'Debit Account' are in accent colour with chevrons, while the read-only fields have neither. This points to editable coding, so CAP-171 holds as an inference. The 'Line 1 / Line 2' segmented tabs switch between lines. That is a simpler version of CAP-175 (jump to a specific line), not the legacy index rail with change and error markers, so the link stays plausible but not certain. The claim missed one capability: the 'Custom' toggle at the top is the control from CAP-174 (turn on Custom mode and choose which line fields to show), so I added CAP-174. Some things are not visible here: no approve/reject control for each line (CAP-169), no 'Apply to all lines' (CAP-172) and no discard action (CAP-173). The capabilities list is a little uncertain on CAP-171 and CAP-175, so confidence stays Medium. No instruction-shaped text in the frame.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:5925",
+      "capabilities": [
+        "CAP-170",
+        "CAP-171",
+        "CAP-175",
+        "CAP-174"
+      ],
+      "confidence": "Medium",
+      "evidence": "'Approval / Voucher line 2': the same Voucher lines screen with the Line 2 tab selected, showing Line No. 2, 'MVA innkjøp' and Credit Account '2400 - Leverandørgjeld' (with chevron), amount 9,879.00. This is moving between a voucher's accounting lines; the chevrons suggest the fields can be edited. (re-checked: The screenshot shows a 'Voucher lines' screen with Line 1 and Line 2 tabs, and Line 2 is selected. It shows Line No. 2, Voucher No. 1, Voucher Type 25 - 25 and Voucher Date 12/03/2026. Two fields are highlighted with chevrons: Text - Custom Name 'MVA innkjøp' and Credit Account '2400 - Leverandørgjeld'.\n- CAP-170 (Open a task's accounting lines) fits: this is a task's list of voucher lines.\n- CAP-171 (Edit the accounting lines of an invoice before approving) fits: the text and account fields have chevrons and accent styling, so they look editable.\n- CAP-175 (Jump to a specific invoice line) fits moderately well: the line tabs let the approver go straight to one line, though they are a segmented control rather than a quick index rail.\n- CAP-174 (Choose which line fields to show) should be added: the screen has a 'Custom' toggle, and the catalog describes Custom mode as how the approver picks which fields each line shows.\n- CAP-169 (Approve or reject individual accounting lines) does not fit: this frame has no approve or reject control.\nConfidence stays Medium for three reasons: the 'voucher' wording could point to expense or claim voucher lines rather than invoice ERP lines, editability is only suggested by the chevrons, and the tabs only roughly match an index rail. None of the texts are aimed at AI tools.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3357:4079",
+      "capabilities": [
+        "CAP-153",
+        "CAP-154",
+        "CAP-155",
+        "CAP-157",
+        "CAP-158",
+        "CAP-163",
+        "CAP-168",
+        "CAP-170",
+        "CAP-171"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / Voucher task' detail: Voucher tag, 'Approving for Nordvik Retail AS', Amount NOK, task and document due dates. Has Approve, Reject, Send for review and Forward buttons, a Comment field ('Draft is saved'), and Workflow history/details with Current step, Pending approval, reasons and 'View skipped steps'. A 'Voucher lines' row reads '2 lines available to edit'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3357:4079",
+      "capabilities": [
+        "CAP-153",
+        "CAP-154",
+        "CAP-155",
+        "CAP-157",
+        "CAP-158",
+        "CAP-163",
+        "CAP-168",
+        "CAP-170",
+        "CAP-164"
+      ],
+      "confidence": "High",
+      "evidence": "A document thumbnail with a paperclip count of 1 suggests it opens the attached document. No viewer is shown. (re-checked: The claim is too narrow. CAP-164 alone misses what the screen is for. The frame is called \"Approval / Voucher task\" and shows one pending approval task, which is CAP-153 (Review an approval task). It shows a Voucher badge, \"Approving for Nordvik Retail AS\", \"Amount NOK 1,900.00\", the description inv0001, \"Task was due 17.03.2026\" and \"Document was due 31.05.2026\". The screen also gives entry points to several other capabilities:\n- Approve: CAP-154\n- Reject: CAP-155\n- Send for review: CAP-157\n- Forward: CAP-158\n- The Comment field with \"Add a comment..\" and \"Comment - optional. Draft is saved.\": CAP-163, with the optional draft-saved comment also matching CAP-154\n- The Voucher lines row with \"2 lines available to edit\": CAP-170\n- Workflow history and Workflow details (Activated by Anna Larsen, Current step, Pending approval with the approvers' reasons, Approval Initialized, View skipped steps): CAP-168\n\nThe document thumbnail with a paperclip count of 1 only opens the attachment, so CAP-164 stays as a secondary link. The full-screen viewer is not shown here. The texts contain no instruction-shaped content.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:6410",
+      "capabilities": [
+        "CAP-095"
+      ],
+      "confidence": "High",
+      "evidence": "An info modal titled 'Approval' over the task list explains the screen: tap a task for details, tick checkboxes to approve, switch between Tasks and History, search or sort by company and due dates, tap Overdue. It is opened from the header's (i) icon and closes with Ok. This is how-to help for the current screen."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:6410",
+      "capabilities": [
+        "CAP-095"
+      ],
+      "confidence": "High",
+      "evidence": "Behind the modal is the dimmed Approval task list (Tasks 11, Overdue 10, History, 'By task due date'). It is context, not the frame's purpose. (re-checked: The claim is wrong. CAP-150 is only the dimmed list in the background, and the claim's own evidence says so. The frame is named \"Manager / About view modal\". The screenshot shows an info sheet that opens from the info (i) icon in the Approval header. It has an icon and the title \"Approval\", says \"Approval view lists your tasks from Visma.net Approval service\", gives how-to tips (tap a task, use the checkbox to approve, switch between Tasks and History, search or sort, tap Overdue) and has an Ok button. That matches CAP-095, \"Read how-to help for the current screen\": a manager taps the info icon in a screen header (the approval list is named) and reads an info sheet with a title, description and icon. The tips only describe CAP-150 to CAP-153, CAP-160 and CAP-166; the screen does not perform them. The frame's texts list only the background list, not the modal copy, so the mapping rests on the screenshot and the frame name. No instruction-shaped content was found.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3364:1416",
+      "capabilities": [
+        "CAP-150",
+        "CAP-152",
+        "CAP-051",
+        "CAP-053"
+      ],
+      "confidence": "High",
+      "evidence": "The Approval list shows a 'Search tasks or ask a question' field with an 'Ask GAiA' button, suggested prompts ('Check for anomalies', 'How many tasks have been approved per supplier this month?'), Tasks/Overdue/History tabs and task cards with due dates, amounts and Overdue tags."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3364:1416",
+      "capabilities": [
+        "CAP-152",
+        "CAP-051",
+        "CAP-049",
+        "CAP-053",
+        "CAP-150"
+      ],
+      "confidence": "Medium",
+      "evidence": "There is a filter/sort icon and a 'By task due date' header, plus a checkbox on each task card for multi-select approval. The suggested prompts ask the assistant about approvals. (re-checked: The frame is named 'Manager / Inline GAiA search'. Its main element is a combined search band, 'Search tasks or ask a question', next to an 'Ask GAiA' button. Below it sit two suggested-prompt chips: 'Check for anomalies' and 'How many tasks have been approved per supplier this month?'. Under those are the Tasks 11 / Overdue 10 / History tabs and the pending task list. The capability that fits best is CAP-152 (search approval tasks and history, or ask Gaia). Next come CAP-051 (ask the assistant from a list's search band) and CAP-049 (ask about approvals from the approval list through suggested chips). CAP-053 (start from a suggested question) and CAP-150 (pending task inbox) also fit. The claim left out the screen's main purpose, search and ask inline. It instead led with CAP-151 (sort) and CAP-160 (approve several at once). The 'By task due date' header and the per-card checkboxes are only incidental chrome of the base list here. Those two belong on the dedicated sort and multi-select frames, so I dropped them. CAP-049 is kept. Confidence is Medium because the exact split between CAP-152, CAP-051 and CAP-049 is ambiguous. No instruction-shaped text was found in the design texts.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3531:11710",
+      "capabilities": [
+        "CAP-153",
+        "CAP-154",
+        "CAP-155",
+        "CAP-163",
+        "CAP-168",
+        "CAP-170"
+      ],
+      "confidence": "High",
+      "evidence": "'Approval / Komplett Bedrift task' (Primary interactions) is an invoice task detail: Approving for Nordvik Logistics AB, 240.00 NOK, due dates, a 'Voucher lines 1 lines' row, Approve and Reject, a Comment field (optional or 'Comment - required. Draft is saved.') and a Workflow history accordion."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3531:11710",
+      "capabilities": [
+        "CAP-153",
+        "CAP-154",
+        "CAP-155",
+        "CAP-163",
+        "CAP-168",
+        "CAP-170",
+        "CAP-164"
+      ],
+      "confidence": "High",
+      "evidence": "An invoice document thumbnail with a paperclip count of 1. (re-checked: The claim gets the main purpose wrong. This screen is not mainly a document viewer. It is the detail screen of one approval task, which is CAP-153. The screenshot shows the company title \"Komplett Bedrift\", an Invoice badge, \"Approving for Nordvik Logistics AB\", \"Amount NOK 240.00\", the description, \"Task was due\" and \"Document was due\". The screen also shows the actions a manager can take on the task: Approve and Reject buttons (CAP-154, CAP-155), a Comment field \"Add a comment..\" (CAP-163), and a \"Voucher lines / 1 lines\" row that leads to the accounting lines (CAP-170). The texts also include the comment drawer states \"Comment - optional. Draft is saved.\" and \"Comment - required. Draft is saved.\", which match an optional comment on approve and a required comment on reject. The Workflow history section covers CAP-168: \"Activated by Anna Larsen\", \"Current step / Pending approval\" with approver reasons, \"Approval Initialized\" and \"View skipped steps\". CAP-164 still fits, but only in a minor way. The thumbnail with a paperclip count of 1 is where the user opens the attached documents; the full-screen viewer itself is not shown here. No text aimed at AI tools was found.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3550:13993",
+      "capabilities": [
+        "CAP-153",
+        "CAP-154",
+        "CAP-155",
+        "CAP-163",
+        "CAP-168",
+        "CAP-170"
+      ],
+      "confidence": "High",
+      "evidence": "KLP Pensjon INV-6605 invoice task detail: 264,974.91 NOK for Nordvik Holding AS, 'Voucher lines 2 lines', Approve and Reject, a Comment field and Workflow history. Same template as the other task details."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3550:14309",
+      "capabilities": [
+        "CAP-153",
+        "CAP-154",
+        "CAP-155",
+        "CAP-163",
+        "CAP-168",
+        "CAP-170"
+      ],
+      "confidence": "High",
+      "evidence": "Oslo Kommune INV-4417 invoice task detail: 120,485.31 NOK for Nordvik Group AS, 'Voucher lines 7 lines', Approve and Reject, a Comment field and Workflow history."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3550:11720",
+      "capabilities": [
+        "CAP-153",
+        "CAP-154",
+        "CAP-155",
+        "CAP-163",
+        "CAP-168",
+        "CAP-170"
+      ],
+      "confidence": "High",
+      "evidence": "Aspekta Regnskap AS 12345 invoice task detail: 1,000.00 NOK for Nordvik Logistics AB, 'Voucher lines 1 lines', Approve and Reject, a Comment field and Workflow history."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3550:12872",
+      "capabilities": [
+        "CAP-153",
+        "CAP-154",
+        "CAP-155",
+        "CAP-163",
+        "CAP-168",
+        "CAP-170"
+      ],
+      "confidence": "High",
+      "evidence": "Atea Norge AS INV-9042 invoice task detail: 15,780.00 NOK for Nordvik Retail AS, 'Voucher lines 3 lines', Approve and Reject, a Comment field and Workflow history."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3525:11556",
+      "capabilities": [
+        "CAP-012"
+      ],
+      "confidence": "High",
+      "evidence": "'Sickness Self certification' form with From-to / Full day / Hours / Percent tabs. Full day is selected and shows From/To dates, a total of 7h 30m, a Medical certificate toggle, an optional comment and Save. This is registering an absence."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3525:12088",
+      "capabilities": [
+        "CAP-012"
+      ],
+      "confidence": "High",
+      "evidence": "The same Sickness Self certification registration form with the Hours tab selected. It adds an Hours field (7.5), a total of 7.5 h, the Medical certificate toggle, a comment and Save."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:25512",
+      "capabilities": [
+        "CAP-020"
+      ],
+      "confidence": "High",
+      "evidence": "An action sheet over the Calendar month view reads 'Confirm working hours for today.' and offers Confirm today, Choose another date and Cancel. This is confirming worked time up to a date."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3379:5902",
+      "capabilities": [
+        "CAP-005"
+      ],
+      "confidence": "High",
+      "evidence": "A popover from the calendar's more (...) menu offers Period (Month/Week), Filter view (Hide weekends, Attendance, Absence, Supplement, Roster) and Events style (Icons/Text). This is customizing what the calendar shows."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:24908",
+      "capabilities": [
+        "CAP-001"
+      ],
+      "confidence": "High",
+      "evidence": "A 'Select month' dialog with month and year pickers, Cancel and Done, opened from the 'Apr 2026' dropdown over the Calendar month grid. This is navigating the calendar month by month."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:15799",
+      "capabilities": [
+        "CAP-006",
+        "CAP-012"
+      ],
+      "confidence": "High",
+      "evidence": "A 'Select type' bottom sheet over the Calendar, with a type search, Recently used types (Working hours, Flexitime -/+) and All types (Overtime variants, Care of sick child, Sickness Self certification, Vacation). This is the type-picking step for starting a time or absence registration from the calendar."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:26073",
+      "capabilities": [
+        "CAP-010"
+      ],
+      "confidence": "High",
+      "evidence": "Summary screen reached from the Calendar. It reads 'As of 30/04/26' and has cards for Vacation balance 187 days, Flexitime +4h 9m, Saved overtime 12h 30m, Sickness this year 1 day and Care of sick child 0 days. That is the employee's balances summary opened from the calendar."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:10582",
+      "capabilities": [
+        "CAP-001"
+      ],
+      "confidence": "High",
+      "evidence": "Calendar with the Team tab active and the employee selector set to 'Jonas Berg, Nordvik Group AS'. It shows a Jul 2026 month grid with time, absence and vacation icons and month arrows, so a manager is viewing an employee's calendar month by month (CAP-001 includes VMM). The Team tab, which merges in the manager-only view, is new in the design. (re-checked: The screenshot shows a \"Calendar\" title, a Me/Team segment with Team selected, and an employee picker set to \"Jonas Berg, Nordvik Group AS\". Below them is a Jul 2026 month grid with previous/next arrows, an info icon and day markers: an absence-type icon on the 2nd, timer icons on the 6th to 8th with \"+1\" for overflow, and vacation (palm) icons from the 13th to the 31st. This is CAP-001, View a calendar month by month. Its vmm side is exactly a manager viewing one managed employee's month grid (EmployeeCalendarScreen, my-employees/feed), and the Me tab covers the Employee side, so the capability is the same. What the design changes is the entry point. In vmm the manager reaches one employee's calendar from the HRM employee detail. Here an in-calendar Team tab and employee picker do it. That is a new entry point, not a different capability. The header icons (list, sparkle, pie chart) suggest links to CAP-003 (list/month switch) and to the agent and balances, but this frame does not show their purpose, so they are not added. No day detail sheet is open, so CAP-004 does not apply. A risk for whoever builds this: the vmm my-employees feed currently returns 403 and serves mock data, so the Team view depends on a backend that is not live yet. The texts contain no instruction-shaped content.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:11075",
+      "capabilities": [
+        "CAP-001"
+      ],
+      "confidence": "High",
+      "evidence": "Team calendar with the employee dropdown open. It lists employees with avatars, grouped by company (Nordvik Group AS, Nordvik Logistics AB), so the manager can pick whose month grid to see. Picking an employee from a list overlaps only partly with browsing the employee directory. CAP-124 is the weaker link. (re-checked: The screenshot shows the Calendar with the Team tab selected and the Jul 2026 month grid behind it. The employee dropdown is open, listing people with avatars grouped by company (Nordvik Group AS, Nordvik Logistics AB). The selected person is Jonas Berg, with a checkmark. The dropdown only chooses whose month calendar to show, so it belongs to CAP-001 (view a calendar month by month). That capability covers Manager and Employee, and its description continues with a Manager-specific part. CAP-124 (browse the employee directory) does not fit. That capability means opening the directory, scrolling it, pulling to refresh and tapping a person to open their profile. Here nobody's profile opens; the list just sets the calendar's subject, so I dropped CAP-124. No other capability fits better. CAP-157 is also a person picker, but it sends a task for review. The design texts contain nothing that reads like instructions.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:24245",
+      "capabilities": [
+        "CAP-001"
+      ],
+      "confidence": "Medium",
+      "evidence": "Me calendar with a modal date picker (April 2026, 30 selected, Cancel/Done) opened from the 'Apr 2026' header dropdown. It most plausibly jumps to a month or date in the grid. The alternative is choosing the 'confirm up to' date (CAP-020), because a sibling frame with the same picker is named 'Confirm time'. (re-checked: The frame is named 'Calendar / date picker'. The screenshot shows the Me month grid (Apr 2026) dimmed behind a modal date picker with April 2026, month arrows, the 30th selected and Cancel/Done buttons. Nothing on the frame is about confirming time: there is no 'Confirm time' title, no 'up to' label and no suggested-date text. The picker matches CAP-001's 'month/year picker' for moving around the month grid. CAP-002's 'jump to a date' belongs to the list view, and this frame shows the month grid, so it fits less well. CAP-020 is still possible, because a sibling frame uses the same picker under the name 'Confirm time', so confidence stays Medium. I found no instruction-like text in the frame.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3525:12621",
+      "capabilities": [
+        "CAP-020"
+      ],
+      "confidence": "Medium",
+      "evidence": "The frame name 'Calendar / date picker / Confirm time' points to picking the date up to which worked time is confirmed. The screenshot looks identical to the plain date picker (April 2026, 30 selected, Cancel/Done) and shows no confirm-specific text, so the purpose comes from the name alone. (re-checked: The screenshot shows a date-picker dialog (April 2026, the 30th selected, Cancel and Done) over the Calendar \"Me\" month view. It has no text about confirming, so only the frame name \"Calendar / date picker / Confirm time\" ties it to a purpose. That name fits CAP-020 (\"Confirm worked time up to a date\"). CAP-020's catalog entry says the employee confirms up to a suggested date or a chosen date from the calendar, and this dialog is how a date gets chosen. The 30th is the last day of the month, which matches a suggested \"confirm up to\" date. Other date-picking capabilities don't fit. CAP-193 (pay date) and CAP-034 (order delivery date) are in other areas of the app, and CAP-022 belongs to the Employee Agent. Confidence stays Medium because the picture alone could be the plain calendar month or date picker. No instruction-shaped text was found in the frame.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:15216",
+      "capabilities": [
+        "CAP-004",
+        "CAP-006"
+      ],
+      "confidence": "High",
+      "evidence": "Bottom sheet for the selected range 23/04/26 - 24/04/26. It lists the entries (Vacation, Awaiting approval; Working hours, 8h) and has a 'Register event for range' button. This matches the dragged-day-range start for a registration and the day-detail entries list."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:14075",
+      "capabilities": [
+        "CAP-004",
+        "CAP-006"
+      ],
+      "confidence": "High",
+      "evidence": "Day sheet for 'Thu, 23 Apr' over the month grid. It lists that day's entries with title and status (Vacation, Awaiting approval; Working hours, 8h) and has a 'Register event' button that starts a registration from the day detail."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:14658",
+      "capabilities": [
+        "CAP-006",
+        "CAP-004"
+      ],
+      "confidence": "High",
+      "evidence": "Tapping the empty day Thu, 2 Apr (highlighted in the grid) opens a sheet with no entries and a 'Register event' button. This is starting a registration from a tapped empty day, shown as the empty state of the day-detail sheet."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:11635",
+      "capabilities": [
+        "CAP-002",
+        "CAP-003",
+        "CAP-006",
+        "CAP-067"
+      ],
+      "confidence": "High",
+      "evidence": "'Calendar / list view': a chronological list grouped by month (April 2026, February 2026) of entries such as Working hours 7h 30m, Flexitime +, Sickness Self certification, and Vacation 'Awaiting approval' with dates. The header has a list/grid view toggle (CAP-003). A '+' FAB starts a registration (CAP-006). The bottom tab bar has Start/Expense/Approval/HRM/BNXT/More (CAP-067). The Me/Team segment points to a team calendar that no legacy capability covers."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:12635",
+      "capabilities": [
+        "CAP-004",
+        "CAP-020",
+        "CAP-006",
+        "CAP-001"
+      ],
+      "confidence": "High",
+      "evidence": "'Calendar / today / time confirmation': a month grid (Apr 2026) with a day sheet 'Thu, 30 Apr'. The sheet shows the warning 'You haven't registered any working hours.', a Working hours 8h entry, and the buttons 'Confirm time' (CAP-020) and 'Register event' (CAP-006). The day-details sheet is CAP-004 and the month grid behind it is CAP-001."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:12339",
+      "capabilities": [
+        "CAP-001",
+        "CAP-003",
+        "CAP-006",
+        "CAP-067"
+      ],
+      "confidence": "Medium",
+      "evidence": "'Calendar / week grid': a period grid for '27 Apr – 3 May, Week 18' with prev/next arrows and a period picker chevron, showing a time-entry icon on each day. Legacy has only month and list views (CAP-001/CAP-003), so this week granularity looks like a new view variant. It has a '+' FAB (CAP-006) and the tab bar (CAP-067). (re-checked: The link holds. The screenshot shows the Calendar area in a week grid for \"27 Apr – 3 May, Week 18\". It has prev/next arrows and a period-picker chevron, and each day carries a time-entry (stopwatch) icon. This is a period-navigable view of calendar entries. Legacy CAP-001 does the same thing month by month, so the week granularity is a new variant of CAP-001, not a separate legacy capability. CAP-003 fits because the header has a list icon that switches the view, the same toggle legacy has between list and grid. CAP-006 fits because of the \"+\" FAB, and CAP-067 because of the bottom tab bar (Start, Expense, Approval, HRM, BNXT, More). The me/team toggle may also point to the manager's team calendar, which is part of CAP-001. The header's sparkle and pie-chart icons may lead to an assistant and to balances (CAP-010), but nothing on this frame confirms that, so I left them out. Confidence stays Medium because a week grid does not exist in legacy and may be partly new. CAP-212 (the unreachable week-timeline prototype) is not a better fit. The frame contains no instruction-shaped text.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:21858",
+      "capabilities": [
+        "CAP-012"
+      ],
+      "confidence": "High",
+      "evidence": "'Sickness / From-to': a 'Sickness Self certification' registration form with tabs From-to / Full day / Hours / Percent, From/To dates, From/To time 08:00–16:00, Total 8h 0m, a Medical certificate toggle, an optional comment, and Save. This matches the CAP-012 form with dates and full/partial day or definite time."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:22470",
+      "capabilities": [
+        "CAP-012"
+      ],
+      "confidence": "High",
+      "evidence": "'Sickness / Percent': the same Sickness Self certification form with the Percent tab selected. It has From/To dates, Percent 100, Total 100 %, a Medical certificate toggle, a comment, and Save."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:23077",
+      "capabilities": [
+        "CAP-012"
+      ],
+      "confidence": "High",
+      "evidence": "'Vacation / registration': a Vacation form with From/To dates 30/04/26, an optional comment, and Save. It shows an inline balance hint 'You have 187 vacation days available', which is related to CAP-010 balances but is not the balances summary itself."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:16472",
+      "capabilities": [
+        "CAP-012",
+        "CAP-013"
+      ],
+      "confidence": "High",
+      "evidence": "'Working hours / From-to': a Working hours registration form with tabs From-to / Full day / Hours, From/To dates and times 08:00–16:00, Total 8h 0m, dimension rows Test1/Test2/test3 with 'Select unit' (cost-unit picking, CAP-013), a comment, and Save."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:20629",
+      "capabilities": [
+        "CAP-012",
+        "CAP-013"
+      ],
+      "confidence": "High",
+      "evidence": "'Working hours / Full day': the Working hours form with the Full day tab selected. It has a From date, Total 7h 30m, dimension rows Test1/Test2/test3 with 'Select unit' (CAP-013), a comment, and Save."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:21241",
+      "capabilities": [
+        "CAP-012",
+        "CAP-013"
+      ],
+      "confidence": "High",
+      "evidence": "Screenshot titled 'Working hours' with From-to / Full day / Hours segments, From date 30/04/26, Hours 7.5, Total 7.5 h, three dimension rows (Test1/Test2/test3, 'Select unit'), optional comment and Save. This is a time registration form with cost-unit dimension pickers. The frame's texts list only the parent Calendar grid (Calendar, Me, Team, Apr 2026), which places the form in the flow started from the calendar."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:23660",
+      "capabilities": [
+        "CAP-013"
+      ],
+      "confidence": "High",
+      "evidence": "Screenshot titled 'Test1' with a search field and dimension values ((empty), Sales, Engineering, Marketing, Finance, Operations). The frame name is 'Working hours / Test1 unit picker', so this is where the user picks a cost-unit dimension value for a registration."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:5400",
+      "capabilities": [
+        "CAP-271",
+        "CAP-270",
+        "CAP-256",
+        "CAP-257"
+      ],
+      "confidence": "High",
+      "evidence": "'Add allowance (2/2)' with Hotel name and address (search icon, Scandic Oslo City), Hotel stay from dates, 'Remove hotel', '+ Add more hotels'. It also shows the meal and lodging allowances with the calculated total (1,409.00 NOK minus a 202.00 NOK meal deduction gives 1,207.00 NOK), plus 'Add to claim' and 'Send for approval' buttons."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:5131",
+      "capabilities": [
+        "CAP-269"
+      ],
+      "confidence": "High",
+      "evidence": "'Add allowance (1/2)' with two travel legs (Travel start/end, Country Norge, Allowance type Diettgodtgjørelse / Privat opphold), 'Remove travel', '+ Travel to more places' and Next. This is the first step of registering a per diem with several legs."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:19917",
+      "capabilities": [
+        "CAP-269"
+      ],
+      "confidence": "High",
+      "evidence": "An 'All countries' search sheet (Afghanistan, Albania and so on) over 'Add allowance (1/2)'. The user picks the travel country for the allowance."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:2208",
+      "capabilities": [
+        "CAP-270",
+        "CAP-256",
+        "CAP-257"
+      ],
+      "confidence": "High",
+      "evidence": "'Add allowance (2/2)', 'Select allowances' with All days / Single days, Breakfast/Lunch/Dinner checkboxes with meals deducted, a Lodging picker (Hybel med kokemuligheter), Night allowance and the calculated total. 'Add to claim' and 'Send for approval' buttons sit below."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:19033",
+      "capabilities": [
+        "CAP-269",
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "'Add allowance (1/2)' with an Allowance type dropdown open (Ingen diett, Privat opphold, Diettgodtgjørelse checked). The form also shows Purpose of travel and 'Cost allocation · Assign cost units'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:19642",
+      "capabilities": [
+        "CAP-269"
+      ],
+      "confidence": "High",
+      "evidence": "A 'Select Country' sheet with search, 'Frequently used' (Norge checked), All and Other over 'Add allowance (1/2)'. The user picks the travel country for the allowance leg."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:3020",
+      "capabilities": [
+        "CAP-271"
+      ],
+      "confidence": "High",
+      "evidence": "'Allowance · Hotel details' at step 2 of 'Add allowance (2/2)'. Each hotel card has 'Hotel name and address' with a search icon and 'Hotel stay from' dates (20/04/26, 21/04/26). There are 'Remove hotel' and '+ Add more hotels' actions, so this is the hotel-stay recording part of the allowance."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:3020",
+      "capabilities": [
+        "CAP-271",
+        "CAP-270",
+        "CAP-256",
+        "CAP-257"
+      ],
+      "confidence": "High",
+      "evidence": "The same step-2 screen shows the calculated allowance summary (Allowance 1,409.00 NOK, Meal deduction (x1) -202.00 NOK, Total allowance 1,207.00 NOK). It also has the buttons 'Add to claim' and 'Send for approval', which are the save-to-claim and send-a-single-item actions on the allowance form. (re-checked: The claimed links are correct, but the list leaves out the screen's main purpose. The frame is called 'Allowance · Hotel details'. In the screenshot, step 2 of 'Add allowance (2/2)' is scrolled to the hotel-stay cards: 'Hotel name and address' with a search icon (filled with Scandic Oslo City), 'Hotel stay from' 20/04/26 and 21/04/26, 'Remove hotel' and 'Add more hotels'. That is CAP-271 (record hotel stays for an allowance and find the hotel), so I added it as the main capability. The other claimed links still hold. CAP-270 fits because the frame's texts include the meal and lodging selectors (Breakfast, Lunch, Dinner, Lodging, Hotell, Night allowance, All days or Single days). It also shows the calculated summary: Allowance 1,409.00 NOK, Meal deduction (x1) -202.00 NOK, Total allowance 1,207.00 NOK. CAP-256 fits through the 'Add to claim' button, and CAP-257 through the 'Send for approval' button. No instruction-shaped text was found.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:3331",
+      "capabilities": [
+        "CAP-271"
+      ],
+      "confidence": "High",
+      "evidence": "A 'Hotel search' bottom sheet over Add allowance (2/2), with a search field and a 'Recently used' list (Scandic Oslo City, Radisson Blu Plaza Hotel, The Thief). Each recent hotel has a remove (x) icon, which matches 'pick from recently used hotels, which they can remove'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:3705",
+      "capabilities": [
+        "CAP-271"
+      ],
+      "confidence": "High",
+      "evidence": "The 'Hotel search' sheet with the query 'Scandic' and 'Search results for \"Scandic\"' listing hotels with addresses and location pins. This is finding the hotel for a hotel stay by search."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:4070",
+      "capabilities": [
+        "CAP-272"
+      ],
+      "confidence": "High",
+      "evidence": "An 'Allowances' help sheet over the allowance step 2, with the sections 'What is allowance' and 'Company policy' (\"Understanding your company's travel policy... Contact your admin\"). This is the allowance explanation and policy help sheet."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:2740",
+      "capabilities": [
+        "CAP-270"
+      ],
+      "confidence": "High",
+      "evidence": "'Allowance · Lodging menu': step 2 with 'All days' selected, Breakfast/Lunch/Dinner checkboxes with meal-deduction counts, and an open Lodging dropdown (Brakke eller pensjonat/hybel, Hotell, Hybel (med kokemuligheter) checked, Privat innlosjering, Reise om natten). It sits above the calculated allowance totals."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:2740",
+      "capabilities": [
+        "CAP-270",
+        "CAP-256",
+        "CAP-257"
+      ],
+      "confidence": "High",
+      "evidence": "The 'Add to claim' and 'Send for approval' buttons are visible below the dropdown on the allowance form. (re-checked: The claim misses the screen's main purpose. The frame is called 'Allowance · Lodging menu' and shows step 2 of 2 of adding an allowance. It has the All days / Single days toggle, meal checkboxes with deduction counts (Breakfast, Lunch, Dinner) and an open Lodging dropdown with five lodging types (Brakke/pensjonat, Hotell, Hybel med kokemuligheter, Privat innlosjering, Reise om natten). It also shows the calculated Allowance 1,409.00, Meal deduction -202.00 and Total 1,207.00 NOK. All of this is CAP-270 (set meals and lodging per travel day and see the calculated allowance), so CAP-270 should be the primary link. CAP-256 (add to claim from the form) and CAP-257 (send a single expense for approval) are also served, because the 'Add to claim' and 'Send for approval' buttons appear in the texts and in the screenshot. They are secondary actions in this state, so they stay on the list after CAP-270. No instruction-shaped text found.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:18765",
+      "capabilities": [
+        "CAP-269"
+      ],
+      "confidence": "High",
+      "evidence": "'Add allowance (1/2)' with Purpose of travel and several travel segments. Each segment has Travel start/end date-times, Country (Norge) and Allowance type (Diettgodtgjørelse, Privat opphold), plus 'Remove travel', '+ Travel to more places' and 'Next'. This is the first step of registering an allowance with more than one travel leg."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:18765",
+      "capabilities": [
+        "CAP-269",
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "There is a 'Cost allocation · Assign cost units' row on the allowance form. It is an entry point only; the picker is not shown. (re-checked: The claim is incomplete. The frame is called \"Allowance · Multiple travel legs\" and its title is \"Add allowance (1/2)\". It is step 1 of the per-diem form: purpose of travel, then several travel segments, each with travel start/end, country and allowance type (Diettgodtgjørelse, Privat opphold). It also has \"Remove travel\", \"+ Travel to more places\" and Next. That matches CAP-269 (register a travel allowance with one or more travel segments, then continue to the per-day step), so CAP-269 is the main capability and should be listed first. CAP-263 still holds as a secondary link, because the \"Cost allocation · Assign cost units\" row is the entry point to cost-unit assignment for the allowance, but the picker itself is not shown. CAP-270 (meals and lodging per day) is step 2 and is not on this frame. The design texts contain no instruction-shaped content.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:1945",
+      "capabilities": [
+        "CAP-269"
+      ],
+      "confidence": "High",
+      "evidence": "An 'Other' country picker sheet over 'Add allowance (1/2)', with Search and the options 'No country (default rates)', 'International waters' and 'In transit'. This is choosing the destination country of an allowance travel segment."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:2465",
+      "capabilities": [
+        "CAP-270"
+      ],
+      "confidence": "High",
+      "evidence": "'Allowance · Single days': step 2 with the 'Single days' tab active, a per-day timeline (07:00 29 Apr to 07:00 30 Apr), Breakfast/Lunch/Dinner toggles and Lodging (Hybel). The calculated Allowance is 1,861.00 NOK, Meal deduction -202.00, Total 1,659.00 NOK, so this is setting meals and lodging per day."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:2465",
+      "capabilities": [
+        "CAP-270",
+        "CAP-256",
+        "CAP-257"
+      ],
+      "confidence": "High",
+      "evidence": "The 'Add to claim' and 'Send for approval' buttons are on the allowance form. (re-checked: This is step 2 of 2 of \"Add allowance\", with the \"Single days\" tab selected. On the 29 Apr 07:00 to 30 Apr 07:00 day you can switch Breakfast, Lunch and Dinner on or off and pick a Lodging type (\"Hybel (med kokemuligheter)\"). Below that is a calculated breakdown: Allowance 1,861.00 NOK, Meal deduction (x1) -202.00 NOK, Total allowance 1,659.00 NOK. That is almost word for word CAP-270 (set meals and lodging per travel day, all days or per day, and see the calculated total and meal deduction), so CAP-270 is the main capability and was missing from the claim. The claimed CAP-256 and CAP-257 still fit: the \"Add to claim\" and \"Send for approval\" buttons at the bottom of the allowance form match those two capabilities. The corrected list adds CAP-270 first. No instruction-like text was found in the screen's texts.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:19276",
+      "capabilities": [
+        "CAP-269",
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "'Add allowance (1/2)' form showing Purpose of travel, Travel start/end, Country Norge, Allowance type Diettgodtgjørelse, 'Travel to more places'. A 'Travel start' date-and-time picker sheet is open (April 2026, Time 07:00, 'Select Travel start'). The Cost allocation row reads 'Assign cost units'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:16701",
+      "capabilities": [
+        "CAP-269",
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "Step 1 of 2 of the 'Add allowance' per diem form: purpose, travel start/end, country, allowance type (Diettgodtgjørelse), 'Travel to more places' and 'Next'. Its Cost allocation row reads 'Assign cost units'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:15431",
+      "capabilities": [
+        "CAP-258",
+        "CAP-028"
+      ],
+      "confidence": "High",
+      "evidence": "Detail of the 'Team workshop Bergen' claim: 'Approved by Gediminas Montrimas', Claim ID 4723862, description and comment, 'INCLUDED IN THIS CLAIM' items and Total 8 905,00 NOK. This is the approved state of the claim detail, reached from the claims list that shows each claim's status."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:15187",
+      "capabilities": [
+        "CAP-258",
+        "CAP-081"
+      ],
+      "confidence": "High",
+      "evidence": "Detail of the 'Conference Stockholm' claim showing 'Awaiting approval' and 'Pending approver review', with the included items and Total 12 480,00 NOK. It is read-only, and the screenshot shows no withdraw action."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:1960",
+      "capabilities": [
+        "CAP-258",
+        "CAP-261"
+      ],
+      "confidence": "High",
+      "evidence": "Detail of the 'Cancelled trip Lillehammer' claim showing a 'Canceled' badge and 'Approval flow was cancelled', one airline-ticket item ('Refund pending') and its total. There is a trash icon in the header."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:16188",
+      "capabilities": [
+        "CAP-253",
+        "CAP-254",
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "'Create new claim' form with 'Description of the travel claim', 'Comment (optional)', Cost allocation 'Assign cost units' and a MILEAGES section holding a 457.05 KM mileage. The note reads 'The total amount will be calculated once the expenses have been added to a claim'. Buttons are 'Save for later' and 'Send for approval'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:1720",
+      "capabilities": [
+        "CAP-258",
+        "CAP-261"
+      ],
+      "confidence": "High",
+      "evidence": "Detail of the 'Client visit Tromsø' claim with a red banner 'Declined by Gediminas Montrimas' and the reason 'Receipt for hotel is missing. Please attach it and resubmit.', a 'Declined' badge, the items and Total 3 200,00 NOK. There is a trash icon in the header."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:2174",
+      "capabilities": [
+        "CAP-259",
+        "CAP-255",
+        "CAP-262"
+      ],
+      "confidence": "High",
+      "evidence": "'Editing claim' in the 'Not sent' state ('Draft — not yet submitted'), with an editable Claim description ('Q1 customer visits') and 'Add a comment'. It lists the included items (mileage 'Drive to Stavanger', Taxi, Meal) and has a '+ Add expense or mileage' button and a confirm checkmark."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:14927",
+      "capabilities": [
+        "CAP-258",
+        "CAP-254",
+        "CAP-259",
+        "CAP-261",
+        "CAP-262"
+      ],
+      "confidence": "High",
+      "evidence": "'Claim · Not-Sent' claim detail: 'Not sent' status with 'Draft — not yet submitted', 'Claim description' and 'Comment (optional)' fields, an 'INCLUDED IN THIS CLAIM' list (mileage, taxi, meal) with a total of 4 250,00 NOK, and a 'Send for approval' button. The header has a delete (trash) and an edit (pencil) button, which serve deleting the claim and editing its title and comment. The tappable item rows point to opening an item inside the claim (CAP-262)."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:14670",
+      "capabilities": [
+        "CAP-028",
+        "CAP-241",
+        "CAP-252"
+      ],
+      "confidence": "High",
+      "evidence": "'Claims · List' with the Claims segment selected, grouped under year '2026', showing claims with Not sent, Awaiting approval, Approved, Declined and Canceled status chips. No filter chips are visible. The 'Add new…' button and the 'Send 6 expenses' button are carried over from the shared inbox footer (start a new expense, send selected expenses to a claim)."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:9144",
+      "capabilities": [
+        "CAP-241",
+        "CAP-240"
+      ],
+      "confidence": "High",
+      "evidence": "'Expense · Add new menu' is an action sheet over the Expense inbox titled 'What do you want to add?' with 'Add new receipt', 'Add new mileage' and 'Add new allowance', which matches CAP-241's add menu exactly. Behind it is the blurred inbox list of unsent expenses with checkboxes and 'Unselect all'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:3323",
+      "capabilities": [
+        "CAP-266",
+        "CAP-265",
+        "CAP-256",
+        "CAP-257"
+      ],
+      "confidence": "High",
+      "evidence": "'Mileage · Calculated route' is the 'Add mileage' form with a map showing a drawn route to Bergen, 'Distance (km) 457.05' filled in and 'Route Karenslyst Allé 56, Høvik - Bergen, Norway'. Below are the mileage fields and the 'Add to claim' and 'Send for approval' actions."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:15681",
+      "capabilities": [
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "'Mileage · Cost allocation' screen titled 'Cost allocation' that lists dimensions (Test1, Test2, test3), each with 'Select unit' and a chevron, plus a 'Done' text. It is reached from the mileage form's 'Assign cost units' row."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:3896",
+      "capabilities": [
+        "CAP-265",
+        "CAP-267"
+      ],
+      "confidence": "Medium",
+      "evidence": "'Mileage · Fuel menu' is the 'Add mileage' form with the Fuel dropdown open (Bensin, Diesel, Elektrisk checked, Ladbar hybrid, Hydrogen). The fuel choice sits in the same group as Toll, Rush hour and Auto pass, which feed the road-toll calculation. A preselected fuel suggests remembered defaults, but nothing on the screen confirms that. (re-checked: The screenshot shows the 'Add mileage' form with the Fuel dropdown open: Bensin, Diesel, Elektrisk (checked), Ladbar hybrid and Hydrogen. Picking the fuel type is part of filling in a mileage, so CAP-265 (log a mileage, which covers vehicle and fuel type) fits clearly. Fuel sits in the same card as Toll, Rush hour and Auto pass. Those are the exact inputs CAP-267 says it sends to the automatic road-toll calculation, so CAP-267 is a plausible second fit, though the screen does not show a toll amount being calculated. I removed CAP-268 (remember my mileage defaults). A checked value in a menu is ordinary selection state, and nothing on the screen says it came from a remembered default. The claim itself said so. No instruction-shaped text was found in the frame texts.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:2429",
+      "capabilities": [
+        "CAP-265",
+        "CAP-266",
+        "CAP-256",
+        "CAP-257"
+      ],
+      "confidence": "High",
+      "evidence": "'Mileage · New mileage' is an empty 'Add mileage' form with an entry point 'Calculate distance (optional)', the fields Date, Type (Bil), Distance (km), Route, Purpose / event, Purpose with detour and Toll, and the 'Add to claim' and 'Send for approval' buttons."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:3595",
+      "capabilities": [
+        "CAP-265",
+        "CAP-267",
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "'Mileage · Other details expanded' is the 'Add mileage' form scrolled to Fuel (Elektrisk), the Rush hour and Auto pass toggles, 'Cost allocation · Assign cost units', and the expanded 'Other' section with Passenger name, Forest / construction road (km), Trailer (km) and Heavy load (km). These are the template-driven mileage fields."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:3102",
+      "capabilities": [
+        "CAP-266"
+      ],
+      "confidence": "High",
+      "evidence": "'Add mileage' form shows a 'Route overview' with a map and the driven route, start 'Karenslyst Allé 56, Høvik', destination 'Bergen, Norway', 'Add destination', 'Edit' and a 'Return trip' toggle. This is route planning with stops and a return trip."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:3102",
+      "capabilities": [
+        "CAP-256",
+        "CAP-257"
+      ],
+      "confidence": "High",
+      "evidence": "The mileage form's footer has the actions 'Add to claim' and 'Send for approval'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:2916",
+      "capabilities": [
+        "CAP-266"
+      ],
+      "confidence": "High",
+      "evidence": "'Select starting point' with a search bar and a full map with a pin. This is picking the mileage start point by tapping the map, part of route planning."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:2705",
+      "capabilities": [
+        "CAP-266"
+      ],
+      "confidence": "High",
+      "evidence": "'Select starting point' with Search, 'View map' and a 'Frequently Used' list of recent places (Karenslyst Allé 56, Høvik; Bergen, Norway). This is setting the start point by address search or recent places."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3378:2705",
+      "capabilities": [
+        "CAP-266"
+      ],
+      "confidence": "High",
+      "evidence": "The texts contain 'Automatically calculate road t…' (road tolls), which is not visible in the screenshot. It may be a hidden toggle on this picker. (re-checked: The frame is \"Mileage · Starting point\". The screenshot shows a \"Select starting point\" picker with a Search field, a \"View map\" option and a \"Frequently Used\" list of recent places (Karenslyst Allé 56, Høvik and Bergen, Norway). This matches CAP-266 (Plan a mileage route and calculate its distance), which describes setting a start point by address search, map tap, current location or recent places. The claimed CAP-267 (road tolls) rests only on a truncated text layer, \"Automatically calculate road t…\", that is not visible in the screenshot. It is most likely a hidden or leftover layer from the mileage form, and nothing on this picker computes or shows a toll. So I replaced CAP-267 with CAP-266. Road-toll calculation belongs to the mileage form or route frames, not this one. The Figma texts contain no instruction-shaped content.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:4662",
+      "capabilities": [
+        "CAP-265"
+      ],
+      "confidence": "High",
+      "evidence": "'Add mileage' form with Date, Type 'Bil', Distance (km), Route, 'Purpose / event' and 'Purpose with detour'. These are the fields of the mileage template."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:4662",
+      "capabilities": [
+        "CAP-267"
+      ],
+      "confidence": "High",
+      "evidence": "A Toll section with Toll, Fuel 'Elektrisk', and 'Rush hour' and 'Auto pass' toggles. These are the inputs to the automatic road-toll calculation. The frame name is 'Toll and reimbursement options'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:4662",
+      "capabilities": [
+        "CAP-263",
+        "CAP-256",
+        "CAP-257"
+      ],
+      "confidence": "High",
+      "evidence": "A 'Cost allocation - Assign cost units' row, plus the 'Add to claim' and 'Send for approval' buttons."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:4662",
+      "capabilities": [
+        "CAP-267",
+        "CAP-265",
+        "CAP-256",
+        "CAP-257",
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "The texts contain 'Calculate distance (optional)' next to Distance (km). Distance calculation is mainly CAP-266, but it may also match the iOS kilometre-receipt distance calculation. (re-checked: CAP-247 is the wrong link. CAP-247 covers the distance calculator on an iOS kilometre *receipt*, but this screen is the \"Add mileage\" form. The frame is titled \"Mileage · Toll and reimbursement options\", and the screenshot shows the form scrolled to a Toll field, Fuel (Elektrisk), Rush hour and Auto pass toggles. Those are exactly the inputs CAP-267 sends to calculate road tolls automatically (\"fuel type, rush-hour and AutoPASS settings\"), so CAP-267 is the main capability this screen serves. The rest of the mileage form also shows: Date, Type (Bil), Distance (km), Route and Purpose / event map to CAP-265 (log a mileage). Cost allocation with \"Assign cost units\" maps to CAP-263. \"Add to claim\" maps to CAP-256 and \"Send for approval\" maps to CAP-257. The texts include \"Calculate distance (optional)\", which touches CAP-266 (plan a mileage route and calculate its distance), but that control sits off-screen above this scrolled state and is not this frame's focus, so I left CAP-266 out. Nothing points to CAP-247. The Figma texts contain no instruction-shaped text.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:4662",
+      "capabilities": [
+        "CAP-267",
+        "CAP-265"
+      ],
+      "confidence": "Medium",
+      "evidence": "Fuel, Rush hour and Auto pass are already filled in and switched on. This could be the remembered mileage defaults, but nothing on screen says so. (re-checked: The frame is called 'Mileage · Toll and reimbursement options'. It shows the Add mileage form scrolled to a Toll group with Fuel (Elektrisk), Rush hour and Auto pass. Those are exactly the inputs CAP-267 sends to calculate road tolls automatically (route plus fuel type, rush-hour and AutoPASS settings). The rest of the form (Purpose / event, Route, Cost allocation, Other) is the mileage form from CAP-265. CAP-268 (remember my mileage defaults) is the weaker fit. Nothing on screen shows that these values came from earlier choices, and the toggles could simply be what the user just set. So I am replacing CAP-268 with CAP-267, plus CAP-265 for the form. The 'Add to claim' (CAP-256) and 'Send for approval' (CAP-257) buttons are shared by every state of the form and are not what this frame is about. I chose Medium because the 'Toll' row shows no calculated amount yet, so the frame could also just be showing the manual toll options. I found no instruction-shaped text.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:7361",
+      "capabilities": [
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "'Cost allocation' screen listing dimensions (Third dimension, Mountains, Second dimension, SEK), each with 'Select unit', plus a Done button. The section is Receipt within Expense."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:7805",
+      "capabilities": [
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "A 'Select cost unit' bottom sheet over Cost allocation, with Search, 'Frequently used' and 'All cost units' ((blank), '123 - 3D'). This is the searchable dimension-value picker for an expense."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:8047",
+      "capabilities": [
+        "CAP-248",
+        "CAP-249"
+      ],
+      "confidence": "High",
+      "evidence": "An 'Attachments' sheet over the Receipt form, showing 'Attachment 1' with download and delete icons and an 'Add more' button."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:8047",
+      "capabilities": [
+        "CAP-248",
+        "CAP-249"
+      ],
+      "confidence": "High",
+      "evidence": "Behind the sheet is the receipt form: Expense type, 'Amount (valgfritt)' 0,00 DKK, 'Local amount (NOK)' at rate 1 DKK = 1,575427, Date, Purpose, Cost allocation, 'Expense abroad', 'Paid by company' and 'Save expense'. The frame's focus is the attachments sheet. (re-checked: The claimed link is wrong, but a better one exists. The screenshot is mostly an 'Attachments' bottom sheet over a dimmed receipt form. The sheet lists 'Attachment 1' with a thumbnail, a download icon and a trash icon, and has an 'Add more' button. That matches CAP-248 (add or remove attachments on an expense from its attachments sheet: add more files, remove one after confirming) and CAP-249 (view or download an expense attachment). The receipt form fields behind the sheet (Expense type, Amount, Local amount at a DKK rate, Save expense) are context the frame inherits, not what it is about. So CAP-245 and CAP-246 belong to the base receipt-form frames, not this one. The code snippet in the image is decorative placeholder content and contains no instructions aimed at AI tools.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:9478",
+      "capabilities": [
+        "CAP-242"
+      ],
+      "confidence": "High",
+      "evidence": "A camera viewfinder framing a 'CAFÉ AURORA' receipt, with Cancel, an 'Automatic' (auto-capture) toggle, a shutter button, a gallery/import icon and a flash icon."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:9478",
+      "capabilities": [
+        "CAP-242"
+      ],
+      "confidence": "High",
+      "evidence": "The 'Automatic' mode could mean automatic detection or auto-fill. Auto-filling the receipt happens after capture, so this frame does not show it. (re-checked: The claimed link to CAP-244 (auto-fill from the receipt image) is wrong. Auto-fill happens after the photo is taken, and this frame shows nothing of it: no pre-filled fields and no suggested expense type. The frame is the receipt camera viewfinder, titled 'Receipt · Camera'. It has a Cancel button, an 'Automatic' mode toggle, corner markers framing a receipt, a shutter button, a gallery/import icon at bottom left and a flash icon at bottom right. That matches CAP-242 exactly: photograph a receipt with automatic edge detection and flash, or pick an image or PDF from the device. The expense list texts in the data (Claims, 'Send 6 expenses') come from the screen underneath. No instruction-shaped text was found.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:13419",
+      "capabilities": [
+        "CAP-242"
+      ],
+      "confidence": "High",
+      "evidence": "Frame 'Receipt · Crop document' shows an 'Edit Crop' screen with Back, a confirm check, and four corner handles over a captured document. This is the cropping step of receipt capture. The underlying texts belong to the receipt form layer, which is not visible here."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:13080",
+      "capabilities": [
+        "CAP-242"
+      ],
+      "confidence": "High",
+      "evidence": "Frame 'Receipt · Crop photo' shows the same 'Edit Crop' screen with corner handles over a camera photo. This is the photo-crop step of receipt capture."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:14353",
+      "capabilities": [
+        "CAP-248"
+      ],
+      "confidence": "Medium",
+      "evidence": "Frame 'Receipt · Delete attachment' shows the receipt form dimmed behind a 'Delete' action sheet. The name points to removing an attachment (CAP-248). The one alternative is deleting the whole unsent expense (CAP-251), because the sheet shows no wording about attachments. (re-checked: The screenshot shows the 'Receipt' form dimmed (Expense type, Amount (valgfritt) 0,00 DKK, Date, Purpose, Cost allocation, Save expense). A single 'Delete' context menu sits just under the attachment preview at the top, and a paperclip attachment button is in the header. The preview is a placeholder image of code ('submitExpense', api.post '/expenses'), which is data and not instructions. The frame is named 'Receipt · Delete attachment', and the menu is anchored to the attachment preview rather than to a screen-level action, so it fits CAP-248 (remove an attachment after confirming). The alternative is CAP-251 (delete an unsent expense), because the menu itself never mentions attachments. But CAP-251 is described as deleting from the inbox or detail screen, not as a small menu on the preview image. Confidence stays Medium because the menu wording is generic.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:7565",
+      "capabilities": [
+        "CAP-263"
+      ],
+      "confidence": "High",
+      "evidence": "'Cost allocation' screen listing dimensions (Third dimension, Mountains, Second dimension, SEK), each with 'Select unit'. Over it is a 'Select cost unit' bottom sheet with Search, a 'Frequently used' section (123 - 3D) and 'All cost units'. The Expense tab is active."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:12338",
+      "capabilities": [
+        "CAP-248",
+        "CAP-249"
+      ],
+      "confidence": "High",
+      "evidence": "An 'Attachments' bottom sheet over the Receipt form lists Attachment 1-3 (two images and one document). Each has a download icon and a trash icon, and there is an 'Add more' button. Adding and removing is CAP-248; downloading is CAP-249."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:9863",
+      "capabilities": [
+        "CAP-245",
+        "CAP-246"
+      ],
+      "confidence": "High",
+      "evidence": "'Receipt' form with the receipt image at the top, an attachment icon and a confirm check. Fields: Expense type, Amount (valgfritt) 0,00 DKK, Local amount (NOK) at rate 1 DKK = 1,575427, Date, Purpose and Cost allocation, plus a 'Save expense' button. The foreign-currency amount with a converted local amount is CAP-246."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3377:4348",
+      "capabilities": [
+        "CAP-245",
+        "CAP-263",
+        "CAP-246"
+      ],
+      "confidence": "High",
+      "evidence": "The receipt form scrolled down to show Local amount (NOK) at rate 1,575427, Date, Purpose, a 'Cost allocation - Sett kostnadsbærere' row, the toggles 'Expense abroad' and 'Paid by company', and 'Save expense'. The cost allocation row is the entry point to CAP-263."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:13755",
+      "capabilities": [
+        "CAP-249"
+      ],
+      "confidence": "High",
+      "evidence": "An alert over the Receipt form reads 'Receipt image has been saved to Photos.' with a Close button. This is the confirmation after saving a receipt attachment to the device."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:10631",
+      "capabilities": [
+        "CAP-246"
+      ],
+      "confidence": "High",
+      "evidence": "'Select currency' bottom sheet over the Receipt form, with search and an ISO currency list (DKK ticked). The form texts show 'Amount ... DKK', 'Local amount (NOK)' and the rate '1 DKK = 1,575427', which is the foreign-currency and exchange-rate flow."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:10176",
+      "capabilities": [
+        "CAP-245"
+      ],
+      "confidence": "High",
+      "evidence": "'Select expense type' bottom sheet over the Receipt form, with search and 'All expense types' (Accommodation, Airline tickets, Bus, Car rental, Fuel...). Picking the expense type is part of filling in a receipt from its template."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:12755",
+      "capabilities": [
+        "CAP-242",
+        "CAP-248"
+      ],
+      "confidence": "Medium",
+      "evidence": "Action sheet 'Do you want to upload a receipt?' with 'Choose from Image Gallery' and 'Browse documents' over the Receipt form, which has an attachment (paperclip) icon. This is importing an image or PDF (CAP-242). It may instead be adding an attachment to an existing receipt (CAP-248). (re-checked: The screenshot shows an iOS-style action sheet titled 'Do you want to upload a receipt?'. Its options are 'Choose from Image Gallery', 'Browse documents' and 'Cancel'. It sits over an open Receipt form (Expense type, Amount, DKK/NOK rate, Purpose, Cost allocation, Save expense), and the paperclip icon in the header looks like what opened it. Picking an image or a PDF from the device is exactly the import half of CAP-242 ('picks an image or PDF from the device, to start a receipt or add an attachment'), so that link holds. The sheet opens from the paperclip on a receipt that already exists, so CAP-248 (adding more files to an expense) also fits as the surrounding outcome. I cannot tell from the frame alone which of the two is primary, so confidence stays Medium. No other capability fits better. CAP-243 is sharing from another app, and CAP-245 is the form itself, which here is only the backdrop. The code snippet in the texts is placeholder art on the receipt preview, not instruction-shaped content.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:15878",
+      "capabilities": [
+        "CAP-256",
+        "CAP-253"
+      ],
+      "confidence": "High",
+      "evidence": "'Add expenses to' sheet opened from the 'Add mileage' form. It lists existing claims by year ('Claim October 4 217,00', 'November claim 4 255,80') and has a 'New claim' button. This is saving the item to a picked claim from its form. The 'New claim' button points to creating a new claim."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:6950",
+      "capabilities": [
+        "CAP-245"
+      ],
+      "confidence": "High",
+      "evidence": "Calendar date picker (April 2026, 29 selected, Cancel/Done) over the Receipt form with 'Save expense'. This sets the receipt's date field. The section calls it a shared component, so it may also serve the mileage and allowance forms. (re-checked: The screenshot shows a calendar sheet (April 2026, 29 selected, Cancel/Done) open over the Receipt form. The form's texts include Expense type, Amount, DKK/NOK local amount, Date, Purpose, Cost allocation, Expense abroad, Paid by company and 'Save expense', so the picker sets the receipt's Date field. That is CAP-245 (Create or edit a receipt, which lists date among its template fields). The section label 'Shared' means the component may be reused in the mileage (CAP-265) and allowance (CAP-269) forms, but this frame only shows it on the receipt, so I did not add those links. CAP-246 (exchange rate for the date) is related, since changing the date changes the suggested rate, but the frame shows no currency step, so CAP-245 is the right primary link. The receipt image in the background is a placeholder code snippet (submitExpense / api.post '/expenses'). It is mock artwork, not an instruction, and it is not evidence for a real endpoint.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:16412",
+      "capabilities": [
+        "CAP-257"
+      ],
+      "confidence": "High",
+      "evidence": "'Send single expense' dialog on the Add mileage form: 'Are you sure you want to send a single expense for approval?', with 'Send', \"Send & don't show again\" and 'Cancel'. This matches the confirmation in CAP-257 that can be turned off with 'don't show again'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:1953",
+      "capabilities": [
+        "CAP-186",
+        "CAP-188"
+      ],
+      "confidence": "High",
+      "evidence": "Autopay Payments tab: payments grouped by company and bank account (Nordvik Group AS, 'Awaiting approval', Total due 413 108.12), payee rows with reference and pay date, per-row selection, 'Select all', '0 of 12 selected', and a banner 'Tap here to select all salary transactions'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:1365",
+      "capabilities": [
+        "CAP-186",
+        "CAP-188"
+      ],
+      "confidence": "High",
+      "evidence": "Autopay Invoices tab: collapsed per-company bank-account cards (Nordvik Group AS, Handelsbanken) showing a status ('Awaiting approval' or 'Ready to pay'), Balance, Total due, 'x of y selected', a 'Select all' with a warning marker, and 'View'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:17099",
+      "capabilities": [
+        "CAP-186"
+      ],
+      "confidence": "High",
+      "evidence": "'Autopay / No payments': the empty state of the AutoPay approval list ('No payments to approve', 'Every payment for your accounts has been sent to the bank') on the Payments tab. The header has filter, assistant and info icons."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:1707",
+      "capabilities": [
+        "CAP-186",
+        "CAP-188"
+      ],
+      "confidence": "High",
+      "evidence": "'Autopay / Salary' tab: a banner says 'Salary transactions are available for approval. Tap here to select all salary transactions'. Payments are grouped by company and account (Nordvik Norge AS, NO1060750574605 NOK, 'Ready to pay', Total due 13 214.00). The screen shows '0 of 3 selected', 'Select all' with a warning marker and 'View'. This matches reviewing payments grouped by company and bank account, and selecting all salary payments in one tap."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:2450",
+      "capabilities": [
+        "CAP-188",
+        "CAP-186",
+        "CAP-189"
+      ],
+      "confidence": "High",
+      "evidence": "'Autopay / Selected payment': an account card is expanded to its single payments (creditor, 'Ref VB 685 · Pay date 20 Apr', amount). Fjellheim Bygg AS is ticked, the screen shows '1 of 12 selected' and '-800.00', and a bottom bar offers 'Approve 1' / 'Cancel'. That is ticking payments, seeing the selected count and amount, then pressing Approve to go on to signing (CAP-189 is the next step, so it is served only in part here)."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:2954",
+      "capabilities": [
+        "CAP-070",
+        "CAP-186"
+      ],
+      "confidence": "Medium",
+      "evidence": "'Autopay / Sort payments': a bottom sheet 'Sort payments by' (Recipient, Amount, Payment date) opens over the AutoPay list. CAP-070 covers the sort panel opened from a work list's header, autopay included. The catalog does not list the legacy AutoPay sort keys, so these three options may diverge from legacy. (re-checked: The link holds. The screenshot (analysis/work-app/design/shots/J4jjulaLJ4QNzqZ1INWydq/3414-2954.png) shows a 'Sort payments by' bottom sheet with Recipient (ticked), Amount and Payment date. It sits over the Autopay Payments list and was opened from the sort/filter icon in the header. CAP-070 ('Search and sort a work list') covers the sort panel opened from a list's header and names autopay, so it is the main match. CAP-186 also fits, because the list behind the sheet is the AutoPay approval list: grouped by company and bank account, with 'Awaiting approval', 'Total due' and balances. That list is the thing being sorted. No better match exists. CAP-151 is for approval tasks only, CAP-032 and CAP-041 are for BNXT and BXN lists, and CAP-187 is search, not sort. The confidence stays Medium because the catalog does not list legacy AutoPay sort keys, so Recipient, Amount and Payment date may be new or different. Someone should check them against the legacy AutoPay sort. The texts field does not include the sheet's strings, and they were confirmed only from the screenshot. No instruction-shaped text found.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:18422",
+      "capabilities": [
+        "CAP-045",
+        "CAP-031"
+      ],
+      "confidence": "High",
+      "evidence": "'BNXT / Customers': the BNXT tabbed workspace (Sales, Purchase, Products, Inventory, Customers, Suppliers) shows the customer register grouped by segment (Retail, Public sector, Enterprise) with email addresses. This matches looking up customers in the registers. Tapping an entry would likely open the customer card (CAP-044), but that is not shown. Grouping customers by segment does not appear in the legacy description. (re-checked: The link holds. The screenshot shows the BNXT tab in the bottom bar and the BNXT workspace with its register tabs (Sales, Purchase, Products, Inventory, and Customers and Suppliers in the texts). Below them is the customer register: companies with their emails, grouped into Retail (3), Public sector (2) and Enterprise (3). CAP-045 ('A Business NXT user searches the product, customer, supplier or inventory registers and opens an entry') is the main fit. CAP-031 also fits, because the tabbed workspace for opening registers is part of its description ('...or the registers, either from the BXN hub list or from the tabbed workspace'). The screen shows no search field, only filter, AI and info icons, and no detail view. So CAP-044 (customer card) is not served directly, and CAP-042 (balances) does not fit because no amounts appear. Grouping by segment is a design detail that is not in the legacy description. No instruction-shaped text was found.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:18057",
+      "capabilities": [
+        "CAP-045",
+        "CAP-046"
+      ],
+      "confidence": "Medium",
+      "evidence": "'BNXT / Inventory': a 'Stock levels' list per product and warehouse showing unit counts, Low stock / In stock / Awaiting delivery / On order chips and '+240 incoming'. This matches looking up the inventory register and checking stock (physical, incoming). In legacy, stock is checked per product on its detail screen, while here it is shown in a list. (re-checked: The screenshot shows the BNXT module with the Inventory tab selected (next to Sales, Purchase and Products tabs) and a \"Stock levels\" list. Each row has a product name, an SKU with its warehouse, a unit count, a status chip (Low stock, In stock, Awaiting delivery, On order) and an incoming chip (+240 incoming, No inbound orders). Browsing the inventory register fits CAP-045 (\"search the product, customer, supplier or inventory registers\"). The physical and incoming stock figures overlap with CAP-046 (\"Check a product's stock\"). The confidence stays Medium for two reasons. First, CAP-046 is a per-product detail check that also covers available stock, reserved stock and whether the product is suspended, and this screen shows none of those. It is a stock-by-warehouse list view, so it only partly covers CAP-046. Second, the screen has no search field, only a filter icon, so it reads as browsing the register rather than looking an entry up. No other capability in the catalog fits better. The screen texts contain no instructions aimed at AI tools.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:17630",
+      "capabilities": [
+        "CAP-045",
+        "CAP-031"
+      ],
+      "confidence": "High",
+      "evidence": "'BNXT / Products': the 'All products' register showing code, supplier, unit price, category, 'in stock' count and a stock status chip. This matches looking up the product register in the BNXT work area. The stock chips also touch CAP-046, which in legacy lives on a product detail screen. (re-checked: The screenshot shows the BNXT tab, with the Products chip selected in the tab row (Sales, Purchase, Products, Inventory, Customers, Suppliers). Under it is an \"All products\" list. Each card shows a product code (LED-040, CHR-200), the supplier, the unit price in NOK, the category, an \"N in stock\" count and an \"In stock\" or \"Low stock\" chip. This is the product register list, which is what CAP-045 (\"Look up products, customers, suppliers and stock\") describes. CAP-031 (\"Open a Business NXT work area\") also fits, because the screen is the tabbed BNXT workspace where the user picks which register or area to open. CAP-046 (\"Check a product's stock\") is left out. In the legacy app it is a product detail screen with physical, available, reserved and incoming stock and a suspended flag. This list only shows one stock count per item and does not show the detail breakdown. The design gives no search field, only a filter icon, so how the lookup works may differ from legacy, but that does not change the mapping. No text in the design is aimed at AI tools.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3414:17302",
+      "capabilities": [
+        "CAP-032",
+        "CAP-031"
+      ],
+      "confidence": "High",
+      "evidence": "'BNXT / Purchase': a 'Purchase orders' list showing supplier, PO number (PO-4475...), company, order date, amount, line count and invoiced state (Not invoiced / Partial / Pending), with a filter icon in the header. This matches browsing BXN purchase orders filtered by invoiced state, opened from the tabbed workspace."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3364:3571",
+      "capabilities": [
+        "CAP-070",
+        "CAP-045"
+      ],
+      "confidence": "High",
+      "evidence": "BNXT 'Sort contacts by' bottom sheet with Name (checked) and Reference, shown over a grouped customer list (Retail, Public sector, Enterprise) with names and emails. Sorting a work list, applied to customer lookup."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3364:3186",
+      "capabilities": [
+        "CAP-070",
+        "CAP-046",
+        "CAP-045"
+      ],
+      "confidence": "High",
+      "evidence": "Inventory tab selected. The 'Stock levels' list has units, warehouse, Low stock / In stock and '+240 incoming' chips. The 'Sort items by' sheet offers Name, Stock and Location."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3364:2366",
+      "capabilities": [
+        "CAP-070",
+        "CAP-032"
+      ],
+      "confidence": "High",
+      "evidence": "Sales tab selected. The 'Sales orders' list shows SO numbers, customer, order date, NOK amount, line count and Pending / Not invoiced / Invoiced statuses. The 'Sort orders by' sheet offers Name, Amount and Order date."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3364:2739",
+      "capabilities": [
+        "CAP-070",
+        "CAP-045"
+      ],
+      "confidence": "High",
+      "evidence": "Products tab selected. The 'All products' list shows SKU, supplier, price per unit, category and stock chips. The 'Sort products by' sheet offers Name, Price and Stock."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3364:2036",
+      "capabilities": [
+        "CAP-045",
+        "CAP-031"
+      ],
+      "confidence": "High",
+      "evidence": "BNXT Suppliers list grouped by category (Office and facilities, IT and telecom, Logistics and services) with supplier names and emails. Work-area chips (Sales, Purchase, Products, Inventory) appear at the top and the BNXT tab is active in the tab bar. This is supplier lookup. A tapped row would lead to the supplier card (CAP-044), but this frame does not show the card. (re-checked: The screenshot is the BNXT tab, which is active in the tab bar. It shows the Suppliers register as a list grouped by category (Office and facilities (2), IT and telecom (2), Logistics and services (3)), with each supplier's name and email. It has a filter icon but no visible search field. Browsing and opening entries in the supplier register is CAP-045 (Look up products, customers, suppliers and stock), so that link is the main one. The work-area chips at the top (Sales, Purchase, Products, Inventory) are the tabbed Business NXT workspace. CAP-031 says users open the registers from that workspace, so CAP-031 is a valid second link. CAP-044 (supplier card) does not apply because no card details are shown: no balance, no open entries, no contacts. CAP-042 (Money out) does not apply either because no balances or overdue totals appear. The screen texts contain nothing aimed at AI tools.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:13582",
+      "capabilities": [
+        "CAP-134"
+      ],
+      "confidence": "High",
+      "evidence": "'Child' form in the HRM / Daniel Moe detail flow. Fields: First name, Last name and Year of birth (all required), a Sole custody checkbox, and Save/Cancel. This adds a child to another employee's record, which is the manager-side HRM flow and not the self-service CAP-144."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:13505",
+      "capabilities": [
+        "CAP-133"
+      ],
+      "confidence": "High",
+      "evidence": "'Post address' edit form in the HRM / Daniel Moe detail flow. Fields: Address, Postal code, City and Country (required, a dropdown), with Save/Cancel."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:13372",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009",
+        "CAP-050"
+      ],
+      "confidence": "High",
+      "evidence": "'Employee detail' for Daniel Moe with Call/SMS/Email buttons. It has a Balances section (vacation balance, self certification, sick child, time registered) and Personal details, Post address, Employment and salary, Children and Emergency contact sections. An 'On vacation today' banner links to Calendar, and an AI sparkle icon in the header opens the assistant for this employee."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3520:11341",
+      "capabilities": [
+        "CAP-134"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'Child' with First name, Last name, Year of birth (all required), Sole custody checkbox, Save/Cancel; sits in 'HRM / Eli Hovland / Detail flow', so this is adding a child to another employee's record, not my own profile (CAP-144)."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3520:11264",
+      "capabilities": [
+        "CAP-133"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'Post address' with editable Address, Postal code, City and a required Country dropdown, Save/Cancel; in the HRM employee detail flow for Eli Hovland."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3520:11131",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009"
+      ],
+      "confidence": "High",
+      "evidence": "'Employee detail' header for Eli Hovland (Nordvik Group AS). It has Call/SMS/Email buttons and collapsible sections for Balances (Vacation balance 2026, Self certification, Sick child, Time registered this month), Personal details, Post address, Employment and salary, Children and Emergency contact."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3520:11131",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009",
+        "CAP-050"
+      ],
+      "confidence": "High",
+      "evidence": "A sparkle (AI) icon in the header of the employee detail screen suggests asking the assistant about this employee. It is only an icon; it could also be the generic header assistant (CAP-048). (re-checked: The claim is too narrow. The frame \"HRM / Eli Hovland / Employee details\" is the HRM employee detail screen, and its main purpose is not the AI icon. (1) Accordion sections for Personal details, Post address and Employment and salary, plus texts for first and last name, date of birth, phones, business email, address, postal code and city, match CAP-128 (view an employee's personal, address and employment details). (2) The Call, SMS and Email buttons in the header card match CAP-130 (contact an employee by call, SMS or email). (3) The Balances accordion with \"Vacation balance 2026 126 days\", \"Self certification 1 occasion\" and \"Sick child 0 days\" matches CAP-009 (view an employee's absence balances). CAP-050 stays: its catalog text says it is reached by \"the header assist button\" on the employee detail screen, and the screenshot shows a sparkles button in that header. That makes CAP-050 a better fit than the generic CAP-048, but it is only an icon and the screen shows no hint chips, so that one link is Medium on its own. The Children and Emergency contact accordions point to CAP-134 and CAP-136, but the frame shows them collapsed with no add or edit controls, so I left them out. The \"On vacation today 4 - 22 Aug\" banner with its Calendar button has no clear legacy match and may be a new element. I found no text in the frame aimed at AI tools.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3520:11131",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009",
+        "CAP-050"
+      ],
+      "confidence": "High",
+      "evidence": "The 'On vacation today 4 - 22 Aug' banner has a 'Calendar' button that likely opens a calendar view of the employee's absence. Where it leads is not shown. (re-checked: The CAP-001 link is weak. This frame is the manager's HRM 'Employee detail' screen for Eli Hovland (Nordvik Group AS), not a calendar. A banner says 'On vacation today 4 - 22 Aug' and has a 'Calendar' button. That button might go to an absence calendar, but the frame does not show where it leads, and CAP-001 is a month grid of your own or your team's calendar entries. The capabilities the screen clearly serves are: CAP-128, the accordion sections Personal details (first and last name, date of birth, phones, business email), Post address (Storgata 42, 1234 Oslo) and Employment and salary; CAP-130, the Call / SMS / Email buttons in the header; CAP-009, the Balances section (Vacation balance 2026 126 days, Self certification 1 occasion, Sick child 0 days), which matches the manager-only balances on the HRM employee detail; and CAP-050, the sparkle assist button in the header for asking the assistant about this employee. The frame also shows 'Time registered this month 138 of 150 h', which no listed capability covers exactly. The Children and Emergency contact sections are visible but collapsed, so I did not link CAP-134 or CAP-136. CAP-001 is dropped. The texts contain no instruction-shaped content.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:12480",
+      "capabilities": [
+        "CAP-134"
+      ],
+      "confidence": "High",
+      "evidence": "Same 'Child' form (first name, last name, year of birth, sole custody, Save/Cancel) in 'HRM / Elin Rike / Detail flow'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:12403",
+      "capabilities": [
+        "CAP-133"
+      ],
+      "confidence": "High",
+      "evidence": "Same 'Post address' edit form (Address, Postal code, City, Country required, Save/Cancel) in the HRM employee detail flow for Elin Rike."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:12270",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009"
+      ],
+      "confidence": "High",
+      "evidence": "'Employee detail' for Elin Rike with Call/SMS/Email, a 'No events today' banner with Calendar, and sections for Balances (vacation 126 days, self certification 0 occasions, sick child 0 days, 150 of 150 h), Personal details, Post address, Employment and salary, Children and Emergency contact."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:12270",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009",
+        "CAP-050"
+      ],
+      "confidence": "High",
+      "evidence": "Sparkle (AI) icon in the employee detail header; it could be the employee-specific assistant or the generic header assistant (CAP-048). (re-checked: The link to CAP-050 holds, but the claimed list leaves out what the screen is mainly for. The frame is \"HRM / Elin Rike / Employee details\" in the Detail flow. The screenshot shows the main HRM employee profile: a header with Call, SMS and Email buttons, a \"No events today / Calendar\" card, and collapsible sections for Balances, Personal details, Post address, Employment and salary, Children and Emergency contact. The texts also hold the expanded content: first and last name, date of birth, business and private phones, email, street, postal code and city, plus balances (vacation balance 2026 of 126 days, self certification 0 occasions, sick child 0 days, 150 of 150 h registered this month). So the screen serves CAP-128 (view personal, address and employment details), CAP-130 (call, SMS or email the employee from the detail header) and CAP-009 (expand Balances to see vacation and self-certification balances). CAP-050 fits better than CAP-048 because the sparkle button sits in the employee detail header. CAP-050 names exactly that entry point (\"the header assist button to ask Gaia about that employee\"). The hint chips CAP-050 mentions are not shown, so that link rests on the button alone. The Children and Emergency contact sections are only entry points here; the add, edit and remove flows (CAP-134 to CAP-137) belong to their own frames. No instruction-shaped text was found in the frame data.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:14134",
+      "capabilities": [
+        "CAP-134"
+      ],
+      "confidence": "High",
+      "evidence": "Same 'Child' add form in 'HRM / Harald Skogland / Detail flow'."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:14057",
+      "capabilities": [
+        "CAP-133"
+      ],
+      "confidence": "High",
+      "evidence": "Same 'Post address' edit form in the HRM employee detail flow for Harald Skogland."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:13924",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Harald Skogland / Employee details', titled 'Employee detail'. Screenshot shows a header with avatar and company (Nordvik Logistics AB), Call/SMS/Email buttons, and collapsible sections Balances, Personal details, Post address, Employment and salary, Children and Emergency contact. The texts include balance values (Vacation balance 2026, Self certification, Sick child, Time registered this month). The sparkle icon in the header suggests the employee assistant (CAP-050), but nothing confirms it, so it is not linked."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:12821",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Jan Sølve / Employee details', same Employee detail layout. Call/SMS/Email contact actions, absence balances (Self certification 2 occasions, 96 of 150 h registered), and personal details and post address fields."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:11718",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Matilda Johansson / Employee details'. Same Employee detail layout with Call/SMS/Email, a 'Sick leave today, from 19 Aug' banner with a Calendar link, and Balances (Self certification 5 occasions, Sick child 4 days), Personal details and Post address sections."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:13031",
+      "capabilities": [
+        "CAP-134"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Jan Sølve / Add child' in the HRM employee detail flow. A 'Child' form with First name, Last name and Year of birth (all required), a Sole custody checkbox, and Save (disabled while empty) and Cancel. A manager adds a child for an employee. A similar form exists in the self-service flow (CAP-144), but the HRM section points to the manager-side capability."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:14745",
+      "capabilities": [
+        "CAP-134"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Jonas Berg / Edit Oliver Berg'. The Child form is pre-filled (Oliver, Berg, 2015), with a Sole custody checkbox and Save/Cancel. A manager edits an employee's child inside the HRM detail flow."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:11928",
+      "capabilities": [
+        "CAP-134"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Matilda Johansson / Add child'. Empty Child form (First name, Last name and Year of birth, all required, plus Sole custody) with Save/Cancel, in the HRM employee detail flow."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:12954",
+      "capabilities": [
+        "CAP-133"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Jan Sølve / Edit post address'. A 'Post address' form with Address, Postal code, City and Country (required, a Norway dropdown) plus Save/Cancel, in the HRM employee detail flow, so it is editing an employee's postal address. The self-service address update (CAP-142) is the alternative, but the HRM section points to the manager-side capability."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:11851",
+      "capabilities": [
+        "CAP-133"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Matilda Johansson / Edit post address'. Post address edit form (Address, Postal code, City, Country required) with Save/Cancel, in the HRM detail flow."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:11377",
+      "capabilities": [
+        "CAP-134"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Mona Hovland / Add child' in the manager's employee detail flow. The Child form has First name, Last name and Year of birth (all required), a Sole custody checkbox, and Save/Cancel. This matches registering a new child for an employee."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:11300",
+      "capabilities": [
+        "CAP-133"
+      ],
+      "confidence": "High",
+      "evidence": "'Edit post address' in the HRM employee detail flow. The Post address form has Address, Postal code, City and Country (required, a dropdown set to Norway) with Save/Cancel. This matches a manager editing an employee's postal address."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3524:11167",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009",
+        "CAP-134",
+        "CAP-136",
+        "CAP-048"
+      ],
+      "confidence": "High",
+      "evidence": "The 'Employee detail' header for Mona Hovland / Nordvik Group AS has Call, SMS and Email buttons (CAP-130). Below are accordions for Personal details, Post address and Employment and salary (CAP-128), and a Balances accordion with Vacation balance 2026, Self certification and Sick child (CAP-009). Children and Emergency contact sections are the entry points to CAP-134 and CAP-136. A sparkles button in the header opens the assistant (CAP-048). The 'No events today / Calendar' row may also link to the employee's calendar."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3358:2844",
+      "capabilities": [
+        "CAP-134"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Add child' in People & HRM. The empty Child form has First name, Last name and Year of birth (required), Sole custody, and Save/Cancel. These are the same texts as the manager's Add child screen. It sits in the manager HRM section, not the employee's own profile (CAP-144)."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:3103",
+      "capabilities": [
+        "CAP-216",
+        "CAP-218",
+        "CAP-224"
+      ],
+      "confidence": "High",
+      "evidence": "'Department approval dialogue' is titled '3 - Salg' with a 'For approval' status chip. It shows a message thread (anna larsen, matilda johansson) with names and dates, which is reading a dialogue split (CAP-216). An 'Add a message..' field with a send button covers CAP-218. An 'Approve wagerun?' card with Reject and Approve buttons covers CAP-224."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3389:1112",
+      "capabilities": [
+        "CAP-216",
+        "CAP-218"
+      ],
+      "confidence": "High",
+      "evidence": "'Department completed dialogue' is titled '5 - Logistikk' with a 'Rejected' status chip. It shows the thread, including a rejection reason ('Tallene for overtid stemmer ikke. Avviser denne.'), and an 'Add a message..' composer. No approve/reject card is shown because the split has already been decided."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:1978",
+      "capabilities": [
+        "CAP-214",
+        "CAP-217",
+        "CAP-067"
+      ],
+      "confidence": "High",
+      "evidence": "The HRM screen has the Dialogue segment selected (badge 4) next to Employees and Calendar. Payroll dialogues are grouped by company (Nordvik Retail AS, Nordvik Group AS), and each row shows title, creator, date, payment date, comment count and a status chip ('Linked to wagerun', 'For approval', 'Approved', '0 of 5 approved · 1 rejected') (CAP-214). The split-status summary and row chevrons lead to wage-run splits (CAP-217). The bottom tab bar has Start, Expense, Approval, HRM, BXNT and More (CAP-067)."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3358:3136",
+      "capabilities": [
+        "CAP-134"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Edit child' shows the Child form pre-filled with Emma / Berg / 2015, a Sole custody checkbox, and Save/Cancel. This matches editing an existing child of an employee in the manager HRM area."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3358:2545",
+      "capabilities": [
+        "CAP-133"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Edit post address' form titled Post address with Address, Postal code, City and Country (required) dropdown plus Save/Cancel. This matches the manager editing street, postal code, city and country from a picker."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3389:1367",
+      "capabilities": [
+        "CAP-009",
+        "CAP-130"
+      ],
+      "confidence": "High",
+      "evidence": "Employee detail with the Balances accordion expanded: Vacation balance 2026 (126 days), Self certification (3 occasions), Sick child (2 days) and Time registered this month. This is the manager's view of an employee's absence balances. The header has Call/SMS/Email buttons."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3358:1813",
+      "capabilities": [
+        "CAP-134",
+        "CAP-130"
+      ],
+      "confidence": "High",
+      "evidence": "Children accordion expanded on Employee detail, listing Emma Berg and Oliver Berg with chevrons to open each one, plus an 'Add child' button. The header has Call/SMS/Email."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3389:1211",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130",
+        "CAP-009"
+      ],
+      "confidence": "High",
+      "evidence": "Overview of the HRM Employee detail: header with Call/SMS/Email, then collapsed accordions for Balances, Personal details, Post address, Employment and salary, Children and Emergency contact. The texts include the personal, address and balance contents. The sparkle icon in the top bar may lead to the employee assistant (CAP-050), but nothing confirms that, so it is not linked."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3358:2175",
+      "capabilities": [
+        "CAP-136",
+        "CAP-130"
+      ],
+      "confidence": "High",
+      "evidence": "Emergency contact accordion expanded, listing Kari, Ole, Nina and Per Berg with an 'Add emergency contact' button. This matches the manager adding or opening an employee's emergency contacts."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3358:1417",
+      "capabilities": [
+        "CAP-128"
+      ],
+      "confidence": "High",
+      "evidence": "Employment and salary accordion expanded: Employee Id 27, Type of position, Date of employment, Position start date, Employment form, Type of work, Work time agreement and Salary type. These are the current-position fields of the HRM employee detail."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3389:1564",
+      "capabilities": [
+        "CAP-128",
+        "CAP-130"
+      ],
+      "confidence": "High",
+      "evidence": "Personal details accordion expanded: First/Last name, Date of birth, Phone business, Phone private and Email business. These are read-only personal details, and the phone and email fields are contactable. No edit control appears in the texts, so CAP-132 is not linked."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3389:1791",
+      "capabilities": [
+        "CAP-128",
+        "CAP-131",
+        "CAP-133"
+      ],
+      "confidence": "High",
+      "evidence": "Post address accordion expanded (Address, Postal code, City, Country) with Copy and Edit buttons. Copy is copying the post address. Edit is the entry point to editing the postal address."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:2273",
+      "capabilities": [
+        "CAP-070",
+        "CAP-124"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Sort employees': a bottom sheet titled 'Sort employees by' with Name (ticked), Email and Company, shown over the HRM Employees list grouped by company (Nordvik Group AS, Nordvik Logistics AB). This is the sort panel from the list's header bar."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:2605",
+      "capabilities": [
+        "CAP-214",
+        "CAP-070"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Sort wage runs': a 'Sort wage runs by' sheet (Wage run, Requester, Payment date) over the Dialogue tab (badge 4). The list shows wage-run dialogues grouped by company, each with creator, created date, unread count, payment date and a status (For approval, Approved, Linked to wagerun). Note: CAP-070 lists approvals, employees and autopay but not dialogues, so sorting dialogues widens that capability."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3400:2920",
+      "capabilities": [
+        "CAP-217"
+      ],
+      "confidence": "High",
+      "evidence": "'HRM / Wage run': the detail of 'Månedslønn - 1 Oct 2025'. Its splits (5 - Logistikk, 3 - Salg, 4 - Økonomi, 1 - Administrasjon, 2 - Drift) are grouped under Rejected and For approval, each with requester, date, approver count, approver names and a status chip. Each split has a chevron to open it. No approve or reject action shows here, so CAP-224 is not linked."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3317:2",
+      "capabilities": [
+        "CAP-008",
+        "CAP-079",
+        "CAP-082",
+        "CAP-011",
+        "CAP-080",
+        "CAP-067",
+        "CAP-205",
+        "CAP-071",
+        "CAP-078"
+      ],
+      "confidence": "Medium",
+      "evidence": "'01 · Start': greeting 'Good morning, Anna'. A 'For you' section has cards for Unsent expenses (5 receipts · 1 mileage · 2 allowances, 8), Vacation days (47 remaining) and Salary (no payslips published yet). A 'Needs your attention' section has cards for Approval (11 pending · 10 overdue), Autopay (kr 3 193 892,55 due) and HRM (1 birthday · 1 unread · 3 absent · 4 dialogues). Search, announcements and profile icons are in the header and the bottom tab bar is visible. This merges the employee start page and the manager Home. Medium because the screenshot does not show which card rows open which item. (re-checked: This is the merged Start/Home screen. The screenshot confirms the greeting and date, a 'For you' group (Unsent expenses with badge 8, Vacation days 47 remaining, Salary with no payslips) and a 'Needs your attention' group (Approval 11, Autopay 6, HRM 5; BNXT appears in the texts below the fold). That fits CAP-008 (attention cards per module), CAP-079 (personal highlights), CAP-082 (unsent drafts), CAP-011 (vacation balance card) and CAP-080 (salary card). The bottom tab bar (Start, Expense, Approval, HRM, BNXT, More) serves CAP-067. The header adds three controls that the claim left out. The company icon next to 'Test ME PROD Company' is CAP-205 (switch employer). The search icon is CAP-071. The megaphone with a red dot is CAP-078 (What's New announcements), with CAP-179 as an alternative. I removed CAP-073, CAP-074, CAP-075 and CAP-077. They depend on tapping rows or a 'Go to' link inside expanded cards, but every card here is collapsed behind a chevron, so this frame shows none of those rows. An expanded-card frame would serve them. CAP-211 duplicates CAP-011, so I did not add it. Medium because it is unclear what the megaphone icon opens and the expanded contents are not shown. The design texts contain no instructions aimed at AI tools.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3318:2",
+      "capabilities": [
+        "CAP-240",
+        "CAP-252",
+        "CAP-241",
+        "CAP-028"
+      ],
+      "confidence": "High",
+      "evidence": "'02 · Expense': Expense and Claims tabs, a 2026 list of unsent items (Taxi, Airline tickets, a 106 km mileage) all ticked, 'Unselect all', 'Add new…' and 'Send 6 expenses'. These are the unsent-expenses inbox with multi-select send and new expense creation. The Claims tab points to browsing claims, which is CAP-028 (lower certainty because it is only a tab)."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3319:2",
+      "capabilities": [
+        "CAP-150",
+        "CAP-151",
+        "CAP-166",
+        "CAP-152",
+        "CAP-160"
+      ],
+      "confidence": "High",
+      "evidence": "'03 · Approval': tabs Tasks (11), Overdue (10) and History. The list is labelled 'By task due date' (a sort order). Task cards show supplier, document number, company, due date, amount, type (Invoice/Voucher), Overdue badges and a comment count. Each card has a checkbox for multi-select, and the header has search and filter icons. The texts include the empty state 'No tasks to show / Every approval task is cleared.'"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3320:2",
+      "capabilities": [
+        "CAP-124",
+        "CAP-070",
+        "CAP-067"
+      ],
+      "confidence": "High",
+      "evidence": "'04 · HRM': the Employees tab of HRM (beside Dialogue (4) and Calendar). It lists employees grouped by collapsible company sections, with avatar, name, email, absence/vacation status icons and a chevron to open the profile. The header has filter/sort and search icons."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3322:2",
+      "capabilities": [
+        "CAP-031",
+        "CAP-032"
+      ],
+      "confidence": "High",
+      "evidence": "'05 · BNXT': work-area chips (Sales, Purchase, Products, Inventory, Customers, Suppliers) and a 'Sales orders' list. Each card shows customer, SO number, company, order date, amount, line count and status (Pending, Not invoiced, Invoiced). The header has filter and search."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3323:2",
+      "capabilities": [
+        "CAP-186",
+        "CAP-188"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'Autopay' with Payments/Invoices/Salary tabs. Bank-account cards show 'Awaiting approval' / 'Ready to pay', 'Total due', '0 of 12 selected', 'Select all' and a salary-transactions banner 'Tap here to select all salary transactions'. This is the queue of payments waiting for approval, with selection."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3323:2",
+      "capabilities": [
+        "CAP-186",
+        "CAP-188",
+        "CAP-187"
+      ],
+      "confidence": "High",
+      "evidence": "The header has search and filter icons, so search over payments is plausible. No search field is shown in the frame. (re-checked: The claim treats a header icon as the screen's purpose and leaves out what the frame mainly shows. This frame is the Autopay home. Under the Payments tab it lists bank payments waiting for approval, grouped by company and bank account: 'Nordvik Group AS', then 'Nordvik Retail AS / Handelsbanken'. Each account card shows its status ('Awaiting approval', 'Ready to pay'), balance ('Balance 7/2/2023 02:00') and 'Total due 413 108.12', and payment rows give a reference and pay date ('Ref VB 685 · Pay date 20 Apr'). That matches CAP-186 (review AutoPay payments waiting for my approval) exactly. The frame also serves CAP-188 (select payments for approval): it has the selected count and amount ('0 of 12 selected', '0.00'), a 'Select all' toggle for each account, and the salary banner 'Tap here to select all salary transactions'. CAP-187 (search AutoPay payments) stays only as a secondary link. The search icon in the header is its entry point, but no search bar, query or recent searches appear, so this frame does not show the search flow. The filter and info icons and the Invoices and Salary tabs may belong to other capabilities, such as CAP-070, but the frame gives no evidence for that. The design texts contain no instruction-shaped content.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3324:2",
+      "capabilities": [
+        "CAP-029",
+        "CAP-228"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'Lønnsslipp' with tabs 'Lønnsslipp' / 'Årsoppgaver' (payslips / year-end reports). Payslips are listed by payment date under year 2025, each showing the employer 'Test ME Company 1' and an amount."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3324:2",
+      "capabilities": [
+        "CAP-029",
+        "CAP-228",
+        "CAP-052",
+        "CAP-227",
+        "CAP-225"
+      ],
+      "confidence": "High",
+      "evidence": "Header icons: a sparkle (AI assistant, likely the payslip assistant) and a download icon (likely 'export all payslips to one PDF'). The icons are not labelled. (re-checked: I kept this link, but the claimed list leaves out the screen's main purpose. Frame \"07 · Payslips\" (title \"Lønnsslipp\") is mainly the payslip list. It groups payslips under the year \"2025\" and orders them by payment date (19 NOV, 17 OKT, ... MAR). Each row shows the company (\"Test ME Company 1\"), the \"Lønnsslipp\" type and the net amount, so this is CAP-029, \"Browse my payslips by payment date\". The \"Lønnsslipp / Årsoppgaver\" segmented control switches to year-end reports, which is CAP-228. Each row ends in a chevron, so a tap opens the payslip details (CAP-225). The two unlabelled icons at the top right support the claimed links. The sparkle fits CAP-052: that capability says the employee opens the payslip assistant from the payslips screen. A list-level download fits CAP-227, \"Export all my payslips to one PDF\", rather than downloading a single payslip (CAP-226). Those two icon links are only Medium on their own because the icons have no labels. The screen contains no instruction-shaped text.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3325:2",
+      "capabilities": [
+        "CAP-001",
+        "CAP-006"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'Calendar' with an 'Apr 2026' month grid (Mon-Sun), next/previous month arrows, registration icons on each day (timer, sick, vacation) and a floating '+' button to start a registration."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3325:2",
+      "capabilities": [
+        "CAP-001",
+        "CAP-003",
+        "CAP-006",
+        "CAP-010",
+        "CAP-005"
+      ],
+      "confidence": "Medium",
+      "evidence": "Header icons: a list icon (switch to list view), a pie-chart icon (likely balances) and a '...' menu (likely calendar display options). There is also a Me/Team toggle; a team view has no clear legacy match in the catalog. (re-checked: The claimed list leaves out the screen's main purpose. The frame is called \"08 · Calendar\" and is mostly a month grid (\"Apr 2026\" with a month picker caret, prev/next arrows, Mon–Sun columns). Days carry time, sickness and vacation icons and \"+1\" overflow markers. That is CAP-001 (View a calendar month by month) with High confidence, and it should come first. The screenshot also shows a red \"+\" button in the corner, which matches CAP-006 (Start a time or absence registration from the calendar). The claimed links that hold up: the list icon in the header fits CAP-003 (switch list/month view) well. The pie-chart icon is a plausible match for CAP-010 (my time and absence balances, which the catalog says you open from the calendar). The \"...\" menu next to the month arrows is a plausible match for CAP-005 (calendar display options). CAP-010 and CAP-005 are read from icons only, with no text labels, so overall confidence stays Medium. Two parts have no legacy capability: the header search icon and the Me/Team toggle. A team calendar seems to be a new feature, and a person should decide on it; I did not force a link. The Figma data contains no text aimed at AI tools.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3326:2",
+      "capabilities": [
+        "CAP-068",
+        "CAP-069",
+        "CAP-067"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'More' with an 'In your tab bar' section (pinned Expense, Approval, HRM, BNXT) and a 'More modules' section (Payslip, Calendar, Autopay, Settings). An 'Edit' button comes with the hint 'Tap Edit to choose which 4 modules sit next to Start in the tab bar.'"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3327:2",
+      "capabilities": [
+        "CAP-108",
+        "CAP-110",
+        "CAP-109",
+        "CAP-206",
+        "CAP-116",
+        "CAP-115",
+        "CAP-096",
+        "CAP-113"
+      ],
+      "confidence": "High",
+      "evidence": "Title 'Settings'. It shows Email, OS version and App version (12.0 (8419)), Appearance 'Light', Language 'English', an 'Open app with Face ID' toggle, and FAQ, App information and Accessibility statement rows."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3327:2",
+      "capabilities": [
+        "CAP-108",
+        "CAP-116",
+        "CAP-106",
+        "CAP-110",
+        "CAP-109",
+        "CAP-206",
+        "CAP-208",
+        "CAP-096",
+        "CAP-115",
+        "CAP-107",
+        "CAP-120"
+      ],
+      "confidence": "High",
+      "evidence": "A 'Development' section with 'Feature flags' appears in the texts; it is cut off in the screenshot. (re-checked: CAP-120 is correct but covers only a small part of this screen. The frame is the whole Settings screen (\"10 · Settings\": \"Settings\" title, opened from the More tab), so the list should hold everything the screen shows:\n- CAP-108: opening Settings itself.\n- CAP-116: the info block with Email, OS version (iOS 26.3.1) and App version 12.0 (8419). CAP-106 is a weaker fit: the same rows can be tapped to copy them, but the screen does not show that.\n- CAP-110: Appearance set to Light, with a picker.\n- CAP-109: Language set to English.\n- CAP-206 and CAP-208: the \"Open app with Face ID\" switch, which turns the app lock on and off.\n- CAP-096: FAQ.\n- CAP-115: App information, meaning version and licenses.\n- CAP-107: Accessibility statement.\n- CAP-120: the \"Development\" section with \"Feature flags\". It is cut off at the bottom of the screenshot but listed in the texts.\n\nConfidence is High for the visible rows. It is lower for CAP-106 (tap-to-copy is not shown) and CAP-120 (the section is only in the texts). No instruction-like text was found in the Figma content.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3327:2",
+      "capabilities": [
+        "CAP-108",
+        "CAP-116",
+        "CAP-110",
+        "CAP-109",
+        "CAP-206",
+        "CAP-208",
+        "CAP-096",
+        "CAP-115",
+        "CAP-113",
+        "CAP-120"
+      ],
+      "confidence": "High",
+      "evidence": "The account and device details block could support copying them for support, but no copy action is visible. (re-checked: This frame is the app's main Settings screen (\"10 · Settings\", reached from the More tab), so the link stays, but the claimed list was wrong. The block at the top shows the email, OS version and app version as read-only text. Nothing in the design shows a tap-to-copy action or a confirmation banner, so CAP-106 is at best a guess. I removed it; a person can add it back if the new app keeps the legacy behaviour of copying these details when the block is tapped. The screen clearly serves these capabilities: CAP-108 (open app settings), CAP-116 (signed-in account and device info block), CAP-110 (Appearance picker set to Light), CAP-109 (Language, English), CAP-206 and CAP-208 (the \"Open app with Face ID\" toggle turns the app lock on and off), CAP-096 (FAQ entry), CAP-115 (App information) and CAP-113 (Accessibility statement). A \"Development\" section with \"Feature flags\" sits below the visible area and matches CAP-120. The confidence is per row, not for the screen as a whole. The screenshot only shows these as entry points. No instruction-shaped text was found in the frame texts.)"
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3519:11031",
+      "capabilities": [
+        "CAP-225"
+      ],
+      "confidence": "High",
+      "evidence": "Prototype component 'Payslip details' with expandable payslip sections: Fastlønn 5 900,00, Skatt −1 475,00, Akkumulerte balanser (Bruttolønn, Forskuddstrekk, Feriepengegrunnlag)."
+    }
+  ],
+  "unmapped": [
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3561:11860",
+      "seems": "Update payment state / 05 of 14 (Autopay / Prototype update steps). The screenshot is blank white and the frame has no texts. It looks like an intermediate frame in a prototype animation. The name suggests an AutoPay payment changing status after approval (possibly CAP-189 / CAP-190), but nothing on the frame backs that up, so no link is made. A person should decide whether it is a placeholder or a transition step."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3561:11863",
+      "seems": "Update payment state / 06 of 14 (Autopay / Prototype update steps). Blank white screenshot, no texts. It looks like an empty prototype transition step for an AutoPay payment state update (possibly CAP-189 / CAP-190). Not linked."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3561:11866",
+      "seems": "Update payment state / 07 of 14 (Autopay / Prototype update steps). Blank white screenshot, no texts. It looks like an empty prototype transition step for an AutoPay payment state update (possibly CAP-189 / CAP-190). Not linked."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3561:11869",
+      "seems": "Update payment state / 08 of 14 (Autopay / Prototype update steps). Blank white screenshot, no texts. It looks like an empty prototype transition step for an AutoPay payment state update (possibly CAP-189 / CAP-190). Not linked."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3561:11872",
+      "seems": "Update payment state / 09 of 14 (Autopay / Prototype update steps). Blank white screenshot, no texts. It looks like an empty prototype transition step for an AutoPay payment state update (possibly CAP-189 / CAP-190). Not linked."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3561:11875",
+      "seems": "Update payment state / 10 of 14 (Autopay / Prototype update steps). Blank white screenshot, no texts. It looks like an empty prototype transition step for an AutoPay payment state update (possibly CAP-189 / CAP-190). Not linked."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3561:11878",
+      "seems": "Update payment state / 11 of 14 (Autopay / Prototype update steps). Blank white screenshot, no texts. It looks like an empty prototype transition step for an AutoPay payment state update (possibly CAP-189 / CAP-190). Not linked."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3561:11881",
+      "seems": "Update payment state / 12 of 14 (Autopay / Prototype update steps). Blank white screenshot, no texts. It looks like an empty prototype transition step for an AutoPay payment state update (possibly CAP-189 / CAP-190). Not linked."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3561:11884",
+      "seems": "A blank white frame, step 13 of 14 in the 'Autopay / Prototype update steps' flow 'Update payment state'. It may be a prototype transition or loading placeholder for updating the state of an Autopay payment, possibly related to CAP-190, but nothing is visible to confirm that."
+    },
+    {
+      "screen": "J4jjulaLJ4QNzqZ1INWydq:3561:11887",
+      "seems": "A blank white frame, the last step (14 of 14) of the Autopay 'Update payment state' prototype. It looks like a placeholder or transition frame with no visible content."
+    }
+  ],
+  "newCapabilities": [],
+  "placeholders": [
+    "J4jjulaLJ4QNzqZ1INWydq:3561:11860",
+    "J4jjulaLJ4QNzqZ1INWydq:3561:11863",
+    "J4jjulaLJ4QNzqZ1INWydq:3561:11866",
+    "J4jjulaLJ4QNzqZ1INWydq:3561:11869",
+    "J4jjulaLJ4QNzqZ1INWydq:3561:11872",
+    "J4jjulaLJ4QNzqZ1INWydq:3561:11875",
+    "J4jjulaLJ4QNzqZ1INWydq:3561:11878",
+    "J4jjulaLJ4QNzqZ1INWydq:3561:11881",
+    "J4jjulaLJ4QNzqZ1INWydq:3561:11884",
+    "J4jjulaLJ4QNzqZ1INWydq:3561:11887"
+  ],
+  "rerunScreens": [],
+  "flags": [
+    "The FAQ screens (3379:2051, 3379:2543, 3379:1789, 3379:2300) have a sparkle assistant button in the header. CAP-048 (open the assistant from the header) was not linked, because the button is only one element of these screens. A person should decide whether to add it.",
+    "The toast frame 3530:11704 contains only the text 'Call Jonas'. Its link to CAP-130 is a Low-confidence guess, and it could also be a generic prototype component.",
+    "No instruction-shaped text aimed at AI tools was found in the screen names or texts.",
+    "Design texts contain real-looking personal data: the email 'gorka.moral.inza@visma.com' (Settings and Send feedback) and an employee name and address on the year-end report ('Gediminas Montrimas, Some street, 0932 Oslo'). No instruction-shaped text was found.",
+    "Not instruction-shaped. No text in the Figma screens of this batch asks anything of an AI tool.",
+    "Possible new behaviour to review: the task list groups tasks by company and has a separate 'Overdue' segment with a count (3357:2346, 3357:3350). No catalog capability covers grouping or an overdue view.",
+    "Possible new behaviour to review: the Approve sheet saves a comment draft ('Draft is saved'). Forward requires a comment, approve does not (3389:5502, 3389:6236, 3357:3488).",
+    "Possible design inconsistency: the 'Completed task' frame (3389:5229) still shows 'Voucher lines - 2 lines available to edit' and a 'Pending approval' current step. Check whether it is final.",
+    "Detail screens show a sparkle (AI) icon in the header. It may serve CAP-049 (ask the assistant about an approval task) or CAP-048 (open the assistant for the current screen). I did not link it because the purpose cannot be confirmed from the static frame.",
+    "The texts of 3389:5502, 3389:6236 and 3357:3488 include 'Send for review' and 'Forward' actions (CAP-157, CAP-158) that are not visible in the screenshots. They may sit in an overflow menu.",
+    "Design inconsistency, not an injection: 'Approval / Request review sheet' (3389:5988) is titled 'Request review' but its confirm button says 'Forward'. A person should decide whether this sheet is CAP-157 (send for review) or CAP-158 (forward).",
+    "No instruction-shaped text aimed at AI tools was found in this batch.",
+    "The five invoice task frames (3531:11710, 3550:13993, 3550:14309, 3550:11720, 3550:12872) are one task-detail template with different sample data. Only the Voucher frame (3357:4079) shows Send for review, Forward and '2 lines available to edit'.",
+    "The task-detail texts include both 'Comment - optional. Draft is saved.' and 'Comment - required. Draft is saved.'. The new design has a comment that is required in some cases, probably on Reject. A person should check this against the legacy comment rules.",
+    "The Inline GAiA search frame (3364:1416) contains the empty-state texts 'No tasks to show / Every approval task is cleared.', but the screenshot shows a filled list.",
+    "The four Autopay 'Update payment state' frames (3561:11848, 11851, 11854, 11857) render as fully blank screenshots and have no texts. They may be export failures or empty prototype steps, so a person should re-check them in Figma.",
+    "Design differences worth reviewing in the approval screens: the comment can be optional or required and has a saved draft, there is a 'View skipped steps' option, and there is a line-level sequential workflow with a reason per approver. Send for review and Forward appear only on the voucher task, and voucher lines are editable only there.",
+    "All 8 screenshots in batch-009 (frames 3561:11860 to 3561:11881, 'Update payment state / 05-12 of 14') are fully blank white images and have no texts. The frames may be invisible, transparent or still loading in prototype steps, or the export may have failed. Steps 01-04 and 13-14 of the same flow are not in this batch, so they should be checked to see whether they carry the actual content.",
+    "No instruction-shaped text was found in this batch.",
+    "Screens 3414:21241 and 3414:23660: the texts list carries only Calendar month-grid labels (Calendar, Me, Team, Apr 2026, weekdays, dates), while the screenshots show the Working hours form and the Test1 unit picker. The texts look like they come from a parent or underlying frame, so I mapped these two from the screenshots. No instruction-shaped text was found.",
+    "Screen J4jjulaLJ4QNzqZ1INWydq:3400:8047 (Receipt · Attachments) uses a code snippet ('function submitExpense ... api.post('/expenses' ...)') as the placeholder receipt image. It is not aimed at AI tools, but it is design content that looks like code and was treated as data. It is not evidence of a real endpoint.",
+    "Screen J4jjulaLJ4QNzqZ1INWydq:3414:9478 is named 'Receipt · Camera', but its text layers include a hidden Expense inbox/claims list ('Send 6 expenses', 'Claims 2026'). These layers are not visible in the screenshot, so the mapping uses only the visible camera view.",
+    "Seven frames carry the text of a code snippet (function submitExpense(data) { ... api.post('/expenses', ...) }). In the screenshots it is placeholder content for the receipt image, not a UI instruction or an instruction aimed at AI. It was treated as data and ignored for mapping, and it is not evidence of any endpoint.",
+    "The texts of the two crop frames (3414:13419, 3414:13080) and the delete frame (3400:14353) include receipt form fields that are hidden or dimmed in the screenshots. The mapping relied on the frame names and the visible UI.",
+    "The Receipt screens (3414:10631, 3414:10176, 3414:12755, 3400:6950) show a placeholder receipt image containing a code snippet ('function submitExpense(data) { ... api.post('/expenses' ...'). It is decorative content, not an instruction. It was not used as evidence of a real endpoint.",
+    "The Autopay screens split payments into Payments, Invoices and Salary tabs. The legacy capabilities group by company and bank account and offer a select-all-salary action, but have no Invoices/Salary tabs. The tab split may be a new organisation and needs a decision.",
+    "The frame name 'HRM / Department completed dialogue' (3389:1112) does not match its content: the screenshot shows a 'Rejected' status chip, not a completed state. A person should check whether this frame is meant to show a rejected split or a dialogue marked completed (CAP-222).",
+    "The Add child (3358:2844, 3524:11377), Edit child and Edit post address frames show no Delete action, so CAP-135 (remove a child) has no design coverage in this batch.",
+    "No instruction-shaped text was found in the Figma texts of this batch."
+  ],
+  "stats": {
+    "screens": 214,
+    "linked": 196,
+    "unmapped": 10,
+    "newCapabilities": 0,
+    "notMapped": 0
+  }
+}

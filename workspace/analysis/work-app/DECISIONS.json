@@ -1161,6 +1161,1546 @@
       "by": "Dan-Mihai Cuc",
       "at": "2026-10-01T13:29:16+00:00",
       "replaces": null
+    },
+    "DEC-117": {
+      "about": "CAP-014",
+      "kind": "gap",
+      "question": "CAP-014 View details of a registered absence has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-118": {
+      "about": "CAP-015",
+      "kind": "gap",
+      "question": "CAP-015 Edit a registered absence has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-119": {
+      "about": "CAP-016",
+      "kind": "gap",
+      "question": "CAP-016 Delete a registered absence has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-120": {
+      "about": "CAP-018",
+      "kind": "gap",
+      "question": "CAP-018 Check in and check out for the workday has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-121": {
+      "about": "CAP-019",
+      "kind": "gap",
+      "question": "CAP-019 Edit or delete a check-in/check-out registration has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-122": {
+      "about": "CAP-021",
+      "kind": "gap",
+      "question": "CAP-021 Register time or absence by chatting with the Employee Agent has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-123": {
+      "about": "CAP-022",
+      "kind": "gap",
+      "question": "CAP-022 Confirm the time sheet through the Employee Agent has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-124": {
+      "about": "CAP-024",
+      "kind": "gap",
+      "question": "CAP-024 Edit a predicted registration before saving it has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-125": {
+      "about": "CAP-025",
+      "kind": "gap",
+      "question": "CAP-025 View, edit or delete an absence created in the agent chat has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-126": {
+      "about": "CAP-026",
+      "kind": "gap",
+      "question": "CAP-026 Learn how to use the Employee Agent and try example prompts has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-127": {
+      "about": "CAP-027",
+      "kind": "gap",
+      "question": "CAP-027 Send feedback about the Employee Agent has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-128": {
+      "about": "CAP-033",
+      "kind": "gap",
+      "question": "CAP-033 View a Business NXT order has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-129": {
+      "about": "CAP-034",
+      "kind": "gap",
+      "question": "CAP-034 Edit a Business NXT order's references, delivery date and lines has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-130": {
+      "about": "CAP-035",
+      "kind": "gap",
+      "question": "CAP-035 Create a sales or purchase order has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-131": {
+      "about": "CAP-036",
+      "kind": "gap",
+      "question": "CAP-036 Send a purchase order to approval has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-132": {
+      "about": "CAP-037",
+      "kind": "gap",
+      "question": "CAP-037 Cancel a purchase order has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-133": {
+      "about": "CAP-038",
+      "kind": "gap",
+      "question": "CAP-038 Open an order attachment has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-134": {
+      "about": "CAP-039",
+      "kind": "gap",
+      "question": "CAP-039 Track documents sent for approval has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-135": {
+      "about": "CAP-040",
+      "kind": "gap",
+      "question": "CAP-040 Withdraw a pending approval task has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-136": {
+      "about": "CAP-041",
+      "kind": "gap",
+      "question": "CAP-041 Browse and search archived invoices has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-137": {
+      "about": "CAP-042",
+      "kind": "gap",
+      "question": "CAP-042 See money owed by customers or to suppliers has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-138": {
+      "about": "CAP-043",
+      "kind": "gap",
+      "question": "CAP-043 Review an associate's open ledger entries has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-139": {
+      "about": "CAP-044",
+      "kind": "gap",
+      "question": "CAP-044 View a customer or supplier card has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-140": {
+      "about": "CAP-054",
+      "kind": "gap",
+      "question": "CAP-054 Browse the catalog of questions the assistant can answer has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-141": {
+      "about": "CAP-056",
+      "kind": "gap",
+      "question": "CAP-056 Find and resume a past assistant conversation has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-142": {
+      "about": "CAP-057",
+      "kind": "gap",
+      "question": "CAP-057 Rename, pin or delete an assistant conversation has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-143": {
+      "about": "CAP-058",
+      "kind": "gap",
+      "question": "CAP-058 Resume the conversation an answer-ready notification announced has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-144": {
+      "about": "CAP-059",
+      "kind": "gap",
+      "question": "CAP-059 Rate an assistant answer has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-145": {
+      "about": "CAP-060",
+      "kind": "gap",
+      "question": "CAP-060 Copy an assistant answer has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-146": {
+      "about": "CAP-061",
+      "kind": "gap",
+      "question": "CAP-061 Open a source cited in an assistant answer has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-147": {
+      "about": "CAP-062",
+      "kind": "gap",
+      "question": "CAP-062 Approve or decline an action the assistant asks permission for has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-148": {
+      "about": "CAP-063",
+      "kind": "gap",
+      "question": "CAP-063 Approve or reject an approval task from within the assistant chat has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-149": {
+      "about": "CAP-064",
+      "kind": "gap",
+      "question": "CAP-064 Open an approval task linked in an assistant answer has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-150": {
+      "about": "CAP-065",
+      "kind": "gap",
+      "question": "CAP-065 Let the assistant navigate the app has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-151": {
+      "about": "CAP-075",
+      "kind": "gap",
+      "question": "CAP-075 Follow up on unread dialogues, absent colleagues and new hires from Home has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-152": {
+      "about": "CAP-076",
+      "kind": "gap",
+      "question": "CAP-076 Review recent activity across approval, payments and dialogues has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-153": {
+      "about": "CAP-083",
+      "kind": "gap",
+      "question": "CAP-083 Read important messages, surveys and app-update prompts on Home has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-154": {
+      "about": "CAP-084",
+      "kind": "gap",
+      "question": "CAP-084 Start a common task from Home quick selections has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-155": {
+      "about": "CAP-085",
+      "kind": "gap",
+      "question": "CAP-085 Reach HR profile, documents and benefits or the employee list from Home shortcuts has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-156": {
+      "about": "CAP-088",
+      "kind": "gap",
+      "question": "CAP-088 Open a specific app section from a link has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-157": {
+      "about": "CAP-089",
+      "kind": "gap",
+      "question": "CAP-089 Acknowledge a blocking startup notice has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-158": {
+      "about": "CAP-090",
+      "kind": "gap",
+      "question": "CAP-090 Go through first-run onboarding has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-159": {
+      "about": "CAP-091",
+      "kind": "gap",
+      "question": "CAP-091 View a financial reporting dashboard for a company and period has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-160": {
+      "about": "CAP-092",
+      "kind": "gap",
+      "question": "CAP-092 Choose the customer and tenant to report on has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-161": {
+      "about": "CAP-093",
+      "kind": "gap",
+      "question": "CAP-093 Filter a dashboard chart by category and choose which series to show has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-162": {
+      "about": "CAP-094",
+      "kind": "gap",
+      "question": "CAP-094 Examine a dashboard chart in detail has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-163": {
+      "about": "CAP-099",
+      "kind": "gap",
+      "question": "CAP-099 Send feedback about Business NXT line editing has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-164": {
+      "about": "CAP-100",
+      "kind": "gap",
+      "question": "CAP-100 Rate the app in the store has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-165": {
+      "about": "CAP-101",
+      "kind": "gap",
+      "question": "CAP-101 Answer an NPS satisfaction survey has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-166": {
+      "about": "CAP-102",
+      "kind": "gap",
+      "question": "CAP-102 Decline the NPS survey or stop it from showing again has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-167": {
+      "about": "CAP-103",
+      "kind": "gap",
+      "question": "CAP-103 Take or dismiss a survey from the home card has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-168": {
+      "about": "CAP-104",
+      "kind": "gap",
+      "question": "CAP-104 Volunteer for user testing has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-169": {
+      "about": "CAP-105",
+      "kind": "gap",
+      "question": "CAP-105 Review and share failed request logs has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-170": {
+      "about": "CAP-111",
+      "kind": "gap",
+      "question": "CAP-111 Turn vibration and the holiday theme on or off has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-171": {
+      "about": "CAP-117",
+      "kind": "gap",
+      "question": "CAP-117 Allow or block screenshots of the app has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-172": {
+      "about": "CAP-118",
+      "kind": "gap",
+      "question": "CAP-118 Update the app when a new version is suggested or required has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-173": {
+      "about": "CAP-119",
+      "kind": "gap",
+      "question": "CAP-119 Keep app state after restarting or updating the app has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-174": {
+      "about": "CAP-122",
+      "kind": "gap",
+      "question": "CAP-122 See that an employee's birthday is coming up has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-175": {
+      "about": "CAP-123",
+      "kind": "gap",
+      "question": "CAP-123 Turn birthday and work-anniversary reminders on or off has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-176": {
+      "about": "CAP-125",
+      "kind": "gap",
+      "question": "CAP-125 Search the employee directory by name has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-177": {
+      "about": "CAP-126",
+      "kind": "gap",
+      "question": "CAP-126 Filter the employee directory with quick filters has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-178": {
+      "about": "CAP-127",
+      "kind": "gap",
+      "question": "CAP-127 Hide or show companies in the employee list has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-179": {
+      "about": "CAP-129",
+      "kind": "gap",
+      "question": "CAP-129 View a colleague's Dottie profile has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-180": {
+      "about": "CAP-132",
+      "kind": "gap",
+      "question": "CAP-132 Edit an employee's name, phone numbers and emails has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-181": {
+      "about": "CAP-135",
+      "kind": "gap",
+      "question": "CAP-135 Remove an employee's child has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-182": {
+      "about": "CAP-137",
+      "kind": "gap",
+      "question": "CAP-137 Remove an employee's emergency contact has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-183": {
+      "about": "CAP-138",
+      "kind": "gap",
+      "question": "CAP-138 Generate an AI birthday or work-anniversary greeting has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-184": {
+      "about": "CAP-139",
+      "kind": "gap",
+      "question": "CAP-139 Send a greeting to the employee by share sheet or SMS has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-185": {
+      "about": "CAP-140",
+      "kind": "gap",
+      "question": "CAP-140 Save a greeting for later has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-186": {
+      "about": "CAP-141",
+      "kind": "gap",
+      "question": "CAP-141 View my personal information has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-187": {
+      "about": "CAP-142",
+      "kind": "gap",
+      "question": "CAP-142 Update my phone numbers and home address has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-188": {
+      "about": "CAP-143",
+      "kind": "gap",
+      "question": "CAP-143 Change my salary bank account number has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-189": {
+      "about": "CAP-144",
+      "kind": "gap",
+      "question": "CAP-144 Add an emergency contact or child has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-190": {
+      "about": "CAP-145",
+      "kind": "gap",
+      "question": "CAP-145 Edit an emergency contact or child has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-191": {
+      "about": "CAP-146",
+      "kind": "gap",
+      "question": "CAP-146 Remove an emergency contact or child has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-192": {
+      "about": "CAP-147",
+      "kind": "gap",
+      "question": "CAP-147 View and update my HR profile has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-193": {
+      "about": "CAP-148",
+      "kind": "gap",
+      "question": "CAP-148 Change or remove my profile picture has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-194": {
+      "about": "CAP-149",
+      "kind": "gap",
+      "question": "CAP-149 Pick and crop a profile picture (prototype) has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-195": {
+      "about": "CAP-156",
+      "kind": "gap",
+      "question": "CAP-156 Complete a review of a task has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-196": {
+      "about": "CAP-159",
+      "kind": "gap",
+      "question": "CAP-159 Act on an approval task from the Home screen has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-197": {
+      "about": "CAP-161",
+      "kind": "gap",
+      "question": "CAP-161 Review an employee's pending approval tasks has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-198": {
+      "about": "CAP-162",
+      "kind": "gap",
+      "question": "CAP-162 Open the requester's employee profile from a task has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-199": {
+      "about": "CAP-169",
+      "kind": "gap",
+      "question": "CAP-169 Approve or reject individual accounting lines has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-200": {
+      "about": "CAP-172",
+      "kind": "gap",
+      "question": "CAP-172 Apply one field value to all lines has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-201": {
+      "about": "CAP-173",
+      "kind": "gap",
+      "question": "CAP-173 Discard unsaved line edits has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-202": {
+      "about": "CAP-176",
+      "kind": "gap",
+      "question": "CAP-176 Receive push notifications on this device has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-203": {
+      "about": "CAP-177",
+      "kind": "gap",
+      "question": "CAP-177 Stop push notifications to this device when signing out has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-204": {
+      "about": "CAP-178",
+      "kind": "gap",
+      "question": "CAP-178 Open a push notification in the right place has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-205": {
+      "about": "CAP-179",
+      "kind": "gap",
+      "question": "CAP-179 See that new HR notifications are waiting has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-206": {
+      "about": "CAP-182",
+      "kind": "gap",
+      "question": "CAP-182 Mark an HR notification as read has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-207": {
+      "about": "CAP-183",
+      "kind": "gap",
+      "question": "CAP-183 Open a document notification and confirm it as read has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-208": {
+      "about": "CAP-184",
+      "kind": "gap",
+      "question": "CAP-184 Read an important message from the employer or Visma has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-209": {
+      "about": "CAP-185",
+      "kind": "gap",
+      "question": "CAP-185 Open the app's notification settings has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-210": {
+      "about": "CAP-190",
+      "kind": "gap",
+      "question": "CAP-190 Track the status of processed AutoPay payments (In progress / Deviation / In bank) has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-211": {
+      "about": "CAP-191",
+      "kind": "gap",
+      "question": "CAP-191 View an AutoPay payment's details has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-212": {
+      "about": "CAP-192",
+      "kind": "gap",
+      "question": "CAP-192 View the invoice document attached to an AutoPay payment has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-213": {
+      "about": "CAP-193",
+      "kind": "gap",
+      "question": "CAP-193 Change the pay date of an AutoPay payment has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-214": {
+      "about": "CAP-194",
+      "kind": "gap",
+      "question": "CAP-194 Add, edit or delete a note on an AutoPay payment has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-215": {
+      "about": "CAP-195",
+      "kind": "gap",
+      "question": "CAP-195 Review and verify AutoPay payment warnings has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-216": {
+      "about": "CAP-196",
+      "kind": "gap",
+      "question": "CAP-196 Cancel an AutoPay payment has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-217": {
+      "about": "CAP-197",
+      "kind": "gap",
+      "question": "CAP-197 Sign in with a Visma Connect account has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-218": {
+      "about": "CAP-198",
+      "kind": "gap",
+      "question": "CAP-198 Stay signed in without logging in again has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-219": {
+      "about": "CAP-199",
+      "kind": "gap",
+      "question": "CAP-199 Be signed out and told why when the session ends has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-220": {
+      "about": "CAP-200",
+      "kind": "gap",
+      "question": "CAP-200 Handle an account with no access has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-221": {
+      "about": "CAP-202",
+      "kind": "gap",
+      "question": "CAP-202 Switch between saved accounts has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-222": {
+      "about": "CAP-203",
+      "kind": "gap",
+      "question": "CAP-203 Add another account has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-223": {
+      "about": "CAP-204",
+      "kind": "gap",
+      "question": "CAP-204 Remove a saved account from the device has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-224": {
+      "about": "CAP-207",
+      "kind": "gap",
+      "question": "CAP-207 Unlock the app with Face ID, fingerprint or PIN has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-225": {
+      "about": "CAP-209",
+      "kind": "gap",
+      "question": "CAP-209 Switch the backend environment has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-226": {
+      "about": "CAP-210",
+      "kind": "gap",
+      "question": "CAP-210 Choose a sandbox environment at login has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-227": {
+      "about": "CAP-212",
+      "kind": "gap",
+      "question": "CAP-212 Preview a day timeline (prototype) has no screen in the new design. What happens to it?",
+      "choice": "drop",
+      "note": "Build from legacy screens (Time and absence); the day-timeline prototype is dropped.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-228": {
+      "about": "CAP-213",
+      "kind": "gap",
+      "question": "CAP-213 Fill in and edit a server-defined form has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-229": {
+      "about": "CAP-215",
+      "kind": "gap",
+      "question": "CAP-215 Start a new payroll dialogue has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-230": {
+      "about": "CAP-219",
+      "kind": "gap",
+      "question": "CAP-219 Edit a sent dialogue message has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-231": {
+      "about": "CAP-220",
+      "kind": "gap",
+      "question": "CAP-220 Delete a dialogue message has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-232": {
+      "about": "CAP-221",
+      "kind": "gap",
+      "question": "CAP-221 Rename a dialogue or change its linked wage run has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-233": {
+      "about": "CAP-222",
+      "kind": "gap",
+      "question": "CAP-222 Mark a dialogue as completed or reactivate it has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-234": {
+      "about": "CAP-223",
+      "kind": "gap",
+      "question": "CAP-223 Delete a dialogue has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-235": {
+      "about": "CAP-232",
+      "kind": "gap",
+      "question": "CAP-232 Browse and search company documents has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-236": {
+      "about": "CAP-233",
+      "kind": "gap",
+      "question": "CAP-233 Open a company document has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-237": {
+      "about": "CAP-234",
+      "kind": "gap",
+      "question": "CAP-234 Confirm reading a required company document has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-238": {
+      "about": "CAP-235",
+      "kind": "gap",
+      "question": "CAP-235 View and open my personal documents has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-239": {
+      "about": "CAP-236",
+      "kind": "gap",
+      "question": "CAP-236 Browse employee benefits has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-240": {
+      "about": "CAP-237",
+      "kind": "gap",
+      "question": "CAP-237 Open and acknowledge a document from a notification has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-241": {
+      "about": "CAP-239",
+      "kind": "gap",
+      "question": "CAP-239 Open a downloaded file in another app has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-242": {
+      "about": "CAP-243",
+      "kind": "gap",
+      "question": "CAP-243 Share a photo or PDF into the app to create an expense has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-243": {
+      "about": "CAP-244",
+      "kind": "gap",
+      "question": "CAP-244 Auto-fill a receipt from its image and get a suggested expense type has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-244": {
+      "about": "CAP-247",
+      "kind": "gap",
+      "question": "CAP-247 Calculate driving distance for a kilometre receipt has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-245": {
+      "about": "CAP-250",
+      "kind": "gap",
+      "question": "CAP-250 Link a credit card transaction to a receipt (merge) has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-246": {
+      "about": "CAP-251",
+      "kind": "gap",
+      "question": "CAP-251 Delete an unsent expense has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-247": {
+      "about": "CAP-260",
+      "kind": "gap",
+      "question": "CAP-260 Withdraw a claim from approval has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-248": {
+      "about": "CAP-264",
+      "kind": "gap",
+      "question": "CAP-264 Assign project accounting to an expense or claim has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-249": {
+      "about": "CAP-268",
+      "kind": "gap",
+      "question": "CAP-268 Remember my mileage defaults has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-250": {
+      "about": "CAP-273",
+      "kind": "gap",
+      "question": "CAP-273 View my travel emissions summary has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-251": {
+      "about": "CAP-274",
+      "kind": "gap",
+      "question": "CAP-274 See the CO2e emissions of an expense or claim has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-252": {
+      "about": "CAP-275",
+      "kind": "gap",
+      "question": "CAP-275 Keep expenses in sync and upload offline drafts automatically has no screen in the new design. What happens to it?",
+      "choice": "carry-as-is",
+      "note": "Build from legacy screens: built with the new design system, laid out like today's screens.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-253": {
+      "about": "J4jjulaLJ4QNzqZ1INWydq:3550:12036",
+      "kind": "design",
+      "question": "Figma frame J4jjulaLJ4QNzqZ1INWydq:3550:12036 matches no legacy capability. Is it a new feature in scope?",
+      "choice": "in-scope",
+      "note": "In scope, same as the task detail: variants of the approval task-detail screen; built with it.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-254": {
+      "about": "J4jjulaLJ4QNzqZ1INWydq:3550:12556",
+      "kind": "design",
+      "question": "Figma frame J4jjulaLJ4QNzqZ1INWydq:3550:12556 matches no legacy capability. Is it a new feature in scope?",
+      "choice": "in-scope",
+      "note": "In scope, same as the task detail: variants of the approval task-detail screen; built with it.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-255": {
+      "about": "J4jjulaLJ4QNzqZ1INWydq:3550:13266",
+      "kind": "design",
+      "question": "Figma frame J4jjulaLJ4QNzqZ1INWydq:3550:13266 matches no legacy capability. Is it a new feature in scope?",
+      "choice": "in-scope",
+      "note": "In scope, same as the task detail: variants of the approval task-detail screen; built with it.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-256": {
+      "about": "J4jjulaLJ4QNzqZ1INWydq:3550:13582",
+      "kind": "design",
+      "question": "Figma frame J4jjulaLJ4QNzqZ1INWydq:3550:13582 matches no legacy capability. Is it a new feature in scope?",
+      "choice": "in-scope",
+      "note": "In scope, same as the task detail: variants of the approval task-detail screen; built with it.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-257": {
+      "about": "J4jjulaLJ4QNzqZ1INWydq:3561:11848",
+      "kind": "design",
+      "question": "Figma frame J4jjulaLJ4QNzqZ1INWydq:3561:11848 matches no legacy capability. Is it a new feature in scope?",
+      "choice": "out-of-scope",
+      "note": "Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-258": {
+      "about": "J4jjulaLJ4QNzqZ1INWydq:3561:11851",
+      "kind": "design",
+      "question": "Figma frame J4jjulaLJ4QNzqZ1INWydq:3561:11851 matches no legacy capability. Is it a new feature in scope?",
+      "choice": "out-of-scope",
+      "note": "Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-259": {
+      "about": "J4jjulaLJ4QNzqZ1INWydq:3561:11854",
+      "kind": "design",
+      "question": "Figma frame J4jjulaLJ4QNzqZ1INWydq:3561:11854 matches no legacy capability. Is it a new feature in scope?",
+      "choice": "out-of-scope",
+      "note": "Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-260": {
+      "about": "J4jjulaLJ4QNzqZ1INWydq:3561:11857",
+      "kind": "design",
+      "question": "Figma frame J4jjulaLJ4QNzqZ1INWydq:3561:11857 matches no legacy capability. Is it a new feature in scope?",
+      "choice": "out-of-scope",
+      "note": "Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-261": {
+      "about": "J4jjulaLJ4QNzqZ1INWydq:3561:11860",
+      "kind": "design",
+      "question": "Figma frame J4jjulaLJ4QNzqZ1INWydq:3561:11860 matches no legacy capability. Is it a new feature in scope?",
+      "choice": "out-of-scope",
+      "note": "Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-262": {
+      "about": "J4jjulaLJ4QNzqZ1INWydq:3561:11863",
+      "kind": "design",
+      "question": "Figma frame J4jjulaLJ4QNzqZ1INWydq:3561:11863 matches no legacy capability. Is it a new feature in scope?",
+      "choice": "out-of-scope",
+      "note": "Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-263": {
+      "about": "J4jjulaLJ4QNzqZ1INWydq:3561:11866",
+      "kind": "design",
+      "question": "Figma frame J4jjulaLJ4QNzqZ1INWydq:3561:11866 matches no legacy capability. Is it a new feature in scope?",
+      "choice": "out-of-scope",
+      "note": "Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-264": {
+      "about": "J4jjulaLJ4QNzqZ1INWydq:3561:11869",
+      "kind": "design",
+      "question": "Figma frame J4jjulaLJ4QNzqZ1INWydq:3561:11869 matches no legacy capability. Is it a new feature in scope?",
+      "choice": "out-of-scope",
+      "note": "Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-265": {
+      "about": "J4jjulaLJ4QNzqZ1INWydq:3561:11872",
+      "kind": "design",
+      "question": "Figma frame J4jjulaLJ4QNzqZ1INWydq:3561:11872 matches no legacy capability. Is it a new feature in scope?",
+      "choice": "out-of-scope",
+      "note": "Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-266": {
+      "about": "J4jjulaLJ4QNzqZ1INWydq:3561:11875",
+      "kind": "design",
+      "question": "Figma frame J4jjulaLJ4QNzqZ1INWydq:3561:11875 matches no legacy capability. Is it a new feature in scope?",
+      "choice": "out-of-scope",
+      "note": "Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-267": {
+      "about": "J4jjulaLJ4QNzqZ1INWydq:3561:11878",
+      "kind": "design",
+      "question": "Figma frame J4jjulaLJ4QNzqZ1INWydq:3561:11878 matches no legacy capability. Is it a new feature in scope?",
+      "choice": "out-of-scope",
+      "note": "Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-268": {
+      "about": "J4jjulaLJ4QNzqZ1INWydq:3561:11881",
+      "kind": "design",
+      "question": "Figma frame J4jjulaLJ4QNzqZ1INWydq:3561:11881 matches no legacy capability. Is it a new feature in scope?",
+      "choice": "out-of-scope",
+      "note": "Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-269": {
+      "about": "J4jjulaLJ4QNzqZ1INWydq:3561:11884",
+      "kind": "design",
+      "question": "Figma frame J4jjulaLJ4QNzqZ1INWydq:3561:11884 matches no legacy capability. Is it a new feature in scope?",
+      "choice": "out-of-scope",
+      "note": "Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
+    },
+    "DEC-270": {
+      "about": "J4jjulaLJ4QNzqZ1INWydq:3561:11887",
+      "kind": "design",
+      "question": "Figma frame J4jjulaLJ4QNzqZ1INWydq:3561:11887 matches no legacy capability. Is it a new feature in scope?",
+      "choice": "out-of-scope",
+      "note": "Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T17:38:10+00:00",
+      "replaces": null
     }
   }
 }

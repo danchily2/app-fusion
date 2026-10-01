@@ -64,3 +64,8 @@ Recorded as DEC-033 to DEC-116. Options chosen, word for word:
 - **Help, feedback, What's New (4):** "Manager's". **Settings and legal (8):** "Manager's". **App state:** "Yes, Manager's way".
 - **Employee iOS vs Android differences (6):** "iOS behavior". **Duplicates (3):** "Merge them".
 - **Push mechanics (17):** "Keep all 17". **Storage and housekeeping (24):** "Rebuild what users notice".
+
+## Design gaps, answered in the terminal 2026-10-01 (Dan-Mihai Cuc)
+
+- **All 136 capabilities with no screen:** "Build from legacy screens" (every domain); the day-timeline prototype is dropped.
+- **14 blank Autopay prototype frames:** "Out of scope". **4 invoice task frames:** "In scope, same as the task detail".

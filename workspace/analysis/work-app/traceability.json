@@ -1,7 +1,7 @@
 {
   "program": "work-app",
   "version": 1,
-  "generated": "2026-10-01T13:47:20+00:00",
+  "generated": "2026-10-01T17:38:10+00:00",
   "links": [
     {
       "screen": "J4jjulaLJ4QNzqZ1INWydq:3530:11704",
@@ -2278,21 +2278,21 @@
     },
     "CAP-014": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-015": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-016": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-017": {
       "screens": [
@@ -2304,15 +2304,15 @@
     },
     "CAP-018": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-019": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-020": {
       "screens": [
@@ -2326,15 +2326,15 @@
     },
     "CAP-021": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-022": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-023": {
       "screens": [
@@ -2347,27 +2347,27 @@
     },
     "CAP-024": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-025": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-026": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-027": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-028": {
       "screens": [
@@ -2419,75 +2419,75 @@
     },
     "CAP-033": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-034": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-035": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-036": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-037": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-038": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-039": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-040": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-041": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-042": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-043": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-044": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-045": {
       "screens": [
@@ -2581,9 +2581,9 @@
     },
     "CAP-054": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-055": {
       "screens": [
@@ -2596,63 +2596,63 @@
     },
     "CAP-056": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-057": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-058": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-059": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-060": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-061": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-062": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-063": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-064": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-065": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-066": {
       "screens": [
@@ -2740,15 +2740,15 @@
     },
     "CAP-075": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-076": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-077": {
       "screens": [
@@ -2803,21 +2803,21 @@
     },
     "CAP-083": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-084": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-085": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-086": {
       "screens": [
@@ -2837,45 +2837,45 @@
     },
     "CAP-088": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-089": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-090": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-091": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-092": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-093": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-094": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-095": {
       "screens": [
@@ -2924,45 +2924,45 @@
     },
     "CAP-099": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-100": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-101": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-102": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-103": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-104": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-105": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-106": {
       "screens": [
@@ -3014,9 +3014,9 @@
     },
     "CAP-111": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-112": {
       "screens": [
@@ -3068,21 +3068,21 @@
     },
     "CAP-117": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-118": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-119": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-120": {
       "screens": [
@@ -3102,15 +3102,15 @@
     },
     "CAP-122": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-123": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-124": {
       "screens": [
@@ -3123,21 +3123,21 @@
     },
     "CAP-125": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-126": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-127": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-128": {
       "screens": [
@@ -3159,9 +3159,9 @@
     },
     "CAP-129": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-130": {
       "screens": [
@@ -3193,9 +3193,9 @@
     },
     "CAP-132": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-133": {
       "screens": [
@@ -3234,9 +3234,9 @@
     },
     "CAP-135": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-136": {
       "screens": [
@@ -3249,81 +3249,81 @@
     },
     "CAP-137": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-138": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-139": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-140": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-141": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-142": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-143": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-144": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-145": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-146": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-147": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-148": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-149": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-150": {
       "screens": [
@@ -3406,9 +3406,9 @@
     },
     "CAP-156": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-157": {
       "screens": [
@@ -3430,9 +3430,9 @@
     },
     "CAP-159": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-160": {
       "screens": [
@@ -3446,15 +3446,15 @@
     },
     "CAP-161": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-162": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-163": {
       "screens": [
@@ -3525,9 +3525,9 @@
     },
     "CAP-169": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-170": {
       "screens": [
@@ -3559,15 +3559,15 @@
     },
     "CAP-172": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-173": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-174": {
       "screens": [
@@ -3590,27 +3590,27 @@
     },
     "CAP-176": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-177": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-178": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-179": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-180": {
       "screens": [
@@ -3631,27 +3631,27 @@
     },
     "CAP-182": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-183": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-184": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-185": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-186": {
       "screens": [
@@ -3697,69 +3697,69 @@
     },
     "CAP-190": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-191": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-192": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-193": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-194": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-195": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-196": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-197": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-198": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-199": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-200": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-201": {
       "screens": [
@@ -3771,21 +3771,21 @@
     },
     "CAP-202": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-203": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-204": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-205": {
       "screens": [
@@ -3807,9 +3807,9 @@
     },
     "CAP-207": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-208": {
       "screens": [
@@ -3821,15 +3821,15 @@
     },
     "CAP-209": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-210": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-211": {
       "screens": [
@@ -3841,15 +3841,15 @@
     },
     "CAP-212": {
       "screens": [],
-      "status": "no-design",
+      "status": "dropped",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "drop"
     },
     "CAP-213": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-214": {
       "screens": [
@@ -3862,9 +3862,9 @@
     },
     "CAP-215": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-216": {
       "screens": [
@@ -3895,33 +3895,33 @@
     },
     "CAP-219": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-220": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-221": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-222": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-223": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-224": {
       "screens": [
@@ -3998,39 +3998,39 @@
     },
     "CAP-232": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-233": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-234": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-235": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-236": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-237": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-238": {
       "screens": [
@@ -4043,9 +4043,9 @@
     },
     "CAP-239": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-240": {
       "screens": [
@@ -4080,15 +4080,15 @@
     },
     "CAP-243": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-244": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-245": {
       "screens": [
@@ -4113,9 +4113,9 @@
     },
     "CAP-247": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-248": {
       "screens": [
@@ -4140,15 +4140,15 @@
     },
     "CAP-250": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-251": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-252": {
       "screens": [
@@ -4242,9 +4242,9 @@
     },
     "CAP-260": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-261": {
       "screens": [
@@ -4286,9 +4286,9 @@
     },
     "CAP-264": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-265": {
       "screens": [
@@ -4326,9 +4326,9 @@
     },
     "CAP-268": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-269": {
       "screens": [
@@ -4378,186 +4378,30 @@
     },
     "CAP-273": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-274": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     },
     "CAP-275": {
       "screens": [],
-      "status": "no-design",
+      "status": "design-exempt",
       "module": null,
-      "gapDecision": null
+      "gapDecision": "carry-as-is"
     }
   },
   "gaps": {
-    "capabilitiesWithoutDesign": [
-      "CAP-014",
-      "CAP-015",
-      "CAP-016",
-      "CAP-018",
-      "CAP-019",
-      "CAP-021",
-      "CAP-022",
-      "CAP-024",
-      "CAP-025",
-      "CAP-026",
-      "CAP-027",
-      "CAP-033",
-      "CAP-034",
-      "CAP-035",
-      "CAP-036",
-      "CAP-037",
-      "CAP-038",
-      "CAP-039",
-      "CAP-040",
-      "CAP-041",
-      "CAP-042",
-      "CAP-043",
-      "CAP-044",
-      "CAP-054",
-      "CAP-056",
-      "CAP-057",
-      "CAP-058",
-      "CAP-059",
-      "CAP-060",
-      "CAP-061",
-      "CAP-062",
-      "CAP-063",
-      "CAP-064",
-      "CAP-065",
-      "CAP-075",
-      "CAP-076",
-      "CAP-083",
-      "CAP-084",
-      "CAP-085",
-      "CAP-088",
-      "CAP-089",
-      "CAP-090",
-      "CAP-091",
-      "CAP-092",
-      "CAP-093",
-      "CAP-094",
-      "CAP-099",
-      "CAP-100",
-      "CAP-101",
-      "CAP-102",
-      "CAP-103",
-      "CAP-104",
-      "CAP-105",
-      "CAP-111",
-      "CAP-117",
-      "CAP-118",
-      "CAP-119",
-      "CAP-122",
-      "CAP-123",
-      "CAP-125",
-      "CAP-126",
-      "CAP-127",
-      "CAP-129",
-      "CAP-132",
-      "CAP-135",
-      "CAP-137",
-      "CAP-138",
-      "CAP-139",
-      "CAP-140",
-      "CAP-141",
-      "CAP-142",
-      "CAP-143",
-      "CAP-144",
-      "CAP-145",
-      "CAP-146",
-      "CAP-147",
-      "CAP-148",
-      "CAP-149",
-      "CAP-156",
-      "CAP-159",
-      "CAP-161",
-      "CAP-162",
-      "CAP-169",
-      "CAP-172",
-      "CAP-173",
-      "CAP-176",
-      "CAP-177",
-      "CAP-178",
-      "CAP-179",
-      "CAP-182",
-      "CAP-183",
-      "CAP-184",
-      "CAP-185",
-      "CAP-190",
-      "CAP-191",
-      "CAP-192",
-      "CAP-193",
-      "CAP-194",
-      "CAP-195",
-      "CAP-196",
-      "CAP-197",
-      "CAP-198",
-      "CAP-199",
-      "CAP-200",
-      "CAP-202",
-      "CAP-203",
-      "CAP-204",
-      "CAP-207",
-      "CAP-209",
-      "CAP-210",
-      "CAP-212",
-      "CAP-213",
-      "CAP-215",
-      "CAP-219",
-      "CAP-220",
-      "CAP-221",
-      "CAP-222",
-      "CAP-223",
-      "CAP-232",
-      "CAP-233",
-      "CAP-234",
-      "CAP-235",
-      "CAP-236",
-      "CAP-237",
-      "CAP-239",
-      "CAP-243",
-      "CAP-244",
-      "CAP-247",
-      "CAP-250",
-      "CAP-251",
-      "CAP-260",
-      "CAP-264",
-      "CAP-268",
-      "CAP-273",
-      "CAP-274",
-      "CAP-275"
-    ],
-    "screensWithoutCapability": [
-      "J4jjulaLJ4QNzqZ1INWydq:3550:12036",
-      "J4jjulaLJ4QNzqZ1INWydq:3550:12556",
-      "J4jjulaLJ4QNzqZ1INWydq:3550:13266",
-      "J4jjulaLJ4QNzqZ1INWydq:3550:13582",
-      "J4jjulaLJ4QNzqZ1INWydq:3561:11848",
-      "J4jjulaLJ4QNzqZ1INWydq:3561:11851",
-      "J4jjulaLJ4QNzqZ1INWydq:3561:11854",
-      "J4jjulaLJ4QNzqZ1INWydq:3561:11857",
-      "J4jjulaLJ4QNzqZ1INWydq:3561:11860",
-      "J4jjulaLJ4QNzqZ1INWydq:3561:11863",
-      "J4jjulaLJ4QNzqZ1INWydq:3561:11866",
-      "J4jjulaLJ4QNzqZ1INWydq:3561:11869",
-      "J4jjulaLJ4QNzqZ1INWydq:3561:11872",
-      "J4jjulaLJ4QNzqZ1INWydq:3561:11875",
-      "J4jjulaLJ4QNzqZ1INWydq:3561:11878",
-      "J4jjulaLJ4QNzqZ1INWydq:3561:11881",
-      "J4jjulaLJ4QNzqZ1INWydq:3561:11884",
-      "J4jjulaLJ4QNzqZ1INWydq:3561:11887"
-    ],
+    "capabilitiesWithoutDesign": [],
+    "screensWithoutCapability": [],
     "divergedWithoutDecision": []
   },
   "coverage": {
-    "capabilities": 270,
+    "capabilities": 269,
     "designed": 134,
     "percent": 50,
     "built": 0,

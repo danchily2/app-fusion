@@ -120,3 +120,157 @@ What a person decided, in their words. The plan (`fuse-brief`) and the build (`f
 | DEC-114 | platform | PLT-382 | decide-later | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a storage engine: chosen with the stack) | Dan-Mihai Cuc | 2026-10-01 |
 | DEC-115 | platform | PLT-130 | drop | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a migration of old data: not needed when starting clean) | Dan-Mihai Cuc | 2026-10-01 |
 | DEC-116 | platform | PLT-343 | drop | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a migration of old data: not needed when starting clean) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-117 | gap | CAP-014 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-118 | gap | CAP-015 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-119 | gap | CAP-016 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-120 | gap | CAP-018 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-121 | gap | CAP-019 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-122 | gap | CAP-021 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-123 | gap | CAP-022 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-124 | gap | CAP-024 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-125 | gap | CAP-025 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-126 | gap | CAP-026 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-127 | gap | CAP-027 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-128 | gap | CAP-033 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-129 | gap | CAP-034 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-130 | gap | CAP-035 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-131 | gap | CAP-036 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-132 | gap | CAP-037 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-133 | gap | CAP-038 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-134 | gap | CAP-039 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-135 | gap | CAP-040 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-136 | gap | CAP-041 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-137 | gap | CAP-042 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-138 | gap | CAP-043 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-139 | gap | CAP-044 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-140 | gap | CAP-054 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-141 | gap | CAP-056 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-142 | gap | CAP-057 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-143 | gap | CAP-058 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-144 | gap | CAP-059 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-145 | gap | CAP-060 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-146 | gap | CAP-061 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-147 | gap | CAP-062 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-148 | gap | CAP-063 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-149 | gap | CAP-064 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-150 | gap | CAP-065 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-151 | gap | CAP-075 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-152 | gap | CAP-076 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-153 | gap | CAP-083 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-154 | gap | CAP-084 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-155 | gap | CAP-085 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-156 | gap | CAP-088 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-157 | gap | CAP-089 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-158 | gap | CAP-090 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-159 | gap | CAP-091 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-160 | gap | CAP-092 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-161 | gap | CAP-093 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-162 | gap | CAP-094 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-163 | gap | CAP-099 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-164 | gap | CAP-100 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-165 | gap | CAP-101 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-166 | gap | CAP-102 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-167 | gap | CAP-103 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-168 | gap | CAP-104 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-169 | gap | CAP-105 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-170 | gap | CAP-111 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-171 | gap | CAP-117 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-172 | gap | CAP-118 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-173 | gap | CAP-119 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-174 | gap | CAP-122 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-175 | gap | CAP-123 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-176 | gap | CAP-125 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-177 | gap | CAP-126 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-178 | gap | CAP-127 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-179 | gap | CAP-129 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-180 | gap | CAP-132 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-181 | gap | CAP-135 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-182 | gap | CAP-137 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-183 | gap | CAP-138 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-184 | gap | CAP-139 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-185 | gap | CAP-140 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-186 | gap | CAP-141 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-187 | gap | CAP-142 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-188 | gap | CAP-143 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-189 | gap | CAP-144 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-190 | gap | CAP-145 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-191 | gap | CAP-146 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-192 | gap | CAP-147 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-193 | gap | CAP-148 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-194 | gap | CAP-149 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-195 | gap | CAP-156 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-196 | gap | CAP-159 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-197 | gap | CAP-161 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-198 | gap | CAP-162 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-199 | gap | CAP-169 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-200 | gap | CAP-172 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-201 | gap | CAP-173 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-202 | gap | CAP-176 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-203 | gap | CAP-177 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-204 | gap | CAP-178 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-205 | gap | CAP-179 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-206 | gap | CAP-182 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-207 | gap | CAP-183 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-208 | gap | CAP-184 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-209 | gap | CAP-185 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-210 | gap | CAP-190 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-211 | gap | CAP-191 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-212 | gap | CAP-192 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-213 | gap | CAP-193 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-214 | gap | CAP-194 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-215 | gap | CAP-195 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-216 | gap | CAP-196 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-217 | gap | CAP-197 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-218 | gap | CAP-198 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-219 | gap | CAP-199 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-220 | gap | CAP-200 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-221 | gap | CAP-202 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-222 | gap | CAP-203 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-223 | gap | CAP-204 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-224 | gap | CAP-207 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-225 | gap | CAP-209 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-226 | gap | CAP-210 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-227 | gap | CAP-212 | drop | Build from legacy screens (Time and absence); the day-timeline prototype is dropped. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-228 | gap | CAP-213 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-229 | gap | CAP-215 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-230 | gap | CAP-219 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-231 | gap | CAP-220 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-232 | gap | CAP-221 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-233 | gap | CAP-222 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-234 | gap | CAP-223 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-235 | gap | CAP-232 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-236 | gap | CAP-233 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-237 | gap | CAP-234 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-238 | gap | CAP-235 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-239 | gap | CAP-236 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-240 | gap | CAP-237 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-241 | gap | CAP-239 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-242 | gap | CAP-243 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-243 | gap | CAP-244 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-244 | gap | CAP-247 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-245 | gap | CAP-250 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-246 | gap | CAP-251 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-247 | gap | CAP-260 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-248 | gap | CAP-264 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-249 | gap | CAP-268 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-250 | gap | CAP-273 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-251 | gap | CAP-274 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-252 | gap | CAP-275 | carry-as-is | Build from legacy screens: built with the new design system, laid out like today's screens. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-253 | design | J4jjulaLJ4QNzqZ1INWydq:3550:12036 | in-scope | In scope, same as the task detail: variants of the approval task-detail screen; built with it. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-254 | design | J4jjulaLJ4QNzqZ1INWydq:3550:12556 | in-scope | In scope, same as the task detail: variants of the approval task-detail screen; built with it. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-255 | design | J4jjulaLJ4QNzqZ1INWydq:3550:13266 | in-scope | In scope, same as the task detail: variants of the approval task-detail screen; built with it. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-256 | design | J4jjulaLJ4QNzqZ1INWydq:3550:13582 | in-scope | In scope, same as the task detail: variants of the approval task-detail screen; built with it. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-257 | design | J4jjulaLJ4QNzqZ1INWydq:3561:11848 | out-of-scope | Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-258 | design | J4jjulaLJ4QNzqZ1INWydq:3561:11851 | out-of-scope | Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-259 | design | J4jjulaLJ4QNzqZ1INWydq:3561:11854 | out-of-scope | Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-260 | design | J4jjulaLJ4QNzqZ1INWydq:3561:11857 | out-of-scope | Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-261 | design | J4jjulaLJ4QNzqZ1INWydq:3561:11860 | out-of-scope | Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-262 | design | J4jjulaLJ4QNzqZ1INWydq:3561:11863 | out-of-scope | Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-263 | design | J4jjulaLJ4QNzqZ1INWydq:3561:11866 | out-of-scope | Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-264 | design | J4jjulaLJ4QNzqZ1INWydq:3561:11869 | out-of-scope | Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-265 | design | J4jjulaLJ4QNzqZ1INWydq:3561:11872 | out-of-scope | Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-266 | design | J4jjulaLJ4QNzqZ1INWydq:3561:11875 | out-of-scope | Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-267 | design | J4jjulaLJ4QNzqZ1INWydq:3561:11878 | out-of-scope | Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-268 | design | J4jjulaLJ4QNzqZ1INWydq:3561:11881 | out-of-scope | Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-269 | design | J4jjulaLJ4QNzqZ1INWydq:3561:11884 | out-of-scope | Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-270 | design | J4jjulaLJ4QNzqZ1INWydq:3561:11887 | out-of-scope | Out of scope: blank 'Update payment state' prototype steps in Autopay; nothing to build from them. | Dan-Mihai Cuc | 2026-10-01 |

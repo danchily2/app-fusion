@@ -55,3 +55,12 @@ Recorded as DEC-001 to DEC-032 in DECISIONS.json; the words below are the option
 - **App groups:** "New groups only". **Firebase Cloud Messaging:** "Keep". **MMKV and Realm:** "Decide with the stack".
 - **Minimum OS:** "iOS 18, Android 8 (API 26)". **The 60 minor platform items:** "Leave them to the plan".
 - **Push the answers to GitHub:** "Yes, push them".
+
+## Answers given in the terminal, 2026-10-01 (Dan-Mihai Cuc), after the full map
+
+Recorded as DEC-033 to DEC-116. Options chosen, word for word:
+- **AI assistant (6):** "Manager's Gaia, for everyone". **Sign-in and accounts (5):** "Employee's, plus Manager's extras".
+- **Push (2):** "Register with both, per role". **People directory (4):** "Both, per role". **Tabs:** "Tabs per role".
+- **Help, feedback, What's New (4):** "Manager's". **Settings and legal (8):** "Manager's". **App state:** "Yes, Manager's way".
+- **Employee iOS vs Android differences (6):** "iOS behavior". **Duplicates (3):** "Merge them".
+- **Push mechanics (17):** "Keep all 17". **Storage and housekeeping (24):** "Rebuild what users notice".

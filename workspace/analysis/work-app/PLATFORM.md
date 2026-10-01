@@ -73,14 +73,14 @@ What each app relies on from the operating system and its SDKs, from the invento
 | PLT-091 | performance monitoring | Performance monitoring gated on Remote Config readiness | src/components/uiless/PerfMonitoringGate/PerfMonitoringGate.tsx:8-11 |  |  | decide | - |
 | PLT-092 | settings persistence | Settings persistence hook host (useSettingsPersistence) | src/components/uiless/SettingsInitializer/SettingsInitializer.tsx:8-14 |  |  | decide | - |
 | PLT-093 | app update | App update check overlay host (useUpdateCheck) | src/components/uiless/UpdateCheckWatcher/UpdateCheckWatcher.tsx:15-18 |  |  | decide | - |
-| PLT-094 | push | Approval push token registration (APNs/FCM) on foreground, POST Devices | src/components/approval/ApprovalNotificationsReregister/ApprovalNotificationsReregister.tsx:22-90; src/services/queryApi/queryEndpointsHRM/approval/queryEndpointsApproval.ts:688-716 |  |  | decide | - |
-| PLT-095 | push | Unregister device token on logout (DELETE Devices/{token}) via logoutUnregisterApprovalNotificationsEpic | src/epics/logoutUnregisterApprovalNotificationsEpic.ts:19; src/services/queryApi/queryEndpointsHRM/approval/queryEndpointsApproval.ts:719-730 |  |  | decide | - |
+| PLT-094 | push | Approval push token registration (APNs/FCM) on foreground, POST Devices | src/components/approval/ApprovalNotificationsReregister/ApprovalNotificationsReregister.tsx:22-90; src/services/queryApi/queryEndpointsHRM/approval/queryEndpointsApproval.ts:688-716 |  |  | decide | keep |
+| PLT-095 | push | Unregister device token on logout (DELETE Devices/{token}) via logoutUnregisterApprovalNotificationsEpic | src/epics/logoutUnregisterApprovalNotificationsEpic.ts:19; src/services/queryApi/queryEndpointsHRM/approval/queryEndpointsApproval.ts:719-730 |  |  | decide | keep |
 | PLT-096 | external link | Store rating deep links market:// and itms-apps:// | src/components/approval/AppRateDialog/AppRateDialog.tsx:157-169 |  |  | decide | - |
 | PLT-097 | share | System share sheet for task documents with image-to-PDF generation | src/components/approval/ApprovalDocumentShare/ApprovalDocumentShare.tsx:8-9,26-117 |  |  | decide | - |
 | PLT-098 | file system | Attachment download/cache and TIFF conversion via react-native-blob-util | src/utils/attachments.ts:4,229-270 |  |  | decide | - |
 | PLT-099 | haptics | Vibration on multiselect of a task (respects vibration setting) | src/components/approval/ApprovalList/ApprovalListItem/ApprovalListItem.tsx:152-156 |  |  | decide | - |
 | PLT-100 | accessibility | Swipe actions hidden when screen reader is enabled | src/components/approval/ApprovalListSwipeItemRight/ApprovalListSwipeItemRight.tsx:34-38 |  |  | decide | - |
-| PLT-101 | storage | Encrypted MMKV persistence of approval, approvalRecentSearches, appRate, settings, collapsed groups slices (RTK Query c… | src/configs/reduxState.ts:107-128 |  |  | decide | - |
+| PLT-101 | storage | Encrypted MMKV persistence of approval, approvalRecentSearches, appRate, settings, collapsed groups slices (RTK Query c… | src/configs/reduxState.ts:107-128 |  |  | decide | decide-later |
 | PLT-102 | webview / external app handoff | BankID / bank 2FA WebView that opens custom URL schemes (bankid://) through Linking.openURL, with a scheme blocklist | src/components/autopay/AutopayApproveTransaction/webViewUrlPolicy.ts:16-34; src/components/autopay/AutopayApproveTransaction/AutopayApproveTransaction.tsx:101-126 |  |  | decide | - |
 | PLT-103 | webview | Approval completion detected by redirect-URL sniffing (firebaseapp.com = ok, web.app = cancel) | src/components/autopay/AutopayApproveTransaction/AutopayApproveTransaction.tsx:132-156; src/services/apiAutopay/apiAutopay.ts:119-124 |  |  | decide | - |
 | PLT-104 | debug | Dev-only HTML dump script injected into the approve WebView (__DEV__ guard) | src/components/autopay/AutopayApproveTransaction/approveWebViewDebug.ts:15-28; AutopayApproveTransaction.tsx:293-297 |  |  | decide | - |
@@ -93,13 +93,13 @@ What each app relies on from the operating system and its SDKs, from the invento
 | PLT-111 | webview | Accessibility statement rendered in WebviewModal with embedded fonts | src/components/common/LangAccPicker/LangAccPicker.tsx:81-88 |  |  | decide | - |
 | PLT-112 | navigation | Android hardware back handler that closes the document selector, then the fullscreen document viewer, then clears the a… | src/components/common/ThemedBackButtonWithDocViewer/ThemedBackButtonWithDocViewer.tsx:26-53 |  |  | decide | - |
 | PLT-113 | external links | Opens the store listing with market:// on Android and itms-apps:// on iOS | src/components/common/UpdateDialog/UpdateDialog.tsx:23-29 |  |  | decide | - |
-| PLT-114 | storage | redux-persist whitelist includes settings, npsSurvey, features and whatsNew, which hold dontShowNpsSurvey, sandboxColor… | src/configs/reduxState.ts:107-128 |  |  | decide | - |
+| PLT-114 | storage | redux-persist whitelist includes settings, npsSurvey, features and whatsNew, which hold dontShowNpsSurvey, sandboxColor… | src/configs/reduxState.ts:107-128 |  |  | decide | keep |
 | PLT-115 | accessibility | What's New media honours the reduce-motion and screen-reader settings | src/components/common/WhatsNewMedia/WhatsNewMedia.tsx:32-33 |  |  | decide | - |
 | PLT-116 | network | Sandbox status is fetched from a hardcoded external Azure dashboard URL, outside the app's apiBase | src/consts/constants.ts:18 |  |  | decide | - |
 | PLT-117 | device integration | Open phone dialer, SMS and mail apps via Linking (tel:, sms:, mailto:) with canOpenURL check | src/components/hrm/HrmEmployeeDetailHead/HrmEmployeeDetailHead.tsx:125-155 |  |  | decide | - |
 | PLT-118 | device integration | Native Share sheet for contact values | src/components/hrm/HrmEmployeeDetailAccordeon/ReadOnlyField/ReadOnlyField.tsx:50-54 |  |  | decide | - |
 | PLT-119 | device integration | Clipboard write of employee post address (@react-native-clipboard/clipboard) | src/components/hrm/HrmEmployeeDetailAccordeon/HrmEmployeeDetailAccordion.tsx:1,261 |  |  | decide | - |
-| PLT-120 | storage | Redux slices hrmEmployeeList, hrmAnniversary, hrmDialogue, hrmDialogueCollapsedGroups, features persisted via custom en… | src/configs/reduxState.ts:107-128 |  |  | decide | - |
+| PLT-120 | storage | Redux slices hrmEmployeeList, hrmAnniversary, hrmDialogue, hrmDialogueCollapsedGroups, features persisted via custom en… | src/configs/reduxState.ts:107-128 |  |  | decide | decide-later |
 | PLT-121 | network | Authenticated image loading for Dottie profile photos (Bearer header on Image source) | src/hooks/useDottieProfileImageSource.ts:20-22 |  |  | decide | - |
 | PLT-122 | push notification | Notification payload normalizer (integration, attributes, taskId, action button, RemoteInput userText, Gaia threadId; a… | src/components/modals/ChatModal/utils.ts:162-218 |  |  | decide | - |
 | PLT-123 | speech | Speech-to-text dictation via @react-native-voice/voice with Android microphone permission | src/hooks/useSpeech.ts:1-15 |  |  | decide | - |
@@ -108,8 +108,8 @@ What each app relies on from the operating system and its SDKs, from the invento
 | PLT-126 | external links | Linking.openURL for Gaia citation sources and task-card browser fallback | src/components/modals/GaiaChatModal/GaiaChatItem.tsx:85-95 |  |  | decide | - |
 | PLT-127 | feature flags | Gaia capabilities catalog and frontend navigation tools gated by dev flags | src/components/modals/GaiaChatModal/useGaiaFrontendToolExecutor.ts:70 |  |  | decide | - |
 | PLT-128 | credentials | OpenAI base URL and API key constants in code (both empty strings, '' preview) | src/hooks/useAi.tsx:6-7 |  |  | decide | - |
-| PLT-129 | storage | Encrypted MMKV redux store (id redux-state, AES-256, key from persistent random seed) | src/configs/persistEngine.ts:70-75 |  |  | decide | - |
-| PLT-130 | storage | One-time legacy AsyncStorage persist:root import with keychain key, then cleanup | src/configs/legacyPersistImport.ts:56-188 |  |  | decide | - |
+| PLT-129 | storage | Encrypted MMKV redux store (id redux-state, AES-256, key from persistent random seed) | src/configs/persistEngine.ts:70-75 |  |  | decide | decide-later |
+| PLT-130 | storage | One-time legacy AsyncStorage persist:root import with keychain key, then cleanup | src/configs/legacyPersistImport.ts:56-188 |  |  | decide | drop |
 | PLT-131 | monitoring | Firebase Performance HTTP metrics on every axios request (react-native-firebase/perf) | src/configs/axiosInterceptors.ts:85-134 |  |  | decide | - |
 | PLT-132 | monitoring | Sentry crash, session, stall, failed-request and navigation tracing with dev/prod DSNs | src/configs/sentryConfig.ts:100-123 |  |  | decide | - |
 | PLT-133 | notifications | Notification open consumer and reminder sync mounted in the logged-in tab navigator | src/configs/navConfig/navConfig.tsx:61-63 |  |  | decide | - |
@@ -129,14 +129,14 @@ What each app relies on from the operating system and its SDKs, from the invento
 | PLT-147 | system | Android hardware back blocked during login and pending ToS | src/screens/common/LoginSelectScreen/LoginSelectScreen.tsx:156-171; src/screens/common/SettingsTosScreen/SettingsTosScreen.tsx:32-42 |  |  | decide | - |
 | PLT-148 | system | Share sheet for error reports; clipboard in dev tools | src/screens/common/RequestErrorLogsScreen/RequestErrorLogsScreen.tsx:36 |  |  | decide | - |
 | PLT-149 | browser | In-app browser for legal/license links | src/screens/common/SettingsLicensesScreen/SettingsLicensesScreen.tsx:34 |  |  | decide | - |
-| PLT-150 | push | Dialogue detail opened from push notification (fromNotification param) with custom back navigation | src/screens/hrm/DialogueDetailsScreen/DialogueDetailsScreen.tsx:71-77,156-203 |  |  | decide | - |
-| PLT-151 | push | Birthday bot flow can be cold-started from a notification | src/screens/hrm/HrmBirthdayBot/HrmBotGenerateMessageScreen/HrmBotGenerateMessageScreen.tsx:58-64 |  |  | decide | - |
+| PLT-150 | push | Dialogue detail opened from push notification (fromNotification param) with custom back navigation | src/screens/hrm/DialogueDetailsScreen/DialogueDetailsScreen.tsx:71-77,156-203 |  |  | decide | keep |
+| PLT-151 | push | Birthday bot flow can be cold-started from a notification | src/screens/hrm/HrmBirthdayBot/HrmBotGenerateMessageScreen/HrmBotGenerateMessageScreen.tsx:58-64 |  |  | decide | keep |
 | PLT-152 | lifecycle | AppState foreground refetch of open dialogue | src/screens/hrm/DialogueDetailsScreen/DialogueDetailsScreen.tsx:208-225 |  |  | decide | - |
 | PLT-153 | share | react-native-share system share sheet | src/screens/hrm/HrmBirthdayBot/HrmBotGeneratingFinishedScreen/HrmBotGeneratingFinishedScreen.tsx:29,200 |  |  | decide | - |
 | PLT-154 | deep link out | sms: URL opened via Linking | src/screens/hrm/HrmBirthdayBot/HrmBotGeneratingFinishedScreen/HrmBotGeneratingFinishedScreen.tsx:226-228 |  |  | decide | - |
 | PLT-155 | android | Hardware back button handling | src/screens/hrm/DialogueSplitsScreen/DialogueSplitsScreen.tsx:98-110 |  |  | decide | - |
 | PLT-156 | android | Keyboard soft input adjustResize via react-native-keyboard-controller | src/screens/hrm/DialogueDetailsScreen/DialogueDetailsScreen.tsx:128-140 |  |  | decide | - |
-| PLT-157 | storage | Encrypted MMKV redux persistence whitelist includes hrmEmployeeList, hrmAnniversary, hrmDialogue, hrmDialogueCollapsedG… | src/configs/reduxState.ts:107-128 |  |  | decide | - |
+| PLT-157 | storage | Encrypted MMKV redux persistence whitelist includes hrmEmployeeList, hrmAnniversary, hrmDialogue, hrmDialogueCollapsedG… | src/configs/reduxState.ts:107-128 |  |  | decide | decide-later |
 | PLT-158 | notifications | App icon badge count set to number of pending approval tasks | src/screens/manager/ApprovalScreen/components/TabPresent/TabPresent.tsx:108-114 |  |  | decide | - |
 | PLT-159 | remote config | Firebase Remote Config fetch for user-testing recruitment phase | src/screens/manager/ApprovalScreen/components/TabPresent/TabPresent.tsx:156-169 |  |  | decide | - |
 | PLT-160 | surveys | Survicate survey triggered on approval list after a task is closed (feature flag useSurvicate) | src/screens/manager/ApprovalScreen/ApprovalScreen.tsx:71-84 |  |  | decide | - |
@@ -150,10 +150,10 @@ What each app relies on from the operating system and its SDKs, from the invento
 | PLT-168 | navigation | beforeRemove guard blocks Android hardware back and iOS swipe-back while there are unsaved line edits or open overlays | src/screens/manager/ApprovalTaskBXNLineEditScreen/ApprovalTaskBXNLineEditScreen.tsx:434-459 |  |  | decide | - |
 | PLT-169 | navigation | Route 'ApprovalTaskBXNLineEditScreen' registered in the Approval stack and opened from DocumentEditorButton via TAB_ROU… | src/configs/navConfig/approval/ApprovalNavConfig.tsx:135 |  |  | decide | - |
 | PLT-170 | network | Apollo GraphQL client with endpoint {PRODUCTION/STAGING}_URI_BASE/api/graphql | src/services/apolloClient.ts:204-206; src/services/apiBaseStateless.ts:41-45 |  |  | decide | - |
-| PLT-171 | storage | Custom mode and selected fields are kept in the persisted settings slice (redux persist whitelist) | src/configs/reduxState.ts:107-108 |  |  | decide | - |
+| PLT-171 | storage | Custom mode and selected fields are kept in the persisted settings slice (redux persist whitelist) | src/configs/reduxState.ts:107-108 |  |  | decide | keep |
 | PLT-172 | navigation | beforeRemove guard blocks leaving the line editor with unsaved changes (Android hardware back, iOS swipe-back) | src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/ApprovalTaskEditFinancialsLinesScreen.tsx:299-325 |  |  | decide | - |
 | PLT-173 | navigation | Edit overlay back handler closes the field edit overlay before popping the screen | src/screens/manager/ApprovalTaskEditFinancialsLinesScreen/context/FieldEditOverlayContext.tsx:118-150 |  |  | decide | - |
-| PLT-174 | storage | The settings slice (custom mode and selected financial line fields) is persisted through the redux whitelist | src/configs/reduxState.ts:107-108 |  |  | decide | - |
+| PLT-174 | storage | The settings slice (custom mode and selected financial line fields) is persisted through the redux whitelist | src/configs/reduxState.ts:107-108 |  |  | decide | keep |
 | PLT-175 | navigation | Stack route ApprovalTaskVoucherlinesEditorScreen registered in the approval stack, with params { index: number } | src/configs/navConfig/approval/ApprovalNavConfig.tsx:165-172 |  |  | decide | - |
 | PLT-176 | remote config | What's New spotlight payload from Firebase Remote Config key feature_whats_new_v1 | src/services/whatsNew/whatsNewConfig.ts:114-123; src/consts/firebase.ts:19 |  |  | decide | - |
 | PLT-177 | feature flag | Start tab dark-shipped behind loginManager.toggledStartPageDevFlag | src/configs/navConfig/navConfig.tsx:61; src/configs/TabBar.tsx:94 |  |  | decide | - |
@@ -187,21 +187,21 @@ What each app relies on from the operating system and its SDKs, from the invento
 | PLT-205 | in-app browser | openURLInApp for external document links and benefit links; dismissing it triggers the mark-as-read prompt |  | Modules/DottieFeature/Sources/DottieFeature/Features/OrgDocumentPreview/OrgDocumentPreviewView.swift:17-23 |  | decide | - |
 | PLT-206 | inbox integration | Dottie notifications plugged into the shared InboxMessages inbox as InboxContentProvider id 'dottie-notifications' |  | Modules/DottieFeature/Sources/DottieFeature/Features/Notifications/DottieNotificationsInboxProvider.swift:9-33 |  | decide | - |
 | PLT-207 | session / cache | In-memory profile cache keyed by userId_tenantId and shared profile image; refreshed when stale (15 min) from Start pag… |  | Modules/DottieFeature/Sources/DottieFeature/Repository/DottieEmployeeRepository.Live.swift:7-58 |  | decide | - |
-| PLT-208 | push | APNs registration with multi-account token register/deregister on change |  | Employee/AppDelegate.swift:115-129 |  | decide | - |
-| PLT-209 | push | Badge count cleared when scene becomes active |  | Employee/SceneDelegate.swift:79-81 |  | decide | - |
+| PLT-208 | push | APNs registration with multi-account token register/deregister on change |  | Employee/AppDelegate.swift:115-129 |  | decide | keep |
+| PLT-209 | push | Badge count cleared when scene becomes active |  | Employee/SceneDelegate.swift:79-81 |  | decide | keep |
 | PLT-210 | security | Passcode/biometric lock presented on launch and after background timeout when a session is active |  | Employee/SceneDelegate.swift:67-73,134-138 |  | decide | - |
 | PLT-211 | security | Blur overlay hides sensitive content in app switcher |  | Employee/SceneDelegate.swift:83-92,150-156 |  | decide | - |
-| PLT-212 | storage | KeychainBiometricStorage for biometric token (service Constants.Security.biometricKeychainService) |  | Employee/AppDependencies.swift:244-252 |  | decide | - |
-| PLT-213 | storage | UserDefaultsPasscodeRepository for passcode configuration |  | Employee/AppDependencies.swift:452 |  | decide | - |
+| PLT-212 | storage | KeychainBiometricStorage for biometric token (service Constants.Security.biometricKeychainService) |  | Employee/AppDependencies.swift:244-252 |  | decide | keep |
+| PLT-213 | storage | UserDefaultsPasscodeRepository for passcode configuration |  | Employee/AppDependencies.swift:452 |  | decide | keep |
 | PLT-214 | deep link | URLRouterCoordinator started at launch; scene openURLContexts is empty |  | Employee/SceneDelegate.swift:94-95,115-117 |  | decide | - |
 | PLT-215 | app group | App group group.com.visma.vme.payslip.shared (AppStore) / group.com.visma.Employee.shared |  | Employee/EmployeeAppConstants.swift:13-19 |  | decide | - |
 | PLT-216 | analytics | Snowplow analytics and Survicate surveys configured |  | Employee/AppDependencies.swift:156-170,491-494 |  | decide | - |
 | PLT-217 | tips | TipKit configured with immediate display frequency |  | Employee/AppDelegate.swift:100-108 |  | decide | - |
 | PLT-218 | third-party | Google Maps / Google Places SDK and ThirdPartyKeyProvisioner initialized from storage |  | Employee/AppDelegate.swift:25-26,95 |  | decide | - |
-| PLT-219 | push | Push permission request and APNs registration on app entry; deregisters stored token if denied |  | Employee/MainCoordinator/MainCoordinator.swift:409-427 |  | decide | - |
-| PLT-220 | push | UNUserNotificationCenter delegate: foreground banner+sound and tap routing by eventId |  | Employee/PushNotifications/PushNotificationHandlingService.UserNotificationsCenter.swift:11-29 |  | decide | - |
-| PLT-221 | push | Multi-account push registration: device token registered for every authenticated account |  | Employee/PushNotifications/MultiAccountPushManager.live.swift:37-73 |  | decide | - |
-| PLT-222 | storage | APNs device token kept in UserDefaults key <bundleID>.deviceToken |  | Employee/PushNotifications/PushTokenStorage.userDefaults.swift:14-25 |  | decide | - |
+| PLT-219 | push | Push permission request and APNs registration on app entry; deregisters stored token if denied |  | Employee/MainCoordinator/MainCoordinator.swift:409-427 |  | decide | keep |
+| PLT-220 | push | UNUserNotificationCenter delegate: foreground banner+sound and tap routing by eventId |  | Employee/PushNotifications/PushNotificationHandlingService.UserNotificationsCenter.swift:11-29 |  | decide | keep |
+| PLT-221 | push | Multi-account push registration: device token registered for every authenticated account |  | Employee/PushNotifications/MultiAccountPushManager.live.swift:37-73 |  | decide | keep |
+| PLT-222 | storage | APNs device token kept in UserDefaults key <bundleID>.deviceToken |  | Employee/PushNotifications/PushTokenStorage.userDefaults.swift:14-25 |  | decide | keep |
 | PLT-223 | auth | OAuth login via ASWebAuthenticationSession, ephemeral session, universal-link callback (AllowedAppLinks.hostname/callba… |  | Employee/Accounts/Feature/Login/OAuthLogin.live.swift:35-44 |  | decide | - |
 | PLT-224 | biometrics | Biometric app lock using Keychain item with .userPresence and kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly, optional… |  | Employee/Security/Biometric/BiometricSecureStorage.swift:28-55 |  | decide | - |
 | PLT-225 | biometrics | LocalAuthentication capability checks (Face ID / Touch ID / Optic ID mapped to Face ID) |  | Employee/Security/DeviceSecurityService.swift:12-32 |  | decide | - |
@@ -225,7 +225,7 @@ What each app relies on from the operating system and its SDKs, from the invento
 | PLT-243 | migration | Realm and user data migrations |  | Employee/Services/Migration/RealmMigrationService.swift:1 |  | decide | - |
 | PLT-244 | app group | Shared app-group container with per-user Realm db_<sha256(userId)>.realm and shared UserDefaults (used by extensions) |  | Modules/EmployeeAppCore/Sources/EmployeeAppCore/SharedContainer/SharedContainer.swift:21-40 |  | decide | - |
 | PLT-245 | deep link | Universal link hosts static.mobileemployee(.stag).visma.net with /auth/callback (OAuth) and /close (registered but not… |  | EmployeeServices/EmployeeAPIInterface/Sources/EmployeeAPIInterface/APIInterfaceConstants.swift:67-96; Employee/Shared/URLRouter/URLRouterCoordinator.swift:22-42 |  | decide | - |
-| PLT-246 | push | Push registration on login and unregistration on logout |  | Employee/Services/AppStateService.swift:59-64,73-83 |  | decide | - |
+| PLT-246 | push | Push registration on login and unregistration on logout |  | Employee/Services/AppStateService.swift:59-64,73-83 |  | decide | keep |
 | PLT-247 | speech | Speech recognition service (SFSpeechRecognizer + AVAudioEngine) with mic/speech permission checks |  | Modules/EmployeeAppCore/Sources/EmployeeAppCore/Services/SpeechRecognition/SpeechRecognizerService.speechFramework.swift:16-176 |  | decide | - |
 | PLT-248 | photos | Save photo to Photo Library |  | Modules/EmployeeAppCore/Sources/EmployeeAppCore/Photos/PhotoLibrary.swift:15 |  | decide | - |
 | PLT-249 | telemetry | Client error logging POST /employee/api/v1/logging/clienterror (202 empty allowed) |  | EmployeeServices/EmployeeAPIInterface/Sources/EmployeeAPIInterface/Request/PostClientError.swift:11-28 |  | decide | - |
@@ -252,7 +252,7 @@ What each app relies on from the operating system and its SDKs, from the invento
 | PLT-270 | connectivity | Reachability listener toggles offline banner and disables send/merge actions |  | Modules/EmployeeExpenses/Sources/EmployeeExpenses/Receipts/ReceiptDetailViewController.swift:2561-2580,2674 |  | decide | - |
 | PLT-271 | background sync | Receipt upload/sync triggered on inbox open and after merge; sync events drive list reload |  | Modules/EmployeeExpenses/Sources/EmployeeExpenses/Receipts/Features/ReceiptsList/ReceiptsListFeature.swift:493-545 |  | decide | - |
 | PLT-272 | maps | Server-proxied directions (POST /employee/api/v1/maps/directions) and Google Places search for distance |  | Modules/EmployeeExpenses/Sources/EmployeeExpenses/Receipts/Models/ReceiptDetailViewModel.swift:1401-1441 |  | decide | - |
-| PLT-273 | storage | UserDefaults: submit-for-approval don't-show-again flag and distance suggestions |  | Modules/EmployeeExpenses/Sources/EmployeeExpenses/Receipts/ReceiptDetailViewController.swift:684-738,2459-2472 |  | decide | - |
+| PLT-273 | storage | UserDefaults: submit-for-approval don't-show-again flag and distance suggestions |  | Modules/EmployeeExpenses/Sources/EmployeeExpenses/Receipts/ReceiptDetailViewController.swift:684-738,2459-2472 |  | decide | keep |
 | PLT-274 | camera | Camera capture with permission gate and open-Settings fallback (WeScan) |  | Modules/EmployeeExpenses/Sources/EmployeeExpenses/Wescan/CameraViewController.swift:112-196 |  | decide | - |
 | PLT-275 | photos | Photo library picker (UIImagePickerController .photoLibrary) |  | Modules/EmployeeExpenses/Sources/EmployeeExpenses/Wescan/MediaPickerCoordinator.swift:54-95 |  | decide | - |
 | PLT-276 | files | Document picker import (pdf, image), security-scoped URL, and export to Files |  | Modules/EmployeeExpenses/Sources/EmployeeExpenses/Wescan/MediaPickerCoordinator.swift:97-197 |  | decide | - |
@@ -265,8 +265,8 @@ What each app relies on from the operating system and its SDKs, from the invento
 | PLT-283 | permissions | Speech recognition / microphone for voice-to-text in the assistant prompt bar |  | Modules/EmployeeAppCoreInterface/Sources/EmployeeAppCoreInterface/Services/SpeechRecognizerService.swift:13-38; Modules/EmployeeChatBot/Sources/EmployeeChatBot/View/PromptBar.swift:30-67 |  | decide | - |
 | PLT-284 | storage/security | Realm encryption key in the keychain (generic password, AfterFirstUnlock, optional access group) |  | EmployeeServices/EmployeeCore/Sources/EmployeeCore/Services/CryptoService/CryptoService.swift:21-110; EmployeeServices/EmployeeCore/Sources/EmployeeCore/Dependencies/CoreDependencyFactory.swift:16-21 |  | decide | - |
 | PLT-285 | app group | Shared container for the shared/per-user Realm files and shared UserDefaults (used by extensions) |  | Modules/EmployeeAppCoreInterface/Sources/EmployeeAppCoreInterface/SharedContainer/SharedContainer.swift:11-17 |  | decide | - |
-| PLT-286 | storage | Versioned encrypted Realm schema with migrations; the DB file is deleted when it cannot be opened |  | EmployeeServices/EmployeeDatabase/Sources/EmployeeDatabase/RealmService.swift:64-128; EmployeeServices/EmployeeDatabase/Sources/EmployeeDatabase/DatabaseConstants.swift:84 |  | decide | - |
-| PLT-287 | storage | UserDefaults preference keys (receipt hint, company selector, review prompt timing, survey dont-show-again, submit-for-… |  | Modules/EmployeeAppCoreInterface/Sources/EmployeeAppCoreInterface/Preferences/UserPreferencesKeys.swift:3-22 |  | decide | - |
+| PLT-286 | storage | Versioned encrypted Realm schema with migrations; the DB file is deleted when it cannot be opened |  | EmployeeServices/EmployeeDatabase/Sources/EmployeeDatabase/RealmService.swift:64-128; EmployeeServices/EmployeeDatabase/Sources/EmployeeDatabase/DatabaseConstants.swift:84 |  | decide | decide-later |
+| PLT-287 | storage | UserDefaults preference keys (receipt hint, company selector, review prompt timing, survey dont-show-again, submit-for-… |  | Modules/EmployeeAppCoreInterface/Sources/EmployeeAppCoreInterface/Preferences/UserPreferencesKeys.swift:3-22 |  | decide | keep |
 | PLT-288 | connectivity | Network reachability monitor shared as the in-memory 'isConnected' state |  | Modules/EmployeeAppCoreInterface/Sources/EmployeeAppCoreInterface/NetworkMonitor/NetworkMonitorReducer.swift:24-60 |  | decide | - |
 | PLT-289 | photos | Save photo to the photo library (interface only) |  | Modules/EmployeeAppCoreInterface/Sources/EmployeeAppCoreInterface/Photos/PhotoLibrary.swift:10-12 |  | decide | - |
 | PLT-290 | appearance | User-selectable appearance (light/dark) manager interface |  | Modules/EmployeeAppCoreInterface/Sources/EmployeeAppCoreInterface/Appearance/AppearanceManager.swift:12-23 |  | decide | - |
@@ -309,20 +309,20 @@ What each app relies on from the operating system and its SDKs, from the invento
 | PLT-327 | external link | Calendar bot feedback opens Google Form in browser |  |  | absence/src/main/java/com/visma/employee/calendar/calendar_bot/presentation/learn_more/CalendarBotLearnMoreViewModel.kt:62-70 | decide | - |
 | PLT-328 | navigation | Navigation3 absence entries (feed, selection, summary, details, bot chat/learn more, add/edit) |  |  | absence/src/main/java/com/visma/employee/navigation/entries/AbsenceEntries.kt:107-198 | decide | - |
 | PLT-329 | connectivity | Auto reload balances on connection restored |  |  | absence/src/main/java/com/visma/employee/absence/summary/AbsenceSummaryViewModel.kt:50-60 | decide | - |
-| PLT-330 | push | Notification channels and channel groups created at startup |  |  | app/src/main/java/com/visma/employee/home/NotificationHandler.kt:22-35 | decide | - |
-| PLT-331 | push | Notification tap router (account/company switch + redirectTo deep link) |  |  | app/src/main/java/com/visma/employee/home/NotificationHandler.kt:37-90 | decide | - |
+| PLT-330 | push | Notification channels and channel groups created at startup |  |  | app/src/main/java/com/visma/employee/home/NotificationHandler.kt:22-35 | decide | keep |
+| PLT-331 | push | Notification tap router (account/company switch + redirectTo deep link) |  |  | app/src/main/java/com/visma/employee/home/NotificationHandler.kt:37-90 | decide | keep |
 | PLT-332 | permissions | POST_NOTIFICATIONS runtime request on Android 13+ with snackbar to settings on denial |  |  | app/src/main/java/com/visma/employee/home/MainActivity.kt:203-215,748-759 | decide | - |
 | PLT-333 | deep link | Gated root deep-link handler (lock/welcome deferral) |  |  | app/src/main/java/com/visma/employee/home/MainActivity.kt:572-614 | decide | - |
 | PLT-334 | auth | OAuth auth-callback intent capture and login re-host |  |  | app/src/main/java/com/visma/employee/home/MainActivity.kt:256-259,616-636,761-782 | decide | - |
 | PLT-335 | share extension | ACTION_SEND share target handling |  |  | app/src/main/java/com/visma/employee/home/MainActivity.kt:465-570 | decide | - |
 | PLT-336 | security | App lock shown on resume when locked; timestamp on pause |  |  | app/src/main/java/com/visma/employee/home/MainActivity.kt:317-335 | decide | - |
 | PLT-337 | startup | Splash screen with remote update gate and push device registration + analytics init |  |  | app/src/main/java/com/visma/employee/home/MainActivity.kt:217-221,337-459 | decide | - |
-| PLT-338 | storage | Corrupted storage event clears auth data |  |  | app/src/main/java/com/visma/employee/home/MainActivity.kt:338-345 | decide | - |
+| PLT-338 | storage | Corrupted storage event clears auth data |  |  | app/src/main/java/com/visma/employee/home/MainActivity.kt:338-345 | decide | keep |
 | PLT-339 | security | App lock with biometrics / device credential / PIN after 180 s in background |  |  | app/src/main/java/com/visma/employee/navigation/entries/LockEntries.kt:111-140; app/src/main/java/com/visma/employee/core/SecurityServiceImpl.kt:61-78 | decide | - |
 | PLT-340 | security | Automatic security-type migration on lock (upgrade PIN to biometrics, downgrade when device lock removed) |  |  | app/src/main/java/com/visma/employee/core/SecurityMigrationHandlerImpl.kt:15-55 | decide | - |
 | PLT-341 | security | Screenshot allow/block preference |  |  | app/src/main/java/com/visma/employee/core/SecurityServiceImpl.kt:53-59 | decide | - |
 | PLT-342 | background | WorkManager with HiltWorkerFactory configured in Application |  |  | app/src/main/java/com/visma/employee/Application.kt:41-45 | decide | - |
-| PLT-343 | storage | DataStore-to-Room migration at app start |  |  | app/src/main/java/com/visma/employee/Application.kt:34 | decide | - |
+| PLT-343 | storage | DataStore-to-Room migration at app start |  |  | app/src/main/java/com/visma/employee/Application.kt:34 | decide | drop |
 | PLT-344 | remote config | RemoteConfigService closed on terminate |  |  | app/src/main/java/com/visma/employee/Application.kt:22-50 | decide | - |
 | PLT-345 | camera | Camera permission request and ML prominent-object detection for receipts |  |  | app/src/main/java/com/visma/employee/navigation/entries/CameraEntry.kt:140-165 | decide | - |
 | PLT-346 | share | Inbound share (shareUri) routed to receipt camera flow with employer picker |  |  | app/src/main/java/com/visma/employee/navigation/entries/CameraEntry.kt:263-271; app/src/main/java/com/visma/employee/home/dialogs/MainActivityDialogs.kt:41-51 | decide | - |
@@ -330,38 +330,38 @@ What each app relies on from the operating system and its SDKs, from the invento
 | PLT-348 | system | Clipboard copy of colleague details |  |  | app/src/main/java/com/visma/employee/navigation/entries/DottieEntries.kt:109-113 | decide | - |
 | PLT-349 | system | Vibration on wrong PIN |  |  | app/src/main/java/com/visma/employee/navigation/entries/LockEntries.kt:146-150 | decide | - |
 | PLT-350 | navigation | Navigation3 NavKeys for all app destinations |  |  | app/src/main/java/com/visma/employee/navigation/keys/AppNavKeys.kt:11-71 | decide | - |
-| PLT-351 | push | DefaultFirebaseMessagingService (FCM messages and token refresh) |  |  | app/src/main/java/com/visma/employee/core/notification/DefaultFirebaseMessagingService.kt:23-75 | decide | - |
+| PLT-351 | push | DefaultFirebaseMessagingService (FCM messages and token refresh) |  |  | app/src/main/java/com/visma/employee/core/notification/DefaultFirebaseMessagingService.kt:23-75 | decide | keep |
 | PLT-352 | deep link | https app links /app/* (autoVerify) on static.mobileemployee(.stag).visma.net |  |  | app/src/main/AndroidManifest.xml:87-97 | decide | - |
 | PLT-353 | deep link | OAuth callback https /auth/callback (autoVerify) and vismame://auth/callback |  |  | app/src/main/java/com/visma/employee/navigation/RootDeepLinks.kt:161-170 | decide | - |
 | PLT-354 | share extension | ACTION_SEND intent filter for images and PDFs |  |  | app/src/main/AndroidManifest.xml:99-105 | decide | - |
 | PLT-355 | biometrics | BiometricPrompt lock and setup (BIOMETRIC_STRONG / DEVICE_CREDENTIAL) |  |  | app/src/main/java/com/visma/employee/navigation/RootHostBiometricActions.kt:13-81 | decide | - |
 | PLT-356 | security | Lock re-push policy and screenshot blocking (FLAG_SECURE) |  |  | app/src/main/java/com/visma/employee/navigation/LockRepushPolicy.kt:11-18 | decide | - |
 | PLT-357 | camera/ML | ML Kit prominent-object detection for the receipt camera |  |  | app/src/main/java/com/visma/employee/camera/objectdetection/ProminentObjectProcessor.kt:18-40 | decide | - |
-| PLT-358 | storage | Room api_keys.db with an encrypted keys column |  |  | core/src/main/java/com/visma/employee/core/storage/persistance/apikey/ApiKeyDatabase.kt:10-38 | decide | - |
+| PLT-358 | storage | Room api_keys.db with an encrypted keys column |  |  | core/src/main/java/com/visma/employee/core/storage/persistance/apikey/ApiKeyDatabase.kt:10-38 | decide | decide-later |
 | PLT-359 | file sharing | FileProvider for opening reports and exported payslips |  |  | app/src/main/java/com/visma/employee/navigation/RootHostFileActions.kt:90-138 | decide | - |
 | PLT-360 | browser | Chrome Custom Tabs for Visma Connect login |  |  | app/src/main/java/com/visma/employee/navigation/RootHostFileActions.kt:29-45 | decide | - |
 | PLT-361 | in-app review | AppReviewManager review prompt after payslip views |  |  | app/src/main/java/com/visma/employee/navigation/RootHostActionsFactory.kt:78-81 | decide | - |
 | PLT-362 | security | Screenshot blocking via FLAG_SECURE unless allowed by security service or debug/testing |  |  | core/src/main/java/com/visma/employee/core/BaseActivity.kt:100-107 | decide | - |
 | PLT-363 | auth | Forced logout relaunch on corrupted storage, unauthorized user, no-features user, or token failure |  |  | core/src/main/java/com/visma/employee/core/BaseActivity.kt:120-166 | decide | - |
-| PLT-364 | i18n | Per-app language applied via LanguageContextWrapper in attachBaseContext |  |  | core/src/main/java/com/visma/employee/core/BaseActivity.kt:83-98 | decide | - |
-| PLT-365 | storage | AndroidKeyStore AES key (alias constant) for encrypting stored strings (EncryptedStringConverter) |  |  | core/src/main/java/com/visma/employee/core/storage/crypto/Crypto.kt:12-40 | decide | - |
+| PLT-364 | i18n | Per-app language applied via LanguageContextWrapper in attachBaseContext |  |  | core/src/main/java/com/visma/employee/core/BaseActivity.kt:83-98 | decide | keep |
+| PLT-365 | storage | AndroidKeyStore AES key (alias constant) for encrypting stored strings (EncryptedStringConverter) |  |  | core/src/main/java/com/visma/employee/core/storage/crypto/Crypto.kt:12-40 | decide | keep |
 | PLT-366 | notifications | Notification channel groups/channels mapped to event ids; default channel DEFAULT_CHANNEL |  |  | core/src/main/java/com/visma/employee/core/notification/channels/ChannelGroupDescription.kt:11-20 | decide | - |
 | PLT-367 | review | Google Play in-app review flow |  |  | app/src/main/java/com/visma/employee/core/analytics/AppReviewManagerImpl.kt:23-64 | decide | - |
 | PLT-368 | speech | On-device SpeechRecognizer voice input |  |  | core/src/main/java/com/visma/employee/core/employee_assistant/data/SpeechRecognitionHelperImpl.kt:68-96 | decide | - |
 | PLT-369 | files | FileProvider + ACTION_VIEW chooser for file preview |  |  | core/src/main/java/com/visma/employee/core/PdfUtils.kt:22-44 | decide | - |
 | PLT-370 | navigation | Activity-level bottom modal sheet events (add/delete expense, account manager, calendar day details, highlight feature… |  |  | core/src/main/java/com/visma/employee/core/compose_activity_bottom_modal_sheet/ComposeActivityBottomModalSheetEvent.kt:9-51 | decide | - |
-| PLT-371 | push | FCM device registration and unregistration with retry |  |  | core/src/main/java/com/visma/employee/core/notification/RetryingSubscriptionService.kt:15-65 | decide | - |
-| PLT-372 | push | Notification channels: Salary group (payslip, year-end, receipt sync) and Other |  |  | core/src/main/java/com/visma/employee/core/notification/ChannelConfigurationsProvider.kt:18-108 | decide | - |
+| PLT-371 | push | FCM device registration and unregistration with retry |  |  | core/src/main/java/com/visma/employee/core/notification/RetryingSubscriptionService.kt:15-65 | decide | keep |
+| PLT-372 | push | Notification channels: Salary group (payslip, year-end, receipt sync) and Other |  |  | core/src/main/java/com/visma/employee/core/notification/ChannelConfigurationsProvider.kt:18-108 | decide | keep |
 | PLT-373 | permissions | Runtime permission helper that opens app and notification settings |  |  | core/src/main/java/com/visma/employee/camera/helpers/PermissionHelper.kt:17-52 | decide | - |
 | PLT-374 | security | App lock by biometrics, device credential or PIN, 180 s timeout, screenshot flag |  |  | core/src/main/java/com/visma/employee/core/settings/SecurityService.kt:10-25 | decide | - |
 | PLT-375 | analytics | Snowplow tracker with lifecycle, screen-view, exception and install autotracking |  |  | core/src/main/java/com/visma/employee/core/analytics/snowplow/SnowplowLogger.kt:57-85 | decide | - |
 | PLT-376 | remote config | LaunchDarkly feature flags keyed by a remotely fetched key |  |  | core/src/main/java/com/visma/employee/core/remote/RemoteConfigServiceImpl.kt:32-113 | decide | - |
 | PLT-377 | remote keys | Third-party keys (Survicate, LaunchDarkly, GooglePlaces) fetched and cached from the backend |  |  | core/src/main/java/com/visma/employee/core/remotekeys/RemoteKeysRepositoryImpl.kt:25-72 | decide | - |
-| PLT-378 | storage | Room CacheDatabase (receipts, attachments, currencies, mileage, templates, preferences) with a DataStore-to-Room migrat… |  |  | core/src/main/java/com/visma/employee/core/storage/migration/DataStoreToRoomMigration.kt | decide | - |
-| PLT-379 | storage | FileProvider paths for sharing files |  |  | core/src/main/java/com/visma/employee/core/storage/FileProviderPaths.kt | decide | - |
+| PLT-378 | storage | Room CacheDatabase (receipts, attachments, currencies, mileage, templates, preferences) with a DataStore-to-Room migrat… |  |  | core/src/main/java/com/visma/employee/core/storage/migration/DataStoreToRoomMigration.kt | decide | decide-later |
+| PLT-379 | storage | FileProvider paths for sharing files |  |  | core/src/main/java/com/visma/employee/core/storage/FileProviderPaths.kt | decide | keep |
 | PLT-380 | permissions | RECORD_AUDIO runtime permission request with rationale and open-settings fallback for voice input |  |  | core/src/main/java/com/visma/employee/core/employee_assistant/presentation/util/voice_input/VoiceInputPermissionHandlers.kt:34-52 | decide | - |
 | PLT-381 | lifecycle | Speech recognizer torn down on pause or dispose |  |  | core/src/main/java/com/visma/employee/core/employee_assistant/presentation/util/voice_input/VoiceInputLifecycleEffect.kt:9-26 | decide | - |
-| PLT-382 | storage | Room UserDatabase with user accounts, app and user preferences, mileage preferences, highlight dismissals and frequentl… |  |  | core/src/main/java/com/visma/employee/core/storage/persistance/user/UserDatabase.kt:18-169 | decide | - |
+| PLT-382 | storage | Room UserDatabase with user accounts, app and user preferences, mileage preferences, highlight dismissals and frequentl… |  |  | core/src/main/java/com/visma/employee/core/storage/persistance/user/UserDatabase.kt:18-169 | decide | decide-later |
 | PLT-383 | file-cache | Dottie document download cache: sanitized file names in cacheDir, cleared on screen load, deleted after preview |  |  | dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:128-145 | decide | - |
 | PLT-384 | clipboard | Copy profile field values to the clipboard |  |  | dottie/src/main/java/com/visma/employee/dottie/presentation/employee_info/form/ClipboardCopier.kt:7-9 | decide | - |
 | PLT-385 | navigation | Back handler blocks leaving the profile with unsaved changes and shows a discard dialog |  |  | dottie/src/main/java/com/visma/employee/dottie/presentation/employee_info/components/EmployeeInfoScreen.kt:74 | decide | - |
@@ -369,7 +369,7 @@ What each app relies on from the operating system and its SDKs, from the invento
 | PLT-387 | network | HATEOAS POST and GET by URL plus Dottie notifications and new-count; used by the app-module inbox and home badge, outsi… |  |  | dottie/src/main/java/com/visma/employee/dottie/data/DottieServiceImpl.kt:169-214 | decide | - |
 | PLT-388 | camera | Camera capture with runtime CAMERA permission for the profile photo |  |  | dottie/src/main/java/com/visma/employee/dottie/presentation/image/rememberImagePickerLaunchers.kt:40-118 | decide | - |
 | PLT-389 | media picker | Photo picker (PickVisualMedia ImageOnly) |  |  | dottie/src/main/java/com/visma/employee/dottie/presentation/image/rememberImagePickerLaunchers.kt:35 | decide | - |
-| PLT-390 | push | FCM device unregister on sign-out |  |  | dottie/src/main/java/com/visma/employee/dottie/presentation/user_menu/UserMenuViewModel.kt:125-133 | decide | - |
+| PLT-390 | push | FCM device unregister on sign-out |  |  | dottie/src/main/java/com/visma/employee/dottie/presentation/user_menu/UserMenuViewModel.kt:125-133 | decide | keep |
 | PLT-391 | offline | Mileage saved to a local offline draft when there is no network |  |  | expense/src/main/java/com/visma/employee/expense/api/MileagesServiceImpl.kt:191-198 | decide | - |
 | PLT-392 | config | Google Maps API key read from manifest meta-data (com.google.android.geo.API_KEY) |  |  | expense/src/main/java/com/visma/employee/expense/api/Constants.kt:8 | decide | - |
 | PLT-393 | background task | WorkManager-driven offline draft sync observed by inbox (SyncManagerImpl.draftsState) |  |  | expense/src/main/java/com/visma/employee/expense/inbox/compose/ExpenseDraftsScreen.kt:583-648 | decide | - |
@@ -378,7 +378,7 @@ What each app relies on from the operating system and its SDKs, from the invento
 | PLT-396 | window | Soft input mode switched per mileage screen (adjust resize/pan) |  |  | expense/src/main/java/com/visma/employee/expense/mileage/compose/MileageContent.kt:211-229 | decide | - |
 | PLT-397 | connectivity | ConnectionManager offline banner and offline-disabled actions |  |  | expense/src/main/java/com/visma/employee/expense/inbox/compose/ExpenseDraftsScreen.kt:163-165 | decide | - |
 | PLT-398 | camera | Add receipt opens camera (onOpenCamera) when templates cached |  |  | expense/src/main/java/com/visma/employee/expense/inbox/compose/ExpenseDraftsScreen.kt:758-767 | decide | - |
-| PLT-399 | storage | Receipt attachment saved to the public Downloads folder via MediaStore |  |  | expense/src/main/java/com/visma/employee/expense/inbox/details/ExpenseDraftDetailsViewModel.kt:1643-1671 | decide | - |
+| PLT-399 | storage | Receipt attachment saved to the public Downloads folder via MediaStore |  |  | expense/src/main/java/com/visma/employee/expense/inbox/details/ExpenseDraftDetailsViewModel.kt:1643-1671 | decide | keep |
 | PLT-400 | camera | Camera opened to add a receipt attachment |  |  | expense/src/main/java/com/visma/employee/expense/inbox/details/DraftDetailsCoordinator.kt:459-461 | decide | - |
 | PLT-401 | survey | Survicate NPS survey triggered after a receipt is saved |  |  | expense/src/main/java/com/visma/employee/expense/inbox/details/ExpenseDraftDetailsViewModel.kt:1738-1740 | decide | - |
 | PLT-402 | connectivity | Claim details reload when the connection comes back; offline banner on the receipt screen |  |  | expense/src/main/java/com/visma/employee/expense/details/ExpenseRowsViewModel.kt:270-280 | decide | - |
@@ -387,14 +387,14 @@ What each app relies on from the operating system and its SDKs, from the invento
 | PLT-405 | navigation | Navigation3 keys ExpenseDraftDetailsKey, CostUnitSelectionKey and ProjectAccountingSelectionKey |  |  | expense/src/main/java/com/visma/employee/expense/inbox/details/DraftDetailsCoordinator.kt:323-454 | decide | - |
 | PLT-406 | permissions | ACCESS_FINE_LOCATION runtime request for current location in mileage map |  |  | expense/src/main/java/com/visma/employee/expense/destination/screens/MileageMapDestinationScreen.kt:112-130 | decide | - |
 | PLT-407 | maps | Google Maps map picker and Places autocomplete for mileage destinations |  |  | expense/src/main/java/com/visma/employee/expense/destination/screens/MileageMapDestinationScreen.kt:333-450 | decide | - |
-| PLT-408 | storage | Room cache of recent mileage locations (max 4) |  |  | expense/src/main/java/com/visma/employee/expense/viewmodel/destination/CachingRepository.kt:14-125 | decide | - |
+| PLT-408 | storage | Room cache of recent mileage locations (max 4) |  |  | expense/src/main/java/com/visma/employee/expense/viewmodel/destination/CachingRepository.kt:14-125 | decide | keep |
 | PLT-409 | navigation | Navigation3 entry provider for expense destinations (inbox, claim selection, rows, cost unit, project, draft details, c… |  |  | expense/src/main/java/com/visma/employee/navigation/entries/ExpenseEntries.kt:103-389 | decide | - |
 | PLT-410 | dead code | Unused DirectionsApi GET api/directions/json (takes a key query param; no implementation found) |  |  | expense/src/main/java/com/visma/employee/expense/api/directions/DirectionsApi.kt:8-17 | decide | - |
 | PLT-411 | maps | Google Maps compose map with route polylines and full-screen mode |  |  | expense/src/main/java/com/visma/employee/expense/compose/map/Components.kt:65-110 | decide | - |
 | PLT-412 | maps | Google Places SDK set up with a remote-provided API key (new Places API) |  |  | expense/src/main/java/com/visma/employee/expense/autocomplete/places/PlacesInitializerImpl.kt:10-12 | decide | - |
 | PLT-413 | navigation | Navigation3 NavKeys for expense inbox, claims, draft details and mileage |  |  | expense/src/main/java/com/visma/employee/navigation/keys/ExpenseNavKeys.kt:6-45 | decide | - |
 | PLT-414 | camera | Camera claim and attachment results passed between screens through ExpenseResultHolder |  |  | expense/src/main/java/com/visma/employee/navigation/result/ExpenseResultHolder.kt:266-280 | decide | - |
-| PLT-415 | storage | SharedPreferences key for the send-for-approval 'don't show again' choice |  |  | expense/src/main/java/com/visma/employee/expense/preferences/SendApprovalPreferences.kt:15 | decide | - |
+| PLT-415 | storage | SharedPreferences key for the send-for-approval 'don't show again' choice |  |  | expense/src/main/java/com/visma/employee/expense/preferences/SendApprovalPreferences.kt:15 | decide | keep |
 | PLT-416 | persistence | Room cache of frequently used hotels (table frequently_used_hotels) |  |  | core/src/main/java/com/visma/employee/core/storage/persistance/user/FrequentlyUsedHotelDbModel.kt:7-37 | decide | - |
 | PLT-417 | persistence | Per-user 'don't show send-for-approval confirmation again' preference |  |  | core/src/main/java/com/visma/employee/core/storage/preferences/UserPreferencesRepositoryImpl.kt:118 | decide | - |
 | PLT-418 | background task | ExpenseUploadWorker (Hilt CoroutineWorker) uploads offline drafts via WorkManager OneTimeWorkRequest |  |  | expense/src/main/java/com/visma/employee/core/storage/sync/SyncManagerImpl.kt:61-68 | decide | - |

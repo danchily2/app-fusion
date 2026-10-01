@@ -36,3 +36,87 @@ What a person decided, in their words. The plan (`fuse-brief`) and the build (`f
 | DEC-030 | platform | PLT-050 | keep | Keep: one push path for iOS and Android; the backends register the new app's tokens. | Dan-Mihai Cuc | 2026-09-29 |
 | DEC-031 | platform | PLT-051 | decide-later | Decide with the stack: the plan picks storage together with the stack. | Dan-Mihai Cuc | 2026-09-29 |
 | DEC-032 | platform | PLT-057 | decide-later | Decide with the stack: the plan picks storage together with the stack. | Dan-Mihai Cuc | 2026-09-29 |
+| DEC-033 | conflict | CAP-047 | take:vmm | Manager's Gaia, for everyone: one general assistant; Employee's payslip/calendar questions become contexts of it. Keep Employee's server-side rating, which Gaia lacks. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-034 | conflict | CAP-048 | take:vmm | Manager's Gaia, for everyone: one general assistant; Employee's payslip/calendar questions become contexts of it. Keep Employee's server-side rating, which Gaia lacks. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-035 | conflict | CAP-053 | take:vmm | Manager's Gaia, for everyone: one general assistant; Employee's payslip/calendar questions become contexts of it. Keep Employee's server-side rating, which Gaia lacks. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-036 | conflict | CAP-054 | take:vmm | Manager's Gaia, for everyone: one general assistant; Employee's payslip/calendar questions become contexts of it. Keep Employee's server-side rating, which Gaia lacks. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-037 | conflict | CAP-059 | take:vmm | Manager's Gaia, for everyone: one general assistant; Employee's payslip/calendar questions become contexts of it. Keep Employee's server-side rating, which Gaia lacks. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-038 | conflict | CAP-066 | take:vmm | Manager's Gaia, for everyone: one general assistant; Employee's payslip/calendar questions become contexts of it. Keep Employee's server-side rating, which Gaia lacks. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-039 | conflict | CAP-197 | new-spec | Employee's, plus Manager's extras: multi-account sign-in from Employee; keep Manager's no-roles screen and web-session logout. A new listing needs a new redirect link either way. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-040 | conflict | CAP-199 | new-spec | Employee's, plus Manager's extras: multi-account sign-in from Employee; keep Manager's no-roles screen and web-session logout. A new listing needs a new redirect link either way. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-041 | conflict | CAP-200 | new-spec | Employee's, plus Manager's extras: multi-account sign-in from Employee; keep Manager's no-roles screen and web-session logout. A new listing needs a new redirect link either way. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-042 | conflict | CAP-201 | new-spec | Employee's, plus Manager's extras: multi-account sign-in from Employee; keep Manager's no-roles screen and web-session logout. A new listing needs a new redirect link either way. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-043 | conflict | CAP-209 | new-spec | Employee's, plus Manager's extras: multi-account sign-in from Employee; keep Manager's no-roles screen and web-session logout. A new listing needs a new redirect link either way. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-044 | conflict | CAP-176 | both-by-role | Register with both, per role: the device registers with each backend for the roles the user has, and unregisters from both on sign-out. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-045 | conflict | CAP-177 | both-by-role | Register with both, per role: the device registers with each backend for the roles the user has, and unregisters from both on sign-out. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-046 | conflict | CAP-124 | both-by-role | Both, per role: managers keep the HRM directory of their companies; employees keep the colleague directory. One shared, localized profile screen. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-047 | conflict | CAP-125 | both-by-role | Both, per role: managers keep the HRM directory of their companies; employees keep the colleague directory. One shared, localized profile screen. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-048 | conflict | CAP-126 | both-by-role | Both, per role: managers keep the HRM directory of their companies; employees keep the colleague directory. One shared, localized profile screen. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-049 | conflict | CAP-129 | both-by-role | Both, per role: managers keep the HRM directory of their companies; employees keep the colleague directory. One shared, localized profile screen. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-050 | conflict | CAP-067 | both-by-role | Tabs per role: each person sees the areas of their roles; someone with both gets both sets under one shell (the plan's role matrix decides the order). | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-051 | conflict | CAP-078 | take:vmm | Manager's: richer feedback context, remotely tuned rating prompt and announcements, without an app release. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-052 | conflict | CAP-098 | take:vmm | Manager's: richer feedback context, remotely tuned rating prompt and announcements, without an app release. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-053 | conflict | CAP-100 | take:vmm | Manager's: richer feedback context, remotely tuned rating prompt and announcements, without an app release. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-054 | conflict | CAP-101 | take:vmm | Manager's: richer feedback context, remotely tuned rating prompt and announcements, without an app release. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-055 | conflict | CAP-108 | take:vmm | Manager's: in-app language choice and synced appearance follow the user across devices; one update check. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-056 | conflict | CAP-109 | take:vmm | Manager's: in-app language choice and synced appearance follow the user across devices; one update check. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-057 | conflict | CAP-110 | take:vmm | Manager's: in-app language choice and synced appearance follow the user across devices; one update check. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-058 | conflict | CAP-113 | take:vmm | Manager's: in-app language choice and synced appearance follow the user across devices; one update check. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-059 | conflict | CAP-114 | take:vmm | Manager's: in-app language choice and synced appearance follow the user across devices; one update check. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-060 | conflict | CAP-115 | take:vmm | Manager's: in-app language choice and synced appearance follow the user across devices; one update check. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-061 | conflict | CAP-118 | take:vmm | Manager's: in-app language choice and synced appearance follow the user across devices; one update check. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-062 | conflict | CAP-120 | take:vmm | Manager's: in-app language choice and synced appearance follow the user across devices; one update check. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-063 | conflict | CAP-119 | take:vmm | Yes, Manager's way: encrypted local state restored on launch. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-064 | conflict | CAP-144 | take:me-ios | iOS behavior: me-ios is the more complete twin in the map; Android follows it. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-065 | conflict | CAP-145 | take:me-ios | iOS behavior: me-ios is the more complete twin in the map; Android follows it. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-066 | conflict | CAP-146 | take:me-ios | iOS behavior: me-ios is the more complete twin in the map; Android follows it. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-067 | conflict | CAP-178 | take:me-ios | iOS behavior: me-ios is the more complete twin in the map; Android follows it. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-068 | conflict | CAP-198 | take:me-ios | iOS behavior: me-ios is the more complete twin in the map; Android follows it. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-069 | conflict | CAP-238 | take:me-ios | iOS behavior: me-ios is the more complete twin in the map; Android follows it. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-070 | scope | CAP-087 | out | Merge them: a duplicate of CAP-201, which is kept and built. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-071 | conflict | CAP-087 | defer | Merge them: a duplicate of CAP-201, which is kept and built. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-072 | scope | CAP-121 | out | Merge them: a duplicate of CAP-209, which is kept and built. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-073 | conflict | CAP-121 | defer | Merge them: a duplicate of CAP-209, which is kept and built. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-074 | scope | CAP-107 | out | Merge them: a duplicate of CAP-113 and CAP-115, which is kept and built. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-075 | conflict | CAP-107 | defer | Merge them: a duplicate of CAP-113 and CAP-115, which is kept and built. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-076 | platform | PLT-094 | keep | Keep all 17: they are what makes push work for existing flows; the new app rebuilds each. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-077 | platform | PLT-095 | keep | Keep all 17: they are what makes push work for existing flows; the new app rebuilds each. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-078 | platform | PLT-150 | keep | Keep all 17: they are what makes push work for existing flows; the new app rebuilds each. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-079 | platform | PLT-151 | keep | Keep all 17: they are what makes push work for existing flows; the new app rebuilds each. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-080 | platform | PLT-208 | keep | Keep all 17: they are what makes push work for existing flows; the new app rebuilds each. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-081 | platform | PLT-209 | keep | Keep all 17: they are what makes push work for existing flows; the new app rebuilds each. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-082 | platform | PLT-219 | keep | Keep all 17: they are what makes push work for existing flows; the new app rebuilds each. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-083 | platform | PLT-220 | keep | Keep all 17: they are what makes push work for existing flows; the new app rebuilds each. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-084 | platform | PLT-221 | keep | Keep all 17: they are what makes push work for existing flows; the new app rebuilds each. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-085 | platform | PLT-222 | keep | Keep all 17: they are what makes push work for existing flows; the new app rebuilds each. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-086 | platform | PLT-246 | keep | Keep all 17: they are what makes push work for existing flows; the new app rebuilds each. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-087 | platform | PLT-330 | keep | Keep all 17: they are what makes push work for existing flows; the new app rebuilds each. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-088 | platform | PLT-331 | keep | Keep all 17: they are what makes push work for existing flows; the new app rebuilds each. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-089 | platform | PLT-351 | keep | Keep all 17: they are what makes push work for existing flows; the new app rebuilds each. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-090 | platform | PLT-371 | keep | Keep all 17: they are what makes push work for existing flows; the new app rebuilds each. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-091 | platform | PLT-372 | keep | Keep all 17: they are what makes push work for existing flows; the new app rebuilds each. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-092 | platform | PLT-390 | keep | Keep all 17: they are what makes push work for existing flows; the new app rebuilds each. | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-093 | platform | PLT-114 | keep | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-094 | platform | PLT-171 | keep | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-095 | platform | PLT-174 | keep | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-096 | platform | PLT-212 | keep | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-097 | platform | PLT-213 | keep | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-098 | platform | PLT-273 | keep | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-099 | platform | PLT-287 | keep | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-100 | platform | PLT-338 | keep | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-101 | platform | PLT-364 | keep | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-102 | platform | PLT-365 | keep | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-103 | platform | PLT-379 | keep | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-104 | platform | PLT-399 | keep | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-105 | platform | PLT-408 | keep | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-106 | platform | PLT-415 | keep | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-107 | platform | PLT-101 | decide-later | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a storage engine: chosen with the stack) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-108 | platform | PLT-120 | decide-later | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a storage engine: chosen with the stack) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-109 | platform | PLT-129 | decide-later | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a storage engine: chosen with the stack) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-110 | platform | PLT-157 | decide-later | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a storage engine: chosen with the stack) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-111 | platform | PLT-286 | decide-later | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a storage engine: chosen with the stack) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-112 | platform | PLT-358 | decide-later | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a storage engine: chosen with the stack) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-113 | platform | PLT-378 | decide-later | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a storage engine: chosen with the stack) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-114 | platform | PLT-382 | decide-later | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a storage engine: chosen with the stack) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-115 | platform | PLT-130 | drop | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a migration of old data: not needed when starting clean) | Dan-Mihai Cuc | 2026-10-01 |
+| DEC-116 | platform | PLT-343 | drop | Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a migration of old data: not needed when starting clean) | Dan-Mihai Cuc | 2026-10-01 |

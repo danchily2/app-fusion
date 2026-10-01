@@ -321,6 +321,846 @@
       "by": "Dan-Mihai Cuc",
       "at": "2026-09-29T06:25:42+00:00",
       "replaces": null
+    },
+    "DEC-033": {
+      "about": "CAP-047",
+      "kind": "conflict",
+      "question": "AI assistant: which one?",
+      "choice": "take:vmm",
+      "note": "Manager's Gaia, for everyone: one general assistant; Employee's payslip/calendar questions become contexts of it. Keep Employee's server-side rating, which Gaia lacks.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-034": {
+      "about": "CAP-048",
+      "kind": "conflict",
+      "question": "AI assistant: which one?",
+      "choice": "take:vmm",
+      "note": "Manager's Gaia, for everyone: one general assistant; Employee's payslip/calendar questions become contexts of it. Keep Employee's server-side rating, which Gaia lacks.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-035": {
+      "about": "CAP-053",
+      "kind": "conflict",
+      "question": "AI assistant: which one?",
+      "choice": "take:vmm",
+      "note": "Manager's Gaia, for everyone: one general assistant; Employee's payslip/calendar questions become contexts of it. Keep Employee's server-side rating, which Gaia lacks.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-036": {
+      "about": "CAP-054",
+      "kind": "conflict",
+      "question": "AI assistant: which one?",
+      "choice": "take:vmm",
+      "note": "Manager's Gaia, for everyone: one general assistant; Employee's payslip/calendar questions become contexts of it. Keep Employee's server-side rating, which Gaia lacks.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-037": {
+      "about": "CAP-059",
+      "kind": "conflict",
+      "question": "AI assistant: which one?",
+      "choice": "take:vmm",
+      "note": "Manager's Gaia, for everyone: one general assistant; Employee's payslip/calendar questions become contexts of it. Keep Employee's server-side rating, which Gaia lacks.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-038": {
+      "about": "CAP-066",
+      "kind": "conflict",
+      "question": "AI assistant: which one?",
+      "choice": "take:vmm",
+      "note": "Manager's Gaia, for everyone: one general assistant; Employee's payslip/calendar questions become contexts of it. Keep Employee's server-side rating, which Gaia lacks.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-039": {
+      "about": "CAP-197",
+      "kind": "conflict",
+      "question": "Sign-in and accounts: which flow?",
+      "choice": "new-spec",
+      "note": "Employee's, plus Manager's extras: multi-account sign-in from Employee; keep Manager's no-roles screen and web-session logout. A new listing needs a new redirect link either way.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-040": {
+      "about": "CAP-199",
+      "kind": "conflict",
+      "question": "Sign-in and accounts: which flow?",
+      "choice": "new-spec",
+      "note": "Employee's, plus Manager's extras: multi-account sign-in from Employee; keep Manager's no-roles screen and web-session logout. A new listing needs a new redirect link either way.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-041": {
+      "about": "CAP-200",
+      "kind": "conflict",
+      "question": "Sign-in and accounts: which flow?",
+      "choice": "new-spec",
+      "note": "Employee's, plus Manager's extras: multi-account sign-in from Employee; keep Manager's no-roles screen and web-session logout. A new listing needs a new redirect link either way.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-042": {
+      "about": "CAP-201",
+      "kind": "conflict",
+      "question": "Sign-in and accounts: which flow?",
+      "choice": "new-spec",
+      "note": "Employee's, plus Manager's extras: multi-account sign-in from Employee; keep Manager's no-roles screen and web-session logout. A new listing needs a new redirect link either way.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-043": {
+      "about": "CAP-209",
+      "kind": "conflict",
+      "question": "Sign-in and accounts: which flow?",
+      "choice": "new-spec",
+      "note": "Employee's, plus Manager's extras: multi-account sign-in from Employee; keep Manager's no-roles screen and web-session logout. A new listing needs a new redirect link either way.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-044": {
+      "about": "CAP-176",
+      "kind": "conflict",
+      "question": "Push notifications: how?",
+      "choice": "both-by-role",
+      "note": "Register with both, per role: the device registers with each backend for the roles the user has, and unregisters from both on sign-out.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-045": {
+      "about": "CAP-177",
+      "kind": "conflict",
+      "question": "Push notifications: how?",
+      "choice": "both-by-role",
+      "note": "Register with both, per role: the device registers with each backend for the roles the user has, and unregisters from both on sign-out.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-046": {
+      "about": "CAP-124",
+      "kind": "conflict",
+      "question": "People directory: which?",
+      "choice": "both-by-role",
+      "note": "Both, per role: managers keep the HRM directory of their companies; employees keep the colleague directory. One shared, localized profile screen.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-047": {
+      "about": "CAP-125",
+      "kind": "conflict",
+      "question": "People directory: which?",
+      "choice": "both-by-role",
+      "note": "Both, per role: managers keep the HRM directory of their companies; employees keep the colleague directory. One shared, localized profile screen.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-048": {
+      "about": "CAP-126",
+      "kind": "conflict",
+      "question": "People directory: which?",
+      "choice": "both-by-role",
+      "note": "Both, per role: managers keep the HRM directory of their companies; employees keep the colleague directory. One shared, localized profile screen.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-049": {
+      "about": "CAP-129",
+      "kind": "conflict",
+      "question": "People directory: which?",
+      "choice": "both-by-role",
+      "note": "Both, per role: managers keep the HRM directory of their companies; employees keep the colleague directory. One shared, localized profile screen.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-050": {
+      "about": "CAP-067",
+      "kind": "conflict",
+      "question": "Main areas (tabs): how?",
+      "choice": "both-by-role",
+      "note": "Tabs per role: each person sees the areas of their roles; someone with both gets both sets under one shell (the plan's role matrix decides the order).",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-051": {
+      "about": "CAP-078",
+      "kind": "conflict",
+      "question": "Help, feedback and What's New: which?",
+      "choice": "take:vmm",
+      "note": "Manager's: richer feedback context, remotely tuned rating prompt and announcements, without an app release.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-052": {
+      "about": "CAP-098",
+      "kind": "conflict",
+      "question": "Help, feedback and What's New: which?",
+      "choice": "take:vmm",
+      "note": "Manager's: richer feedback context, remotely tuned rating prompt and announcements, without an app release.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-053": {
+      "about": "CAP-100",
+      "kind": "conflict",
+      "question": "Help, feedback and What's New: which?",
+      "choice": "take:vmm",
+      "note": "Manager's: richer feedback context, remotely tuned rating prompt and announcements, without an app release.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-054": {
+      "about": "CAP-101",
+      "kind": "conflict",
+      "question": "Help, feedback and What's New: which?",
+      "choice": "take:vmm",
+      "note": "Manager's: richer feedback context, remotely tuned rating prompt and announcements, without an app release.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-055": {
+      "about": "CAP-108",
+      "kind": "conflict",
+      "question": "Settings and legal: which?",
+      "choice": "take:vmm",
+      "note": "Manager's: in-app language choice and synced appearance follow the user across devices; one update check.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-056": {
+      "about": "CAP-109",
+      "kind": "conflict",
+      "question": "Settings and legal: which?",
+      "choice": "take:vmm",
+      "note": "Manager's: in-app language choice and synced appearance follow the user across devices; one update check.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-057": {
+      "about": "CAP-110",
+      "kind": "conflict",
+      "question": "Settings and legal: which?",
+      "choice": "take:vmm",
+      "note": "Manager's: in-app language choice and synced appearance follow the user across devices; one update check.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-058": {
+      "about": "CAP-113",
+      "kind": "conflict",
+      "question": "Settings and legal: which?",
+      "choice": "take:vmm",
+      "note": "Manager's: in-app language choice and synced appearance follow the user across devices; one update check.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-059": {
+      "about": "CAP-114",
+      "kind": "conflict",
+      "question": "Settings and legal: which?",
+      "choice": "take:vmm",
+      "note": "Manager's: in-app language choice and synced appearance follow the user across devices; one update check.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-060": {
+      "about": "CAP-115",
+      "kind": "conflict",
+      "question": "Settings and legal: which?",
+      "choice": "take:vmm",
+      "note": "Manager's: in-app language choice and synced appearance follow the user across devices; one update check.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-061": {
+      "about": "CAP-118",
+      "kind": "conflict",
+      "question": "Settings and legal: which?",
+      "choice": "take:vmm",
+      "note": "Manager's: in-app language choice and synced appearance follow the user across devices; one update check.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-062": {
+      "about": "CAP-120",
+      "kind": "conflict",
+      "question": "Settings and legal: which?",
+      "choice": "take:vmm",
+      "note": "Manager's: in-app language choice and synced appearance follow the user across devices; one update check.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-063": {
+      "about": "CAP-119",
+      "kind": "conflict",
+      "question": "Keep app state after a restart or update?",
+      "choice": "take:vmm",
+      "note": "Yes, Manager's way: encrypted local state restored on launch.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-064": {
+      "about": "CAP-144",
+      "kind": "conflict",
+      "question": "Inside Employee, iOS and Android differ: which behavior?",
+      "choice": "take:me-ios",
+      "note": "iOS behavior: me-ios is the more complete twin in the map; Android follows it.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-065": {
+      "about": "CAP-145",
+      "kind": "conflict",
+      "question": "Inside Employee, iOS and Android differ: which behavior?",
+      "choice": "take:me-ios",
+      "note": "iOS behavior: me-ios is the more complete twin in the map; Android follows it.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-066": {
+      "about": "CAP-146",
+      "kind": "conflict",
+      "question": "Inside Employee, iOS and Android differ: which behavior?",
+      "choice": "take:me-ios",
+      "note": "iOS behavior: me-ios is the more complete twin in the map; Android follows it.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-067": {
+      "about": "CAP-178",
+      "kind": "conflict",
+      "question": "Inside Employee, iOS and Android differ: which behavior?",
+      "choice": "take:me-ios",
+      "note": "iOS behavior: me-ios is the more complete twin in the map; Android follows it.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-068": {
+      "about": "CAP-198",
+      "kind": "conflict",
+      "question": "Inside Employee, iOS and Android differ: which behavior?",
+      "choice": "take:me-ios",
+      "note": "iOS behavior: me-ios is the more complete twin in the map; Android follows it.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-069": {
+      "about": "CAP-238",
+      "kind": "conflict",
+      "question": "Inside Employee, iOS and Android differ: which behavior?",
+      "choice": "take:me-ios",
+      "note": "iOS behavior: me-ios is the more complete twin in the map; Android follows it.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-070": {
+      "about": "CAP-087",
+      "kind": "scope",
+      "question": "Duplicates: merge them?",
+      "choice": "out",
+      "note": "Merge them: a duplicate of CAP-201, which is kept and built.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-071": {
+      "about": "CAP-087",
+      "kind": "conflict",
+      "question": "Duplicates: merge them?",
+      "choice": "defer",
+      "note": "Merge them: a duplicate of CAP-201, which is kept and built.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-072": {
+      "about": "CAP-121",
+      "kind": "scope",
+      "question": "Duplicates: merge them?",
+      "choice": "out",
+      "note": "Merge them: a duplicate of CAP-209, which is kept and built.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-073": {
+      "about": "CAP-121",
+      "kind": "conflict",
+      "question": "Duplicates: merge them?",
+      "choice": "defer",
+      "note": "Merge them: a duplicate of CAP-209, which is kept and built.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-074": {
+      "about": "CAP-107",
+      "kind": "scope",
+      "question": "Duplicates: merge them?",
+      "choice": "out",
+      "note": "Merge them: a duplicate of CAP-113 and CAP-115, which is kept and built.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-075": {
+      "about": "CAP-107",
+      "kind": "conflict",
+      "question": "Duplicates: merge them?",
+      "choice": "defer",
+      "note": "Merge them: a duplicate of CAP-113 and CAP-115, which is kept and built.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-076": {
+      "about": "PLT-094",
+      "kind": "platform",
+      "question": "Push mechanics: keep their behavior?",
+      "choice": "keep",
+      "note": "Keep all 17: they are what makes push work for existing flows; the new app rebuilds each.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-077": {
+      "about": "PLT-095",
+      "kind": "platform",
+      "question": "Push mechanics: keep their behavior?",
+      "choice": "keep",
+      "note": "Keep all 17: they are what makes push work for existing flows; the new app rebuilds each.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-078": {
+      "about": "PLT-150",
+      "kind": "platform",
+      "question": "Push mechanics: keep their behavior?",
+      "choice": "keep",
+      "note": "Keep all 17: they are what makes push work for existing flows; the new app rebuilds each.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-079": {
+      "about": "PLT-151",
+      "kind": "platform",
+      "question": "Push mechanics: keep their behavior?",
+      "choice": "keep",
+      "note": "Keep all 17: they are what makes push work for existing flows; the new app rebuilds each.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-080": {
+      "about": "PLT-208",
+      "kind": "platform",
+      "question": "Push mechanics: keep their behavior?",
+      "choice": "keep",
+      "note": "Keep all 17: they are what makes push work for existing flows; the new app rebuilds each.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-081": {
+      "about": "PLT-209",
+      "kind": "platform",
+      "question": "Push mechanics: keep their behavior?",
+      "choice": "keep",
+      "note": "Keep all 17: they are what makes push work for existing flows; the new app rebuilds each.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-082": {
+      "about": "PLT-219",
+      "kind": "platform",
+      "question": "Push mechanics: keep their behavior?",
+      "choice": "keep",
+      "note": "Keep all 17: they are what makes push work for existing flows; the new app rebuilds each.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-083": {
+      "about": "PLT-220",
+      "kind": "platform",
+      "question": "Push mechanics: keep their behavior?",
+      "choice": "keep",
+      "note": "Keep all 17: they are what makes push work for existing flows; the new app rebuilds each.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-084": {
+      "about": "PLT-221",
+      "kind": "platform",
+      "question": "Push mechanics: keep their behavior?",
+      "choice": "keep",
+      "note": "Keep all 17: they are what makes push work for existing flows; the new app rebuilds each.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-085": {
+      "about": "PLT-222",
+      "kind": "platform",
+      "question": "Push mechanics: keep their behavior?",
+      "choice": "keep",
+      "note": "Keep all 17: they are what makes push work for existing flows; the new app rebuilds each.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-086": {
+      "about": "PLT-246",
+      "kind": "platform",
+      "question": "Push mechanics: keep their behavior?",
+      "choice": "keep",
+      "note": "Keep all 17: they are what makes push work for existing flows; the new app rebuilds each.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-087": {
+      "about": "PLT-330",
+      "kind": "platform",
+      "question": "Push mechanics: keep their behavior?",
+      "choice": "keep",
+      "note": "Keep all 17: they are what makes push work for existing flows; the new app rebuilds each.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-088": {
+      "about": "PLT-331",
+      "kind": "platform",
+      "question": "Push mechanics: keep their behavior?",
+      "choice": "keep",
+      "note": "Keep all 17: they are what makes push work for existing flows; the new app rebuilds each.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-089": {
+      "about": "PLT-351",
+      "kind": "platform",
+      "question": "Push mechanics: keep their behavior?",
+      "choice": "keep",
+      "note": "Keep all 17: they are what makes push work for existing flows; the new app rebuilds each.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-090": {
+      "about": "PLT-371",
+      "kind": "platform",
+      "question": "Push mechanics: keep their behavior?",
+      "choice": "keep",
+      "note": "Keep all 17: they are what makes push work for existing flows; the new app rebuilds each.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-091": {
+      "about": "PLT-372",
+      "kind": "platform",
+      "question": "Push mechanics: keep their behavior?",
+      "choice": "keep",
+      "note": "Keep all 17: they are what makes push work for existing flows; the new app rebuilds each.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-092": {
+      "about": "PLT-390",
+      "kind": "platform",
+      "question": "Push mechanics: keep their behavior?",
+      "choice": "keep",
+      "note": "Keep all 17: they are what makes push work for existing flows; the new app rebuilds each.",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-093": {
+      "about": "PLT-114",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "keep",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-094": {
+      "about": "PLT-171",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "keep",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-095": {
+      "about": "PLT-174",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "keep",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-096": {
+      "about": "PLT-212",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "keep",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-097": {
+      "about": "PLT-213",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "keep",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-098": {
+      "about": "PLT-273",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "keep",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-099": {
+      "about": "PLT-287",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "keep",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-100": {
+      "about": "PLT-338",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "keep",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-101": {
+      "about": "PLT-364",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "keep",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-102": {
+      "about": "PLT-365",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "keep",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-103": {
+      "about": "PLT-379",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "keep",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-104": {
+      "about": "PLT-399",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "keep",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-105": {
+      "about": "PLT-408",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "keep",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-106": {
+      "about": "PLT-415",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "keep",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a behavior users notice: kept)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-107": {
+      "about": "PLT-101",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "decide-later",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a storage engine: chosen with the stack)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-108": {
+      "about": "PLT-120",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "decide-later",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a storage engine: chosen with the stack)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-109": {
+      "about": "PLT-129",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "decide-later",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a storage engine: chosen with the stack)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-110": {
+      "about": "PLT-157",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "decide-later",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a storage engine: chosen with the stack)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-111": {
+      "about": "PLT-286",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "decide-later",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a storage engine: chosen with the stack)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-112": {
+      "about": "PLT-358",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "decide-later",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a storage engine: chosen with the stack)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-113": {
+      "about": "PLT-378",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "decide-later",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a storage engine: chosen with the stack)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-114": {
+      "about": "PLT-382",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "decide-later",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a storage engine: chosen with the stack)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-115": {
+      "about": "PLT-130",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "drop",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a migration of old data: not needed when starting clean)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
+    },
+    "DEC-116": {
+      "about": "PLT-343",
+      "kind": "platform",
+      "question": "Storage and housekeeping: how?",
+      "choice": "drop",
+      "note": "Rebuild what users notice: keep the behaviors, drop the old stores and migrations; the engine is chosen with the stack. (a migration of old data: not needed when starting clean)",
+      "by": "Dan-Mihai Cuc",
+      "at": "2026-10-01T13:29:16+00:00",
+      "replaces": null
     }
   }
 }

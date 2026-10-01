@@ -1,7 +1,7 @@
 {
   "program": "work-app",
   "version": 1,
-  "generated": "2026-09-29T13:51:32+00:00",
+  "generated": "2026-10-01T13:29:17+00:00",
   "items": [
     {
       "id": "PLT-001",
@@ -736,7 +736,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-095",
@@ -747,7 +747,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-096",
@@ -813,7 +813,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "decide-later"
     },
     {
       "id": "PLT-102",
@@ -956,7 +956,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-115",
@@ -1022,7 +1022,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "decide-later"
     },
     {
       "id": "PLT-121",
@@ -1121,7 +1121,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "decide-later"
     },
     {
       "id": "PLT-130",
@@ -1132,7 +1132,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "drop"
     },
     {
       "id": "PLT-131",
@@ -1352,7 +1352,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-151",
@@ -1363,7 +1363,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-152",
@@ -1429,7 +1429,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "decide-later"
     },
     {
       "id": "PLT-158",
@@ -1583,7 +1583,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-172",
@@ -1616,7 +1616,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-175",
@@ -1990,7 +1990,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-209",
@@ -2001,7 +2001,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-210",
@@ -2034,7 +2034,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-213",
@@ -2045,7 +2045,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-214",
@@ -2111,7 +2111,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-220",
@@ -2122,7 +2122,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-221",
@@ -2133,7 +2133,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-222",
@@ -2144,7 +2144,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-223",
@@ -2408,7 +2408,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-247",
@@ -2705,7 +2705,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-274",
@@ -2848,7 +2848,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "decide-later"
     },
     {
       "id": "PLT-287",
@@ -2859,7 +2859,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-288",
@@ -3332,7 +3332,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-331",
@@ -3343,7 +3343,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-332",
@@ -3420,7 +3420,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-339",
@@ -3475,7 +3475,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "drop"
     },
     {
       "id": "PLT-344",
@@ -3563,7 +3563,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-352",
@@ -3640,7 +3640,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "decide-later"
     },
     {
       "id": "PLT-359",
@@ -3706,7 +3706,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-365",
@@ -3717,7 +3717,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-366",
@@ -3783,7 +3783,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-372",
@@ -3794,7 +3794,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-373",
@@ -3860,7 +3860,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "decide-later"
     },
     {
       "id": "PLT-379",
@@ -3871,7 +3871,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-380",
@@ -3904,7 +3904,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "decide-later"
     },
     {
       "id": "PLT-383",
@@ -3992,7 +3992,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-391",
@@ -4091,7 +4091,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-400",
@@ -4190,7 +4190,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-409",
@@ -4267,7 +4267,7 @@
       },
       "newApp": "decide",
       "note": "",
-      "decision": null
+      "decision": "keep"
     },
     {
       "id": "PLT-416",

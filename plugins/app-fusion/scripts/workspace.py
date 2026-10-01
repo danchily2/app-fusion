@@ -6,7 +6,7 @@
     python3 workspace.py intent <program> [--goal build|understand] [--platforms ios,android] [--stack S] [--persona P ...]
                                [--must TEXT ...] [--store APP|new-listing|undecided|ios=APP,android=APP] [--locales en,da,...]
     python3 workspace.py check <program> [--json]          are the legacy apps linked, clean and at the recorded commit?
-    python3 workspace.py guard <program>                   which permission deny rules protect the legacy code?
+    python3 workspace.py guard <program> [--agent claude|devin]  which permission deny rules protect the legacy code?
 
 `init` makes legacy/<app> a symlink to each source (copying nothing), records stack, platforms, repository, branch
 and commit in analysis/<program>/program.json (merging with what is there), links new-app/<program> when --target
@@ -262,37 +262,56 @@ def _deny_rules(path):
     return [r for r in ((data.get("permissions") or {}).get("deny") or []) if isinstance(r, str)]
 
 
+def _guard_rules(agent, ws):
+    """Per agent: its settings files, the deny rules that protect the legacy links from inside the workspace's own
+    settings and from anywhere, and the rule for one real path. Claude Code reads a leading / relative to the settings
+    file's folder and // as absolute; Devin reads a leading / as absolute and a bare pattern from where it started."""
+    if agent == "devin":
+        user = (os.path.join(os.environ["APPDATA"], "devin", "config.json") if sys.platform == "win32" and os.environ.get("APPDATA")
+                else os.path.expanduser("~/.config/devin/config.json"))
+        return {"files": [os.path.join(ws, ".devin", "config.json"), os.path.join(ws, ".devin", "config.local.json"), user],
+                "is_write": lambda r: r.startswith("Write("), "settings": ".devin/config.json",
+                "here": ("Write(legacy/**)", "Write(./legacy/**)"),
+                "anywhere": ("Write(**/legacy/**)", f"Write({ws}/legacy/**)", f"Write({ws}/legacy)"),
+                "real": lambda p: (f"Write({p}/**)", f"Write({p})"), "real_rule": lambda p: f"Write({p}/**)",
+                "legacy_rule": "Write(legacy/**)", "covers": "Devin's edit and write tools, not its shell"}
+    return {"files": [os.path.join(ws, ".claude", "settings.json"), os.path.join(ws, ".claude", "settings.local.json"),
+                      os.path.join(os.environ.get("CLAUDE_CONFIG_DIR") or os.path.expanduser("~/.claude"), "settings.json")],
+            "is_write": lambda r: r.startswith("Edit(") or r == "Edit", "settings": ".claude/settings.json",
+            # a leading / is relative to the settings file's own folder: Edit(/legacy/**) protects this workspace only when it
+            # sits in the workspace's settings, not in ~/.claude/settings.json
+            "here": ("Edit(legacy/**)", "Edit(./legacy/**)", "Edit(/legacy/**)"), "anywhere": ("Edit", "Edit(**/legacy/**)"),
+            "real": lambda p: ("Edit", f"Edit(//{p.lstrip('/')}/**)"), "real_rule": lambda p: f"Edit(//{p.lstrip('/')}/**)",
+            "legacy_rule": "Edit(/legacy/**)", "covers": "Claude's file tools and the shell commands it recognizes"}
+
+
 def cmd_guard(args):
     ws = workspace(args.workspace)
     prog = load_json(os.path.join(program_dir(ws, args.program), "program.json")) or {"apps": []}
-    files = [os.path.join(ws, ".claude", "settings.json"), os.path.join(ws, ".claude", "settings.local.json"),
-             os.path.join(os.environ.get("CLAUDE_CONFIG_DIR") or os.path.expanduser("~/.claude"), "settings.json")]
+    spec = _guard_rules(args.agent, ws)
     rules = []
-    for f in files:
+    for f in spec["files"]:
         for r in _deny_rules(f):
-            if r.startswith("Edit(") or r == "Edit":
+            if spec["is_write"](r):
                 rules.append((os.path.relpath(f, ws) if f.startswith(ws) else f.replace(os.path.expanduser("~"), "~"), r, f.startswith(ws)))
-    # a leading / is relative to the settings file's own folder: Edit(/legacy/**) protects this workspace only when it
-    # sits in the workspace's settings, not in ~/.claude/settings.json
-    covered_legacy = any(r in ("Edit", "Edit(**/legacy/**)") or (in_ws and r in ("Edit(legacy/**)", "Edit(./legacy/**)", "Edit(/legacy/**)"))
-                         for _, r, in_ws in rules)
+    covered_legacy = any(r in spec["anywhere"] or (in_ws and r in spec["here"]) for _, r, in_ws in rules)
     missing_real = []
     for a in prog.get("apps", []):
         link = os.path.join(ws, a.get("path") or f"legacy/{a['name']}")
         if os.path.islink(link):
             real = os.path.realpath(link)
-            if not any(r in ("Edit", f"Edit(//{real.lstrip('/')}/**)") for _, r, _ in rules):
+            if not any(r in spec["real"](real) for _, r, _ in rules):
                 missing_real.append(real)
     status = "ok" if covered_legacy and not missing_real else "warn"
     print(f"status: {status}")
     for f, r, _ in rules:
         print(f"  deny {r}  ({f})")
     if status != "ok":
-        deny = ["Edit(/legacy/**)"] + [f"Edit(//{p.lstrip('/')}/**)" for p in missing_real]
-        print("add to the workspace's .claude/settings.json (merge into permissions.deny if it exists):")
+        deny = [spec["legacy_rule"]] + [spec["real_rule"](p) for p in missing_real]
+        print(f"add to the workspace's {spec['settings']} (merge into permissions.deny if it exists):")
         print(json.dumps({"permissions": {"deny": deny}}, indent=2))
-    print("note: a deny rule covers Claude's file tools and the shell commands it recognizes, not a script that opens "
-          "files itself; the plugin's guard hook adds a second check, and a read-only mount is the hard guarantee.")
+    print(f"note: a deny rule covers {spec['covers']}, not a script that opens files itself; the plugin's guard hook "
+          "adds a second check, and a read-only mount is the hard guarantee.")
 
 
 def main():
@@ -323,6 +342,7 @@ def main():
     p.add_argument("--workspace")
     p = sub.add_parser("guard")
     p.add_argument("program")
+    p.add_argument("--agent", choices=["claude", "devin"], default="claude", help="whose permission rules to read")
     p.add_argument("--workspace")
     p = sub.add_parser("figma-url")
     p.add_argument("url")

@@ -3,6 +3,17 @@
 A release gets a new number in `.claude-plugin/plugin.json`. Claude Code only offers an update when that number
 changes.
 
+## Unreleased
+
+- **Runs in Devin.** Devin loads the Claude Code layout as it is; what it names differently is now handled. The guard
+  hook matches Devin's tools too (`edit`, `write`, `notebook_edit`, every file an `apply_patch` adds, updates, deletes
+  or moves to, `exec` in its `workdir`, and the text `write_to_process` types into a shell), finds the project and the
+  plugin from `DEVIN_PROJECT_DIR` and `DEVIN_PLUGIN_ROOT`, and turns off with `APP_FUSION_GUARD=false` where plugin
+  options do not exist. A session-start hook, silent under Claude Code, tells a Devin agent the plugin's folder for
+  `${CLAUDE_PLUGIN_ROOT}`, the Devin names of the tools the skills mention, the path to take without the Workflow
+  tool and the Figma budget default. `workspace.py guard <program> --agent devin` reads and prints Devin's
+  `.devin/config.json` `Write(...)` deny rules, which fuse-preflight Check 7 uses in Devin.
+
 ## 0.3.0
 
 From a third review, of the proof and the guard, and from the work-app run with three apps.

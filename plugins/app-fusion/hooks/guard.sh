@@ -4,4 +4,4 @@
 # one. It runs on every matched tool call (about 30 ms); a cheaper gate here would have to repeat that discovery, and
 # an earlier one that only looked at the project folder skipped cases the script catches.
 command -v python3 >/dev/null 2>&1 || exit 0
-exec python3 "$CLAUDE_PLUGIN_ROOT/scripts/guard.py"
+exec python3 "${CLAUDE_PLUGIN_ROOT:-${DEVIN_PLUGIN_ROOT:-$(dirname "$0")/..}}/scripts/guard.py"

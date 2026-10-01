@@ -12,6 +12,8 @@ Install it from a local clone:
 
 Or try it for one session without installing: `claude --plugin-dir /path/to/app-fusion/plugins/app-fusion`.
 
+In Devin: `devin plugins install danchily2/app-fusion#plugins/app-fusion` (see the plugin README for what differs).
+
 Then open an empty folder for the work and type `/app-fusion:fuse`. The full guide is
 [plugins/app-fusion/README.md](plugins/app-fusion/README.md), and the design contract is
 [plugins/app-fusion/docs/DESIGN.md](plugins/app-fusion/docs/DESIGN.md).

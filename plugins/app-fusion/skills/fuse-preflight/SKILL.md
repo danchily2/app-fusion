@@ -115,8 +115,10 @@ Check each part and record what you find:
 ## Check 7: Is the legacy code protected?
 
 `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/workspace.py" guard $program` reads the permission deny rules (read-only: never
-edit a settings file) and prints the snippet to add when the links or their real paths are not covered. Also say
-whether the plugin's guard hook is active (the plugin option `guard` is on by default).
+edit a settings file) and prints the snippet to add when the links or their real paths are not covered. In Devin, add
+`--agent devin`: Devin reads its deny rules from `.devin/config.json` (`Write(...)`), never from `.claude/settings.json`.
+Also say whether the plugin's guard hook is active (the plugin option `guard` is on by default; in Devin,
+`APP_FUSION_GUARD=false` turns it off, and plugin hooks run in local sessions only).
 
 Status is ✅ or ⚠️, never ❌. Say plainly what the rules and the hook cover: Claude's file tools and the shell commands
 they recognize. They do not cover a script that opens files itself. A read-only mount is the hard guarantee.

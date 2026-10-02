@@ -1,0 +1,17 @@
+{
+  "name": "app-fusion-marketplace",
+  "version": "0.3.0",
+  "description": "Meta-plugin for Devin: installing this repository installs App Fusion from plugins/app-fusion. Claude Code reads .claude-plugin/marketplace.json instead.",
+  "author": {
+    "name": "Dan-Mihai Cuc",
+    "email": "dan-mihai.cuc@visma.com"
+  },
+  "license": "Apache-2.0",
+  "requiredPlugins": [
+    {
+      "source": "git-subdir",
+      "url": "https://github.com/danchily2/app-fusion.git",
+      "path": "plugins/app-fusion"
+    }
+  ]
+}
